@@ -1,0 +1,53 @@
+\begin{titlepage}
+    
+\begin{tikzpicture}[overlay, remember picture]
+
+    \begin{scope}
+
+        \shade[rounded corners=15pt, left color=myred,right color=myred!30] ($(current page.north west)+(-1,-4)$) rectangle ++(15,1.5);
+        \shade[rounded corners=8pt, left color=myred, right color= myorange!50] ($(current page.north west)+(-1,-5.5)$) rectangle ++(7,.8);
+        \shade[rounded corners=12pt, left color=myyellow, right color= myyellow!70] ($(current page.south west)+(-1,4.4)$) rectangle ++(19,1.2);
+
+        \shade[rounded corners=13pt, left color=myorange!50, right color = myorange] ($(current page.north east)+(1,-8)$) rectangle ++(-5,1.3);
+        \shade[rounded corners=15, left color=myyellow, right color= myorange] ($(current page.north east)+(1,-12)$) rectangle ++(-12,1.5);
+        \shade[rounded corners=10, left color=myyellow!70, right color= myyellow] ($(current page.north east)+(1,-13.5)$) rectangle ++(-20,1);
+
+    \end{scope}
+
+    \begin{scope}[transform canvas ={rotate around ={30:($(current page.north east)+(1,-2)$)}}]
+
+        \shade[rounded corners=10pt, left color=mypurple, right color=mypurple!60] ($(current page.north east)+(2,-.5)$) rectangle ++(-6,1);
+        \shade[rounded corners=22pt, left color=mynavyblue, right color=myblue!40] ($(current page.north east)+(1.5,-3)$) rectangle ++(-15,2.2);
+        
+    \end{scope}
+
+    \begin{scope}[transform canvas ={rotate around ={-30:($(current page.west)+(0,-2)$)}}]
+
+        \shade[rounded corners=14pt, left color=mypurple!60, right color=mypurple] ($(current page.west)+(-2,-1.5)$) rectangle ++(8,1.4);
+        \shade[rounded corners=14pt, left color=myblue!40, right color=mynavyblue] ($(current page.west)+(-2,-3)$) rectangle ++(11,1.4);
+        
+    \end{scope}
+
+    \node[rotate=-30, white] at ($(current page.center)+(-5.7,-3.3)$) {\Huge \dateh};
+    \node[rotate=-30, white] at ($(current page.center)+(-3.9,-6.1)$) {\Huge \dateb};
+
+
+    \draw[ultra thick, black!70] 
+    ($(current page.center)+(-1.5,8)$) -- ++(0,-3cm) 
+    node[midway,left=0.25cm,text width=10cm,align=right,black!70]{{\fontsize{28}{32} \bfseries\itshape \titleh \\[10pt] \titleb}} 
+    node[midway,right=0.35cm, align=left, white]{{\fontsize{50}{56} \itshape PC}}; 
+
+    \draw[ultra thick, black!70] 
+    ($(current page.center)+(1,-4)$) -- ++(5cm,0) 
+    node[midway,above=0.25cm, mynavyblue]{{\fontsize{24}{26} \bfseries\scshape Olivier Allard}} 
+    node[midway,below=0.25cm, black!70]{{\fontsize{22}{24} \bfseries\itshape Lycée Hoche}}; 
+
+    \node[text width=15cm,align=center] at ($(current page.south)+(0,5)$) 
+    { \itshape Ce document est mis à disposition selon les termes de la licence \href{https://creativecommons.org/licenses/by-nc/4.0/}{Attribution - Utilisation non commerciale 4.0 International}, Olivier Allard \oldstylenums{2024}};
+
+    \node[align=center] at ($(current page.south)+(0,3)$)
+    {\href{https://creativecommons.org/licenses/by-nc/4.0/}{\includegraphics[width=.2\linewidth]{template/licence_cc-by-nc.png}}};
+
+\end{tikzpicture}
+
+\end{titlepage}

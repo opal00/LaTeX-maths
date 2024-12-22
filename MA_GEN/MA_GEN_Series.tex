@@ -1,0 +1,1445 @@
+\customchapter{Séries numériques}{On étudiera ici majoritairement la question de la convergence ou non d’une série, pour éventuellement en faire un objet pratique, notamment dans la question de l’intégration.}
+
+\section{Séries}
+
+    \subsection{Définition}
+
+    \begin{defi}{Série numérique}{}
+        Soit $(u_n)_{n \geq n_0}$ une suite numérique.
+        \begin{itemize}
+            \item Pour $n \geq n_0$, la \textbf{$n$-ième somme partielle} de la suite $(u_n)_{n \geq n_0}$ est le nombre \[ S_n = \sum\limits_{k=n_0}^n u_k \]
+            \item On dit que la \textbf{série} $\sum u_n$ $\left(\text{ou } \sum\limits_{n \geq n_0} u_n \right)$ de \textbf{terme général} $(u_n)_n$ est convergente lorsque la suite $(S_n)_n$ converge.
+            \item La nature de la série $\sum u_n$ est sa convergence ou sa divergence.
+            \item Dans le cas où la série $\sum u_n$ est convergente, on définit la somme de la série comme étant le nombre \[ \sum\limits_{k = n_0}^{+\infty} u_k = \lim\limits_{n \rightarrow +\infty} (S_n) \]
+            \item De même, pour une série convergente, on définit le $n$-ème reste par le nombre 
+            \[ R_n = \sum\limits_{k = n+1}^{+\infty} u_k = \sum\limits_{k = n_0}^{+\infty} u_k - S_n \]
+        \end{itemize}
+    \end{defi}
+
+    \subsection{Propriétés}
+
+    \begin{prop}{Condition nécessaire de convergence d’une série}{}
+        Soit $(u_n)_{n \geq n_0}$ une suite numérique.
+
+        On suppose que la série $\sum u_n$ converge.
+
+        Alors $u_n \underset{n \rightarrow +\infty}{\longrightarrow} 0$
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        $u_n = S_n - S_{n-1}$ et $(S_n)$ converge donc $\lim_{n \rightarrow +\infty} u_n = \lim_{n \rightarrow +\infty} S_n - \lim_{n \rightarrow +\infty} S_{n-1} = 0$.
+    \end{demo}
+
+    \begin{theo}{Nature des séries géométriques}{}
+        Soient $z \in \mathbb{C}$ et $n_0 \in \mathbb{N}$.
+
+        Alors la série $\sum z^n$ est convergente si et seulement si $\abs{z} < 1$. 
+
+        Dans ce cas, $\sum\limits_{k = n_0}^{+\infty} z^k = \frac{z^{n_0}}{1-z}$
+    \end{theo}
+
+    \begin{prop}{Nature des séries télescopiques}{}
+        Soit $(u_n)_{n \geq n_0}$ une suite numérique.
+    
+        Alors la série numérique $\sum u_{n+1}-u_n$ converge si et seulement si la suite $(u_n)_n$ converge. 
+    
+        Dans ce cas, $\sum\limits_{k=n_0}^{+\infty} (u_{k+1}-u_k) = \lim\limits_{n \rightarrow +\infty}u_n - u_{n_0}$
+    \end{prop}
+
+    \subsection{Série à terme général positif}
+
+        \subsubsection{Convergence absolue}
+
+    \begin{defi}{Convergence absolue}{}
+        Soit $\sum u_n$ une série numérique.
+
+        $\sum u_n$ est \textbf{absolument convergente} si $\sum \abs{u_n}$ est convergente.
+    \end{defi}
+
+    \begin{prop}{}{}
+        Toute série absolument convergente est convergente.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Considérons $\sum u_n$ absolument convergente, et notons $S_n = \sum_{k=0}^{n} u_n$ et $T_n = \sum_{k=0}^{n} \abs{u_n}$. Rappelons que 
+        \[ \sum u_n \text{ cv} \iff (S_n) \text{ cv} \iff (S_n) \text{ vérifie le C.C.} \] 
+        Soient $n,p \in \mathbb{N}$, avec $n \leq p$.
+            \begin{align*}
+                \abs{S_n - S_p} &= \abs{\sum_{k=n+1}^{p} u_k} \\
+                &\leq \sum_{k=n+1}^{p} \abs{u_k} = \abs{T_n - T_p}
+            \end{align*}
+        Or $(T_n)$ suit le critère de Cauchy, donc $(S_n)$ aussi.
+    \end{demo}
+
+        \subsubsection{Série à terme général positif}
+    
+    \begin{prop}{}{}
+        \begin{soient}
+            \item $\sum u_n$ une série numérique
+            \item $(u_n) \in \mathbb{R}_+^{\mathbb{N}}$
+        \end{soient}
+        Alors $\sum u_n$ converge ssi $(S_n)$ est majorée. 
+
+        Dans ce cas, 
+        \[ \sum_{n=0}^{+\infty} u_n = \sup\left\{ S_n, n \in \mathbb{N} \right\} \] 
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Soit $n \geq 1$. $S_n - S_{n-1} = u_n \geq 0$, donc $(S_n)$ est croissante, et elle converge ssi elle est majorée.
+
+        En cas de convergence, $\sum_{n=0}^{+\infty} u_n = \lim_{n \rightarrow +\infty}S_n = \sup\left\{ S_n, n \in \mathbb{N} \right\}$
+    \end{demo}
+
+    \begin{coro}{}{}
+        \begin{soient}
+            \item $\sum u_n$ et $\sum v_n$ des séries à terme général positif.
+        \end{soient}
+        On suppose que $(u_n) \leq (v_n)$.
+
+        \begin{alors}
+            \item Si $\sum v_n$ converge $\sum u_n$ converge.
+            \item Si $\sum u_n$ diverge $\sum v_n$ diverge.
+        \end{alors}
+    \end{coro}
+
+    \begin{demo}{Preuve}{myorange}
+        On pose $S_n$ et $T_n$ les $n$-èmes sommes partielles de $\sum u_n$ et $\sum v_n$ respectivement. $\forall n \in \mathbb{N}, S_n \leq T_n$.
+        \begin{enumerate}
+            \item Si $\sum v_n$ converge, $(T_n)$ est majorée, donc $(S_n)$ aussi, donc $\sum u_n$ converge.
+            \item Si $\sum u_n$ diverge, $(S_n)$ n’est pas majorée, donc $(T_n)$ non plus, donc $\sum v_n$ diverge.
+        \end{enumerate}
+    \end{demo}
+
+    \begin{prop}{Critère de d’Alembert}{}
+        Soit $\sum u_n$ une série numérique à terme général positif.
+        \begin{suppose}
+            \item $\lim_{n \rightarrow +\infty} \frac{u_{n+1}}{u_n} = \ell \in \mathbb{R}_+ \cup \{ +\infty \}$
+        \end{suppose}
+        \begin{alors}
+            \item Si $\ell < 1$, $\sum u_n$ converge.
+            \item Si $\ell > 1$, $\sum u_n$ diverge.
+        \end{alors}
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        \begin{enumerate}
+            \item Supposons $\ell < 1$. Il existe $\delta$ tel que $\ell < \delta < 1$. Comme $\lim_{n \rightarrow +\infty} \frac{u_{n+1}}{u_n} = \ell$, il existe $N$ tel que 
+            \[ \forall n \geq N, \frac{u_{n+1}}{u_n} \leq \delta \quad \left(\iff u_{n+1} \leq \delta u_n\right) \] 
+            On en déduit que, $\forall k \in \mathbb{N}$,
+            \begin{align*}
+                u_{N+k} &\leq \delta u_{N + k - 1} \\
+                &\leq \delta^2 u_{N + k - 2} \\
+                &\leq \delta^k u_N  
+            \end{align*}
+            De plus, $\sum_k \delta^k u_N$ converge car $\delta < 1$. On en déduit que $\sum u_n$ converge.
+            \item Supposons $\ell > 1$. Il existe $\delta$ tel que $\ell > \delta > 1$. Comme $\lim_{n \rightarrow +\infty} \frac{u_{n+1}}{u_n} = \ell$, il existe $N$ tel que 
+            \[ \forall n \geq N, \frac{u_{n+1}}{u_n} \geq \delta \quad \left(\iff u_{n+1} \geq \delta u_n\right) \] 
+            On en déduit que, $\forall k \in \mathbb{N}$,
+            \begin{align*}
+                u_{N+k} &\geq \delta u_{N + k - 1} \\
+                &\geq \delta^2 u_{N + k - 2} \\
+                &\geq \delta^k u_N \limi{n}{+\infty} +\infty \quad \text{car } \delta > 1 
+            \end{align*}
+            Donc $\sum u_n$ diverge grossièrement.
+        \end{enumerate}
+    \end{demo}
+
+    \begin{prop}{Sommation des relations de comparaison}{}
+        \begin{soient}
+            \item $\sum u_n$ et $\sum v_n$ des séries à termes $\geq 0$
+            \item $S_n = \sum_{k=0}^n u_k$ et $S_n' = \sum_{k=0}^n v_k$
+            \item $R_n = \sum_{k=n+1}^{+\infty} u_k$ et $R_n' = \sum_{k=n+1}^{+\infty} v_k$ (en cas de convergence)
+        \end{soient}
+        \begin{alors}
+            \item Si $\sum v_n$ converge et \begin{enumerate}[label=(\alph*)]
+                \item $u_n = \mathcal{O}(v_n)$, alors $\sum u_n$ converge et $R_n = \mathcal{O}(R_n')$.
+                \item $u_n = o(v_n)$, alors $\sum u_n$ converge et $R_n = o(R_n')$.
+                \item $u_n \sim v_n$, alors $\sum u_n$ converge et $R_n \sim R_n'$.
+            \end{enumerate}
+            \item Si $\sum v_n$ diverge et \begin{enumerate}[label=(\alph*)]
+                \item $u_n = \mathcal{O}(v_n)$, alors on ne peut pas conclure sur la convergence de $u_n$, mais $S_n = \mathcal{O}(S_n')$.
+                \item $u_n = o(v_n)$, alors on ne peut pas conclure sur la convergence de $u_n$, mais $S_n = o(S_n')$.
+                \item $u_n \sim v_n$, alors $\sum u_n$ diverge, et $S_n \sim S_n'$.
+            \end{enumerate}
+        \end{alors}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        \begin{enumerate}
+            \item Supposons que $\sum v_n$ converge, i.e. $(S_n')$ est majorée. \begin{enumerate}[label=(\alph*)]
+                \item Si $u_n = \mathcal{O}(v_n)$, il existe $A \geq 0$ tq $\forall n \in \mathbb{N}, u_n \leq A v_n$. 
+                
+                On en déduit que $\forall n \in \mathbb{N}, S_n \leq A S_n'$, donc $(S_n)$ est majorée, puis la série $\sum u_n$ converge. 
+
+                Soient $n < m \in \mathbb{N}$, on a 
+                    \[ \sum_{k=n+1}^m u_k \leq A \sum_{k=n+1}^{m} v_k \]
+                Quand $m \rightarrow +\infty$, on obtient $R_n \leq A R_n'$ donc $R_n = \mathcal{O}(R_n')$
+                \item Si $u_n = o(v_n)$, $u_n = \mathcal{O}(v_n)$ donc $\sum u_n$ converge.
+                
+                Soit $\varepsilon > 0$, il existe $N$ tel que $\forall n \geq N, u_n \leq \varepsilon v_n$. On en déduit, si $N \leq n < m$,
+                \[ \sum_{k=n+1}^{m} u_k \leq \varepsilon \sum_{k=n+1}^{m} \] 
+                Quand $m \rightarrow +\infty$, on obtient $R_n \leq \varepsilon R_n'$, \textit{i.e.} $R_n = o(R_n')$.
+                \item Si $u_n \sim v_n$, alors $u_n = \mathcal{O}(v_n)$, donc $\sum u_n$ converge. 
+                
+                Soit $\varepsilon > 0$, il existe $N$ tel que $\forall n \geq N, (1-\varepsilon)v_n \leq u_n \leq (1 + \varepsilon)v_n$. Si $N \leq n < m$, 
+                \[ (1-\varepsilon)\sum_{k=n+1}^{m}v_k \leq \sum_{k=n+1}^{m}u_k \leq (1+\varepsilon)\sum_{k=n+1}^{m}v_k \] 
+                Quand $m \rightarrow +\infty$, on obtient $(1-\varepsilon)R_n' \leq R_n \leq (1+\varepsilon)R_n$, \textit{i.e.} $R_n \sim R_n'$.
+            \end{enumerate}
+            \item Supposons que $\sum v_n$ diverge. \begin{enumerate}[label=(\alph*)]
+                \item Si $u_n = O(v_n)$, il existe $A \geq 0$ tel que $\forall n \in \mathbb{N}, u_n \leq A v_n$. Donc $S_n = \sum_{k=0}^{n}u_k \leq A \sum_{k=0}^{n}v_k = A S_n'$, \textit{i.e.} $S_n = \mathcal{O}(S_n')$.
+                \item Si $u_n = o(v_n)$. Soit $\varepsilon > 0$, il existe $N$ tq $\forall n \geq N, u_n \leq \frac{\varepsilon}{2} v_n$. 
+                
+                Soit $n \geq N$,
+                \begin{align*}
+                S_n = \sum_{k=0}^{n} u_k &= \sum_{k=0}^{N-1} u_k + \sum_{k=N}^{n} u_k \\
+                &\leq \sum_{k=0}^{N-1} u_k + \frac{\varepsilon}{2} \sum_{k=N}^{n} v_k \\
+                &\leq \sum_{k=0}^{N-1} u_k + \frac{\varepsilon}{2} \underbrace{\sum_{k=0}^{n} v_k}_{= S_n'}
+                \end{align*} 
+                La somme $\sum_{k=0}^{N-1} u_k$ ne dépend pas de $n$ et $S_n' \rightarrow + \infty$ (car $v_n \geq 0$). Donc $\frac{\varepsilon}{2} S_n' \rightarrow + \infty$. Donc il existe $N'$ tel que 
+                \[ \forall n \geq N', \sum_{k=0}^{N-1} u_k \leq \frac{\varepsilon}{2} S_n' \] 
+                Ainsi, si $n \geq \max(N,N')$, 
+                \[ S_n \leq \frac{\varepsilon}{2} S_n' + \frac{\varepsilon}{2} S_n' = \varepsilon S_n' \] 
+                D’où $S_n = o (S_n')$.
+                \item Si $u_n \sim v_n$. Prouvons directement que $S_n \sim S_n'$.
+                
+                Soit $\varepsilon > 0$, il existe $N$ tq $\forall n \geq N, (1- \frac{\varepsilon}{2}) v_n \leq u_n \leq (1 + \frac{\epsilon}{2})v_n$. On en déduit que si $n \geq N$, 
+                \begin{align*}
+                    (1- \frac{\varepsilon}{2})\sum_{k=N}^{n} v_k &\leq \sum_{k=N}^{n} u_k \leq (1 + \frac{\varepsilon}{2})\sum_{k=N}^{n} v_k \\
+                    (1- \frac{\varepsilon}{2})\sum_{k=N}^{n} v_k + \sum_{k=0}^{N-1} u_k &\leq \underbrace{ \sum_{k=0}^{n} u_k}_{= S_n} \leq (1 + \frac{\varepsilon}{2})\sum_{k=N}^{n} v_k + \sum_{k=0}^{N-1} u_k \\
+                    \sum_{k=0}^{N-1} u_k - (1 - \frac{\varepsilon}{2}) \sum_{k=0}^{N-1} v_k + (1 - \frac{\varepsilon}{2})S_n' &\leq S_n \leq \sum_{k=0}^{N-1} u_k - (1 + \frac{\varepsilon}{2}) \sum_{k=0}^{N-1} v_k + (1 + \frac{\varepsilon}{2})S_n'\\
+                    \underbrace{\sum_{k=0}^{N-1} (u_k - v_k)}_{=C \text{ une constante}} + (1 - \frac{\varepsilon}{2})S_n' &\leq S_n \leq \underbrace{\sum_{k=0}^{N-1} (u_k - v_k)}_{=C} + (1 + \frac{\varepsilon}{2})S_n' \\
+                    C + (1- \frac{\varepsilon}{2})S_n' &\leq S_n \leq C + (1 + \frac{\varepsilon}{2})S_n' \\
+                \end{align*}
+                Comme $\sum v_n$ diverge et $v_n \geq 0, S_n' \rightarrow +\infty$. Il existe $N'$ tq $\forall n \geq N', C \leq \frac{\varepsilon}{2} S_n'$. De même, il existe $N''$ tq $\forall n \geq N'', -\frac{\varepsilon}{2} S_n' \leq C$. Ainsi, si $n \geq \max(N, N', N'')$,
+                \[ (1-\varepsilon) S_n' \leq S_n \leq (1 + \varepsilon) S_n' \] 
+                On a bien $S_n \sim S_n'$. D’où $S_n \rightarrow +\infty$ puis $\sum u_n$ diverge.
+            \end{enumerate}
+        \end{enumerate}
+    \end{demo}
+
+    \begin{omed}{Remarque}{myolive}
+        Les points essentiels sont, si $\sum u_n$ et $\sum v_n$ sont à tg $\geq 0$, alors : 
+        \begin{itemize}
+            \item Si $u_n = \mathcal{O}(v_n)$ et $\sum v_n$ converge alors $\sum u_n$ converge.
+            \item Si $u_n \sim v_n$, alors les séries sont de même nature.
+        \end{itemize}
+    \end{omed}
+
+    \begin{omed}{Applications \textcolor{black}{(Série harmonique)}}{myolive}
+        \begin{enumerate}
+            \item On pose $u_n = \frac{1}{n^2}$ et $v_n = \frac{1}{n(n-1)}$. 
+            
+            Alors $u_n \sim v_n$ et $\sum v_n$ converge. Donc $\sum u_n$ converge, et on sait que $\sum_{k=n+1}^{+\infty} \frac{1}{k^2} \sim \sum_{k=n+1}^{+\infty} \frac{1}{k(k-1)}$.
+
+            De plus, si on suppose $n < m$,
+            \begin{align*}
+                \sum_{k=n+1}^{m} \frac{1}{k(k-1)} &= \sum_{k=n+1}^{m} \frac{1}{k-1} - \frac{1}{k} \\
+                &= \frac{1}{n} - \frac{1}{m} 
+            \end{align*}
+            Quand $m \rightarrow +\infty$, $\sum_{k=n+1}^{m} \frac{1}{k(k-1)} = \frac{1}{n}$, donc 
+            \[ \sum_{k=n+1}^{+\infty} \frac{1}{k^2} \sim \frac{1}{n} \] 
+            \item On appelle série harmonique
+            \[ H_n = \sum_{k=1}^{n} \frac{1}{k} \] 
+            Montrons que $H_n$ admet le développement asymptotique suivant :
+            \[ H_n = \ln(n) + \gamma + \frac{1}{2n} + \underset{n \rightarrow + \infty}{o}(\frac{1}{n}) \] 
+            On remarque que $\frac{1}{n} \sim \ln(1 + \frac{1}{n}) = \ln(n+1) - \ln(n)$. On pose donc $u_n = \frac{1}{n}$ et $v_n = \ln(1 + \frac{1}{n})$, qui sont toujours positifs. On a
+            \begin{align*}
+                S_n' = \sum_{k=1}^{n} \ln(1 + \frac{1}{k}) &= \sum_{k=1}^{n} \ln(k+1) - \ln(k) \\
+                &= \ln(n+1) \rightarrow + \infty
+            \end{align*} 
+            Donc $\sum v_n$ diverge, d’où $\sum \frac{1}{n}$ diverge, et $H_n \sim S_n' = \ln(n+1)$. 
+
+            De plus, 
+            \begin{align*}
+                H_n - \ln(n+1) &= \sum_{k=1}^{n} \frac{1}{k} - \sum_{k=1}^{n} \ln(1 + \frac{1}{k}) \\
+                &= \sum_{k=1}^{n} \frac{1}{k} - \ln(1 + \frac{1}{k})
+            \end{align*}
+            On pose $u_n = \frac{1}{n} - \ln(1 + \frac{1}{n})$. Rappelons que 
+            \[ \ln(1+x) = x - \frac{x^2}{2} + o(x^2) \text{ quand } x \rightarrow 0\] 
+            Donc 
+            \[ \ln(1 + \frac{1}{n}) = \frac{1}{n} - \frac{1}{2n^2} + o(\frac{1}{n^2}) \text{ quand } n \rightarrow +\infty \] 
+            D’où $u_n \sim \frac{1}{2n^2}$. Posons désormais $v_n = \frac{1}{2n^2}$. Comme $\sum \frac{1}{n^2}$ converge et $\sum_{k=n+1}^{+\infty} \frac{1}{2n^2} \sim \frac{1}{2n}$, donc $\sum u_n$ converge. On pose 
+            \[ \gamma = \sum_{n=1}^{+\infty} \frac{1}{n} - \ln(1 + \frac{1}{n}) \] 
+            On sait que 
+            \[ \sum_{k=n+1}^{+\infty} \frac{1}{k} - \ln(1 + \frac{1}{k}) \sim \sum_{k=n+1}^{+\infty} \frac{1}{2k^2} \sim \frac{1}{2n} \]
+            Or $\sum_{k=n+1}^{+\infty} \frac{1}{k} - \ln(1 + \frac{1}{k}) = \gamma - H_n + \ln(n+1)$, donc on en déduit que 
+            \[ H_n = \ln(n+1) + \gamma - \frac{1}{2n} + o(\frac{1}{n}) \] 
+            Puis $\ln(n+1) = \ln(n) + \ln(1 + \frac{1}{n}) = \ln(n) + \frac{1}{n} + o(\frac{1}{n})$. En substituant à l’expression de $H_n$, on obtient le développement asymptotique de $H_n$ : 
+            \[ H_n = \ln(n) + \gamma + \frac{1}{2n} + o(\frac{1}{n}) \] 
+         \end{enumerate}
+    \end{omed}
+
+    \begin{prop}{Comparaison série \& intégrale}{}
+        Soit $f : \intervalleFO{a}{+\infty} \rightarrow \mathbb{R}$, continue, à valeurs dans $\mathbb{R}_+$, et décroissante.
+
+        Alors $\sum f(n)$ converge si et seulement si $\int_{a}^{X} f(t)dt$ a une limite quand $X \rightarrow +\infty$.
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        Soit $n \geq a$.
+        \[ f(n+1)  \leq \int_{n}^{n+1} f(t)dt \leq f(n) \] 
+        Posons $n_0 = \lceil a \rceil$ (plus petit entier supérieur à $a$). Si $n \geq 0$, 
+        \[ S_n = \sum_{k=n_0}^{n} f(k) \] 
+        Comme $f(n) \geq 0$, $\sum f(n)$ converge ssi $(S_n)$ est majorée. Pour $k = n_0, \ldots, n-1$, on a 
+        \[ f(k+1) \leq \int_{k}^{k+1} f(t)dt \leq f(k) \]
+        En sommant ces inégalités, on obtient :
+        \begin{align*}
+             & \sum_{k=n_0}^{n-1} f(k+1) \leq \sum_{k=n_0}^{n-1} \int_{k}^{k+1} f(t)dt \leq \sum_{k=n_0}^{n-1} f(k) \\
+        \iff & \sum_{k=n_0 + 1}^{n} f(k) \leq \int_{n_0}^{n} f(t)dt \leq S_{n-1} \\
+        \iff & S_n - f(n_0) \leq \int_{n_0}^{n} f(t)dt \leq S_{n-1} 
+        \end{align*}
+        \begin{enumerate}
+            \item Si $(S_n)$ est majorée, alors 
+            \[ X \longmapsto \int_{a}^{X} f(t)dt \text{ est majorée} \] 
+            Or cette application est croissante, donc elle possède une limite en $+\infty$.
+            \item Si cette application a une limite en $+\infty$, elle est majorée car elle est croissante, donc $(S_n)$ est majorée, d’où la série $\sum f(n)$ converge.
+        \end{enumerate}
+    \end{demo}
+
+    \begin{prop}{Séries de Riemann}{}
+        Soit $\alpha \in \mathbb{R}$. On appelle \textbf{série de Riemann} la série de terme général $\sum \frac{1}{n^{\alpha}}$. 
+        \[ \sum \frac{1}{n^{\alpha}} \text{ converge} \iff \alpha > 1 \] 
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        \begin{itemize}
+            \item Si $\alpha \leq 0$, la série diverge grossièrement.
+            \item Si $\alpha > 0$, posons $f : x \longmapsto \frac{1}{x^{\alpha}}$. 
+            
+            Sur $\mathbb{R}_+^*$, l’application $f$ est \textit{continue} et \textit{décroissante} et à \textit{termes positifs}. Donc d’après la proposition précédente, 
+            \[ \sum \frac{1}{n^{\alpha}} \text{ converge} \iff \lim_{X \rightarrow +\infty} \int_{1}^{X} \frac{1}{x^{\alpha}}dx \text{ existe} \]
+            \begin{itemize}
+                \item Si $\alpha \neq 1$, on a 
+                \begin{align*} \int_{1}^{X} \frac{1}{x^{\alpha}}dx 
+                &= \left[\frac{1}{(\alpha-1)x^{\alpha-1}}\right]_1^X \\
+                &= \frac{1}{\alpha-1} \left(1 - \frac{1}{X^{\alpha-1}}\right)
+                \end{align*}
+                Donc 
+                \[ \lim_{X \rightarrow +\infty} \int_{1}^{X} \frac{1}{x^{\alpha}}dx \text{ existe} \iff \alpha > 1 \]
+                \item Si $\alpha = 1$, 
+                \[ \int_{1}^{X} \frac{1}{x}dx = \ln(X) \limi{X}{+\infty} +\infty \] 
+            \end{itemize}
+        \end{itemize}
+    \end{demo}
+
+    \begin{prop}{Séries de Bertrand}{}
+        Soient $\alpha, \beta \in \mathbb{R}$, on appelle \textbf{Série de Bertrand} la série $\sum \frac{1}{n^{\alpha}(\ln(n))^{\beta}}$.
+
+        On a 
+        \[ \sum \frac{1}{n^{\alpha}(\ln(n))^{\beta}} \text{ converge} \iff \ou{\alpha > 1}{\alpha = 1 \text{ et } \beta > 1} \] 
+    \end{prop}
+
+    \begin{demo}{Justification}{myolive}
+        \begin{itemize}
+            \item Si $\alpha < 0$, $n^{\alpha}(\ln(n))^{\beta} \limi{n}{+\infty} 0$ donc la série de Bertrand diverge grossièrement.
+            \item Si $\alpha = 0$ et $\beta \leq 0$, la série de Bertrand diverge grossièrement de même.
+            \item Si $\alpha > 1$, soit $\delta$ tel que $1 < \delta < \alpha$.
+            
+            \[ \frac{1}{n^{\alpha} (\ln(n))^{\beta}} = \limit{o}{n}{+\infty} \left(\frac{1}{n^{\delta}}\right) \quad \text{par croissances comparées} \] 
+
+            De plus, $\sum \frac{1}{n^{\delta}}$ converge car $\delta > 1$. Par sommation de relations de comparaison, la série de Bertrand converge.
+            \item Si $0 \leq \alpha < 1$, soit $\delta$ tel que $1 > \delta > \alpha$.
+            \[ \frac{1}{n^{\delta}} = \limit{o}{n}{+\infty} \left(\frac{1}{n^{\alpha} (\ln(n))^{\beta}}\right) \quad \text{par croissances comparées} \]
+            Donc apcr, on aura 
+            \[ 0 \leq \frac{1}{n^{\delta}} \leq \frac{1}{n^{\alpha} (\ln(n))^{\beta}} \]
+            De plus, $\sum \frac{1}{n^{\delta}}$ diverge donc d’après le premier résultat de comparaison, on sait que la série de Bertrand diverge.
+            \item Si $\alpha = 1$, posons $f : x \longmapsto \frac{1}{x(\ln(x))^{\beta}}$, pour $x > 1$. On voit clairement que $f$ est continue et à termes positifs, et 
+            \[ f'(x) = -\frac{\left((\ln(x))^{\beta} + \beta (\ln(x))^{\beta-1}\right)}{ \left(x(\ln(x))^{\beta}\right)^2} \] 
+            est du signe de 
+            \[ -\left((\ln(x))^{\beta} + \beta (\ln(x))^{\beta-1}\right) = -(\ln(x))^{\beta-1} (\ln(x) + \beta) \] 
+            Donc $f$ est décroissante apcr (tel que $\ln(x) + \beta \geq 0$). Ainsi, $\sum \frac{1}{n(\ln(n))^{\beta}}$ converge ssi $\int_{A}^{X} \frac{1}{x(\ln(x))^{\beta}} dx $ a une limite finie lorsque $X \rightarrow +\infty$.
+            \begin{itemize}
+                \item Si $\beta \neq 1$, 
+                \begin{align*}
+                    \int_{A}^{X} \frac{1}{x(\ln(x))^{\beta}} dx 
+                    &= \left[\frac{1}{1-\beta} (\ln(x))^{1 - \beta}\right]_A^X \\
+                    &= \frac{1}{1- \beta}\left((\ln(X))^{1-\beta} - (\ln(A))^{1-\beta}\right)
+                \end{align*}
+                possède une limite quand $X \rightarrow +\infty$ si et seulement si $\beta > 1$.
+                \item Si $\beta = 1$, on pose $f : x \mapsto \frac{1}{x \ln x}$. $f$ est continue, à termes positifs et décroissante sur $\intervalleOO{1}{+\infty}$. Donc $ \sum \frac{1}{n \ln n}$ converge si et seulement si $\int_{2}^{X} \frac{1}{x \ln x}dx$ a une limite en $X \rightarrow +\infty$. 
+                
+                Comme $\int_{2}^{X} \frac{1}{x \ln x} dx = \ln( \ln X) - \ln(\ln 2) \limi{X}{+\infty} + \infty$, la série $\sum \frac{1}{n \ln n}$ diverge.
+            \end{itemize}
+        \end{itemize}
+    \end{demo}
+
+\subsection{Série à termes quelconques}
+
+    \begin{defi}{Suites alternées}{}
+        Soit $(u_n) \in \mathbb{R}^{\mathbb{N}}$.
+
+        On dit que $(u_n)$ est \textbf{alternée} si $\forall n \in \mathbb{N}, u_n u_{n+1} \leq 0$.
+    \end{defi}
+
+    \begin{theo}{CSSA}{}
+        Soit $(u_n) \in \mathbb{R}^{\mathbb{N}}$. \begin{suppose}
+            \item $(u_n)$ est alternée
+            \item $(u_n) \limi{n}{+\infty} 0$
+            \item $(\abs{u_n})$ est décroissante
+        \end{suppose}
+        Alors $\sum u_n$ converge.
+
+        De plus, si on pose $R_n = \sum_{k=n+1}^{+\infty} u_k$, on a 
+        \[ \abs{R_n} \leq \abs{u_{n+1}} \quad \text{et} \quad R_n u_{n+1} \geq 0 \]
+    \end{theo}
+
+    \begin{demo}{Démonstration du théorème}{myred}
+        On pose $S_n = \sum_{k=0}^{n} u_k$. Comme $(u_n)$ est alternée, on peut supposer que $u_n$ est du signe de $(-1)^n$ (quitte à remplacer $(u_n)$ par $(-u_n)$).
+        \begin{enumerate}
+            \item Soit $n \in \mathbb{N}$, on a 
+            \begin{align*}
+                S_{2n+2} - S_{2n} 
+                &= u_{n+2} + u_{n+1} \\
+                &= \abs{u_{n+2}} - \abs{u_{n+1}} \\
+                & \quad \downarrow \quad (\abs{u_n}) \text{ est décroissante} \\
+                &\leq 0
+            \end{align*}
+            Donc $(S_{2n})$ est décroissante.
+            \begin{align*}
+                S_{2n+3} - S_{2n+1} 
+                &= u_{n+3} + u_{n+2} \\
+                &= + \abs{u_{n+3}} + \abs{u_{n+2}} \\
+                & \quad \downarrow \quad (\abs{u_n}) \text{ est décroissante} \\
+                &\geq 0
+            \end{align*}
+            Donc $(S_{2n+1})$ est croissante.
+
+            Or $S_{2n+1} - S_{2n} = u_{n+1} \limi{n}{+\infty} 0$, donc $(S_{2n})$ et $(S_{2n+1})$ sont adjacentes, et convergent vers la même limite. Donc $(S_n)$ tend vers cette limite, \textit{i.e.} la série converge.
+            \item Pour tout $n \in \mathbb{N}$, 
+            \begin{align*}
+                S_{2n+1} &\leq \ell \leq S_{2n} \\
+                S_{2n+1} - \ell &\leq 0 \leq S_{2n} - \ell \\
+                - R_{2n+1} &\leq 0 \leq -R_{2n} \\
+                R_{2n+1} &\geq 0 \geq R_{2n}
+            \end{align*}
+            \begin{itemize}
+                \item $R_{2n+1} \geq 0$ est du signe de $u_{n+2}$.
+                \item $R_{2n} \leq 0$ est du signe de $u_{n+1}$.
+            \end{itemize}
+            D’où $R_n$ est du signe de $u_{n+1}$.
+
+            Majorons désormais $R_n$. 
+            \[ 0 \geq R_{2n} = \underbrace{R_{2n+1}}_{\geq 0} + u_{2n+1} \geq u_{2n+1} \] 
+            D’où $\abs{R_{2n}} \leq \abs{u_{2n+1}}$. De la même façon, $\abs{R_{2n+1}} \leq \abs{u_{2n+2}}$. Ainsi, $\forall n \in \mathbb{N}, \abs{R_n} \leq \abs{u_{n+1}}$.
+        \end{enumerate}
+    \end{demo}
+
+    \begin{omed}{Exemple \textcolor{black}{(Transformation d’Abel)} }{myolive}
+        Posons $\theta \in \mathbb{R} \backslash \left(2 \pi \mathbb{Z}\right)$. On s’intéresse à $\sum \frac{\sin(n\theta)}{n^{\alpha}}$ 
+        \begin{itemize}
+            \item Si $\alpha \leq 0$, la série $\sum \frac{\sin(n\theta)}{n^{\alpha}}$ diverge grossièrement. 
+            \item Si $\alpha > 1$, on a $\abs{\frac{\sin(n\theta)}{n^{\alpha}}} \leq \frac{1}{n^{\alpha}}$ où $\sum \frac{1}{n^{\alpha}}$ converge donc $\sum \frac{(-1)^n}{\sqrt{n}}$ converge.
+            \item Si $0 < \alpha \leq 1$, on utilise une \textbf{transformation d’Abel}. 
+            
+            Posons $a_n = \sin(n \theta)$ et $\varepsilon_n = \frac{1}{n^{\alpha}}$, puis $S_n = \sum_{k=1}^{n} a_k \varepsilon_k$ et $A_n = \sum_{k=1}^{n} a_k$.
+    
+            On a \begin{align*}
+                S_n 
+                &= \sum_{k=1}^n \left(A_k - A_{k+1}\right) \varepsilon_k \\
+                &= \sum_{k=1}^n A_k \varepsilon_k - \sum_{k=1}^n A_{k-1} \varepsilon_k \\
+                &= \sum_{k=1}^n A_k \varepsilon_k - \sum_{k=0}^{n-1} A_k \varepsilon_{k+1} \\
+                &= A_n \varepsilon_n - A_0 \varepsilon_1 + \sum_{k=1}^{n-1} A_k \left(\varepsilon_k - \varepsilon_{k+1}\right)  \quad \textbf{transformation d’Abel}
+            \end{align*}
+            \begin{itemize}
+                \item Prouvons que $(A_n)$ est majorée. 
+                \begin{align*}
+                    A_n 
+                    &= \sum_{k=1}^n \sin(k \theta) \\
+                    &= \sum_{k=0}^{n} \sin(k \theta) \\
+                    &= \sum_{k=0}^{n} \Im(e^{i k \theta}) \\
+                    &= \Im \left(\sum_{k=0}^{n} e^{i k \theta}\right) \\
+                    &= \Im \left(\sum_{k=0}^{n} \left(e^{i \theta}\right)^k \right) \quad \text{où } e^{i \theta} \neq 1 \\
+                    &= \Im \left( \frac{1 - (e^{i\theta})^{n+1}}{1 - e^{i\theta}} \right) \\
+                    &= \Im \left( \frac{e^{i (n+1) \frac{\theta}{2}} \left(-2i \sin \frac{(n+1)\theta}{2}\right)}{e^{i \frac{\theta}{2}} (-2i \sin \frac{\theta}{2})} \right) \\
+                    &= \Im \left(e^{i n \frac{\theta}{2}} \frac{\sin \frac{(n+1) \theta}{2}}{\sin \frac{\theta}{2}}\right) \\
+                    &= \frac{\sin \frac{(n+1) \theta}{2}}{\sin \frac{\theta}{2}} \Im \left(e^{i n \frac{\theta}{2}}\right)
+                \end{align*}
+                Donc $ A_n = \frac{\sin\left((n+1)\frac{\theta}{2}\right) \sin\left(n \frac{\theta}{2}\right)}{\sin\left(\frac{\theta}{2}\right)}$ d’où $\abs{A_n} \leq \frac{1}{\abs{\sin\left(\frac{\theta}{2}\right)}}$ i.e. $(A_n)$ est bornée.
+                \item Montrons que $\sum A_n \left(\varepsilon_n - \varepsilon_{n+1}\right)$ est absolument convergente. 
+                
+                Pour $n \in \mathbb{N}^*$, on a 
+                \begin{align*}
+                    \abs{A_n \left(\varepsilon_n - \varepsilon_{n+1}\right)} 
+                    &\leq \overbrace{\frac{1}{\abs{\sin(\theta/2)}}}^{= M} \overbrace{\abs{\varepsilon_n - \varepsilon_{n+1}}}^{\geq 0} \\
+                    &= M \left(\varepsilon_n - \varepsilon_{n+1}\right)
+                \end{align*}
+                Donc 
+                \begin{align*}
+                    \sum_{k=1}^{n} \abs{A_k \left(\varepsilon_k - \varepsilon_{k+1}\right)}
+                    &\leq M \sum_{k=1}^{n} (\varepsilon_k - \varepsilon_{k+1}) \\
+                    &= M (\varepsilon_1 - \varepsilon_{n+1}) \\
+                    &= M \varepsilon_1
+                \end{align*}
+                D’où $\sum \abs{A_n \left(\varepsilon_n - \varepsilon_{n+1}\right)}$ est à termes positifs, avec des sommes partielles majorées, donc converge. Donc $\sum A_n \left(\varepsilon_n - \varepsilon_{n+1}\right)$ est absolument convergente \textit{i.e.} converge.
+                \item En conclusion, de par l’écriture de la transformation, $(S_n)$ converge.
+            \end{itemize}
+    
+            On a finalement obtenu que 
+            \[ \sum \frac{\sin(n \theta)}{n^{\alpha}} \text{ converge} \iff \alpha > 0 \] 
+        \end{itemize}
+        \end{omed}
+    
+        \begin{omed}{Remarques}{myolive}
+            \begin{enumerate}
+                \item On en déduit que si $\sum a_n \varepsilon_n$ avec 
+            \begin{itemize}
+                \item $A_n = \sum_{k=0}^{n} a_n$ est bornée.
+                \item $(\varepsilon_n)$ est décroissante et tend vers 0.
+            \end{itemize}
+            Alors $\sum a_n \varepsilon_n$ converge.
+            \item On a donc une généralisation du CSSA (qui serait ici le cas où $a_n = (-1)^n$)
+            \end{enumerate}
+        \end{omed}
+
+        \begin{defi}{Produit de Cauchy}{}
+            Soient $\sum a_n$ et $\sum b_n$ deux séries numériques. 
+    
+            On appelle \textbf{Produit de Cauchy} la série $\sum c_n$ où, 
+            \[ \forall n \in \mathbb{N}, c_n = \sum_{k=0}^{n} a_k b_{n-k} = \sum_{p+q = n} a_p b_q \] 
+        \end{defi}
+
+        \begin{prop}{Convergence d’un produit de Cauchy}{}
+            Soient $\sum a_n$ et $\sum b_n$ deux séries absolument convergentes.
+    
+            Alors leur produit de Cauchy $\sum c_n$ est absolument convergent. De plus, 
+            \[ \sum_{n=0}^{+\infty} c_n = \left(\sum_{n=0}^{+\infty} a_n\right) \cdot \left(\sum_{n=0}^{+\infty} b_n\right) \]
+        \end{prop}
+    
+        \begin{demo}{Preuve}{myolive}
+            \begin{enumerate}
+                \item Dans le cas des séries à termes positifs ($a_n, b_n \geq 0$). Posons
+                \[ A_n = \sum_{k=0}^{n} a_k \quad B_n = \sum_{k=0}^{n} b_k \quad C_n = \sum_{k=0}^{n} c_k \] 
+                Comparons $A_n \cdot B_n$ et $C_n$.
+                \begin{align*}
+                    A_n B_n 
+                    &= \left( \sum_{p=0}^{n} a_p \right) \left( \sum_{q=0}^{n} b_q \right) \\
+                    &= \sum_{p=0}^{n} \sum_{q=0}^{n} a_p b_q \\
+                    &= \sum_{(p,q) \in \intervalleEntier{0}{n}^2} a_p b_q 
+                \end{align*}
+                D’autre part 
+                \begin{align*}
+                    C_n 
+                    &= \sum_{k=0}^{n} c_k \\
+                    &= \sum_{k=0}^{n} \sum_{i = 0}^{k} a_i b_{k-i} \\
+                    &= \sum_{k=0}^{n} \sum_{p+q = k} a_p b_q \\
+                    &= \sum_{\substack{p+q \leq n \\ (p,q) \in \intervalleEntier{0}{n}^2}} a_p b_q
+                \end{align*}
+                On en déduit que $C_n \leq A_n B_n \quad (1)$
+    
+                De même, on pourrait obtenir 
+                \[ C_{2n} = \sum_{\substack{p+q \leq 2n \\ (p,q) \in \intervalleEntier{0}{2n}^2}} a_p b_q \] 
+                On en déduit que $A_n B_n \leq C_{2n} \quad (2)$
+    
+                On sait que $(A_n)$ et $(B_n)$ sont majorées car convergent et sont à termes positifs. Avec $(1)$, on obtient que $(C_n)$ est majorée d’où $\sum c_n$ converge. De plus, $C_n \leq A_n B_n \leq C_{2n}$, donc 
+                \[ \lim_{n \rightarrow +\infty} C_n = \lim_{n \rightarrow +\infty} A_n \cdot \lim_{n \rightarrow +\infty} B_n \] ce qui nous donne le résultat.
+                \item Posons $\sum a_n$ et $\sum b_n$ deux séries numériques et $\sum c_n$ leur produit de Cauchy. On note
+                \[ A_n = \sum_{k=0}^{n} a_k \quad B_n = \sum_{k=0}^{n} b_k \quad C_n = \sum_{k=0}^{n} c_k \]  
+                De plus, on pose 
+                \[ \alpha_n = \abs{a_n} \quad \beta_n = \abs{b_n} \quad \gamma_n = \abs{c_n} \quad \delta_n = \sum_{k=0}^{n} \alpha_k \beta_{n-k} \]
+                Soit $n \in \mathbb{N}$. 
+                \begin{align*}
+                    \abs{A_n B_n - C_n} 
+                    &= \abs{\sum_{(p,q) \in \intervalleEntier{0}{n}^2} a_p b_q - \sum_{\substack{(p,q) \in \intervalleEntier{0}{n}^2 \\ p+q \leq n}} a_p b_q} \\
+                    &= \abs{\sum_{\substack{(p,q) \in \intervalleEntier{0}{n}^2 \\ p+q > n}} a_p b_q} \\
+                    & \quad \downarrow \quad \text{par inégalité triangulaire} \\
+                    &\leq \sum_{\substack{(p,q) \in \intervalleEntier{0}{n}^2 \\ p+q > n}} \alpha_p \beta_q \\
+                    &= \sum_{(p,q) \in \intervalleEntier{0}{n}^2} \alpha_p \beta_q - \sum_{\substack{(p,q) \in \intervalleEntier{0}{n}^2 \\ p+q \leq n}} \alpha_p \beta_q \\
+                    &= \left(\sum_{p=0}^{n} \alpha_p\right) \cdot \left(\sum_{q=0}^{n} \beta_q\right) - \sum_{k=0}^{n} \delta_k 
+                \end{align*}
+                La série $\sum \delta_n$ est le produit de Cauchy de $\sum \alpha_n$ et $\sum \beta_n$. D’après \textbf{(i)}, 
+                \[ \lim_{n \rightarrow +\infty} \left(\sum_{p=0}^{n} \alpha_p\right) \cdot \left(\sum_{q=0}^{n} \beta_q\right) - \sum_{k=0}^{n} \delta_k  = 0 \] 
+                Par encadrement, on obtient donc que 
+                \[ \lim_{n \rightarrow +\infty} C_n = \lim_{n \rightarrow +\infty} A_n \cdot \lim_{n \rightarrow +\infty} B_n \]
+                D’où le résultat.
+            \end{enumerate}
+        \end{demo}
+
+        \begin{prop}{Formule de Stirling}{}
+            \[ n! \limit{\sim}{n}{+\infty} \sqrt{2 \pi n} \left( \frac{n}{e} \right)^n \]
+        \end{prop}
+    
+        \begin{demo}{Démonstration}{myolive}
+            Montrons plus précisément que 
+            \[ n! = \sqrt{2 \pi n} \left( \frac{n}{e} \right)^n \left(1 + \frac{1}{12n} + \comp{o}{n}{+\infty}{\frac{1}{n}}\right) \]
+            On a 
+            \begin{align*}
+                \ln(n!) 
+                &= \ln \left(\prod_{k=1}^{n} k\right) \\
+                &= \sum_{k=1}^{n} \ln(k)
+            \end{align*}
+            Posons $h$ l’application telle que : 
+            \begin{itemize}
+                \item $\forall k \in \mathbb{N}^*, \ln(h) = \ln(k)$
+                \item $\forall k \in \mathbb{N}^*, \restr{\ln}{\intervalleFF{k}{k+1}}$ est affine
+            \end{itemize}
+            $h$ est une fonction formée des cordes de $\ln$ entre entiers consécutifs.
+            Pour tout $k \in \mathbb{N}^*$, 
+            \[ \int_{k}^{k+1} h(t)dt = \frac{1}{2} \left(\ln(k) + \ln(k+1)\right) \quad \text{Aire d’un trapèze} = \frac{\text{PC} + \text{GC}}{2} \]
+            Donc 
+            \begin{align*}
+                \int_{1}^{n+1} h(t)dt 
+                &= \sum_{k=1}^{n} \int_{k}^{k+1} h(t)dt \\
+                &= \sum_{k=1}^{n} \frac{1}{2} \left(\ln(k) + \ln(k+1)\right) \\
+                &= \sum_{k=1}^{n} \ln(k) + \frac{1}{2} \ln(n+1) \\
+                &= \ln(n!) + \frac{1}{2} \ln(n+1)
+            \end{align*}
+            De plus, 
+            \begin{align*}
+                \int_{1}^{n+1} \ln(t)dt 
+                &= \left[ t\ln(t) - t \right]_1^{n+1} \\
+                &= (n+1)\ln(n+1) - n
+            \end{align*}
+            Par concavité de $\ln$, on a 
+            \begin{align*}
+                0 \geq \int_{1}^{n+1} \ln(t)dt - \int_{1}^{n+1} h(t)dt
+                &= (n+1) \ln(n+1) -n - \ln(n!) - \frac{1}{2} \ln(n+1) \\
+                &= \left( n + \frac{1}{2} \right)\ln(n+1) - n - \ln(n!) \\
+                \text{Or} \quad \int_{1}^{n+1} \ln(t)dt - \int_{1}^{n+1} h(t)dt 
+                &= \sum_{1}^{n} \int_{k}^{k+1} (\ln(t) - h(t)) dt \\
+                \text{et} \quad e_k 
+                &= \int_{k}^{k+1} (\ln(t) - h(t))dt \\
+                &= \left[ t \ln(t) - t \right]_k^{k+1} - \frac{1}{2} (\ln(k) + \ln(k+1)) \\
+                &= (k+1) \ln(k+1) - k \ln k -1 - \frac{1}{2} (\ln(k) + \ln(k+1)) \\
+                &= \left(k + \frac{1}{2}\right) \ln\left(1 + \frac{1}{k}\right) - 1 \\
+                &= \left(k+ \frac{1}{2}\right) \left(\frac{1}{k} - \frac{1}{2k^2} + \frac{1}{3k^3} + o\left(\frac{1}{k^3}\right)\right) - 1 \\
+                &= \left(-\frac{1}{3} + \frac{1}{4}\right) \frac{1}{k^2} + o\left(\frac{1}{k^2}\right) \quad \text{quand } k \rightarrow +\infty \\
+                &= \frac{1}{12k^2} + o\left(\frac{1}{k^2}\right) \quad \text{quand } k \rightarrow +\infty 
+            \end{align*}
+            Par critère de comparaison, $\sum e_k$ converge car $e_k \sim \frac{1}{12k^2} \geq 0$ et $\sum \frac{1}{n^2}$ converge.
+    
+            Posons $S = \sum_{n=1}^{+\infty} e_n$ et $S_n = \sum_{k=1}^{n} e_k$. On sait, par sommation des relations de comparaison, que 
+            \begin{align*}
+                S - S_n
+                &\sim \sum_{k=n+1}^{+\infty} \frac{1}{12 k^2} \\
+                &= \frac{1}{12n} \\
+                \textit{i.e.} \quad S_n 
+                &= S - \frac{1}{12n} + o\left(\frac{1}{n}\right) 
+            \end{align*}
+            De plus, 
+            \[ S_n = \left(n + \frac{1}{2}\right)\ln(n+1) - n - \ln(n!) \] 
+            En égalisant ces deux expressions, on obtient 
+            \begin{align*}
+                \ln(n!) 
+                &= \left( n+\frac{1}{2} \right)\ln(n+1) - n - \left( S - \frac{1}{12n} \right) + \comp{o}{n}{+\infty}{\frac{1}{n}} \\
+                &\quad \downarrow \quad \ln(n+1) = \ln(n) + \frac{1}{n} - \frac{1}{2n^2} + \comp{o}{n}{+\infty}{\frac{1}{n^2}} \\
+                &= \left( n+\frac{1}{2} \right) \left( \ln(n) + \frac{1}{n} - \frac{1}{2n^2} + \comp{o}{n}{+\infty}{\frac{1}{n^2}} \right) - n - S + \frac{1}{12n} + \comp{o}{n}{+\infty}{\frac{1}{n}} \\
+                &= \left( n+\frac{1}{2} \right)\ln(n) - n  + 1 - S + \frac{1}{12n} + \comp{o}{n}{+\infty}{\frac{1}{n}} \\
+                &\quad \downarrow \quad \text{Par application de l’exp} \\
+                n! 
+                &= n^{n + \frac{1}{2}} \cdot e^{-n} \cdot e^{1-S} \cdot e^{\frac{1}{12n} + \comp{o}{n}{+\infty}{\frac{1}{n}}} \\
+                &= \underbrace{e^{1-S}}_{= \text{cste}} \sqrt{n} \left( \frac{n}{e} \right)^n \left( 1 + \frac{1}{12n} + \comp{o}{n}{+\infty}{\frac{1}{n}} \right)
+            \end{align*}
+            En conclusion, il existe $K$ tel que 
+            \[ n! = K \sqrt{n} \left( \frac{n}{e} \right)^n \left( 1 + \frac{1}{12n} + \comp{o}{n}{+\infty}{\frac{1}{n}} \right) \] 
+            Il reste à calculer $K$. 
+    
+            Si $n \geq 2$, 
+            \begin{align*}
+                W_n 
+                &= \int_{0}^{\pi / 2} \sin(t) \sin^{n-1} (t) dt \\
+                &= \underbrace{\left[ - \cos(t) \sin^{n-1}(t) \right]_0^{\pi / 2}}_{= 0} + (n-1) \int_{0}^{\pi / 2} \cos^2(t) \sin^{n-2}(t) dt \\
+                &= (n-1) \left( W_{n-2} - W_n\right) \\
+                \text{d’où} \quad W_n 
+                &= \frac{n-1}{n} W_{n-2}
+            \end{align*}
+            \begin{itemize}
+                \item Si $n$ est pair, on pose $n = 2p$.
+                \begin{align*}
+                    W_{2p} 
+                    &= \frac{2p-1}{2p} W_{2p-2} \\
+                    &= \frac{2p-1}{2p} \frac{2p-3}{2p-2} W_{2p-4} \\
+                    &= \frac{(2p-1)(2p-3)\cdots(1)}{(2p)(2p-2)\cdots(2)} W_0 \\
+                    &= \frac{(2p)!}{(2^p p!)^2} W_0 \\
+                    & \quad \downarrow \quad W_0 = \int_{0}^{\pi / 2} dt = \frac{\pi}{2} \\
+                    &= \frac{\pi}{2} \frac{(2p)!}{(2^p p!)^2} 
+                \end{align*}
+                \item Si $n$ est impair, on pose $n = 2p + 1$.
+                \begin{align*}
+                    W_{2p+1} 
+                    &= \frac{2p}{2p+1} W_{2p-1} \\
+                    &= \frac{2p}{2p+1} \frac{2p-2}{2p-1} W_{2p-3} \\
+                    &= \frac{(2p)(2p-2)\cdots(2)}{(2p+1)(2p-1)\cdots(3)} W_1 \\
+                    &= \frac{(2^p p!)^2}{(2p+1)!} W_0 \\
+                    & \quad \downarrow \quad W_1 = \int_{0}^{\pi / 2} \sin(t)dt = 1 \\
+                    &= \frac{(2^p p!)^2}{(2p+1)!} 
+                \end{align*}
+            \end{itemize}
+            Pour tout $t \in \intervalleFF{0}{\frac{\pi}{2}}$, $\sin^{n+1}(t) \leq \sin^n(t)$. D’où, en intégrant, $W_{n+1} \leq W_{n}$. Ainsi, 
+            \[ \frac{W_{2p+1}}{W_{2p+1}} = 1 \leq \frac{W_{2p}}{W_{2p+1}} \leq \frac{W_{2p-1}}{W_{2p+1}} = \frac{2p+1}{2p} \] 
+            Par encadrement, $\frac{W_{2p}}{W_{2p+1}} \limi{n}{+\infty} 1$.
+            Or 
+            \begin{align*}
+                \frac{W_{2p}}{W_{2p+1}}
+                &= \frac{(2p)! \cdot (2p+1)!}{(2^p p!)^4} \frac{\pi}{2} \\
+                & \quad \downarrow \quad n! \limit{\sim}{n}{+\infty} K \sqrt{n} \left( \frac{n}{e} \right)^n \\
+                &\limit{\sim}{p}{+\infty} \frac{K \sqrt{2p} \left( \frac{2p}{e} \right)^{2p} \cdot K \sqrt{2p+1} \left( \frac{2p+1}{e} \right)^{2p+1}}{\left( 2^p K \sqrt{p} \left( \frac{p}{e} \right)^p \right)^4} \\
+                &\limit{\sim}{p}{+\infty} \frac{\frac{\pi}{2}}{K^2} \cdot \left( \frac{2p \cdot (2p)^2p \cdot (2p+1)^{2p+1} \cdot e^{-(4p+1)}}{p^2 \cdot 2^{4p} \cdot p^{4p} \cdot e^{-4p}} \right) \\
+                &\limit{\sim}{p}{+\infty} \frac{\frac{\pi}{2}}{K^2} \left( \frac{2}{p} \cdot \frac{(2p+1)^{2p+1}}{(2p)^{2p}} \cdot \frac{1}{e} \right) \\ 
+                &\limit{\sim}{p}{+\infty} \frac{\frac{\pi}{2}}{K^2} \left( \frac{2}{p} \cdot 2p \cdot \frac{1}{e} \cdot \left( \frac{2p+1}{2p} \right)^{2p} \right) \\
+                &\limit{\sim}{p}{+\infty} \frac{\frac{\pi}{2}}{K^2} \frac{1}{e} \left(1 + \frac{1}{2p}\right)^{2p} \\
+                & \quad \downarrow \quad \left( 1 + \frac{1}{x} \right)^x = \exp\left( x \ln(1 + 1/x) \right) \limi{x}{+\infty} e \\
+                &\limit{\sim}{n}{+\infty} \frac{\frac{\pi}{2}}{K^2} 
+            \end{align*}
+            Donc $\frac{2\pi}{K^2} = 1 \iff K = \sqrt{2\pi}$. 
+        \end{demo}
+
+\section{Séries entières}
+
+\subsection{Rayon de convergence}
+
+    On note $\mathbb{K}$ le corps $\mathbb{R}$ ou $\mathbb{C}$.
+
+    \subsubsection{Définitions}
+
+    \begin{defi}{Série entière}{}
+        On appelle \textbf{série entière} une série dont le terme général est de la forme $a_n z^n$, où $(a_n)$ est une suite d’éléments de $\mathbb{K}$.
+
+        On la note $\sum a_n z^n$.
+    \end{defi}
+
+    \begin{defi}{Domaine de convergence}{}
+        Soit $\sum a_n z^n$ une série entière.
+
+        On appelle \textbf{domaine de convergence} de la série entière l’ensemble, noté $D$, des scalaires $z$ pour lesquels la série numérique $\sum a_n z^n$ converge.
+    \end{defi}
+
+    \begin{lem}{dit d’Abel}{}
+        Soit $\sum a_n z^n$ une série entière et $z_0 \in \mathbb{K}$ tel que la suite $(a_n z_0^n)$ est bornée. 
+
+        Alors pour tout scalaire $z$ tel que $\abs{z} < \abs{z_0}$, la série numérique $\sum a_n z^n$ est absolument convergente.
+    \end{lem}
+
+    \begin{defi}{Rayon de convergence}{}
+        Soit $\sum a_n z^n$ une série entière.
+
+        On appelle \textbf{rayon de convergence} de la série entière le réel $R$ défini par 
+        \[ R = \sup \big\{ \rho \in \mathbb{R}_+,\quad (a_n \rho^n) \text{ est bornée} \big\} \quad \in \mathbb{R}_+ \cup \{ +\infty \} \]
+    \end{defi}
+
+    \begin{prop}{Encadrement du domaine de convergence}{}
+        Soit $\sum a_n z^n$ une série entière de rayon de convergence $R$ et de domaine de convergence $D$.
+
+        Alors 
+        \[ \enstq{z \in \mathbb{K}}{\abs{z} < R} \subset D \subset \enstq{z \in \mathbb{K}}{\abs{z} \leq R} \]
+    \end{prop}
+
+    \begin{defi}{Disque ouvert de convergence}{}
+        Soit $\sum a_n z^n$ une série entière de rayon de convergence $R$.
+
+        On appelle \textbf{disque ouvert de convergence} l’ensemble 
+        \[ \enstq{z \in \mathbb{K}}{\abs{z} < R} \] 
+        sur lequel il y a convergence absolue de la série.
+    \end{defi}
+
+    \subsubsection{Détermination du rayon de convergence}
+
+    \begin{prop}{Règle de d’Alembert}{}
+        Soit $a_n z^n$ une série entière.
+        \begin{suppose}
+            \item il existe $n_0$ tel que pour tout $n \geq n_0$, $a_n \neq 0$ ;
+            \item $\abs{\frac{a_{n+1}}{a_n}} \limi{n}{+\infty} \ell \in \mathbb{R}_+ \cup \{+\infty\}$
+        \end{suppose}
+        Alors le rayon de convergence de la série entière $\sum a_n z^n$ est $R = \frac{1}{\ell}$, avec la convention $\frac{1}{0} = +\infty$ et $\frac{1}{+\infty} = 0$.
+    \end{prop}
+
+    \begin{prop}{Comparaison de deux rayons de convergence}{}
+        Notons $R_a$ et $R_b$ les rayons de convergence respectifs des séries entières 
+        \[ \sum a_n z^n \esp{et} \sum b_n z^n \]
+        \begin{alors}
+            \item Si $a_n = \comp{\mathcal{O}}{n}{+\infty}{b_n}$, alors $R_a \geq R_b$.
+            \item Si $a_n \limit{\sim}{n}{+\infty} b_n$, alors $R_a = R_b$.
+        \end{alors}
+    \end{prop}
+
+    \subsubsection{Opérations sur les séries entières}
+
+    \begin{prop}{Somme de séries entières}{}
+        Soient $\sum a_n z^n$ et $\sum b_n z^n$ deux séries entières de rayons de convergence $R_a$ et $R_b$. 
+
+        Alors la série entière $\sum (a_n + b_n) z^n$ admet un rayon de convergence tel que 
+        \begin{enumerate}
+            \item $R \geq \min(R_a,R_b)$ ;
+            \item si $R_a \neq R_b$, alors $R = \min(R_a,R_b)$
+        \end{enumerate}
+    \end{prop}
+
+    \begin{defi}{Produit de Cauchy de deux séries entières}{}
+        Soient $\sum a_n z^n$ et $\sum b_n z^n$ deux séries entières. 
+
+        On appelle \textbf{produit de Cauchy} des deux séries la série entière $\sum c_n z^n$ définie par 
+        \[ \forall n \in \mathbb{N}, \quad c_n = \sum_{k=0}^{n} a_k b_{n-k} = \sum_{i + j = n} a_i b_j \]
+    \end{defi}
+
+    \begin{omed}{Remarque}{myyellow}
+        L’ensemble des séries entières (noté $\mathbb{K}(X)$) muni des opérations d’addition et de multiplication (au sens du produit de Cauchy) et du produit externe est une $\mathbb{K}$-algèbre.
+    \end{omed}
+
+    \begin{prop}{Produit de Cauchy}{}
+        Soient $\sum a_n z^n$ et $\sum b_n z^n$ deux séries entières de rayons de convergence $R_a$ et $R_b$.
+
+        \begin{alors}
+            \item Le produit de Cauchy des  séries entières $\sum a_n z^n$ et $\sum b_n z^n$ a un rayon de convergence $R \geq \min(R_a,R_b)$.
+            \item Pour tout $z \in \mathbb{K}$ tel que $\abs{z} \leq \min(R_a, R_b)$, 
+            \[ \sum_{n=0}^{+\infty} c_n z^n = \left(\sum_{n=0}^{+\infty} a_n z^n\right) \cdotp \left(\sum_{n=0}^{+\infty} b_n z^n\right) \]
+        \end{alors}
+    \end{prop}
+
+    \begin{defi}{Primitive d’une série entière}{}
+        Soit $\sum a_n z^n$ une série entière.
+
+        On appelle \textbf{primitive} de cette série la série entière 
+        \[ \sum a_n \frac{z^{n+1}}{n+1} \]
+    \end{defi}
+
+    \begin{prop}{Rayon de convergence de la primitive}{}
+        Les séries entières $\sum a_n z^n$ et $\sum a_n \frac{z^{n+1}}{n+1}$ ont le même rayon de convergence.
+    \end{prop}
+
+    \begin{coro}{}{}
+        Les séries entières $\sum a_n z^n$ et $\sum n a_n z^{n-1}$ ont le même rayon de convergence.
+    \end{coro}
+
+\subsection{Régularité de la somme d’une série entière}
+
+    \subsubsection{Convergence normale}
+
+    \begin{prop}{}{}
+        Soit $\sum a_n z^n$ une série entière de rayon de convergence $R > 0$.
+
+        Alors pour tout $D = \intervalleFF{a}{b} \subset \intervalleOO{-R}{R}$ (ou tout disque fermé $D$ inclus dans $\enstq{z \in \mathbb{C}}{\abs{z} < R}$), la série converge normalement.
+    \end{prop}
+
+    \begin{coro}{Continuité de la somme d’une série entière}{}
+        L’application $x \longmapsto \sum_{n=0}^{+\infty} a_n x^n$ est continue sur $\intervalleOO{-R}{R}$.
+    \end{coro}
+
+    \subsubsection{Intégration terme à terme}
+
+    \begin{theo}{Intégration terme à terme}{}
+        Soit $\sum a_n x^n$ une série entière \textcolor{myred}{réelle} de rayon de convergence $R > 0$. 
+
+        Pour tout $x \in \intervalleOO{-R}{R}$,
+        \begin{align*}
+            \int_{0}^{x} \left(\sum_{n=0}^{+\infty} a_n t^n \right) dt 
+            &= \sum_{n=0}^{+\infty} \int_{0}^{x} a_n t^n dt \\
+            &= \sum_{n=0}^{+\infty} a_n \frac{x^{n+1}}{n+1}
+        \end{align*}
+    \end{theo}
+
+    \subsubsection{Caractère C8}
+
+    \begin{theo}{Caractère $\mathcal{C}^{\infty}$}
+        Soit $\sum a_n x^n$ une série entière \textcolor{myred}{réelle} de rayon de convergence $R > 0$. 
+
+        Alors l’application $S : x \mapsto \sum_{n=0}^{+\infty} a_n x^n$ est de classe $\mathcal{C}^{\infty}$ sur $\intervalleOO{-R}{R}$.
+
+        De plus, pour tout $k \in \mathbb{N}$, pour tout $x \in \intervalleOO{-R}{R}$,
+        \begin{align*}
+            S^{(k)}(x) 
+            &= \sum_{n=k}^{+\infty} n(n-1) \cdots (n-k+1) a_n x^{n-k} \\
+            &= \sum_{n=0}^{+\infty} \frac{(n+k)!}{n!} a_{n+k} x^n
+        \end{align*}
+        En particulier, toutes les séries entières ont le même rayon de convergence $R$.
+    \end{theo}
+
+    \begin{coro}{}{}
+        Soit $\sum a_n x^n$ une série entière \textcolor{myorange}{réelle} de rayon de convergence $R > 0$. 
+
+        Pour tout $n \in \mathbb{N}$, 
+        \[ a_n = \frac{S^{(n)}(0)}{n!} \]   
+    \end{coro}
+
+\subsection{Développement en série entière}
+
+    Dans cette section, toute les séries entières seront réelles.
+
+    \subsubsection{Fonction développable en série entière}
+
+    \begin{defi}{Fonction développable en série entière}{}
+        \begin{soit}
+            \item $I$ un intervalle de $\mathbb{R}$
+            \item $f : I \to \mathbb{R}$
+            \item $R_0 > 0$ tel que $\intervalleOO{-R_0}{R_0} \subset I$
+        \end{soit}
+        On dit que $f$ est \textbf{développable en série entière} sur $\intervalleOO{-R_0}{R_0}$ s’il existe une série entière $\sum a_n x^n$ telle que 
+        \[ \forall x \in \intervalleOO{-R_0}{R_0}, \quad f(x) = \sum_{n=0}^{+\infty} a_n x^n \]
+
+        On dira de même que $f$ est développable en série entière au voisinage de $x_0$ s’il existe $\delta > 0$ tel que l’application $x \longmapsto f(x_0 + x)$ est développable en série entière sur $\intervalleOO{-\delta}{\delta}$.
+    \end{defi}
+
+    \begin{prop}{}{}
+        Soit $f : I \to \mathbb{R}$ développable en série entière sur $\intervalleOO{-R}{R}$ avec, pour tout $x \in \intervalleOO{-R}{R}$, 
+        \[ f(x) = \sum_{n=0}^{+\infty} a_n x^n \]
+        \begin{alors}
+            \item Toute primitive $F$ de $f$ est développable en série entière sur $\intervalleOO{-R}{R}$, avec 
+            \[ \forall x \in \intervalleOO{-R}{R}, \quad F(x) = F(0) + \sum_{n=1}^{+\infty} \frac{a_{n-1}}{n} x^n \]
+            \item La dérivée $f'$ de $f$ est développable en série entière sur $\intervalleOO{-R}{R}$, avec 
+            \[ \forall x \in \intervalleOO{-R}{R}, \quad f'(x) = \sum_{n=1}^{+\infty} (n+1) a_{n+1} x^n \]
+        \end{alors}
+    \end{prop}
+
+    \begin{prop}{Stabilité des développements en série entière}{}
+        Si $f$ et $g$ sont deux fonctions développables en série entière sur $\intervalleOO{-R}{R}$, alors $f+g$ et $fg$ sont développable en série entière sur $\intervalleOO{-R}{R}$.
+    \end{prop}
+
+\section{Série de fonctions}
+
+\subsection{Modes de convergence d’une série de fonctions}
+
+    \begin{omed}{Remarque}{myyellow}
+        On prendra le soin de remarquer que toutes les propriétés des séries de fonction sont les propriétés des suites de fonctions appliquées à la suite de sommes partielles de la série $\sum u_n$.
+    \end{omed}
+
+    \begin{defi}{Convergence simple}{}
+        Soit $\sum f_n$ une série de fonction $I \rightarrow \mathbb{K}$ (\textit{i.e.} pour tout $n \in \mathbb{N}, f_n : I \mathbb{K}$).
+
+        Alors on dit que $\sum f_n$ \textbf{converge simplement} vers $S : I \rightarrow \mathbb{K}$ si pour tout $x \in I$, la série numérique $\sum f_n(x)$ converge vers $S(x)$.
+
+        Dans ce cas, on pose $S = \sum_{k=0}^{+\infty} f_n$.
+    \end{defi}
+
+    \begin{defi}{Convergence uniforme}{}
+        Soit $\sum f_n$ une série de fonctions. 
+
+        On dit que $\sum f_n$ \textbf{converge uniformément} vers $S$ si 
+        \[ \nnorm{\infty}{S - \sum_{k=0}^{n} f_k} \limi{n}{+\infty} 0 \] 
+    \end{defi}
+
+    \begin{prop}{}{}
+        Soit $\sum f_n$ une série de fonctions. 
+
+        Si $\sum f_n$ converge uniformément vers $S$, alors $\sum f_n$ converge simplement vers $f$.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Soit $x \in I$, 
+        \begin{align*}
+            \abs{S(x) - \sum_{k=0}^{n}f_k(x)} 
+            &\leq \nnorm{\infty}{S - \sum_{k=0}^{n} f_k} \\
+            & \limi{n}{+\infty} 0 
+        \end{align*}
+        D’où $\sum f_n$ converge simplement vers $S$.
+    \end{demo}
+
+    \begin{defi}{Convergence normale}{}
+        Soit $\sum f_n$ une série de fonction telle que pour tout $n \in \mathbb{N}, f_n : I \rightarrow \mathbb{K}$ et est bornée.
+
+        On dit que $\sum f_n$ \textbf{converge normalement} si $\sum \nnorm{\infty}{f_n}$ converge.
+    \end{defi}
+
+    \begin{prop}{}{}
+        Soit $\sum f_n$ telle que $\sum f_n$ converge normalement sur $I$.
+
+        Alors $\sum f_n$ converge uniformément sur $I$.
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        Soit $x \in I$. Montrons que $\sum f_n(x)$ converge. 
+
+        On sait que 
+        \[ 0 \leq \abs{f_n(x)} \leq \nnorm{\infty}{f_n} \quad \text{et } \sum \nnorm{\infty}{f_n} \text{ converge} \] 
+        Par critère de comparaison des séries à termes positifs, $\sum f_n$ converge absolument donc converge simplement sur $I$. Posons $S(x) = \sum_{n=0}^{+\infty} f_n(x)$. 
+
+        Prouvons que $\sum f_n$ converge uniformément vers $S$. Soit $x \in I$.
+        \begin{align*}
+            \abs{S(x) - \sum_{k=0}^{n} f_k(x)} 
+            &= \abs{\sum_{k=n+1}^{+\infty} f_k(x)} \\
+            &\leq \sum_{k=n+1}^{+\infty} \abs{f_k(x)} \\
+            &\leq \sum_{k=n+1}^{+\infty} \nnorm{\infty}{f_k} \quad \text{indép de } x \\
+            & \quad \downarrow \quad \text{En passant à la borne supérieure} \\
+            \nnorm{\infty}{S - \sum_{k=0}^{n} f_k} 
+            &\leq \sum_{k=n+1}^{+\infty} \nnorm{\infty}{f_k} \limi{n}{+\infty} 0
+        \end{align*}
+        Donc $\sum f_n$ converge uniformément.
+    \end{demo}
+
+\subsection{Propriétés des séries de fonctions}
+
+    \begin{prop}{Continuité de la somme}{}
+        Soit $\sum f_n$ une série de fonctions $I \rightarrow \mathbb{K}$. 
+        \begin{suppose}
+            \item Pour tout $n \in \mathbb{N}, f_n \in \mathcal{C}^1$
+            \item $\sum f_n$ converge uniformément sur $I$
+        \end{suppose}
+        Alors $S := \sum_{n=0}^{+\infty}$ est une fonction continue sur $I$.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        On applique le résultat de continuité d’une suite de fonctions à $S_n := \sum_{k=0}^n f_k$.
+    \end{demo}
+
+    \begin{theo}{dit de la double limite}{}
+        \begin{soient}
+            \item $\sum f_n$ une série de fonction $I \to \mathbb{K}$
+            \item $x_0$ une extrémité de $I$
+        \end{soient}
+        \begin{suppose}
+            \item Pour tout $n \in \mathbb{N}$, $f_n$ possède une limite en $x_0$, notée $\ell_n := \lim_{x \to x_0} f_n(x)$
+            \item $\sum f_n$ converge uniformément sur $I$
+        \end{suppose}
+        \begin{alors}
+            \item $\sum \ell_n$ converge.
+            \item $\lim_{x \to x_0} \sum_{n=0}^{+\infty} f_n(x) = \sum_{n=0}^{+\infty} \ell_n$
+        \end{alors}
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        \begin{itemize}
+            \item Montrons que $\sum \ell_n$ converge avec le critère de Cauchy. Posons $S_n = \sum_{k=0}^{n} \ell_k$ et $R_n = \sum_{k=n+1}^{+\infty} f_k$. Soient $\varepsilon > 0$ et $x \in I$. On pose $S(x) = \sum_{k=0}^{+\infty} f_k(x)$, qui existe car $\sum f_n$ converge. Pour $m \geq n$, 
+            \begin{align*}
+                \abs{\sum_{k=0}^{m} f_k(x) - \sum_{k=0}^{n} f_k(x)} 
+                &= \abs{S(x)- \sum_{k=m+1}^{+\infty} f_k(x) - \left( S(x)- \sum_{k=n+1}^{+\infty} f_k(x) \right)} \\
+                &= \abs{R_n(x) - R_m(x)} \\
+                &\leq \abs{R_n(x)} + \abs{R_m(x)} \\
+                &\leq \nnorm{\infty}{R_n} + \nnorm{\infty}{R_m} \\
+                & \quad \downarrow \quad x \to x_0 \\
+                \abs{\sum_{k=0}^{m} \ell_k - \sum_{k=0}^{n} \ell_k} 
+                &\leq \nnorm{\infty}{R_n} + \nnorm{\infty}{R_m} 
+            \end{align*}
+            Comme $\sum f_n$ converge uniformément, on a $\nnorm{\infty}{R_n} \to 0$, donc il existe $N$ tel que $\forall n \geq N, \nnorm{\infty}{R_n} \leq \frac{\varepsilon}{2}$. Donc, si $m,n \geq N$, 
+            \[ \abs{S_m - S_n} \leq \varepsilon \]   
+            \textit{i.e.} $(S_n)$ vérifie le critère de Cauchy.
+            \item Soit $N \in \mathbb{N}$ et $x \in I$.
+            \begin{align*}
+                \abs{\sum_{n=0}^{+\infty} \ell_n - \sum_{n=0}^{+\infty} f_n(x)}
+                & = \abs{\sum_{n=0}^{+\infty} \ell_n - \sum_{n=0}^{N} \ell_n + \sum_{n=0}^{N} \ell_n - \sum_{n=0}^{N}f_n(x) + \sum_{n=0}^{N}f_n(x) - \sum_{n=0}^{+\infty} f_n(x)} \\
+                & \leq \abs{\sum_{n=0}^{+\infty} \ell_n - \sum_{n=0}^{N} \ell_n} + \abs{\sum_{n=0}^{N} \ell_n - f_n(x)} + \abs{\sum_{n=0}^{N}f_n(x) - \sum_{n=0}^{+\infty} f_n(x)} \\
+                & \leq \abs{\sum_{n=0}^{+\infty} \ell_n - \sum_{n=0}^{N} \ell_n} + \sum_{n=0}^{N} \abs{\ell_n - f_n(x)} + \nnorm{\infty}{R_N}
+            \end{align*}
+            Soit $\varepsilon>0$. Comme $\sum \ell_n$ converge, il existe $N_1$ tel que $\forall n \geq N_1, \abs{\sum_{k=0}^{+\infty} \ell_k - \sum_{k=0}^{n} \ell_k} \leq \frac{\varepsilon}{3} $. Comme $\sum f_n$ converge uniformément, $\nnorm{\infty}{R_n} \limi{n}{+\infty} 0$. Donc il existe $N_2$ tel que $\forall n \geq N_2, \nnorm{\infty}{R_n} \leq \frac{\varepsilon}{3}$. Posons $N = \max(N_1, N_2)$.
+
+            Pour tout $k \in \intervalleEntier{0}{N}$, $\lim_{x \to x_0} f_k(x) = \ell_k$ donc il existe $\delta_k > 0$ tel que $\forall x \in \intervalleOO{x_0 - \delta_k}{x_0 + \delta_k} \cap I, \abs{\ell_k - f_k(x)} \leq \frac{\varepsilon}{3(N+1)}$. Posons $\delta = \min\left\{ \delta_0, \ldots, \delta_N \right\}$.
+
+            Finalement, 
+            \[ \forall x \in \intervalleOO{x_0 - \delta}{x_0 + \delta} \cap I, \forall n \geq N, \abs{\sum_{n=0}^{+\infty} \ell_n - \sum_{n=0}^{+\infty} f_n(x)} \leq \varepsilon \]   
+            \textit{i.e.}
+            \[ \lim_{x \to x_0} \sum_{n=0}^{+\infty} f_n(x) = \sum_{n=0}^{+\infty} \ell_n \]
+        \end{itemize}
+    \end{demo}
+
+    \begin{prop}{Intégration terme à terme}{}
+        \begin{soient}
+            \item $\sum f_n$ définies $\intervalleFF{a}{b} \to \mathbb{K}$
+        \end{soient}
+        \begin{suppose}
+            \item Pour tout $n \in \mathbb{N}$, $f_n$ est $\mathcal{C}^0$
+            \item $\sum f_n$ converge uniformément sur $\intervalleFF{a}{b}$
+        \end{suppose}
+        Alors 
+        \[ \int_{a}^{b} \sum_{n=0}^{+\infty} f_n(x) dx = \sum_{n=0}^{+\infty} \int_{a}^{b} f_n(x) dx \] 
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        On applique le résultat sur les suites de fonctions à $(S_n)$ où $S_n = \sum_{k=0}^{n} f_k$.
+    \end{demo}
+
+    \begin{prop}{Caractère $\mathcal{C}^1$ de la somme d’une série de fonctions}{}
+        Soit $\sum f_n$ une série de fonctions $I \to \mathbb{K}$. 
+        \begin{suppose}
+            \item Pour tout $n \in \mathbb{N}, f_n \in \mathcal{C}^1$
+            \item $\sum f_n$ converge simplement vers $f$ sur $I$
+            \item $\sum f_n'$ convrge uniformément vers $g$ en $I$
+        \end{suppose}
+        \begin{alors}
+            \item $f = \sum_{n=0}^{+\infty} f_n$ est $\mathcal{C}^1$.
+            \item $f' = g$.
+            \item $\sum f_n$ converge uniformément vers $f$ sur $I$.
+        \end{alors}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        On pose $S_n = \sum_{k=0}^{n} f_k$. On applique ensuite le résultat qui donne le caractère $\mathcal{C}^1$ à la limite d’une suite de fonctions, ici $(S_n)$.
+    \end{demo}
+
+    \begin{prop}{Caractère $\mathcal{C}^k$ d’une série de fonctions}
+        Soit $\sum f_n$ une série de fonctions $I \to \mathbb{K}$.
+        \begin{suppose}
+            \item Pour tout $n \in \mathbb{N}$, $f_n$ est $\mathcal{C}^k$
+            \item Pour tout $i \in \intervalleEntier{0}{k-1}$, $\sum f_n^{(i)}$ converge simplement sur $I$
+            \item $\sum f_n^{(k)}$ converge uniformément sur $I$
+        \end{suppose}
+        \begin{alors}
+            \item $f : = \sum f_n$ est de classe $\mathcal{C}^k$.
+            \item Pour tout $i \in \intervalleEntier{1}{k}, f^{(i)} = \sum_{n=0}^{+\infty} f_n^{(i)}$.
+            \item $\sum f_n^{(i)}$ est uniformément convergente sur tout $\intervalleFF{a}{b} \subset I$.
+        \end{alors}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        On pose $S_n = \sum_{k=0}^{n} f_k$, et on applique le résultat qui donne le caractère $\mathcal{C}^k$ à la limite de $(S_n)$.
+    \end{demo}
+
+    \begin{omed}{Application \textcolor{black}{(Développement en série de exp)}}{myolive}
+        Posons $\fonction{f_n}{\mathbb{R}}{\mathbb{R}}{x}{\frac{x^n}{n!}}$.
+
+        \begin{itemize}
+            \item Si $x \in \mathbb{R}, \frac{x^n}{n!} = \comp{\mathcal{O}}{n}{+\infty}{\frac{1}{n!2}}$. Donc $\sum f_n$ converge simplement vers $\mathbb{R}$. On note $S(x) = \sum_{k=0}^{+\infty} \frac{x^n}{n!}$.
+            
+            \textit{\textcolor{myolive}{Rappel :}} La fonction exp est l’unique solution du système de Cauchy \[ \et{y' = y}{y(0)=1} \quad \text{(\ding{45})} \]   
+
+            \item Montrons que $S$ est de classe $\mathcal{C}^1$ sur $\mathbb{R}$.
+            \begin{itemize}
+                \item Pour tout $n \in \mathbb{N}$, $f_n$ est $\mathcal{C}^1$ sur $\mathbb{R}$.
+                \item $\sum f_n$ converge simplement sur $\mathbb{R}$.
+                \item Soit $\intervalleFF{a}{b} \subset \mathbb{R}$. Soient $x \in \mathbb{B}$ et $n \geq 1$.
+                \[ f_n'(x) = \frac{x^{n-1}}{(n-1)!} = f_{n-1}(x) \quad \text{et} \quad f_0' = 0 \]
+                Or, 
+                \begin{align*}
+                    \nnorm{\infty, \intervalleFF{a}{b}}{f_n'} 
+                    &= \frac{\max(\abs{a}, \abs{b})^{n-1}}{(n-1)!} \\
+                \end{align*}
+                Qui est le terme général d’une série convergente, donc $\sum \nnorm{\infty,\intervalleFF{a}{b}}{f_n'}$ converge donc $\sum f_n'$ est normalement convergente sur $\intervalleFF{a}{b}$ donc uniformément convergente sur ce même intervalle. 
+            \end{itemize}
+            On en déduit que $S \in \mathcal{C^1}(\mathbb{R})$. Or,
+            \begin{align*}
+                S'(x)
+                &= \sum_{n=0}^{+\infty} f_n'(x) \\
+                &= \sum_{n=0}^{+\infty} f_{n-1}(x) \\
+                &= \sum_{n=0}^{+\infty} f_n(x) \\
+                &= S(x) 
+            \end{align*}
+            De plus, $S(0) = 1$, donc $S$ est solution du système de Cauchy (\ding{45}). Donc $S(x) = e^x$.
+        \end{itemize}
+    \end{omed}
+
+    \begin{omed}{Remarques}{myolive}
+        \begin{itemize}
+            \item On pourrait retrouver le développement en série de exp avec la formule de Taylor-Lagrange.
+            \item On pourrait étendre $x \mapsto e^x$ à $\mathbb{C}$, en posant 
+            \[ e^z = \sum_{n=0}^{+\infty} \frac{z^n}{n!} \]
+            En effet, pour tout $z \in \mathbb{C}$, $\abs{\frac{z^n}{n!}} = \comp{\mathcal{O}}{n}{+\infty}{\frac{1}{n^2}}$.
+            \item On peut vérifier que, pour tout $a,b \in \mathbb{R}$, 
+            \[ e^{a+b} = e^a e^b \] 
+            En effet, 
+            \begin{align*}
+                e^a e^b 
+                &= \left( \sum_{k=0}^{+\infty} \frac{a^n}{n!}  \right) \left( \sum_{k=0}^{+\infty} \frac{b^n}{n!} \right)
+            \end{align*}
+            On utilise le produit de Cauchy :
+            \begin{itemize}
+                \item $\frac{a^n}{n!} = \comp{\mathcal{O}}{n}{+\infty}{\frac{1}{n^2}}$ donc $\sum_{k=0}^{+\infty} \frac{a^n}{n!}$ est absolument convergente.
+                \item $\frac{b^n}{n!} = \comp{\mathcal{O}}{n}{+\infty}{\frac{1}{n^2}}$ donc $\sum_{k=0}^{+\infty} \frac{b^n}{n!}$ est absolument convergente.
+            \end{itemize}
+            Donc leur produit de Cauchy, qui est la série de terme général $c_n$, converge. Or 
+            \begin{align*}
+                c_n 
+                &= \sum_{k=0}^{n} \frac{a^k}{k!} \frac{b^{n-k}}{(n-k)!} \\
+                &= \frac{1}{n!} \sum_{k=0}^{n} \binom{n}{k} a^k b^{n-k} \\
+                &= \frac{1}{n!} (a+b)^n 
+            \end{align*}
+            Donc \[ \sum_{k=0}^{+\infty} = e^{a+b} \]   
+            On en déduit que $e^{a+b} = e^a e^b$.
+        \end{itemize}
+    \end{omed}
+
+\section{Série de Fourier}
+
+\subsection{Expression}
+
+    Soit $T \in \mathbb{R}^*$. On définit la pulsation, comme en physique, par $\omega = \frac{2 \pi}{T}$.
+    
+    Les fonctions $x \mapsto \cos(\omega x)$, $x \mapsto \sin(\omega x)$ et $x \mapsto \exp(i \omega x)$ sont alors périodiques de période $T$. De la même façon, les fonctions $x \mapsto \cos(n\omega x)$, $x \mapsto \sin(n\omega x)$ et $x \mapsto \exp(i n \omega x)$ sont $T$-périodiques pour tout entier $n$.
+    
+    L’objectif est de décomposer toute fonction $T$-périodique sous forme d’une combinaison linéaire de $x \mapsto \cos(n\omega x)$ et $x \mapsto \sin(n\omega x)$, ou d’une combinaison linéaire de $x \mapsto \exp(i n \omega x)$.
+
+    \begin{prop}{Coefficients de Fourier exponentiels}{}
+        Soient $f \in \mathcal{C}_{pm}(\mathbb{R},\mathbb{R})$ et $T \in \mathbb{R}^*_+$.
+    
+        On suppose que $f$ est $T$-périodique.
+    
+        On appelle \textbf{coefficients de Fourier exponentiels} de $f$ la suite $(c_n(f))_{n \in \mathbb{Z}}$ définie par 
+        \[ c_n(f)= \frac{1}{T}\int_{T} f(t)e^{-i n \omega t}dt \]
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        On peut faire une démonstration analogue à celle qui suit pour les coeffictients trigonométriques, ou on peut passer des $c_n$ aux $a_n$ et $b_n$ directement par les relations, pour $n \geq 1$
+        \begin{align*}
+            c_0 &= a_0 \\
+            c_n &= \frac{1}{2} (a_n - i b_n) \\
+            c_{-n} &= \frac{1}{2} (a_n + i b_n) 
+        \end{align*}
+    \end{demo}
+
+    \begin{omed}{Remarque}{myolive}
+        Si la fonction $f$ est paire, $c_n = c_{-n}$
+        
+        Si la fonction est impaire, $c_n = - c_{-n}$
+        
+        Si $f$ est réelle, $\barr{c_n} = c_{-n}$
+        
+        Si $f$ est imaginaire pure, $\barr{c_n} = -c_{-n}$
+    \end{omed}
+
+    \begin{prop}{Coefficients de Fourier trigonométriques}{}
+        Soient $f \in \mathcal{C}_{pm}(\mathbb{R},\mathbb{R})$ et $T \in \mathbb{R}^*_+$.
+        
+        On suppose que $f$ est $T$-périodique.
+        
+        On appelle \textbf{coefficients de Fourier trigonométriques} de $f$ les deux suites $(a_n(f))_{n \geq 0}$ et $(b_n(f))_{n \geq 1}$ définies par 
+        \begin{align*}
+            a_0(f) &= \frac{1}{T} \int_{T} f(t)dt \\
+            a_n(f) &= \frac{2}{T} \int_{T} f(t)\cos(n \omega t)dt \\
+            b_n(f) &= \frac{2}{T} \int_{T} f(t)\sin(n \omega t)dt
+        \end{align*}
+    \end{prop}
+
+    \begin{omed}{Démonstration}{myolive}
+        On suppose que $f$ peut s’écrire comme sa forme de série de Fourier, i.e. 
+        \[ S(f)(t) = a_0 + \sum\limits_{n \geq 1} \left(a_n\cos(n \omega t) + b_n \sin(n \omega t)\right) \]
+        Pour alléger les calculs, nous étudierons ici seulement le cas $T = 2 \pi$ i.e. $\omega = 1$.
+        \begin{enumerate}
+            \item On calcule dans un premier temps $\int_{-\pi}^{\pi} f(t)dt$ i.e. la moyenne de $f$ sur sa période (à un facteur $2 \pi$ près). On a :
+            \[ \forall n \geq 1, \int_{-\pi}^{\pi} \cos(nt)dt = 0 \qquad \int_{-\pi}^{\pi} \sin(nt)dt = 0 \]
+            On obtient alors $ \int_{-\pi}^{\pi} f(t)dt = a_0 2 \pi$, soit 
+            \[ a_0 = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(t)dt \]
+            \item Pour obtenir l’expression des coefficients $\{a_n, b_n\}_{n \geq 1}$, on calcule d’abord :
+                \begin{align*}
+                    \int_{-\pi}^{\pi} \cos(nt)\cos(kt)dt &= \frac{1}{2} \int_{-\pi}^{\pi} \cos((n+k)t)dt \\
+                    &+ \frac{1}{2}\cos((n-k)t)dt \\
+                    &= 0 + \frac{1}{2} \int_{-\pi}^{\pi} \cos((n-k)t)dt \\
+                    &= \pi \delta_{n,k} \\
+                    \int_{-\pi}^{\pi} \cos(nt) \sin(kt) dt&= \frac{1}{2} \int_{-\pi}^{\pi} \sin((n+k)t)dt \\
+                    &+ \frac{1}{2}\sin((n-k)t)dt \\
+                    &= 0 \\
+                    \int_{-\pi}^{\pi} \sin(nt)\sin(kt)dt &= \frac{1}{2} \int_{-\pi}^{\pi}\cos((n-k)t)dt \\
+                    &- \frac{1}{2} \cos((n+k)t)dt \\
+                    &= \frac{1}{2} \int_{-\pi}^{\pi} \cos((n-k)t)dt + 0 \\
+                    &= \pi \delta_{n,k}
+                \end{align*}
+            Ensuite, on calcule $ \int_{-\pi}^{\pi} f(t)\cos(kt)dt$ et $\int_{-\pi }^{\pi} f(t)\sin(kt)dt$. On obtient :
+                \begin{align*}
+                    \int_{-\pi}^{\pi} f(t) \cos(kt) dt &= a_0 \int_{-\pi}^{\pi} \cos(kt)dt \\
+                    &+ \sum\limits_{n \geq 1} a_n \int_{-\pi}^{\pi} \cos(kt) \cos(nt)dt \\
+                    & + \sum\limits_{n \geq 1} b_n \int_{-\pi}^{\pi} \cos(kt) \sin(nt) dt \\
+                    &= 0 + \sum\limits_{n \geq 1} \pi a_n \delta_{n,k} + 0 \\
+                    &= \pi a_k \\
+                    \int_{-\pi}^{\pi} f(t) \sin(kt)dt &= a_0 \int_{-\pi}^{\pi} \sin(kt)dt \\
+                    &+ \sum\limits_{n \geq 1} a_n \int_{-\pi}^{\pi} \sin(kt) \cos(nt)dt \\
+                    &+ \sum\limits_{n \geq 1} b_n \int_{-\pi}^{\pi} \sin(kt) \sin(nt) dt \\
+                    & = 0 + 0 + \pi b_k 
+                \end{align*}
+                On a ainsi obtenu que $\forall n \geq 1$,
+                \[ a_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) \cos(nt)dt \quad b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) \sin(nt) \]
+        \end{enumerate}
+        \null\hfill{\textcolor{myolive}{\ding{113}}}
+    \end{omed}
+
+    \begin{omed}{Remarque}{myolive}
+        Le coefficient $a_0$ est la valeur moyenne de $f$ sur une période.
+    \end{omed}
+    
+    \begin{omed}{Exemple}{myolive}
+        Soit $n \in \mathbb{N}^*$.
+        
+        Les coefficients de Fourier de la fonction $2\pi$-périodique définie par $f(t) = t$ pour $t \in \intervalleFO{-\pi}{\pi}$ sont 
+        \[ a_0 = 0, \quad a_n = 0, \quad b_n = (-1)^{n+1}\frac{2}{n} \]
+    \end{omed}
+
+    \begin{omed}{Remarque}{myolive}
+        \begin{itemize}
+            \item Si $f$ est paire, $\forall n \in \mathbb{N}^*, b_n = 0$
+            \item Si $f$ est impaire, $\forall n \in \mathbb{N}, a_n = 0$
+            \item Si $f$ vérifie pour tout $x \in \mathbb{R}$ la relation $f\left(x + \frac{T}{2}\right) = -f(x)$, alors pour tout entier $n \in \mathbb{N}^*, a_0 = a_{2n} = b_{2n} = 0$
+        \end{itemize}
+    \end{omed}
+
+    \begin{defi}{Série de Fourier}{}
+        Soit $f \in \mathcal{C}_{pm}(\mathbb{R},\mathbb{R})$.
+
+        On suppose que $f$ est $2 \pi$-périodique.
+
+        On appelle \textbf{série de Fourier} de $f$ la série de fonctions 
+        \begin{align*}
+           S(f)(t) &= \sum\limits_{n=-\infty}^{+\infty} c_n e^{in \omega t}  \\
+           &= a_0 + \sum\limits_{n \geq 1} \left(a_n\cos(n \omega t) + b_n \sin(n \omega t)\right)
+        \end{align*}
+        Les sommes partielles de cette série seront notées 
+        \begin{align*}
+            S_n(f)(t) &= \sum\limits_{k=-n}^n c_k(f)e^{ik \omega t} \\
+            &= a_0(f) + \sum\limits_{k=1}^n\left(a_k(f)\cos(k \omega t)+b_k(f)\sin(k \omega t)\right)
+        \end{align*}
+    \end{defi}
+
+    \begin{omed}{Attention}{myyellow}
+        La série de Fourier n’est pas nécessairement convergente !
+    \end{omed}
+
+    \begin{omed}{Exemple}{myyellow}
+        En reprenant la fonction utilisée en exemple, on a 
+        \[ S(f)(t) = \sum\limits_{n=1}^{+ \infty} (-1)^{n+1} \frac{2}{n} \sin(nt) \]
+    \end{omed}
+
+\subsection{Structure préhilbertienne}
+
+    On note $E = \mathcal{C}_T (\mathbb{R},\mathbb{R})$ l’ensemble des fonctions continues sur $\mathbb{R}$ à valeurs dans $\mathbb{R}$ qui sont $T$-périodiques.
+
+    \begin{prop}{}{}
+        L’application 
+        \[ \fonction{\spr{.}{.}}{\mathcal{C}_T(\mathbb{R},\mathbb{R}) \times \mathcal{C}_T(\mathbb{R},\mathbb{R})}{\mathbb{R}}{f,g}{\spr{f}{g}=\frac{1}{T}\int_{T} f(t)g(t)dt} \] 
+        est un produit scalaire sur $\mathcal{C}_T(\mathbb{R},\mathbb{R})$.
+    \end{prop}
+
+    \begin{coro}{}{}
+        Le couple $\left(E, \spr{.}{.}\right)$ est un espace préhilbertien.
+    \end{coro}
+
+    \begin{prop}{}{}
+        La famille 
+        \[ \mathcal{F} = \left\{ t \mapsto 1, t \mapsto \sqrt{2} \cos(k \omega t), t \mapsto \sqrt{2} \sin (k \omega t) \quad k \in \mathbb{N}^* \right\}\] 
+        de l’espace préhilbertien $\left(E, \spr{.}{.}\right)$ est orthonormée.
+    \end{prop}
+
+    \begin{demo}{Idée de la preuve}{myolive}
+        On vérifie les deux points qui définissent une famille orthonormée : 
+        \begin{enumerate}
+            \item On vérifie aisément que 
+            \[ \forall f \in \mathcal{F}, \norm{f}^2 = \spr{f}{f} = 1 \]
+            \item Les calculs permettant de conclure que 
+            \[ \forall f,g \in \mathcal{F}, f \neq g \implies \spr{f}{g} = 0 \] ont été faits dans la démonstration des formules des coefficients de Fourier trigonométriques.
+        \end{enumerate}
+    \end{demo}
+
+    \begin{coro}{}{}
+        Si $f \in E$, alors la fonction $S_n(f)$ est la projection orthogonale de la fonction $f$ sur le sous-espace vectoriel 
+        \[ \mathcal{P}_{n,T} = \Vect\left(t \mapsto 1, t \mapsto \cos(k \omega t), t \mapsto \sin (k \omega t), k \in \intervalleEntier{1}{n} \right) \]
+    \end{coro}
+
+    \begin{demo}{Preuve}{myorange}
+        La famille $\mathcal{F} = \left\{ t \mapsto 1, t \mapsto \sqrt{2} \cos(k \omega t), t \mapsto \sqrt{2} \sin (k \omega t) \quad k \in \mathbb{N}^* \right\}$ est une base orthonormée de $\mathcal{P}_{n,T}$.
+
+        Pour montrer que $S_n(f)$ est le projeté orthogonal de $f$ sur $\mathcal{P}_{n,T}$, on va décomposer $S_n(f)$ en utilisant des produits scalaires, pour retrouver ses coordonnées dans ce sous-espace vectoriel.
+
+        Soit $n \in \mathbb{N}^*$.
+        \begin{align*}
+            S_n(f) &= a_0(f) + \sum\limits_{k=1}^n a_k(f) \cos(kt) + b_k(f) \sin(kt) \\
+            a_0(f) &= \frac{1}{2\pi} \int_{-\pi}^{\pi} f(t)dt = \spr{f}{1} \\
+            & \ \downarrow \text{Soit } k \in \intervalleEntier{1}{n} \\
+            a_k(f) &= \frac{2}{2\pi} \int_{-\pi}^{\pi} f(t) \cos(kt) dt = 2 \spr{f}{\cos(kt)} \\
+            b_k(f) &= \frac{2}{2\pi} \int_{-\pi}^{\pi} f(t) \sin(kt) dt = 2 \spr{f}{\sin(kt)} \\
+            \text{Donc } S_n(f) &= \spr{f}{1} + \sum\limits_{k=1}^n \left[2 \spr{f}{\cos(kt)}\cos(kt) + 2 \spr{f}{\sin(kt)}\sin(kt)\right] \\
+            &= \spr{f}{1}1 + \sum\limits_{k=1}^n \left[\spr{f}{\sqrt{2} \cos(kt)} \sqrt{2}\cos(kt) + \spr{f}{\sqrt{2}\sin(kt)}\sqrt{2}\sin(kt)\right] \\
+            &= \sum\limits_{\epsilon \in \mathcal{F}} \spr{f}{\epsilon}\epsilon
+        \end{align*}
+        On a exprimé $S_n(f)$ avec les coordonnées de $f$ dans une base orthonormée de $\mathcal{P}_{n,T}$, donc $S_n(f)$ est le projeté orthogonal de $f$ dans ce sev.
+    \end{demo}
+
+    \begin{coro}{}{}
+        Si $f \in E$, on a l’égalité 
+        \[ \norm{S_n(f)}^2 = a_0^2 + \frac{1}{2} \sum\limits_{k=1}^n \left(a_k^2 + b_k^2\right) \]
+    \end{coro}
+
+    \begin{omed}{Démonstration}{myorange}
+        On calcule « simplement » $\norm{S_n(f)}^2$. On se contentera ici du cas $T = 2\pi$, ce qui permet de s’affranchir du terme $\omega$ car $\omega=1$.
+        \begin{align*}
+            &\norm{S_n(f)}^2 = \spr{S_n(f)}{S_n(f)}  \\
+            &= \frac{1}{2 \pi} \int_{-\pi}^{\pi} \left(a_0 + \sum\limits_{k=1}^n \left(a_k\cos(k t)+b_k\sin(k t)\right) \right)^2 dt \\
+            &= \underbrace{\frac{1}{2 \pi} \int_{-\pi}^{\pi} a_0^2 dt}_{= a_0^2} + \frac{1}{2 \pi} \int_{-\pi}^{\pi} 2 a_0 \sum\limits_{k=1}^n \left(a_k \cos(kt) + b_k \sin(kt)\right)dt + \frac{1}{2 \pi} \int_{-\pi}^{\pi} \left( \sum\limits_{k=1}^n \left(a_k \cos(kt) + b_k \sin(kt)\right) \right)^2dt \\
+            &= a_0^2 + \underbrace{2a_0 \sum\limits_{k=1}^n \left(a_k \frac{1}{2\pi}\underbrace{\int_{-\pi}^{\pi} \cos(kt)dt}_{= 0} + b_k \frac{1}{2 \pi} \underbrace{\int_{-\pi}^{\pi} \sin(kt)dt}_{= 0} \right)}_{= 0} \\
+            &+ \frac{1}{2 \pi} \int_{-\pi}^{\pi} \left( \sum\limits_{k=1}^n \left(a_k \cos(kt) + b_k \sin(kt)\right)^2 + \sum\limits_{k \neq j} (a_k \cos(kt) + b_k \sin(kt))(a_j \cos(jt) + b_j \sin(jt))\right)dt \\
+            &= a_0^2 + \frac{1}{2 \pi} \sum\limits_{k=1}^n \int_{-\pi}^{\pi} \left(a_k^2 \cos^2(kt) + 2a_kb_k \cos(kt) \sin(kt) + b_k^2 \sin^2(kt)\right)dt \\
+            &+ \frac{1}{2\pi} \underbrace{\sum\limits_{k \neq j} \int_{-\pi}^{\pi} \left(a_k a_j \cos(kt) \cos(jt) + a_k b_j \cos(kt) \sin(jt) + b_k a_j \sin(kt) \cos(jt) + b_k b_j \sin(kt) \sin(jt)\right) dt}_{= 0} \\
+            & = a_0^2 + \frac{1}{2 \pi} \sum\limits_{k=1}^n \left( \int_{-\pi}^{\pi} \left(a_k^2 \cos^2(kt) + b_k^2\sin^2(kt)\right)dt + \underbrace{\int_{-\pi}^{\pi} 2 a_k b_k \cos(kt) \sin(kt) dt}_{= 0} \right) \\
+            &= a_0^2 + \frac{1}{2 \pi} \sum\limits_{k=1}^n \pi a_k^2 + \pi b_k^2  = a_0^2 + \frac{1}{2} \sum\limits_{k=1}^n a_k^2 + b_k^2  
+        \end{align*}
+        \null\hfill{\textcolor{myorange}{\ding{113}}}
+    \end{omed}
+
+\subsection{Théorèmes de convergence}
+
+    \subsubsection{Le théorème de Parseval}
+
+    \begin{theo}{Théorème de Parseval}{}
+        Soit $f \in \mathcal{C}_{pm}(\mathbb{R},\mathbb{R})$.
+
+        On suppose que $f$ est $2 \pi$-périodique.
+
+        Alors les séries $\sum a_n^2 (f)$ et $\sum b_n^2 (f)$ convergent et 
+        \[ \frac{1}{T} \int_{T} f^2(t) dt = a_0^2(f) + \frac{1}{2} \sum\limits_{n \geq 1} \left(a_n^2(f) + b_n^2(f)\right) \]
+        De même, la série $\sum c_n^2(f)$ converge et 
+        \[ \frac{1}{T} \int_{T} f^2(t) dt = \sum\limits_{n \in \mathbb{Z}} c_n^2(f) \]
+    \end{theo}
+
+    \begin{omed}{Exemple}{myred}
+        En reprenant la fonction $2\pi$-périodique définie par $f(t) = t$ pour $t \in \intervalleFO{-\pi}{\pi}$, le théorème de Parseval donne 
+        \[ \frac{\pi^2}{3} = 2 \sum\limits_{n=1}^{+\infty} \frac{1}{n^2} \quad \text{donc } \sum\limits_{n=1}^{+\infty} \frac{1}{n^2} = \frac{\pi^2}{6} \]
+    \end{omed}
+
+    \subsubsection{Le théorème de Dirichlet}
+
+    \begin{defi}{Régularisée d’une fonction}{}
+        Soit $f \in \mathcal{C}_{pm}(\mathbb{R},\mathbb{R})$.
+    
+        La régularisée de la foction $f$ est la fonction $\tilde{f} \in \mathcal{F}(\mathbb{R},\mathbb{R})$ définie par 
+        \[ \tilde{f}(t) = \lim\limits_{h \rightarrow 0} \left(\frac{f(t+h) + f(t-h)}{2}\right) \]
+    \end{defi}
+
+    \begin{omed}{Remarque}{myyellow}
+        Si $f$ est continue, on a $f = \tilde{f}$.
+    \end{omed}
+
+    \begin{theo}{Théorème de Dirichlet}{}
+        Soient $f \in \mathcal{C}^1_{pm}(\mathbb{R},\mathbb{R})$ et $T \in \mathbb{R}^*_+$.
+
+        On suppose que $f$ est $T$-périodique.
+
+        Alors la série de Fourier de $f$ converge en tout point de $\mathbb{R}$ vers la fonction $\tilde{f}$. 
+        
+        Autrement dit, on a 
+        \[ \forall t \in \mathbb{R}, \tilde{f} = a_0 + \sum\limits_{n \geq 1} a_n \cos(n \omega t) + b_n \sin(n \omega t) \]
+    \end{theo}
+
+    \subsubsection{Un exemple (bien) choisi}
+
+    Ces théorèmes de convergence permettent d’établir des résultats très intéressants sur les séries (de Riemann le plus souvent), nous en verrons ici un exemple.
+
+    \begin{exo}{}{}
+        Soit $f : \mathbb{R} \rightarrow \mathbb{R}$ la fonction $2 \pi$-périodique et paire définie par $\forall x \in \intervalleFF{0}{\pi}, f(x) = x$
+        \begin{enumerate}
+            \item Calculer les coefficients de Fourier de $f$
+            \item En déduire la valeur des sommes
+            \[ \sum\limits_{n \geq 0} \frac{1}{(2n+1)^2} \quad \text{et} \quad \sum\limits_{n \geq 0} \frac{1}{(2n+1)^4} \]
+            \item En déduire la valeur des sommes
+            \[ \sum\limits_{n \geq 0} \frac{1}{n^2} \quad \text{et} \quad \sum\limits_{n \geq 0} \frac{1}{n^4} \]
+        \end{enumerate}
+    \end{exo}
+
+    \begin{omed}{Résolution}{nfpgreen}
+        \begin{enumerate}
+            \item La fonction $f$ est paire, par conséquent, $\forall n \in \mathbb{N}^*, b_n = 0$. De plus, elle est $2\pi$-périodique, donc $\omega = \frac{2\pi}{2\pi} = 1$, ce qui simplifiera les calculs.
+            
+            On calcule donc $a_n$ pour $n \in \mathbb{N}$. 
+            \begin{align*}
+                a_0 &= \frac{1}{2\pi} \int_{0}^{2\pi} f(t)dt = 2 \frac{1}{2\pi} \int_{0}^{\pi} f(t)dt = \frac{1}{\pi} \left[\frac{t^2}{2}\right]_0^{\pi} = \frac{\pi}{2} \\
+                \forall n \in \mathbb{N}^*, a_n &= \frac{1}{\pi} \int_{0}^{2\pi} f(t) \cos(n\omega t) dt \\
+                &= \frac{2}{\pi} \int_{0}^{\pi} t\cos(nt)dt \\
+                &= \frac{2}{\pi} \Bigg(\underbrace{\left[\frac{t}{n}\sin(nt)\right]_0^{\pi}}_{= 0} - \frac{1}{n} \int_{0}^{\pi} \sin(nt)dt\Bigg) \\
+                &= \frac{2}{n \pi } \left[\frac{1}{n}\cos(nt)\right]_0^{\pi} = \frac{2}{n^2 \pi} \left((-1)^n - 1\right)
+            \end{align*}
+            En distinguant selon la parité de $n \in \mathbb{N}^*$, on obtient 
+            \[ a_0 = \frac{\pi}{2} \quad \text{et} \quad \forall p \in \mathbb{N}^*, a_{2p} = 0 \text{ et } a_{2p-1} = \frac{-4}{(2p-1)^2 \pi} \]
+            \item D’une part, comme la fonction $f$ est $2\pi$-périodique, continue, et de classe $\mathcal{C}^1$ par morceaux, la série de Fourier $f$ converge vers la régularisée $\tilde{f} = f$ d’après le théorème de Dirichlet. On a donc 
+            \[ \forall x \in \mathbb{R}, f(x) = \frac{\pi}{2} + \sum\limits_{p=0}^{+\infty} \frac{-4}{(2p+1)^2 \pi} \cos((2p+1)x) \] 
+            En particulier, en $x = 0$, on a 
+            \[ 0 = \frac{\pi}{2} + \sum\limits_{p=0}^{+\infty} \frac{-4}{(2p+1)^2 \pi} \quad \text{i.e.} \quad \sum\limits_{p=0}^{+\infty} \frac{1}{(2p+1)^2} = \frac{\pi^2}{8} \]
+            D’autre part, si on applique le théorème de Parseval, on obtient 
+            \begin{align*}
+                \frac{\pi^2}{3} = \frac{1}{2\pi} \int_{0}^{2 \pi} f^2(t) dt &= \left(\frac{\pi}{2}\right)^2 + \frac{1}{2} \sum\limits_{p=0}^{+\infty} \left(\frac{-4}{(2p+1)^2 \pi}\right)^2 \\
+                &=\frac{\pi^2}{4} + \frac{8}{\pi^2} \sum\limits_{p=0}^{+\infty} \frac{1}{(2p+1)^4}
+            \end{align*} 
+            Ce qui nous donne directement 
+            \[ \sum\limits_{p=0}^{+\infty} \frac{1}{(2p+1)^4} = \frac{\pi^4}{96} \] 
+            \item La série de terme général $\frac{1}{n^2}$ est convergente. On peut donc écrire 
+            \[ \sum\limits_{k=1}^{2n} \frac{1}{k^2} = \sum\limits_{p=1}^{n} \frac{1}{(2p)^2} + \sum\limits_{p=0}^{n-1} \frac{1}{(2p+1)^2} = \frac{1}{4}\sum\limits_{p=1}^n \frac{1}{p^2} +  \sum\limits_{p=0}^{n-1} \frac{1}{(2p+1)^2} \] 
+            Puis, en passant à la limite, on obtient 
+            \[ \sum\limits_{n=1}^{+\infty} \frac{1}{n^2} = \frac{1}{4}\sum\limits_{n=1}^{+\infty} \frac{1}{n^2} + \frac{\pi^2}{8} \quad \text{soit} \quad \sum\limits_{n=1}^{+\infty} \frac{1}{n^2} = \frac{\pi^2}{6} \] 
+            De même, la série de terme général $\frac{1}{n^4}$ est convergente et on a 
+            \[ \sum\limits_{k=1}^{2n} \frac{1}{k^4} = \sum\limits_{p=1}^{n} \frac{1}{(2p)^4} + \sum\limits_{p=1}^{n-1} \frac{1}{(2p+1)^4} = \frac{1}{16} \sum\limits_{p=1}^{n} \frac{1}{p^4} +  \sum\limits_{p=1}^{n-1} \frac{1}{(2p+1)^4} \] 
+            Donc en passant à la limite, 
+            \[ \sum\limits_{n=1}^{+\infty} \frac{1}{n^4} = \frac{1}{16}\sum\limits_{n=1}^{+\infty} \frac{1}{n^4} + \frac{\pi^4}{96} \quad \text{soit} \quad \sum\limits_{n=1}^{+\infty} \frac{1}{n^2} = \frac{\pi^4}{90} \] 
+        \end{enumerate}
+    \end{omed}
+
+    
+
+
+

@@ -1,0 +1,2636 @@
+\customchapter{Fonctions}{Outil le plus élémentaire des mathématiques, on apprendra ici à définir les propriétés les plus fondamentales des fonctions, pour en garantir une utilisation soigneuse.}
+
+\section{Généralités}
+
+    \begin{defi}{Fonction}{}
+	    Soient $E$ et $F$ deux ensembles.
+	    \begin{itemize}
+		    \item Une \textbf{fonction} de $E$ dans $F$ est un objet mathématique qui à tout élément de $E$ associe au plus un élément de $F$.
+		    \item Une fonction de $E$ dans $F$ est dite bien définie sur $E$ lorsqu’elle associe à tout élément de $E$ un unique élément de $F$.
+		    \item La fonction identité de $E$ est la fonction de $E$ dans $E$ définie par $\forall x \in E, \, \id_E(x) = x$.
+	    \end{itemize}
+    \end{defi}
+
+    \begin{omed}{Remarque}{myyellow}
+        On s’affranchit dans ce document des banalités qui caractérisent les fonctions, et qui sont tout à fait intuitives.
+    \end{omed}
+
+    \begin{prop}{Somme d’une fonction paire et impaire}{}
+        Soit $f$ une fonction définie sur $\mathcal{D}$ centré sur $0$, à valeurs dans $\mathbb{R}$.
+    
+        Alors \[ \exists ! \, g,h \in \mathcal{F}(\mathcal{D},\mathbb{R}), \left\{  \begin{array}{l}
+            \text{g est paire}\\
+            \text{h est impaire}\\
+            f = g + h
+            \end{array} \right.  \]
+    \end{prop}
+
+\section{Fonctions usuelles}
+
+    \begin{longtblr}[
+    caption={Fonctions usuelles}
+    ]{
+        colspec={|X[1,c]||X[1,c]|X[4,c]|X[1,c]|}, width = \linewidth,
+        rowhead = 1, 
+        hlines={0.4pt, black},
+        row{odd} = {myolive!30}, row{1} = {myolive, fg=white, font=\bfseries}
+    }
+    Fonction & Dérivée & Relation fonctionnelles & Réciproque \\
+    $\ln$ & $\frac{1}{\id}$ & {$\ln(xy) = \ln(x) + \ln(y)$ \\ $\ln(1+x) \leq x$} & $\exp$ \\
+    $\exp$ & $\exp$ & {$e^{x+y} = e^x e^y$ \\ $1 + x \leq e^x$} & $\ln$ \\
+    $\id^a$ & $a \id^{a-1}$ & {$x^{a+b}  = x^a x^b$ \\ $\ln(x^a) = a \ln(x)$} & $\sqrt[a]{.}$ \\
+    {$\cosh$ \\ $\frac{e^{\id} + e^{-\id}}{2}$} & sinh & $\cosh^2 - \sinh^2 = 1$ & \\
+    {$\sinh$ \\ $\frac{e^{\id} - e^{-\id}}{2}$} & cosh & $\cosh^2 - \sinh^2 = 1$ & \\
+    $\cos$ & $-\sin$ & $\cos^2 + \sin^2 = 1$ & $\arccos$ \\
+    $\sin$ & $\cos$ & {$\forall x \in \mathbb{R}, \, |\sin(x)| \leq |x|$ \\ $\forall x \in \intervalleFF{0}{\frac{\pi}{2}}, \, \frac{2}{\pi}x \leq \sin(x) \leq x$} & $\arcsin$ \\
+    $\tan$ & $1 + \tan^2$ & $\forall x \in \intervalleFF{-\frac{\pi}{2}}{\frac{\pi}{2}}, \, |\tan(x)| \geq |x|$ & $\arctan$ \\
+    $\arccos$ & $-\frac{1}{\sqrt{1-\id^{2}}}$ & $\arccos(x) + \arcsin(x) = \frac{\pi}{2}$ & $\cos\Big\vert^{[-1,1]}_{[0,\pi]}$ \\
+    $\arcsin$ & $\frac{1}{\sqrt{1-\id^{2}}}$ & $\arccos(x) + \arcsin(x) = \frac{\pi}{2}$ & $\sin\Big\vert^{[-1,1]}_{[-\frac{\pi}{2},\frac{\pi}{2}]}$ \\
+    $\arctan$ & $\frac{1}{1 + \id^2}$ & $\arctan(x) + \arctan\left( \frac{1}{x} \right) = \left\{ \begin{array}{cl} -\frac{\pi}{2} & \text{si } x < 0 \\ \frac{\pi}{2} & \text{si } x > 0 \end{array} \right.$ & $\tan\Big\vert_{\intervalleOO{-\frac{\pi}{2}}{\frac{\pi}{2}}}$
+    \end{longtblr}
+
+    \begin{theo}{Croissances comparées}{}
+	Soient $\alpha,\beta \in \mathbb{R}$ et $n \in \mathbb{Z}$.
+
+	Alors
+	\begin{align*}
+	 \lim\limits_{x \mapsto +\infty} \frac{e^{ax}}{x^b} &= \left\{ \begin{array}{cl}
+			+ \infty & \text{si } a > 0 \\
+			0  & \text{si } a < 0
+		\end{array} \right. \\
+	 \lim\limits_{x \mapsto -\infty} x^n e^{ax} &= \left\{ \begin{array}{cl}
+			0 & \text{si } a > 0 \\
+			(-1)^n \infty & \text{si } a < 0
+		\end{array} \right. \\
+	 \lim\limits_{x \mapsto +\infty} \frac{x^a}{\ln^b(x)} &= \left\{ \begin{array}{cl}
+			+ \infty & \text{si }  a > 0\\
+			0 & \text{si } a < 0
+		\end{array} \right. \\
+	 \lim\limits_{x \mapsto 0^+} x^a \ln^n(x) &= \left\{ \begin{array}{cl}
+			0 & \text{si } a > 0 \\
+			(-1)^n \infty & \text{si } a < 0
+		\end{array} \right. \\
+	 \lim\limits_{x \mapsto +\infty} \frac{e^{ax}}{\ln^b(x)} &= \left\{ \begin{array}{cl}
+			+ \infty & \text{si } a > 0 \\
+			0 & \text{si } a < 0
+		\end{array} \right. 
+	\end{align*}
+    \end{theo}
+
+\section{Limites d’une fonction}
+
+    \begin{defi}{Voisinage}{}
+        Soit $\mathcal{V} \subset \mathbb{R}$.
+        \begin{itemize}
+            \item On dit que $\mathcal{V}$ est un voisinage de $a$ si 
+            \[ \exists \delta > 0, \intervalleFF{a-\delta}{a + \delta} \in \mathcal{V} \]
+            \item On dit que $\mathcal{V}$ est un voisinage de $+\infty$ si 
+            \[ \exists A > 0, \intervalleFO{A}{+\infty} \subset \mathcal{V} \]
+            \item On dit que $\mathcal{V}$ est un voisinage de $-\infty$ si 
+            \[ \exists A < 0, \intervalleOF{-\infty}{A} \subset \mathcal{V} \]
+        \end{itemize} 
+        Pour $x \in \overline{\mathbb{R}}$, on note $\mathcal{V}(x)$ l’ensemble de ses voisinages.
+    \end{defi}
+
+    \begin{defi}{Limite}{}
+        Soient $\f{R}$, $a \in \barr{\mathcal{D}}$ et $L \in \barr{\mathbb{R}}$.
+
+        Alors les 9 définitions précédentes peuvent se réécrire en :
+        \[ f(x) \underset{x \rightarrow a}{\longrightarrow} L \iff \forall \mathcal{V} \in \mathcal{V}(L), \, \exists \, \mathcal{V'} \in \mathcal{V}(a),
+            \forall x \in \mathcal{V'} \cap \mathcal{D}, \, f(x) \in \mathcal{V} \]
+    \end{defi}
+
+    \begin{prop}{Propriétés de la limite}{}
+        \begin{enumerate}
+            \item Unicité de la limite.
+            \item Toute fonction admettant une limite finie en $a$ est bornée au voisinage de $a$.
+            \item Une fonction qui admet une limite non-nulle en $a$ ne s’annule pas au voisinage de $a$.
+            \item La limite est compatible avec les opérations algébriques classiques.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{theo}{Limite de $f(u_n)$}{}
+        \begin{soient}
+            \item $\f{R}$,
+            \item $a \in \barr{\mathcal{D}}$,
+            \item $L \in \barr{\mathbb{R}}$,
+            \item $(u_n)_n \in \mathbb{R}^{\mathbb{N}}$.
+        \end{soient}
+        \begin{suppose}
+            \item $\forall n \in \mathbb{N}, \, u_n \in \mathcal{D}$
+            \item $\lim\limits_{n \rightarrow + \infty} u_n = a$
+            \item $\lim\limits_{x \rightarrow a} f(x) = L$
+        \end{suppose}
+        Alors \[ (f(u_n))_n \underset{n \rightarrow +\infty}{\longrightarrow} L \]
+    \end{theo}
+
+    \begin{theo}{Caractérisation séquentielle de la limite}{}
+        \begin{soient}
+            \item $\f{R}$,
+            \item $a \in \barr{\mathcal{D}}$,
+            \item $L \in \barr{\mathbb{R}}$.
+        \end{soient}
+        On suppose que 
+        \[ \forall (u_n)_n \in \mathbb{R}^{\mathbb{N}}, \, \lim\limits_{n \rightarrow + \infty} u_n = a \implies \lim\limits_{n \rightarrow + \infty} f(u_n) = L \]
+        Alors \[ \underset{x \rightarrow a}{\lim} f(x) = L \]
+    \end{theo}
+
+    \begin{prop}{Limite d’une composée}{}
+        \begin{soient}
+            \item $\mathcal{D}$ et $\mathcal{D'}$ deux unions finies d’intervalles de $\mathbb{R}$,
+            \item $\f{R}$ et $\g{R}$,
+            \item $a \in \barr{\mathcal{D}}$, $b \in \barr{\mathcal{D'}}$ et $L \in \barr{\mathbb{R}}$.
+        \end{soient}
+        \begin{suppose}
+            \item $f(\mathcal{D}) \subset \mathcal{D'}$
+            \item $\underset{x \rightarrow a}{\lim} f(x) = b$
+            \item $\underset{x \rightarrow b}{\lim} g(x) = L$
+        \end{suppose}
+        Alors 
+        \[ \underset{x \rightarrow a}{\lim} (g \circ f)(x) = L \]
+    \end{prop}
+
+    \begin{theo}{Théorème des gendarmes, ou d’encadrement}{}
+        Soient $f,g,h \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \barr{\mathcal{D}}$.
+    
+        \begin{suppose}
+            \item $\exists \, \mathcal{U} \in \mathcal{V}(a), \, \forall x \in \mathcal{U} \cap \mathcal{D}, \, f(x) \leq g(x) \leq h(x)$
+            \item $f$ et $h$ admettent une limite finie en $a$
+            \item $\underset{x \rightarrow a}{\lim} f(x) = \underset{x \rightarrow a}{\lim} h(x)$
+        \end{suppose}
+        Alors \[ \underset{x \rightarrow a}{\lim} g(x) = \underset{x \rightarrow a}{\lim} f(x) = \underset{x \rightarrow a}{\lim} h(x) \]
+    \end{theo}
+
+    \begin{theo}{Limite d’une fonction monotone}{}
+        Soient $a,b \in \barr{\mathbb{R}}$ et $f \in \mathcal{F}(\intervalleOO{a}{b},\mathbb{R})$.
+        \begin{enumerate}
+            \item Si $f$ est croissante sur $\intervalleOO{a}{b}$, alors 
+            \begin{itemize}
+                \item si $f$ est majorée, 
+                \[ \underset{x \rightarrow b^-}{\lim} f(x) = \sup(\left\{ f(x) \, | \, x \in \intervalleOO{a}{b} \right\}) \]
+                \item si $f$ n’est majorée, 
+                \[ \underset{x \rightarrow b^-}{\lim} f(x) = +\infty \]
+                \item si $f$ est minorée, 
+                \[ \underset{x \rightarrow a^+}{\lim} f(x) = \inf(\left\{ f(x) \, | \, x \in \intervalleOO{a}{b} \right\}) \]
+                \item si $f$ n’est minorée, 
+                \[ \underset{x \rightarrow a^+}{\lim} f(x) = -\infty \]
+            \end{itemize}
+            \item Si $f$ est décroissante sur $\intervalleOO{a}{b}$, alors 
+            \begin{itemize}
+                \item si $f$ est minorée,
+                \[ \underset{x \rightarrow b^-}{\lim} f(x) = \inf(\left\{ f(x) \, | \, x \in \intervalleOO{a}{b} \right\}) \]
+                \item si $f$ n’est minorée, 
+                \[ \underset{x \rightarrow b^-}{\lim} f(x) = -\infty \]
+                \item si $f$ est majorée, 
+                \[ \underset{x \rightarrow a^+}{\lim} f(x) = \sup(\left\{ f(x) \, | \, x \in \intervalleOO{a}{b} \right\}) \]
+                \item si $f$ n’est majorée, 
+                \[ \underset{x \rightarrow a^+}{\lim} f(x) = +\infty \]
+            \end{itemize}
+        \end{enumerate}
+    \end{theo}
+
+\section{Relations de comparaison}
+
+\subsection{Négligeabilité}
+
+    \begin{defi}{Négligeabilité}{}
+        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \barr{\mathcal{D}}$. 
+    
+        On dit que $f$ est \textbf{négligeable} devant $g$ au voisinage de $a$, et on note $ f(x) \underset{x \rightarrow a}{=} o(g(x))$ si 
+        \[ \exists \, \mathcal{V} \in \mathcal{V}(a), \, \exists \, \varepsilon \in \mathcal{F}(\mathcal{V}, \mathbb{R}), \left\{ \begin{array}{ll}
+        \varepsilon(x) \underset{x \rightarrow a}{\longrightarrow} 0 \\
+        \forall x \in \mathcal{V} \cap \mathcal{D}, \, f(x) = \varepsilon(x)g(x)
+    \end{array} \right. \]
+    \end{defi}
+    
+    \begin{theo}{Caractérisation de la négligeabilité}{}
+        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \barr{\mathcal{D}}$. 
+    
+        On suppose que $g$ ne s’annule pas au voisinage de $a$, sauf éventuellement en $a$.
+    
+        Alors \[ f(x) \underset{x \rightarrow a}{=} o(g(x)) \iff \frac{f(x)}{g(x)} \underset{x \rightarrow a}{\longrightarrow} 0 \]
+    \end{theo}
+    
+    \begin{prop}{Propriétés de la négligeabilité}{}
+        Soient $a \in \barr{\mathbb{R}}$, $f,g,h,h_1,h_2$ des fonctions définies au voisinage de $a$ et $\lambda \in \mathbb{R}$.
+    
+        \begin{alors}
+            \item $f \underset{a}{=} o(g) \implies \left\{ \begin{array}{l}
+                f \underset{a}{=} o(\lambda g) \text{ si } \lambda \neq 0 \\
+                \lambda f \underset{a}{=} o(g)
+            \end{array}\right.$
+            \item $ \left\{ \begin{array}{l}
+                f(x) \underset{x \rightarrow a}{=} o(g(x)) \\
+                g(x) \underset{x \rightarrow a}{=} o(h(x))
+            \end{array} \right. \implies f(x) \underset{x \rightarrow a}{=} o(h(x))$
+            \item $\left\{ \begin{array}{l}
+                f(x) \underset{x \rightarrow a}{=} o(h(x)) \\
+                g(x) \underset{x \rightarrow a}{=} o(h(x))
+            \end{array} \right. \implies f(x) + g(x) \underset{x \rightarrow a}{=} o(h(x))$
+            \item $\left\{ \begin{array}{l}
+                f(x) \underset{x \rightarrow a}{=} o(h_1(x)) \\
+                g(x) \underset{x \rightarrow a}{=} o(h_2(x))
+            \end{array} \right. \implies fg \underset{a}{=} o(h_1 h_2)$
+            \item $ f(x) \underset{x \rightarrow a}{=} o(g(x)) \implies f(x) h(x) \underset{x \rightarrow a}{=} o(g(x) h(x))$
+            \item Si $f$ ne s’annule pas sur un voisinage de $a$, sauf éventuellement en $a$, \\ $ f(x) \underset{x \rightarrow a}{=} o(g(x)) \implies \frac{1}{g(x)} \underset{x \rightarrow a}{=} o\left(\frac{1}{f(x)}\right)$
+        \end{alors}
+    \end{prop}
+
+\subsection{Domination}
+
+    \begin{defi}{Domination}{}
+        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \barr{\mathcal{D}}$. 
+    
+        On dit que $f$ est \textbf{dominée} par $g$ au voisinage de $a$, et on note $ f(x) \underset{x \rightarrow a}{=} \mathcal{O}(g(x)) $ si 
+        \[ \exists \, \mathcal{V} \in \mathcal{V}(a), \, \exists \, \beta \in \mathcal{F}(\mathcal{V}, \mathbb{R}), \left\{ \begin{array}{ll}
+            \beta(\mathcal{V}) \text{ est bornée}  \\
+            \forall x \in \mathcal{V} \cap \mathcal{D}, \, f(x) = \beta(x)g(x)
+        \end{array} \right. \]
+    \end{defi}
+        
+    \begin{theo}{Caractérisation de la domination}{}
+        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \barr{\mathcal{D}}$.
+    
+        On suppose que $g$ ne s’annule pas au voisinage de $a$, sauf éventuellement en $a$. 
+    
+        Alors \[ f(x) \underset{x \rightarrow a}{=} \mathcal{O}(g(x)) \iff \exists \, \mathcal{V} \in \mathcal{V}(a), \,\restr{\frac{f}{g}}{\mathcal{V} \cap \mathcal{D}} \text{ est bornée} \]
+    \end{theo}
+        
+    \begin{prop}{Propriétés de la domination}{}
+        Soient $a \in \barr{\mathbb{R}}$, $f,g,h,h_1,h_2$ des fonctions définies au voisinage de $a$ et $\lambda \in \mathbb{R}$.
+    
+        \begin{alors}
+            \item $f \underset{a}{=} \mathcal{O}(g) \implies \left\{ \begin{array}{l}
+                f \underset{a}{=} \mathcal{O}(\lambda g) \text{ si } \lambda \neq 0 \\
+                \lambda f \underset{a}{=} \mathcal{O}(g)
+            \end{array}\right.$
+            \item $ \left\{ \begin{array}{l}
+                f(x) \underset{x \rightarrow a}{=} \mathcal{O}(g(x)) \\
+                g(x) \underset{x \rightarrow a}{=} \mathcal{O}(h(x))
+            \end{array} \right. \implies f(x) \underset{x \rightarrow a}{=} \mathcal{O}(h(x))$
+            \item $\left\{ \begin{array}{l}
+                f(x) \underset{x \rightarrow a}{=} \mathcal{O}(h(x)) \\
+                g(x) \underset{x \rightarrow a}{=} \mathcal{O}(h(x))
+            \end{array} \right. \implies f(x) + g(x) \underset{x \rightarrow a}{=} \mathcal{O}(h(x))$
+            \item $\left\{ \begin{array}{l}
+                f(x) \underset{x \rightarrow a}{=} \mathcal{O}(h_1(x)) \\
+                g(x) \underset{x \rightarrow a}{=} \mathcal{O}(h_2(x))
+            \end{array} \right. \implies fg \underset{a}{=} \mathcal{O}(h_1 h_2)$
+            \item $ f(x) \underset{x \rightarrow a}{=} \mathcal{O}(g(x)) \implies f(x) h(x) \underset{x \rightarrow a}{=} \mathcal{O}(g(x) h(x))$
+            \item Si $f$ ne s’annule pas sur un voisinage de $a$, sauf éventuellement en $a$, \\ $ f(x) \underset{x \rightarrow a}{=} \mathcal{O}(g(x)) \implies \frac{1}{g(x)} \underset{x \rightarrow a}{=} \mathcal{O}\left(\frac{1}{f(x)}\right)$
+        \end{alors}
+    \end{prop}
+    
+    \begin{prop}{Lien entre $o$ et $\mathcal{0}$}{}
+        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \barr{\mathcal{D}}$. 
+    
+        Alors \[ f \underset{a}{=} o(g) \implies f \underset{a}{=} \mathcal{O}(g) \]
+    \end{prop}
+
+\subsection{Équivalence}
+
+    \begin{defi}{Équivalence}{}
+        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \barr{\mathcal{D}}$.
+
+        On dit que $f$ est \textbf{équivalente} à $g$ au voisinage de $a$, et on note $ f(x) \underset{x \rightarrow a}{\sim} g(x) $ si 
+        \[ \exists \, \mathcal{V} \in \mathcal{V}(a), \, \exists \, \alpha \in \mathcal{F}(\mathcal{V}, \mathbb{R}), \left\{ \begin{array}{l}
+            \alpha \underset{a}{\longrightarrow} 1  \\
+            \forall x \in \mathcal{V} \cap \mathcal{D}, \, f(x) = \alpha(x)g(x)
+        \end{array} \right. \]
+    \end{defi}
+
+    \begin{theo}{Caractérisation de l’équivalence}{}
+        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \barr{\mathcal{D}}$.
+
+        On suppose que $g$ ne s’annule pas au voisinage de $a$, sauf éventuellement en $a$. 
+
+        Alors \[ f \underset{a}{\sim} g \iff \frac{f(x)}{g(x)} \underset{x \rightarrow a}{\longrightarrow} 1 \]
+    \end{theo}
+
+    \begin{prop}{}{}
+        Soient $f,g,h \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \barr{\mathcal{D}}$.
+
+        \begin{alors}
+            \item $f(x) \underset{x \rightarrow a}{\sim} f(x)$. (Réflexivité)
+            \item $f(x) \underset{x \rightarrow a}{\sim} g(x) \iff g(x) \underset{x \rightarrow a}{\sim} f(x)$. (Symétrie)
+            \item $\left\{ \begin{array}{l}
+                f \underset{a}{\sim} g \\
+                g \underset{a}{\sim} h
+            \end{array} \right. \implies f \underset{a}{\sim} h$. (Transitivité)
+        \end{alors}
+    \end{prop}
+
+    \begin{theo}{Lien entre $\sim$ et $o$}{}
+        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \barr{\mathcal{D}}$.
+
+        Alors
+        \begin{align*}
+            f \underset{a}{\sim} g &\iff f-g \underset{a}{=} o(f) \\
+            &\iff f-g \underset{a}{=} o(g)
+        \end{align*}
+    \end{theo}
+
+    \begin{prop}{Caractérisation des équivalents par la limite}{}
+        Soient $f \in \mathcal{F}(\mathcal{D},\mathbb{R})$, $a \in \barr{\mathcal{D}}$ et $\ell \in \mathbb{R}$.
+
+        \begin{alors}
+            \item Si $\ell \neq 0$, 
+            \[ f \underset{a}{\sim} \ell \iff f \underset{a}{\longrightarrow} \ell \]
+            \item $f \underset{a}{\sim} 0 \iff f=0$ au voisinage de $a$.
+        \end{alors}
+    \end{prop}
+
+    \begin{prop}{}{}
+        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \barr{\mathcal{D}}$.
+    
+        \begin{alors}
+            \item $ f(x) \underset{x \rightarrow a}{\sim} g(x) \implies f^r(x) \underset{x \rightarrow a}{\sim} g^r(x) $  pour $r \in \mathbb{R}$
+            \item Si $\lim_{x \to a} f(x) \neq 1$, $\ln(f(x)) \underset{x \rightarrow a}{\sim} \ln(g(x))$
+        \end{alors}
+    \end{prop}
+
+\section{Continuité}
+
+\subsection{Définition}
+
+    \begin{defitheo}{Fonction continue et prolongement par continuité}{}
+        Soit $\f{K}$.
+        \begin{itemize}
+            \item On dit que $f$ est \textbf{continue en $a$} si $f$ tend vers une limite finie en $a$.
+            \item On dit que $f$ est \textbf{continue sur $\mathcal{D}$} si $f$ est continue en $a$ pour tout $a$ de $\mathcal{D}$.
+            \item On note $\mathcal{C}(\mathcal{D}, \mathbb{K})$ l’ensemble des fonctions continues sur $\mathcal{D}$ à valeurs dans $\mathbb{K}$
+        \end{itemize}
+        Dans le cas où $a$ n’est pas une extrémité de $\mathcal{D}$, 
+        \[ f \text{ est continue en } a \iff \left\{ \begin{array}{l}
+            f \text{ est continue à gauche en } a \\
+            f \text{ est continue à droite en } a
+        \end{array} \right. \]
+        Si $a$ est une extrémité de $\mathcal{D}$ telle que $a \notin \mathcal{D}$, on dit que  $f$ est \textbf{prolongeable par continuité} en $a$ si elle admet une limite finie en $a$, et ce prolongement est alors 
+        \[ {\widetilde{f} : x \mapsto \left\{ \begin{array}{cl}
+            f(x) & \text{si } x \in \mathcal{D} \\
+            \underset{x \rightarrow a}{\lim}f(x) & \text{si } x = a
+        \end{array} \right.} \]
+    \end{defitheo}
+
+    \begin{omed}{Remarque}{mypurple}
+        On ne développe pas dans ce cours les théorèmes généraux d’opérations sur les fonctions continues, qui sont tout à fait intuitifs.
+    \end{omed}
+
+\subsection{Théorème des valeurs intermédiaires}
+
+    \begin{theo}{Théorème des valeurs intermédiaires}{}
+        \begin{suppose}
+            \item $\intervalleFF{a}{b}$ est un segment
+            \item $f$ est continue sur $\intervalleFF{a}{b}$
+            \item $y \in  \intervalleFF{f(a)}{f(b)}$
+        \end{suppose}
+        Alors \[ \exists c \in \intervalleFF{a}{b}, \quad f(c) = y \]
+    \end{theo}
+
+    \begin{demo}{Preuve}{myred}
+        On introduit deux suites définies par récurrence $(a_n)$ et $(b_n)$, telles que $a_0 = a$, $b_0 = b$, et pour tout entier $n$, 
+        \[ a_{n+1} = \sisinon{a_n}{f\left(\frac{a_n + b_n}{2}\right) \geq k}{\frac{a_n + b_n}{2}} \esp{et} b_{n+1} = \sisinon{\frac{a_n + b_n}{2}}{f\left(\frac{a_n + b_n}{2}\right) \geq k}{b_n} \]
+        Les deux suites ainsi créées sont adjacentes, ce qui se vérifie aisément ($\forall n \in \mathbb{N}, \quad a \leq a_n \leq b_n \leq b$), donc convergent vers une limite commune, qui est tel que $f(\ell) = y$ (il peut y avoir plusieurs antécédents).
+    \end{demo}
+
+    \begin{coro}{L’image d’un intervalle par une fonction continue est un intervalle}{}
+        \begin{suppose}
+            \item $I$ un intervalle 
+            \item $f$ une fonction continue sur $I$
+        \end{suppose}
+        Alors $f(I)$ est un intervalle.
+    \end{coro}
+
+    \begin{demo}{Preuve}{myorange}
+        Soient $y_1,y_2 \in f(I)$ tels que $y_1 \leq y_2$. Comme $\intervalleFF{y_1}{y_2} \in f(I)$, il existe $a,b$ tels que $f(a) = y_1$ et $f(b) = y_2$. Or $I$ est un intervalle donc $\intervalleFF{a}{b} \subset I$, et comme $f$ est continue sur $I$, $\exists \lambda \in \intervalleFF{y_1}{y_2}, \quad \exists c \in \intervalleFF{a}{b} \quad f(c) = \lambda$ d’après le TVI. Donc $\lambda \in f(I)$, d’où le résultat.
+    \end{demo}
+
+    \begin{theo}{Image d’un compact par une fonction continue}{}
+        Pour toute fonction $f \in \mathcal{C}(E,\mathbb{K})$ et tout compact $C \in E$, $f(C)$ est un compact.
+    \end{theo}
+
+    \begin{demo}{Preuve}{myred}
+        Soit $(y_n)$ une suite d’éléments de $f(C)$. Pour tout $n \in \mathbb{N}$, $y_n = f(x_n)$ pour un certain $x_n \in C$. Or $C$ est compact donc la suite $(x_n)$ possède une suite extraite convergente $(x_{\varphi(n)})$ de limite $\ell \in C$. Par continuité de $f$ en $\ell$, il en découle que $y_{\varphi(f)} = f\left(x_{\varphi(n)}\right) \limi{n}{+\infty} f(\ell)$.
+    \end{demo}
+
+    \begin{theo}{Théorème des bornes atteintes}{}
+        \begin{suppose}
+            \item $\intervalleFF{a}{b}$ est un segment
+            \item $f$ est continue sur $\intervalleFF{a}{b}$
+        \end{suppose}
+        \begin{alors}
+            \item $f$ est bornée et atteint ses bornes. 
+            \item $f(\intervalleFF{a}{b})$ est un segment.
+        \end{alors}
+    \end{theo}
+
+    \begin{demo}{Preuve}{myred}
+        Le segment $\intervalleFF{a}{b}$ est un compact donc son image $f(\intervalleFF{a}{b})$ aussi. Cela dit, $f(\intervalleFF{a}{b})$ est aussi un intervalle d’après le TVI, donc c’est un intervalle compact, i.e. un segment.
+    \end{demo}
+
+    \begin{lem}{}{}
+        Soient $J$ un intervalle et $g$ une fonction monotone sur $J$.
+
+        On suppose que $g(J)$ est un intervalle.
+
+        Alors $g$ est continue sur $J$.
+    \end{lem}
+
+    \begin{theo}{Théorème de la bijection monotone}{}
+        \begin{suppose}
+            \item $I$ est un intervalle
+            \item $f$ est continue sur $I$
+            \item $f$ est strictement monotone sur $I$
+        \end{suppose}
+        \begin{alors}
+            \item $f(I)$ est un intervalle.
+            \item $f$ réalise une bijection de $I$ sur $f(I)$.
+            \item $f^{-1}$ est continue sur $f(I)$, de même monotonie que $f$.
+        \end{alors}
+    \end{theo}
+
+    \begin{lem}{}{}
+        Soit $f$ une fonction injective et continue sur un intervalle $I$.
+    
+        Alors $f$ est strictement monotone.
+    \end{lem}
+
+\section{Dérivabilité}
+
+\subsection{Dérivabilité d’une fonction}
+
+    \subsubsection{Définition}
+
+    \begin{defitheo}{Nombre dérivé}{}
+        Soit $\f{K}$ et $a \in \mathcal{D}$.
+        \begin{itemize}
+            \item On dit que la fonction \textbf{$f$ est dérivable en $a$} si 
+            \[ \left\{ \begin{array}{ll}
+                \mathcal{D}\backslash\left\{a\right\} \rightarrow \mathbb{K} \\
+                x \mapsto \frac{f(x) - f(a)}{x-a}
+            \end{array} \right. \] admet une limite finie en $a$.
+            \item On appelle \textbf{nombre dérivé} de $f$ en $a$ cette limite, et on le note $f'(a)$.
+        \end{itemize}
+        De plus, 
+        \[ f \text{ est dérivable en } a \iff f \text{ admet un } DL_1(a) \]
+        Dans ce cas, 
+        \[ f(x) \underset{x \rightarrow a}{=} f(a) + f'(a)(x-a) + o(x-a) \]
+        ce qui garantit par ailleurs la continuité de $f$.
+        
+    \end{defitheo}
+
+    \begin{demo}{Démonstration}{mypurple}
+        \begin{itemize}
+            \item[\textcolor{mypurple}{$\implies$}] On sait que $\frac{f(x)-f(a)}{x-a} \underset{x \rightarrow a}{\longrightarrow} f'(a)$
+            
+            Donc on obtient directement \[ f(x) - f(a) - f'(a)(x-a) \underset{x \rightarrow a}{=} o(x-a) \] 
+            \item[\textcolor{mypurple}{$\impliedby$}] On a directement $f(a) = a_0$ puis \[ \frac{f(x)-f(a)}{x-a} \underset{x \rightarrow a}{=} a_1 + o(1) \] 
+            Donc le taux d’accroissement admet bien une limite.
+        \end{itemize}
+    \end{demo}
+
+    \begin{prop}{}{}
+        Soient $f \in \mathcal{F}(\mathcal{D}, \mathbb{K}$) et $a \in \mathcal{D}$.
+
+        On suppose que $a$ n’est pas une extrémité de $\mathcal{D}$. 
+    
+        Alors \[ f \text{ est dérivable en } a \iff \left\{ \begin{array}{l} 
+            f \text{ est dérivable à gauche en } a \\ 
+            f \text{ est dérivable à droite en } a \\ 
+            f_g'(a) = f_d'(a) 
+        \end{array} \right.  \]
+        Dans ce cas, $f_g'(a) = f'(a) = f_d'(a)$.
+    \end{prop}
+
+    \begin{demo}{Idée de preuve}{myolive}
+        Soit $\fonction{\varphi}{\mathcal{D}\backslash \{a \}}{\mathbb{K}}{x}{\frac{f(x)-f(a)}{x-a}}$
+        \begin{align*}
+            f \text{ est dérivable en } a & \iff \varphi \text{ admet une limite finie en } a \\
+            & \iff \left\{ \begin{array}{l}
+                \varphi \text{ admet une limite finie à gauche}\\
+                \varphi \text{ admet une limite finie à droite}\\
+                \lim\limits_{x \rightarrow a^-} \varphi(x) = \lim\limits_{x \rightarrow a^+} \varphi(x) 
+            \end{array} \right.
+        \end{align*}
+    \end{demo}
+
+    \subsubsection{Opérations}
+
+    \begin{prop}{Opérations algébriques sur la dérivabilité}{}
+        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{K})$, $(\lambda,\mu) \in \mathbb{K}^2$ et $a \in \mathcal{D}$. 
+
+        On suppose que $f$ et $g$ sont dérivables en $a$.
+
+        \begin{alors}
+            \item $\lambda f + \mu g$ est dérivable en $a$ et 
+            \[ (\lambda f + \mu g)'(a) = \lambda f'(a) + \mu g'(a) \]
+            \item $fg$ est dérivable en $a$, et 
+            \[ (fg)'(a) = f'(a)g(a) + f(a)g'(a) \]
+            \item Si $g(a) \neq 0, \, \exists \eta > 0, \, \forall x \in [a-\eta,a+\eta] \cap \mathcal{D}, \, g(x) \neq 0$. Le quotient $\frac{f}{g}$ des restrictions de f et g à $\intervalleFF{a-\eta}{a+\eta} \cap \mathcal{D}$ est dérivable en $a$, et 
+            \[ \left(\frac{f}{g}\right)'(a) = \frac{f'(a)g(a) - f(a)g'(a)}{g^2(a)} \]
+        \end{alors}
+        Ces résultats sont généralisables à $\mathcal{D}$.
+    \end{prop}
+
+    \begin{demo}{Heuristique}{myolive}
+        Dans chaque cas, se ramener aux taux de variations, dont les limites existent.
+    \end{demo}
+
+    \begin{prop}{Dérivabilité d’une composée}{}
+        Soient $f \in \mathcal{F}(\mathcal{D}, \mathbb{K})$ et $g \in \mathcal{F}(\mathcal{D}', \mathbb{R})$, $a \in \mathcal{D}$.
+
+        \begin{suppose}
+            \item $f(\mathcal{D}) \subset \mathcal{D}'$
+            \item $f$ est dérivable en $a$
+            \item $g$ est dérivable en $f(a)$
+        \end{suppose}
+        \begin{alors}
+            \item $g \circ f$ est dérivable en $a$.
+            \item $(g \circ f)'(a) = f̦'(a)(g' \circ f)(a)$.
+        \end{alors}
+        Ce résultat est généralisable à $\mathcal{D}$.
+    \end{prop}
+
+    \begin{demo}{Raisonnement}{myolive}
+        Écrire le développement limité de $f$ en $a$ et de $g$ en $f(a)$. La dérivé de $g \circ f$ en $a$ est alors le terme de degré 1 dans le développement limité de $g \circ f$ en $a$ obtenu en composant les deux DL.
+    \end{demo}
+
+    \begin{prop}{Dérivabilité locale de l’application réciproque d’une fonction bijective}{}
+        Soit $f \in \mathcal{F}(\mathcal{D}, \mathbb{R})$ et $a \in \mathcal{D}$. 
+
+        \begin{suppose}
+            \item $\corestr{f}{f(\mathcal{D})}$ est bijective
+            \item $f$ est continue sur $\mathcal{D}$
+            \item $f$ est dérivable en $a$
+            \item $f'(a) \neq 0$
+        \end{suppose}
+        \begin{alors}
+            \item $f^{-1}$ est dérivable en $b = f(a)$.
+            \item $\left(f^{-1}\right)'(b) = \frac{1}{f'(a)} = \frac{1}{f'(f^{-1}(b))}$
+        \end{alors}
+        Ce résultat est généralisable à $\mathcal{D}$.
+    \end{prop}
+
+    \begin{demo}{Démonstration \textcolor{black}{(non formelle)}}{myolive}
+        \[ \forall y \in f(\mathcal{D}) \backslash \{ b \}, \frac{f^{-1}(y)- f^{-1}(b)}{y-b} = \frac{f^{-1}(y) -a}{f(f^{-1}(y))-f(a)} \]
+        Or $\frac{x-a}{f(x)-f(a)} \underset{x \rightarrow a}{\longrightarrow} \frac{1}{f'(a)}$
+        
+        Or $f^{-1}$ est continue donc $f^{-1}(y) \underset{y \rightarrow b}{\longrightarrow} f^{-1}(b) = a$
+        
+        Donc \begin{align*}
+            \frac{f^{-1}(y)-a}{f(f^{-1}(y))-f(a)} & \underset{y \rightarrow b}{\longrightarrow} \frac{1}{f'(a)} \\
+            \text{i.e. } \frac{f^{-1}(y)-f^{-1}(b)}{y-b} & \underset{y \rightarrow b}{\longrightarrow} \frac{1}{f'(f^{-1}(b))}
+        \end{align*}
+    \end{demo}
+
+\subsection{Dérivabilités successives et fonctions de classe CN}
+
+    \begin{defi}{Fonction de classe $\mathcal{C}^n$}{}
+        Soit $\f{K}$, $n \in \mathbb{N}^*$.
+        \begin{itemize}
+            \item On dit que $f$ est de \textbf{classe $\mathcal{C}^n$} sur $\mathcal{D}$ si $f$ est $n$ fois dérivable sur $\mathcal{D}$ et $f^{(n)} \in \mathcal{C}(\mathcal{D},\mathbb{K})$.
+            \item On note $\mathcal{C}^0$ l’ensemble des fonctions continues sur $\mathcal{D}$ à valeurs dans $\mathbb{K}$.
+            \item On dit que $f$ est de classe $\mathcal{C}^{\infty}$ sur $\mathcal{D}$ si \[ f \in \bigcap\limits_{n \in \mathbb{N}} \mathcal{C}^n(\mathcal{D},\mathbb{K}) \]
+        \end{itemize}
+    \end{defi}
+
+    \begin{prop}{}{}
+        Soient $\f{K}$, $\g{K}$ et $n \in \mathbb{N} \cup \left\{ + \infty \right\}$. 
+
+        \begin{suppose}
+            \item $f(\mathcal{D}) \subset \mathcal{D}'$
+            \item $f \in \mathcal{C}^n(\mathcal{D},\mathbb{K})$
+            \item $g \in \mathcal{C}^n(\mathcal{D}',\mathbb{K})$
+        \end{suppose}
+
+        Alors \[ g \circ f \in \mathcal{C}^n(\mathcal{D},\mathbb{K}) \]
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Par récurrence sur $\mathbb{N}$.
+        
+        L’initialisation porte sur le chapitre de continuité.
+        
+        Pour l’hérédité, $f' \in \mathcal{C}^n(\mathcal{D},\mathbb{R})$, et par $\mathcal{H}_n$, $g \circ f \in \mathcal{C}^n(\mathcal{D},\mathbb{R})$. 
+        \
+        Donc \[ (g \circ f)' = f' (g \circ f) \in \mathcal{C}^n(\mathcal{D},\mathbb{R}) \] 
+        On a donc $g \circ f \in \mathcal{C}^{n+1}(\mathcal{D},\mathbb{R})$
+    \end{demo}
+
+    \begin{prop}{$\mathcal{C}^n$-difféomorphisme}{}
+        Soient $f \in \mathcal{C}^n(I, \mathbb{R})$ et $n \in \mathbb{N}^* \cup \left\{ +\infty \right\}$.
+        \begin{suppose}
+            \item $I$ est un intervalle de $\mathbb{R}$
+            \item $f \in \mathcal{C}^n(I,\mathbb{R})$
+            \item $f'$ ne s’annule pas sur $I$
+        \end{suppose}
+        \begin{alors}
+            \item $f$ est bijective de $I$ sur $J = f(I)$.
+            \item $ f^{-1} \in \mathcal{C}^n(J,\mathbb{R}) $
+        \end{alors}
+        Une telle fonction est appelée $\mathcal{C}^n$-difféomorphisme.
+    \end{prop}
+
+    \begin{demo}{Idée de la démonstration}{myolive}
+        Pour \textbf{(i)}, on trouve successivement les résultats : $f'$ est de signe constant sur $I$, $f$ est strictement monotone sur $I$, puis $f$ est bijective de $I$ sur $f(I)$.
+        
+        Pour \textbf{(ii)}, on effectue une récurrence finie sur $\intervalleEntier{1}{n}$. Pour démontrer et l’initialisation et l’hérédité, on utilisera à chaque fois que \[ (f^{-1})' = \frac{1}{f' \circ f^{-1}} \] qui est $\neq 0$ car $f'$ ne s’annule pas.
+        
+        Ainsi, montrer que $f' \circ f^{-1} \in \mathcal{C}^k(I,\mathbb{R})$ permet d’écrire que $(f^{-1})' \in \mathcal{C}^k(J,\mathbb{R})$ puis $f^{-1} \in \mathcal{C}^{k+1}(J,\mathbb{R})$
+    \end{demo}
+
+\subsection{Théorèmes de Rolle et des acroissements finis}
+
+    \begin{defitheo}{Point critique}{}
+        Soient $\f{R}$ et $c \in \mathcal{D}$.
+
+        On dit que $f$ admet un \textbf{point critique} en $c$ si $f$ est dérivable en $c$ et $f'(c) = 0$.
+
+        En particulier, si $f$ est dérivable en un extremum local $c$, qui n’est une extrémité de $\mathcal{D}$, alors $c$ est un point critique.
+    \end{defitheo}
+
+    \begin{demo}{Preuve}{mypurple}
+        $\exists \eta > 0, x \in \intervalleFF{c-\eta}{c + \eta} \cap D \implies f(x) \leq f(c)$
+        \
+        Ainsi, \[ \lim\limits_{x \rightarrow c^-} \frac{f(x)-f(c)}{x-c} = f'(c) \leq 0 \text{ et } \lim\limits_{x \rightarrow c^+} \frac{f(x)-f(c)}{x-c} = f'(c) \geq 0 \]
+        Donc $f'(c) = 0$.
+    \end{demo}
+
+    \begin{theo}{Théorème de Rolle}{}
+        Soit $f \in \mathcal{F}(\intervalleFF{a}{b},\mathbb{R})$. 
+
+        \begin{suppose}
+            \item $f \in \mathcal{C}(\intervalleFF{a}{b},\mathbb{R})$
+            \item $f$ est dérivable sur $\intervalleOO{a}{b}$
+            \item $f(a) = f(b)$
+        \end{suppose}
+        Alors \[ \exists c \in \intervalleOO{a}{b}, f'(c)= 0 \]
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        $f$ est continue sur $\intervalleFF{a}{b}$ donc est bornée et atteint ses bornes, que l’on note $m$ et $M$ (resp. min et max).
+        
+        Alors $f(\intervalleFF{a}{b}) = \intervalleFF{m}{M}$
+        \begin{enumerate}
+            \item Si $m = M$, $f$ est constante donc le théorème est vérifié.
+            \item Sinon, comme $f(a) = f(b)$, l’un des deux ne vaut pas $m$ ou $M$. Donc \[ \exists c \in \intervalleOO{a}{b}, \, f(c) = m \quad \text{ou } M \] 
+            et $c$ est un extremum donc $f'(c) = 0$.
+        \end{enumerate}
+    \end{demo}
+
+    \begin{theo}{Théorème et inégalité des accroissements finis (TAF)}{}
+        Soit $f \in \mathcal{F}([a,b],\mathbb{R})$. 
+
+        \begin{suppose}
+            \item $f \in \mathcal{C}([a,b],\mathbb{R})$
+            \item $f$ est dérivable sur $\intervalleOO{a}{b}$
+        \end{suppose}
+        \begin{alors}
+            \item  
+            \[\exists  c \in \intervalleOO{a}{b}, \, f'(c) = \frac{f(b)-f(a)}{b-a} \]
+            \item S’il existe des réels $m$ et $M$ tels que $\forall x \in \intervalleOO{a}{b} , m \leq f'(x) \leq M$, alors 
+            \[ \forall (x,y) \in [a,b]^2, \, x \neq y \implies m \leq \frac{f(y)-f(x)}{y-x} \leq M \]
+            \item \item En particulier, On suppose que $f'$ est bornée sur $\intervalleOO{a}{b}$ et $M = \sup \left( \left\{ \left| f'(t)\right|  , \, t \in \intervalleOO{a}{b} \right\} \right)$. Alors 
+            \[ \forall (x,y) \in [a,b]^2, \, \left| f(y) - f(x) \right| \leq M \left| y-x \right| \]
+        \end{alors}
+        Alors \[  \]
+    \end{theo}
+
+    \begin{demo}{Preuve}{myred}
+        \begin{enumerate}
+            \item Soit $\fonction{g}{\intervalleFF{a}{b}}{\mathbb{R}}{x}{\frac{f(x)-f(a)}{x-a}(x-a)}$. Comme $g(a) = g(b)$, on applique Rolle à $g$, donc $\exists \, c \in \intervalleOO{a}{b}, \, g'(c) = 0$. Cela revient à 
+            \[ \exists c \in \intervalleOO{a}{b}, \, f'(c) = \frac{f(b)-f(a)}{b-a}\]
+            \item On pose $x,y \in \intervalleFF{a}{b}$ tels que $x \neq y$. En appliquant le TAF à $\intervalleFF{x}{y}$, on obtient que \[ \exists c \in \intervalleOO{x}{y}, \, f'(c) = \frac{f(x)-f(y)}{x-y}\]
+            Or $c \in \intervalleOO{a}{b}$ donc $ m \leq f'(c) \leq M$.
+            \item On applique l’IAF avec $m = -M$ donc on obtient 
+            \[ \abs{\frac{f(y)-f(x)}{y-x}} \leq M \] qui est l’inégalité voulue.
+
+            Cette dernière se généralise aux fonctions à valeurs complexes.
+        \end{enumerate}  
+    \end{demo}
+
+    \begin{defi}{$k$-lipchitzienne}{}
+        Soient $\f{K}$ et $k \in \intervalleFO{0}{+\infty}$.
+
+        On dit que $f$ est $k$-lipchitzienne si 
+        \[ \forall (x,y) \in \mathcal{D}^2, \, \left| f(y)-f(x) \right| \leq k \left| y-x \right| \]
+    \end{defi}
+
+    \begin{theo}{}{}
+        Soient $I$ un intervalle et $f \in \mathcal{C}^1(I,\mathbb{K})$. 
+    
+        Alors \[ f \text{ est constante sur I} \iff \forall x \in I, \, f'(x) = 0 \]
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        \begin{itemize}
+            \item[\textcolor{myred}{$\implies$}] Immédiat.
+            \item[\textcolor{myred}{$\implies$}] On pose $x,y \in I$ tels que $x < y$
+            
+            Par le TAF, \[ \exists \, c \in \intervalleOO{x}{y}, \, f'(c) = \frac{f(y)-f(x)}{y-x} \] 
+            Or $f'(c) = 0$ donc $f(y) = f(x)$ et $f$ est constante.
+        \end{itemize} 
+    \end{demo}
+
+    \begin{theo}{}{}
+        Soient $I$ un intervalle et $f \in \mathcal{C}^1(I,\mathbb{R})$.
+
+        \begin{alors}
+            \item $f$ est croissante sur $I$ $\iff$ $\forall x \in I, \, f'(x) \geq 0$.
+            \item $f$ est strictement croissante sur $I$ $\iff$ $ \forall x \in I, \, f'(x) \geq 0 $ et $\left\{ x \in I \,  | \, f'(x) = 0\right\}$ ne contient pas d’intervalle ouvert.
+        \end{alors}
+        Les résultats restent vrais en remplaçant croissante par décroissante et $\geq$ par $\leq$.
+    \end{theo}
+
+    \begin{theo}{Théorème de la limite de la dérivée}{}
+        Soient $I$ un intervalle de $\mathbb{R}$, $f \in \mathcal{F}(I,\mathbb{R})$ et $a \in I$. 
+
+        \begin{suppose}
+            \item $f$ est continue sur $I$
+            \item $f$ est dérivable sur $I \backslash \left\{ a \right\}$
+            \item $f'$ admet une limite $L \in \bar{\mathbb{R}}$ en $a$
+        \end{suppose}
+        Alors \[ \frac{f(x)-f(a)}{x-a} \underset{x \rightarrow a}{\longrightarrow} L \]
+        En particulier, si $L \in \mathbb{R}$, 
+        \[ \left\{ \begin{array}{lll}
+            f \text{ est dérivable en } a \\
+            f'(a) = L \\
+            f' \text{ est continue en } a
+        \end{array} \right. \]
+    \end{theo}
+
+    \begin{demo}{Preuve}{myred}
+        Soit $x \in I \backslash \{ a \}$
+        
+        $\exists  c_x \in \intervalleOO{a}{x}, \, \frac{f(x)-f(a)}{x-a} = f'(c_x)$
+        
+        Or $c_x \underset{x \rightarrow a}{\longrightarrow} a$, donc $f'(c_x) \underset{x \rightarrow a}{\longrightarrow} L$ i.e \[ \frac{f(x)-f(a)}{x-a} \underset{x \rightarrow a}{\longrightarrow} L \]
+    \end{demo}
+
+\section{Convexité}
+
+    \begin{defitheo}{Convexité et caractérisation par la fonction pente}{}
+        Soient $I$ un intervalle et $f \in \mathcal{F}(I,\mathbb{R})$. 
+        \begin{itemize}
+            \item La fonction est dite \textbf{convexe} si 
+            \[ \forall (x,y) \in I^2, \, \lambda \in [0,1], \f(\lambda x + (1-\lambda)y) \leq \lambda f(x) + (1- \lambda)f(y) \]
+            \item La fonction est dite \textbf{concave} si 
+            \[ \forall (x,y) \in I^2, \, \lambda \in [0,1], f(\lambda x + (1-\lambda)y) \geq \lambda f(x) + (1- \lambda)f(y) \]
+        \end{itemize}
+        En particulier, si on pose 
+        \[  \varphi_a : \left\{ \begin{array}{ccl}
+            I \backslash \left\{ a \right\} & \rightarrow & \mathbb{R} \\
+            x & \mapsto & \frac{f(x)-f(a)}{x-a}
+        \end{array} \right. \] 
+        \begin{alors}
+            \item $f$ est convexe sur $I$ $\iff$ $\forall a \in I$, $\varphi_a$ est croissante sur $I \backslash \left\{ a \right\}$.
+            \item $f$ est concave sur $I$ $\iff$ $\forall a \in I$, $\varphi_a$ est décroissante sur $I \backslash \left\{ a \right\}$.
+        \end{alors}
+    \end{defitheo}
+
+    \begin{theo}{Caractérisation des fonctions convexes dérivables}{}
+        Soient $I$ un intervalle de $\mathbb{R}$ et $f \in \mathcal{F}(I,\mathbb{R})$.
+        \begin{suppose}
+            \item $f$ est dérivable sur $I$
+        \end{suppose}
+        Alors 
+        \[ \begin{array}{l}
+            f \text{ est convexe sur } I \iff f' \text{ est croissante sur } I \\
+            f \text{ est concave sur } I \iff f' \text{ est décroissante sur } I
+        \end{array} \]
+        Dans le cas où $f$ est deux fois dérivable sur $I$, cela donne 
+        \[ \begin{array}{l}
+            f \text{ est convexe sur } I \iff \forall x \in I, \, f''(x) \geq 0 \\
+            f \text{ est concave sur } I \iff \forall x \in I, \, f''(x) \leq 0
+        \end{array} \]
+    \end{theo}
+
+\newpage
+
+\section{Développement limités}
+
+\subsection{Généralités}
+
+    \begin{defi}{Développement limité et partie régulière}{}
+        Soient $\f{K}$, $x_0 \in \overline{\mathcal{D}} \cap \mathbb{R}$ et $n \in \mathbb{N}$. 
+
+        On dit que $f$ admet un \textbf{développement limité} à l’ordre $n$ au voisinage de $x_0$ lorsque 
+        \begin{multline*}
+            \exists (a_0,\ldots,a_n) \in \mathbb{R}^n, \\
+            f(x) \underset{x \rightarrow x_0}{=} \sum\limits_{k=0}^n a_k (x - x_0)^k + o\left((x-x_0)^n\right)
+        \end{multline*}
+        La fonction polynomiale $p : x \mapsto \sum\limits_{k=0}^n a_k (x - x_0)^k $ est appelée \textbf{partie régulière} du $DL_n(x_0)$.
+    \end{defi}
+
+    \begin{omed}{Remarque}{myyellow}
+        Un dévelopement limité à l’ordre $n$ au voisinage de $x_0$ peut aussi s’écrire 
+        \[ f(x_0 + h) \underset{h \rightarrow 0}{=} \sum\limits_{k=0}^n a_k h^k + o\left(h^n\right) \]
+    \end{omed} 
+
+    \begin{prop}{DL usuels}{}
+        Soit $n \in \mathbb{N}^*$.
+    
+        \begin{alors}
+            \item $x \mapsto \frac{1}{1-x}$ admet un $DL_n(0)$, et 
+            \[ \frac{1}{1-x} \underset{x \rightarrow 0}{=} 1 + x + \ldots + x^n + o(x^n) \]
+            \item $x \mapsto \frac{1}{1+x}$ admet un $DL_n(0)$, et 
+            \[ \frac{1}{1+x} \underset{x \rightarrow 0}{=} 1 - x + \ldots + (-1)^n x^n + o(x^n)\]
+        \end{alors}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Pour \textbf{(i)}, $\forall x \in \intervalleOO{-1}{1}, \, 1 + x + \ldots + x^n = \frac{1-x^{n+1}}{1-x}$ donc 
+        \[ \frac{1}{1-x} - (1 + x +\ldots + x^n) = \frac{x}{1-x}x^n \] 
+        Or $\frac{x}{1-x} \underset{x \rightarrow 0}{\longrightarrow} 0$, donc 
+        \[ \frac{1}{1-x} - (1 + x +\ldots + x^n) \underset{x \rightarrow 0}{=} o(x^n) \]
+        La démonstration est analogue pour \textbf{(ii)}.
+    \end{demo}
+
+    \begin{prop}{Troncatures de DL}{}
+        Soient $\f{K}$, $x_0 \in \overline{\mathcal{D}} \cap \mathbb{R}$ et $n \in \mathbb{N}$. 
+
+        On suppose que $f$ admet un $DL_n(x_0)$.
+    
+        Alors 
+        \[ \forall p \in \intervalleEntier{0}{n}, \, f(x) \underset{x \rightarrow x_0}{=} \sum\limits_{k=0}^p a_k (x - x_0)^k + o\left((x-x_0)^p\right) \]
+        En particulier, si $f$ admet un $DL_n(x_0)$, alors $a_0 = f(x_0)$.
+    \end{prop}
+
+    \begin{defi}{Forme normalisée}{}
+        Soient $\f{K}$, $x_0 \in \overline{\mathcal{D}} \cap \mathbb{R}$ et $n \in \mathbb{N}$. 
+
+        On suppose que $f$ admet en $x_0$ le $DL_n(x_0)$ suivant : 
+        \[ f(x) \underset{x \rightarrow x_0}{=} \sum\limits_{k=p}^n a_k(x-x_0)^k + o\left((x-x_0)^n\right) \] et que $a_p \neq 0$.
+
+        On dit que le développement est sous forme normalisée lorsqu’on l’écrit sous la forme 
+        \[ f(x) \underset{x \rightarrow x_0}{=} (x-x_0)^p\left(\sum\limits_{k=p}^n a_k(x-x_0)^{k-p} + o\left((x-x_0)^{n-p}\right) \right) \]
+    \end{defi}
+
+    \begin{prop}{}{}
+        Soit $f$ une fonction qui admet un $DL_n(x_0)$ dont la forme normalisée est 
+        \[ f(x) \underset{x \rightarrow x_0}{=} (x-x_0)^p\left(\sum\limits_{k=p}^n a_k(x-x_0)^{k-p} + o\left((x-x_0)^{n-p}\right) \right) \]
+
+        Alors 
+        \[ \frac{f(x)}{(x-x_0)^p} \underset{x \rightarrow x_0}{=} \sum\limits_{k=p}^n a_k(x-x_0)^{k-p} + o\left((x-x_0)^{n-p}\right) \]
+        En particulier, 
+        \[ f(x) \underset{x \rightarrow x_0}{\sim}a_p(x-x_0)^p \]
+    \end{prop}
+
+\subsection{Unicité du DL et formule de Taylor-Young}
+
+    \subsubsection{Unicité du DL}
+
+    \begin{theo}{Unicité du DL}{}
+        Soient $\f{K}$, $x_0 \in \overline{D} \cap \mathbb{R}$ et $n \in \mathbb{N}$.
+
+        Si $f$ admet un $DL_n(x_0)$, alors celui-ci est unique.
+    \end{theo}
+
+    \begin{demo}{Idée de la démonstration}{myred}
+        Supposer que $f$ admet deux DL. Alors la différence de ces deux DL est $o_{x \rightarrow x_0} ((x-x_0)^n)$. En raisonnant par l’absurde, on montre que tous les coefficients des deux DL sont égaux.
+    \end{demo}
+
+    \begin{coro}{}{}
+        Si 
+        \begin{itemize}
+            \item $f$ est une fonction paire (resp. impaire)
+            \item $f$ admet un $DL_n(x_0)$ 
+        \end{itemize}
+        Alors les coefficients d’indices impairs (resp. pairs) de la partie régulière de ce $DL_n$ sont nuls.
+    \end{coro}
+
+    \begin{demo}{Preuve}{myorange}
+        L’unicité du DL permet d’égaliser ceux de $f(x)$ et $f(-x)$. On obtient alors le résultat voulu.
+    
+        On procède de même pour une fonction impaire, en égalisant $f(x)$ et $-f(-x)$.
+    \end{demo}
+
+    \subsubsection{Formule de Taylor-Young}
+
+    \begin{theo}{Formule de Taylor-Young}{}
+        Soient $\f{K}$, $x_0 \in \mathcal{D}$ et $n \in \mathbb{N}$.
+
+        \begin{suppose}
+            \item $f \in \mathcal{C}^n(\mathcal{D}, \mathbb{K})$
+        \end{suppose}
+        \begin{alors}
+            \item $f$ admet un $DL_n(x_0)$.
+            \item $f(x) \underset{x \rightarrow x_0}{=} \sum\limits_{k=0}^{n} \frac{f^{(k)}(x_0)}{k!} (x-x_0)^k +o\left((x-x_0)^n\right)$ 
+        \end{alors}
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        Pour $n \in \mathbb{N}$, on pose 
+        \begin{multline*}
+            \mathcal{H}_n \, : \, \forall f \in \mathcal{C}^n(I,\mathbb{R}), \\
+            f(x) \underset{x \rightarrow x_0}{=} \sum\limits_{k=0}^{n} \frac{f^{(k)}(x_0)}{k!} (x-x_0)^k +o\left((x-x_0)^n\right)
+        \end{multline*}
+        Dans l’hérédité, utiliser la propriété sur $f'$ et lui appliquer l’intégration d’un DL.
+    \end{demo}
+
+    \begin{omed}{Remarque}{myred}
+        À l’ordre 1, on obtient 
+        \[ f \text{ est dérivable en } x_0 \iff f \text{ admet un } DL_1(x_0) \]
+        Mais cela est faux dès l’ordre 2.
+    \end{omed}
+
+    \begin{coro}{DL usuels}{}
+        Soient $n\in \mathbb{N}$ et $p \in \mathbb{N}$.
+        \begin{enumerate}
+            \item $ e^x \underset{x \rightarrow 0}{=} \sum\limits_{k=0}^n \frac{x^k}{k!} + o(x^n)$
+            \item $\sin(x) \underset{x \rightarrow 0}{=} x - \frac{x^3}{6} + \ldots + (-1)^p \frac{x^{2p+1}}{(2p+1)!} + o(x^{2p+2})$
+            \item $\cos(x) \underset{x \rightarrow 0}{=} 1 - \frac{x^2}{2} + \ldots + (-1)^p \frac{x^{2p}}{(2p)!} + o(x^{2p+1})$
+            \item $\forall \alpha \in \mathbb{R},(1+x)^{\alpha} \underset{x \rightarrow 0}{=} 1 + \alpha x + \ldots + \frac{\alpha(\alpha - 1)\ldots(\alpha -n + 1)}{n!}x^n + o(x^n)$
+        \end{enumerate}
+    \end{coro}
+
+\subsection{Opérations sur les DL}
+
+    \begin{prop}{DL d’une C.L.}{}
+        Soient $\f{K}$, $\g{K}$, $x_0 \in \overline{\mathcal{D}} \cap \mathbb{R}$, $n \in \mathbb{N}$ et $(\lambda,\mu) \in \mathbb{K}^2$.
+
+        On suppose que $f$ et $g$ admettent un $DL_n(x_0)$.
+
+        \begin{alors}
+            \item $\lambda f + \mu g$ admet un $DL_n(x_0)$.
+            \item Le $DL$ de la CL est la CL des $DL$.
+        \end{alors}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Par linéarité de la somme.
+    \end{demo}
+
+    \begin{coro}{DL usuels}{}
+        Soit $p \in \mathbb{N}$.
+        \begin{enumerate}
+            \item $\cosh(x) \underset{x \rightarrow 0}{=} 1 + \frac{x^2}{2} + \ldots + \frac{x^{2p}}{(2p)!} + o(x^{2p+1})$
+            \item $\sinh(x) \underset{x \rightarrow 0}{=} x + \frac{x^3}{6} + \ldots + \frac{x^{2p+1}}{(2p+1)!} + o(x^{2p+2})$
+        \end{enumerate}
+    \end{coro}
+
+    \begin{prop}{Produit-troncature}{}
+        Soient $\f{K}$, $\g{K}$, $x_0 \in \overline{\mathcal{D}} \cap \mathbb{R}$ et $n \in \mathbb{N}$.
+
+        \begin{suppose}
+            \item $f$ et $g$ admettent un $DL_n(x_0)$.
+        \end{suppose}
+
+        \begin{alors}
+            \item $fg$ admet un $DL_n(x_0)$.
+            \item Le $DL$ du produit est le produit des $DL$.
+        \end{alors}
+    \end{prop}
+
+    \begin{omed}{Méthode \textcolor{black}{(Obtenir le DL d’une composée)}}{mybrown}
+        \begin{enumerate}
+            \item On écrit le $DL(0)$ de $f$ pour obtenir 
+            \[ f(x) \underset{x \rightarrow 0}{=} a_0 + u(x) \]
+            \item On écrit le $DL(a_0)$ de $g$.
+            \item On remplace $u - a_0$ dans le $DL$ de $g$ .
+        \end{enumerate}
+    \end{omed}
+
+    \begin{omed}{Méthode \textcolor{black}{(Obtenir le DL d’un quotient)}}{mybrown}
+        On se ramène à $\frac{1}{1-u(x)}$ où $u(x) \underset{x \rightarrow x_0}{\longrightarrow} 0$.
+    \end{omed}
+
+    \begin{prop}{}{}
+        Soit $f$ une fonction admettant un $DL_n(x_0)$ telle que $f(x_0) \neq 0$. 
+
+        Alors 
+        \[ \frac{1}{f} \text{ admet un } DL_n(x_0) \]
+    \end{prop}
+
+    \begin{coro}{DL usuel}{}
+        $\tan(x) \underset{x \rightarrow 0}{=} x + \frac{x^3}{3} + \frac{2}{15} x^5 + o(x^6)$
+    \end{coro}
+
+    \begin{prop}{Intégration}{}
+        Soient $f \in \mathcal{C}(I,\mathbb{R})$, $F$ une primitive de $f$ sur $I$, $x_0 \in I$ et $n \in \mathbb{N}^*$.
+
+        \begin{suppose}
+            \item $f$ admet le $DL_n(x_0)$ suivant : \[ f(x) \underset{x \rightarrow x_0}{=} \sum\limits_{k=0}^n a_k (x - x_0)^k + o\left((x-x_0)^n\right) \]
+        \end{suppose}
+        \tcblower
+        \begin{alors}
+            \item $F$ admet un $DL_{n+1}(x_0)$.
+            \item $F(x) \underset{x \rightarrow x_0}{=} F(x_0) + \sum\limits_{k=0}^n \frac{a_k}{k+1} (x - x_0)^{k+1} + o\left((x-x_0)^{n+1}\right)$
+        \end{alors}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Poser, pour $x \in I$, 
+        \[ \Phi (x) = F(x)-F(x_0)-\sum\limits_{k=0}^n a_k \frac{(x-x_0)^{k+1}}{k+1} \]
+        Alors $\Phi'(x) = o((x-x_0)^n)$ donc on peut trouver $\varepsilon > 0$ et $\eta > 0$ tel que \[ x \in (\intervalleFF{x_0-\eta}{x_0+\eta}\cap I) \implies \abs{\Phi'(x)} \leq \varepsilon \abs{(x-x_0)^n} \]
+        En choisissant un $x \neq x_0$ dans cet ensemble, on obtient, par le .TAF que \[ \exists c_x \in \intervalleFF{x}{x_0}, \, \Phi'(c_x) = \frac{\Phi(x) - \Phi(x_0)}{x-x_0} = \frac{\Phi(x)}{x-x_0} \]
+        Puis $\frac{\abs{\Phi(x)}}{\abs{x-x_0}} \leq \varepsilon \abs{c_x - x_0}^n$ 
+        
+        On a donc \[ \frac{\abs{\Phi(x)}}{\abs{x-x_0}^{n+1}} \leq \varepsilon \]
+    \end{demo}
+
+    \begin{coro}{DL usuels}{}
+        Soit $n \in \mathbb{N}^*$.
+        \begin{enumerate}
+            \item $\ln(1-x) \underset{x \rightarrow 0}{=} -x - \ldots - \frac{1}{n}x^n + o(x^n)$
+            \item $\ln(1+x) \underset{x \rightarrow 0}{=} x - \frac{x^2}{2} + \ldots + \frac{(-1)^{n+1}}{n}x^n + o(x^n)$
+            \item $\arctan(x) \underset{x \rightarrow 0}{=} x - \frac{x^3}{3} + \ldots + \frac{(-1)^n}{2n+1}x^{2n+1} + o(x^{2n+2})$
+        \end{enumerate}
+    \end{coro}
+
+\subsection{Applications des DL}
+
+    \begin{prop}{Prolongement par continuité}{}
+        Soient $\f{K}$ et $x_0 \in (\overline{\mathcal{D}} \cap \mathbb{R})\backslash \mathcal{D}$.
+
+        \begin{suppose}
+            \item $f$ admet un DL en $x_0$ à l’ordre $n \geq 1$ 
+            \[ f(x) \underset{x\rightarrow x_0}{=} a_0 + a_1(x-x_0) + o(x-x_0) \]
+        \end{suppose}
+        \begin{alors}
+            \item $f$ est prolongeable par continuité en $x_0$ en posant $f(x_0) = a_0$
+            \item Le prolongement est dérivable en $x_0$ et $f'(x_0) = a_1$
+        \end{alors}
+    \end{prop}
+
+    \begin{prop}{Calcul des dérivées $k$-èmes en $x_0$}{}
+        Soient $\f{R}$ et $x_0 \in \mathcal{D}$.
+
+        \begin{suppose}
+            \item $f$ admet le $DL_n(x_0)$ 
+            \[ f(x) \underset{x \rightarrow x_0}{=} \sum\limits_{k=0}^n a_k (x - x_0)^k + o\left((x-x_0)^n\right) \]
+            \item $f \in \mathcal{C}^n(\mathcal{D},\mathbb{R})$
+        \end{suppose}
+        Alors 
+        \[ \forall k \in \intervalleEntier{0}{n}, \, f^{(k)}(x_0) = k!a_k \]
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Immédiat par la formule de Taylor-Young.
+    \end{demo}
+
+    \begin{omed}{Extrema locaux}{mypink}
+        Si une fonction $f$ est définie sur un voisinage de $x_0$ et admet un $DL$ en $x_0$ de la forme \[ f(x) \underset{x \rightarrow x_0}{=} a_0 + a_1(x-x_0) + a_k (x - x_0)^k + o\left((x-x_0)^k\right) \] où $k \geq 2$ et $a_k \neq 0$, alors 
+    \begin{description}
+        \item[Si $a_1 \neq 0$ :] $f(x) - f(x_0) \underset{x \rightarrow x_0}{\sim} a_1(x-x_0)$ donc $f$ n’admet pas d’extremum en $x_0$.
+        \item[Sinon :] $f(x) - f(x_0) \underset{x \rightarrow x_0}{\sim} a_k(x-x_0)^k$ \begin{itemize}
+            \item Si $k$ est impair : $f(x) - f(x_0)$ change de signe en $x_0$ donc $f$ n’admet pas d’extremum local en $x_0$. 
+            \item Si $k$ est pair : $f(x) - f(x_0)$ est du signe de $a_k$ au voisinage de $x_0$ donc \begin{itemize}[label=$-$]
+                \item Si $a_k > 0$, $f$ admet un minimum local en $x_0$.
+                \item Si $a_k < 0$, $f$ admet un maximum local en $x_0$.
+            \end{itemize}
+        \end{itemize}
+    \end{description}
+    \end{omed}
+
+    \begin{omed}{Position par rapport à une tangente}{mypink}
+        Si une fonction $f$ admet un $DL$ en $x_0$ de la forme 
+    \[  f(x) \underset{x \rightarrow x_0}{=} a_0 + a_1(x-x_0) + a_k (x - x_0)^k + o\left((x-x_0)^k\right) \] 
+    où $k \geq 2$ et $a_k \neq 0$, alors l’équation de la tangente à $\mathcal{C}_f$ en $M_0(x_0,f(x_0))$ est \newline $y = a_0 + a_1(x-x_0)$ et $f(x) - a_0 - a_1(x-x_0) \underset{x \rightarrow x_0}{\sim} a_k(x-x_0)^k$.
+    \begin{description}
+        \item[Si $k$ est pair :] \phantom{bou}  
+        \begin{itemize}
+            \item Si $a_k \geq 0$, la courbe est localement au dessus de la tangente.
+            \item Si $a_k \leq 0$, la courbe est localement en dessous de la tangente.
+        \end{itemize}
+        \item[Si $k$ est impair :] \phantom{bou} 
+        \begin{itemize}
+            \item Si $a_k \geq 0$, la courbe traverse la tangente « en arrivant par dessous ».
+            \item Si $a_k \leq 0$, la courbe traverse la tangente « en arrivant par dessus ».
+        \end{itemize}
+    \end{description}
+    \end{omed}
+
+\subsection{Annexe de DL}
+
+    \begin{longtblr}[
+        caption={Développements limités usuels}
+        ]{
+            colspec={|X[2,c]||X[1,l] |}, width = \linewidth,
+            rowhead = 1, 
+            hlines={0.4pt, black},
+            row{odd} = {myolive!30}, row{1} = {myolive, fg=white, font=\bfseries},
+            rows = {1.5cm}
+        }
+        Développement limité & \SetCell{c} Obtention \\
+    $\frac{1}{1-x} \underset{x \rightarrow 0}{=} 1 + x + \ldots + x^n + o(x^n)$ & Somme des termes d’une suite géométrique. \\
+    $\frac{1}{1+x} \underset{x \rightarrow 0}{=} 1 - x + \ldots + (-1)^n x^n + o(x^n)$ & Somme des termes d’une suite géométrique. \\
+    $ e^x \underset{x \rightarrow 0}{=} \sum\limits_{k=0}^n \frac{x^k}{k!} + o(x^n)$ & Formule de Taylor-Young. \\
+    $\sin(x) \underset{x \rightarrow 0}{=} x - \frac{x^3}{6} + \ldots + (-1)^p \frac{x^{2p+1}}{(2p+1)!} + o(x^{2p+2})$ & Formule de Taylor-Young. \\
+    $\cos(x) \underset{x \rightarrow 0}{=} 1 - \frac{x^2}{2} + \ldots + (-1)^p \frac{x^{2p}}{(2p)!} + o(x^{2p+1})$ & Formule de Taylor-Young. \\
+    $(1+x)^{\alpha} \underset{x \rightarrow 0}{=} 1 + \alpha x + \ldots + \frac{\alpha(\alpha - 1)\ldots(\alpha -n + 1)}{n!}x^n + o(x^n)$ & Formule de Taylor-Young. \\
+    $\cosh(x) \underset{x \rightarrow 0}{=} 1 + \frac{x^2}{2} + \ldots + \frac{x^{2p}}{(2p)!} + o(x^{2p+1})$ & Par somme des DL de $e^x$ et $e^{-x}$ \\
+    $\sinh(x) \underset{x \rightarrow 0}{=} x + \frac{x^3}{6} + \ldots + \frac{x^{2p+1}}{(2p+1)!} + o(x^{2p+2})$ & Par somme des DL de $e^x$ et $e^{-x}$ \\
+    $\tan(x) \underset{x \rightarrow 0}{=} x + \frac{x^3}{3} + \frac{2}{15} x^5 + o(x^6)$ & Par quotient des DL de cos et sin \\
+    $\ln(1-x) \underset{x \rightarrow 0}{=} -x - \ldots - \frac{1}{n}x^n + o(x^n)$ & Par intégration du DL de $- \frac{1}{1-x}$ \\
+    $\ln(1+x) \underset{x \rightarrow 0}{=} x - \frac{x^2}{2} + \ldots + \frac{(-1)^{n+1}}{n}x^n + o(x^n)$ & Intégration du DL de $\frac{1}{1+x}$ \\
+    $\arctan(x) \underset{x \rightarrow 0}{=} x - \frac{x^3}{3} + \ldots + \frac{(-1)^n}{2n+1}x^{2n+1} + o(x^{2n+2})$ & Intégration du DL de $\frac{1}{1+x^2}$ \\
+    \end{longtblr}
+
+    \subsection{Solutions d’équations définies implicitement}
+
+    \begin{omed}{Exemple}{mypurple}
+        Pour tout $\varepsilon > 0$, l’équation $e^{-\varepsilon x} = x$ possède une et une seule solution $x_{\varepsilon}$ dans $\mathbb{R}_+$, 
+        et 
+        \[ x_{\varepsilon} = 1 - \varepsilon + \frac{3}{2} \varepsilon^2 + \comp{o}{\varepsilon}{0}{\varepsilon^2} \]    
+    \end{omed}
+
+    \begin{demo}{Démonstration}{mypurple}
+        Soit $\varepsilon > 0$. La fonction $x \mapsto e^{-\varepsilon x} - x$ est continue et strictement décroissante sur $\mathbb{R}_+$, de valeur $1$ en $0$ et de limite $-\infty$ en $+\infty$. D’après le TVI, $0$ possède un unique antécédent $x_{\varepsilon}$ dans $\mathbb{R}_+$ par cette fonction.
+
+        Par positivité de $x_{\varepsilon}$ pour tout $\varepsilon > 0$, on a 
+        \[ 0 \leq x_{\varepsilon} = e^{-\varepsilon x_{\varepsilon}} \leq 1 \esp{\textit{i.e.}} e^{-\varepsilon} \leq x_{\varepsilon} \leq 1 \] 
+        Il en découle $\lim_{\varepsilon \to 0} x_{\varepsilon} = 1$ par encadrement, \textit{i.e.} $x_{\varepsilon} = 1 + \comp{o}{\varepsilon}{0}{1}$.
+        
+        En réinjectant cette expression dans la relation qui définit $x_{\varepsilon}$, on a alors 
+        \[ x_{\varepsilon} = e^{-\varepsilon x_{\varepsilon}} = 1 - \varepsilon + \comp{o}{\varepsilon}{0}{\varepsilon} \]   
+        On peut ainsi réinjecter cette expression, pour obtenir 
+        \[ x_{\varepsilon} = e^{- \varepsilon x_{\varepsilon}} = e^{-\varepsilon + \varepsilon^2 + \comp{o}{\varepsilon}{0}{\varepsilon^2}} = 1 - \varepsilon + \frac{3}{2} \varepsilon^2 + \comp{o}{\varepsilon}{0}{\varepsilon^2} \]
+    \end{demo}
+
+    \begin{omed}{Exemple}{mypurple}
+        Pour tout $n \in \mathbb{N}^*$, l’équation $\tan(x) = \sqrt{x}$ d’inconnue $x \in I_n = \intervalleOO{n\pi - \frac{\pi}{2}}{n \pi + \frac{\pi}{2}}$ possède une unique solution $x_n$ et $x_n = n \pi + \frac{\pi}{2} - \frac{1}{\sqrt{n \pi }} + \comp{o}{n}{+\infty}{\frac{1}{\sqrt{n}}}$.
+    \end{omed}
+
+    \begin{demo}{Preuve}{mypurple}
+        On fixe $n \in \mathbb{N}^*$.
+
+        On applique le TVI (car la fonction $x \overset{f}{\longmapsto} \tan(x) - \sqrt{x}$ est strictement croissante sur $I_n$), donc $f$ s’annule une unique fois sur $I_n$, disons en $x_n$. Par encadrement, $x_n \limit{\sim}{n}{+\infty} n \pi$. Ensuite, $\tan(x_n - n\pi) = \tan(x_n) = \sqrt{x_n}$, donc $x_n - n \pi = \arctan(\sqrt{x_n}) \limi{n}{+\infty} \frac{\pi}{2}$, \textit{i.e.} $x_n = n \pi + \frac{\pi}{2} + \comp{o}{n}{+\infty}{1}$. 
+        
+        Or, pour $x > 0$, $\arctan(x) + \arctan(1/x) = \frac{\pi}{2}$, donc 
+        \[ x_n - n\pi -\frac{\pi}{2} = \arctan\sqrt{x_n} - \frac{\pi}{2} = - \arctan\frac{1}{\sqrt{x_n}} \limit{\sim}{n}{+\infty} -\frac{1}{\sqrt{x_n}} \limit{\sim}{n}{+\infty} - \frac{1}{\sqrt{n \pi}} \]   
+        qui fournit le résultat.
+    \end{demo}
+
+\newpage
+
+\section[Résultats complémentaires]{Résultats complémentaires sur les fonctions numériques}
+
+    \subsection{Inégalité de Jensen}
+
+    L’inégalité de Jensen est une généralisation de la définition de la convexité, que l’on rappelle : Une fonction est convexe sur un intervalle $I$ si \[ \forall (x,y) \in I^2, \forall \lambda \in \intervalleFF{0}{1}, f(\lambda x + (1-\lambda)y) \leq \lambda f(x) + (1-\lambda) f(y) \] 
+
+    \begin{theo}{Inégalité de Jensen}{Inegalite de Jensen}
+        \begin{soient}
+            \item $f \in \mathcal{F}(I,\mathbb{R})$
+            \item $a_1,\ldots,a_n \in \mathbb{I}$
+            \item $\lambda_1,\ldots,\lambda_n \in \intervalleFF{0}{1}$
+        \end{soient}
+        \begin{suppose}
+            \item $f$ est convexe sur $I$
+            \item $\lambda_1 + \ldots + \lambda_n = 1$
+        \end{suppose}
+
+        Alors \[ f\left(\sum\limits_{i=1}^n \lambda_i a_i\right) \leq \sum\limits_{i=1}^n \lambda_i f(a_i) \]
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        On procède par récurrence 
+        \begin{itemize}
+            \item Pour $n = 2$, $\lambda_2 = 1 - \lambda_1$ donc l’inégalité de Jensen devient exactement la définition de la convexité : 
+            \[ f(\lambda_1 a_1 + (1-\lambda_1)a_2) \leq \lambda_1 f(a_1) + (1-\lambda_1) f(a_2) \]
+            \item On suppose désormais que l’inégalité est vraie pour $n$ et montrons-la pour $n+1$. Si $\lambda_{n+1} = 0$, l’égalité est vérifiée. 
+    
+            On pose, pour $i \in \intervalleEntier{1}{n}$, $ \lambda_i' = \frac{\lambda_i}{1 - \lambda_{n+1}}$. L’inégalité à montrer devient alors 
+            \[ f\left((1-\lambda_{n+1})\sum\limits_{i=1}^n \lambda_i'a_i + \lambda_{n+1}a_{n+1}\right) \leq (1-\lambda_{n+1})\lilbox{myred}{$\sum\limits_{i=1}^n \lambda_i'f(a_i)$} + \lambda_{n+1}f(a_{n+1}) \]
+            Or, d’après la définition de la convexité, on a d’abord 
+            \[ f\left((1-\lambda_{n+1})\sum\limits_{i=1}^n \lambda_i'a_i + \lambda_{n+1}a_{n+1}\right) \leq (1-\lambda_{n+1})\lilbox{myred}{$f\left(\sum\limits_{i=1}^n \lambda_i'a_i\right)$} + \lambda_{n+1}f(a_{n+1}) \] 
+            Or on a $\lambda'_1+\ldots+\lambda'_n=1$, donc on peut appliquer l’hypothèse de récurrence avec les $\lambda'$ et on obtient ainsi le résultat.
+        \end{itemize}
+    \end{demo}
+
+    \begin{omed}{Application}{myred}
+        On peut obtenir que la moyenne géométrique est toujours inférieure à la moyenne arithmétique : Si $a_1,\ldots,a_n$ sont des réels positifs, 
+        \[ \lilbox{myred}{$\sqrt[n]{a_1 a_2 \ldots a_n} \leq \frac{a_1 + a_2 + \ldots + a_n}{n}$} \] 
+        Cela est équivalent, en utilisant la croissance de ln sur $\mathbb{R}^+$, à 
+        \[ \frac{\ln(a_1) + \ln(a_2) + \ldots + \ln(a_n)}{n} \leq \ln\left(\frac{a_1 + a_2 + \ldots + a_n}{n}\right) \]
+        Ce qui se montre par Jensen en prenant la fonction ln qui est concave et $\lambda_i = \frac{1}{n}$.
+    \end{omed}
+
+\subsection{Inégalité de Hölder}
+
+    \begin{defi}{Exposant conjugué}{}
+        Soit $p \in \intervalleFO{1}{+ \infty}$. 
+
+        On appelle \textbf{exposant conjugué} de $p$ l’unique réel $q \in \intervalleFO{1}{+ \infty}$ tel que $\frac{1}{p} + \frac{1}{q} = 1$
+    \end{defi}
+
+    \begin{theo}{Inégalité de Hölder}{Inegalite de Holder}
+        Soient $p,q \in \intervalleFO{1}{+ \infty}$ tels que $q$ est l’exposant conjugué de $p$, et $u_1,\ldots,u_n,v_1,\ldots,v_n \in \mathbb{K}$.
+        
+        Alors \[ \sum\limits_{k=1}^n \abs{u_k} \abs{v_k} \leq \left(\sum\limits_{k=1}^n \abs{u_k}^p\right)^{\frac{1}{p}} \left(\sum\limits_{k=1}^n  \abs{v_k}^q\right)^{\frac{1}{q}} \]
+        
+        Si $ 0 < p < 1$, l’inégalité est renversée. 
+
+        Si $\exists \lambda \in \mathbb{R}$ tel que $\forall i \in \intervalleEntier{1}{n}, v_i = \lambda u_i$ ou si $\forall i \in \intervalleEntier{1}{n}, u_i = 0$, il y a égalité.
+    \end{theo}
+
+    \begin{omed}{Remarque}{myred}
+        Pour $p = q = 2$, on retrouve l’inégalité de Cauchy-Schwarz (avec des variables positives)
+    \end{omed}
+
+    \begin{demo}{Preuve}{myred}
+        Pour la démonstration, on considérera $u_1,\ldots,u_n,v_1,\ldots,v_n \in \mathbb{R}^+$.
+    \begin{itemize}
+    \item Soient $u,v$ deux réels positifs et $p,q \in \intervalleFO{1}{+ \infty}$ tels que $q$ est l’exposant conjugué de $p$. On applique l’inégalité de Jensen à $u^p$ et $v^q$, avec $\lambda_u = \frac{1}{p}$ et $\lambda_v = \frac{1}{q}$, en passant par la fonction ln qui est concave. On obtient 
+    \[ \ln \left(\frac{u^p}{p} + \frac{v^q}{q}\right) \geq \frac{\ln(u^p)}{p} + \frac{\ln(v^q)}{q} \]
+    puis en appliquant l’exponentielle 
+    \[ \lilbox{myred}{$\frac{u^p}{p} + \frac{v^q}{q} \geq uv$} \]
+    \item Il faut ensuite passer par le cas particulier où $\sum\limits_{k=1}^n u_k^p = \sum\limits_{k=1}^n v_k^q = 1$. On a alors, d’après le lemme, pour $k \in \intervalleEntier{1}{n}$, \[ u_k v_k \leq \frac{u_k^p}{p} + \frac{v_k^q}{q} \] 
+    En sommant pour $k$ allant de $1$ à $n$, on obtient le résultat
+    \[ \lilbox{myred}{$ \sum\limits_{k=1}^n u_k v_k \leq 1 = \left(\sum\limits_{k=1}^n u_k^p\right)^{\frac{1}{p}} \left(\sum\limits_{k=1}^n  v_k^q\right)^{\frac{1}{q}} $} \] 
+    \item Pour le cas général, on raisonne par homogénéité. On veut poser des éléments $u_k'$ et $v_k'$ tels que $\sum\limits_{k=1}^n u_k' = \sum\limits_{k=1}^n v_k' = 1$. Il suffit de poser, pour $k \in \intervalleEntier{1}{n}$, \[ \lilbox{myred}{$u_k' = \frac{u_k}{\left( \sum\limits_{k=1}^n u_k^p\right)^{\frac{1}{p}}}  \qquad v_k' = \frac{v_k}{\left(\sum\limits_{k=1}^n  v_k^q\right)^{\frac{1}{q}}}$} \] 
+    On y applique le cas particulier, qui donne 
+    \[ \sum\limits_{k=1}^n u_k' v_k' \leq 1 \] 
+    ce qui équivaut à 
+    \[ \sum\limits_{k=1}^n u_k v_k \leq \left(\sum\limits_{k=1}^n u_k^p\right)^{\frac{1}{p}} \left(\sum\limits_{k=1}^n  v_k^q\right)^{\frac{1}{q}} \]
+    \end{itemize}
+    \end{demo}
+
+    \subsection{Inégalité de Minkowski}
+
+    \begin{theo}{Inégalité de Minkowski}{Inegalite de Minkowski}
+        Soient $p \in \intervalleFO{1}{+ \infty}$ et $u_1,\ldots,u_n,v_1,\ldots,v_n \in \mathbb{K}$.
+        \tcblower
+        Alors 
+        \[ \left(\sum\limits_{k=1}^n \abs{u_k+v_k}^p\right)^{\frac{1}{p}}\leq \left(\sum\limits_{k=1}^n \abs{u_k}^p\right)^{\frac{1}{p}}+\left(\sum\limits_{k=1}^n \abs{v_k}^p\right)^{\frac{1}{p}} \]
+        Si $ 0 < p < 1$, l’inégalité est renversée. \newline
+        Si $\exists \lambda \in \mathbb{R}$ tel que $\forall i \in \intervalleEntier{1}{n}, v_i = \lambda u_i$ ou si $\forall i \in \intervalleEntier{1}{n}, u_i = 0$, il y a égalité.
+    \end{theo}
+
+    \begin{omed}{Remarque}{myred}
+        Pour $p = 2$, on retrouve l’inégalité triangulaire avec des variables positives.
+    \end{omed}
+
+    \begin{demo}{Démonstration}{myred}
+        Pour la démonstration, on utilise des nombres réels positifs $a_1,\ldots,a_n,b_1,\ldots,b_n$. 
+ 
+    On remarque que 
+    \[ \lilbox{myred}{$\sum\limits_{i=1}^n (a_i + b_i)^p = \sum\limits_{i=1}^n a_i (a_i + b_i)^{p-1} + \sum\limits_{i=1}^n b_i (a_i + b_i)^{p-1}$} \] 
+    On applique ensuite l’inégalité de Hölder à chacune des deux sommes, avec les coefficients \lilbox{myred}{$p$} et son exposant conjugué \lilbox{myred}{$\frac{p}{p-1}$}, ce qui donne 
+    \begin{align*}
+    \sum\limits_{i=1}^n a_i (a_i + b_i)^{p-1} &\leq \left( \sum_{i=1}^n a_i^p \right)^{\frac{1}{p}} \left( \sum_{i=1}^n (a_i+b_i)^p\right)^{\frac{p-1}{p}} \\
+    \sum\limits_{i=1}^n b_i (a_i + b_i)^{p-1} &\leq \left( \sum_{i=1}^n b_i^p \right)^{\frac{1}{p}} \left( \sum_{i=1}^n (a_i+b_i)^p\right)^{\frac{p-1}{p}} 
+    \end{align*}
+
+    On obtient ainsi 
+    \begin{align*}
+    \sum\limits_{i=1}^n (a_i + b_i)^p &\leq \left( \sum_{i=1}^n a_i^p \right)^{\frac{1}{p}} \left( \sum_{i=1}^n (a_i+b_i)^p\right)^{\frac{p-1}{p}} \\
+    &+ \left( \sum_{i=1}^n b_i^p \right)^{\frac{1}{p}} \left( \sum_{i=1}^n (a_i+b_i)^p\right)^{\frac{p-1}{p}} 
+    \end{align*}
+    En divisant chaque membre par $\left( \sum\limits_{i=1}^n (a_i+b_i)^p\right)^\frac{p-1}{p}$, on obtient le résultat.
+
+    Le cas où $p < 1$ se démontre de la même façon, en tenant compte de l’inégalité de Hölder renversée.
+    \end{demo}
+
+\subsection{Développement en produit infini du sinus}
+
+    \begin{theo}{Développement en produit infini du sinus}{}
+        Pour tout $z \in \mathbb{C}$, on a 
+        \[ \sin(z) = z \prod_{k=1}^{+\infty} \left(1 - \frac{z^2}{\pi^2 k^2}\right) \]
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        Pour tout $n \in \mathbb{N}$, on introduit le polynôme $P_n \in \mathbb{C}[X]$ défini par 
+        \[ P_n(z) = \frac{1}{2i} \left(\left(1 + \frac{iz}{2n+1}\right)^{2n+1} - \left(1 - \frac{iz}{2n+1}\right)^{2n+1}\right)\]
+        Par passage à la limité classique, la suite $(P_n)$ converge simplement vers la fonction sinus. De plus, pour tout $n \in \mathbb{N}$, on obtient par une résolution directe que les racines du polynôme $P_n$ sont 
+        \[ x_k = (2n+1)\tan(\frac{\pi k}{2n+1}) \quad \text{pour } k \in \intervalleEntier{-n}{n} \]
+        On en déduit pour tout $n \in \mathbb{N}$ qu’il existe une constante $C_n \in \mathbb{C}$ telle que 
+        \begin{align*}
+            P_n(z) 
+            &= C_n \prod_{j=-n}^{n} \left(z - x_j\right) \\
+            &= C_n z \prod_{j=1}^n \left(1 - \frac{z^2}{(2n+1)^2 \tan^2 \left(\frac{\pi j}{2n+1}\right)}\right)
+        \end{align*}
+        En remarquant que $C_n = P_n'(0)$, on obtient que $C_n = 1$. Le résultat étant évident pour $z = 0$, on considère $z \in \mathbb{C}^*$. Pour $k \in \mathbb{N}$, on définit $v_k : \mathbb{N} \to \mathbb{C}$ par 
+        \[ v_k(n) = z \prod_{j=1}^{k} \left(1 - \frac{z^2}{(2n+1)^2 \tan^2 \left(\frac{\pi j}{2n+1}\right)}\right) \quad \text{si } 0 \leq k \leq n \]
+        et $v_k(n) = P_n(z)$ pour tout $k \geq n$. Pour tout $0 \leq k \leq n$, on a 
+        \[ \abs{v_k(n) - v_{k-1}(n)} = \frac{\abs{z}^2}{(2n+1)^2 \tan^2 \left(\frac{\pi k}{2n+1}\right)} v_{k-1}(n) \leq \frac{\abs{z}^2}{\pi k^2} v_{k-1}(n) \]
+        De plus, pour tout $0 \leq k \leq n$, on a 
+        \begin{align*}
+            \ln\abs{v_k(n)} 
+            &\leq \ln\abs{z} + \sum_{j=1}^{k} \ln\left(1 + \frac{\abs{z}^2}{(2n+1)^2\tan^2\left(\frac{\pi j}{2n+1}\right)}\right) \\
+            &\leq \ln\abs{z} + \sum_{j=1}^{+\infty} \frac{\abs{z}^2}{(\pi j)^2}
+        \end{align*}
+        Comme $v_k(n) - v_{k-1}(n) = 0$ pour $k > n$, on en déduit qu’il existe une constante $C \in \mathbb{R}_+^*$ telle que 
+        \[ \forall k \in \mathbb{N}, \quad \forall n \in \mathbb{N}, \quad \abs{v_k(n) - v_{k-1}(n)} \leq \frac{C}{k^2} \]
+        D’où la série de terme général $v_k - v_{k-1}$ converge normalement. On peut donc appliquer le théorème de la double limite pour conclure :
+        \begin{align*}
+            \sin(z) = \lim_{n \to +\infty} P_n(z) 
+            &= \lim_{n \to +\infty} \lim_{k \to +\infty} v_k(n) \\
+            &= \lim_{k \to +\infty} \lim_{n \to +\infty} v_k(n) \\
+            &= z \prod_{j=1}^{+\infty} \left(1 - \frac{z^2}{\pi^2 j^2}\right)
+        \end{align*}
+    \end{demo}
+
+\section{Fonctions de plusieurs variables}
+
+\subsection{Fonctions continues sur un ouvert de R2}
+
+    \begin{defi}{Boules}{}
+        Soient $(x_0,y_0) \in \mathbb{R}^2$ et $r > 0$.
+        \begin{enumerate}
+            \item La \textbf{boule ouverte} de centre $(x_0,y_0)$ et de rayon $r$ est 
+            \[ \mathcal{B}\left((x_0,y_0),r\right) = \left\{ (x,y) \in \mathbb{R}^2, \norm{(x,y) - (x_0,y_0)} < r \right\} \]
+            \item La \textbf{boule fermée} de centre $(x_0,y_0)$ et de rayon $r$ est 
+            \[ \barr{\mathcal{B}}\left((x_0,y_0),r\right) = \left\{ (x,y) \in \mathbb{R}^2, \norm{(x,y) - (x_0,y_0)} \leq r \right\} \]
+        \end{enumerate}
+    \end{defi}
+
+    \begin{defi}{Ouvert}{}
+        Soit $\mathcal{U}$ un sous-ensemble de $\mathbb{R}^2$.
+
+        On dit que $\mathcal{U}$ est un ouvert de $\mathbb{R}^2$ (ou une partie ouverte de $\mathbb{R}^2$) lorsque 
+        \[ \forall (x,y) \in \mathcal{U}, \exists r > 0, \mathcal{B}\left((x,y),r\right) \subset \mathcal{U} \]
+    \end{defi}
+
+    \begin{omed}{Remarque}{myyellow}
+        Ces définitions ne sont pas propres à la norme euclidienne, ni même à $\mathbb{R}^2$, et peuvent être utilisée pour n’importe quelle norme de n’importe quel espace vectoriel normé.
+    \end{omed}
+
+    \begin{defi}{Fonction continue sur un ouvert de $\mathbb{R}^2$}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f \in \mathcal{F}(\mathcal{U},\mathbb{R})$
+            \item $(x_0,y_0) \in \mathcal{U}$
+        \end{soient}
+        On dit que $f$ est \textbf{continue} en $(x_0,y_0)$ lorsque 
+        \[ \forall \varepsilon > 0,  \exists \eta > 0,  \forall(x,y) \in \mathcal{B}\left((x_0,y_0),\eta\right),  \abs{f(x,y)-f(x_0,y_0)} \leq \varepsilon \]
+        On dit que $f$ est continue sur $\mathcal{U}$ si elle est continue en tout $(x_0,y_0) \in \mathcal{U}$.
+    \end{defi}
+
+    \begin{prop}{Théorèmes généraux pour les fonctions de deux variables}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $(f,g) \in \mathcal{F}(\mathcal{U},\mathbb{R})^2$ et $\lambda,\mu \in \mathbb{R}^2$
+            \item $(x_0,y_0) \in \mathcal{U}$
+        \end{soient}
+        On suppose que $f$ et $g$ sont continues en $(x_0,y_0)$
+
+        \begin{alors}
+            \item $\lambda f + \mu g$ est continue en $(x_0,y_0)$
+            \item $fg$ est continue en $(x_0,y_0)$
+            \item Si $g(x_0,y_0) \neq 0$, il existe $\alpha >0$  tel que $g$ ne s’annule pas sur $\mathcal{B}\left((x_0,y_0), \alpha\right)$ et le quotient $ f / g$ des restrictions de $f$ et $g$ à $\mathcal{B}\left((x_0,y_0), \alpha\right)$ est continu en $(x_0,y_0)$
+        \end{alors}
+        On peut étendre ces résultats à tout $\mathcal{U}$
+    \end{prop}
+
+    \begin{demo}{Idée}{myolive}
+        Manipulation répétée et maîtrisée des $\varepsilon$ et des $\eta$.
+    \end{demo}
+
+    \begin{defi}{Fonction polynomiale}{}
+        \begin{itemize}
+            \item Une fonction polynomiale en $(x,y)$ est une combinaison linéaire de fonctions du type $(x,y) \longmapsto x^p y^q$, où $(p,q) \in \mathbb{N}^2$
+            \item Une fonction rationnelle en $(x,y)$ est un quotient de fonctions polynomiales en $(x,y)$
+        \end{itemize}
+    \end{defi}
+
+    \begin{coro}{Continuité des fonctions polynomiales et rationnelles}{}
+        \begin{enumerate}
+            \item Les fonctions polynomiales sont continues sur $\mathbb{R}^2$
+            \item Les fonctions rationnelles sont continues sur leur ensemble de définition.
+        \end{enumerate}
+    \end{coro}
+
+    \begin{demo}{Preuve}{myorange}
+        Les fonctions $(x,y) \mapsto x$, $(x,y) \mapsto y$ et $(x,y) \mapsto 1$ sont continues sur $\mathbb{R}^2$.
+    \end{demo}
+
+    \begin{prop}{Composée à gauche par une fonction de la variable réelle}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$ et $D$ une union finie d’intervalles non réduits à un point de $\mathbb{R}$
+            \item $f \in \mathcal{F}(\mathcal{U},\mathbb{R})$ et $g \in \mathcal{F}(D,\mathbb{R})$
+            \item $(x_0,y_0) \in \mathcal{U}$
+        \end{soient}
+        \begin{suppose}
+            \item $f(\mathcal{U}) \subset D$
+            \item $f$ est continue en $(x_0,y_0)$ (resp. sur $\mathcal{U}$)
+            \item $g$ est continue en $f(x_0,y_0)$ (resp. sur $\mathcal{D}$)
+        \end{suppose}
+        Alors $g \circ f$ est continue en $(x_0,y_0)$ (resp. sur $\mathcal{U}$)
+    \end{prop}
+
+    \begin{demo}{Idée de démonstration}{myolive}
+        On adapte la démonstration sur la limite d’une composée de fonctions de la variable réelle.
+    \end{demo}
+
+\subsection{Dérivation partielles et fonctions de classe C1}
+
+    \subsubsection{Dérivée partielle}
+
+    \begin{defi}{Dérivée suivant un vecteur}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f \in \mathcal{F}(\mathcal{U},\mathbb{R})$
+            \item $(x_0,y_0) \in \mathcal{U}$
+            \item $v = (a,b) \in \mathbb{R}^2 \backslash \{ (0,0) \}$
+        \end{soient}
+        On dit que $f$ est dérivable en $(x_0,y_0)$ dans la direction $v$ lorsque $g_{(x_0,y_0)} : t \mapsto f((x_0,y_0)+tv)$ est dérivable en 0. 
+        
+        Dans ce cas, la dérivée de $f$ selon $v$ en $(x_0,y_0)$ est 
+        \[D_v f(x_0,y_0) = g_{(x_0,y_0)}(0) = \lim\limits_{t \rightarrow 0} \frac{f((x_0,y_0)+tv) - f((x_0,y_0))}{t} \]
+    \end{defi}
+
+    \begin{defi}{Dérivée partielle}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f \in \mathcal{F}(\mathcal{U},\mathbb{R})$
+            \item $(x_0,y_0) \in \mathcal{U}$
+        \end{soient}
+        Lorsqu’elle existe, la \textbf{dérivée partielle} de $f$ par rapport à $x$ (resp. $y$) en $(x_0,y_0)$ est $D_{(1,0)}f(x_0,y_0)$ (resp. $D_{(0,1)}f(x_0,y_0)$), notée $\frac{\partial f}{\partial x}(x_0,y_0)$ (resp. $\frac{\partial f}{\partial y}(x_0,y_0)$)
+    \end{defi}
+
+    \begin{omed}{Remarques}{myyellow}
+        \begin{itemize}
+            \item $\frac{\partial f}{\partial x}$ n’est qu’une notation pour la dérivée par rapport à la première variable.
+            \item L’existence des dérivées partielles n’entraîne pas la continuité de la fonction.
+        \end{itemize}
+    \end{omed}
+
+    \begin{prop}{Théorèmes généraux pour les dérivées partielles}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f,g \in \mathcal{F}(\mathcal{U},\mathbb{R})$ et $\lambda,\mu \in \mathbb{R}$
+            \item $(x_0,y_0) \in \mathcal{U}$
+        \end{soient}
+        On suppose que $f$ et $g$ admettent des dérivées partielles en $(x_0,y_0)$
+
+        \begin{alors}
+            \item La fonction $\lambda f + \mu g$ admet des dérivées partielles en $(x_0,y_0)$ et 
+            \[ \frac{\partial \lambda f + \mu g}{\partial x}(x_0,y_0) = \lambda \frac{\partial f}{\partial x}(x_0,y_0) + \mu \frac{\partial g}{\partial x}(x_0,y_0) \] 
+            \item La fonction $fg$ admet des dérivées partielles en $(x_0,y_0)$ et 
+            \[ \frac{\partial fg}{\partial x}(x_0,y_0) = \frac{\partial f}{\partial x}(x_0,y_0)g(x_0,y_0) + \frac{\partial g}{\partial x}(x_0,y_0) f(x_0,y_0) \] 
+            \item Si $g$ ne s’annule pas sur $\mathcal{U}$ (ou au moins sur une boule ouverte centrée sur $(x_0,y_0)$), alors $f / g$ admet des dérivées partielles en $(x_0,y_0)$ et 
+            \[ \frac{\partial f/g}{\partial x}(x_0,y_0) = \frac{\frac{\partial f}{\partial x}(x_0,y_0)g(x_0,y_0) - \frac{\partial g}{\partial x}(x_0,y_0)f(x_0,y_0)}{g(x_0,y_0)^2} \]
+        \end{alors}
+        Les définitions sont similaires pour les dérivées partielles par rapport à la seconde variable.
+    \end{prop}
+
+    \begin{prop}{Composition à gauche par une fonction de la variable réelle}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$ et $D$ une union finie d’intervalles non réduits à un point de $\mathbb{R}$
+            \item $f\in \mathcal{F}(\mathcal{U},\mathbb{R})$ et $ g \in \mathcal{F}(D,\mathbb{R})$
+            \item $(x_0,y_0) \in \mathcal{U}$
+        \end{soient}
+        \begin{suppose}
+            \item $f(\mathcal{U}) \subset D$
+            \item $f$ admet des dérivées partielles en $(x_0,y_0)$
+            \item $g$ est dérivable en $f(x_0,y_0)$
+        \end{suppose}
+        Alors $g \circ f$ admet des dérivées partielles en $(x_0,y_0)$, et 
+        \[ \frac{\partial (g \circ f)}{\partial x}(x_0,y_0) = \frac{\partial f}{\partial x}(x_0,y_0) g'(f(x_0,y_0)) \] 
+        La définition est similaire pour la dérivée partielle par rapport à la seconde variable.
+    \end{prop}
+
+    \subsubsection{Fonctions de classe C1 sur un ouvert de R2}
+
+    \begin{defi}{Fonctions de classe $\mathcal{C}^1$}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f\in \mathcal{F}(\mathcal{U},\mathbb{R})$
+            \item $(x_0,y_0) \in \mathcal{U}$
+        \end{soient}
+        On dit que \textbf{$f$ est de classe $\mathcal{C}^1$} sur $\mathcal{U}$ lorsque 
+        \begin{enumerate}
+            \item $f$ admets des dérivées partielles en tout $(x_0,y_0) \in \mathcal{U}$
+            \item $\frac{\partial f}{\partial x}$ et $\frac{\partial f}{\partial y}$ sont continues.
+        \end{enumerate}
+        On note $\mathcal{C}^1(\mathcal{U},\mathbb{R})$ l’ensemble des fonctions de classe $\mathcal{C}^1$ sur $\mathcal{U}$ à valeurs dans $\mathbb{R}$.
+    \end{defi}
+
+    \begin{defi}{Gradient}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f\in \mathcal{C}^1(\mathcal{U},\mathbb{R})$
+            \item $(x_0,y_0) \in \mathcal{U}$
+        \end{soient}
+        Le \textbf{gradient} de $f$ en $(x_0,y_0)$ est 
+        \[ \nabla f(x_0,y_0) = \left(\frac{\partial f}{\partial x}(x_0,y_0), \frac{\partial f}{\partial y}(x_0,y_0)\right) \]
+    \end{defi}
+
+    \begin{prop}{Théorèmes généraux pour les fonctions de deux variables}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f,g \in \mathcal{C}^1(\mathcal{U},\mathbb{R})$ et $\lambda,\mu \in \mathbb{R}^2$
+        \end{soient}
+        \begin{alors}
+            \item $\lambda f + \mu g$ est de classe $\mathcal{C}^1$ sur $\mathcal{U}$ et
+            \[ \forall (x_0,y_0) \in \mathcal{U}, \nabla (\lambda f + \mu g)(x_0,y_0) = \lambda \nabla f(x_0,y_0) + \mu \nabla g(x_0,y_0) \]
+            \item $fg$ est de classe $\mathcal{C}^1$ sur $\mathcal{U}$ et
+            \[ \forall (x_0,y_0) \in \mathcal{U}, \nabla (fg)(x_0,y_0) = g(x_0,y_0) \nabla f(x_0,y_0) + f(x_0,y_0) \nabla g(x_0,y_0) \]
+            \item Si $\forall (x,y) \in \mathcal{U}, g(x,y) \neq 0$, alors $f / g$ est de classe $\mathcal{C}^1$ sur $\mathcal{U}$ et
+            \[ \forall (x_0,y_0) \in \mathcal{U}, \nabla \left(\frac{f}{g}\right)(x_0,y_0) = \frac{g(x_0,y_0) \nabla f(x_0,y_0) - f(x_0,y_0) \nabla g(x_0,y_0)}{g(x_0,y_0)^2} \]
+        \end{alors}
+    \end{prop}
+
+    \begin{coro}{Classe $\mathcal{C}^1$ des fonctions polynomiales et rationnelles}{}
+        \begin{enumerate}
+            \item Les fonctions polynomiales sont de classe $\mathcal{C}^1$ sur $\mathbb{R}^2$
+            \item Les fonctions rationnelles sont de classe $\mathcal{C}^1$ sur leur ensemble de définition.
+        \end{enumerate}
+    \end{coro}
+
+    \begin{prop}{Composition}{}
+        \begin{soient}
+            \item $ \mathcal{U}$ un ouvert de $\mathbb{R}^2$ et $D$ une union finie d’intervalles non réduits à un point de $\mathbb{R}$
+            \item $f \in \mathcal{F}(\mathcal{U},\mathbb{R})$ et $g \in \mathcal{F}(D,\mathbb{R})$
+        \end{soient}
+        \begin{suppose}
+            \item $f(\mathcal{U}) \subset D$
+            \item $f \in \mathcal{C}^1(\mathcal{U},\mathbb{R})$
+            \item $g \in \mathcal{C}^1(D,\mathbb{R})$
+        \end{suppose}
+        Alors $g \circ f \in \mathcal{C}^1(\mathcal{U},\mathbb{R})$ et 
+        \[ \nabla (g \circ f)(x_0,y_0) = g'(f(x_0,y_0)) \nabla f(x_0,y_0) \] 
+    \end{prop}
+
+    \subsubsection{Développement limité à l’ordre 1}
+
+    \begin{theo}{Développement limité à l’ordre $1$ d’une fonction de classe $\mathcal{C}^1$}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f\in \mathcal{C}^1(\mathcal{U},\mathbb{R})$
+            \item $(x_0,y_0) \in \mathcal{U}$
+        \end{soient}
+        Alors \[  f(x,y) \underset{\norm{(x,y)-(x_0,y_0)} \rightarrow 0}{=} f(x_0,y_0) + \spr{\nabla f(x_0,y_0)}{(x-x_0,y-y_0)} + o\left(\norm{(x-x_0,y-y_0)}\right) \]
+        De manière équivalente, on peut écrire ce DL
+        \[ f(x_0 + h,y_0 + k) \underset{\norm{(h,k)} \rightarrow 0}{=} f(x_0,y_0) + \frac{\partial f}{\partial x}(x_0,y_0) h + \frac{\partial f}{\partial y}(x_0,y_0)k + o\left(\norm{(h,k)}\right) \]
+    \end{theo}
+
+    \begin{coro}{}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f\in \mathcal{F}(\mathcal{U},\mathbb{R})$
+        \end{soient}
+        On suppose que $f$ est de classe $\mathcal{C}^1$ sur $\mathcal{U}$.
+
+        Alors $f$ est continue sur $\mathcal{U}$.
+    \end{coro}
+
+    \begin{coro}{}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f\in \mathcal{C}^1(\mathcal{U},\mathbb{R})$
+            \item $(a,b) \in \mathbb{R}^2 \backslash \{ (0,0) \}$
+        \end{soient}
+
+        Alors $f$ admet une dérivée suivant $v = (a,b)$ en tout $(x_0,y_0) \in \mathcal{U}$ et 
+        \[ D_v f(x_0,y_0) = \spr{\nabla f(x_0,y_0)}{v} \]
+    \end{coro}
+
+    \subsubsection{Règles de la chaîne}
+
+    \begin{prop}{Règle de la chaîne}{}
+        \begin{soient}
+            \item $D$ une union finie d’intervalles de $\mathbb{R}$ non réduits à un point
+            \item $x$ et $y$ deux fonctions définies sur $D$ à valeurs dans $\mathbb{R}$
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f \in \mathcal{F}(\mathcal{U},\mathbb{R})$
+        \end{soient}
+        \begin{suppose}
+            \item $\forall t \in D, (x(t),y(t) ) \in \mathcal{U}$
+            \item $x,y \in \mathcal{C}^1(D,\mathbb{R})$
+            \item $f \in \mathcal{C}^1(\mathcal{U},\mathbb{R})$
+        \end{suppose}
+        Alors $g : t \mapsto f(x(t),y(t)) \in \mathcal{C}^1(D,\mathbb{R})$ et
+        \begin{align*}
+            \forall t \in D, g'(t) &= \spr{\nabla f(x(t),y(t))}{(x'(t),y'(t))} \\
+            &= \frac{\partial f}{\partial x}(x(t),y(t)) x'(t) + \frac{\partial f}{\partial y}(x(t),y(t)) y'(t)
+        \end{align*} 
+    \end{prop}
+
+    \begin{omed}{Remarque \textcolor{black}{(Le gradient est orthogonal aux lignes de niveau)}}{myolive}
+        Si on définit, pour $\lambda \in \mathbb{R}$, 
+        \[ C_{\lambda} = \left\{ (x,y) \in \mathbb{R}^2, f(x,y) = \lambda  \right\}\] 
+        une courbe de niveau de $f$, qui est paramétrée par une courbe paramétrée $\gamma = (x,y)$.
+
+        Alors $f \circ \gamma = \lambda$ pour tous $t$, donc par la règle de la chaîne, 
+        \[ \spr{\nabla f(\gamma(t))}{\gamma'(t)} = 0 \] 
+        et donc le gradient est orthogonal au vecteur tangent.
+    \end{omed}
+
+    \begin{prop}{Règle de la chaîne, deuxième version}{}
+        \begin{soient}
+            \item $\mathcal{U}$ et $\mathcal{U}'$ deux ouverts de $\mathbb{R}^2$
+            \item $x$ et $y$ deux fonctions définies sur $\mathcal{U}$, à valeurs dans $\mathbb{R}$
+            \item $f \in \mathcal{F}(\mathcal{U}',\mathbb{R})$
+        \end{soient}
+        \begin{suppose}
+            \item $\forall (u,v) \in \mathcal{U}, \left(x(u,v),y(u,v)\right) \in \mathcal{U}'$
+            \item $x,y \in \mathcal{C}^1 (\mathcal{U},\mathbb{R})$
+            \item $ f \in \mathcal{C}^1 (\mathcal{U}',\mathbb{R})$
+        \end{suppose}
+        Alors $\fonction{h}{\mathcal{U}}{\mathbb{R}}{(u,v)}{f(x(u,v),y(u,v))} \in \mathcal{C}^1(\mathcal{U},\mathbb{R})$ et 
+        \begin{align*}
+            \forall (u,v) \in \mathcal{U}, \frac{\partial h}{\partial u}(u,v) &= \frac{\partial f}{\partial x}(x(u,v),y(u,v))\frac{\partial x}{\partial u}(u,v) \\ &+ \frac{\partial f}{\partial y}(x(u,v),y(u,v))\frac{\partial y}{\partial u}(u,v)
+        \end{align*}
+    \end{prop}
+
+    \begin{omed}{Exemple \textcolor{black}{(Coordonnées polaires)}}{myolive}
+        Il est courant de passer aux coordonnées polaires, i.e de considérer la fonction 
+        \[F : (r,\theta) \mapsto f(\underbrace{r \cos \theta}_x,\underbrace{ r \sin \theta}_y) \]
+        On a alors 
+        \begin{align*}
+            r \frac{\partial F}{\partial r}(r,\theta) &= \phantom{-}x \frac{\partial f}{\partial x}(x,y) + y \frac{\partial f}{\partial y}(x,y) \\
+            \frac{\partial F}{\partial \theta}(r,\theta) &= -y \frac{\partial f}{\partial x}(x,y) + x \frac{\partial f}{\partial y}(x,y) \\
+        \end{align*}
+    \end{omed}
+
+\subsection{Extremum d’une fonction de R2 dans R}
+
+    \begin{defi}{Extremum}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f\in \mathcal{F}(\mathcal{U},\mathbb{R})$
+            \item $(x_0,y_0) \in \mathcal{U}$
+        \end{soient}
+        \begin{enumerate}
+            \item On dit que $f$ admet un \textbf{maximum} (resp. \textbf{minimum}) \textbf{global} en $(x_0,y_0)$ lorsque 
+            \[ \forall (x,y) \in \mathcal{U}, f(x,y) \leq f(x_0,y_0)\] 
+            (resp. $\geq$)
+            \item On dit que $f$ admet un \textbf{maximum} (resp. \textbf{minimum}) \textbf{local} en $(x_0,y_0)$ lorsque 
+            \[ \exists \eta > 0, \forall (x,y) \in \mathcal{B}((x_0,y_0),\eta), f(x,y) \leq f(x_0,y_0) \]
+            (resp. $\geq$)
+        \end{enumerate}
+    \end{defi}
+
+    \begin{defi}{Point critique}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f\in \mathcal{C}^1(\mathcal{U},\mathbb{R})$
+            \item $(x_0,y_0) \in \mathcal{U}$
+        \end{soient}
+        On dit que $(x_0,y_0)$ est un \textbf{point critique} de $f$ lorsque $\nabla f(x_0,y_0) = (0,0)$
+    \end{defi}
+
+    \begin{prop}{Condition nécessaire d’extremum dans un ouvert}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f\in \mathcal{C}^1(\mathcal{U},\mathbb{R})$
+            \item $(x_0,y_0) \in \mathcal{U}$
+        \end{soient}
+        Si $f$ admet un extremum local en $(x_0,y_0)$, alors $(x_0,y_0)$ est un point critique de $f$.
+    \end{prop}
+
+    \begin{omed}{Remarque}{myolive}        
+        La réciproque est fausse !
+    \end{omed}
+
+\newpage
+
+\section{Fonctions vectorielles}
+
+    On appelle fonction vectorielle d’une variable réelle toute fonction définie sur un intervalle $I$ de $\mathbb{R}$, à valeurs dans un espace vectoriel normé $E$ de dimension finie. En pratique, on considèrera souvent des fonctions à valeurs dans $E = \mathbb{R}^p$, \textit{i.e.} des fonctions de la forme 
+    \[ \fonction{f}{I}{\mathbb{R}^p}{t}{\left( f_1(t),\ldots,f_p(t) \right)} \]
+    Les fonctions numériques $f_i : I \to \mathbb{R}$ pour $i \in \intervalleEntier{1}{p}$ dons appelées \textbf{fonctions composantes} ou \textbf{fonctions coordonnées} de $f$. Plus généralement, si $E$ est un espace vectoriel normé de dimension finie muni d’une base $\mathcal{B} = (e_1,\ldots,e_p)$, alors $f = f_1e_1 + \ldots + f_p e_p$. L’équivalence des normes en dimension finie nous assurera que les propriétés de régularité (comme la continuité et la dérivabilité) ne dépendent pas de la base choisie.
+
+    Dans tout cette section, $f$ désignera une fonction définie sur un intervalle $I$ et à valeurs dans un espace vectoriel normé $\left(E, \norm{.}\right)$ de dimension finie $p$.
+
+\subsection{Limite et continuité d’une fonction vectorielle}
+
+    \begin{defi}{Limite}{}
+        On dit que $f$ admet $\ell \in E$ pour \textbf{limite} en $t_0 \in I$ si 
+        \[ \forall \varepsilon > 0, \quad \exists \eta > 0, \quad \forall t \in I, \quad \abs{t - t_0} < \eta \implies \norm{f(t) - \ell} < \varepsilon \]
+        \textit{i.e.} si 
+        \[ \lim_{t \to t_0} \norm{f(t) - \ell} = 0 \]
+    \end{defi}
+
+    \begin{omed}{Remarque}{myyellow}
+        On peut montrer que lorsque la limite existe, elle est unique. 
+        
+        De plus, si $E = \mathbb{R}^p$, $f$ admet $\ell = (\ell_1,\ldots,\ell_p) \in \mathbb{R}^p$ pour limite en $t_0 \in \mathbb{R}$ \textit{ssi} chaque fonction composante $f_i$ admet $\ell_i$ comme limite en $t_0$.
+    \end{omed}
+
+    \begin{defi}{Continuité}{}
+        On dit que $f$ est \textbf{continue} en $t_0 \in I$ si $\lim_{t \to t_0} f(t) = f(t_0)$, \textit{i.e.} si 
+        \[ \forall \varepsilon > 0, \quad \exists \eta > 0, \quad \forall t \in I, \quad \abs{t - t_0} < \eta \implies \norm{f(t) - f(t_0)} < \varepsilon \]
+        On dit que $f$ est continue sur $I$ si $f$ est continue en tout point de $I$.
+    \end{defi}
+
+    \begin{prop}{Caractérisation de la continuité par les fonctions composantes}{}
+        $f$ est continue en $t_0 \in I$ \textit{ssi} $\forall i \in \intervalleEntier{1}{p}$, $f_i$ est continue en $t_0$.
+    \end{prop}
+
+\subsection{Dérivabilité d’une fonction vectorielle}
+
+    \begin{defi}{Dérivabilité}{}
+        \begin{itemize}
+            \item $f$ est dite dérivable en $t_0 \in I$ si $\lim_{t \to t_0} \frac{f(t) - f(t_0)}{t - t_0}$ existe.
+            
+            On appelle alors vecteur dérivé en $t_0$ ce nombre, noté $f'(t_0)$.
+        \end{itemize}
+    \end{defi}
+
+    De manière équivalente, $f$ est dérivable en $t_0 \in I$ \textit{ssi} $\lim_{h \to 0} \frac{f(t_0 + h) - f(t_0)}{h}$ existe, ce qui est équivalent à 
+    \[ f(t_0 + h) = f(t_0) + hf'(t_0) + \comp{o}{h}{0}{h} \]
+
+    \begin{prop}{Dérivabilité des fonctions composantes}{}
+        Si $E$ est muni d’une base $\mathcal{B} = (e_1,\ldots, e_p)$ et $f = f_1 e_1 + \ldots f_p e_p$, alors $f$ est dérivable \textit{ssi} les fonctions $f_i$ le sont. Dans ce cas, $f' = f_1' e_1  + \ldots f_p' e_p$.
+    \end{prop}
+
+    \begin{omed}{Exemple}{myolive}
+        L’application $R : t \mapsto \begin{bmatrix}
+            \cos(t) & -\sin(t) \\
+            \sin(t) & \cos(t)
+        \end{bmatrix}$ est dérivable sur $\mathbb{R}$, de dérivée $t \mapsto R(t + \pi / 2)$.
+    \end{omed}
+
+    \begin{prop}{Dérivabilité et application linéaire}{}
+        Soient $f : I \to E$ une fonction dérivable sur $I$ et $u \in \mathcal{L}(E,F)$.
+
+        Alors $u \circ f$ est dérivable et $\left(u \circ f\right)' = u \circ f'$.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Tout repose sur la linéarité (et donc la continuité de $u$). En effet, 
+        \[ \frac{u(f(t_0 + h)) - u(f(t_0))}{h} = u \left(\frac{f(t_0 + h) - f(t_0)}{h}\right) \limi{h}{0} u(f'(t_0)) \]
+
+        On peut aussi écrire $u(f(t_0 + h)) = u(f(t_0)) + h u(f'(t_0)) + \comp{o}{h}{0}{h}$ par continuité de $u$.
+    \end{demo}
+
+    \begin{prop}{Dérivabilité et application bilinéaire}{}
+        Soient $f : I \to F$ et $g : I \to G$ deux fonctions dérivables sur $I$ et $B : F \times G \to E$ bilinéaire.
+
+        Alors $B(f,g)$ est dérivable sur $I$ et 
+        \[ B(f,g)' = B(f',g) + B(f,g') \]
+    \end{prop}
+
+    \begin{itemize}
+        \item En particulier, si $E = \mathbb{R}^3$, $f \wedge g$ est dérivble sur $I$ et 
+        \[ \left(f \wedge g\right)' = f' \wedge g + f \wedge g' \]   
+        \item Si $\spr{.}{.}$ désigne un produit scalaire sur $E$, $\spr{f}{g}$ est dérivable sur $I$ et 
+        \[ \spr{f}{g}' = \spr{f'}{g} + \spr{f}{g'} \]   
+    \end{itemize}
+
+    \begin{demo}{Preuve}{myolive}
+        Travaillons ici avec les développements limités. $f$ et $g$ sont supposées dérivables sur $I$ donc pour tout $t_0 \in I$, en utilisant la bilinéarité de $\mathcal{B}$,
+        \[ B\left(f(t_0 + h), g(t_0 + h)\right) = B\left(f(t_0),g(t_0)\right) + h \left[B\left( f'(t_0), g(t_0) \right) + B\left(f(t_0), g'(t_0)\right)\right] + \comp{o}{h}{0}{h} \]
+        C’est la continuité de $B$ qui permet, par exemple, d’affirmer que $B(f(t_0), o(h)) = o(h)$.
+    \end{demo}
+
+    La propriété précédente s’étend à toute application mulitilinéaire.
+
+    \begin{defi}{Classe $\mathcal{C}^k$}{}
+        Soit $k \in \mathbb{N}$. L’application $f$ est dite de classe $\mathcal{C}^k$ sur $I$ si elle est dérivable $k$ fois sur $I$ et si sa dérivée $k$-ème, notée $f^{(k)}$, est continue sur $I$.
+    \end{defi}
+
+    \begin{prop}{Formule de Leibniz}{}
+        Si $f : I \to \mathbb{R}^p$ et $\lambda : I \to \mathbb{R}$ sont de classe $\mathcal{C}^n$ sur $I$, 
+        \[ \left(\lambda \cdotp f\right)^{(n)} = \sum_{k=0}^{n} \binom{n}{k} \lambda^{(k)} f^{(n-k)} \]
+    \end{prop}
+
+\subsection{Intégration d’une fonction vectorielle sur un segment}
+
+    Pour définir l’intégrale d’une fonction continue sur un segment $\intervalleFF{a}{b}$ à valeur dans un e.v.n. de dimension $p$, il suffit d’intégrer les fonctions composantes (qui sont des fonctions numériques) dans une base prédéfinie :
+    \[ \int_{a}^{b} f(t)dt = \int_{a}^{b} \left(\sum_{i=1}^{p} f_i(t)e_i \right) dt = \sum_{i=1}^{p} \left(\int_{a}^{b} f_i(t)dt\right) e_i \]
+    On admet que le résultat ne dépend pas de la base choisie.
+
+    On retrouve les propriétés classiques de l’intégrale en raisonnant composante par composante, à l’exception de la positivité et de la croissance (propriétés découlant de la relation d’ordre naturelle sur $\mathbb{R}$).
+
+    \begin{prop}{Propriétés de l’intégrale}{}
+        Soient $f,g : \intervalleFF{a}{b} \to E$ deux fonctions continues où $(E,\norm{.})$ est un e.v.n. de dimension finie.
+        \begin{enumerate}
+            \item Linéarité de l’intégrale.
+            \item Relation de Chasles.
+            \item Convergence des sommes de Riemann.
+            \item Inégalité triangulaire :
+            \[ \norm{\int_{a}^{b} f(t)dt} \leq \int_{a}^{b} \norm{f(t)}dt \]
+        \end{enumerate}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Les trois premières propriétés découlent directement d’un travail sur les fonctions composantes dans une base donnée, la dernière est plus subtile. 
+
+        Soit $t_k = a + k \frac{b-a}{n}$ pour $k \in \intervalleEntier{1}{n}$. Par inégalité triangulaire (discrète), 
+        \[ \norm{S_n(f)} := \norm{\frac{b-a}{n} \sum_{k=1}^{n} f(t_k)} \leq \frac{b-a}{n} \sum_{k=1}^{n} \norm{f(t_k)} \eqlabel{\textdagger}\]   
+        \begin{itemize}
+            \item Comme $S_n(f) \limi{n}{+\infty} \int_{a}^{b} f$ et $\norm{.}$ est continue, 
+            \[ \norm{S_n(f)} \limi{n}{+\infty} \norm{\int_{a}^{b} f(t)dt} \]   
+            \item De même, par continuité de $\norm{f}$, 
+            \[ \frac{b-a}{n} \sum_{k=1}^{n} \norm{f(t_k)} \limi{n}{+\infty} \int_{a}^{b} \norm{f} \]
+        \end{itemize}
+        On peut donc conclure en passant à l’inégalité dans (\textdagger).
+    \end{demo}
+
+    On retrouve également les théorèmes classiques de première année qui établissent le lien entre dérivation et intégration.
+
+    \begin{theo}{TFCI}{}
+        Soit $f$ une fonction continue sur un intervalle $I$ de $\mathbb{R}$ et à valeurs dans un e.v.n. de dimension finie.
+
+        Alors pour tout $a \in I$, $F : x \mapsto \int_{a}^{x} f(t)dt$ est de classe $\mathcal{C}^1$ sur $I$ et $F' = f$.
+    \end{theo}
+
+    \begin{theo}{Taylor avec reste intégral à l’ordre $0$}{}
+        Pour toute fonction $f : I \to E$ de classe $\mathcal{C}^1$, $\int_{a}^{b} f'(t)dt = f(b) - f(a)$.
+    \end{theo}
+
+    \begin{coro}{Inégalité des accroissements finis}{}
+        Soit $f : I \to E$ une fonction de classe $\mathcal{C}^1$, où $I$ est un intervalle de $\mathbb{R}$. 
+
+        S’il existe un réel $M > 0$ tel que pour tout $t \in I$, $\norm{f'(t)} \leq M$, alors 
+        \[ \forall a,b \in I, \quad \norm{f(b) - f(a)} \leq M \cdotp \abs{b-a} \]
+    \end{coro}
+
+    \begin{demo}{Preuve}{myorange}
+        Soient $a,b \in I$ vérifiant $a < b$. Alors 
+        \[ \norm{f(b) - f(a)} = \norm{\int_{a}^{b} f'(t)dt} \leq \int_{a}^{b} \norm{f'(t)} dt \leq M \cdotp \abs{b-a} \]
+    \end{demo}
+
+    \begin{theo}{Formules de Taylor}{}
+        Soit $f$ une fonction de classe $\mathcal{C}^{n+1}$ sur un intervalle $I$ de $\mathbb{R}$ et à valeurs dans un e.v.n. de dimension finie. Soient $a, x \in I$.
+        \begin{enumerate}
+            \item \textbf{Formule de Taylor avec reste intégral}
+            \[ f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!}(x-a)^k + \int_{a}^{x} \frac{f^{(n+1)}(t)}{n!} (x-t)^n dt \]
+            \item \textbf{Inégalité de Taylor-Lagrange}
+            \[ \norm{f(x) - \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!}(x-a)^k} \leq M \cdotp \frac{\abs{x-a}^{n+1}}{(n+1)!} \quad \text{avec } M = \sup_{t \in \intervalleFF{a}{b}} \norm{f^{(n)}(t)} \]
+            \item \textbf{Formule de Taylor-Young}
+            \[ f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!}(x-a)^k + \comp{o}{x}{a}{(x-a)^n} \]
+        \end{enumerate}
+    \end{theo}
+
+\subsection{Suites et séries de fonctions vectorielles}
+
+    En vue de l’étude prochaine des équations différentielles, on généralise sommairement l’étude des suites et séries de fonctions numériques aux fonctions vectorielles.
+
+    Par la suite, $(f_n)_{n \in \mathbb{N}}$ désignera une suite de fonctions $f_n : I \to E$ où $I$ désigne un intervalle de $\mathbb{R}$ et $(E,\norm{.})$ un espace vectoriel normé supposé de dimension finie.
+
+    \begin{defi}{Convergences simple et uniforme d’une suite de fonctions vectorielles}{}
+        \begin{itemize}
+            \item On dit que la suite \textbf{converge simplement} vers la fonction $f$ sur $I$ si 
+            \[ \forall x \in I, \quad f_n(x) \limi{n}{+\infty} f(x) \]   
+            Autrement dit,
+            \[ \forall \varepsilon > 0, \quad \forall x \in I, \quad \exists N \in \mathbb{N}, \forall n \geq N, \quad \norm{f_n(x) - f(x)} \leq \varepsilon \]
+            \item On dit que la suite \textbf{converge uniformément} vers la fonction $f$ sur $I$ si $f_n - f$ est bornée à partir d’un certain rang sur $I$ et 
+            \[ \nnorm{\infty}{f_n - f} \limi{n}{+\infty} 0 \esp{\textit{i.e.}} \sup_{x \in I} \norm{f_n(x) - f_n} \limi{n}{+\infty} 0 \]    
+            Autrement dit,
+            \[ \forall \varepsilon > 0, \quad \exists N \in \mathbb{N}, \forall n \geq N, \quad \forall x \in I, \quad \norm{f_n(x) - f(x)} \leq \varepsilon \]
+        \end{itemize}
+    \end{defi}
+
+    Outre le fait que la convergence uniforme entraîne la convergence simple, on retrouve tous les résultats relatifs à la continuité, dérivabilité et intégrabilité de la limite d’une suite de fonctions à valeurs dans K. Par exemple :
+
+    \begin{theo}{Continuité de la limite uniforme}{}
+        La limite uniforme d’une suite convergente de fonctions continues sur $I$ est continue sur $I$.
+    \end{theo}
+
+    On considère désormais la série de fonctions $\sum f_n$ où $f_n : I \to E$.
+
+    \begin{defi}{Convergences simple, uniforme et normale d’une série de fonctions vectorielles}{}
+        \begin{itemize}
+            \item On dit que $\sum f_n$ \textbf{converge simplement} sur $I$ si la suite de fonctions $(S_n)_{n \in \mathbb{N}}$ converge simplement sur $I$. 
+            
+            En cas de convergence, on appelle \textbf{fonction somme} de la série la fonction $S$ définie par 
+            \[ \forall x \in I, \quad S(x) = \sum_{k=0}^{+\infty} f_k(x) = \lim_{n \to +\infty} \sum_{k=0}^{n} f_k(x) \]  
+            \item On dit que $\sum f_n$ converge uniformément sur $I$ si la suite de fonctions $(S_n)_{n \in \mathbb{N}}$ converge uniformément sur $I$.
+            \item On dit que $\sum f_n$ converge normalement sur $I$ si les fonctions $f_n$ sont bornées sur $I$ apcr., et si la série numérique $\sum \nnorm{\infty,I}{f_n}$ converge.
+        \end{itemize}
+    \end{defi}
+
+    Bien entendu, si la série de fonctions converge normalement sur $I$ alors elle converge uniformément sur $I$.
+
+    \begin{theo}{}{}
+        Soit $\sum  f_n$ une série de fonctions de $I$ dans $E$ convergeant uniformément vers $f$ sur $I$ et soit $a \in I$.
+
+        Si, pour tout $n \in \mathbb{N}$, $f_n$ est continue en $a$, alors $\sum_{n=0}^{+\infty} f_n$ est continue en $a$.
+    \end{theo}
+
+    On admet l’extension suivante du théorème.
+
+    \begin{theo}{Théorème de la double limite}{}
+        \begin{soit}
+            \item $\sum f_n$ une série de fonctions de $I$ dans $E$
+            \item $a$ un point adhérent à $I$
+        \end{soit}
+        \begin{suppose}
+            \item Pour tout $n \in \mathbb{N}$, $f_n$ admet une limite $\ell_n$ en $a$.
+            \item La série $\sum f_n$ converge uniformément sur $I$.
+        \end{suppose}
+        \begin{alors}
+            \item La série $\sum \ell_n$ converge.
+            \item La somme $\sum_{n=0}^{+\infty} f_n$ admet une limite en $a$
+            \item $\lim_{x \to a} \sum_{n=0}^{+\infty} f_n(x) = \sum_{n=0}^{+\infty} \lim_{x \to a} f_n(x)$
+        \end{alors}
+    \end{theo}
+
+    S’ajoutent les deux théorèmes suivants de dérivation sur un intervalle et d’intégration terme à terme \textbf{\textsc{sur un segment}}.
+
+    \begin{theo}{Dérivation terme à terme}{}
+        Soit $\sum f_n$ une série de fonctions définies sur un intervalle $I$ de $\mathbb{R}$, à valeurs dans $E$. \begin{suppose}
+            \item Pour tout $n \in \mathbb{N}$, $f_n$ est de classe $\mathcal{C}^1$ sur $I$.
+            \item $\sum f_n$ converge simplement sur $I$.
+            \item $\sum f_n'$ converge uniformément sur tout segment de $I$.
+        \end{suppose}
+        \begin{alors}
+            \item $\sum_{n=0}^{+\infty} f_n$ converge uniformément sur tout segment de $I$.
+            \item $\sum_{n=0}^{+\infty} f_n$ est de classe $\mathcal{C}^1$ sur $I$.
+            \item $\left(\sum_{n=0}^{+\infty} f_n\right) = \sum_{n=0}^{+\infty} f_n'$
+        \end{alors}
+    \end{theo}
+
+    \begin{theo}{Intégration terme à terme sur un segment}{}
+        Soit $\sum f_n$ une série de fonctions continues sur un \textbf{\textsc{segment}} $\intervalleFF{a}{b}$ et à valeurs dans $E$, convergeant uniformément sur le segment $\intervalleFF{a}{b}$. 
+
+        Alors $\sum  \int_{a}^{b} f_n(x)dx$ converge et 
+        \[ \sum_{n=0}^{+\infty} \left(\int_{a}^{b} f_n(x) dx\right) = \int_{a}^{b} \left(\sum_{n=0}^{+\infty} f_n(x)\right) dx \]
+    \end{theo}
+
+    En revanche, le théorème de convergence dominée et son homologue, le théorème d’intégration terme à terme sur un intervalle quelconque, ne s’appliquent pas dans le cadre du programme aux fonctions vectorielles.
+
+\newpage
+
+\section{Équations différentielles}
+
+    \begin{defi}{Équation différentielle}{}
+	    Une \textbf{équation différentielle} est une équation dont l’inconnue est une fonction dérivable faisant intervenir les expressions dérivées de cette fonction.
+    \end{defi}
+
+\subsection{EDL1}
+
+    \subsubsection{Structure de l’ensemble des solutions}
+
+    \begin{defi}{Équation différentielle linéaire d’ordre 1 (EDL1)}{}
+	    \begin{itemize}
+		    \item Une \textbf{EDL1} est une équation de la forme 
+            \[ y'(t) + a(t)y(t) = b(t)\]
+             où $y$ est une fonction dérivable et $a,b$ deux fonctions continues à valeurs dans $\mathbb{K}$
+		    \item L’équation est dite \textbf{homogène} si $b = 0$. Sinon, elle est dite avec second membre.
+		    \item Si $a$ est une fonction constante, on dit qu’elle est \textbf{à coefficients constants} (même si $b$ ne l’est pas).
+	    \end{itemize}
+    \end{defi}
+
+    \begin{theo}{Résolution d’une EDL1 homogène}{}
+        \begin{soient}
+            \item $I$ un intervalle
+            \item $a$ une fonction continue sur $I$
+            \item $A$ une primitive de $a$ sur $I$
+        \end{soient}
+        Alors l’ensemble des solutions définies sur $I$ à valeurs dans $\mathbb{K}$ est 
+        \[ \Vect(t \mapsto e^{-A(t)}) \]
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        Pour tout $y \in \mathcal{C}^1(I,\mathbb{K})$, $\left(ye^A\right)' = \left(y' + ay\right)e^A$, donc 
+        \[ y' +ay = 0 \iff \left(ye^A\right)' = 0 \iff ye^A \text{ est constante} \iff \exists \lambda \in \mathbb{K}, y = \lambda e^{-A} \] 
+    \end{demo}
+
+    \begin{theo}{Structure de l’ensemble des solutions d’une EDL1}{}
+        \begin{soient}
+            \item $I$ un intervalle de $\mathbb{R}$
+            \item $a,b$ deux fonctions continues sur $I$ à valeurs dans $\mathbb{K}$
+            \item $A$ une primitive de $a$ sur $I$
+            \item $y_{p}$ une solution particulière de l’EDL1
+            \item $S_h$ l’ensemble des solutions de l’équation homogène associée
+        \end{soient}
+    Alors l’ensemble des solutions de l’ELD1 est 
+    \[ \left\{ \application{\mathbb{R}}{\mathbb{K}}{t}{y_p(t) + y(t)} \quad y \in S_h \right\} \]
+    \end{theo}
+
+    \begin{omed}{Méthode \textcolor{black}{(Résolution d’une EDL1)}}{myred}
+        \begin{enumerate}
+            \item On trouve un intervalle maximal sur lequel résoudre l’EDL1.
+            \item On trouve l’ensemble des solutions de l’équation homogène.
+            \item On trouve une solution particulière de l’équation avec second membre.
+            \item On conclut par le théorème de structure.
+        \end{enumerate}
+    \end{omed}
+
+    \subsubsection{Recherche de solutions particulières}
+
+    \begin{omed}{Méthode}{myred}
+        \begin{itemize}
+            \item Si \textcolor{myred}{$b(t) = p(t)e^{\alpha t}$}, on cherche une solution de la forme \lilbox{myred}{$t^{\varepsilon}q(t)e^{\alpha t}$} avec $\deg(p) = \deg(q)$ et $\varepsilon = \delta_{-a = \alpha}$
+            \item Si \textcolor{myred}{$b(t) = p(t)\cos(\omega t)$} ou \textcolor{myred}{$b(t) = p(t)\sin(\omega t)$}, on cherche une solution de la forme \lilbox{myred}{$ t^{\varepsilon}(q(t)\cos(\omega t) + r(t)\sin(\omega t)) $} avec $\deg(q) = \deg(r) = \deg(p)$ et $\epsilon = \sisi{0}{\alpha \text{ n’est pas racine de } E_c}{1}{\alpha \text{ est racine de } E_c}$
+        \end{itemize}
+    \end{omed}
+
+    \begin{theo}{Superposition des solutions}{}
+        \begin{soient}
+            \item $I$ un intervalle de $\mathbb{R}$,
+            \item $a,b_1,b_2 \in \mathcal{C}(I,\mathbb{K})$,
+            \item $y_1$ et $y_2$ des solutions respectivement de $y' + a(t)y = b_1(t)$ et $y' + a(t)y = b_2(t)$.
+        \end{soient}
+        Alors 
+        \[ y_1 + y_2 \text{ est solution de } y' + a(t)y = b_1(t) + b_2(t) \]
+    \end{theo}
+
+    \begin{defi}{Problème de Cauchy linéaire d’ordre 1}{}
+        \begin{soient}
+            \item $I$ un intervalle de $\mathbb{R}$,
+            \item $a,b \in \mathcal{C}(I,\mathbb{R})$,
+            \item $(t_0,y_0) \in I \times \mathbb{K}$.
+        \end{soient}
+        Alors
+        \begin{itemize}
+            \item Un \textbf{problème de Cauchy linéaire d’ordre 1} est un système de la forme \[ \left\{ \begin{array}{l}
+                y' + a(t)y = b(t)\\
+                y(t_0) = y_0
+                \end{array} \right. \]
+            \item On appelle l’équation $y(t_0) = y_0$ la condition initiale.
+        \end{itemize}
+    \end{defi}
+    
+    \begin{theo}{Cauchy linéaire d’ordre 1}{}
+        \begin{soient}
+            \item $I$ un intervalle de $\mathbb{R}$,
+            \item $a,b \in \mathcal{C}(I,\mathbb{R})$,
+            \item $(t_0,y_0) \in I \times \mathbb{K}$.
+        \end{soient}
+        Alors il existe une unique solution au problème de Cauchy \[ \left\{ \begin{array}{ll}
+        y' + a(t)y = b(t)\\
+        y(t_0) = y_0
+        \end{array} \right. \]
+    \end{theo}
+
+\subsection{Équations différentielles linéaires d’ordre 2 à coefficients constants}
+
+    \subsubsection{Structure de l’ensemble des solutions}
+
+    \begin{defi}{EDL2 à coefficients constants}{}
+	    \begin{soient}
+		    \item $a,b \in \mathbb{K}$
+		    \item $I$ un intervalle
+		    \item $f \in \mathcal{C}(I,\mathbb{K})$
+		    \item $y$ une fonction deux fois dérivable sur $I$
+	    \end{soient}
+	    \begin{enumerate}
+		    \item Une \textbf{EDL2 à coefficients constants} est une équation de la forme \[ y'' + ay' + by = f(t) \]
+		    \item L’équation est dite homogène si $f = 0$. Sinon, elle est dite avec second membre.
+	    \end{enumerate}
+    \end{defi}
+
+    \begin{theo}{Résolution de $y'' + ay' + by = 0$}{}
+        Soit $(E_{c}) : r^{2} + ar+ b = 0$ l’équation caractéristique associée à $(H) : y'' + ay' + by = 0$.
+        
+        Alors
+        \begin{enumerate}
+            \item \textbf{Si $(a, b) \in \mathbb{C}^{2}$}  
+            \begin{itemize}
+                \item si ($E_{c}$) admet deux racines distinctes $r_1$ et $r_2$, alors l’ensemble des solutions de (H) à valeurs dans $\mathbb{C}$ est \[ \left\{
+                    \application{\mathbb{R}}{\mathbb{C}}{t}{\lambda e^{r_1t}+\mu e^{r_2t}}, \, \lambda,\mu \in \mathbb{C}
+                  \right\} \]
+                \item si ($E_{c}$) admet une racine double $r$, alors l’ensemble des solutions de (H) à valeurs dans $\mathbb{C}$ est \[ \left\{
+                    \application{\mathbb{R}}{\mathbb{C}}{t}{(\lambda t+\mu) e^{rt}}, \, \lambda,\mu \in \mathbb{C}
+                  \right\} \]
+                \end{itemize}
+            \item \textbf{Si $(a, b) \in \mathbb{R}^{2}$}
+            \begin{itemize}
+                \item si ($E_{c}$) admet deux racines réelles distinctes $r_1$ et $r_2$, alors l’ensemble des solutions de (H) à valeurs dans $\mathbb{R}$ est \[ \left\{
+                    \application{\mathbb{R}}{\mathbb{R}}{t}{\lambda e^{r_1t}+\mu e^{r_2t}}, \, \lambda,\mu \in \mathbb{R}
+                  \right\} \] 
+                
+                \item si ($E_{c}$) admet une racine double r, alors l’ensemble des solutions de (H) à valeurs dans $\mathbb{R}$ est \[ \left\{
+                    \application{\mathbb{R}}{\mathbb{R}}{t}{(\lambda t+\mu) e^{rt}}, \, \lambda,\mu \in \mathbb{R}
+                  \right\} \]
+                  
+                \item si ($E_{c}$) admet deux racines conjuguées $\psi \pm i\omega$, alors l’ensemble des solutions de (H) à valeurs dans $\mathbb{R}$ est \[ \left\{
+                    \application{\mathbb{R}}{\mathbb{R}}{t}{e^{\psi t}(\lambda \cos(\omega t) + \mu \sin(\omega t))}, \,  \lambda,\mu \in \mathbb{R}
+                  \right\} \]
+            \end{itemize}
+        \end{enumerate}
+    \end{theo}
+
+    \begin{theo}{Structure de l’ensemble des solutions d’une EDL2}{}
+	    \begin{soient}
+		    \item $I$ un intervalle de $\mathbb{R}$,
+		    \item $f$ une fonction continue sur $I$ à valeurs dans $\mathbb{K}$,
+		    \item $a,b \in \mathbb{K}$,
+		    \item $y_{p}$ une solution particulière de l’EDL2,
+		    \item $S_h$ l’ensemble des solutions de l’équation homogène associée.
+	    \end{soient}
+        Alors l’ensemble des solutions de l’ELD2 est 
+        \[ \left\{ \application{\mathbb{R}}{\mathbb{K}}{t}{y_p(t) + y(t)}, \, y \in S_h \right\} \]
+    \end{theo}
+
+    \begin{omed}{Méthode \textcolor{black}{(Résolution d’une EDL2)}}{myred}
+	    \begin{enumerate}
+		    \item On trouve un intervalle maximal sur lequel résoudre l’EDL2.
+		    \item On résout l’équation homogène associée.
+		    \item On trouve une solution particulière de l’équation avec second membre.
+		    \item On conclut par le théorème de structure.
+	    \end{enumerate}
+    \end{omed}
+
+    \subsubsection{Recherche d’une solution particulière}
+
+    \begin{omed}{Méthode \textcolor{black}{(Cas particuliers)}}{mybrown}
+        Soit $(a,b) \in \mathbb{K}^{2}$ et $(E_c) : r^{2} + ar+ b = 0$ l’équation associée à l’EDL2.
+        \begin{enumerate}
+            \item \textbf{Si $f(t) = p(t)e^{\alpha t}$} \quad On cherche une solution de la forme \[ t^{\varepsilon} q(t)e^{\alpha t} \] avec $\deg(q) = \deg(p)$ et $\varepsilon = \left\{ \begin{array}{cl}
+                0 & \text{sinon} \\
+                1 & \text{si } \alpha \text{ est racine simple de } (E_c) \\
+                2 & \text{si } \alpha \text{ est racine double de } (E_c)
+            \end{array}\right.$
+            \item \textbf{Si $f(t) = p(t)\cos(\omega t)$ ou $f(t)=p(t)\sin(\omega t)$} \quad On cherche une solution de la forme 
+            \[ \Re(t^{\varepsilon}q(t)e^{i \omega t}) \esp{ou} \Im(t^{\varepsilon}q(t)e^{i \omega t}) \quad \text{respectivement}\] 
+            avec $\deg(q) = \deg(p)$ et $\varepsilon = \left\{ \begin{array}{cl}
+                0 & \text{sinon} \\
+                1 & \text{si } \alpha \text{ est racine simple de } (E_c) \\
+                2 & \text{si } \alpha \text{ est racine double de } (E_c)
+            \end{array}\right.$
+        \end{enumerate}
+    \end{omed}
+
+    \begin{theo}{Superposition des solutions}{}
+        \begin{soient}
+            \item $(a,b) \in \mathbb{K}^2$
+            \item $I$ un intervalle de $\mathbb{R}$
+            \item $f_1, f_2 \in \mathcal{C}(I,\mathbb{K})$
+            \item $y_1$ et $y_2$ des solutions respectivement de $y'' + ay' + by = f_1(t)$ et $y'' + ay' + by = f_2(t)$
+        \end{soient}
+        Alors \[ y_1 + y_2 \text{ est solution de } y'' + ay' + by = f_1(t) + f_2(t) \]
+    \end{theo}
+
+    \begin{theo}{Cauchy linéaire d’ordre 2}{}
+        \begin{soient}
+            \item $(a,b) \in \mathbb{K}^2$
+            \item $I$ un intervalle de $\mathbb{R}$
+            \item $f \in \mathcal{C}(I,\mathbb{K})$
+            \item $(t_0,y_0,z_0) \in I \times \mathbb{K} \times \mathbb{K}$
+        \end{soient}
+        Alors il existe une unique solution au problème de Cauchy \[ \left\{ \begin{array}{l}
+        y'' + ay' + by = f(t)\\
+        y(t_0) = y_0\\
+        y'(t_0) = z_0
+        \end{array} \right. \]
+    \end{theo}
+    
+\subsection{Un exemple de recollement}
+
+    \begin{omed}{Exemple}{mygreen}
+        Soit $n \in \mathbb{N}^*$. Déterminons les solutions maximales (i.e. que l’on ne peut plus prolonger) de l’équation différentielle 
+        \[ \mathcal{E}_n : nxy + (1-x)xy' = x(1-x)^{n+1}e^x \] 
+    \end{omed}
+    
+        \begin{omed}{Méthode \textcolor{black}{(Recollement)}}{mygreen}
+            \begin{enumerate}
+                \item On se ramène aux intervalles sur lesquels les théorèmes du cours s’appliquent.
+                \item On résout l’E.D. sur ces intervalles.
+                \item On suppose que $f$ est une solution définie sur $\mathbb{R}$, et on utilise le fait que ses restrictions aux intervalles précédent soient solution pour connaître l’expression de $f$ sur chacun de ces intervalles. (les constantes sont \textit{a priori} différentes)
+                \item On utilise ces expressions et le fait que $f$ est continue et dérivable sur $\mathbb{R}$ pour trouver d’éventuelles conditions sur les constantes.
+                \item On fait la synthèse : on vérifie que les fonctions trouvées sont solutions. 
+                \item On conclut par l’ensemble des solutions.
+            \end{enumerate}
+        \end{omed}
+    
+    \begin{demo}{Résolution}{mygreen}
+    On procède donc selon la méthode :
+    \begin{enumerate}
+        \item Pour $I \in \big\{ \intervalleOO{-\infty}{0}, \intervalleOO{0}{1}, \intervalleOO{1}{+ \infty} \big\}$, on pose 
+        \[ \mathcal{E}_{n,I} : y' + \frac{n}{1-x} y = (1-x)^n e^x \] 
+        Soit $I \in \big\{ \intervalleOO{-\infty}{0}, \intervalleOO{0}{1}, \intervalleOO{1}{+ \infty} \big\}$.
+        
+        Les fonctions $x \mapsto \frac{n}{1-x}$ et $x \mapsto (1-x)^n e^x$ sont continues sur $I$ donc les théorèmes du cours s’appliquent.
+        \item $x \mapsto -n \ln(\abs{1-x})$ est une primitive de $x \mapsto \frac{n}{1-x}$ sur $I$, donc l’ensemble des solutions de l’équation homogène associée est 
+        \begin{multline*}
+            \left\{ \application{I}{\mathbb{R}}{x}{\lambda \abs{1-x}^n} \quad \lambda \in \mathbb{R} \right\} \\
+            = \left\{ \application{I}{\mathbb{R}}{x}{\lambda (1-x)^n} \quad \lambda \in \mathbb{R} \right\}
+        \end{multline*}
+        Soit $\lambda \in \mathcal{C}^1(I,\mathbb{R})$ et $f : x \mapsto \lambda(x)(1-x)^n$. Alors $f \in \mathcal{C}^1(I,\mathbb{R})$ et 
+        \[ \forall x \in I, f'(x) + \frac{n}{1-x}f(x) = \lambda'(x) (1-x)^n \] 
+        Ainsi, 
+        \[ f \text{ est sol. de } \mathcal{E}_{n,I} \iff \forall x \in I, \lambda'(x) = e^x \]
+        Donc $x \mapsto (1-x)^n e^x$ est solution de $\mathcal{E}_{n,I}$. 
+        Finalement, l’ensemble des solutions de $\mathcal{E}_{n,I}$ est 
+        \[ x \mapsto (\lambda + e^x)(1-x)^n, \lambda \in \mathbb{R} \] 
+        \item Soit $f$ une solution de $\mathcal{E}_n$ définie sur $\mathbb{R}$. Alors $\forall I \in \big\{ \intervalleOO{-\infty}{0}, \intervalleOO{0}{1}, \intervalleOO{1}{+ \infty} \big\}$, $\restr{f}{I}$ est solution de $\mathcal{E}_{n}$. Donc 
+        \[ \left\{ \begin{array}{l}
+            \exists \lambda \in \mathbb{R}, \forall x \in \intervalleOO{-\infty}{0}, f(x) = (\lambda + e^x)(1-x)^n \\
+            \exists \mu \in \mathbb{R}, \forall x \in \intervalleOO{0}{1}, f(x) = (\mu + e^x)(1-x)^n \\
+            \exists \nu \in \mathbb{R}, \forall x \in \intervalleOO{1}{+\infty}, f(x) = (\nu + e^x)(1-x)^n
+        \end{array} \right. \]
+        \item La continuité de $f$ en 0 donne $\lim\limits_{x \rightarrow 0^-} f(x) = \lim\limits_{x \rightarrow 0^+} f(x)$ i.e. $\lambda = \mu$. Donc 
+        \[ f : x \mapsto \left\{ \begin{array}{l}
+            (\lambda + e^x)(1-x)^n \text{ si } x < 1 \\
+            (\nu + e^x)(1-x)^n \text{ si } x > 1 \\
+            0 \text{ si } x = 1
+        \end{array} \right. \]
+        \item Réciproquement, s’il existe deux réels $\lambda,\nu$ tels que \[ f : x \mapsto \left\{ \begin{array}{l}
+            (\lambda + e^x)(1-x)^n \text{ si } x < 1 \\
+            (\nu + e^x)(1-x)^n \text{ si } x > 1 \\
+            0 \text{ si } x = 1
+        \end{array} \right. \] alors $f$ est solution de $\mathcal{E}_n$.
+        \item En conclusion, l’ensemble des solutions de l’équation $\mathcal{E}_n$ est 
+        \[\left\{ x \mapsto \left\{ \begin{array}{l}
+            (\lambda + e^x)(1-x)^n \text{ si } x < 1 \\
+            (\nu + e^x)(1-x)^n \text{ si } x > 1 \\
+            0 \text{ si } x = 1 \end{array} \right. \quad \lambda, \nu \in \mathbb{R} \right\}\]
+    \end{enumerate}
+    \end{demo}
+
+\subsection{Équations différentielles linéaires}
+
+    \subsubsection{Étude générale des équations différentielles linéaires}
+
+    \begin{defi}{Système d’équations différentielles linéaires d’ordre 1}{}
+        Un système d’équations différentielles linéaires d’ordre 1 est un système de la forme 
+        \[ \left\{ \begin{array}{l}
+            x_1'(t) = a_{1,1}(t)x_1(t) + \ldots + a_{1,n}(t) x_n(t) + b_1(t) \\
+            x_2'(t) = a_{2,1}(t)x_1(t) + \ldots + a_{2,n}(t) x_n(t) + b_2(t) \\
+            \qquad \vdots \qquad \vdots \\
+            x_n'(t) = a_{n,1}(t)x_1(t) + \ldots + a_{n,n}(t) x_n(t) + b_n(t) \\
+        \end{array} \right. \]
+        On peut alors le mettre sous la forme $X'(t) = A(t)X(t) + B(t)$, avec 
+        \[ X = \begin{pmatrix}
+            x_1 \\
+            \vdots \\
+            x_n
+        \end{pmatrix} \in \mathcal{F}(I,\mathbb{K}^n) \quad A: t \rightarrow \begin{pmatrix}
+            a_{1,1}(t) & \ldots & a_{1,n}(t) \\ 
+            \vdots & & \vdots \\
+            a_{n,1}(t) & \ldots & a_{n,n}(t)
+        \end{pmatrix} \in \mathcal{F}(I,\mk{n}) \quad B = \begin{pmatrix}
+            b_1 \\
+            \vdots \\
+            b_n 
+        \end{pmatrix} \in \mathcal{F}(I,\mathbb{K}^n) \]
+    \end{defi}
+
+    On suppose par la suite que les fonctions vectorielles $A$ et $B$ sont continues sur l’intervalle $I$.
+
+    \begin{omed}{Exemple}{myyellow}
+        $\et{x' = 3 \cos(t)x - y + 2}{y' = x + ty - t^2}$ peut s’écrire $X' = AX + B$ avec $X = \begin{pmatrix}
+            x \\
+            y
+        \end{pmatrix}$, $A(t) = \begin{pmatrix}
+            3 \cos(t) & -1 \\
+            1 & t 
+        \end{pmatrix}$ et $B(t) = \begin{pmatrix}
+            2 \\
+            -t^2
+        \end{pmatrix}$
+    \end{omed}
+
+    On appelle solution du système différentiel linéaire $X' = AX + B$ toute fonction vectorielle $u \in \mathcal{C}^1 (I,\mathbb{K}^n)$ vérifiant $u'(t) = A(t) u(t) + B(t)$ sur l’intervalle $I$.
+
+    On peut écrire le système $X' = AX + B$ sous une forme vectorielle, moins commode que la forme matricielle : 
+    \[ x' = a(t)(x) + b(t) \quad \text{avec } a \in \mathcal{C}(I,\mathcal{L}(E)) \text{ et } b \in \mathcal{C}(I,E) \] 
+
+    \subsubsection{Structure de l’ensemble des solutions et problème de Cauchy}
+
+    À l’exception de quelques cas particuliers comme les systèmes différentiels linéaires à coefficients constants ou les équations scalaires d’ordre 1, il n’est pas possible de résoudre de manière générale un système en explicitant ses solutions. Cela n’empêche nullement d’établir l’existence de telles solutions, leur éventuelle unicité si l’on rajoute des contraintes, et plus généralement leurs propriétés.
+
+    \begin{theo}{Théorème de Cauchy-Lipschitz (linéaire)}{Theoreme de Cauchy-Lipschitz (lineaire)}
+        \begin{soient}
+            \item $I$ un intervalle de $\mathbb{R}$
+            \item $t_0 \in I$
+            \item $X_0 \in \mk{n,1}$
+        \end{soient}
+        Si $A: I \rightarrow \mk{n}$ et $B : I \rightarrow \mk{n,1}$ sont continues sur $I$, alors le problème de Cauchy $\et{X' = AX + B}{X(t_0) = X_0}$ admet une unique solution.
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        Voir la sous-section qui y est consacrée plus bas.
+    \end{demo}
+
+    \begin{omed}{Exemple}{myred}
+        Si $X$ est une solution de l’équation homogène $X'(t) = A(t)X(t)$ avec $A \in \mathcal{C}(I,\mk{n})$, 
+        \[ \exists t_0 \in I, X(t_0) = 0 \iff \forall t \in I, X(t)=0 \]
+    \end{omed}
+
+    \begin{theo}{Structure de l’ensemble des solutions}{}
+        Lorsque $A: I \rightarrow \mk{n}$ et $B : I \rightarrow \mathbb{K}^n$ sont continues sur l’intervalle $I$,
+        \begin{enumerate}
+            \item l’ensemble $\mathcal{S}_H$ des solutions de $X' = A(t)X$ est un sous-espace vectoriel de $\mathcal{C}^1(I,\mathbb{K}^n)$ de dimension $n$.
+            \item l’ensemble des solutions de $X' = A(t)X + B(t)$ est un sous-espace affine de $\mathcal{C}^1(I,\mathbb{K})$ de direction $\mathcal{S}_H$.
+        \end{enumerate}
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        \begin{enumerate}
+            \item La fonction nulle (à valeurs dans $\mathbb{K}^n$) est évidemment solution du système et si $X_1$ et $X_2$ sont solutions, alors pour tout $\lambda \in \mathbb{K}$, $\lambda X_1 + X_2$ est encore solution : 
+            \[ A(\lambda X_1 + X_2) = \lambda A X_1 + A X_2 = \lambda X_1' + X_2' = \left(\lambda X_1' + X_2'\right) \] 
+            Pour tout $t_0 \in I$, l’application $X \rightarrow X(t_0)$ établit un isomorphisme entre $\mathcal{S}_H$ et $\mathbb{K}^n$ en vertu du théorème de Cauchy-Lipschitz (linéaire). $\mathcal{S}_H$ est donc un espace vectoriel de dimension $n$.
+            \item Supposons que $X_p$ soit une solution particulière du système différentiel $X' = AX + B$.
+            \begin{align*}
+                \Tilde{X} \text{ est solution du système complet} &\iff \Tilde{X}' = A \Tilde{X} + B \\
+                &\iff \Tilde{X}' = A \Tilde{X} + \left(X_p' - AX_p\right) \\
+                &\iff \left(\Tilde{X} - X_p\right)' = A \left(\Tilde{X} - X_p\right) \\
+                &\iff \Tilde{X} - X_p \text{ est solution du système homogène} 
+            \end{align*}
+            $\Tilde{X}$ est bien la somme d’une solution particulière et de la solution générale du système homogène.
+        \end{enumerate}
+    \end{demo}
+
+    \subsubsection{Système fondamental de solutions du système homogène et wronskien}
+
+    \begin{defi}{Système fondamental de solutions du système homogène}{}
+        Toute solution du système homogène à coefficients continus $X' = A(t)X$ s’écrit comme une combinaison linéaire d’une base $(X_1,\ldots,X_n)$ de l’espace des solutions. Cette base est qualifiée de \textbf{Système fondamental de solutions}.
+    \end{defi}
+
+    \begin{prop}{Caractérisation d’un système fondamental}{}
+        \begin{soient}
+            \item $A : I \rightarrow \mk{n}$ continue sur l’intervalle $I$
+            \item $X_1,\ldots,X_n$ des solutions du système $X' = A(t)X$
+        \end{soient}
+        Les assertions suivantes sont équivalentes :
+        \begin{enumerate}
+            \item $(X_1,\ldots,X_n)$ est un système fondamental de solutions 
+            \item Pour tout $t \in I, (X_1(t),\ldots,X_n(t))$ est une base de $\mathbb{K}^n$
+            \item Il existe $t_0 \in I$ tel que $(X_1(t_0),\ldots,X_n(t_0))$ soit une base de $\mathbb{K}^n$
+        \end{enumerate}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Ce résultat est une nouvelle conséquence du théorème de Cauchy-Lipschitz linéaire, en considérant pour tout $t \in I$ l’isomorphisme 
+        \[ \fonction{\psi_t}{\mathcal{S}_H}{\mathbb{K}^n}{X}{X(t)} \] 
+        L’image d’une base de solutions (donc d’un système fondamental) par $\psi_t$ est une base de $\mathbb{K}^n$.
+    \end{demo}
+
+    Même si nous en aurons un usage essentiellement limité aux équations linéaires d’ordre 2, le wronskien est un outil commode pour déterminer si une famille de solutions forme un système fondamental.
+
+    \begin{defi}{Wronskien}{}
+        On appelle wronskien d’une famille de solutions $(X_1,\ldots,X_n)$ du système $X' = A(t)X$ l’application 
+        \[ W : t \longmapsto \det\left(X_1(t),\ldots,X_n(t)\right) \]
+    \end{defi}
+
+    D’après ce qui précède, 
+    \begin{align*}
+        (X_1,\ldots,X_n) \text{ est un système fondamental}
+        & \iff \forall t \in I, W(t) \neq 0 \\
+        & \iff \exists t_0 \in I, W(t_0) \neq 0
+    \end{align*}
+
+    \subsubsection{Solutions du système complet et méthode de variation des constantes}
+
+    Revenons au système différentiel à coefficients continus $X' = A(t)X + B (t)$ avec $A(t) \in \mk{n}$ et $B(t) \in \mathbb{K}^n$ .Supposons connu un système fondamental $(X_1,\ldots, X_n)$ de solutions de l’équation homogène. Toute solution de l’équation homogène s’écrit ainsi sous la forme :
+    \[ X(t) = \lambda_1 X_1(t) + \ldots + \lambda_n X_n(t) \quad \text{où } \lambda_1, \ldots, \lambda_n \in \mathbb{K} \]
+    On cherche désormais les solutions de l’équation complète sous la forme $X(t) = \lambda_1(t) X_1(t) + \ldots + \lambda_n(t) X_n(t)$ où les fonctions $\lambda_i$ sont supposées dérivables sur l’intervalle de résolution $I$.
+    \[ X' = A(t)X + B(t) \iff \lambda_1'(t) X_1(t) + \ldots + \lambda_n'(t) X_n(t) = B(t) \]
+    Pour $t$ fixé, les coefficients $\lambda_1'(t),\ldots,\lambda_n'(t)$ s’interprètent alors comme les coordonnées du vecteurs $B(t)$ dans la base $(X_1(t), \ldots , X_n(t))$.
+
+    Ainsi, si l’on connaît un système fondamental de solutions de l’équation homogène, on peut résoudre l’équation complète en déterminant les fonctions $\lambda_i$ par primitivation directe des coordonnées de $B$ .En pratique, les calculs sont vite pénibles et nous n’en n’abuserons pas.
+
+    \subsubsection{Équations différentielles linéaires scalaires d’ordre $n$}
+
+    L’étude des systèmes différentiels est en partie motivée par le fait que toute équation différentielle linéaire scalaire d’ordre $n$ se ramène, au moyen de l’équivalence suivante, à un système différentiel linéaire d’ordre $1$ :
+    \[ x^{(n)} = a_0 x + a_1 x' + \ldots a_{n-1} x^{(n-1)} \iff X' = AX \] 
+    avec $X = \begin{pmatrix}
+        x \\
+        x' \\
+        \vdots \\
+        x^{(n-1)}
+    \end{pmatrix}$ et $A = \begin{pmatrix}
+        0 & 1 & 0 & \ldots & 0 \\
+        0 & \ddots & \ddots & \ddots & \vdots \\
+        \vdots & \ddots & \ddots & \ddots & 0 \\
+        0 & \ldots & 0 & 0 & 1 \\
+        a_0 & a_1 & \ldots & \ldots & a_{n-1}
+    \end{pmatrix}$
+
+    La matrice $A$ est parfois appelée matrice compagnon du système homogène $X' = A(t)X$. Sous réserve de continuité de $A$, \textit{i.e.} lorsque les fonctions $a_0, \ldots, a_{n-1}$ sont continues, 
+    \begin{itemize}
+        \item les solutions de l’équation $X' = AX$ sur un intervalle donnée forment un espace vectoriel de dimension $n$.
+        \item le problème de Cauchy $\et{x^{(n)} = a_0 x + a_1 x' + \ldots a_{n-1} x^{(n-1)}}{x(t_0) = x_0, x'(t_0)} = x_1, \ldots, x^{(n-1)}(t_0) = x_{n-1}$ admet une unique solution.
+    \end{itemize}
+
+    Les fonctions $x_1,\ldots,x_n$ sont solutions sur $I$ de l’équation $x^{(n)} = a_0 x + a_1 x' + \ldots a_{n-1} x^{(n-1)}$ si, et seulement si la famille $(X_1,\ldots,X_n)$ est un système fondamental de solutions de $X' = A(t)X$, i.e. si et seulement si le wronskien de la famille ne s’annule pas en un point quelconque de $I$, ce qui s’écrit
+    \[ \exists t_0 \in  I, W(t_0) = \begin{vmatrix}
+        x_1(t_0) & \ldots & x_n(t_0) \\
+        x_1'(t_0) & \ldots & x_n'(t_0) \\
+        \vdots & & \vdots \\
+        x_1^{(n-1)}(t_0) & \ldots & x_n^{(n-1)}(t_0) 
+    \end{vmatrix} \neq 0 \]
+
+    \begin{omed}{Exemple}{mygreen}
+        $(\cos \circ \ln, \sin \circ \ln)$ est un système fondamental de solutions sur $\mathbb{R}^*_+$ de $t^2 y'' + ty' + y = 0$ puisque les deux fonctions sont bien solutions et, par exemple, $W(1) = \begin{vmatrix}
+            1 & 0 \\
+            0 & 1
+        \end{vmatrix} = 1$
+    \end{omed}
+
+    On retrouve aisément le résultat précédent en vérifiant que le wronskien est solution d’une certaine équation différentielle linéaire d’ordre 1. Par multilinéairité du déterminant, si $x_1$ et $x_2$ sont solutions sur $I$ de l’équation différentielle $x'' = a_0(t)x + a_1(t)x'$ et $t \in I$, 
+    \[ W(t) = \begin{vmatrix}
+        x_1(t) & x_2(t) \\
+        x_1'(t) & x_2'(t)
+    \end{vmatrix} \text{ donc } W'(t) = \begin{vmatrix}
+        x_1'(t) & x_2'(t) \\
+        x_1'(t) & x_2'(t)
+    \end{vmatrix} + \begin{vmatrix}
+        x_1(t) & x_2(t) \\
+        x_1''(t) & x_2''(t)
+    \end{vmatrix} = a_1(t) \begin{vmatrix}
+        x_1(t) & x_2(t) \\
+        x_1'(t) & x_2'(t)
+    \end{vmatrix} \] 
+    Ainsi, $W'(t) = a_1(t) W(t)$. La preuve se généralise pour une équation différentielle d’ordre $n$\footnote[2]{L’expression intégrale du wronskien à l’aide de $\tr(A)$ est en fait valable pour tout système différentiel $X' = A(t)X$, \textit{i.e.} pour toute fonction $A \in \mathcal{C}(I,\mk{n})$. Cette formule est dite de Liouville (ou identité d’Abel).} :
+    \[ W'(t) = a_{n-1}W(t) \quad \textit{i.e } W(t) = \lambda \exp\left(\int_{t_0}^{t}a_{n-1}(u)du\right) = \lambda \exp\left(\int_{t_0}^{t} \tr(A(u))du\right) \quad \lambda \in \mathbb{R} \]
+    D’où le fait que $W$ est nul sur $I$ ou bien ne s’annule jamais.
+
+    La méthode de variation des constantes permet, une fois connu le système fondamental de solutions, de résoudres l’équation différentielle avec second membre $x^{(n)} = a_0(t) x + a_1(t) x' + \ldots a_{n-1}(t) x^{(n-1)} + b(t)$. 
+    Explicitons le cas particulier des équations différentielles d’ordre 2 et de la forme $x'' + a(t)x' + b(t)x = c(t)$, seul cas à connaître. Cette dernière équation se réécrit sous la forme 
+    \[ X' = A(t)X + B(t) \quad \text{avec } X(t) = \begin{pmatrix}
+        x(t) \\
+        x'(t)
+    \end{pmatrix}, \, A(t) = \begin{pmatrix}
+        0 & 1 \\
+        -b(t) & -a(t)
+    \end{pmatrix} \text{ et } B=\begin{pmatrix}
+        0 \\
+        c(t)
+    \end{pmatrix} \]
+
+    Si $x_1,x_2$ est un système fondamental de solutions de l’équation d’ordre 2, d’après ce qui précède, 
+    \[ \lambda_1'(t) X_1(t) + \lambda_2'(t) X_2(t) = B(t) \iff \et{\lambda_1'(t)x_1(t) + \lambda_2'(t)x_2(t) = 0}{\lambda_1'(t)x_1'(t) + \lambda_2'(t)x_2'(t) = c(t)} \] 
+    Connaissant $x_1(t)$ et $x_2(t)$, il s’agit alors de résoudre un système linéaire avant de primitiver.
+
+    \subsubsection{Résolution effective des systèmes linéaires à coefficients constants}
+
+    On restreint désormais notre étude aux système différentiels linéaires à coefficients constants, pour lesquels nous serons en mesure de déterminer des solutions explicites.
+
+    Rappelons la définition de l’exponentielle d’un endomorphisme $a \in \mathcal{L}(E)$, où $E$ est un $\mathbb{K}$-espace vectoriel de dimension finie, ainsi que la définition de l’exponentielle d’une matrice $A \in \mk{n}$ : 
+    \[ \exp(a) = \sum\limits_{n=0}^{+\infty} \frac{a^n}{n!} \quad \text{et} \quad \exp(A) = \sum\limits_{n=0}^{+\infty} \frac{A^n}{n!} \] 
+    L’équivalence des normes en dimension finie nous assure, grâce à une norme bien choisie, la convergence absolue des séries sous-jacentes, donc l’existence de l’exponentielle. Si $A = \mat{\mathcal{B}}{a}$, alors $\exp(a) = \mat{\mathcal{B}}{\exp(a)}$. C’est peut-être une évidence, mais faisons observer que l’application $\exp(a)$ est bien linéaire.
+
+    \begin{theo}{Dérivation de $\exp(tA)$}{}
+        Si $A \in \mk{n}$, la fonction vectorielle $t \longmapsto \exp(tA)$ est dérivable sur $\mathbb{R}$, de dérivée $t \longmapsto A \times \exp(tA)$.
+    \end{theo}
+
+    De même, si $a \in \mathcal{L}(E)$ et $E$ de dimension finie, $t \longmapsto \exp(ta)$ est dérivable sur $\mathbb{R}$, de dérivée $t \longmapsto a \circ \exp(ta)$
+
+    \begin{demo}{Démonstration}{myred}
+        Appliquons le théorème de dérivation terme à terme d’une série vectorielle en travaillant sur un segment. Pour cela, soient $a \in \mathbb{R}_+$ et pour tout $n \in N$, $f_n : t \mapsto \frac{t^n A^n}{n!}$
+        \begin{itemize}
+            \item Pour tout $n \in \mathbb{N}$, $f_n$ est de classe $\mathcal{C}^1$ sur $\intervalleFF{-a}{a}$ et pour tout $t \in \intervalleFF{-a}{a}$, $f_n'(t) = \frac{n t^{n-1} A^n}{n!}$
+            \item La série $\sum f_n$ converge simplement sur $\intervalleFF{-a}{a}$ vers la fonction $t \longmapsto \exp(tA)$
+            \item Établissons la convergence normale (donc uniforme) de $\sum f_n'$ en travaillant avec une norme sous-multiplicative : 
+            \[ \forall n \in \mathbb{N}^*, \norm{\frac{n t^{n-1} A^n}{n!}} \leq \frac{\abs{t}^{n-1} \norm{A^n}}{(n-1)!} \leq \frac{a^{n-1} \norm{A^n}}{(n-1)!} \] 
+            La série numérique $\sum \frac{a^{n-1} \norm{A^n}}{(n-1)!}$ converge donc $\sum f_n'$ converge normalement sur $\intervalleFF{-a}{a}$.
+        \end{itemize}
+        $\varphi : t \mapsto \exp(tA)$ est ainsi de classe $\mathcal{C}^1$ sur $\intervalleFF{-a}{a}$ et donc plus globalement sur $\mathbb{R}$. De plus, 
+        \[ \forall t \in \mathbb{R}, \varphi' (t) = \sum\limits_{n=0}^{+\infty} f_n'(t) = \sum\limits_{n=1}^{+\infty} \frac{t^{n-1} A^n}{(n-1)!} = A \sum\limits_{n=0}^{+\infty} \frac{t^n A^n}{n!} = A \times \exp(tA) \]
+    \end{demo}
+
+    \begin{lem}{}{}
+        Si $A,B \in \mk{n}$ avec $AB = BA$, alors $A$ et $\exp(B)$ commutent.
+    \end{lem}
+
+    \begin{demo}{Preuve}{mybrown}
+        En revenant aux sommes finies (polynômes de matrices) : 
+        \[ \forall n \in \mathbb{N}, A \times \sum\limits_{k=0}^{+\infty} \frac{B^k}{k!} = \sum\limits_{k=0}^{+\infty} \frac{B^k}{k!} \times A \]
+    \end{demo}
+
+    \begin{prop}{}{}
+        Si $A,B \in \mk{n}$ avec $AB = BA$, alors $\exp(A+B) = \exp(A)\exp(B) = \exp(B)\exp(A)$.
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        Considérons l’application $\psi : t \mapsto \exp(t(A+B))\exp(-tA)\exp(-tB)$. $\varphi$ est dérivable sur $\mathbb{R}$ et comme les matrices $A$, $B$ et $A+B$ commutent avec nos trois exponentielles, 
+        \[ \varphi'(t) = (A+B)\varphi(t) - A\varphi(t) - B\varphi(t) = 0 \] 
+        $\varphi$ est donc constante sur $\mathbb{R}$. $\varphi(0)=I_n$ donc $\varphi(1) = \exp(A+B)\exp(-A)\exp(-B) = I_n$
+        \begin{itemize}
+            \item Pour $B = 0$, on obtient $\exp(A)\exp(-A) = I_n$. On vient d’établir que pour tout $A \in \mk{n}$, $\exp(A) \in \mathcal{G}\ell_n(\mathbb{K})$ et 
+            \[ \exp(A)\exp(-A) = \exp(-A)\exp(A) = \exp(0_n) = I_n \] 
+            \item De l’égalité $\exp(A+B)\exp(-A)\exp(-B) = I_n$ on tire 
+            \[ \exp(A+B) = \exp(A)\exp(B) = \exp(B)\exp(A) \]
+        \end{itemize}
+    \end{demo}
+
+    En pratique, les calculs d’exponentielles ne sont pas toujours aisés. Néanmoins, si $A$ et $B$ sont semblables, alors $\exp(A)$ et $\exp(B)$ le sont également. En effet, si $A = P B P^{-1}$ avec $P \in \mathcal{G}\ell_n(\mathbb{K})$, 
+    \[ \exp(A) = \sum\limits_{n=0}^{+\infty} \frac{(PBP^{-1})^n}{n!} = \sum\limits_{n=0}^{+\infty} \frac{PB^nP^{-1}}{n!} = P \left(\sum\limits_{n=0}^{+\infty} \frac{B^n}{n!}\right) = P \exp(B) P^{-1} \] 
+
+    \begin{prop}{}{}
+        \begin{soient}
+            \item $A \in \mk{n}$ une matrice diagonalisable 
+            \item $P \in \mathcal{G}\ell_n(\mathbb{K})$ tele que $D = P^{-1} A P = \diag(\lambda_1,\ldots,\lambda_n)$
+        \end{soient}
+        Alors $\exp(A)$ est diagonalisable et 
+        \[ \exp(A) = P \exp(D) P^{-1} = P \diag\left(e^{\lambda_1},\ldots, e^{\lambda_n}\right) P^{-1} \]
+    \end{prop}
+
+    En particulier, $\Sp(\exp(A)) = \enspr{e^{\lambda}}{\lambda \in \Sp(A)}$ et on remarque que $A$ et $\exp(A)$ partagent les mêmes vecteurs propres : si $X$ est un vecteur propre de $A$ associé à la valeur propre $\lambda$, 
+    \[ AX = \lambda X \quad \text{ et } \exp(A) X = e^{\lambda} X \] 
+    Plusieurs options sont donc envisageables pour calculer des exponentielles de matrices : calcul direct de $\frac{A^n}{n!}$ puis de la somme dans un contexte qui s’y prête, diagonalisation de la matrice pour appliquer le résultat ci-dessus, réduction de Dunford de la matrice en cas de non-diagonalisabilité ($A = D + N$ avec $D$ diagonale, $N$ nilpotente et $D N = N D$) puisqu’alors $\exp(A) = \exp(D) \exp(N)$.
+
+    \subsubsection{Résolution du système différentiel $X' = AX + B$}
+
+    \begin{theo}{}{}
+        Soit $A \in \mk{n}$. L’équation homogène $X' = AX$ admet pour solution générale $X : t \mapsto e^{tA} C$ où $C \in \mathbb{K}^n$.
+    \end{theo}
+
+    \begin{demo}{Preuve}{myred}
+        Il suffit de dériver $\varphi : t \mapsto e^{-tA}X(t)$ sur l’intervalle $I$ : 
+        \[ \varphi'(t) = e^{-tA} \left(X'(t) - AX(t)\right) = 0 \] 
+        D’où le résultat.
+    \end{demo}
+
+    Le problème de Cauchy $X'(t) = AX(t)$ et $X(t_0) = X_0$ admet comme unique solution $X(t) = e^{(t-t_0)A}X_0$. 
+
+    On peut facilement en déduire l’unique solution de l’équation complète $X' = AX + B$ en faisant varier la constante : 
+    \begin{align*}
+        X'(t) = AX(t) + B(t) &\iff e^{tA} C'(t) = B(t) \\
+        &\iff C(t) = \int_{t_0}^{t} e^{-sA} B(s)ds + C(t_0) \\
+        &\iff X(t) = e^{(t-t_0)A} X_0 + e^{tA}\int_{t_0}^{t} e^{-sA} B(s)ds
+    \end{align*}
+
+    \subsubsection{Résolution de $X' = AX$ lorsque $A$ est diagonalisable}
+
+    Soient $A \in \mk{n}$ une matrice diagonalisable et $P \in \mathcal{G}\ell_n(\mathbb{K})$ telle que $D = P^{-1} A P = \diag(\lambda_1,\ldots,\lambda_n)$. 
+
+    Les solutions de l’équation homogène sont de la forme 
+    \[ \forall t \in \mathbb{R}, X(t) = \exp(tA)C \quad \text{où } C \in \mathbb{K}^n \] 
+
+    En notant $(X_1,\ldots,X_n)$ une base de vecteurs propres de $A$, on peut écrire $C = \sum\limits_{i=1}^n C_i X_i$ avec $C_i \in \mathbb{K}$. Ainsi,
+    \[ \forall t \in \mathbb{R}, \sum\limits_{i=1}^n C_i \exp(tA)X_i = \sum\limits_{i=1}^n C_i \exp(\lambda_i t)X_i \] 
+
+    On vient d’établir le résultat que l’on utilisera en pratique pour résoudre un système différentiel à coefficients constants dans le cas diagonalisable :
+
+    \begin{theo}{}{}
+        Soit $A \in \mk{n}$ une matrice diagonalisable. 
+
+        Il existe alors une base $(X_1,\ldots,X_n)$ de vecteurs propres associés aux valeurs propres $\lambda_1,\ldots,\lambda_n$ éventuellement multiples.
+
+        Les solutions de l’équation $X' = AX$ sont de la forme 
+        \[ X(t) = C_1 e^{\lambda_1 t} X_1 + \ldots + C_n e^{\lambda_n t} X_n \quad \text{avec } C_1,\ldots,C_n \in \mathbb{K} \]
+    \end{theo}
+
+    On peut retrouver ce résultat rapidement, sans recours à l’exponentielle de matrices :
+    \[ X' = AX \iff X' = P D P^{-1} X \iff P^{-1} X = D P^{-1} X \iff Y' = DY \text{ avec } Y = P^{-1} X \] 
+    Ainsi, pour tout $i \in \intervalleEntier{1}{n}$, $y_i'(t) = \lambda_i y_i(t)$ donc $y_i(t) = C_i e^{\lambda_i t}$ avec $C_i \in \mathbb{R}$. D’où le résultat suivant : 
+    \[ X(t) = PY(t) = P \begin{pmatrix}
+        C_1 e^{\lambda_1 t} \\
+        \vdots \\
+        C_n e^{\lambda_n t}
+    \end{pmatrix} = C_1 e^{\lambda_1 t} X_1 + \ldots + C_n e^{\lambda_n t} X_n \]
+
+    On notera l’inutilité de calculer $\exp(tA)$. Cela reste vrai dans le cas où la matrice serait (seulement) trigonalisable. On se reportera au premier chapitre de réduction pour les détails pratiques.
+
+    \subsubsection{Une preuve du théorème de Cauchy-Lipschitz linéaire}
+
+    \begin{theo}{Théorème de Cauchy-Lipschitz linéaire}{}
+        \begin{soient}
+            \item $n \in \mathbb{N}$
+            \item $I$ un intervalle réel 
+            \item $A : I \to \mk{n}$ et $B : I \to \mk{n,1}$ des applications continues.
+        \end{soient}
+        Alors le problème de Cauchy 
+        \[ \text{(C)} \hfill \et{X' = A(t) X + B(t)}{X(t_0) = X_0} \quad \text{où} \quad X_0 \in \mk{n,1} \text{ et } t_0 \in I \]
+        admet une unique solution sur $I$.
+    \end{theo}
+
+    \begin{omed}{Démonstration}{myred}
+        \textbf{But} \quad $X$ est solution de \textit{(S)} \textit{ssi} $X(t) = X_0 + \int_{t_0}^{t} A(u)X(u) + B(u) du$ pour tout $t \in I$.
+
+        Commençons par deux remarques générales.
+        \begin{itemize}[label=\textcolor{myred}{$star$}]
+            \item Toute solution du problème de Cauchy \textit{(C)} est de classe $\mathcal{C}^1$ car $B$ est continue.
+            \item On peut supposer que $I$ est un segment de $\intervalleFF{a}{b}$ contenant $t_0$.
+        \end{itemize}
+        On fixe les notations suivantes.
+        \begin{enumerate}[label=\textcolor{myred}{(\alph*)}]
+            \item On note $E$ l’espace vectoriel $\mathcal{C}^0(I, \mk{n,1})$
+            \item Pour $t \in I$ et $f = ^t (f_1,\ldots,f_n) \in E$, on note $\int_{t_0}^{t} f(x)dx$ l’intégrale terme à terme de $f$, \textit{i.e.}
+            \[ \int_{t_0}^{t} f(x)dx = ^t \left(\int_{t_0}^{t} f_1(x)dx , \ldots, \int_{t_0}^{t} f_n(x)\right) \]
+            \item Pour toute fonction $f \in \mathcal{C}^0(I, \mk{n,1})$, on a 
+            \[ \nnorm{\infty}{\int_{t_0}^{t} f(x)dx} \leq \int_{t_0}^{t} \nnorm{\infty}{f(x)}dx \]
+            \item On définit l’application 
+            \[ \fonction{\Phi}{E}{E}{f}{t \mapsto X_0 + \int_{t_0}^{t} A(x)f(x) + B(x)dx} \]   
+            Alors $f$ est solution du problème de Cauchy \textit{(C)} \textit{ssi} $\Phi(f)=f$, \textit{i.e.} si $f$ est un point fixe de $\Phi$
+            \item Si $\mk{n,1}$ est muni de la norme $\nnorm{\infty}{\cdotp}$, on pose, pour tout $M \in \mk{n}$, 
+            \[ \normm{M} = \sup\big\{ \nnorm{\infty}{MX}, X \in \mk{n,1} \quad \text{avec } \nnorm{\infty}{X} = 1 \big\} \]
+            qui est une norme sur $\mk{n}$. On vérifie que
+            \[ \forall X \in \mk{n,1}, \quad \nnorm{\infty}{MX} \leq \normm{M} \nnorm{\infty}{X} \]
+        \end{enumerate}
+        L’application \[ \application{I}{\mathbb{R}}{t}{\normm{A(t)}} \] est continue comme composée d’applications continues donc est bornée et atteint sa borne supérieure. Il existe donc $M$ tel que 
+        \[ \forall t \in I, \quad \normm{A(t)} \leq M \]
+
+        \textbf{Existence} \quad Prouvons l’existence d’un point fixe de $\Phi$ en démontrant que la suite d’applications $(Y_n)$ définie par $Y_0 \in E$ et $Y_{n+1} = \Phi(Y_n)$ converge.
+        
+        On pose $M_0 = \sup_{t \in I} \nnorm{\infty}{Y_1(t) - Y_0(t)}$ qui existe car $Y_1 - Y_0$ est continue sur le segment $I = \intervalleFF{a}{b}$, d’où $t \to \nnorm{\infty}{Y_1(t) - Y_0(t)}$ aussi. 
+        
+        Par récurrence sur $n$, on prouve que, pour tout $n \in \mathbb{N}$ et $t \in I$, 
+        \[ \nnorm{\infty}{Y_{n+1}(t) - Y_n(t)} \leq \frac{M^n M_0}{n!} \abs{t-t_0}^n \] 
+        \begin{itemize}
+            \item \textit{I} \quad On a de façon claire 
+            \[ \nnorm{\infty}{Y_1(t) - Y_0(t)} \leq M_0 = M_0 \cdotp \frac{M^0 \abs{t - t_0}^0}{0!} \]
+            \item \textit{H} \quad Supposons la propriété est vraie pour un certain $n \in \mathbb{N}$.
+            \begin{align*}
+                \nnorm{\infty}{Y_{n+2}(t) - Y_{n+1}(t)} 
+                &= \nnorm{\infty}{\int_{t_0}^{t} A(x)Y_{n+1}(x) - A(x)Y_{n}(x) dx} \\
+                &\leq \int_{t_0}^{t} \nnorm{\infty}{A(x)(Y_{n+1}(x) - Y_{n}(x))} dx \\
+                &\leq \int_{t_0}^{t} \normm{A(x)} \nnorm{\infty}{Y_{n+1}(x) - Y_{n}(X)}dx \\
+                &\leq M \int_{t_0}^{t} \nnorm{\infty}{Y_{n+1}(x) - Y_{n}(x)}dx \\
+                & \quad \downarrow \quad \mathcal{P}(n-1) \\
+                &\leq M^{n+1} M_0 \int_{t_0}^{t} \frac{\abs{t - t_0}^{n}}{(n)!} \\
+                & \leq \frac{M^n M_0}{(n+1)!} \abs{t - t_0}^n
+            \end{align*}
+            D’où le résultat.
+        \end{itemize}
+        On en déduit que
+        \[ \forall n \in \mathbb{N}, \forall t \in I, \quad \nnorm{\infty}{Y_{n+1}(t) - Y_n(t)} \leq \frac{((b-a)M)^n M_0}{n!} \]   
+        Or la série numérique $\sum_{n=0}^{+\infty} \frac{((b-a)M)^n M_0}{n!}$ converge. On en déduit que la série de fonctions $\sum_{n \geq 0} (Y_{n+1} - Y_n)$ est normalement convergente, donc converge, ce qui prouve la convergence de la suite de fonction $(Y_n)$. Par continuité de $\Phi$, sa limite est un point fixe de $\Phi$ d’où l’existence de la solution.
+
+        \textbf{Unicité} \quad On suppose que $f$ et $g$ sont deux solutions du problème de Cauchy, \textit{i.e.} 
+        \[ \Phi(f) = f \quad \text{et} \quad \Phi(g) = g \]   
+        Soit $t \in I$.
+        \begin{align*}
+            \nnorm{\infty}{f(t) - g(t)} 
+            &\leq \nnorm{\infty}{\int_{t_0}^{t} A(x)(f(x) - g(x))dx} \\
+            &\leq \abs{\int_{t_0}^{t} \nnorm{\infty}{A(x)(f(x) - g(x))}dx} \\
+            &\leq M \abs{\int_{t_0}^{t} \nnorm{\infty}{f(x) - g(x)}}
+        \end{align*}
+        On considère $M' = \sup_{t \in I} \nnorm{\infty}{f(t) - g(t)}$ qui existe car la fonction $t \to \nnorm{\infty}{f(t) - g(t)}$ est continue sur $I = \intervalleFF{a}{b}$. On prouve, de la même façon que précédemment, que 
+        \[ \nnorm{\infty}{f(t) - g(t)} \leq \frac{M^n M'}{n!} (t - t_0)^n \limi{n}{+\infty} 0 \]
+        D’où $f = g$, et l’unicité de la solution du problème.
+    \end{omed}
+
+

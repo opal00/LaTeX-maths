@@ -1,0 +1,854 @@
+\customchapter{Algèbre générale}{Comprendre les structures des maths les plus fondamentales, que l’on retrouvera absolument partout dans notre périple mathématique.}
+
+\section{Structures algébriques usuelles}
+
+\subsection{Groupes}
+
+    \begin{defitheo}{Groupe}{}
+        Un \textbf{groupe} est un triplet $(G,*,e)$ composé d’un ensemble $G$, d’une \textbf{loi de composition interne} (LCI) et d’un élément $e \in G$, tels que 
+        \begin{enumerate}[label=$(h_{\alph*})$]
+            \item $*$ est associative ;
+            \item l’élément $e$ est neutre ;
+            \item tout élément de $G$ possède un symétrique par $*$.
+        \end{enumerate}
+        En particulier, l’élément $e$ est unique, et l’inverse $g^{-1}$ d’un élément $g$ de même. De plus, l’inverse vérifie
+        \begin{enumerate}[label = \arabic*.]
+            \item pour tous $g \in G$, on a $(g^{-1})^{-1} = g$ ;
+            \item pour tous $(g_1,g_2) \in G^2$, $(g_1 g_2)^{-1} = (g_2)^{-1} (g_1)^{-1}$.
+        \end{enumerate}
+        Si la loi $*$ est commutative, alors on dit que le groupe est commutatif, ou \textbf{abélien}.
+    \end{defitheo}
+
+    En termes de notation, on utilise généralement la notation multiplicative pour la loi interne d’un groupe, le symétrique étant alors dit inverse et l’élément neutre noté $e$ ou $1$. Cependant, lorsque l’on traite des groupes abéliens, on note la loi additivement, \textit{i.e.} par le signe $+$, on appelle alors le symétrique l’opposé, et l’élément neutre $0$.
+
+    \begin{demo}{Justification}{mypurple}
+        Si $e$ et $e'$ sont deux éléments neutres de $G$, alors $e = e e' = e'$.
+
+        Si $\tilde{g}$ et $\bar{g}$ vérifient la propriété de symétrie, alors $\tilde{g} = \tilde{g} e = \tilde{g} g \bar{g} = e \bar{g} = \bar{g}$.
+
+        Les égalités $gg^{-1} = g^{-1}g=e$ disent directement que $g$ est l’inverse de $g^{-1}$.
+
+        Enfin, on a clairement $(g_1 g_2)(g_2^{-1} g_1^{-1}) = e = (g_2^{-1} g_1^{-1})(g_1 g_2) = e$.
+    \end{demo}
+
+    \begin{defi}{Sous-groupe}{}
+        Soit $(G,*,e)$ un groupe. Un \textbf{sous-groupe} $H$ de $G$ est un sous-ensemble $H \subset G$ tel que 
+        \begin{enumerate}[label = \arabic*.]
+            \item $e \subset H$ ;
+            \item $H$ est stable par produit, \textit{i.e.} $\forall (h_1, h_2) \in H^2, h_1 * h_2 \in H$ ;
+            \item $H$ est stable par inversion, \textit{i.e.} $\forall h \in H, h^{-1} \in H$.
+        \end{enumerate}
+        Un sous-groupe est un groupe à part entière, lorsqu’on oublie qu’il est un sous-ensemble d’un plus grand groupe.
+    \end{defi}
+
+    \begin{prop}{Caractérisation d’un sous-groupe}{}
+        Soit $(G,*)$ un groupe. $H \subset G$ est un sous-groupe de $G$ si $H$ est non vide et si $\forall x,y \in H, x * y^{-1} \in H$.
+    \end{prop}
+
+    \begin{demo}{Idée}{myolive}
+        Vérifier que tout sous-groupe vérifie ces propriétés, et réciproquement, si un ensemble vérifie ces propriétés, il est un sous-groupe.
+    \end{demo}
+
+    \begin{omed}{Exemple}{myolive}
+        Si $E$ est un ensemble non vide, et $(\mathfrak{S}_E, \circ)$ son groupe de permutation. On pose, pour $x \in E$, 
+        \[ \Stab_{x} = \enstq{\sigma \in \mathfrak{S}_E}{\sigma(x) = x} \]   
+        $\Stab_x$ est un sous groupe de $\mathfrak{S}_E$.
+    \end{omed}
+
+    \begin{theo}{Sous-groupes de $\mathbb{Z}$}{}
+        Si $G$ est un sous-groupe de $(\mathbb{Z},+)$, alors il existe un unique $n \in \mathbb{N}$ tel que $G = n \mathbb{Z}$.
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        Si $G = \{0\}$, le résultat est immédiat. On suppose désormais $G \neq \{0\}$.
+        \begin{itemize}
+            \item Si $G$ contient $x \in \mathbb{Z}^*$, il contient également $-x$, ce qui nous assure que $G \cap \mathbb{N}^*$ est non vide. $G \cap \mathbb{N}^*$ admet donc un plus petit élément, noté $n$.
+            \item Comme $n \in G$ et $G$ est un groupe, $n \mathbb{Z} \subset G$.
+            \item Réciproquement, soit $m \in G$. Par division euclidienn, il existe un unique couple d’entiers $(p,r)$ tel que 
+            \[ m = pn + r \quad \text{avec } 0 \leq r < n \]  
+            Comme $m \in G$ et $pn \in G$, $r \in G \cap \mathbb{N}$. Par définition de $n$, $r$ est nécessairement nul, ce qui montre que $m \in n \mathbb{Z}$. Ainsi, $G = n \mathbb{Z}$.
+        \end{itemize}
+    \end{demo}
+
+    \begin{defi}{Centre d’un groupe}{}
+        Dans un groupe, on dit que deux éléments $g_1$ et $g_2$ commutent \textit{ssi} $g_1 g_2 = g_2 g_1$. Le \textbf{centre} de $G$ est l’ensemble des $g \in G$ qui commutent avec tous les autres éléments de $G$. On le note $Z(G)$.
+    \end{defi}
+
+    \begin{prop}{}{}
+        Le centre $Z(G)$ d’un groupe est un groupe abélien. De plus, $G$ est abélien \textit{ssi} $Z(G) = G$.
+    \end{prop}
+
+    \begin{prop}{Intersection de sous-groupes}{}
+        Soit $\big\{ H_i \big\}_{i \in I}$ une famille de sous-groupes de $G$. Alors l’intersection des $H_i$ est un sous-groupe.
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        \begin{enumerate}[label = \arabic*.]
+            \item $e \in \bigcap_{i \in I} H_i$ ;
+            \item si $h_1, h_2 \in \bigcap_{i \in I} H_i$, pour $i \in I$, $h_1 * h_2 \in H_i$, donc $h_1 * h_2 \in \bigcap_{i \in I} H_i$ ;
+            \item de même pour $h^{-1}$.
+        \end{enumerate}
+    \end{demo}
+
+    \begin{defitheo}{Sous-groupe engendré par $A$}{}
+        Soit $G$ un groupe et $A$ une partie de $G$. Alors il existe un plus petit sous-groupe de $G$ contenant $A$. Ce sous-groupe est noté $\left< A\right>$, et appelé \textbf{sous-groupe de $G$ engendré par $A$}. Il peut être décrit de deux façons :
+        \begin{enumerate}
+            \item c’est l’ensemble des produits $a_1 \cdots a_n \in G$ où $n \in \mathbb{N}^*$, et pour tout $i \geq 1$, $a_i \in A$ ou $a_{i}^{-1}$ (on considère que le produit vide est égal à $e$ et fait partie de cet ensemble).
+            \item c’est l’intersection des sous-groupes de $G$ contenant $A$.
+        \end{enumerate}
+    \end{defitheo}
+
+    \begin{demo}{Preue}{mypurple}
+        Notons $\big\{ H_i \big\}_{i \in I}$ la famille des sous groupes de $G$ contenant $A$. D’après la proposition précédente, l’intersection $H = \bigcap_{i \in I} H_i$ est un sous-groupe de $G$. Il est clair que $H$ contient $A$, et par ailleurs sous-groupe $K$ contenant $A$ est l’un des $H_i$ donc contient $H$. 
+
+        Considérons maintenant l’ensemble $E$ des produits $a_1\cdots a_n \in G$, pour lesquels $a_i$ ou $a_i^{-1} \in A$. Cet ensemble contient $e$. De plus, étant donné deux éléments $a_1\cdots a_n$ et $b_1 \cdots b_m$ de $E$, il est clair que $a_1 \cdots b_m$ est encore dans $E$. Enfin, l’inverse de $a_1 \cdots a_n$ est $a_n^{-1} \cdots a_1^{-1}$ qui est encore un élément de $E$. Il s’ensuit que $E$ est un sous-groupe de $G$ contenant $A$. Réciproquement, si $H$ est un sous-groupe de $G$ qui contient $A$, alors il contient tous les inverses de $A$, et est stable par produit fini de ses éléments, donc contient $E$.
+    \end{demo}
+
+    \subsubsection{Morphismes de groupes}
+
+    \begin{defi}{Morphisme de groupe}{}
+        Soient $G$ et $G'$ deux groupes. Un \textbf{morphisme} (de groupes) de $G$ dans $G'$ est une application $f : G \to G'$ telle que pour tous $g_1,g_2$ dans $G$, on a $f(g_1 g_2) = f(g_1)f(g_2)$.
+    \end{defi}
+
+    \begin{omed}{Exemples}{myyellow}
+        Parmi les exemples les plus classiques, on peut citer :
+        \begin{itemize}
+            \item $\exp : (\mathbb{R}, +) \to (\mathbb{R}_+^*, \times)$
+            \item $\ln : (\mathbb{R}_+^*) \to (\mathbb{R},+)$
+            \item $\abs{.} : (\mathbb{C}^*, \times) \to (\mathbb{R}_+^*, \times)$
+            \item $\det : (\GL_n(\mathbb{K}), \times) \to (\mathbb{K}^*, \times)$
+            \item $\varepsilon : (\mathfrak{S}_n, \circ) \to (\{-1,1\}, \times)$
+        \end{itemize}
+    \end{omed}
+
+    \begin{defitheo}{Noyau et image}{}
+        Soit $f : G \to G'$ un morphisme.
+        \begin{itemize}
+            \item Le \textbf{noyau} de $f$, noté $\ker(f)$, est l’ensemble des $g \in G$ tels que $f(g) = e'$.
+            \item L’\textbf{image} de $f$, notée $\im(f)$, est l’ensemble des $g' \in G'$ tels qu’il existe $g \in G$ vérifiant $g' = f(g)$.
+        \end{itemize}
+        En particulier, le noyau est un sous-groupe de $G$ et l’image un sous-groupe de $G'$.
+    \end{defitheo}
+
+    \begin{demo}{Justification}{mypurple}
+        Il suffit de vérifier les points définissant un sous-groupe.
+    \end{demo}
+
+    \begin{prop}{Preuve}{myolive}
+        Un morphisme de groupes $f : G \to G'$ est injectif \textit{ssi} $\ker(f) = \{e\}$.
+    \end{prop}
+
+    Lorsqu’on a un morphisme injectif $f : G \to G'$, on dit parfois que $G$ \textbf{se plonge} dans $G'$ via $f$.
+
+    \begin{demo}{Démonstration}{myolive}
+        On sait que $\{e\} \subset \ker(f)$, donc on doit montrer que $\ker(f) \subset \{e\}$.
+        \begin{itemize}
+            \item[$\implies$] Supposons que $f$ est injectif. Alors pour tout élément $g \in \ker(f)$, on a $f(g) = e' = f(e)$ donc $g = e$ par injectivité.
+            \item[$\impliedby$] Supposons que $\ker(f) \subset \{e\}$. Soient $g_1,g_2$ tels que $f(g_1) = f(g_2)$. Alors $f\left(g_1 (g_2)^{-1}\right) = f(g_1)f(g_2)^{-1} = e'$ donc $g_1 (g_2)^{-1}  \in \ker(f)$. On a donc $g_1 g_2^{-1} = e$ donc $g_1 = g_2$.
+        \end{itemize}
+    \end{demo}
+
+    \begin{defi}{Isomorphismes et automorphismes}{}
+        Si un morphisme de groupes $f : G \to G'$ est bijectif, on dit que c’est un \textbf{isomorphisme}. Si de plus $G = G'$, on dit que $f$ est un \textbf{automorphisme} de $G$. On note $\Aut(G)$ l’ensemble des automorphismes de $G$.
+    \end{defi}
+
+    On peut facilement vérifier que la bijection réciproque d’un isomorphisme est encore un morphisme de groupe.
+
+    Il existe deux seuls\footnote{à un isomorphisme près.} groupes à $4$ éléments. Autrement dit, tout groupe à $4$ éléments est isomorphe à l’un de ces deux groupes :
+
+    \hbox to \linewidth{
+        
+        \begin{minipage}{0.4\linewidth}
+            \begin{center}
+            \begin{tblr}{
+                hlines, vlines, row{1} = {mynavyblue!10}, column{1} = {mynavyblue!15}
+            }
+                    $*$ & a & b & c & d \\
+                    a & a & b & c & d \\
+                    b & b & c & d & a \\
+                    c & c & d & a & b \\
+                    d & d & a & b & c 
+            \end{tblr}     
+            \end{center}
+        \end{minipage}
+        
+        \hfill
+
+        \begin{minipage}{0.4\linewidth}
+            \begin{center}
+            \begin{tblr}{
+                hlines, vlines, row{1} = {mynavyblue!10}, column{1} = {mynavyblue!15}
+            }
+                    $\star$ & x & y & z & t \\
+                    x & x & y & z & t \\
+                    y & y & x & t & z \\
+                    z & z & t & x & y \\
+                    t & t & z & y & x
+            \end{tblr}     
+            \end{center}
+        \end{minipage}
+    }
+
+    Ces deux groupes ($\mathbb{Z} / 4 \mathbb{Z}$ et le groupe dit de Klein) ne peuvent être isomorphes. En effet, supposons un isomorphisme $\Phi$ qui les lie. On aurait $\Phi(a) = x$ et $\Phi(c) = \Phi(b * b) = \Phi(b)^2 = x$, donc $\Phi(a) = \Phi(c)$, ce qui est contradictoire.
+
+    \begin{defitheo}{Conjugaison ou automorphisme intérieur}{}
+        Pour $g \in G$, la \textbf{conjugaison} par $g$ est l’application 
+        \[ \fonction{c_g}{G}{G}{h}{ghg^{-1}} \]   
+        $c_g$ est un morphisme. 
+    \end{defitheo}
+
+    \begin{demo}{Justification}{mypurple}
+        Pour $x,y \in G$, on a $c_g(xy) = g x y g^{-1} = (g x g^{-1}) (g y g^{-1}) = c_g(x) c_g(y)$. 
+    \end{demo}
+
+    On note $\Int(G)$ l’ensemble des automorphismes intérieurs. 
+
+    \begin{prop}{Propriétés générales}{}
+        Soit $G$ un groupe.
+        \begin{enumerate}
+            \item L’ensemble $\Aut(G)$ est un sous-groupe du groupe des bijections de $G$.
+            \item L’application $c : G \to \Aut(G)$ qui envoie $g$ sur $c_g$ est un morphisme de groupes.
+            \item L’image de $c$, \textit{i.e.} $\Int(G)$ est un sous-groupe distingué de $\Aut(G)$.
+            \item Le noyau de $c$ est égal au centre de $Z(G)$ de $G$.
+        \end{enumerate}
+    \end{prop}
+
+    La notion de sous-groupe distingué est définie plus loin.
+
+    \begin{demo}{Preuve}{myolive}
+        \begin{enumerate}
+            \item Il est clair que l’identité $\id_G$ est un automorphisme de groupes de $G$. Vérifions que la composé $f = f_1 \circ f_2$ d deux automorphismes $f_1,f_2 : G \to G$ est un automorphisme. Soient $g,g' \in G$. On a alors $f(gg') = f_1(f_2(gg')) = f_1(f_2(g)f_2(g')) = f_1(f_2(g))f_1(f_2(g')) = f(g)f(g')$. On vérifie de la même façon que la bijection réciproque $f^{-1}$ d’un automorphisme en est un.
+            \item Pour tout $h \in G$, on a $c_{gg'}(h) = (gg') h (gg')^{-1} = gg' h (g')^{-1} g^{-1} = c_g (c_{g'}(h))$, d’où $c_{gg'} = c_g \circ c_{g'}$.
+            \item Comme $c$ est un morphisme, son image est un sous-groupe. Il n’a qu’à voir qu’il est distingué dans $\Aut(G)$. Pour cela, on vérifie que pour tout automorphisme $\varphi$ de $G$, l’automorphisme $\varphi \circ c_g \circ \varphi^{-1}$ de $G$ est intérieur. Or 
+            \[ (\varphi c_g \varphi^{-1})(h) = \varphi(g \varphi^{-1}(h)g^{-1}) = \varphi(g) \varphi(\varphi^{-1}(h)) \varphi(g^{-1}) = \varphi(g) h \varphi(g)^{-1} = c_{\varphi(g)}(h) \]    
+            donc $\varphi c_g \varphi^{-1} = c_{\varphi(g)}$ qui est bien un automorphisme intérieur.
+            \item Un élément $g \in \ker(c)$ est tel que pour tout $h \in G$, on a $g h g^{-1} = h$. Ceci signifie que $gh = hg$, \textit{i.e.} $g$ commute avec tous les $h \in G$, d’où $g$ est dans le centre de $G$.
+        \end{enumerate}
+    \end{demo}
+
+    \subsubsection{Classes à gauche et à droite modulo un sous-groupe}
+
+    \begin{defitheo}{Translations}{}
+        Soit $G$ un groupe. Pour tout $g \in G$, on définit les applications 
+        \begin{itemize}
+            \item translation à gauche $\gamma_g : G \to G, \, \gamma_g(x) = gx$
+            \item translation à droite $\delta_g : G \to G, \, \delta_g(x) = xg$
+        \end{itemize}
+        Ces applications sont bijectives, et les $\gamma_g$ donnent lieu à un morphisme injectif de groupes $\gamma : G \to S_G$ qui envoie $g$ sur $\gamma_g$.
+    \end{defitheo}
+
+    \begin{demo}{Preuve}{mypurple}
+        Le fait que $\gamma_g$ est bijective est clair car on vérifie aussitôt que $\gamma_{g^{-1}}$ en est une bijection réciproque. De même pour $\delta_g$. Il s’ensuit que $\gamma_g \in S_G$. Pour voir que $g \mapsto \gamma_g$ soit un morphisme, il suffit de constater que pour tout $x \in G$, on a $\gamma_{gh}(x) = (gh)x = (\gamma_g \gamma_h)(x)$. Il ne nous reste qu’à voir que $\gamma$ est injectif. Si $\gamma_g = \gamma_g'$, alors pour tout $x \in G$, on a $gx = g'x$ donc $g = g'$.
+    \end{demo}
+
+    Les $\gamma_g$ et $\delta_g$ sont bijectives mais ne sont pas des morphismes de groupes. En revanche, en combinant $\gamma_{g}$ et $\delta_{g^{-1}}$, on obtient un morphisme, qui est la conjugaison. Pour fabrique un morphisme de groupes $G \to S_G$ avec les $\delta_g$, il faut considérer l’application $g \mapsto \delta_{g^{-1}}$.
+
+    \begin{defitheo}{Classe d’équivalence}{}
+        Soit $H \subset G$ un sous-groupe. La relation définie par $x \smile y$ \textit{ssi} $x^{-1} y \in H$ est une relation d’équivalence sur $G$. 
+
+        La \textbf{classe d’équivalence} de $x$ est l’ensemble $xH = \gamma_{x}(H)$. Les classe d’équivalence sont toutes en bijection.
+    \end{defitheo}
+
+    \begin{demo}{Idée}{mypurple}
+        La bijection $\gamma_x$ met en bijection la classe $H$ avec la classe $xH = \gamma_x(H)$, donc toutes les classes sont en bijection.
+    \end{demo}
+
+    \begin{defitheo}{Classe à gauche de $x$ modulo $H$}{}
+        La classe d’équivalence de $x$ est appelée \textbf{classe à gauche de $x$ modulo $H$}. L’ensemble des classes à gauche modulo $H$ est noté $G / H$ et la surjection $\pi : G \to G / H$ qui à $x$ associe sa classe $x H$ est appelée \textbf{surjection canonique}. Un \textbf{système de représentants des classes à gauche} est une partie $S \subset G$ contenant un élément de chaque classe.
+        
+        La partition de $G$ en classes à gauche $G = \bigsqcup_{x \in S} xH$ est indépendante du choix de $S$.
+    \end{defitheo}
+
+    On a les mêmes notions à droite : la relation $x \frown y$ \textit{ssi} $yx^{-1} \in H$ est une relation d’équivalence sur $G$, et la \textbf{classe à droite de $x$ modulo $H$} l’ensemble $Hx = \delta_x(H)$. L’ensemble des classes à droite modulo $H$ est noté $H \backslash G$.
+
+    \subsubsection{Sous-groupes distingués et quotients}
+
+    \begin{defi}{Sous-groupe distingué}{}
+        Un sous-groupe $H$ d’un groupe $G$ est dit \textbf{distingué}, ou \textbf{normal}, si pour tout $h \in H$ et $g \in G$, on a $g h g^{-1} \in H$. Lorsqu’un sous-groupe $H$ de $G$ est distingué, on note $H \lhd G$.
+    \end{defi}
+
+    \begin{omed}{Exemple}{myolive}
+        Le sous-groupe de $\GL_n(\mathbb{K})$ formé des homothéties est distingué.
+    \end{omed}
+
+    \begin{prop}{}{}
+        Soit $f : G \to G'$ un morphisme de groupe. Alors le noyau $\ker(f)$ est un sous-groupe distingué.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Soit $h \in \ker(f)$ et $g \in G$. On doit montrer que $g h g^{-1} \in \ker(f)$. $f(ghg^{-1}) = f(g)f(h)f(g)^{-1} = f(g)f(g)^{-1} = e$.
+    \end{demo}
+
+    \begin{prop}{}{}
+        Le centre $Z(G)$ d’un groupe $G$ est un sous-groupe distingué de $G$.
+    \end{prop}
+
+    \begin{demo}{Idée}{myolive}
+        $Z(G)$ est distingué car c’est le noyau du morphisme de conjugaison $c : G \to \Aut(G)$.
+    \end{demo}
+
+    \begin{lem}{}{}
+        Soit $G$ un groupe et $H \lhd G$ un sous-groupe distingué. Alors les classes à droite et à gauche modulo $H$ coïncident : $x H = H x$ pour tout $x \in G$, d’où $G / H = H \backslash G$. Réciproquement, si les classes à gauche et à droite coïncident, le sous-groupe $H$ est distingué.
+    \end{lem}
+
+    \begin{demo}{Preuve}{mybrown}
+        Pour tout $h \in H$, comme $x h x^{-1} \in H$, alors $x h = x h x^{-1} x \in Hx$. On montre de la même façon $Hx \subset xH$. La réciproque est claire.
+    \end{demo}
+
+    \begin{theo}{}{}
+        Considérons un groupe $G$ et un sous-groupe distingué $H \lhd G$.
+        \begin{enumerate}
+            \item Il existe une unique structure de groupe sur l’ensemble quotient $G / H = H \backslash G$ telle que l’application canonique $\pi : G \to G / H$ soit un morphisme de groupes.
+            \item Pour tout morphisme $f : G \to G'$ tel que $H \subset \ker(f)$, il existe un unique morphisme $\tilde{f} : G / H \to G'$ tel que $f = \tilde{f} \circ \pi$. Le noyau de $\tilde{f}$ est l’image de $\ker(f)$ dans $G / H$, qui s’identifie à $\ker(f) / H$. En particulier, $\tilde{f}$ est injectif \textit{ssi} $H = \ker(f)$.
+        \end{enumerate}
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        \begin{enumerate}
+            \item Il nous faut définir une multiplication sur $ G / H$. Comme l’application canonique $\pi$ est surjective, deux éléments quelconques $x,x'$ de $G / H$ peuvent s’écrire $x = \pi(g)$ et $x' = \pi(g')$. Si l’on veut que $\pi$ soit un morphisme de groupes, on doit avoir $x x ' = \pi(g) \pi(g')$, ce qui montre qu’on n’a pas le choix pour définir le produit. le point qui n’est pas évident est que ce produit est indépendant du choix de $g$ et $g'$ comme antécédents de $x$ et $x'$. On si l’on choisit d’autres antécédents $u, u'$, il existe des éléments $h, h' \in H$ tels que $u = gh$ et $u' = g' h'$. Comme $g'^{-1} h g' \in H$, on a $g'^{-1} h g' h' \in H$, et donc $\pi(uu')= \pi(ghg'h') = \pi(gg''^{-1} h g' h') = \pi(gg')$. Ceci montre que le produit $xx'$ est indépendant des antécédents choisis pour $x$ et $x'$. Par construction, il est clair que $\pi$ est un morphisme de groupes.
+            \item Soit $f : G \to G'$ un morphisme tel que $H \subset \ker(f)$. En utilisant cette hypothèse, on voit que pour $x = \pi(g) \in G / H$, l’élément de $G'$ égal à $f(g)$ ne dépend pas du choix de l’antécédent $g$ choisi pour $x$. On peut donc poser $\tilde{f}(x) := f(g)$. Ceci définit une application $\tilde{f} : G / H \to G'$. Pour voir que c’est un morphisme de groupes, soient $x = \pi(g)$ et $x' = \pi(g')$ dans $G / H$, alors $gg'$ est un antécédent de $xx'$ dans $G$ et donc $\tilde{f}(xx') = f(gg') = f(g)f(g') = \tilde{f}(x) \tilde{f}(x')$. 
+            
+            Soit $x = \pi(g) \in \ker(\tilde{f})$. Ceci veut dire que $\tilde{f}(x) = f(g) = e'$ donc $g \in \ker(f)$ et $x$ appartient à l’image de $\ker(f)$ dans $G / H$. Le fait que, réciproquement, l’image de $\ker(f)$ dans $G / H$ soit incluse dans le noyau de $\tilde{f}$ est évidente.
+        \end{enumerate}
+    \end{demo}
+
+    \begin{omed}{Exemples}{myred}
+        Soit $n \geq 1$. Le quotient de $\mathbb{Z}$ par le sous-groupe $n \mathbb{Z}$ est le groupe bien connu $\mathbb{Z} / n \mathbb{Z}$.
+    \end{omed}
+
+    \subsubsection{Groupes monogènes}
+
+    \begin{defi}{Groupe monogène, cyclique}{}
+        Un groupe $G$ est dit \textbf{monogène} s’il peut être engendré par un seul élément. Si de plus $G$ est fini, on le qualifie préférentiellement de \textbf{cyclique}
+    \end{defi}
+
+    \begin{lem}{}{}
+        Soit $H$ un sous-groupe de $\mathbb{Z}$. Il existe un entier $n \geq 0$ tel que $H = n \mathbb{Z}$.
+    \end{lem}
+
+    \begin{demo}{Preuve}{mybrown}
+        Si $H = \{ 0 \}$, le résultat est donné pour $n = 0$. Sinon, $H$ possède des éléments strictement positifs et on peut considérer le plus petit de ceux-ci, noté $n$. Montrons que $H = n \mathbb{Z}$. Pour cela, soit $a \in H$. Si $a > 0$, on peut faire sa division euclidienne par $n$ qui s’écrit $a = qn + r$. Ainsi, $ r = a - qn$ est dans $H$, et strictement inférieur à $n$. Le choix de $n$ impose donc que l’on ait $r = 0$, de sorte que $a = qn \in n \mathbb{Z}$. Si $a < 0$, il en va de même. Donc $H = n \mathbb{Z}$.
+    \end{demo}
+
+    \begin{theo}{Classification des groupes monogènes}{}
+        Soit $G$ un groupe monogène. Alors $G$ est isomorphe à $\mathbb{Z}$ s’il est infini, et à $\mathbb{Z} / n \mathbb{Z}$ s’il est fini.
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        Par hypothèse, il existe $x \in G$ qui l’engendre. Considérons l’application $f : \mathbb{Z} \to G$ qui envoie l’entier $k$ sur $x^{k}$. Il est clair que c’est un morphisme de groupes, qui est de plus surjectif car $x$ engendre $G$. Si $f$ est injectif, c’est un isomorphisme entre $\mathbb{Z}$ et $G$. Sinon, d’après le lemme, il existe $n > 0$ tel que $\ker(f) = n \mathbb{Z}$. Alors $f$ induit un isomorphisme $\tilde{f} :\mathbb{Z} / n \mathbb{Z} \to G$. En remettant ces remarques dans l’ordre, on obtient le résultat.
+    \end{demo}
+
+    \subsubsection{Groupe (Z / nZ, +)}
+
+    Dans tout ce paragraphe, $n$ désigne un entier naturel non nul. Rappelons que si $a,b \in \mathbb{Z}$, 
+    \[ a \equiv b \mod(n) \quad \iff \quad n \tq (a-b) \quad \iff \quad a-b \in n \mathbb{Z} \]
+
+    \begin{defitheo}{}{}
+        La congruence modulo $n$ est un relation d’équivalence. On note $\mathbb{Z} / n \mathbb{Z}$ l’ensemble des classes d’équivalence de $\mathbb{Z}$ pour cette relation.
+    \end{defitheo}
+
+    Pour $a \in \mathbb{Z}$, on note souvent $\barr{a}$ la classe d’équivalence associée à la relation de congruence modulo $n$. L’entier $a$ est alors appelé \textbf{représentant} de cette classe. Cette classe est un ensemble contenant l’entier $a$ et tous les entiers congrus à $a$ modulo $n$ :
+    \[ \barr{a} = \enspr{a + kn}{k \in \mathbb{Z}} = a + n \mathbb{Z} \]
+    En particulier, $\barr{0} = n \mathbb{Z}$. 
+
+    Le principe de division euclidienne nous assure que 
+    \[ \mathbb{Z} / n \mathbb{Z} = \left\{ \barr{0}, \barr{1}, \ldots, \barr{n-1} \right\} \]   
+
+    \begin{prop}{}{}
+        Si $\barr{a_1} = \barr{a_2}$ et $\barr{b_1} = \barr{b_2}$, alors 
+        \[ \barr{a_1 + b_1} = \barr{a_2 + b_2} \esp{et} \barr{a_1 \times b_1} = \barr{a_2 \times b_2} \]
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Si $a_1 \equiv a_2 \modulo{n}$ et $b_1 \equiv b_2 \modulo{n}$, alors $\eqmodulo{a_1 + b_1}{a_2 + b_2}{n}$ et $\eqmodulo{a_1 b_1}{a_2 b_2}{n}$.
+    \end{demo}
+
+    Cela signifie que lorsque l’on travaille modulo $n$, on peut choisir n’importe quel représentant de la classe pour mener les calcurs. Forts de ce résultat, nous pouvons définir une addition, mais aussi une multiplication, sur les éléments de $\mathbb{Z} / n \mathbb{Z}$, \textit{i.e.} des opérations qui portent sur les classes d’équivalences :
+    \[ \forall (a,b) \in \mathbb{Z}^2, \barr{a} \tikzmarknode[draw, circle, myolive, fill = myolive!2, inner sep=.2pt]{nvad}{+} \barr{b} = \barr{a \tikzmarknode[draw, circle, myolive, fill = myolive!2, inner sep=.2pt]{anad}{+} b} \esp{et} \barr{a} \times \barr{b} = \barr{ab} \]
+    \annotate{nvad}{addition dans $\mathbb{Z} / n \mathbb{Z}$}{1.6}{myolive}
+    \annotate{anad}{addition dans $\mathbb{Z}$}{.8}{myolive}
+
+    \begin{theo}
+        Pour tout $n \in \mathbb{N}^*$, $(\mathbb{Z} / n \mathbb{Z}, +)$ est un groupe abélien.
+    \end{theo}
+
+    \begin{demo}{Preuve}{myred}
+        Pour $n \in \mathbb{N}^*$, $(\mathbb{Z} / n \mathbb{Z}, +)$ vérifie les propriétés suivantes :
+        \begin{itemize}
+            \item commutativité : $\forall a,b \in \mathbb{Z}, \barr{a} + \barr{b} = \barr{a+b} = \barr{b+a} = \barr{b} + \barr{a}$
+            \item associativité : $\forall a,b,c \in \mathbb{Z}, \left(\barr{a} + \barr{b}\right) + \barr{c} = \barr{a+b} + \barr{c} = \barr{a+b+c} = \barr{a} + \barr{b + c} = \barr{a} + \left(\barr{b} + \barr{c}\right)$
+            \item existence d’un élémnet neutre : $\forall a \in \mathbb{Z}, \barr{a} + \barr{0} = \barr{a + 0} = \barr{a}$
+            \item inversibilité des éléments : $\forall a \in \mathbb{Z}, \barr{a} + \barr{-a} = \barr{a - a} = \barr{0}$
+        \end{itemize}
+    \end{demo}
+    
+    On a, par exemple, que $\barr{-3} = \barr{8}$ est l’inverse de $\barr{3}$ pour la loi $+$ dans $\mathbb{Z} / 11 \mathbb{Z}$. L’application $a \mapsto \barr{a}$ est un morphisme surjectif de $(\mathbb{Z},+)$ dans $(\mathbb{Z} / n \mathbb{Z}, +)$, qui a pour noyau $n \mathbb{Z}$. Nous montrerons plus tard que $(\mathbb{Z} / n \mathbb{Z},+, \times)$ est en fait un anneau.
+
+    \begin{theo}{}{}
+        Le groupe $(\mathbb{Z} / n \mathbb{Z},+)$ est cyclique. De plus, $\mathbb{Z} / n \mathbb{Z} = \left< \barr{k} \right>$ \textit{ssi} $k$ est premier avec $n$.
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        $\mathbb{Z} / n \mathbb{Z}$ est un groupe fini et, de façon directe, $\mathbb{Z} / n \mathbb{Z} = \left< \barr{1} \right>$. Cherchons maintenant les autres gérnérateurs de $\mathbb{Z} / n \mathbb{Z}$ en considérant $k \in \mathbb{Z}$. 
+        \begin{align*}
+            \left< \barr{k} \right> = \mathbb{Z} / n \mathbb{Z} = \left< \barr{1} \right>
+            &\iff \exists a \in \mathbb{Z}, \quad a \barr{k} = \barr{1} \\
+            &\iff \exists a \in \mathbb{Z}, \quad \barr{ak} = \barr{1} \\
+            &\iff \exists (a,b) \in \mathbb{Z}^2, \quad ak + bn = 1
+        \end{align*}
+        D’après le théorème de Bézout, $k$ engendre $\mathbb{Z} / n \mathbb{Z}$ \textit{ssi} $k \wedge n = 1$.
+    \end{demo}
+
+    \subsubsection{Ordre d’un élément dans un groupe}
+
+    D’après la classification des groupes monogènes, le groupe monogène $\left< a \right>$ est soit isomorphe à $\mathbb{Z}$, soit à $\mathbb{Z} / n \mathbb{Z}$ pour un certain $n \in \mathbb{N}^*$. Ce qui amène à la définition suivante.
+
+    \begin{defi}{Ordre d’un élément dans un groupe}{}
+        Soient $(G,*)$ un groupe et $a$ un élément de $G$.
+        \begin{itemize}
+            \item On dit que $a$ est d’\textbf{ordre fini} s’il existe $n \in \mathbb{N}^*$ tel que $\left< a \right>$ est isomorphe à $\mathbb{Z} / n \mathbb{Z}$.
+            \item On appelle alors \textbf{ordre} de $a$ l’entier naturel $n$.
+        \end{itemize}
+    \end{defi}
+
+    En notant $n$ l’ordre de $a$, $\left< a \right> = \left\{ e, a, \ldots, a^{n-1} \right\}$. L’ordre de $a$ est le plus petit entier $p$ non nul tel que $a^p = e$.
+
+    \begin{prop}{}{}
+        Si $a$ est d’ordre fini, alors pour tout $p \in \mathbb{Z}$, $a^p = e \iff n \tq p$
+    \end{prop}
+
+    \begin{demo}{Idée}{myolive}
+        Si l’on suppose $a^p = e$, on peut écrire $p = qn + r$ avec $0 \leq r < n$ donc $a^p = a^{qn} a^r = a^r = e$. On a donc nécessairement $r = 0$, et donc $n \tq p$. La réciproque est immédiate.
+    \end{demo}
+
+    \begin{theo}{}{}
+        L’ordre d’un élément d’un groupe fini divise le cardinal du groupe.
+    \end{theo}
+
+    On appelle parfois \textbf{ordre du groupe} son cardinal, lorsque celui-ci est fini.
+
+    \begin{demo}{Démonstration}{myred}
+        On effectue la démonstration pour le cas où $G$ est commutatif : Soit $a$ un élément du groupe $(G,*)$ supposé fini, de cardinal $n$, et pour la cause, abélien.
+        \begin{itemize}
+            \item L’élément $a$ est nécessairement d’ordre fini. S’il ne l’était par, les éléments de $\left< a \right>$ seraient deux à deux distincs et $a$ engendrerait un sous-groupe de $G$ de cardinal infini, ce qui est absurde. On note $d$ l’ordre de $a$.
+            \item Il est facile de vérifier que l’application $\fonction{\varphi_a}{G}{G}{g}{a * g}$ est un bijection\footnote{on pensera à expliciter son application réciproque\ldots}. D’où 
+            \[ \prod_{g \in G} g = \prod_{g \in G} \varphi_a(g) = \prod_{g \in G} (a * g) \tikzmarknode[draw, myred, fill=myred!2, inner sep=1pt]{gabel}{=} a^n \prod_{g \in G} g \]   
+            \annotate{gabel}{$G$ abélien}{1}{myred}
+            Par simplification, $a^n = e$ donc $d \tq n$.
+        \end{itemize}
+    \end{demo}
+
+    Attention, il n’existe pas toujours d’élément dont l’ordre est égal à n’importe quel diviseur de $n$.
+
+\subsection{Anneaux et corps}
+
+    \subsubsection{Anneau}
+
+    \begin{defi}{Anneau}{}
+        Soit $A$ un ensemble muni de deux lois de composition internes $+$ et $\times$. On dit que $(A,+,\times)$ est un \textbf{anneau} s’il vérifie 
+        \begin{enumerate}[label=$(h_{\alph*})$]
+            \item Le magma $(A,+)$ est un groupe abélien, d’élément neutre $0$.
+            \item La loi de multiplication $\times$ est associative, et admet un élément neutre.
+            \item La loi $\times$ est distributive à droite et à gauche sur $+$.
+        \end{enumerate}
+        On dit que l’anneau $(A,+,\times)$ est commutatif si la loi $\times$ est commutative.
+    \end{defi}
+
+    La structure d’anneau permet de retrouver des résultats déjà établis dans $\mathbb{K}$ où $\mk{n}$ : si $x$ et $y$ commutent, 
+    \begin{align*}
+        (x + y)^n &= \sum_{k=0}^{n} \binom{n}{k} x^k y^{n - k} \\
+        x^n - y^n &= (x-y) \sum_{k=0}^{n-1} x^k y^{n-1-k} \\
+        1_A - x^{n+1} &= (1_A - x) \sum_{k=0}^{n} x^{k}
+    \end{align*}
+
+    \begin{defitheo}{Sous-anneau et caractérisation}{}
+        Soit $(A,+,\times)$ un anneau. On dit que $B \subset A$ est un \textbf{sous-anneau} de $A$ lorsque 
+        \begin{enumerate}[label=$(h_{\alph*})$]
+            \item $(B,+)$ est un sous-groupe abélien de $(A,+)$.
+            \item $\times$ est interne pour $B$.
+            \item $1$ (l’élément neutre pour $\times$) $\in B$.
+        \end{enumerate}
+        Cela se résume en : $B \subset A$ est un sous-anneau de $A$ \textit{ssi} $1_A \in B$ et $\forall x,y \in B, \quad x-y \in B \esp{et} x \times y \in B$.
+    \end{defitheo}
+
+    \begin{defi}{Anneau produit}{}
+        Étant donné un nombre $n \geq 1$ d’anneaux $A_1,\ldots,A_n$, on peut construire l’\textbf{anneau produit} $A_1 \times \cdots \times A_n$ muni des opérations 
+        \begin{align*}
+            (a_1,\ldots, a_n) + (b_1,\ldots,b_n) &:= (a_1 + b_1, \ldots, a_n + b_n) \text{ d’élément neutre } (0_{A_1}, \ldots, 0_{A_n}) \\
+            (a_1,\ldots, a_n) \times (b_1,\ldots,b_n) &:= (a_1 \times b_1, \ldots, a_n \times b_n) \text{ d’élément neutre } (1_{A_1}, \ldots, 1_{A_n})
+        \end{align*}
+    \end{defi}
+
+    \subsubsection{Morphisme d’anneaux}
+
+    \begin{defi}{Morphisme d’anneaux}{}
+        Un morphisme d’anneaux de $A$ vers $B$ est une application $f : A \to B$ satisfaisant 
+        \begin{enumerate}[label=$(h_{\alph*})$]
+            \item $f(a+b) = f(a) + f(b)$ pour $a,b \in A$ et $f(0_A) = 0_B$ ;
+            \item $f(a \times b) = f(a) \times f(b)$ pour tous $a,b \in A$, et $f(1_A) = 1_B$.
+        \end{enumerate}
+    \end{defi}
+
+    On peut donc, de la même façon que pour un morphisme de groupes, définir un endomorphisme d’anneaux, de $A \to A$, un isomorphisme d’anneaux de $A \to B$, bijectif, et un automorphisme de $A \to A$ un endomorphisme bijectif.
+
+    \begin{defi}{Noyau et image}{}
+        Si $f : A \to B$ est un morphisme d’anneaux, on définit
+        \begin{itemize}
+            \item le \textbf{noyau} de $f$ par $\ker(f) := \enstq{a \in A}{f(a) = 0}$ ;
+            \item l’\textbf{image} de $f$ par $\im(f) := \enstq{b \in B}{\exists a \in A, f(a) = b} = f(A)$.
+        \end{itemize}
+    \end{defi}
+
+    \begin{prop}{}{}
+        L’image $f(A)$ d’un morphisme d’anneaux $f : A \to B$ est toujours un sous-anneau de $B$.
+    \end{prop}
+
+    Toutefois, ce n’est pas le cas du noyau $\ker(f)$, qui ne contient généralement pas $1_A$.
+
+    \subsubsection{Corps}
+
+    \begin{defi}{Corps}{}
+        Un \textbf{corps} $(\mathbb{K}, +, \times)$ est un anneau $(A,+,\times)$ avec $1_A \neq 0_A$ tel que $(A^*, \times)$ est un groupe.
+
+        De façon équivalente, un corps est un anneau ayant au moins deux éléments tels que tout élément non nul admet un inverse multiplicatif.
+    \end{defi}
+
+    \begin{defitheo}{Anneau intègre}{}
+        Un anneau $(A,+,\times)$ est dit \textbf{intègre} si, pour tous $a,b \in A$, $ab = 0_A \implies a = 0_A \text{ ou } b = 0_A$. On a alors les deux règles de simplification suivantes :
+        \begin{enumerate}
+            \item si $a \neq 0_A$, alors $ab = ac \implies b = c$ ;
+            \item si $c \neq 0$, alors $ac = bc \implies a = b$.
+        \end{enumerate}
+        En particulier, tout corps est un anneau intègre.
+    \end{defitheo}
+
+    \begin{demo}{Justification}{mypurple}
+        Soient $a,b \in \mathbb{K}$ tels que $ab = 0$. Supposons premièrement que $a \neq 0$. $\mathbb{K}$ est un corps donc l’élément $a \in \mathbb{K}^*$ est inversible, et $a a^{-1} = 1_A = a^{-1} a$. Ainsi, $0 = a^{-1} (ab) = a^{-1} a b = b$. 
+    \end{demo}
+
+    \begin{theo}{}{}
+        Pour un anneau $A$ de cardinal fini avec $1_A \neq 0_A$, on a équivalence entre
+        \begin{enumerate}
+            \item $A$ est un corps ;
+            \item $A$ est intègre.
+        \end{enumerate}
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        \textbf{(i)} $\implies$ \textbf{(ii)} est montrée précédemment. Démontrons donc que \textbf{(ii)} $\implies$ \textbf{(i)}. Il existe au moins deux éléments dans $A$. Soit $a \in A \backslash \{ 0_A \}$ et
+        \[ \fonction{\varphi}{A}{A}{x}{ax} \]   
+        Cette application est un endomorphisme du groupe $(A,+)$, car pour $x,y \in A$, on a $\varphi(x+y) = \varphi(x) + \varphi(y)$. De plus, elle est injective, car son noyau est réduit à $\{0_A\}$. Comme $A$ possède un cardinal fini, alors $f$ est injective \textit{ssi} $f$ est surjective \textit{ssi} $f$ est bijective. Donc $\varphi$ est surjective, et $1_A$ est dans son image. Ainsi, il existe $x \in A$ tel que $xa = 1_A$. En utilisant l’application $\psi : x \mapsto xa$, on trouve de la même façon qu’il existe un élément $y \in A$ tel que $ya = 1_A$. Pour vérifier que $x = y$, on procède comme suit :
+        \[ y = y 1_A = y(ax) = (ya) x = 1_A x = x \]
+    \end{demo}
+
+    \begin{defitheo}{Sous-corps et caractérisation}
+        Soit $(\mathbb{K}, + , \times)$ un corps. On dit que $\mathbb{K}' \subset \mathbb{K}$ est un corps de $\mathbb{K}$ si $(\mathbb{K}', +, \times)$ est un corps.
+
+        Ainsi, $\mathbb{K}' \subset \mathbb{K}$ est un sous-corps de $\mathbb{K}$ \textit{ssi} $\forall x,y \in \mathbb{K}' \times \mathbb{K}'^*, \quad x-y \in \mathbb{K}' \esp{et} x \times y^{-1} \in \mathbb{K}'$.
+    \end{defitheo}
+
+    \subsubsection{Idéal d’un anneau commutatif}
+
+    Soit $\Phi : A \to B$ un morphisme d’anneaux. Si $\Ker(\Phi)$ n’est pas en général un sous-anneau de $A$, en revanche, $\Ker(\Phi)$ est un sous-groupe de $(A,+)$, qui vérifie de plus 
+    \[ \forall x \in \Ker(\Phi), \quad \forall a \in A, \quad xa \in \Ker(\Phi) \esp{et} ax \in \Ker(\Phi) \]   
+    En effet, $\Phi(xa) = \Phi(x) \times \Phi(a) = 0_B$ et de même pour $\Phi(ax)$. On dit alors que $\Ker(\Phi)$ est un idéal (bilatère) de $A$, ce qui amène la définition suivante :
+
+    \begin{defi}{}{}
+        Un sous-ensemble non vide $I \subset A$ d’un anneau commutatif $A$ est appelé un \textbf{idéal} s’il vérifie les deux propriétés suivantes :
+        \begin{itemize}
+            \item $(I,+)$ est un sous-groupe de $(A,+)$ ;
+            \item $I$ est stable par multiplication par tout élément de $A$ : $\forall x \in I, \quad \forall x \in A, \quad xa \in I$.
+        \end{itemize}
+        On dit parfois que $I$ est \textbf{absorbant} pour la loi $\times$.
+    \end{defi}
+
+    En particulier, nous avons prouvé que le noyau d’un morphisme d’anneaux est un idéal.
+
+    Cette notion absolument fondamentale dans toutes les mathématiques interviendra naturellement pour l’étude des polynômes à une indéterminée $x$.
+
+    \begin{defitheo}{Idéal principal}{}
+        Soit $x$ un élément d’un anneau commutatif. $xA = \enspr{xa}{a \in A}$ est le plus petit idéal de $A$ contenant $x$. On l’appelle \textbf{idéal principal} engendré par $x$, et on le note parfois $(x)$.
+    \end{defitheo}
+
+    On rappelle qu’on note $a \tq b$ pour $a,b \in A$ s’il existe $c \in A$ tel qu $b = c \times a$. Ainsi, 
+    \[ x \tq y \quad \iff \quad yA \subset x A \quad \iff \quad (y) \subset (x) \]   
+
+    \begin{prop}{Opérations sur les idéaux}{}
+        Soient $I_1$ et $I_2$ deux idéaux d’un anneau commutatif $A$. Alors 
+        \begin{enumerate}
+            \item $I_1 \cap I_2$ est un idéal de $A$.
+            \item $I_1 + I_2 = \enspr{x_1 + x_2}{(x_1,x_2) \in I_1 \times I_2}$ est un idéal de $A$.
+        \end{enumerate}
+    \end{prop}
+
+    \subsubsection{Arithmétique dans Z}
+
+    La notion d’idéal permet de s’attarder sur des théorèmes d’arithmétique dans $\mathbb{Z}$. Pour le comprendre, on montre le théorème suivant.
+
+    \begin{theo}{}{}
+        Les idéaux de $\mathbb{Z}$ sont les $n \mathbb{Z}$, où $n \in \mathbb{N}$.
+    \end{theo}
+
+    \begin{demo}{Preuve}{myred}
+        Un idéal de $\mathbb{Z}$ est un sous-groupe de $\mathbb{Z}$ donc de la forme $n \mathbb{Z}$. Réciproquement, on montre que $n \mathbb{Z}$ est stable par multiplication : c’est bien un idéal de $\mathbb{Z}$. Les idéaux de $\mathbb{Z}$ sont donc tous principaux.
+    \end{demo}
+
+    Rappelons que $n \mathbb{Z} = m \mathbb{Z}$ \textit{ssi} $n = \pm m$. Pour $a,b \in \mathbb{Z}$, $a \mathbb{Z} \cap b \mathbb{Z}$ est un idéal de $\mathbb{Z}$ donc il existe un unique $c \in \mathbb{N}$ tel que $a \mathbb{Z} \cap b \mathbb{Z} = c \mathbb{Z}$. De même, $a \mathbb{Z} + b \mathbb{Z}$ est un idéal de $\mathbb{Z}$, donc il existe un unique $d \in \mathbb{N}$ tel que $a \mathbb{Z} + b \mathbb{Z} = d \mathbb{Z}$.
+    
+    \begin{defi}{pgcd \& ppcm}{}
+        Soient $a,b \in \mathbb{Z}$.
+        \begin{itemize}
+            \item On appelle plus grand diviseur commun de $a$ et $b$ l’unique entier naturel $d$ tel que $a \mathbb{Z} + b \mathbb{Z} = d \mathbb{Z}$. On le note $\pgcd(a,b)$ ou $a \wedge b$.
+            \item On appelle plus petit commun multiple de $a$ et $b$ l’unique entier naturel $c$ tel que $a \mathbb{Z} \cap b \mathbb{Z} = c \mathbb{Z}$. On le note $\ppcm(a,b)$ ou $a \vee b$.
+        \end{itemize}
+    \end{defi}
+
+    Il reste à vérifier que le PGCD et le PPCM ainsi définis sont bien les mêmes que ceux entrevus par le passé.
+
+    \begin{theo}{Théorème de Bézout}{}
+        Soient $a,b \in \mathbb{Z}$.
+        \begin{enumerate}
+            \item Il existe un couple $(u,v) \in \mathbb{Z}^2$ tel que $au + bv = a \wedge b$. Une telle relation est appelée \textbf{relation de Bézout} de $a$ et $b$.
+            \item $a$ et $b$ sont premiers entre eux \textit{ssi} il existe un couple $(u,v) \in \mathbb{Z}^2$ tel que $au + bv = 1$.
+        \end{enumerate}
+    \end{theo}
+
+    \begin{demo}{Preuve}{myred}
+        La première propriété découle directement de la deuxième. Justifions donc celle-ci.
+        \begin{itemize}
+            \item[$\implies$] Supposons que $a \wedge b = 1$. Alors $a \mathbb{Z} + b \mathbb{Z} = \mathbb{Z}$ donc $1$ s’écrit sous la forme $au + bv$ avec $u,v \in \mathbb{Z}$.
+            \item[$\impliedby$] Supposons que $1 = au + bv$. En multipliant par $n \in \mathbb{Z}$, on obtient $n = a(nu) + b(nv)$ donc $\mathbb{Z} \subset a \mathbb{Z} + b \mathbb{Z}$. L’inclusion inverse est immédiate, donc $\mathbb{Z} = a \mathbb{Z} + b \mathbb{Z}$ donc $a \wedge b = 1$. 
+        \end{itemize}
+    \end{demo}
+
+    L’algorithme d’Euclide est une méthode efficace pour déterminer le pgcd de deux entiers. Il repose sur le résultat suivant : si $a$ et $b$ sont deux entiers relatifs non nuls et si $a = bq + r$ où $q$ est le quotient et $r$ le reste de la division euclidienne de $a$ par $b$, alors $a \wedge b = b \wedge r$.
+
+    \begin{theo}{Lemme de Gauss}{}
+        Soient $a,b,c \in \mathbb{Z}$. Si $a \tq bc$ et $a \wedge b = 1$, alors $a \tq c$.
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        Retranscrivons les hypothèses : $bc \mathbb{Z} \subset a \mathbb{Z}$ et $a \mathbb{Z} + b \mathbb{Z} = \mathbb{Z}$. En multipliant par $c$, il vient $c \mathbb{Z} \subset a \mathbb{Z}$.
+    \end{demo}
+
+    Une conséquence directe, si $p$ est premier, et $p \tq ab$, alors $p \tq a$ ou $p \tq b$ ; c’est le lemme dit d’Euclide. 
+
+    \subsubsection{L’anneau (Z / nZ, +, x)}
+
+    \begin{theo}{}{}
+        Le triplet $(\mathbb{Z} / n \mathbb{Z}, +, \times)$ est un anneau.
+    \end{theo}
+
+    \begin{demo}{Preuve}{myred}
+        On a déjà montré que $(\mathbb{Z} + n \mathbb{Z}, +)$ est un groupe abélien. L’élément $\barr{1}$ est neutre pour la multiplication. On montre aisément que la loi $\times$ est associative et distributive.
+    \end{demo}
+
+    \begin{prop}{}{}
+        L’élément $\barr{k}$ est inversible dans l’anneau $\mathbb{Z} / n \mathbb{Z}$ \textit{ssi} $k \wedge n = 1$.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Grâce au théorème de Bézout, 
+        \[ \exists a \in \mathbb{Z}, \barr{a} \times \barr{k} = \barr{a k} = \barr{1} \quad \iff \quad \exists (a,b) \in \mathbb{Z}^2, ak + bn = 1 \quad \iff \quad n \wedge k = 1 \]
+    \end{demo}
+
+    Cette preuve fournit directement une méthode pour trouver l’inverse d’un élément de $\mathbb{Z} / n \mathbb{Z}$, ce qui se fait par l’algorithme d’Euclide étendu, décrit dans le chapitre d’arithmétique des polynômes.
+
+    \begin{theo}{}{}
+        Soit $n \in \mathbb{N}^*$. Les assertions suivantes sont équivalentes :
+        \begin{enumerate}
+            \item $\mathbb{Z} / n \mathbb{Z}$ est un corps.
+            \item $\mathbb{Z} / n \mathbb{Z}$ est un anneau intègre.
+            \item $n$ est premier.
+        \end{enumerate}
+    \end{theo}
+
+    \begin{demo}{Démonstration tournante}{myred}
+        \begin{itemize}[leftmargin=2cm]
+            \item[\textbf{(i)} $\implies$ \textbf{(ii)}] Tout corps est intègre.
+            \item[\textbf{(ii)} $\implies$ \textbf{(iii)}] Procèdons par contraposition. Supposons que $n$ n’est pas premier. Il existe donc $a,b \in \mathbb{N}^*$ tels que $n = ab$ avec $a,b \in \intervalleEntier{2}{n-1}$. Donc $\barr{a} \times \barr{b} = \barr{0}$ sans que $\barr{a}$ ni $\barr{b}$ ne soient nuls.
+            \item[\textbf{(iii)} $\implies$ \textbf{(i)}] Si $n$ est premier, tous les éléments de $\mathbb{Z} / n \mathbb{Z}$ sont inversibles, à l’exception de $\barr{0}$.
+        \end{itemize}
+    \end{demo}
+
+    Lorsque $p$ est premier, on note traditionnellement $\mathbb{F}_p$ le corps $\mathbb{Z} / p \mathbb{Z}$.
+
+    \begin{lem}{Lemme chinois}{}
+        Si $m$ et $n$ sont deux entiers premiers entre eux, 
+        \[ \mathbb{Z} / mn \mathbb{Z} \text{ est isomorphe à } \mathbb{Z} / m \mathbb{Z} \times \mathbb{Z} / n \mathbb{Z} \]
+    \end{lem}
+
+    \begin{demo}{Démonstration}{mybrown}
+        Pour $m \wedge n = 1$, construisons un isomorphisme d’anneaux naturel entre $\mathbb{Z}/ mn \mathbb{Z}$ et $\mathbb{Z} / m \mathbb{Z} \times \mathbb{Z} / n \mathbb{Z}$. Pour cela, on notera $\barr{x}$, $\hat{x}$ et $\tilde{a}$ les classes d’équivalence respectives de $x$. Soit maintenant l’application 
+        \[ \fonction{\Phi}{\mathbb{Z}/ mn \mathbb{Z}}{\mathbb{Z} / m \mathbb{Z} \times \mathbb{Z} / n \mathbb{Z}}{\barr{x}}{(\hat{x}, \tilde{x})}  \]   
+        Cette application est bien définie dans le sens où $(\hat{x}, \tilde{x})$ ne dépend pas du choix du représentant $\barr{x}$. En effet, $\Hat{x + knm} = \hat{x}$ et $\Tilde{x + knm} = \tilde{x}$ pour tous $k \in \mathbb{Z}$. De plus, 
+        \begin{itemize}
+            \item $\Phi$ est un morphisme de groupes puisque pour tous $x,y \in \mathbb{Z}$,
+            \[ \Phi\left(\barr{x} + \barr{y}\right) = \Phi\left(\barr{x,y}\right) = \left(\Hat{x + y}, \Tilde{x+ y}\right) = \left(\hat{x} + \hat{y}, \tilde{x} + \tilde{y}\right) = \Phi\left(\barr{x}\right) + \Phi\left(\barr{y}\right) \]   
+            \item On vérifie de même que pour tous $x,y \in \mathbb{Z}$, $\Phi\left(\barr{x} \times \barr{y}\right) = \Phi\left(\barr{x}\right) \times \Phi\left(\barr{y}\right)$.
+            \item Ajoutons que $\Phi\left(\barr{1}\right) = \left(\hat{1}, \tilde{1}\right)$.
+            \item Enfin, les deux anneaux de départ et d’arrivée ont même cardinal, et 
+            \[ x \in \Ker(\Phi) \quad \iff \quad \et{\hat{x} = \hat{0}}{\tilde{x} = \tilde{0}} \quad \iff \quad \et{n \tq x}{m \tq x} \]   
+            $n$ et $m$ étant supposés premiers entre eux, $nm \tq x$, donc $\Ker(\Phi) = \left\{\barr{0}\right\}$. Donc $\Phi$ est bien un isomorphisme.
+        \end{itemize}
+    \end{demo}
+
+    Plus prosaïquement, le théorème chinois affirme que pour $n \wedge m = 1$, l’ensemble des solutions du système 
+    \[ \et{\eqmodulo{x}{a}{n}}{\eqmodulo{x}{b}{m}} \]   
+    est $x_0 + mn \mathbb{Z}$, $x_0$ étant l’unique antécédent par $\Phi$ du couple $(a,b)$ dans $\mathbb{Z} / m n \mathbb{Z}$. 
+
+    On montre par récurrence que si la factorisation première de $n$ est $p_1^{\alpha_1} \times \cdots \times p_r^{\alpha_r}$, alors 
+    \[ \frac{\mathbb{Z}}{n \mathbb{Z}} = \left(\frac{\mathbb{Z}}{p_1^{\alpha_1} \mathbb{Z}}\right) \times \cdots \times \left(\frac{\mathbb{Z}}{p_r^{\alpha_r} \mathbb{Z}}\right) \]   
+    La résolution d’équations dans $\mathbb{Z} / n \mathbb{Z}$ se ramène de la sorte à une résolution d’équations dans des anneaux plus simples.
+
+    \begin{defi}{Indicatrice d’Euler}{}
+        Pour $n \in \mathbb{N}^*$, on pose $\varphi(n) = \card\enspr{k \in \intervalleEntier{1}{n}}{k \wedge n =1}$. Cette fonction est l’\textbf{indicatrice d’Euler}.
+    \end{defi}
+    
+    Elle représente le nombre d’entiers inférieurs à $n$ et premiers avec $n$. Mais c’est également :
+    \begin{itemize}
+        \item le nombre d’éléments inversibles de l’anneau $\mathbb{Z} / n \mathbb{Z}$ (on note parfois l’ensemble des inversibles $(\mathbb{Z} + n \mathbb{Z})^*$).
+        \item le nombre de générateurs du groupe $(\mathbb{Z} / n \mathbb{Z},+)$, qui est donc aussi celui de $(\mathbb{U}_n,\times)$.
+    \end{itemize}
+    Naturellement, $\varphi(1) = 1$ et pour tout entier premier $p$, $\varphi(p) = p-1$. 
+    
+    On peut montrer que pour tout $n \in \mathbb{N}^*$, $n = \sum_{d \tq n} \varphi(n)$.
+
+    \begin{prop}{}{}
+        Soient $m, n \in \mathbb{N}^*$. Si $m \wedge n = 1$, $\varphi(mn) = \varphi(m) \varphi(n)$.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Tout repose sur le lemme des chinois. En effet, si $m \wedge n = 1$, alors $\mathbb{Z} / m n \mathbb{Z}$ et $\mathbb{Z} / m \mathbb{Z} \times \mathbb{Z} / n \mathbb{Z}$ sont isomorphes. Ils possèdent donc le même nombre d’éléments inversibles. Or les inversibles de $\mathbb{Z} / m \mathbb{Z} \times \mathbb{Z} / n \mathbb{Z}$ sont les couples $(a,b)$ où $a$ et $b$ sont des éléments inversibles de $\mathbb{Z} / m \mathbb{Z}$ et $\mathbb{Z} / n \mathbb{Z}$. Ainsi, $\varphi(mn) = \varphi(m) \varphi(n)$.
+    \end{demo}
+
+    \begin{prop}{}{}
+        Pour tout $n \in \mathbb{N}^*$, 
+        \[ \varphi(n) = n \cdotp \prod_{\substack{p \text{ premier} \\ p \tq n}} \left(1 -  \frac{1}{p}\right) \]   
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        \begin{itemize}
+            \item Soient $p$ un entier premier et $\alpha \in \mathbb{N}^*$. $\varphi(p) = p-1$.
+            \item Quels sont maintenant les entier compris entre $1$ et $p^{\alpha}$ non premiers avec $p^{\alpha}$ ? Ce sont exactement les nombres qui admettent $p$ comme diviseur, \textit{i.e.} les multiples de $p$ (compris entre $1$ et $p^{\alpha}$). Il y en a précisément $p^{\alpha - 1}$. Ainsi, $\varphi(p^{\alpha}) = p^{\alpha} - p^{\alpha - 1}$.
+            \item Soit $n = p_1^{\alpha_1} \times \cdots \times p_r^{\alpha_r}$ la factorisation première de $n$. Les entiers $p_i^{\alpha_i}$ étant premiers entre eux, 
+            \begin{align*}
+                \varphi(n) 
+                &= \varphi\left(p_1^{\alpha_1} \times \cdots \times p_r^{\alpha_r}\right) = \varphi(p_1^{\alpha_1})\cdots \varphi(p_r^{\alpha_r}) \\
+                &= \prod_{i=1}^r \left(p_i^{\alpha_i} - p_i^{\alpha_i - 1}\right) = p_1^{\alpha_1} \times \cdots \times p_r^{\alpha_r} \prod_{i=1}^r \left(1 - \frac{1}{p_i}\right) \\
+                &= n \cdotp \prod_{i = 1}^r \left(1 -  \frac{1}{p_i}\right)
+            \end{align*}
+        \end{itemize}
+    \end{demo}
+
+    Comment expliquer l’alignement de certains points sur le graphe de $\varphi$ ? C’est très simple :
+    \begin{itemize}
+        \item $\varphi(p) = p-1$ donc les points de coordonnées $(p,p-1)$ appartiennent à la droit d’équation $y = x-1$.
+        \item $\varphi(p^{\alpha}) = p^{\alpha}\left(1 - \frac{1}{p}\right)$ donc les points d’abcisse $p^{\alpha}$ appartiennent aux droites d’équations $y = \left(1 - \frac{1}{p}\right)x$, etc.
+    \end{itemize}
+
+    \begin{lem}{}{}
+        Soit $n \in \mathbb{N}^*$. L’ensemble des éléments inversibles $(\mathbb{Z} / n \mathbb{Z})^*$ est un groupe pour la loi $\times$.
+    \end{lem}
+
+    \begin{prop}{Théorème d’Euler}{}
+        Soient $a \in \mathbb{Z}$ et $n \in \mathbb{N} \backslash \{0,1\}$. Si $a \wedge n = 1$, alors 
+        \[ \eqmodulo{a^{\varphi(n)}}{1}{n} \]   
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        $\varphi(n)$ n’est rien d’autre que le cardinal du groupe des inversibles $((\mathbb{Z} + n \mathbb{Z})^*, \times)$. Si $a \wedge n = 1$, $\barr{a}$ est un élément de ce groupe, donc $\barr{a}^{\varphi(n)} = \barr{1}$. D’où le résultat.
+    \end{demo}
+
+    On retrouve directement le petit théorème de Fermat.
+
+    \begin{coro}{Petit théorème de Fermat}{}
+        Soient $p$ un entier premier et $a \in \mathbb{Z}$. Alors $\eqmodulo{a^p}{a}{p}$. Si de plus $p$ ne divise pas $a$, $\eqmodulo{a^{p-1}}{1}{p}$.
+    \end{coro}
+
+    \subsubsection{Anneaux de polynômes à une indéterminée}
+
+    Dans ce paragraphe, $\mathbb{K}$ est un sous-corps de $\mathbb{C}$.
+
+    \begin{theo}{Division euclidienn}{}
+        Soient $A,B \in \mathbb{K}[X]$ où $B \neq \tilde{0}$. Il existe un unique couple $(Q,R) \in \mathbb{K}[X]$ tel que 
+        \[ A = BQ + R \esp{et pour lequel} \deg(R) < \deg(B) \]  
+    \end{theo}
+
+    \begin{theo}{Idéaux de $\mathbb{K}[X]$}{}
+        Les idéaux de $\mathbb{K}[X]$ sont les ensembles $(P) = P \cdotp \mathbb{K}[X] = \enspr{P \cdotp Q}{Q \in \mathbb{K}[X]}$ pour $P \in \mathbb{K}[X]$.
+    \end{theo}
+
+    Les idéaux de $\mathbb{K}[X]$ sont donc tous principaux.
+
+    \begin{demo}{Preuve}{myred}
+        Soit $I$ un idéal de $\mathbb{K}[X]$. $(\tilde{0})$ est un idéal de $\mathbb{K}[X]$. Intéressons nous désormais au cas où $I \neq \left\{\tilde{0}\right\}$.
+        \begin{itemize}
+            \item Soit $P$ un polynôme non nul de $I$ de degré minimal. Remarquons que $(P) \subset I$.
+            \item Soit $A \in I$. Effectuons la division euclidienne de $A$ par $P$. On trouve 
+            \[ A = BP + R \esp{avec} \deg(R) < \deg(P) \]   
+            Comme $I$ est un idéal, $BP \in I$. De plus, $(I,+)$ étant un groupe, $R = A - BP \in I$. Par minimalité du degré de $P$, il vient $R = \tilde{0}$, et donc $A = BP$. Les éléments de $I$ sont donc exactement les multiples de $P$.
+        \end{itemize}
+    \end{demo}
+
+    On peut montrer que $(P) = (Q)$ \textit{ssi} $Q = \alpha P$ avec $\alpha \in \mathbb{K}^*$. Tout idéal de $\mathbb{K}[X]$ distinct de $\left\{\tilde{0}\right\}$ est donc engendré par un unique polynôme unitaire. Ce dernier est alors qualifié de \textbf{polynôme minimal}.
+
+    De même que l’on a défini le PGCD et le PPCM pour les entiers relatifs au moyen des idéaux, nous pouvons définir ceux d’un couple ou d’une famille de polynômes. Si $A$ et $B$ sont des polynômes, 
+    \[ (A) + (B) = \enspr{AU + BV}{(U,V) \in \mathbb{K}^2[X]} \text{ est un idéal de } \mathbb{K}[X] \]   
+    Cet idéal est donc engendré par un unique polynôme unitaire, appelé PGCD du couple $(A,B)$.
+
+    \begin{defi}{pgcd \& ppcm}{}
+        Soient $A,B \in \mathbb{K}[X]$.
+        \begin{itemize}
+            \item On appelle plus grand diviseur commun de $A$ et $B$ l’unique polynôme unitaire ou nul qui engendre l’idéal $\enspr{AU + BV}{(U,V) \in \mathbb{K}[X]^2}$. On le note $\pgcd(A,B)$ ou $A \wedge B$.
+            \item On appelle plus petit commun multiple de $A$ et $B$ l’unique polynôme unitaire ou nul qui engendre l’idéal $(A) \cap (B)$. On le note $\ppcm(A,B)$ ou $A \vee B$.
+        \end{itemize}
+    \end{defi}
+
+    On montre alors que pour tout polynôme $D \in \mathbb{K}[X]$, 
+    \[ D \tq A \esp{et} D \tq B \quad \iff \quad D \tq A \wedge B \]   
+    $A \wedge B$ est donc l’unique polynôme (unitaire) de plus haut degré qui divise à la fois $A$ et $B$.
+
+    On étend la définition du pgcm à celle d’une famille de polynômes non nuls. $P_1 \wedge \cdots \wedge P_n$ est l’unique polynôme unitaire vérifiant 
+    \[ (P_1 \wedge \cdots \wedge P_n) = \enspr{P_1 U_1 + \cdots + P_n U_n}{(U_1,\ldots,U_n) \in \mathbb{K}[X]^n} \]
+    Enfin, deux polynômes sont premiers entre eux si $A \wedge B = 1$. Cela signifie que leurs diviseurs communs sont les polynômes constants.
+
+    \begin{theo}{dit de Bézout}{}
+        Soient $A,B \in \mathbb{K}[X]$.
+        \begin{enumerate}
+            \item Il existe un couple $(U,V) \in \mathbb{K}[X]^2$ tel que $AU + BV = A \wedge B$.
+            \item $A$ et $B$ sont premiers entre eux \textit{ssi} il existe $(U,V) \in \mathbb{K}[X]^2$ tel que $AU + BV = 1$.
+        \end{enumerate}
+    \end{theo}
+
+    \begin{lem}{de Gauss}{}
+        Soient $A,B,C \in \mathbb{K}[X]$. Si $A \tq BC$ et $A \wedge B = 1$, alors $A \tq C$.
+    \end{lem}
+
+\subsection{Structure d’algèbre}
+
+    \begin{defi}{Algèbre}{}
+        Une \textbf{algèbre} sur un corps $\mathbb{K}$, ou $\mathbb{K}$-algèbre, est un ensemble $\mathcal{A}$ munis de trois lois $+$, $\times$ et $\cdotp$ tel que :
+        \begin{enumerate}[label=$(h_{\alph*})$]
+            \item $(\mathcal{A}, +, \cdotp)$ est un $\mathbb{K}$-espace vectoriel ;
+            \item $(\mathcal{A}, +, \times)$ est un anneau ;
+            \item les lois $\times$ et $\cdotp$ sont \textit{compatibles} :
+            \[ \forall a,b \in \mathbb{K}, \quad \forall x,y \in \mathcal{A}, \quad (a \cdotp x) \times (b \cdotp y) = ab \cdotp (x \times y) \]   
+        \end{enumerate}
+    \end{defi}
+
+    \begin{omed}{Exemples}{myyellow}
+        Parmi les exemples les plus classiques, on peut citer :
+        \begin{itemize}
+            \item $(\mathbb{K}[X], +, \times, \cdotp)$
+            \item $(\mk{n}, +, \times, \cdotp)$
+            \item $(\mathcal{L}(E), +, \circ, \cdotp)$
+            \item $(\mathcal{F}(I,\mathbb{K}), + , \times, \cdots)$
+        \end{itemize}
+    \end{omed}
+
+    Une sous-algèbre de $\mathcal{A}$ est une partie $\mathcal{B}$ de $\mathcal{B}$ telle que $\mathcal{B}$ est à la fois un sous-anneau de $\mathcal{A}$ et un sous-espace vectoriel de $\mathcal{A}$. On peut citer par exemple l’ensemble des fonctions de classe $\mathcal{C}^{\infty}$ définies sur un intervalle et à valeurs dans $\mathbb{K}$ ou bien les matrices carrées d’ordre $n$ triangulaires supérieures.
+
+    \begin{defi}{Morphisme d’algèbres}{}
+        Soient $\mathcal{A}$ et $\mathcal{B}$ deux $\mathbb{K}$-algèbres. On appelle \textbf{morphisme d’algèbres} (de $\mathcal{A}$ dans $\mathcal{B}$) toute application $\Phi : \mathcal{A} \to \mathcal{B}$ telle que $\Phi$ est un morphisme d’anneaux et $\Phi$ un morphisme d’espaces vectoriels.
+    \end{defi}

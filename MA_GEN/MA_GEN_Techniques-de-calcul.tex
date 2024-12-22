@@ -1,0 +1,1520 @@
+\customchapter{Techniques de calcul}{Ce chapitre est un répertoire des techniques de calcul couvrant différents domaines des mathématiques. Certaines méthodes, fondamentales, faciliteront l’utilisation des outils mathématiques.}
+
+\section{Trigonométrie}
+
+\subsection{Cercle trigonométrique}
+
+    \begin{theo}{Conséquences de la construction du cercle trigonométrique}{}
+        Soient $\alpha,\beta \in \mathbb{R}$ et $z \in \mathbb{C}$.
+
+        \begin{alors}
+            \item $(\cos \alpha)^2 + (\sin \alpha)^2 = 1$
+            \item $|z| = 1 \iff \exists \alpha \in \mathbb{R}, z = \cos (\alpha) + i \sin (\alpha)$
+            \item $\cos \alpha + i \sin \alpha = \cos \beta + i \sin \beta \iff \alpha \equiv \beta \mod 2\pi$
+        \end{alors}
+    \end{theo}
+
+    \begin{longtblr}[
+        caption={Les formules qui se lisent sur le cercle}
+        ]{
+            colspec={| X[4,c] X[1,c] X[4,c] || X[4,c] X[1,c] X[4,c]|}, width = \linewidth, 
+            hlines={0.4pt, black},
+            row{odd} = {myolive!30},
+        }
+        $\cos(- \alpha)$ & = & $\cos(\alpha)$ & $\sin(- \alpha)$  & = & $-\sin(\alpha)$ \\
+        $\cos(\pi + \alpha)$ & = & $-\cos(\alpha)$ & $\sin(\pi + \alpha)$  & = & $-\sin(\alpha)$ \\
+        $\cos(\pi - \alpha)$ & = & $-\cos(\alpha)$ & $\sin(\pi - \alpha)$  & = &  $\sin(\alpha)$ \\
+        $\cos\left( \frac{\pi}{2} + \alpha \right)$ & = & $- \sin (\alpha)$ &  $\sin \left( \frac{\pi}{2} + \alpha \right)$ & = & $\cos(\alpha)$ \\
+        $\cos\left( \frac{\pi}{2} - \alpha \right)$ & = & $\sin(\alpha)$ & $\sin \left( \frac{\pi}{2} - \alpha \right)$ & = & $\cos(\alpha)$ 
+    \end{longtblr}
+
+\subsection{Formules de trigonométrie}
+
+    \begin{prop}{Formules d’addition / soustraction}{}
+        Soient $a,b \in \mathbb{R}$.
+        \begin{align}
+            \cos(a + b) = \cos(a)\cos(b) - \sin(a)\sin(b) \\
+            \sin(a + b) = \sin(a)\cos(b) + \sin(b)\cos(a) \\
+            \cos(a - b) = \cos(a)\cos(b) + \sin(a)\sin(b) \\
+            \sin(a - b) = \sin(a)\cos(b) - \sin(b)\cos(a) 
+        \end{align}
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        Identifier les parties réelle et imaginaire de 
+        \[ e^{i(a \pm b)} = e^{ia}e^{\pm ib} \]
+    \end{demo}
+
+    \begin{coro}{Formules de duplication}{}
+        Soit $a \in \mathbb{R}$.
+        \begin{align}
+            \cos(2a) = \cos^2(a) - \sin^2(a) \\
+            \sin(2a) = 2\sin(a)\cos(a)
+        \end{align}
+    \end{coro}
+
+    \begin{demo}{Raisonnement}{myorange}
+        Poser $b = a$ dans $(1.1)$ et $(1.2)$.
+    \end{demo}
+
+    \begin{prop}{Formule de déphasage}{}
+        Soient $a,b,x \in \mathbb{R}$.
+        \[ a\cos(x) + b\sin(x) = |a + ib|\cos\left(x - \arg(a + ib) \right) \]        
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Considérer
+        \[ \Re \left(\overline{(a + ib)}e^{ix} \right) = \Re \left(|a +ib|e^{i \left(x-\arg(a+ib) \right)} \right) \]
+    \end{demo}
+
+    \begin{theo}{Formules d’Euler}{}
+        Soit $a \in \mathbb{R}$.
+        \[ \cos(a) = \frac{e^{ia}+e^{-ia}}{2} \qquad \sin(a) = \frac{e^{ia}-e^{-ia}}{2i}\]
+    \end{theo}
+
+    \begin{coro}{Formules de multiplication}{}
+        Soient $a,b \in \mathbb{R}$.
+        \begin{align}
+            \cos(a)\cos(b) = \frac{1}{2} \left[ \cos(a+b) + \cos(a-b) \right] \\
+            \sin(a)\sin(b) = \frac{1}{2} \left[ \cos(a-b) - \cos(a+b) \right] \\
+            \sin(a)\cos(b) = \frac{1}{2} \left[ \sin(a+b) + \sin(a-b) \right]
+        \end{align}
+    \end{coro}
+
+    \begin{demo}{Idée}{myorange}
+        \begin{itemize}[label=\textcolor{myorange}{$\star$}]
+            \item Exprimer les produits avec la formule d’Euler et développer puis rassembler.
+            \item Sinon, additionner les formules d’addition soustraction.
+        \end{itemize}
+    \end{demo}
+
+    \begin{coro}{}{}
+        Soit $a \in \mathbb{R}$.
+        \begin{align}
+            \cos^2(a) = \frac{1 + \cos(2a)}{2} \\
+            \sin^2(a) = \frac{1 - \cos(2a)}{2} \\
+            \cos(a)\sin(a) = \frac{\sin(2a)}{2}
+        \end{align}
+    \end{coro}
+    
+    \begin{demo}{Raisonnement}{myorange}
+        \begin{itemize}[label=\textcolor{myorange}{$\star$}]
+            \item Prendre $b = a$ dans (1.7), (1.8) et (1.9).
+            \item Sinon, s’aider des formules de duplication, en utilisant $\cos^2(a) + \sin^2(a) = 1$.
+        \end{itemize}
+    \end{demo}
+
+    \begin{prop}{}{}
+        Soient $p,q \in \mathbb{R}$.
+        \begin{align}
+            \sin(p) + \sin(q) = 2\sin \left( \frac{p + q}{2} \right) \cos \left( \frac{p - q}{2} \right) \\
+            \sin(p) - \sin(q) = 2\cos \left( \frac{p + q}{2} \right) \sin \left( \frac{p - q}{2} \right) \\
+            \cos(p) + \cos(q) = 2\cos \left( \frac{p + q}{2} \right) \cos \left( \frac{p - q}{2} \right) \\
+            \cos(p) - \cos(q) = -2\sin \left( \frac{p + q}{2} \right) \sin \left( \frac{p - q}{2} \right)
+        \end{align}
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        \begin{itemize}[label=\textcolor{myolive}{$\star$}]
+        \item Utiliser l’angle moitié.
+            \begin{align*}
+            \Im(e^{ip} + e^{iq}) & = \sin(p) + \sin(q) \\
+            & = \Im \left(e^{i\frac{p+q}{2}} \left( e^{i (p - \frac{p+q}{2})} + e^{i(q - \frac{p+q}{2})} \right)\right) \\
+            & = \Im \left(e^{i\frac{p+q}{2}} \left( e^{i (\frac{p-q}{2})} + e^{-i(\frac{p-q}{2})} \right)\right) \\
+            & = 2 \sin\left(\frac{p+q}{2}\right) \cos\left(\frac{p-q}{2}\right) \\
+            \Re(e^{ip} + e^{iq}) & = \cos(p) + \cos(q) \\
+            & = \Re \left(e^{i\frac{p+q}{2}} \left( e^{i (p - \frac{p+q}{2})} + e^{i(q - \frac{p+q}{2})} \right)\right) \\
+            & = \Re \left(e^{i\frac{p+q}{2}} \left( e^{i (\frac{p-q}{2})} + e^{-i(\frac{p-q}{2})} \right)\right) \\
+            & = 2 \cos\left(\frac{p+q}{2}\right) \cos\left(\frac{p-q}{2}\right)
+            \end{align*}
+        \item Sinon, remplacer $p$ et $q$ par $\left( \frac{a + b}{2} \right)$ et $\left( \frac{a - b}{2} \right)$ dans $(1.7)$, $(1.8)$, $(1.9)$.
+        \end{itemize}
+    \end{demo}
+
+    \begin{prop}{}{}
+        Soit $\alpha \in \mathbb{R} \backslash \left(\frac{\pi}{2} + \pi \mathbb{Z}\right)$.
+        \[ 1 + \tan^2(\alpha) = \frac{1}{\cos^2(\alpha)} \] 
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        \[ 1 + tan^2(\alpha) = \frac{cos^2(\alpha) + \sin^2(\alpha)}{\cos^2(\alpha)} = \frac{1}{\cos^2(\alpha)} \]
+    \end{demo}
+
+    \begin{prop}{}{}
+        Soient $a,b \in \mathbb{R} \backslash \left(\frac{\pi}{2} + \pi \mathbb{Z}\right)$.
+        \begin{align}
+            \text{si } \cos(a+b) \neq 0, \quad  \tan(a + b) = \frac{\tan(a) + \tan(b)}{1 - \tan(a)tan(b)} \\
+            \text{si } \cos(a-b) \neq 0, \quad \tan(a - b) = \frac{\tan(a) - \tan(b)}{1 + \tan(a)\tan(b)}
+        \end{align}
+    \end{prop}
+
+    \begin{demo}{Idée de preuve}{myolive}
+        Utiliser les formules d’addition puis diviser par $\cos(a)\cos(b)$ en haut et en bas.
+    \end{demo}
+
+    \begin{prop}{Formules de l’arc moitié}{}
+        Soient $\alpha \in \mathbb{R} \backslash \left( \pi \mathbb{Z} \right)$ et $ t = \tan \frac{\alpha}{2}$.
+            \begin{align}
+                \cos(\alpha)=\frac{1-t^2}{1 + t^2} \\
+                \sin(\alpha) = \frac{2t}{1 + t^2} \\
+                \text{si } \alpha \not\equiv \frac{\pi}{2} \, [\pi], \quad \tan(\alpha) = \frac{2t}{1 - t^2}
+            \end{align}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        \begin{itemize}[label=\textcolor{myolive}{$\star$}]
+            \item Pour sin et cos, utiliser les formules d’addition et remarquer que le dénominateur s’écrit $\cos^2(\alpha) + \sin^2(\alpha)$, d’où le résultat en divisant en haut et en bas par $\cos^2 \left(\frac{\alpha}{2} \right)$.
+            \item Pour tan, utiliser les formules précédentes, ou prendre $b = a$ dans $(1.17)$.
+        \end{itemize}
+    \end{demo}
+
+\subsection{Annexe de trigonométrie}
+
+    \begin{longtblr}[
+        caption={Annexe de Trigonométrie}
+        ]{
+            colspec={|X[3,c]||X[2,l] |}, width = \linewidth,
+            rowhead = 1, 
+            hlines={0.4pt, black},
+            row{odd} = {myolive!30}, row{1} = {myolive, fg=white, font=\bfseries}
+        }
+        Formules & Idée de preuve \\
+            $\begin{aligned}[t]
+                & \sin^2(x) + \cos^2(x) = 1 \\
+                & \abs{e^{ix}} = 1
+            \end{aligned}$
+            &
+            Voir le cercle trigonométrique
+            \\
+            $\begin{aligned}[t]
+                \cos(x) &= \frac{e^{ix} + e^{-ix}}{2} \\
+                \sin(x) &= \frac{e^{ix} - e^{-ix}}{2}
+            \end{aligned}$
+            & 
+            $\Re(z) = (z + \bar{z})/2$ appliqué à $e^{ix}$, de même pour $\Im$. 
+            \\
+            $\begin{aligned}[t]
+                \cos(a+b) &= \cos(a)\cos(b) - \sin(a)\sin(b) \\
+                \sin(a+b) &= \sin(a)\cos(b) + \cos(a)\sin(b) \\
+                \cos(a-b) &= \cos(a)\cos(b) + \sin(a)\sin(b) \\
+                \sin(a-b) &= \sin(a)\cos(b) - \cos(a)\sin(b)
+            \end{aligned}$
+            &
+            Identifier les parties réelle et imaginaire de $e^{i(a+b)} = e^{ia}e^{ib}$ pour les deux premières, puis remplacer $b$ par $-b$ pour les deux suivantes. 
+            \\
+            $\begin{aligned}[t]
+                \cos(2a) &= 2\cos^2(a) - 1 = 1 - 2\sin^2(a) \\
+                \sin(2a) &= 2\cos(a)\sin(a)
+            \end{aligned}$
+            & 
+            Poser $b = a$ dans les formules ci-dessus. 
+            \\
+            $\begin{aligned}[t]
+                a\cos(x) + b\sin(x) = |a+ib|\cos(x-\arg(a+ib))
+            \end{aligned}$
+            & 
+            Considérer l’égalité entre $\Re\left((\overline{a+ib})e^{ix}\right)$ et $\Re\left(|a+ib|e^{i(x-arg(a+ib))}\right)$. 
+            \\
+            $\begin{aligned}[t]
+                2\cos(a)\cos(b) &= \cos(a+b) + \cos(a-b) \\
+                2\sin(a)\sin(b) &= \cos(a-b) - \cos(a+b) \\
+                2\sin(a)\cos(b) &= \sin(a+b) + \sin(a-b)
+            \end{aligned}$
+            &
+            Exprimer les produits avec la formule d’Euler et développer puis rassembler. Sinon, additionner les formules d’addition et soustraction. 
+            \\
+            $\begin{aligned}[t]
+                2\cos^2(a) &= 1 + \cos(2a) \\
+                2\sin^2(a) &= 1 - \cos(2a)
+            \end{aligned}$
+            & 
+            Poser $b = a$ dans les formules ci-dessus. 
+            \\
+            $\begin{aligned}[t]
+                \cos(a) + \cos (b) &= 2\cos\left(\frac{a+b}{2}\right)\cos\left(\frac{a-b}{2}\right) \\
+                \cos(a) - \cos (b) &= -2\sin\left(\frac{a+b}{2}\right)\sin\left(\frac{a-b}{2}\right) \\
+                \sin(a) + \sin (b) &= 2\sin\left(\frac{a+b}{2}\right)\cos\left(\frac{a-b}{2}\right) \\
+                \sin(a) - \sin (b) &= 2\cos\left(\frac{a+b}{2}\right)\sin\left(\frac{a-b}{2}\right)
+            \end{aligned}$
+            & 
+            Utiliser l’angle moitié, ou remplaçer $a$ et $b$ par $(a+b)/2$ et $(a-b)/2$ dans les formules de multiplication. 
+            \\
+            $\begin{aligned}[t]
+                \tan(a+b) &= \frac{\tan(a)+\tan(b)}{1 -\tan(a)\tan(b)} \\
+                \tan(a-b) &= \frac{\tan(a)-\tan(b)}{1 + \tan(a)\tan(b)}
+            \end{aligned}$
+            &  
+            Utiliser les formules d’addition puis diviser en haut et en bas par $\cos(a)\cos(b)$. 
+            \\
+            $\begin{aligned}[t]
+                \cos(a) &= \frac{1 - t^2}{1 + t^2} \\
+                \sin(a) &= \frac{2t}{1 + t^2} \qquad \text{avec } t = \tan\left(\frac{a}{2}\right)\\
+                \tan(a) &= \frac{2t}{1 - t^2}
+            \end{aligned}$
+            & Remarquer que $\begin{aligned}[b]
+                \cos(a) &= \frac{\cos\left(2 \frac{a}{2}\right)}{\cos^2(a) + \sin^2(a)} \\
+                &= \frac{\cos^2(a) - \sin^2(a)}{\cos^2(a) + \sin^2(a)}
+            \end{aligned}$
+            puis diviser en haut et en bas par $\cos^2(a)$. 
+            
+            De même pour $\sin$. 
+            
+            Prendre $b = a$ dans la formule d’addition de la tangente.
+    \end{longtblr}
+
+\newpage
+
+\section{Calcul algébrique}
+
+\subsection{Sommes et produits classiques}
+
+    \begin{prop}{Somme et produit télescopique}{}
+        Soient $m$ et $n$ deux entiers tels que $m \leq n$ et $a_m, \ldots,a_{n+1}$ des nombres.
+
+        \begin{alors}
+            \item $\sum\limits^n_{k=m} (a_{k+1} - a_k) = a_{n+1} - a_m$
+            \item $\prod\limits^n_{k=m} \frac{a_{k+1}}{a_k} = \frac{a_{n+1}}{a_m}$
+        \end{alors}
+    \end{prop}
+
+    \begin{omed}{Savoir-faire \textcolor{black}{(calculer une somme de puissances d’entiers consécutifs)}}{myolive}
+        Soit $n \in \mathbb{N}^*$.
+    
+        Alors 
+        \begin{align*} 
+            \sum\limits_{k=1}^n k &= \frac{n(n+1)}{2} \\ 
+            \sum\limits_{k=1}^n k^2 &= \frac{n(n+1)(2n+1)}{6} 
+        \end{align*}
+    \end{omed}
+
+    \begin{demo}{Méthode}{myolive}
+        Utiliser une somme télescopique.
+        Pour la seconde par exemple, 
+        \begin{align*}
+            \sum\limits_{i=1}^n \left((k+1)^3 -k^3\right) & \overset{\text{téléscopage}}{=} (n+1)^3 -1 \\
+            & \overset{\text{en développant}}{=} 3 \sum\limits_{i=1}^n k^2 + 3 \sum\limits_{i=1}^n k + \sum\limits_{i=1}^n 1
+        \end{align*}
+        On peut ainsi obtenir la valeur de $\sum\limits_{i=1}^n k^2$, à partir de celle de $\sum\limits_{i=1}^n k$. 
+        
+        Ce résultat peut se généraliser à $\sum\limits_{i=1}^n k^m$ pour $m \in \mathbb{N}$.
+    \end{demo}
+
+    \begin{prop}{Somme des termes d’une suite géométrique}{}
+        Soient $(n,m) \in \mathbb{N}^2, \, m < n$ et $q \in \mathbb{C}$.
+        \[ \sum\limits_{k = m}^{n} q^k = \sisinon{n-m+1}{q = 1}{q^m \times \frac{1-q^{n-m+1}}{1-q}} \]
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Utiliser une somme télescopique.
+        \begin{align*}
+            q \sum\limits_{k=0}^n q^k - \sum\limits_{k=0}^n q^k & \overset{\text{en factorisant}}{=} (q-1) \sum\limits_{k=0}^n q^k \\
+            & \overset{\text{téléscopage}}{=} q^{n+1} - 1
+        \end{align*}
+        On veillera à distinguer le cas $q = 1$.
+    
+        Pour obtenir le résultat, utiliser que $\sum\limits_{k=m}^n q^k = q^m \sum\limits_{k=0}^{n-m} q^k  $
+    \end{demo}
+
+    \begin{prop}{Factorisation de $a^{n}-b^{n}$}{}
+        Soient $n \in \mathbb{N}$ et $a$ et $b$ deux nombres.
+    
+        Alors 
+        \[ a^{n}-b^{n} = (a-b) \sum\limits_{k = 0}^{n-1} a^{k}b^{n-1-k} \]
+    \end{prop}
+    
+    \begin{demo}{Idée de preuve}{myolive}
+        Par développement du membre de droite, avec changement d’indice, on retrouve le terme de gauche.
+    \end{demo}
+
+    \begin{prop}{Triangle de Pascal}{}
+        Soient $n \in \mathbb{N}$ et $k \in \intervalleEntier{0}{n-1}$.
+    
+        Alors \[ \binom{n}{k} + \binom{n}{k+1} = \binom{n+1}{k+1} \]
+    \end{prop}
+    
+    \begin{demo}{Idée}{myolive}
+        Faire le calcul.
+    \end{demo}
+
+    \begin{theo}{Formule du binôme de Newton}{}
+        Soient $a$ et $b$ deux nombres et $n \in \mathbb{N}$.
+    
+        Alors \[ (a+b)^{n} = \sum\limits_{k = 0}^{n} \binom{n}{k} a^{k} b^{n-k} \]
+    \end{theo}
+    
+    \begin{demo}{Principe}{myred}
+        Par récurrence.
+    \end{demo}
+
+\subsubsection{Sommes trigonométriques}
+
+    \begin{omed}{Savoir-faire \textcolor{black}{(Linéariser)}}{mypink}
+        Linéariser une puissance de fonction trigonométrique en somme de fonctions trigonométriques avec formule d’Euler combinée au binôme de Newton.
+    \end{omed}
+     
+    \begin{omed}{Exemple}{mypink}
+        Soit $t \in \mathbb{R}$.
+    \begin{align*}
+       \cos^5(t) &= \left(\frac{e^{it} + e^{-it}}{2}\right)^5 \\
+       & = \frac{1}{32} \left(e^{i5t} + 5e^{i3t} + 10e^{it} + 10 e^{-it} + 5 e^{-i3t} + e^{-i5t}\right) \\
+       & = \frac{1}{16} \left(\cos(5t) + 5 \cos(3t)+ 10 \cos(t)\right) 
+    \end{align*}
+    \end{omed}
+
+    \begin{omed}{Savoir-faire}{mypink}
+        Calculer une somme qui implique un cosinus ou sinus en $nx$.
+    \end{omed}
+
+    \begin{omed}{Exemple}{mypink}
+        Soit $\theta \in \mathbb{R}$ et $n \in \mathbb{N}$.
+    
+        Calculons $S_n (\theta) = \sum\limits_{k=0}^n \cos(k\theta)$ et $T_n(\theta) = \sum\limits_{k=0}^n \sin(k\theta)$
+    
+        On remarque que $B_n (\theta) = S_n (\theta) + i T_n(\theta) = \sum\limits_{k=0}^n e^{ik\theta}$
+    
+        $\circ$ si $\theta \equiv 0 \, [2\pi]$, $S_n(\theta) = n+1$ et $T_n(\theta) = 0$
+    
+        $\circ$ si $\theta \not\equiv 0 \, [2 \pi]$, $e^{i\theta} \neq 1$ donc,
+    \begin{align*}
+        B_n(\theta) &= \frac{e^{i(n+1)} -1}{e^{i\theta}-1} \\
+        &= \frac{e^{i(\frac{n+1}{2})\theta}}{e^{i\frac{\theta}{2}}} \frac{e^{i(\frac{n+1}{2})\theta} - e^{-i(\frac{n+1}{2})\theta}}{e^{i\frac{\theta}{2}} - e^{-i\frac{\theta}{2}}} \\
+        &= \left(\cos \left(n\frac{\theta}{2}\right) + i\sin \left(n\frac{\theta}{2}\right)\right)\frac{\sin(\frac{n+1}{2}\theta)}{\sin(\frac{\theta}{2})}
+    \end{align*}
+    Il suffit d’utiliser $S_n = \Re(B_n)$ et $T_n = \Im(B_n)$.
+    \end{omed}
+
+    \begin{omed}{Savoir-faire}{mypink}
+        Écrire une fonction trigonométrique en $nx$ comme polynôme de fonctions trigonométriques en $x$.
+    \end{omed}
+        
+    \begin{omed}{Exemple}{mypink}
+        Écrivons $\cos(5x)$ en fonction de $\cos(x)$ :
+        \begin{align*}
+            \cos(5x) &= \Re\left((e^{ix})^5\right) \\
+            &= \Re \left((\cos(x) + i\sin(x))^5\right) \\
+            &= \cos^5(x) - 10\cos^3(x)\sin^2(x) + 5 \cos(x) \sin^4(x) \\
+            &= \cos^5(x) - 10\cos^3(x) (1-\cos^2(x)) + 5 \cos(x) (1 - \cos^2(x))^2 \\
+            &= 16 \cos^5(x) - 20 \cos^3(x) + 5 \cos(x)
+        \end{align*}
+    \end{omed}
+
+\subsection{Systèmes échelonnés et méthode du pivot}
+
+    \begin{defi}{Opérations élémentaires}{}
+    On appelle \textbf{opérations élémentaires} sur les lignes d’un système les trois opérations suivantes :
+    \begin{itemize}
+        \item \textbf{Échange de lignes}, noté $L_i \leftrightarrow L_j$
+        \item \textbf{Dilatation}, notée $L_i \leftarrow \lambda L_j$
+        \item \textbf{Transvection}, notée $L_i \leftarrow L_i + \lambda L_j$
+    \end{itemize}
+    \end{defi}
+
+    \begin{omed}{Méthode \textcolor{black}{(Algorithme du pivot de Gauss)}}{myyellow}
+	\begin{enumerate}
+	\item Si nécessaire, échanger la première ligne avec une ligne qui contient la première variable.
+	\item On divise la première ligne par le coefficient de la première variable.
+	\item On élimine la première variable dans toutes les lignes suivantes en leur ajoutant un multiple approprié de $L_{1}$.
+	\item On recommence avec la seconde ligne.
+	\end{enumerate}
+    \end{omed}
+
+\section{Calcul dans C}
+
+    \begin{defi}{Parties réelle et imaginaire}{}
+	    Soient $x,y \in \mathbb{R}$ et $z = x + iy \in \mathbb{C}$.
+
+	    Alors
+	    \begin{itemize}
+		    \item $x$ est la \textbf{partie réelle} de $z$, notée $\Re(z)$
+		    \item $y$ est la \textbf{partie imaginaire} de $z$, notée $\Im(z)$
+	    \end{itemize}
+    \end{defi}
+
+    \begin{prop}{Opérations sur les parties réelle et imaginaire}{}
+	    Soient $z,z' \in \mathbb{C}$ et $\lambda \in \mathbb{R}$.
+
+	    \begin{alors}
+		    \item $\Re(z + \lambda z') = \Re(z) + \lambda \Re(z')$ \newline $\Im(z + \lambda z') = \Im(z) + \Lambda \Im(z')$
+		    \item $\Re(zz') = \Re(z) \Re(z') - \Im(z) \Im(z')$ \newline $\Im(zz') = \Im(z) \Re(z') + \Re(z) \Im(z')$
+		    \item $\Re(z^{-1}) = \frac{\Re(z)}{\Re^2(z) + \Im^2(z)}$ \newline  $\Im(z^{-1}) = \frac{-\Im(z)}{\Re^2(z) + \Im^2(z)}$
+	    \end{alors}
+    \end{prop}
+
+    \begin{defi}{Conjugaison}{}
+        Soient $x,y \in \mathbb{R}$ et $z = x + iy \in \mathbb{C}$.
+    
+        Alors le \textbf{conjugué} de $z$ est $\bar{z} = x - iy$.
+    \end{defi}
+
+    \begin{prop}{Propriété de la conjugaison}{}
+        Soient $z,z' \in \mathbb{C}$ et $\lambda \in \mathbb{R}$.
+    
+        \begin{alors}
+            \item $\overline{(z + \lambda z')} = \bar{z} + \lambda \bar{z'}$
+            \item $\overline{zz'} = \bar{z} \bar{z'}$
+            \item $\overline{z^n} = \bar{z}^n$
+            \item $\bar{\bar{z}} = z$
+            \item $\Re(z) = \frac{1}{2} \Re(z + \bar{z})$
+            \item $\Im(z) = \frac{1}{2} \Im(z - \bar{z})$
+        \end{alors}
+    \end{prop}
+
+    \begin{defi}{Module}{}
+        Soient $x,y \in \mathbb{R}$ et $z = x + iy \in \mathbb{C}$.
+    
+        Alors le \textbf{module} de $z$ est le nombre $|z| = \sqrt{x^2 + y^2}$.
+    \end{defi}
+
+    \begin{prop}{Interprétation géométrique du module : cercles et disques}{}
+        \begin{soient}
+            \item $\vec{w} \in \vect{\mathcal{P}}$ d’affixe $z_{\vec{w}}$,
+            \item $A,B \in \mathcal{P}$ d’affixes respectives $z_A,z_B$.
+        \end{soient}
+        \begin{alors}
+            \item $|z_{\vec{w}}| = ||\vec{w}||$
+            \item $|z_A| = OA$
+            \item $|z_A - z_B| = AB$
+            \item \begin{enumerate}[label=(\alph*)]
+                \item L’ensemble des points de $\mathcal{P}$ dont l’affixe $z$ vérifie $|z - z_A| = r$ est le cercle de centre A et de rayon $r$.
+                \item L’ensemble des points de $\mathcal{P}$ dont l’affixe $z$ vérifie $|z - z_A| \leq r$ est le disque fermé de centre A et de rayon $r$.
+                \item L’ensemble des points de $\mathcal{P}$ dont l’affixe $z $vérifie $|z - z_A| < r$ est le disque ouvert de centre A et de rayon $r$.
+            \end{enumerate}
+        \end{alors}
+    \end{prop}
+
+    \begin{prop}{Propriétés du module}{}
+        Soient $z,z' \in \mathbb{C}$.
+    
+        \begin{alors}
+            \item $|z| = 0 \Leftrightarrow z = 0$
+            \item $\Re(z) = |z| \Leftrightarrow z \in \mathbb{R}*$ et $\Im(z) = |z| \Leftrightarrow z \in i \mathbb{R}*$
+            \item $|\Re(z)| \leq |z|$ et $|\Im(z)| \leq |z|$
+            \item $|\bar{z}| = |z|$ et $||z|| = |z|$
+            \item $z \bar{z} = |z^2|$ et $z^{-1} = \frac{1}{|z^2|} \bar{z}$
+            \item $|zz'| = |z||z'|$ et $|z^n|=|z|^n $
+            \item $\abs{\frac{z}{z'}} = \frac{|z|}{|z'|}$ et $|z^{-n}| = |z|^{-n}$
+            \item $\big||z|-|z'|\big| \leq |z+z'| \leq |z|+|z'|$ avec égalité \textit{ssi}
+            \[ \exists \, \lambda \in \mathbb{R}_+, \, z = \lambda z' \text{ ou } z' = 0 \]
+        \end{alors}
+    \end{prop}
+
+    \begin{defi}{Argument}{}
+        Soit $z \in \mathbb{C}^*$.
+    
+        Alors
+            \begin{itemize}
+                \item On appelle \textbf{argument} de $z$ et on note $\arg(z)$ tout réel $\theta$ tel que $\frac{z}{|z|} = e^{i \theta}$. 
+          
+                L’argument principal de $z$ est $\theta$ si $\theta \in \intervalleOF{-\pi}{\pi}$.
+                \item L’écriture $z = |z|e^{i \theta}$ est appelée écriture exponentielle. 
+                
+                L’écriture $z = |z|(\cos\theta + i\sin\theta)$ est appelée écriture trigonométrique.
+            \end{itemize}
+    \end{defi}
+
+    \begin{prop}{Propriétés de l’argument}{}
+        Soient $z,z' \in \mathbb{C}$ et $\lambda \in \mathbb{R}^*$.
+    
+        \begin{alors}
+            \item $\arg(\lambda z) \equiv \arg(z) [2 \pi] \text{ si } \lambda > 0$  et $\arg(\lambda z) \equiv \arg(z) + \pi \text{ si } \lambda < 0$
+            \item $\arg(zz') \equiv \arg(z) + \arg(z') [2 \pi]$
+            \item $\arg(-z) \equiv \arg(z) + \pi [2 \pi]$
+            \item $\arg(\bar{z}) \equiv -\arg(z) [2 \pi]$
+            \item $\arg\left(\frac{1}{z}\right) \equiv -\arg(z) [2 \pi]$
+            \item $\arg\left(\frac{z}{z'}\right) \equiv \arg(z) - \arg(z') [2 \pi]$
+            \item $\arg(z^n) \equiv n\arg(z) [2 \pi]$
+            \item $z \in \mathbb{R}^* \iff \arg(z) \equiv 0 \, [\pi]$
+		    \item $z \in \mathbb{R}^*_+ \iff \arg(z) \equiv 0 \, [2 \pi]$
+		    \item $z \in i \mathbb{R}^* \iff \arg(z) \equiv \frac{\pi}{2} \, [\pi]$
+        \end{alors}
+    \end{prop}
+
+    \begin{defi}{Exponentielle complexe}{}
+        Soient $x,y \in \mathbb{R}$ et $z = x + iy \in \mathbb{C}$.
+    
+        On pose \[ e^z = e^{x +iy} = e^x e^{iy} = e^x (\cos(y) + i\sin(y)) \]
+    \end{defi}
+
+    \begin{prop}{Propriétés de l’exponentielle complexe}{}
+        Soient $x,y \in \mathbb{R}$ et $z = x + iy, z' \in \mathbb{C}$.
+    
+        \begin{alors}
+            \item $|e^z| = e^x$. En particulier, $e^z \neq 0$ et $\arg(e^z) \equiv y \, [2 \pi]$
+            \item $e^{\bar{z}} = \overline{e^z}$
+            \item $\exp(z + z') = \exp(z) \exp(z')$
+            \item $(\exp(z))^{-1} = \exp(-z)$
+            \item $\left\{ \exp(z), \, z \in \mathbb{C} \right\} = \mathbb{C}^*$
+            \item $\exp(z) = \exp(z') \iff \exists \, k \in \mathbb{Z}, \, z = z' + 2ik\pi$
+        \end{alors}
+    \end{prop}
+    
+\subsection{Résolution d’équation de degré 2}
+
+    \begin{omed}{Méthode}{myolive}
+	    Pour trouver une racine carrée d’un nombre complexe $z = a +ib$ :
+	    \begin{enumerate}
+		    \item On pose $\omega = x +iy$,
+		    \item on résout le système en $(x,y)$ obtenu en identifiant les parties réelle et imaginaire et les modules de $\omega^2$ et $z$.
+	    \end{enumerate}
+    \end{omed}
+
+    \begin{prop}{}{}
+        Soient $(a,b,c) \in \mathbb{C}^3$ tel que $a \neq 0$.
+        
+        On pose $\Delta = b^2 - 4ac$.
+    
+        \begin{alors}
+            \item Si $\Delta = 0$, l’équation $az^2 + bz +c = 0$ admet une unique solution.
+            \item Si $\Delta \neq 0$, l’équation $az^2 + bz + c = 0$ admet exactement deux solutions complexes.
+        \end{alors}
+
+        En notant $z_1$ et $z_2$ ces deux solutions (éventuellement confondues), 
+        alors 
+        \[ z_1 + z_2 = -\frac{b}{a} \quad \text{et} \quad z_1 z_2 = \frac{c}{a} \]
+
+        En particulier, il existe un unique ensemble $\left\{z_1,z_2\right\}$ de complexes tels que \[ \left\{ \begin{array}{l}
+			z_1 + z_2 = S \\
+			z_1z_2 = P
+		\end{array} \right. \]
+		Ces nombres sont les solutions de $z^2 -Sz + P = 0$.
+    \end{prop}
+
+\subsection{Racines n-èmes}
+
+    \begin{defi}{Racine $n$-ème de l’unité}{}
+	    Soit $n \in \mathbb{N}$. 
+	
+	    Une racine $n$-ième de l’unité est $z \in \mathbb{C}$ tel que $z^{n}=1$. On note $\mathbb{U}_n$ l’ensemble des racines $n$-ièmes de l’unité, et $\mathbb{U}_n \subset \mathbb{U}$.
+    \end{defi}
+
+    \begin{prop}{L’ensemble $\mathbb{U}$}{}
+        On note $\mathbb{U} = \left\{z \in \mathbb{C}, |z| = 1\right\}$ l’ensemble des racines $n$-èmes de l’unité.
+
+        $(\mathbb{U},\times)$ est un groupe commutatif.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+		Immédiat en utilisant le fait que $\abs{z} = 1$.
+	\end{demo}
+
+    \begin{theo}{Description des racines n-ièmes de l’unité}{}
+        Soit $n \in \mathbb{N}^*$.
+    
+        Alors \[ \mathbb{U}_n = \left\{ e^{i \times \frac{2k \pi}{n}} \,|\, k \in \intervalleEntier{0}{n-1} \right\} \]
+        En particulier, \[ \card(\mathbb{U}_n) = n \]
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+		Par double inclusion, dont l’une est évidente.
+
+	Pour l’autre, on pose $z \in \mathbb{U}_n$. Comme $\abs{z} = 1, \, \exists \theta \in \mathbb{R}, \, z = e^{i\theta}$. De plus, $z^n = e^{i n \theta} =1 = e^0$. Donc $n \theta \equiv 0$, et donc $\exists k \in \mathbb{Z}$ tel que $z = e^{i \frac{2k \pi}{n}}$
+
+	Pour montrer que $k \in \intervalleEntier{0}{n-1}$, utiliser la division euclidienne de $k$ par $n$. On doit aussi montrer que les éléments décrits sont disjoints, en utilisant à nouveau les congruences :
+	\[ e^{i\frac{2k\pi}{n}} = e^{i \frac{2 k' \pi}{n}} \iff k \equiv k' \, [n] \]
+	\end{demo}
+
+    \begin{coro}{somme et produit des racines $n$-èmes de l’unité}{}
+        Soit $n \in \mathbb{N}^* \backslash \left\{ 1\right\}$.
+    
+        \begin{alors}
+            \item La somme des racines $n$-èmes de l’unité est 0.
+            \item Le produit des racines $n$-èmes de l’unité est $(-1)^{n-1}$.
+        \end{alors}
+    \end{coro}
+
+    \begin{demo}{Preuve}{myorange}
+		$ \zeta_n = e^{i \frac{2\pi}{n}} \neq 1$ car $n \geq 2$.
+	\begin{align*}
+		\sum\limits_{k=0}^{n-1} \zeta_n^k &= \frac{\zeta_n^n -1}{\zeta_n -1} =0 \\
+		\prod\limits_{k=0}^{n-1} \zeta_n^k &= \zeta_n^{\sum_{k=0}^{n-1} k} \\
+		&=  \zeta_n^{\frac{n(n-1)}{2}} \\
+		&= e^{i\pi (n-1)} \\
+		&= (-1)^{n-1}
+	\end{align*}
+	\end{demo}
+
+    \begin{theo}{Description des racines n-ièmes d’un complexe}{}
+        Soient $n \in \mathbb{N}^* \backslash \left\{ 1\right\}$, $a \in \mathbb{C}^*$ et $z \in \mathbb{C}$.
+    
+        Alors \[ z^{n}=a \Leftrightarrow z \in \left\{\sqrt[n]{|a|} \times e^{i\frac{\arg(a)}{n}} \times e^{i\frac{2k\pi}{n}} \,|\, k \in \intervalleEntier{0}{n-1} \right\} \]
+        En particulier, l’équation $z^n = a$ admet $n$ racines complexes deux à deux distinctes.
+    \end{theo}
+    
+    \begin{demo}{Démonstration}{myred}
+        Raisonner par double inclusion, dont l’une est évidente.
+        
+        Pour l’autre, si $z$ est une racine $n$-ème de $a$, $\abs{z}^n = \abs{a}$ donc $\abs{z} = \sqrt[n]{a}$. 
+        
+        De plus, \begin{align*}
+            \arg(z^n) \equiv \arg(a) \, [2\pi] & \iff n\arg(z) \equiv \arg(a) \, [2 \pi] \\
+            & \iff \exists k \in \mathbb{Z}, \, \arg(z) = \frac{1}{n} (\arg(a) + 2 k \pi)
+        \end{align*}
+    \end{demo}
+
+
+\newpage
+
+\section{Calcul polynomial}
+
+\subsection{Définition et opérations}
+
+    \begin{defi}{Polynôme à une indéterminée}{}
+        \begin{itemize}
+            \item Un \textbf{polynôme $P$ à une indéterminée} à coefficients dans $\mathbb{K}$ est une suite $(a_k)_{k \in \mathbb{N}} \in \mathbb{K}^{\mathbb{N}}$, nulle à partir d’un certain rang.
+            \item Les nombres $a_0,\ldots,a_n$ sont appelés \textbf{coefficients} de $P$.
+            \item Le polynôme dont tous les coefficients sont nuls est appelé \textbf{polynôme nul}, et noté 0.
+            \item Si $P \neq 0$, le degré de $P$ est le plus grand entier $n$ tel que $a_n \neq 0$. On le note $\deg(P)$. 
+            
+            Par convention, on définit le degré du polynôme nul comme étant $\deg(0) = -\infty$. Les polynômes de degré 0 ou $-\infty$ sont appelés polynômes constants.
+        \end{itemize}
+    \end{defi}
+
+    \begin{defi}{Indéterminée}{}
+        On pose $X = (0,1,0,\ldots) = (\delta_{k,1})_{k \in \mathbb{N}}$. On remarque que $ \forall \ell \in \mathbb{N}^*, \, X^{\ell} = (\delta_{k,l})_{k \in \mathbb{N}}$. On convient que $X^0 = (1,0,\ldots)$.
+
+        Soit $P = (a_0, a_1, \ldots, a_n, 0, \ldots)$ un polynôme. Alors $P = \sum\limits_{i=0}^n a_i X^i$.
+
+        \begin{itemize}
+            \item $X$ est appelée une indéterminée.
+            \item Si $P \neq 0$, et $\deg(P) = n$, $a_n X^n$ est appelé terme de plus haut degré. Le nombre $a_n$ est appelé coefficient dominant. \newline
+            Si $a_n = 1$, le polynôme est dit unitaire.
+            \item On note alors $\mathbb{K}[X]$ l’ensemble des polynômes à une indéterminée à coefficients dans $\mathbb{K}$. \newline
+            Si $n \in \mathbb{N}$, on note $\mathbb{K}_n[X]$ l’ensemble des polynômes de degré inférieur ou égal à $n$.
+        \end{itemize}
+    \end{defi}
+
+    \begin{theo}{Lois sur les degrés}{}
+        Soient $P = \sum\limits_{k =0}^n a_k X^k$, $Q=\sum\limits_{k =0}^m b_k X^k$ dans $\mathbb{K}[X]$, et $\lambda \in \mathbb{K}$. \newline
+        On pose $N = \max(n,m)$, et $\et{\forall k > n, \, a_k = 0}{\forall k > m, \, b_k = 0}$
+    
+        \begin{alors}
+            \item \begin{enumerate}[label=\alph*.]
+                \item $P + Q = \sum\limits_{k =0}^N (a_k + b_k) X^k$
+                \item $P + Q \in \mathbb{K}[X]$
+                \item $\deg(P+Q) \leq \max(\deg(P),\deg(Q))$, avec égalité si $ \left\{ \begin{array}{l}
+                    \deg(P) \neq \deg(Q) \\
+                    \text{ou } P = Q = 0 \\
+                    \text{ou } \et{\deg(P)=\deg(Q) \in \mathbb{N}}{a_{\deg(P)} + b_{\deg(Q)} \neq 0}
+                \end{array} \right. $
+            \end{enumerate}
+            \item \begin{enumerate}[label=\alph*.]
+                \item $\lambda P = \sum\limits_{k =0}^n (\lambda a_k) X^k$
+                \item $\lambda P \in \mathbb{K}[X]$
+                \item Si $\lambda \neq 0$, $\deg(\lambda P) = \deg(P)$
+            \end{enumerate}
+            \item \begin{enumerate}[label=\alph*.]
+                \item $PQ = \sum\limits_{k=0}^{n+m} \left( \sum\limits_{i = 0}^k a_i b_{k-i} \right) X^k$
+                \item $PQ \in \mathbb{K}[X]$
+                \item $\deg(PQ) = \deg(P) + \deg(Q)$
+            \end{enumerate}
+        \end{alors}
+    \end{theo}
+    
+    \begin{theo}{}{}
+        Soit $n \in \mathbb{N}$.
+    
+        Alors $(1, X, \ldots, X^n)$ est une base de $\mathbb{K}_n[X]$, appelée base canonique de $\mathbb{K}_n[X]$.
+    \end{theo}
+    
+    \begin{demo}{Preuve}{myred}
+        La famille est génératrice par évidence. Pour étudier la liberté de cette famille, remarquer qu’un polynôme est le polynôme si et seulement si tous ses coefficients sont nuls.
+    \end{demo}
+
+    \begin{omed}{Remarque}{myred}
+        Les coordonnées d’un polynôme $\sum\limits_{k=0}^n a_k X^k$ dans la base canonique sont donc $(a_0,\ldots,l_n)$. En particulier, deux polynômes sont égaux si et seulement si ils ont les mêmes coefficients.
+    \end{omed}
+
+    \begin{prop}{Toute famille de polynômes de degrés échelonnés ne contenant pas 0 est libre}{}
+        Soit $\mathcal{F} = (P_0, \ldots, P_s)$ une famille d’éléments de $\mathbb{K}[X]$. \newline
+        \begin{suppose}
+            \item $0 \notin \mathcal{F}$
+            \item $ \deg(P_0) < \ldots < \deg(P_s) $
+        \end{suppose}
+        Alors la famille est libre.
+    \end{prop}
+    
+    \begin{demo}{Démonstration}{myolive}
+        Raisonner par l’absurde, en posant  $i_0 = \max(\{i \in \intervalleEntier{0}{s}, \, \lambda_i \neq 0\})$ et obtenant l’égalité \[ \lambda_{i_0}P_{i_0} = -\sum\limits_{i=0}^{i_0 -1} \lambda_i P_i\] 
+        Ainsi il y a non concordance des degrés car la famille est de degrés échelonnés.
+    \end{demo}
+
+\subsection{Composition}
+
+    \begin{defi}{Composition}{}
+        Soient $P = \sum\limits_{k = 0}^n a_k X^k$ et $Q$ deux éléments de $\mathbb{K}[X]$.
+    
+        Alors on définit \[ P \circ Q = \sum\limits_{k = 0}^n a_k Q^k \] avec la convention que $Q^0 = 1$.
+        
+        On le note aussi $P(Q)$.
+    \end{defi}
+
+    \begin{prop}{Propriétés de la composition}{}
+        Soient $P,Q \in \mathbb{K}[X]$. 
+    
+        \begin{alors}
+            \item $P \circ Q \in \mathbb{K}[X]$
+            \item Si $\deg(Q) \geq 1$, $\deg(P \circ Q) = \deg(P) \times \deg(Q)$
+        \end{alors}
+    \end{prop}
+
+\subsection{Dérivation}
+
+    \begin{defi}{Dérivation}{}
+        Soit $P = \sum\limits_{k = 0}^n a_k X^k \in \mathbb{K}[X]$.
+    
+        Alors le \textbf{polynôme dérivé} de $P$ est le polynôme 
+        \[ \sum\limits_{k = 1}^n k a_k X^{k-1} = \sum\limits_{k = 0}^{n-1} (k+1) a_{k+1} X^k \] 
+        On le note $D(P)$ ou $P'$.
+    \end{defi}
+    
+    \begin{prop}{Propriétés du polynôme dérivé}{}
+        Soient $P,Q \in \mathbb{K}[X]$, et $\lambda \in \mathbb{K}$.
+    
+        \begin{alors}
+            \item $D(P) \in \mathbb{K}[X]$
+            \item Si $\deg(P) \geq 1$, $\deg(D(P)) = \deg(P)-1$
+            \item $D(P) = 0 \iff P \text{ est constant}$
+            \item $D(\lambda P + Q) = \lambda D(P) + D(Q)$
+            \item \begin{multline*}
+                \forall s \in \mathbb{N}^*, \, \forall (\lambda_1, \ldots, \lambda_s) \in \mathbb{K}^s, \, \forall (P_1, \ldots, P_s) \in \mathbb{K}[X]^s, \\
+                D\left( \sum\limits_{i=1}^s \lambda_i P_i \right) = \sum\limits_{i=1}^s \lambda_i D(P_i)
+            \end{multline*}
+            \item $D(PQ) = D(P)Q + PD(Q)$
+            \item $D(P \circ Q) = D(Q) \times (D(P) \circ Q)$
+        \end{alors}
+    \end{prop}
+    
+    \begin{demo}{Démonstration}{myolive}
+        Pour \textbf{(i)} à \textbf{(v)}, pas de difficulté particulière.
+    
+        \textbf{(vi)} s’obtient en développant les deux termes de l’égalité, en utilisant des réindexations de sommes. (Calcul lourd)
+    
+        \textbf{(vii)} Par récurrence finie sur $\intervalleEntier{1}{n}$, en utilisant (vi) dans l’hypothèse de récurrence, on obtient que $ \forall k \in \mathbb{N}^*, \, D(Q^k) = k Q^{k-1} D(Q) $. Ainsi, 
+        \begin{align*}
+            D(P \circ Q) &= D \left(\sum\limits_{k=0}^n a_k Q^k\right) \\
+            &= \sum\limits_{k=0}^n a_k D(Q^k) \\
+            &= \sum\limits_{k=1}^{n}k a_k Q^{k-1} D(Q) \\
+            &= (D(P) \circ Q)D(Q)
+        \end{align*}
+    \end{demo}
+
+    \begin{defi}{Dérivée $k$-ème}{}
+        Soit $P \in \mathbb{K}[X]$, et $k \in \mathbb{N}^*$.
+    
+        Alors la \textbf{dérivée $k$-ème} du polynôme $P$ est
+        \[ D^k(P)= \sisinon{P}{k = 0}{D(D^{k-1}(P))} \] 
+        On la note aussi $P^{(k)}$.
+    \end{defi}
+    
+    \begin{prop}{}{}
+        Soient $a \in \mathbb{K}$ et $(k,n) \in \mathbb{N}^2$.
+    
+        Alors 
+        \[ D^k((X-a)^n) = \sisinon{0}{k > n}{\frac{n!}{(n-k)!}(X-a)^{n-k}} \]
+        En particulier, $D^n((X-a)^n) = n!$.
+    \end{prop}
+    
+    \begin{demo}{Preuve}{myolive}
+        Par récurrence finie sur $\intervalleEntier{0}{n}$
+    \end{demo}
+    
+    \begin{coro}{}{}
+        Soient $P \in \mathbb{K}[X]$ et $k \in \mathbb{N}$.
+    
+        Alors \[ D^k(P) = 0 \iff \deg(P) \leq k-1 \] 
+    \end{coro}
+    
+    \begin{demo}{Démonstration}{myorange}
+        Étudier à part le cas $\deg(P) = -\infty$.
+    
+        Sinon, discuter en fonction $k$ (si supérieur ou non à $\deg(P)$). Si ce n’est pas le cas, remarque qu’on peut appliquer la proposition précédente à $X^k$.
+    \end{demo}
+    
+    \begin{theo}{Formule de Leibniz}{}
+        \begin{soient}
+            \item $P,Q \in \mathbb{K}[X]$
+            \item $k \in \mathbb{N}$
+        \end{soient}
+    
+        Alors \[ D^k(PQ) = \sum\limits_{l=0}^k \binom{k}{l} D^l(P) D^{k-l}(Q) \]
+    \end{theo}
+    
+    \begin{demo}{Idée de démonstration}{myred}
+        De la même façon que le binôme de Newton, par récurrence, en utilisant dans l’hérédité une réindexation de somme et la formule du triangle de Pascal.
+    \end{demo}
+
+    \begin{theo}{Formule de Taylor}{}
+        \begin{soient}
+            \item $P \in \mathbb{K}[X]$
+            \item $n \geq \deg(P)$
+            \item $a \in \mathbb{K}$
+        \end{soient}
+    
+        Alors \[ P = \sum\limits_{k=0}^n \frac{\widetilde{D^k(P)}(\alpha)}{k!}(X-\alpha)^k \]
+    \end{theo}
+    
+    \begin{demo}{Démonstration}{myred}
+        Pour $n \in \mathbb{N}$, on pose \begin{multline*}
+            \mathcal{H}_n \, : \, \forall P \in \mathbb{K}[X], \, \deg(P) \leq n \\
+            \implies P = \sum\limits_{k=0}^n \frac{\widetilde{D^k(P)}(\alpha)}{k!}(X-\alpha)^k
+        \end{multline*}
+        $\mathcal{H}_0$ se démondre aisément.
+        
+        Soit $n \in \mathbb{N}$ tel que $\mathcal{H}_n$ est vraie. Soit $P \in \mathbb{K}[X]$ tel que $\deg(P) \leq n+1$. 
+        Appliquer $\mathcal{H}_n$ à $D(P)$. Ensuite, remarquer, en posant 
+        \[ R = \sum\limits_{k=0}^{n+1} \frac{\widetilde{D^k(P)}(\alpha)}{k!}(X-\alpha)^k \]
+        que $D(R) = D(P)$, i.e. $P-R$ est un polynôme constant. Or, l’évaluation en $\alpha$ donne $P = R$. Donc $\mathcal{H}_{n+1}$ est vraie.
+    \end{demo}
+    
+    \begin{omed}{Remarque}{myred}
+        La famille $(1,(X-\alpha), \ldots, (X-\alpha)^n)$ est de degrés échelonnés et ne contient pas 0 donc est libre. Le théorème donne que cette famille est génératrice de $\mathbb{K}_n[X]$ et donne donc les coordonnées d’un polynôme dans cette base.
+    \end{omed}
+
+\subsection{Polynômes Caractéristiques}
+
+    \subsubsection{Polynômes interpolateurs de Lagrange}
+
+    \begin{defi}{Polynômes interpolateurs de Lagrange}{}
+        Soient $n \in \mathbb{N}^*$ et $(a_0,\ldots,a_n) \in \mathbb{K}^{n+1}$ des scalaires distincts. 
+        
+        Pour $i \in \intervalleEntier{0}{n}$, on pose le $i$-ème \textbf{polynôme interpolateur de Lagrange}
+        \[ L_i(X) = \prod_{\substack{j = 0 \\ j \neq i}}^{n} \frac{X - a_j}{a_i - a_j} \]
+    \end{defi}
+
+    \begin{omed}{Remarque}{myyellow}
+        Dans certaines situations, on pose seulement 
+        \[ L_i(X) = \prod_{\substack{j = 0 \\ j \neq i}}^{n} (X - a_j) \]
+        qui est du moins unitaire.
+    \end{omed}
+
+    \begin{prop}{Base de $\mathbb{K}_n[X]$}{}
+        $(L_0,\ldots, L_n)$ est une base de $\mathbb{K}_n[X]$.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        On sait que $\dim(\mathbb{K}_n[X]) = n+1$. Or $\card(L_0,\ldots,L_n) = n+1$. Donc $(L_0,\ldots,L_n)$ est une base \textit{ssi} elle est libre.
+
+        Soient $(\lambda_0,\ldots,\lambda_n) \in \mathbb{K}^{n+1}$ tels que 
+        \[ \sum_{k=0}^{n} \lambda_k L_k = 0 \]  
+        En en déduit que pour tout $i \in \intervalleEntier{0}{n}$, 
+        \[ \sum_{k=0}^{n} \lambda_k L_k(a_i) = 0 \]   
+        où $L_k(a_i) = \sisi{0}{i \neq k}{1}{i = k}$. Donc $\lambda_i = 0$ pour $i \in \intervalleEntier{0}{n}$, d’où la famille est libre.
+    \end{demo}
+
+    \begin{omed}{Première application \textbf{(DEES)}}{myolive}
+        Soit 
+        \[ F(X) = \frac{P(X)}{\prod_{i=0}^n (X-a_i)} \] 
+        où $\deg(P) \leq n$ et $a_0,\ldots,a_n$ sont distincts.
+
+        Alors il existe des uniques $\lambda_0,\ldots,\lambda_n$ tels que 
+        \[ F = \sum_{i=0}^{n} \frac{\lambda_i}{X - a_i} \]
+    \end{omed}
+
+    \begin{demo}{Preuve}{myolive}
+        \begin{align*}
+            \frac{P(X)}{\prod_{i=0}^{n} X - a_i} 
+            &= \sum_{i=0}^{n} \frac{\lambda_i}{X - a_i} \\
+            &= \frac{\sum_{i=0}^{n} \lambda_i L_i(X)}{\prod_{i=0}^{n} X-a_i}
+        \end{align*}
+        Ce qui équivaut à 
+        \[ P(X) = \sum_{i=0}^{n} \lambda_i L_i(X) \]   
+        D’où l’existence et l’unicité de $(\lambda_0,\ldots,\lambda_n)$ car $(L_0,\ldots,L_n)$ est une base de $\mathbb{K}_n[X]$.
+    \end{demo}
+
+    \begin{exo}{DESS}{}
+        Donner la DEES du polynôme 
+        \[ F = \frac{1}{X^n - 1} \]   
+        dans $\mathbb{C}[X]$
+    \end{exo}
+
+    \begin{demo}{Solution}{nfpgreen}
+        On sait que 
+        \[ X^n - 1 = \sum_{k=1}^{n} \left(X - e^{\frac{2ik\pi}{n}}\right) \]
+        D’après le résultat précédent, 
+        \[ \frac{1}{X^n - 1} = \sum_{k=1}^{n} \frac{\lambda_k}{X - e^{\frac{2ik\pi}{n}}} \]
+        Pour tout $k \in \intervalleEntier{1}{n}$, 
+        \begin{align*}
+            \lambda_k 
+            &= \left. \frac{X - e^{\frac{2ik\pi}{n}}}{X^n - 1} \right|_{X = e^{\frac{2ik \pi}{n}}} \\
+            \text{Or } X^n - 1 
+            &= \left( X - e^{\frac{2ik\pi}{n}} \right) Q(X) \\
+            \text{Donc } nX^{n-1} 
+            &= Q(X) + (X- e^{\frac{2ik\pi}{n}}) Q'(X) \\
+            \text{d’où } n \left( \left(e^{\frac{2ik\pi}{n}}\right)^{n-1} \right)
+            &= Q\left( e^{\frac{2ik\pi}{n}} \right) \\
+            \text{Ainsi, } \lambda_k 
+            &= \frac{1}{Q\left(e^{\frac{2ik\pi}{n}}\right)} \\
+            &= \frac{1}{n \left( \left(e^{\frac{2ik\pi}{n}}\right)^{n-1} \right)} \\
+            &= \frac{e^{\frac{2ik\pi}{n}}}{n}
+        \end{align*}
+        Donc 
+        \[ \frac{1}{X^n -1} = \frac{1}{n} \sum_{k=1}^{n} \frac{e^{\frac{2ik\pi}{n}}}{(X - e^{\frac{2ik\pi}{n}})} \]
+    \end{demo}
+
+    \begin{omed}{Application \textcolor{black}{(Isomorphisme)}}{myolive}
+        Soit $E = \mathbb{K}_n[X]$ et $(a_0,\ldots,a_n) \in \mathbb{K}^{n+1}$ distincts.
+
+        Alors 
+        \[ \fonction{\Phi}{E}{\mathbb{K}^{n+1}}{P}{\left(P(a_0),\ldots,P(a_n)\right)} \]  
+        est un isomorphisme.
+    \end{omed}
+
+    \begin{demo}{Preuve}{myolive}
+        \begin{itemize}
+            \item \textbf{Linéarité} \quad Par évidence.
+            \item \textbf{Bijectivité} \quad Comme $\Phi$ est linéaire et $\dim(E) = n+1 = \dim(\mathbb{K}^{n+1})$, il suffit de montrer que $\Phi$ est injective, \textit{i.e.} que $\ker(\Phi) = \{0\}$.
+            Soit $P \in \ker(\Phi)$. Alors pour tout $i \in \intervalleEntier{0}{n}$, $P(a_i) = 0$ donc $P$ admet $n+1$ racines distinctes. Or $\deg(P) \leq n$, donc $P = 0$.
+        \end{itemize}
+    \end{demo}
+
+    \begin{omed}{Remarque}{myolive}
+        Comme $\Phi$ est bijective, pour tout $(\alpha_0,\ldots,\alpha_n)$, il existe un unique polynôme $P$ tel que 
+        \[ \forall i \in \intervalleEntier{0}{n} \quad P(a_i) = \alpha_i \]  
+        Ainsi, 
+        \[ P = \sum_{i=0}^{n} \alpha_i L_i \]  
+    \end{omed}
+
+    \subsubsection{Polynômes de Tchebychev}
+
+    \begin{defi}{Polynômes de Tchebychev}{}
+        Soit $n \in \mathbb{N}$. 
+
+        On appelle \textbf{polynôme de Tchebychev} de degré $n$ l’application définie par 
+        \[ \fonction{T_n}{\intervalleFF{-1}{1}}{\mathbb{R}}{x}{\cos(n \arccos(x))} \] 
+    \end{defi}
+
+    On peut calculer explicitement la valeur de ces polynômes : 
+    \begin{align*}
+        T_n(x)&=\Re\left((\cos n\alpha +i\sin n\alpha)\right)\\
+        &=\Re\left((\cos \alpha +i\sin \alpha)^n\right)\\
+        &=\Re\left((\cos \arccos x +i\sin \arccos x)^n\right)\\
+        &=\Re\left(( x +i\sqrt{1-x^2})^n\right)\\
+        &=\Re\left(\sum_{k=0}^n \binom{n}{k} x^{n-k} i^{k}(\sqrt{1-x^2})^k\right)\\
+        &=\sum_{k=0}^{\ent{n/2}} \binom{n}{2k} x^{n-2k} (i)^{2k}(1-x^2)^k\\
+        &=\sum_{k=0}^{\ent{n/2}} \binom{n}{2k} x^{n-2k}(x^2-1)^k
+        \end{align*}
+    On remarque que \[ \forall n \in \mathbb{N}, \lilbox{myolive}{$T_n(-1) = (-1)^n$} \text{ et } \lilbox{myolive}{$T_n(1) = 1$} \] 
+    On peut aussi trouver aisément \[ \forall n \in \mathbb{N}, T_n(0) = \sisi{0}{n \text{ est impair}}{(-1)^{\frac{n}{2}}}{n \text{ est pair}} \]
+
+    \begin{prop}{Relation de récurrence}{}
+        $T_0(x) = 1$, $T_1(x) = x$ et pour tout $n \in \mathbb{N}$,
+        \[ T_{n+2}(x) = 2x T_{n+1}(x) - T_n(x) \]
+    \end{prop}
+
+    \begin{omed}{Remarque}{myolive}
+        Les polynômes de Tchebychev sont parfois définis par cette relation de récurrence. Pour retrouver la formule de la définition, on peut montrer par récurrence double que \[ \forall n \in \mathbb{N}, T_n(\cos(\alpha)) = \cos(n \alpha) \] en utilisant les mêmes formules de trigonométries que dans la preuve qui suit.
+    \end{omed}
+
+    \begin{demo}{Preuve}{myolive}
+        Soit $x \in \intervalleFF{-1}{1}$ et $\alpha = \arccos(x)$. 
+
+        En utilisant les formules d’addition et de soustraction du cosinus, on obtient 
+        \begin{align*}
+            \cos((n+2)\alpha) &= \cos((n+1)\alpha)\cos(\alpha) - \sin((n+1)\alpha)\sin(\alpha) \\
+            \cos(n\alpha) &= \cos((n+1)\alpha)\cos(\alpha) + \sin((n+1)\alpha)\sin(\alpha)
+        \end{align*}
+        En sommant les deux égalités, on obtient : 
+        \[ \cos((n+2)\alpha) + \cos(n\alpha) = 2 \cos((n+1)\alpha) \cos(\alpha) \] 
+        On a alors, pour tout $x \in \intervalleFF{-1}{1}$, 
+        \[ T_{n+2}(x) + T_n(x) = 2x T_{n+1}(x) \] 
+    \end{demo}
+
+    \begin{prop}{}{}
+        Soit $n \in \mathbb{N}^*$.
+
+        Le coefficient dominant de $T_n$ est $2^{n-1}$ et $\deg(T_n) = n$.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Par récurrence double.
+    \end{demo}
+
+    Soit $n \in \mathbb{N}^*$. On remarque que pour $k$ parcourant $\intervalleEntier{0}{n-1}$, 
+    \[ T_n \left(\cos\left(\frac{(2k+1)\pi}{2n}\right)\right) = \cos\left(\frac{\pi}{2} + k\pi\right) = 0 \] 
+    Or pour $k \in \intervalleEntier{0}{n-1}, \frac{(2k+1)\pi}{2n} \in \intervalleFF{0}{\pi}$ et cos est strictement décroissante sur cet intervalle, donc injective. Donc les $\cos \left(\frac{(2k+1)\pi}{2n}\right)$ sont deux à deux distincts. 
+    
+    On a trouvé $n$ racines deux à deux distinctes d’un polynôme de degré $n$, donc l’ensemble des racines de $T_n$ est \[ \lilbox{myolive}{$\cos\left(\frac{(2k+1)\pi}{2n}\right), k \in \intervalleEntier{0}{n-1}$} \] et ces racines sont toutes simples.
+
+    \begin{itemize}
+        \item Le produit des racines de $T_n$, comptées autant de fois que leur multiplicité, est $(-1)^n \frac{a_0}{a_n}$, où $a_0$ est le coefficient constant et $a_n$ le coef. dominant de $T_n$. 
+        
+        Ainsi,
+        \[ \lilbox{myolive}{$ \prod\limits_{k=0}^{n-1} \cos \left( \frac{(2k+1)\pi}{2n}\right) $} = \sisi{0}{n \text{ est impair}}{\frac{(-1)^{n/2}}{2^{n-1}}}{n \text{ est pair}} \] 
+        \item La somme des racines de $T_n$ est $-\frac{a_{n-1}}{a_n}$, où $a_{n-1}$ est le coefficient de $X^{n-1}$ dans $T_n$. Or on peut démontrer que ce coefficient est nul, donc 
+        \[ \lilbox{myolive}{$ \sum\limits_{k=0}^{n-1} \cos \left( \frac{(2k+1)\pi}{2n}\right) $} = 0 \] 
+    \end{itemize}
+
+    \begin{prop}{}{}
+        Les polynômes de Tchebychev sont solutions de l’équation différentielle 
+        \[ (1-X^2) T_n'' - XT_n' + n^2 T_n = 0 \]
+    \end{prop}
+
+    \begin{prop}{}{}
+        Soit $n, m \in \mathbb{N}$. 
+
+        Alors $T_m \circ T_n (X) = T_{mn}(X)$
+    \end{prop}
+
+    \begin{prop}{}{}
+        Les polynômes de Tchebychev forment une famille orthogonale pour le produit scalaire 
+        \[ \spr{f}{g} = \int_{-1}^{1} f(t)g(t) \frac{1}{\sqrt{1-t^2}} dt \]
+        Plus précisément, on a, pour $m,n \in \mathbb{N}$,
+       \[ \int_{-1}^1 T_n(x)T_m(x)\frac 1{\sqrt{1-x^2}}dx=
+    \left\{
+	\begin{array}{cl}
+	0 &\text{si } n \neq m \\
+	\pi &\text{si }n = m = 0 \\
+	\frac{\pi}2 &\text{si } n = m \neq 0.
+    \end{array}
+    \right. \]
+    \end{prop}
+
+\newpage
+
+\section{Calcul matriciel}
+
+\subsection{L’ensemble MnK}
+
+    \begin{theo}{}{}
+        $(\mk{n,p},+,.)$ est un $\mathbb{K}$-espace vectoriel.
+    \end{theo}
+
+    \begin{theo}{}{}
+        La famille $\{ E_{i,j}, (i,j) \in \intervalleEntier{1}{n} \times \intervalleEntier{1}{p} \}$ est une base, dite base canonique de $\mk{n,p}$.
+    \end{theo}
+
+    \begin{demo}{Idée}{myred}
+        La famille est bien libre, car une matrice est nulle si et seulement si tous ses coefficients sont nuls. Elle est aussi génératrice car toute matrice peut être décomposée comme $\sum\limits_{i,j \in \intervalleEntier{1}{n} \times \intervalleEntier{1}{p}} a_{i,j}E_{i,j} \in \Vect((E_{i,j})_{i,j \in \intervalleEntier{1}{n} \times \intervalleEntier{1}{p}})$
+    \end{demo}
+
+\subsection{Produit de matrices}
+
+    \begin{defi}{Coefficients du produit de matrices}{}
+        Soient $A \in \mk{n,p}$ et $B \in \mk{p,q}$ deux matrices telles que le nombre de lignes de $B$ soit égal au nombre de colonnes de $A$.
+
+        Alors le produit des matrices $A$ et $B$ est la matrice $C \in \mk{n,q}$ dont le coefficient $c_{i,j}$ est donné par 
+        \[ c_{i,j} = \sum\limits_{k=1}^p a_{i,k} b_{k,j} \]
+        On le note $A \times B$, $A.B$ ou $AB$.
+    \end{defi}
+
+    \begin{prop}{}{}
+        \begin{soient}
+            \item $A \in \mk{n,p}$, $B \in \mk{p,q}$ et $X \in \mk{p,1}$
+            \item $(i,j) \in \intervalleEntier{1}{n} \times \intervalleEntier{1}{p}$
+        \end{soient}
+
+        \begin{alors}
+            \item Le coefficient d’indice $(i,j)$ de $AB$ est le coefficient de la matrice produit de la $i$-ème ligne de $A$ par la $j$-ème colonne de $B$.
+            \item La $j$-ème colonne de $AB$ est le produit de $A$ par la $j$-ème colonne de $B$.
+            \item La $i$-ème ligne de $AB$ est le produit de la $i$-ème ligne de $A$ par $B$.
+            \item $AX$ est une combinaison linéaire des colonnes de $A$.
+        \end{alors}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        L’écrire et s’en convaincre.
+    \end{demo}
+
+    \begin{prop}{}{}
+        Soit $A \in \mk{n,p}$.
+
+        \begin{alors}
+            \item Soit $(i,j) \in \intervalleEntier{1}{q} \times \intervalleEntier{1}{n}$ et $E_{i,j} \in \mk{q,n}$. 
+            
+            $E_{i,j} A$ est la matrice de taille $q \times p$ dont toutes les lignes sont nulles sauf la $i$-ème qui vaut la $j$-ème ligne de $A$.
+            \item Soit $(i,j) \in \intervalleEntier{1}{p} \times \intervalleEntier{1}{q}$ et $E_{i,j \in \mk{p,q}}$. 
+            
+            $A E_{i,j}$ est la matrice de taille $n \times q$ dont touts les colonnes sont nulles sauf la $j$-ème qui vaut la $i$-ème colonne de $A$.
+        \end{alors}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        L’écrire.
+    \end{demo}
+
+    \begin{coro}{}{}
+        Soient $(i,j) \in \intervalleEntier{1}{n}^2$ et $(k,l) \in \intervalleEntier{1}{n}^2$.
+        
+        On note $E_{i,j}$ et $E_{k,l}$ les matrices élémentaires de taille $n \times n$ correspondantes. 
+
+        Alors \[ E_{i,j} E_{k,l} = \sisinon{0_n}{k \neq j}{E_{i,l}} \]
+    \end{coro}
+
+    \begin{theo}{Formules du binôme et de factorisation pour les matrices}{}
+        Soient $A,B \in \mk{n}$.
+        
+        On suppose que $A$ et $B$ commutent.
+
+        Alors pour tout $p \in \mathbb{N}$, 
+        \begin{enumerate}
+            \item $(A+B)^p = \sum\limits_{k=0}^p \binom{p}{k} A^k B^{p-k}$
+            \item $A^p - B^p = (A-B) \sum\limits_{k=0}^{p-1} A^k B^{p-1-k}$
+        \end{enumerate}
+    \end{theo}
+
+    \begin{prop}{Effet de la multiplication par une matrice diagonale}{}
+        \begin{soient}
+            \item $D$ une matrice diagonale de taille $n$
+            \item $A \in \mk{n}$
+        \end{soient}
+
+        Alors \[ DA = \begin{pmatrix}
+            d_1 L_1 \\
+            \vdots \\
+            d_n L_n
+        \end{pmatrix} \quad AD = \begin{pmatrix}
+            d_1 C_1 & \ldots & d_n C_n 
+        \end{pmatrix} \]
+        En particulier, si $A$ est diagonale, \[ AD = \begin{pmatrix}
+            a_1 d_1 & 0 & \ldots & 0 \\
+            0 & \ddots & \ddots & \vdots \\
+            \vdots & \ddots & \ddots & 0 \\
+            0 & \ldots & 0 & a_n d_n
+            \end{pmatrix} \] 
+    \end{prop}
+
+    \begin{prop}{Effet de la multiplication par une matrice triangulaire supérieure}{}
+        \begin{soient}
+            \item $T$ une matrice triangulaire supérieure de taille $n$
+            \item $A \in \mk{n}$
+        \end{soient}
+
+        Alors \begin{align*}
+            TA & = \begin{pmatrix}
+                t_{1,1} L_1 + \ldots + t_{1,n} L_n \\
+                \vdots \\
+                t_{n,n} L_n
+            \end{pmatrix} \\
+            AT & = \begin{pmatrix}
+                t_{1,1} C_1 & \ldots & t_{1,n} C_1 + \ldots + t_{n,n} C_n  
+            \end{pmatrix} 
+        \end{align*}
+    \end{prop}
+
+\subsection{Matrices d’opérations élémentaires}
+
+    \begin{defi}{Opérations élémentaires}{}
+        Soient $(i,j) \in \intervalleEntier{1}{n}^2$ tel que $i \neq j$ et $\lambda \in \mathbb{K}$.
+
+        On appelle \textbf{opérations élémentaires} sur les lignes d’une matrice les trois opérations suivantes :
+        \begin{enumerate}
+            \item échange de lignes ($L_i \leftrightarrow L_j$)
+            \item dilatation ($L_i \leftarrow \lambda L_i$)
+            \item transvection ($L_i \leftarrow L_i + \lambda L_j$)
+        \end{enumerate}
+        On définit de même les opérations élémentaires sur les colonnes.
+    \end{defi}
+
+    \begin{defi}{Matrice de dilatation}{}
+        Soient $i \in \intervalleEntier{1}{n}$ et $\lambda \in \mathbb{K}^*$.
+
+        On appelle \textbf{matrice de dilatation} de taille $n$ tout matrice de taille $n \times n$ de la forme 
+        \[ D_i(\lambda) = \begin{pmatrix}
+            1 & 0 & \ldots & \ldots & \ldots & \ldots & 0 \\
+            0 & \ddots & \ddots & & & & \vdots \\
+            \vdots & \ddots & 1 & \ddots & & & \vdots \\
+            \vdots & & \ddots & \lambda & \ddots & & \vdots \\
+            \vdots & & & \ddots & 1 & \ddots & \vdots \\
+            \vdots & & & & \ddots & \ddots & 0 \\
+            0 & \ldots & \ldots & \ldots & \ldots & 0 & 1
+        \end{pmatrix} \] où $\lambda$ est le coefficient d’indice $(i,i)$.
+    \end{defi}
+
+    \begin{prop}{Produit par une matrice de dilatation}{}
+        Soit $A \in \mk{n,p}$.
+
+        \begin{alors}
+            \item Pour tout $i \in \intervalleEntier{1}{n}$, pour tout $\lambda \in \mathbb{K}^*$, $D_i(\lambda)A$ est la matrice obtenue à partir de $A$ par la dilatation $L_i \leftarrow \lambda L_i$.
+            \item Pour tout $j \in \intervalleEntier{1}{j}$, pour tout $\lambda \in \mathbb{K}^*$, $AD_j(\lambda)$ est la matrice obtenue à partir de $A$ par la dilatation $C_j \leftarrow \lambda C_j$.
+        \end{alors}
+    \end{prop}
+
+    \begin{defi}{Matrice de transvection}{}
+        Soient $(i,j) \in \intervalleEntier{1}{n}^2$ tel que $i \neq j$ et $\lambda \in \mathbb{K}^*$.
+    
+        On appelle \textbf{matrice de transvection} de taille $n$ toute matrice de taille $n \times n$ de la forme
+        \[ T_{i,j}(\lambda) = \begin{pmatrix}
+            1 & 0 & \ldots & \ldots & \ldots & \ldots & 0 \\
+            0 & \ddots & \ddots & & \lambda & & \vdots \\
+            \vdots & \ddots & \ddots & \ddots & & & \vdots \\
+            \vdots & & \ddots & \ddots & \ddots & & \vdots \\
+            \vdots & & & \ddots & \ddots & \ddots & \vdots \\
+            \vdots & & & & \ddots & \ddots & 0 \\
+            0 & \ldots & \ldots & \ldots & \ldots & 0 & 1
+        \end{pmatrix} \] où $\lambda$ est le coefficient d’indice $(i,j)$.
+    \end{defi}
+
+    \begin{prop}{Produit par une matrice de transvection}{}
+        Soit $A \in \mk{n,p}$.
+
+        \begin{alors}
+            \item Pour tout $(i,j) \in \intervalleEntier{1}{n}^2$, pour tout $\lambda \in \mathbb{K}^*$, $T_{i,j}(\lambda)A$ est la matrice obtenue à partir de $A$ par la transvection $L_i \leftarrow L_i + \lambda L_j$.
+            \item Pour tout $(i,j) \in \intervalleEntier{1}{j}^2$, pour tout $\lambda \in \mathbb{K}^*$, $AT_{i,j}(\lambda)$ est la matrice obtenue à partir de $A$ par la transvection $C_j \leftarrow C_j + \lambda C_i$.
+        \end{alors}
+    \end{prop}
+
+    \begin{defi}{Matrice de transposition}{}
+        Soit $(i,j) \in \intervalleEntier{i}{j}^2$.
+
+        On appelle \textbf{matrice de transposition} de taille $n$ toute matrice $P_{i,j}$ de taille $n \times n$ de la forme 
+        \[ \begin{pmatrix}
+            1 & 0 & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & 0 \\
+            0 & \ddots &  &  &  &  &  &  &  &  & \vdots \\
+            \vdots &  & 1 &  &  &  &  &  &  &  & \vdots \\
+            \vdots &  &  & 0 & \ldots & \ldots & \ldots & 1 &  &  & \vdots \\
+            \vdots &  &  & \vdots & 1 &  &  & \vdots &  &  & \vdots \\
+            \vdots &  &  & \vdots &  & \ddots &  & \vdots &  &  & \vdots \\
+            \vdots &  &  & \vdots &  &  & 1 & \vdots &  &  & \vdots \\
+            \vdots &  &  & 1 & \ldots & \ldots & \ldots & 0 &  &  & \vdots \\
+            \vdots &  &  &  &  &  &  &  & 1 &  & \vdots \\
+            \vdots &  &  &  &  &  &  &  &  & \ddots & 0 \\
+            0 & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & 0 & 1 
+            \end{pmatrix} \] 
+            où les coefficients d’indices $(i,i)$ et $(j,j)$ valent 0 et ceux d’indices $(i,j)$ et $(j,i)$ 1.
+    \end{defi}
+
+    \begin{prop}{Produit par une matrice de transposition}{}
+        Soit $A \in \mk{n,p}$.
+
+        \begin{alors}
+            \item Pour tout $(i,j) \in \intervalleEntier{1}{n}^2$, $P_{i,j}A$ est la matrice obtenue à partir de $A$ par l’échange de ligne $L_i \leftrightarrow L_j$.
+            \item Pour tout $(i,j) \in \intervalleEntier{1}{j}^2$, $AP_{i,j}$ est la matrice obtenue à partir de $A$ par l’échange de colonnes $C_j \leftrightarrow C_i$.
+        \end{alors}
+    \end{prop}
+
+\subsection{Matrices inversibles}
+
+    \subsubsection{Propriétés}
+
+    \begin{prop}{}{}
+        Les matrices d’opérations élémentaires sont inversibles.
+    \end{prop}
+
+    \begin{prop}{}{}
+        Soit $A \in \mk{n}$.
+
+        \begin{alors}
+            \item Si $A \in \mathcal{G}\ell_n(\mathbb{K})$, alors $A$ admet un unique inverse.
+            \item \begin{align*}
+                A \in \mathcal{G}\ell_n(\mathbb{K}) & \iff \exists B \in \mk{n}, BA = I_n \\
+                & \iff \exists B \in \mk{n}, AB = I_n 
+            \end{align*}
+        \end{alors}
+    \end{prop}
+
+    \begin{prop}{}{}
+        Soit $A \in \mk{n}$.
+
+        Alors $A$ est inversible si et seulement si pour tout $Y \in \mk{n,1}$, le système $AX = Y$ admet une unique solution $X \in \mk{n,1}$.
+    \end{prop}
+
+    \begin{coro}{}{}
+        Soit $T$ une matrice triangulaire. 
+
+        Alors $T$ est inversible si et seulement si ses coefficients diagonaux sont tous non-nuls.
+    \end{coro}
+
+    \begin{coro}{}{}
+        Soit $D$ une matrice diagonale de coefficients $d_1,\ldots,d_n$.
+
+        Alors $D$ est inversible si $\forall k \in \intervalleEntier{1}{n}, \, d_k \neq 0$, et dans ce cas, $D^{-1}$ est la matrice diagonale de coefficients $\frac{1}{d_1},\ldots,\frac{1}{d_n}$.
+    \end{coro}
+
+    \subsubsection{Calcul de l’inverse d’une matrice carrée par le pivot de Gauss}
+
+    \begin{omed}{Méthode \textcolor{black}{(Pivot de Gauss)}}{mybrown}
+        On écrit $A$ et $I_n$ côte à côte, puis on applique le pivot de Gauss à $A$ dans une colonne jusqu’à arriver à $I_n$, et on fait les mêmes opérations sur les lignes de $I_n$.
+
+        Si cela est possible, $A^{-1}$ est alors la matrice obtenue à partir de $I_n$.
+    \end{omed}
+
+    \begin{demo}{Pourquoi ça marche ?}{mybrown}
+        \begin{itemize}
+            \item Chaque opération revient à multiplier la matrice résultant de $A$ par une matrice d’opération élémentaire $E_{\ell}$.
+            \item La matrice résultant de $I_n$ stocke dans l’ordre les matrices d’opérations élémentaires utilisées : à chaque étape, si on note $A_{\ell}$ la matrice résultant de $A$ et $B_{\ell}$ celle de $I_n$, $A_{ell} = B_{\ell} A$. À la fin de l’algorithme, on a bien $B_{\ell,\text{fin}} A = I_n$.
+        \end{itemize}
+    \end{demo}
+
+\newpage
+
+\section{Calcul de primitives}
+
+\subsection{Primitives de fonctions usuelles}
+
+    \begin{longtblr}[
+        caption={Primitives usuelles}
+        ]{
+            colspec={|X[3,c]||X[2,c] |}, width = \linewidth,
+            rowhead = 1, 
+            hlines={0.4pt, black},
+            row{odd} = {myolive!30}, row{1} = {myolive, fg=white, font=\bfseries},
+            rows = {1cm}
+        }
+        $f(x)$ &  $F(x)$ \\
+        $x^a$ & $ \frac{x^{a+1}}{a+1}$ \\
+        $\ln(x)$ & $x\ln(x) - x$ \\
+        $\tan(x)$ & $-\ln|\cos(x)|$ \\
+        $\frac{1}{1 + x^2}$ & $\arctan(x)$ \\
+        $\frac{1}{\sqrt{1 - x^2}}$ & $\arcsin(x) \esp{ou} -\arccos(x)$ \\
+        $1 + \tan^2(x) = \frac{1}{\cos^2(x)}$ & $\tan(x)$ \\
+    \end{longtblr}
+
+\subsection{Primitives d’une composée}
+
+    \begin{longtblr}[
+        caption={Primitives d’une composée}
+        ]{
+            colspec={|X[3,c]||X[2,c] |}, width = \linewidth,
+            rowhead = 1, 
+            hlines={0.4pt, black},
+            row{odd} = {myolive!30}, row{1} = {myolive, fg=white, font=\bfseries},
+            rows = {1cm}
+        }
+        $f$ & $F$ \\
+        $\frac{u'}{u}$ & $\left( \ln|u| \right)'$ \\
+        $u'u$ & $\left(\frac{1}{2}u^2\right)'$ \\
+        $u'u^k$ & $\left( \frac{1}{k + 1} u^{k+1} \right)'$ \\
+        $u'e^u$ & $\left(e^u\right)'$ \\
+        $\frac{u'}{1 + u^2}$ & $\left(\arctan(u)\right)'$
+    \end{longtblr}
+
+\subsection{Primitives de fonctions trigonométriques}
+
+    \begin{omed}{Méthode \textcolor{black}{(Calcul de primitives trigonométriques)}}{mybrown}
+        Soient $p,q \in \mathbb{N}^*$.
+        \begin{itemize}
+            \item Primitives de la forme $\cos^p \sin^q$.
+            \begin{itemize}
+                \item Si $p$ ou $q$ impair : conserver un cos ou sin et remplacer les autres avec $\cos^2 + \sin^2 = 1$ puis primitiver.
+                \item  Si $p$ et $q$ pairs, linéariser le tout avec Moivre et primitiver.
+            \end{itemize}
+            \item Primitives de la forme $x \mapsto e^{ax}\cos(bx)$ ou $x \mapsto e^{ax}\sin(bx)$.
+            
+            Ce sont les parties réelles et imaginaires de $x \mapsto e^{(a+ib)x}$, que l’on sait primitiver en 
+            \[ \left(\frac{e^{(a+ib)x}}{a + ib}\right)\]
+        \end{itemize}
+    \end{omed}
+
+\subsection{Primitives de fonctions rationnelles}
+
+    On considère $a$ et $b$ deux fonctions polynomiales, et 
+    \[ f : x \longmapsto \frac{a(x)}{b(x)} \]
+
+    \begin{theo}{Décomposition en éléments simples}{}
+        Soient $a$ et $b$ deux fonctions polynomiales telles que $\deg(a) < \deg(b)$.
+
+        On suppose qu’il existe des fonctions polynomiales $b_1, b_2, \ldots, b_l$ irréductibles n’ayant pas de racines communes telles que $b = b_1 b_2 \ldots b_l$.
+
+        Alors il existe des fonctions polynomiales $p_1, p_2,\ldots,p_l$ telles que :
+        \[ \frac{a}{b} = \frac{p_1}{b_1} + \frac{p_2}{b_2} + \ldots + \frac{p_l}{b_l} \]
+        avec $\deg(b_i) = 1 \text{ ou } 2$ et $\deg(p_i) = \left\{ \begin{array}{cl}
+            0 &\text{si } \deg(b_i) = 1 \\
+            1 &\text{si } \deg(b_i) = 2
+        \end{array} \right.$
+    \end{theo}
+
+    \begin{omed}{Méthode universelle}{myred}
+        \begin{enumerate}
+            \item Division euclidienne du numérateur par le dénominateur (si $\deg(a) \geq \deg(b)$). 
+            
+            On trouve deux polynômes $q$ et $r$ tels que $\deg(r) < \deg(b)$ et $a = bq + r$. Ainsi, 
+            \[ f : x \mapsto q(x) + \frac{r(x)}{b(x)} \]
+            \item Décomposition en éléments simples.
+            \item On est alors ramené à des cas plus simples, que l’on sait primitiver.
+        \end{enumerate}
+    \end{omed}
+
+    \subsubsection{Cas où le numérateur est constant}
+
+    \begin{align}
+        \frac{1}{x-a} &= (\ln|x-a|)' \\
+        \frac{1}{(x-a)^n} &= \left( - \frac{1}{n-1} \frac{1}{(x-a)^{n-1}}  \right)' \\
+        \frac{1}{x^2 + a^2} &= \left( \frac{1}{a} \arctan \left(\frac{x}{a}\right) \right)'
+    \end{align}
+
+    \begin{equation}
+        \frac{1}{ax^2 + bx + c} \qquad \text{avec } \lilbox{myred}{$b^2 -4ac < 0$}
+    \end{equation}
+        
+    \begin{omed}{Méthode}{myred}
+        \begin{enumerate}[label=(\alph*)]
+            \item Mettre le polynôme sous forme bicarrée : 
+            \[ a \bigg( x+\overbrace{\frac{b}{2a}}^{\beta} \bigg)^2 + \overbrace{\frac{- \Delta}{4a}}^{\gamma} \]
+            \item Factoriser par $\frac{1}{a}$ pour obtenir 
+            \[ \frac{1}{a} \left( \frac{1}{(x+ \beta)^2 + \gamma / a} \right) \]
+            \item Primitiver avec la formule (3), ce qui donne 
+            \[ \frac{1}{a} \frac{1}{\sqrt{\gamma / a}} \arctan \left( \frac{x + \beta}{\sqrt{\gamma / a}} \right) \]
+        \end{enumerate}
+    \end{omed}
+
+    \begin{equation}
+        \frac{1}{(x-a)(x-b)} \qquad \text{ i.e. cas précédent avec } \lilbox{mypurple}{$\Delta > 0$}
+    \end{equation}
+
+    \begin{omed}{Méthode}{myred}
+        \begin{enumerate}[label=(\alph*)]
+            \item Décomposer en éléments simples afin d’obtenir \[ \frac{\alpha}{x-a} + \frac{\beta}{x-b} \]
+            \item Primitiver en \[ \alpha \ln \left(|x-a|\right) + \beta \ln \left(|x-b|\right)\]
+        \end{enumerate}
+    \end{omed}
+
+    \subsubsection{Cas où le numérateur n’est pas constant}
+
+    \begin{align}
+        \frac{\alpha x + \beta}{ x^2 + a^2} &= \left( \frac{\alpha}{2} \ln (x^2 + a^2) + \frac{\beta}{a} \arctan \left( \frac{x}{a} \right) \right)' \\
+        \frac{\alpha x + \beta}{ax^2 + bx + c} &= \frac{\alpha}{2a} \frac{2ax + b}{ax^2 + bx + c} + \frac{\beta - \alpha b / 2a}{ax^2 + bx + c} 
+    \end{align}
+
+    Puis utiliser les méthodes précédentes pour primitiver.
+
+\subsection{Intégration par parties}
+
+    \begin{theo}{IPP}{}
+        \begin{soit}
+            \item $\intervalleFF{a}{b}$ un segment de $\mathbb{R}$,
+            \item $u,v \in \mathcal{C}^1(\intervalleFF{a}{b},\mathbb{K})$.
+        \end{soit}
+        Alors 
+        \[ \int_{a}^{b} u(t)v'(t)dt = [u(t)v(t)]_a^b - \int_{a}^{b} u'(t)v(t)dt \]
+    \end{theo}
+
+\subsection{Changement de variable}
+
+    \begin{omed}{L’idée}{myred}
+        Soient $u \in \mathcal{C}^1(\intervalleFF{a}{b},\mathbb{R})$ et $F \in \mathbb{C}^1(I, \mathbb{R})$ deux fonctions telles que $\forall x \in \intervalleFF{a}{b}, \, u(x) \in I$.
+
+        Alors $F \circ u \in \mathcal{C}^1(\intervalleFF{a}{b},\mathbb{R})$ et $\forall t \in \intervalleFF{a}{b}, \, (F \circ u)'(t) = u'(t)f(u(t))$.
+
+        D’où \[ \int_{a}^{b} u'(t)f(u(t))dt = [F \circ u(t)]^b_a \]
+    \end{omed}
+
+    \begin{theo}{Changement de variable}{}
+        \begin{soient}
+            \item $\intervalleFF{a}{b}$ un segment de $\mathbb{R}$
+            \item $u \in \mathcal{F}(\intervalleFF{a}{b},\mathbb{R})$
+            \item $f \in \mathcal{F}(I,\mathbb{R})$
+        \end{soient}
+        \begin{suppose}
+            \item $u \in \mathcal{C}_1(\intervalleFF{a}{b},\mathbb{R})$
+            \item $f$ est continue sur $I$
+            \item $\forall t \in \intervalleFF{a}{b}, \, u(t) \in I$
+        \end{suppose}
+        Alors \[ \int_{a}^{b} u'(t)f(u(t))dt = \int_{u(a)}^{u(b)} f(x)dx \]
+    \end{theo}
+
+    \begin{omed}{Choix du changement de variable}{myred}
+        \begin{enumerate}
+            \item $\sqrt{1-x^2} \rightarrow$ utiliser $x = \cos(t)$ ou $x = \sin(t)$
+            \item $\sqrt{1+x^2} \rightarrow$ utiliser $x = \sinh(t)$
+            \item si $\sqrt{t}$ ou $e^t \rightarrow$ utiliser respectivement $x = \sqrt{t}$ ou $x = e^t$
+            \item \textbf{Règles de Bioche} \quad Si $f$ est une fonction rationnelle en sin et cos, 
+            \begin{itemize}
+                \item si $f(-x) = f(x)$, on pose $x = \cos(t)$.
+                \item si $f(\pi-x) = f(x)$, on pose $x = \sin(t)$
+                \item si $f(\pi+x) = f(x)$, on pose $x = \tan(t)$
+                \item sinon, on pose $x = \tan \left( \frac{t}{2} \right)$
+            \end{itemize}
+        \end{enumerate}
+    \end{omed}
+
+

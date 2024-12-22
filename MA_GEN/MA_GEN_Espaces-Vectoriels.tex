@@ -1,0 +1,2168 @@
+\customchapter{Espaces vectoriels}{Étudier la structure des espaces vectoriels, pour pouvoir étudier les propriétés des vecteurs qui les composent.}
+
+\section{Espaces vectoriels}
+
+\subsection{Structure et opérations}
+
+    \subsubsection{Structure}
+
+    \begin{defi}{Structure d’espace vectoriel}{}
+        Un $\mathbb{K}$-espace vectoriel est un ensemble $E$ muni 
+        \begin{itemize}
+            \item d’une loi $\fonction{+}{E \times E}{E}{(x,y)}{x + y}$, dite interne, telle que \begin{enumerate}
+                \item $+$ est interne
+                \item $+$ est associative
+                \item $+$ admet un élément neutre
+                \item tout élément de $E$ admet un opposé pour $+$
+                \item $+$ est commutative
+            \end{enumerate}
+            On dit que $(E,+)$ est un groupe commutatif.
+            \item d’une loi $\fonction{.}{\mathbb{K} \times E}{E}{(\lambda,x)}{\lambda . x}$, dite externe, telle que \begin{enumerate}
+                \item $.$ admet un élément neutre
+                \item $.$ est associative
+                \item $.$ est distributive sur $+$
+            \end{enumerate}
+        \end{itemize}
+        Les éléments de $E$ sont appelés \textbf{vecteurs}. 
+        
+        Les éléments de $\mathbb{K}$ sont appelés \textbf{scalaires}. 
+        
+        $0_E$ est appelé \textbf{vecteur nul} de E.
+    \end{defi}
+
+    \begin{defitheo}{Sous espace vectoriel et caractérisation}{}
+        Soit $E$ un $\mathbb{K}$-espace vectoriel, de lois $+$ et $.$
+
+        On dit que $F$ est un \textbf{sous-espace vectoriel} de $E$ lorsque $\left\{ \begin{array}{l}
+            F \subset E \\
+            (F,+,.) \text{ est un espace vectoriel}
+        \end{array} \right. $
+        \[  F \text{ est un sev de } E \iff \left\{ \begin{array}{l}
+            F \neq \emptyset \\
+            F \subset E \\
+            \forall x,y \in F, \quad \forall \lambda \in \mathbb{K}, \lambda x + y \in F
+        \end{array} \right. \]
+        On peut intervertir l’hypothèse $F \neq \emptyset$ avec $0 \in F$.
+    \end{defitheo}
+
+    \subsubsection{Opérations}
+
+    \begin{prop}{Intersection de sous-espaces vectoriels}{}
+        \begin{soient}
+            \item $E$ un $\mathbb{K}$-espace vectoriel,
+            \item $(F_i)_{i \in I}$ une famille de sous-espaces vectoriels de $E$.
+        \end{soient}
+        Alors $\bigcap\limits_{i \in I} F_i \text{ est un sous-espace vectoriel de } E $
+    \end{prop}
+
+    \begin{demo}{Raisonnement}{myolive}
+        Il suffit de vérifier les trois points :
+        \begin{enumerate}
+            \item $0_E \in \bigcap\limits_{i \in I} F_i$
+            \item $\bigcap\limits_{i \in I} F_i \subset E$
+            \item On obtient la linéarité dans $\bigcap\limits_{i \in I} F_i$ en utilisant celle dans un $F_i$ pour $i \in I$.
+        \end{enumerate}
+    \end{demo}
+
+    \begin{defitheo}{Somme de sous espaces vectoriels, propriétés}{}
+        Soient $E$ un $\mathbb{K}$-espace vectoriel, et $F,G$ deux sous-espaces vectoriels de $E$.
+
+        La \textbf{somme} de $F$ et $G$ est l’ensemble 
+        \[ F + G = \enstq{x+y}{(x,y) \in F \times G} \]
+        Autrement dit, 
+        \[ x \in F + G \iff \exists (x_F,x_G) \in F \times G,\, x = x_F + x_G \]
+
+        De plus, 
+        \begin{enumerate}
+            \item $F + G$ est un sous-espace vectoriel de $E$.
+            \item $(F \cup G) \subset (F + G)$.
+            \item Soit $H$ un sous-espace vectoriel de $E$ tel que $(F \cup G) \subset H$, alors $(F + G) \subset H$. Autrement dit, $F + G$ est le plus petit sous-espace vectoriel de $E$ qui contient $F \cup G$.
+        \end{enumerate}
+    \end{defitheo}
+
+    \begin{demo}{Démonstration}{mypurple}
+        Les deux premiers points sont facilement vérifiable. Pour le \textbf{(iii)}, Si $(F \cup G) \subset H$ qui est un sev, alors $\forall x \in F, x \in H$ et $\forall y \in G, y \in H$ et $H$ est stable par $+$ donc $\forall (x,y) \in F \times G, x+y \in H$.
+    \end{demo}
+
+    \begin{defitheo}{Somme directe et caractérisation}{}
+        Soient $E$ un $\mathbb{K}$-ev, et $F,G$ deux sev de $E$.
+
+        On dit que $F$ et $G$ sont en \textbf{somme directe} lorsque 
+        \[ \forall x \in F+G, \exists ! (x_f, x_g) \in F \times G, \, x = x_f + x_g \] 
+        On note alors $F \oplus G$ cet ensemble.
+
+        On a, 
+        \begin{align*}
+            F + G = F \oplus G 
+            &\iff F \cap G = \{ 0_E \} \\
+            &\iff \forall (x_F, x_G) \in F \times G, x_1 + x_2 = 0 \implies x_1 = x_2 = 0
+        \end{align*}
+    \end{defitheo}
+
+    \begin{demo}{Preuve}{mypurple}
+        Par démonstration tournante.
+    \end{demo}
+
+    \begin{defitheo}{Supplémentaire et caractérisation}{}
+        Soient $E$ un $\mathbb{K}$-ev, et $F,G$ deux sev de $E$.
+
+        On dit que $G$ est un sev \textbf{supplémentaire} de $F$ dans $E$ lorsque 
+        \[ F \oplus G = E \]
+
+        On a, 
+        \[ E = F \oplus G \iff \et{E = F + G}{F \cap G = \{ 0_E \} } \]
+    \end{defitheo}
+
+    \begin{omed}{Méthode}{mypurple}
+        Pour montrer que $G$ est un supplémentaire de $F$ dans $E$,
+        \begin{enumerate}
+            \item On montre si nécessaire que $F$ et $G$ sont des sev de $E$.
+            \item On montre que $E \subset F + G$ i.e.
+            \[ \forall x \in E,\, \exists (x_f, x_g) \in F \times G, \, x = x_f + x_g \] 
+            pour en déduire $E = F + G$.
+            \item On montre que $F \cap G \subset \{ 0_E \}$ pour en déduire que $F$ et $G$ sont en somme directe.
+        \end{enumerate}
+        Les étapes \textbf{(ii)} et \textbf{(iii)} peuvent être montrées par une analyse-synthèse.
+    \end{omed}
+
+    \begin{prop}{Généralisation}{}
+        Les sev $E_1,\ldots,E_n$ sont supplémentaires \textit{ssi} 
+        \[ \et{E = E_1 + \ldots + E_n}{\forall i \in \intervalleEntier{1}{n}, E_i \cap \sum_{\substack{j = 1 \\ j \neq i}}^{n} E_j = \{0\}} \]
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        \begin{itemize}
+            \item[\textcolor{myolive}{$\implies$}] $E = E_1 + \ldots + E_n$. Si $x \in E_1 \cap (E_2 + \ldots + E_n)$, on a 
+            \[ x = 0 + x_2 +\ldots + x_n = x_1 + 0 + \ldots + 0 \]
+            Par unicité de la décomposition, $x = 0$. De même pour les intersections suivantes.
+            \item[\textcolor{myolive}{$\impliedby$}] L’unicité s’obtient en décomposant $x$ de deux façons différentes, en remarquant que 
+            \[ x_i - y_i = \sum_{\substack{j = 1 \\ j \neq i}}^{n} x_j - y_j \]
+        \end{itemize}
+    \end{demo}
+
+\subsection{Familles de vecteurs}
+
+    \begin{defitheo}{Sous-espace vectoriel engendré par une famille de vecteurs}{}
+        Soient $E$ un $\mathbb{K}$-ev, et $(x_1,\ldots,x_s) \in E^s$.
+
+        On note 
+        \[ \Vect(x_1,\ldots,x_s) = \left\{ \sum\limits_{i=1}^s \lambda_i x_i, \, (\lambda_1,\ldots,\lambda_s) \in \mathbb{K}^s \right\} \] 
+        qui est l’ensemble des CL de $(x_1,\ldots,x_s)$. On l’appelle \textbf{sev engendré} par $(x_1,\ldots,x_s)$.
+
+        \begin{enumerate}
+            \item Pour toute famille $\mathcal{F}$ de $E$, l’ensemble $\Vect(\mathcal{F})$ est un sev de $E$.
+            \item C’est le plus petit sev de $E$ contenant $\mathcal{F}$ (pour l’inclusion).
+        \end{enumerate}
+    \end{defitheo}
+
+    \begin{demo}{Preuve}{mypurple}
+        \begin{enumerate}
+        \item Soient $\mathcal{F} = (x_i)_{i \in I}$, $x,y \in \Vect(\mathcal{F})$ et $\lambda \in \mathbb{K}$. Il existe $J_1 \subset I$ fini et $(\alpha_j)_{j \in J_1} \in \mathbb{K}^{\abs{J_1}}$ tels que 
+        \[ x = \sum_{j \in J_1} \alpha_j x_j \]
+        et $J_2 \subset I$ fini et $(\beta_j)_{j \in J_2} \in \mathbb{K}^{\abs{J_2}}$ tels que 
+        \[ y = \sum_{j \in J_2} \beta_j x_j \]
+        Posons $J = J_1 \cup J_2$. On pose, pour $j \in J$,
+        \[ \gamma_j = \left\{ 
+            \begin{array}{cl}
+                \alpha_j & \text{si } j \in J_1 \text{ et } j \notin J_2 \\
+                \lambda \beta_j & \text{si } j \notin J_1 \text{ et } j \in J_2 \\
+                \alpha_j + \lambda \beta_j & \text{sinon}
+            \end{array}
+         \right. \]
+        Par construction, on a donc 
+        \[ x+ \lambda y = \sum_{j \in J} \gamma_j x_j \in \Vect(\mathcal{F}) \]
+        De plus, $0 \in \Vect(\mathcal{F})$, donc $\Vect(\mathcal{F})$ est un sev de $E$.
+        \item Par construction, $\mathcal{F} \subset \Vect(\mathcal{F})$. Donc $\Vect(\mathcal{F})$ est un sev de $E$ contenant $\mathcal{F}$. Soit $F$ un sev de $E$ contenant $\mathcal{F}$. Soit $x \in \Vect(\mathcal{F})$. On montre facilement que $x \in F$, d’où $\Vect(\mathcal{F}) \subset F$.
+        \end{enumerate}
+    \end{demo}
+
+    \begin{defi}{Famille génératrice, libre, liée}{}
+        Soient $E$ un $\mathbb{K}$-ev, et $(x_1,\ldots,x_s) \in E^s$.
+
+        \begin{itemize}
+            \item On dit que $(x_1,\ldots,x_s)$ est une \textbf{famille génératrice} de $E$ lorsque 
+        \[ E = \Vect(x_1,\ldots,x_s) \] 
+        On dit aussi que $(x_1,\ldots,x_s)$ engendre $E$.
+            \item On dit que $(x_1,\ldots,x_s)$ est une \textbf{famille libre}, ou linéairement indépendante si 
+            \[ \forall (\lambda_1,\ldots,\lambda_s) \in \mathbb{K}^s, \quad \sum\limits_{i=1}^s \lambda_i x_i = 0_E \implies (\lambda_1,\ldots,\lambda_s) = (0,\ldots,0) \]
+            \item On dit que la famille $(x_1,\ldots,x_s)$ est \textbf{liée} lorsqu’elle n’est pas libre.
+        \end{itemize}
+    \end{defi}
+
+    \begin{defi}{Extension aux familles infinies}{}
+        Soit $\mathcal{F} = (x_i)_{i \in I}$ une famille du $\mathbb{K}$-ev $E$.
+        \begin{itemize}
+            \item On dit que $\mathcal{F}$ est libre si pour tout $J \subset I$ fini, $(x_j)_{j \in J}$ est libre.
+            \item On dit que $\mathcal{F}$ est génératrice de $E$ si $\Vect(\mathcal{F}) = E$, \textit{i.e.}
+            \[ \forall y \in E, \quad \exists J \subset I, \quad J \text{ est fini et } \exists (\lambda_j)_{j \in J} \in \mathbb{K}^{\abs{J}}, \quad y = \sum_{j \in J} \lambda_j x_j \]
+        \end{itemize}
+    \end{defi}
+
+    \begin{prop}{Ajout d’un vecteur à une famille libre}{}
+        \begin{soient}
+            \item $E$ un $\mathbb{K}$-ev
+            \item $(x_1,\ldots,x_{s+1}) \in E^{s+1}$
+        \end{soient}
+        \begin{suppose}
+            \item $(x_1,\ldots,x_s)$ est libre
+            \item $x_{s+1} \notin \Vect(x_1,\ldots,x_{s})$
+        \end{suppose}
+        Alors \[ (x_1,\ldots,x_{s+1}) \text{ est libre} \]
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        On raisonne par l’absurde.
+
+        Supposons que la famille $(x_i)_{i \in \intervalleEntier{1}{s+1}}$ est liée. Alors $\exists (\lambda_1,\ldots,\lambda_{s+1}) \in \mathbb{R}^{s+1} \backslash \{ (0,\ldots,0 ) \}$ tels que $\sum\limits_{i=1}^{s+1} \lambda_i x_i = 0$. Si $\lambda_{s+1}$ est nul, c’est absurde car la famille $(x_i)_{i \in \intervalleEntier{1}{s}}$ est libre. Donc $\lambda_{s+1} \neq 0$ et on peut ainsi réécrire l’égalité comme $x_{s+1} = - \sum\limits_{i=1}^{s+1} \frac{\lambda_i}{\lambda_{s+1}} x_i = 0$. Donc $x_{s+1} \in \Vect(x_1,\ldots,x_{s})$, ce qui est absurde. La famille $(x_i)_{i \in \intervalleEntier{1}{s+1}}$ est donc libre.
+    \end{demo}
+
+    \begin{theo}{Dans un ev engendré par $n$ vecteurs, toute famille de $n + 1$ éléments est liée}{}
+        \begin{soient}
+            \item $E$ un ev
+            \item $\mathcal{G} = (e_1,\ldots,e_n)$
+            \item $\mathcal{F} = (y_1,\ldots,y_{n+1})$
+        \end{soient}
+        On suppose que $\forall i \in \intervalleEntier{1}{n+1}, \, y_i \in \Vect(\mathcal{G})$.
+        Alors $\mathcal{F}$ est liée.
+    \end{theo}
+    
+    \begin{demo}{Démonstration}{myred}
+        On pose \begin{multline*}
+            \mathcal{H}_n : \forall \mathcal{G} = (e_1,\ldots,e_n) \in E^n, \forall (y_1,\ldots,y_{n+1}) \in E^{n+1}, \\
+            \left[\forall i \in \intervalleEntier{1}{n+1}, \, y_i \in \Vect(\mathcal{G}) \right] \implies (y_1,\ldots,y_{n+1}) \text{ est liée}
+        \end{multline*}
+
+        Pour $n = 1$, on vérifie facilement $(y_1,y_2)$ liée. 
+    
+        Pour $n \in \mathbb{N}^*$ tel que $\mathcal{H}_n$ est vrai, on pose les objets pour $n+1$. Ensuite on pose $\forall i \in \intervalleEntier{1}{n+1}$, \[ z_i = y_i - \frac{\lambda_{i,n+1}}{\lambda_{n+2,n+1}}y_{n+2} \] 
+        $\forall i \in \intervalleEntier{1}{n+1}, \, z_i \in \Vect(e_1,\ldots,e_n)$ donc on peut lui appliquer $\mathcal{H}_n$, i.e. $(z_1,\ldots,z_{n+1})$ est liée. On peut ainsi trouver, en repassant à la définition d’une famille liée, que \[ \sum\limits_{i=1}^{n+1} \mu_i y_i + \left(\sum\limits_{i=1}^{n+1} -\frac{\lambda_{i,n+1}}{\lambda_{n+2,n+1}}\mu_i\right)y_{n+2}  = 0_E \]
+        Donc $(y_1,\ldots,y_{n+2})$ est liée et $\mathcal{H}_{n+1}$ est liée.
+    \end{demo}
+
+    \begin{defitheo}{Base}{}
+        Une \textbf{base} d’une espace vectoriel $E$ est une famille libre et génératrice de $E$.
+
+        \[ (e_1,\ldots,e_n) \text{ est une base de } E \iff \forall x \in E, 
+        \quad \exists ! (\lambda_1,\ldots,\lambda_n) \in \mathbb{K}^n, \quad x = \sum\limits_{i=1}^s \lambda_i e_i \]
+    \end{defitheo}
+
+    \begin{demo}{Démonstration}{mypurple}
+        \begin{itemize}
+            \item[$\implies$] L’existence vient du fait que la famille est génératrice. L’unicité vient de sa liberté.
+            \item[$\impliedby$] On prouve que la famille est libre grâce à l’unicité de la décomposition, car si $\sum\limits_{i=1}^s \lambda_i e_i = 0$, $(0,\ldots,0)$ convient. Elle est génératrice car $E = \Vect(e_1,\ldots,e_n)$.
+        \end{itemize}
+    \end{demo}
+
+\subsection{Espaces vectoriels en dimension finie}
+
+    \subsubsection{Familles de vecteurs en dimension finie}
+
+    \begin{defi}{Espace vectoriel de dimension finie}{}
+        Un espace vectoriel $E$ est dit de \textbf{dimension finie} lorsqu’il admet une famille génératrice finie.
+
+        Sinon, il est de dimension infinie. 
+
+        On convient que $\big\{ 0_E \big\}$ est de dimension finie.
+    \end{defi}
+
+    \begin{theo}{Théorèmes de la dimension, base incomplète et extraite}{}
+        Soit $E$ un $\mathbb{K}$-ev de dimension finie.
+
+        \begin{alors}
+            \item $E$ possède une base.
+            \item \textbf{Théorème de la dimension} Toutes les bases de $E$ ont le même nombre d’éléments, appelé \textbf{dimension} de $E$. 
+            
+            Si $\dim(E) = 1$, on dit que $E$ est une \textbf{droite vectorielle}, et si $\dim(E) = 2$, on dit que $E$ est un \textbf{plan vectoriel}.
+            \item \textbf{Théorème de la base incomplète} \quad  Toute famille libre de $E$ peut se compléter en une base de $E$. 
+            \item \textbf{Théorème de la base extraite} \quad De toute famille famille génératrice de $E$ on peut extraire une base.
+        \end{alors}
+    \end{theo}
+
+    \begin{demo}{Idée}{myred}
+        \begin{enumerate}
+            \item $E$ est de dimension finie et $E \neq \big\{ 0_E \big\}$ donc admet une famille génératrice finie. Donc elle admet une base de cardinal fini d’après le théorème de la base extraite.
+            \item Comme toute famille de $n+1$ est liée dans un sev engendré par une famille de $n$ éléments, on a le résultat.
+            \item Par récurrence finie sur $\intervalleEntier{p+1}{n}$, en utilisant de l’hérédité que si $E \neq \Vect(e_1,\ldots,e_{p+i})$, \[ \exists e_{p+i+1} \in E \backslash \Vect(e_1,\ldots,e_{p+1}) \text{ tel que } (e_1,\ldots,e_{p+i+1}) \text{ est libre} \]
+            \item Si $\mathcal{G}$ est libre, on a une base. Sinon, un vecteur s’écrit comme CL des autres donc on le retire. On répète ce processus jusqu’à avoir une famille libre.
+        \end{enumerate}
+    \end{demo}
+
+    \begin{longtblr}[
+        caption={Dimension des espaces de référence}
+        ]{
+            colspec={|X[3,c]||X[2,c] |}, width = \linewidth,
+            rowhead = 1, 
+            hlines={0.4pt, black},
+            row{odd} = {myolive!30}, row{1} = {myolive, fg=white, font=\bfseries},
+            rows = {1cm}
+        }
+        Espace vectoriel & Dimension \\
+        $\mathbb{K}^n$ & $n$ \\
+        $\mathbb{K}_n [X]$ & $n+1$ \\
+        $\mathcal{M}_{n,p}(\mathbb{K})$ & $np$ \\
+    \end{longtblr}
+
+    \begin{prop}{}{}
+        \begin{soient}
+            \item $E$ un $\mathbb{K}$-ev non-nul de dimension finie égale à $n$
+            \item $\mathcal{F}$, $\mathcal{G}$ deux familles de vecteurs de $E$
+        \end{soient}
+        \begin{alors}
+            \item Si $\mathcal{F}$ est libre, $\card(\mathcal{F}) \leq n$.
+            \item Si $\mathcal{G}$ est génératrice (et finie), $\card(\mathcal{G}) \geq n$.
+        \end{alors}
+    \end{prop}
+    
+    \begin{demo}{Heuristique}{myolive}
+        Si $\mathcal{F}$ est libre, étant donné que toute famille libre de $n+1$ vecteurs est liée, on a nécessairement l’inégalité.
+        
+        Si $\mathcal{G}$ est génératrice, on peut en extraire une base de cardinal $n$, donc l’inégalité est donnée.
+    \end{demo}
+
+    \begin{theo}{Caractérisation des bases en dimension finie}{}
+        \begin{soient}
+            \item $E$ un $\mathbb{K}$-ev non-nul de dimension finie égale à $n$
+            \item $\mathcal{F}$ une famille finie de vecteurs de $E$
+        \end{soient}
+        Alors \begin{align*}
+            \mathcal{F} \text{ est une base de } E & \iff \left\{ \begin{array}{l}
+                \mathcal{F} \text{ est libre} \\
+                \card(\mathcal{F}) = n
+            \end{array} \right. \\
+            & \iff \left\{ \begin{array}{l}
+                \mathcal{F} \text{ est génératrice de } E \\
+                \card(\mathcal{F}) = n
+            \end{array} \right.
+        \end{align*}
+    \end{theo}
+    
+    \begin{demo}{Raisonnement}{myred}
+        \begin{itemize}[leftmargin=3cm]
+            \item[\textbf{(i)} $\implies$ \textbf{(ii)}] Par définition.
+            \item[\textbf{(ii)} $\implies$ \textbf{(iii)}] Soit $(e_1,\ldots,e_n)$ les vecteurs de $\mathcal{E}$. Si $E \neq \Vect(\mathcal{F})$, alors $\exists \, e_{n+1} \in E \backslash \Vect(\mathcal{F})$ tel que $(e_1,\ldots,e_{n+1})$ est libre, ce qui est absurde car $\dim(E) = n$. Donc $\mathcal{F}$ est génératrice de $E$.
+            \item[\textbf{(iii)} $\implies$ \textbf{(i)}] On peut extraire de $\mathcal{F}$ une base $\mathcal{B}$ de $E$. Or \[ \et{\mathcal{B} \subset \mathcal{F}}{\dim(B) = \dim(F)} \implies \mathcal{B} = \mathcal{F} \]
+        \end{itemize}
+    \end{demo}
+
+    \subsubsection{Rang d’une famille de vecteurs}
+
+    \begin{defi}{Rang d’une famille de vecteurs}{}
+        \begin{soient}
+            \item $E$ un $\mathbb{K}$-ev
+            \item $\mathcal{F}$ une famille finie de vecteurs de $E$
+        \end{soient}
+        Alors le rang de $\mathcal{F}$ est la dimension de l’espace qu’elle engendre :
+        \[ \rg(\mathcal{F}) = \dim(\Vect(\mathcal{F})) \]
+    \end{defi}
+
+    \begin{prop}{Caractérisation des familles libres par le rang}{}
+        \begin{soient}
+            \item $E$ un $\mathbb{K}$-ev
+            \item $\mathcal{F} = (e_1,\ldots,e_p)$ une famille finie de vecteurs de $E$
+        \end{soient}
+        Alors \[ \mathcal{F} \text{ est libre} \iff \rg(\mathcal{F}) = \card(\mathcal{F}) \]
+    \end{prop}
+    
+    \begin{demo}{Preuve}{myolive}
+        \begin{itemize}
+            \item[$\implies$] Si $\mathcal{F}$ est libre, $\mathcal{F}$ engendre $\Vect(\mathcal{F})$ donc en est une base.
+            \item[$\impliedby$] Si $\card(\mathcal{F}) = \rg(\mathcal{F})$, alors $\card(\mathcal{F}) = \dim(\mathcal{F})$. Or $\mathcal{F}$ engendre $\Vect(\mathcal{F})$, donc $\mathcal{F}$ est une base de $\Vect(\mathcal{F})$, donc est libre. 
+        \end{itemize}
+    \end{demo}
+
+    \begin{theo}{Formule de Grassmann}{}
+        \begin{soient}
+            \item $E$ un $\mathbb{K}$-ev de dimension finie
+            \item $F$ et $G$ deux sev de $E$
+        \end{soient}
+        \begin{alors}
+            \item $F, G, F+G, F \cap G$ sont de dimension finie.
+            \item $\dim(F+G) = \dim(F) + \dim(G) - \dim(F \cap G)$
+        \end{alors}
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        \textcolor{myred}{Rappel} \quad Si $E$ et $F$ sont deux $\mathbb{K}$-ev, alors $E \times F$ ont un $\mathbb{K}$-ev pour les lois $+$ et $\cdotp$.
+
+        Soit 
+        \[ \fonction{\Phi}{F \times G}{E}{(x,y)}{x + y} \]
+        $\Phi$ est linéaire de façon assez naturelle. 
+        \begin{itemize}
+            \item $\Ima(\Phi) = F + G$
+            \item \begin{align*}
+                \ker(\Phi) 
+                & = \big\{ (x,y) \in F \times G, x + y = 0 \big\} \\
+                &= \big\{ (x,-x) \in F \times G \big\} \\
+                &= \big\{ (x,-x), x \in F \cap G \big\}
+            \end{align*}
+            Donc $x \mapsto (x,-x)$ est un isomorphisme de $F \cap G \to \ker(\Phi)$, donc 
+            \[ \dim(\ker(\Phi)) = \dim(F \cap G) \]
+            \item $\dim(F \times G) = \dim(F) + \dim(G)$.
+        \end{itemize}
+        Ainsi, par la formule du rang, 
+        \begin{align*}
+            \rg(\Phi) &= \dim(\Ima(\Phi)) = \dim(F + G) \\
+            &= \dim(F \times G) - \dim(\ker(\Phi)) \\
+            &= \dim(F) + \dim(G) - \dim(F \cap G) 
+        \end{align*}
+    \end{demo}
+
+    \subsubsection{Sommes de sev en dimension finie}
+
+    \begin{prop}{Produit cartésien de sev}{}
+        L’ensemble $(E_1 \times \cdots \times E_n, +, \cdotp)$ est un $\mathbb{K}$-ev.
+    \end{prop}
+
+    \begin{demo}{Idée}{myolive}
+        Vérifier tous les points qui caractérisent un $\mathbb{K}$-ev.
+    \end{demo}
+
+    \begin{prop}{Dimension d’un produit cartésien de sev}{}
+        Si $E_1, \ldots, E_n$ sont de dimension finie, alors $E_1 \times \cdots \times E_n$ est de dimension finie et 
+        \[ \dim(E_1 \times \cdots \times E_n) = \sum_{i=1}^{n} \dim(E_i) \]
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        On raisonne par récurrence finie sur $n$.
+
+        On traite donc seulement le cas $n = 2$. On pose $\mathcal{B}_1 = (e_1,\ldots, e_n)$ et $\mathcal{B}_2 = (f_1, \ldots, f_m)$ deux bases de $E_1$ et $E_2$ respectivement. Vérifions que $\mathcal{F} = \left((e_1,0), \ldots (e_n,0), (0,f_1), \ldots, (0,f_m)\right)$ est une base de $E_1 \times E_2$.
+    \end{demo}
+
+    \begin{defitheo}{Base adaptée}{}
+        Soit $E$ un $\mathbb{K}$-ev de dimension finie et $E_1,\ldots,E_n$ des sevs de $E$ de bases respectives $\mathcal{B}_1, \ldots, \mathcal{B}_n$ tels que 
+        \[ E = \bigoplus_{i = 1}^n E_i \]   
+        Alors $\mathcal{B} = \bigcup_{i = 1}^n \mathcal{B}_i$ est une base, dite \textbf{base adaptée} à $E$.
+    \end{defitheo} 
+
+    \begin{demo}{Preuve}{mypurple}
+        Par récurrence finie sur $\intervalleEntier{1}{n}$, en utilisant la caractérisation des supplémentaires dans l’hérédité. Pour l’initialisation (cas $n =2$), il faut se ramener à la décomposition de $x$ en vecteur des deux bases.
+    \end{demo}
+
+    \begin{prop}{}{}
+        Soient $E$ un $\mathbb{K}$-ev de dimension finie et $E_1,\ldots,E_n$ $n$ sevs de $E$.
+
+        Alors 
+        \[ \dim(E_1 + \ldots + E_n) \leq \sum_{i=1}^{n} \dim(E_i) \]   
+        avec égalité \textit{ssi} la somme est directe.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        On note $\mathcal{B}_i$ une base de $E_i$. On pose $\mathcal{F} = \mathcal{B}_1 \cup \ldots \cup \mathcal{B}_n$.
+
+        Alors $\mathcal{F}$ est génératrice de $E_1 + \ldots + E_n$. Donc 
+        \[ \dim(E_1 + \ldots + E_n) \leq \card(\mathcal{F}) = \sum_{i=1}^{n} \card(\mathcal{B}_i) = \sum_{i=1}^{n} \dim(E_i) \]
+
+        Pour le cas d’égalité, il faut que $\mathcal{F}$ soit libre. On note 
+        \[ \fonction{\Phi}{E_1 \times \cdots \times E_n}{E}{(x_1,\ldots,x_n)}{x_1 + \ldots x_n} \]
+        On sait que la somme est directe \textit{ssi} $\Phi$ est injective.
+        \begin{itemize}
+            \item[\textcolor{myolive}{$\impliedby$}] Soient, pour tout $i \in \intervalleEntier{1}{n}$, $(\alpha_{i,1}, \ldots, \alpha_{i,n_i}) \in \mathbb{K}^{n_i}$, tels que 
+            \[ 0 = \sum_{i=1}^{n} \left(\sum_{k_i = 1}^{n_i} \alpha_{i,k_i} e_{i, k_i}\right) = \sum_{i=1}^{n} x_i = \Phi(x_1,\ldots,x_n) \]
+            Comme $\Phi$ est injective, $\forall i \in \intervalleEntier{1}{n}, x_i = 0$, donc $\forall i \in \intervalleEntier{1}{n}, \forall k_i \in \intervalleEntier{1}{n_i}, \alpha_{i,k_i} = 0$ donc $\mathcal{F}$ est libre.
+            \item[\textcolor{myolive}{$\implies$}] Si $\mathcal{F}$ est libre, soit $x = (x_1,\ldots,x_n) \in \ker(\Phi)$. 
+            
+            On a $x_1 + \ldots + x_n = 0$. Alors $\sum_{i=1}^{n} \sum_{k_i = 1}^{n_i} \alpha_{i, k_i} e_{i, k_i} = 0$. Or $\mathcal{F}$ est libre donc pour tout $i \in \intervalleEntier{1}{n}$, $x_i = 0$ \textit{i.e.} $x = 0$. Ainsi, $\ker(\Phi) = \{0\}$
+        \end{itemize}
+    \end{demo}
+
+    \begin{theo}{Supplémentaire en dimension finie et caractérisation}{}
+        \begin{soient}
+            \item $E$ un ev de dimension finie
+            \item $F$ un sev de $E$
+        \end{soient}
+        \begin{alors}
+            \item $F$ admet un supplémentaire $S$ dans $E$.
+            \item Pour tout supplémentaire $S$ de $F$ dans $E$,
+            \[ \dim(S) = \dim(E) - \dim(F) \]
+            \item De plus, \begin{align*}
+                F \oplus G = E & \iff \et{E = F+G}{\dim(E) = \dim(F) + \dim(G)}\\
+                & \iff \et{F \cap G = \left\{ 0_E \right\}}{\dim(E) = \dim(F) + \dim(G)}
+            \end{align*}
+        \end{alors}
+    \end{theo}
+    
+    \begin{demo}{Preuve}{myred}
+        \begin{enumerate}
+            \item Pour trouver un supplémentaire de $F$ dans $E$, en étudiant séparément les cas où $F= E$ et $F = \big\{ 0_E \big\}$, on utilise le théorème de la base incomplète, avec $(e_1,\ldots,e_p)$ une base de $F$ et $(e_1,\ldots,e_n)$ une base de $E$. Dans ce cas, \[ \underbrace{\Vect(e_1,\ldots,e_p)}_{= F} \oplus \underbrace{\Vect(e_{p+1},\ldots,e_n)}_{= S} = E \]
+            \item Savoir compter le nombre de vecteurs dans les bases de $E$, $F$ et $S$.
+            \item \begin{itemize}[leftmargin=3cm]
+            \item[\textbf{(i)} $\implies$ \textbf{(ii)}] Immédiat.
+            \item[\textbf{(ii)} $\implies$ \textbf{(iii)}] Avec la formule de Grassmann, on obtient directement que $\dim(F \cap G) = 0$ i.e. $F \cap G = \{ 0_E \}$.
+            \item[\textbf{(iii)} $\implies$ \textbf{(i)}] Avec Grassmann, on obtient que $\dim(E) = \dim(F+G)$. Or $F + G \subset E$, donc $F + G = E$. Or $ F \cap G = \big\{ 0_E \big\}$ donc $E = F \oplus G$.
+        \end{itemize}
+        \end{enumerate}
+    \end{demo}
+
+\section{Espaces Préhilbertiens (Euclidiens, Hermitiens)}
+
+    \subsection{Espaces Préhilbertiens}
+
+        \subsubsection{Produit scalaire}
+
+        \begin{defi}{Produit scalaire}{}
+            On appelle \textbf{produit scalaire} sur $E$ une application $\spr{.}{.} : E \times E \to \mathbb{R}$, vérifiant :
+            \begin{itemize}[label=\textcolor{myyellow}{--}]
+                \item $\spr{.}{.}$ est bilinéaire ;
+                \item pour tout $(x,y) \in E^2$, $\spr{x}{y} = \spr{y}{x}$ (\textbf{symétrie}) ;
+                \item pour tout $x \in E$, $\spr{x}{x} \geq 0$ (\textbf{positivité}) ;
+                \item pour tout $x \in E$, $\spr{x}{x} = 0 \implies x = 0$, c’est le caractère défini du produit scalaire.
+            \end{itemize}
+            En résumé, un produit scalaire est une forme bilinéaire symétrique, définie et positive.
+        \end{defi}
+
+        \begin{omed}{Application \textcolor{black}{(Produit scalaire sur les fonctions continues)}}{myyellow}
+            Soit $E = \mathcal{C}(\intervalleFF{0}{1})$, et $a = (a_n)$ une suite de $\intervalleFF{0}{1}$. On pose, pour $f,g \in E$,
+            \[ \Phi(f,g) = \sum_{n=0}^{+\infty} \frac{1}{2^n} f(a_n) g(a_n) \]    
+            Donner une CNS sur $a$ pour que $\Phi$ définisse un produit scalaire sur $E$.
+
+            On vérifie aisément que $\Phi$ est bien définie, car les fonctions sont bornées sur $\intervalleFF{0}{1}$ comme fonctions continues. On vérifie simplement la bilinéairité, symétrie et positivité. Il faut donc une CNS pour que le ps soit une forme définie. 
+
+            Si $a$ est dense dans $\intervalleFF{0}{1}$, alors $\Phi$ est définie. Réciproquement, si $a$ n’est pas dense, on peut facilement construire une fonction non nulle sur un intervalle $I \subset \intervalleFF{0}{1}$ ne comprenant aucun terme de la suite $(a_n)$ et nulle partout ailleurs. Alors $f(a_n) = 0$ pour tout entier $n$ et $\Phi(f,f) = 0$ alors que $f \neq 0$.
+        \end{omed}
+    
+        \begin{defi}{Espace préhilbertien et euclidien}{}
+            On appelle \textbf{espace préhilbertien} un $\mathbb{R}$-espace vectoriel muni d’un produit scalaire.
+
+            Un \textbf{espace euclidien} est un espace préhilbertien de dimension finie.
+        \end{defi}
+
+        \begin{prop}{}{}
+            Soit $E$ un $\mathbb{R}$-espace vectoriel et $\spr{.}{.}$ une application de $E \times E$ dans $\mathbb{K}$.
+    
+            \begin{alors}
+                \item Si $\spr{.}{.}$ est symétrique et linéaire à gauche, alors $\spr{.}{.}$ est bilinéaire (de même si la linéairité est à droite).
+                \item Si $\spr{.}{.}$ est bilinéaire, 
+                \begin{align*}
+                    & \spr{.}{.} \text{ est définie positive} \\
+                    \iff & \et{\forall x \in E, \, \spr{x}{x} \geq 0}{\forall x \in E, \, \spr{x}{x} = 0 \implies x = 0 \text{ (séparation)}}
+                \end{align*}
+            \end{alors}
+        \end{prop}
+
+        \subsubsection{Norme}
+
+        \begin{defi}{Norme}{}
+            Soit $E$ un $\mathbb{R}$-ev.
+            
+            Une \textbf{norme} sur $E$ est une application $N$ définie sur $E$ à valeurs dans $\mathbb{R}$ telle que 
+            \begin{itemize}
+                \item $\forall x \in E, \, N(x) \geq 0$
+                \item $\forall x \in E, \, N(x) = 0 \implies x = 0$ \quad (séparation)
+                \item $\forall \lambda \in \mathbb{R}, \, \forall x \in E, \, N(\lambda x) = \abs{\lambda}N(x)$ \quad (homogénéité positive)
+                \item $\forall (x,y) \in E^2, \, N(x+y) \leq N(x) + N(y)$ \quad (inégalité triangulaire)
+            \end{itemize}
+        \end{defi}
+        
+        \begin{defitheo}{Norme euclidienne}{}
+            Soit $(E,\spr{.}{.})$ un espace préhilbertien réel.
+    
+            L’application $\fonction{\norm{.}}{E}{\mathbb{R}}{x}{\norm{x} = \sqrt{\spr{x}{x}}}$ est une norme sur $E$.
+    
+            On l’appelle \textbf{norme euclidienne} associée au produit scalaire $\spr{.}{.}$
+        \end{defitheo}
+
+        \begin{theo}{Propriétés de la norme euclidienne et du produit scalaire}{}
+            \begin{enumerate}[label=\textcolor{myred}{\textbf{(\alph*)}}]
+                \item \textbf{Inégalité de Cauchy-Schwarz} \quad Pour tout $(x,y) \in E^2$, 
+                \[ \abs{\spr{x}{y}} \leq \norm{x} \norm{y} \]   
+                avec égalité \textit{ssi} $x$ et $y$ sont colinéaires.
+                \item \textbf{Inégalité triangulaire} \quad Pour tous $x,y \in E$, 
+                \[ \norm{x+y} \leq \norm{x} + \norm{y} \]    
+                avec égalité \text{ssi} $x$ et $y$ sont colinéaires de même sens.
+                \item $\spr{x}{y} = \frac{1}{2} \left(\norm{x+y}^2 - \norm{x}^2 - \norm{y}^2\right)$
+                \item $\spr{x}{y} = \frac{1}{2} \left(\norm{x}^2 + \norm{y}^2 - \norm{x-y}^2\right)$
+                \item $\spr{x}{y} = \frac{1}{4} \left(\norm{x+y}^2 - \norm{x-y}^2\right)$ \quad \textit{(identité de polarisation)}
+                \item $\norm{x+y}^2 + \norm{x-y}^2 = 2 \left(\norm{x}^2 + \norm{y}^2 \right)$ \quad \textit{(identité du parallélogramme)}
+            \end{enumerate}
+        \end{theo}
+
+        \begin{demo}{Preuve}{myred}
+            \begin{enumerate}[label=\textcolor{myred}{\textbf{(\alph*)}}]
+                \item  Soient $(x,y) \in E^2$ et $t \in \mathbb{R}$ -- l’intégration de $t$ permet de faire une preuve dite « variationnelle » --.
+                \begin{align*}
+                    \spr{x+ty}{x+ty} &= \spr{x}{x+ty} + t\spr{y}{x+ty} \\
+                    &\downarrow \spr{x}{y} = \spr{y}{x} \\
+                    &= \spr{x}{x} + 2t\spr{x}{y} + t^2 \spr{y}{y}
+                \end{align*}
+                \begin{itemize}
+                    \item Si $y = 0$, $\et{\spr{y}{y} = 0}{\spr{x}{y}=0}$ donc l’inégalité de Cauchy-Schwarz est vérifiée.
+                    \item Si $y \neq 0, \spr{y}{y} \neq 0$. On pose \lilbox{myred}{$P= \spr{x+Xy}{x+Xy}$}.
+        
+                    $P$ est un polynôme de degré 2 et
+                    \[ \forall t \in \mathbb{R}, \, P(t) = \spr{x+ty}{x+ty} \geq 0\] 
+                    donc le discriminant de $P$ est $\leq 0$, 
+                    \begin{align*}
+                        \text{i.e. } \quad & 4\spr{x}{y}^2-4\spr{x}{x}\spr{y}{} \leq 0 \\
+                        \text{puis } \quad & \abs{\spr{x}{y}} \leq \sqrt{\spr{x}{x} \spr{y}{y}}
+                    \end{align*}
+                \end{itemize}
+                \textbf{\textcolor{myred}{Cas d’égalité}}
+                \begin{itemize}
+                    \item Si $y = 0$, il y a égalité et $(x,y)$ est liée.
+                    \item Si $y \neq 0$, 
+                    \begin{align*}
+                        \Delta_P = 0 & \iff \exists t_0 \in \mathbb{R}, \, P(t_0) = 0 \\
+                        & \iff \exists t_0 \in \mathbb{R}, \, \spr{x + t_0 y}{x + t_0 y} = 0 \\
+                        & \iff \exists t_0 \in \mathbb{R}, \,x + t_0 y = 0 \\
+                        & \iff (x,y) \text{ est liée}
+                    \end{align*}
+                \end{itemize}
+                \item \begin{align*}
+                    \norm{x + y} \leq \norm{x} + \norm{y} 
+                    &\iff \norm{x+y}^2 \leq \left(\norm{x} + \norm{y}\right)^2 \\
+                    &\iff \norm{y}^2 + 2 \spr{x}{y} + \norm{x}^2 \leq \norm{y}^2 + 2 \norm{x}\norm{y} + \norm{x}^2 \\
+                    &\iff \spr{x}{y} \leq \norm{x}\norm{y}
+                \end{align*}
+                Ce qui est vrai par CS. Le cas d’égalité devient $x$ et $y$ colinéaires de même sens.
+                \item[$\star$] Pour les égalités suivantes, simplement remarquer que 
+                \begin{align*}
+                    \norm{x+y}^2 &= \spr{x+y}{x+y} = \spr{x}{x} + 2\spr{x}{y} + \spr{y}{y} = \norm{x}^2 + 2\spr{x}{y} + \norm{y}^2 \\
+                    \norm{x-y}^2 &= \spr{x-y}{x-y} = \spr{x}{x} - 2\spr{x}{y} + \spr{y}{y} = \norm{x}^2 - 2\spr{x}{y} + \norm{y}^2
+                \end{align*}     
+            \end{enumerate}
+        \end{demo}
+
+        \begin{omed}{Application de l’inégalité de CS \textcolor{black}{(Nature d’une série)}}{myred}
+            \textbf{But} \quad Nature de la série de terme général $u_n = \frac{1}{n^2 \sqrt{2}^n} \sum_{k=0}^{n} \sqrt{\binom{n}{k}}$.
+
+            On applique l’inégalité de CS dans $\mathbb{R}^n$, avec $x = (\sqrt{\binom{n}{k}})_{k \in \intervalleEntier{0}{n}}$ et $y = (1,\ldots,1)$, ce qui donne 
+            \[ \sum_{k=0}^{n} \sqrt{\binom{n}{k}} \leq 2^{n/2} \sqrt{n+1} \]   
+            On a donc une série de terme général en $\comp{\mathcal{O}}{n}{+\infty}{\frac{1}{n^{3/2}}}$ d’où la convergence.
+        \end{omed}
+
+        \begin{omed}{Application \textcolor{black}{Approximation au sens des moindres carrés}}{myred}
+            Soit $E$ une espace préhilbertien et $x_1,\ldots,x_p \in E$. Montrons que la fonction définie sur $E$ par $f(x) = \sum_{i=1}^{p} \norm{x-x_i}^2$ atteint son minimum en $m = \frac{1}{p} \sum_{i=1}^{p} x_i$.
+
+            Pour cela, on passe par $x - x_i = x - m + m - x_i$, de sorte que 
+            \[ \norm{x - x_i}^2 = \norm{x - m}^2 + 2 \spr{x-m}{m - x_i} + \norm{m - x_i}^2 \]    
+            D’où, en sommant, 
+            \begin{align*}
+                f(x)
+                &=p\norm{x- m}^2+ 2\sum_{i=1}^p \spr{x - m}{m - x_i}+f(m)\\
+                &=p\norm{x- m}^2+2  \spr{x - m}{\sum_{i=1}^{p} (m-x_i)}+f(m)\\
+                &=p\norm{x- m}^2+2 \spr{x- m}{pm - pm}  +f (m)\\
+                &=p\norm{x- m}^2+f(m)\geq f(m).
+            \end{align*}
+        \end{omed}
+
+        \begin{omed}{Remarque}{myred}
+            Si une norme ne vérifie pas l’identité du parallélogramme, elle ne provient pas d’un produit scalaire. On peut ainsi montrer qu’une norme n’est pas euclidienne.
+        \end{omed}
+
+    \subsection{Familles orthogonales}
+
+        \subsubsection{Familles orthogonales de vecteurs}
+
+        \begin{defi}{Orthogonalité d’un vecteur, d’une famille}{}
+            Soit $(E, \spr{.}{.})$ un espace préhilbertien réel.
+            \begin{itemize}
+                \item Soient $x,y \in E$. 
+        
+                On dit que $x$ et $y$ sont des \textbf{vecteurs orthogonaux} et on note $x \perp y$ lorsque $\spr{x}{y} = 0$.
+                \item Soit $\mathcal{F}$ une famille (éventuellement infinie) d’éléments de $E$.
+        
+                La \textbf{famille} $\mathcal{F}$ est dite \textbf{orthogonale} si \[ \forall (x,y) \in \mathcal{F}^2, \, x \neq y \implies x \perp y \]
+            \end{itemize}
+        \end{defi}
+
+        \begin{theo}{}{}
+            \begin{soient}
+                \item $(E,\spr{.}{.})$ un espace préhilbertien réel
+                \item $\mathcal{F}$ une famille (finie) orthogonale de $E$ ne contenant pas $0$
+            \end{soient}
+            Alors $\mathcal{F}$ est libre.
+        \end{theo}
+    
+        \begin{omed}{Exemple}{myred}
+            La famille $(L_0,\ldots,L_n)$ des polynômes de Lagrange est donc libre dans $\mathbb{R}_n[X]$ de cardinal $n+1 = \dim(\mathbb{R}_n[X])$, et en est donc une base.
+        \end{omed}
+
+        \begin{theo}{Théorème de Pythagore}{}
+            \begin{soient}
+                \item $(E,\spr{.}{.})$ un espace préhilbertien réel
+                \item $\norm{.}$ la norme euclidienne associée à $\spr{.}{.}$
+            \end{soient}
+            \begin{alors}
+                \item $\forall (x,y) \in E^2, \, x \perp y \implies \norm{x + y}^2 = \norm{x}^2 + \norm{y}^2$
+                \item Si $(e_1,\ldots,e_p)$ est une famille orthogonale de vecteurs de $E$, alors $ \norm{\sum\limits_{i=1}^p e_i}^2 = \sum\limits_{i=1}^p \norm{e_i}^2 $
+            \end{alors}
+        \end{theo}
+    
+        \begin{demo}{Démonstration}{myred}
+            Pour \textbf{(i)}, comme $\norm{x + y}^2 =  \norm{x}^2 + \norm{y}^2 + 2 \spr{x}{y}$, si $x \perp y$, $\spr{x}{y}= 0$ et on obtient l’inégalité. Le \textbf{(ii)} s’obtient par récurrence finie.
+        \end{demo}
+
+        \subsubsection{Familles et bases orthonormées}
+
+        \begin{defitheo}{Famille orthonormale}{}
+            \begin{soient}
+                \item $(E,\spr{.}{.})$ un espace préhilbertien réel
+                \item $\norm{.}$ la norme euclidienne associée à $\spr{.}{.}$
+                \item $\mathcal{F} = (e_1,\ldots, e_n)$ une famille d’éléments de $E$
+            \end{soient}
+            On dit que $\mathcal{F}$ est une famille \textbf{orthonormale} (ou \textbf{orthornormée}) lorsque 
+            \[\et{\mathcal{F} \text{ est orthogonale}}{\forall i \in \intervalleEntier{1}{n}, \, \norm{e_i} = 1} \]
+            Ainsi, $\mathcal{F}$ est orthonormée si et seulement si 
+            \[ \forall (i,j) \in \intervalleEntier{1}{n}^2, \, \spr{e_i}{e_j} = \delta_{i,j} \] 
+            
+            Si de plus $\mathcal{F}$ est une base de $E$, on dit que $\mathcal{F}$ est une \textbf{base orthonormale} (ou orthonormée) de $E$, que l’on notera souvent $(\varepsilon_1,\ldots,\varepsilon_n)$
+            Dans ce cas, si $x = \sum_{i=1}^{n} x_i \varepsilon_i, y = \sum_{i=1}^{n} y_i \varepsilon_i \in E$, 
+            \[ x = \sum_{i=1}^{n} \spr{x}{\varepsilon_i} \varepsilon_i \]   
+            \textit{i.e.} les coordonnées de $x$ sont $\left(\spr{x}{\varepsilon_1},\ldots, \spr{x}{\varepsilon_n}\right)$ et 
+            \[ \spr{x}{y} = \sum_{i=1}^{n} x_i y_i \]
+        \end{defitheo}
+
+        \begin{demo}{Justification}{mypurple}
+            Soit $j \in \intervalleEntier{1}{n}$. 
+            \begin{align*}
+                \spr{x}{e_j} &= \spr{\sum_{i=1}^{n} x_i e_i}{e_j} \\
+                &= \sum_{i=1}^{n} x_i \spr{e_i}{e_j} \\
+                &= x_j 
+            \end{align*}
+            De la même façon, 
+            \begin{align*}
+                \spr{x}{y} 
+                &= \spr{\sum_{i=1}^{n} x_i e_i}{\sum_{j=1}^{n} x_j e_j} \\
+                &= \sum_{i=1}^{n} \sum_{j = 1}^{n} x_i y_j \spr{e_i}{e_j} \\
+                &= \sum_{i=1}^{n} x_i y_i
+            \end{align*}
+        \end{demo}
+
+        \subsubsection{Orthonormalisation de Gramm Schimdt}
+
+        \begin{theo}{Théorème de Gramm Schmidt}{}
+            \begin{soient}
+                \item $(E,\spr{.}{.})$ un espace préhilbertien réel
+                \item $(e_1,\ldots,e_n)$ une famille libre de vecteurs de $E$
+            \end{soient}
+            Alors il existe une famille $(\varepsilon_1,\ldots,\varepsilon_n)$ de $E$ telle que \[ \et{(\varepsilon_1,\ldots,\varepsilon_n) \text{ est orthonormale}}{\forall i \in \intervalleEntier{1}{n}, \, \Vect(e_1,\ldots,e_i) = \Vect(\varepsilon_1,\ldots,\varepsilon_i)} \] 
+            Si l’on impose que $\forall i \in \intervalleEntier{1}{n}, \, \spr{e_i}{\varepsilon_i} > 0$, la famille précédente est unique.
+        \end{theo}
+
+        \begin{demo}{Démonstration}{myred}
+            Pour $k \in \intervalleEntier{1}{n}$, on pose 
+            \[ \mathcal{H}_k \,: \, \et{(\varepsilon_1,\ldots,\varepsilon_k) \text{ est orthonormale}}{\forall i \in \intervalleEntier{1}{k}, \, \Vect(e_1,\ldots,e_i) = \Vect(\varepsilon_1,\ldots,\varepsilon_i)} \]
+            \begin{itemize}
+                \item \lilbox{myred}{I : Pour $k=1$} \quad  $\varepsilon_1 = \frac{e_1}{\norm{e_1}}$ et $e_1 \neq 0$ donc $\et{(\varepsilon_1) \text{ est otn.}}{\Vect(\varepsilon_1) = \Vect(e_1)}$
+                \item \lilbox{myred}{H : Soit $k \in \intervalleEntier{1}{n-1}$} tel que $\mathcal{H}_k$ est vraie. 
+                
+                On pose $e_{k+1} = e_{k+1} - \sum\limits_{i=1}^{k} \spr{e_{k+1}}{\varepsilon_i}\varepsilon_i$ et $\varepsilon_{k+1} = \frac{e_{k+1}'}{\norm{e_{k+1}'}}$
+                
+                Soit $j \in \intervalleEntier{1}{k}$.
+                \begin{align*}
+                    \spr{e_{k+1}'}{\varepsilon_j} &= \spr{e_{k+1}}{\varepsilon_j} - \sum\limits_{i=1}^{k} \spr{e_{k+1}}{\varepsilon_i}\underbrace{\spr{\varepsilon_i}{\varepsilon_j}}_{= \delta_{i,j}} \\
+                    &= \spr{e_{k+1}}{\varepsilon_j} - \spr{e_{k+1}}{\varepsilon_j} \\
+                    &= 0
+                \end{align*} 
+                Comme $(e_1,\ldots,e_s)$ est libre, $\et{e_{k+1} \notin \Vect(e_1,\ldots,e_k) \overset{\mathcal{H}_k}{=} \Vect(\varepsilon_1, \ldots, \varepsilon_k)}{e_{k+1} \neq 0} $. Donc $e_{k+1}' \neq 0$, puis $\spr{\varepsilon_{k+1}}{\varepsilon_j} = \frac{\spr{e_{k+1}'}{\varepsilon_j}}{\norm{e_{k+1}}'} = 0$. Ainsi, $\et{\forall j \in \intervalleEntier{1}{k}, \, \spr{\varepsilon_{k+1}}{\varepsilon_j} = 0}{\norm{\varepsilon_{k+1}} = 1}$, et $(\varepsilon_1, \ldots, \varepsilon_k)$ est orthonormée par $\mathcal{H}_k$, donc $(\varepsilon_1, \ldots, \varepsilon_{k+1})$ est otn.
+                
+                \[ \varepsilon_{k+1} = \frac{e_{k+1}}{\norm{e_{k+1}'}} - \underbrace{\frac{\sum\limits_{i=1}^k \spr{e_{k+1}}{\varepsilon_i}\varepsilon_i}{\norm{e_{k+1}'}}}_{x_k} \]
+                avec $x_k \in \Vect(\varepsilon_1,\ldots,\varepsilon_k) \underset{\mathcal{H}_k}{=} \Vect(e_1,\ldots,e_k)$ , donc $\varepsilon_{k+1} \in \Vect(e_1,\ldots,e_{k+1})$. Or 
+                \[ \et{\forall i \in \intervalleEntier{1}{k}, \, \varepsilon_i \in \Vect(\varepsilon_1, \ldots, \varepsilon_k) = \Vect(e_1,\ldots,e_k)}{\Vect(e_1,\ldots,e_k) \subset \Vect(e_1, \ldots, e_{k+1})} \] 
+                donc $\Vect(\varepsilon_1,\ldots,\varepsilon_{k+1}) \subset \Vect(e_1,\ldots,e_{k+1})$
+                
+                Réciproquement, $\forall i \in \intervalleEntier{1}{k}, \, e_i \in \Vect(\varepsilon_1,\ldots,\varepsilon_{k+1})$ par $\mathcal{H}_k$ et $e_{k+1} = \norm{e_{k+1}'} \varepsilon_{k+1} + \sum\limits_{i=1}^k \spr{e_{k+1}}{\varepsilon_i}\varepsilon_i  \in \Vect(\varepsilon_1,\ldots,\varepsilon_{k+1})$. Donc $\Vect(e_1,\ldots,e_{k+1}) \subset \Vect(\varepsilon_1,\ldots,\varepsilon_{k+1})$.
+            \end{itemize}
+            On conclut par récurrence sur $\intervalleEntier{1}{n}$.
+        \end{demo}
+
+        Dans la pratique, il est beaucoup plus simple de commencer par orthogonaliser la famille, et ainsi obtenir une base orthogonale. On divisera ensuite les vecteurs de cette base par leur norme pour en faire une base orthonormale.
+    
+        \begin{omed}{Exemple}{myred}
+            $E = \mathbb{R}^3$ muni du produit scalaire canonique. Appliquons le procédé d’orthonormalisation de Gramm Schmidt à $(e_1,e_2,e_3) = \big((1,1,1),(1,1,2),(1,2,3)\big)$.
+            \begin{itemize}
+                \item $\varepsilon_1 = \frac{(1,1,1)}{\norm{(1,1,1)}} = \frac{1}{\sqrt{3}} (1,1,1)$
+                \item \begin{align*}
+                    e_2' &= e_2 - \spr{e_2}{\varepsilon_1}\varepsilon_1 \\
+                    &= \frac{1}{3}(-1,-1,2)
+                \end{align*}
+                Puis $\norm{e_2'} = \frac{\sqrt{6}}{3}$ 
+                
+                Donc $\varepsilon_2 = \frac{e_2'}{\norm{e_2'}} = \frac{1}{\sqrt{6}}(-1,-1,2)$
+                \item \begin{align*}
+                    e_3' &= e_3 - \spr{e_3}{\varepsilon_2}\varepsilon_2 - \spr{e_3}{\varepsilon_1}\varepsilon_1 \\
+                    &= (1,2,3) - (2,2,2) - \left(-\frac{1}{2}, -\frac{1}{2}, 1\right) \\
+                    &= \left(-\frac{1}{2}, \frac{1}{2},0\right)
+                \end{align*}
+                Puis $\varepsilon_3 = \frac{e_3'}{\norm{e_3'}} = \frac{1}{\sqrt{2}}(-1,1,0)$
+            \end{itemize}
+        \end{omed}
+
+        \begin{coro}{Tout espace euclidien admet une base orthonormale}{}
+            Soit $(E,\spr{.}{.})$ un espace euclidien.
+    
+            Alors $E$ admet une base orthonormale.
+        \end{coro}
+    
+        \begin{coro}{Théorème de la base orthonormée incomplète}{}
+            \begin{soient}
+                \item $(E,\spr{.}{.})$ un espace euclidien, et $n$ sa dimension.
+                \item $(\varepsilon_1,\ldots,\varepsilon_p)$ une famille orthonormée de vecteurs de $E$.
+            \end{soient}
+            Alors il existe $(\varepsilon_{p+1},\ldots,\varepsilon_n) \in E^{n-p}$ tel que $(\varepsilon_1,\ldots,\varepsilon_n)$ est une base orthonormée de $E$.
+        \end{coro}
+
+    \subsection{Ensembles et sous espaces vectoriels orthogonaux}
+
+        \subsubsection{Ortogonal d’un ensemble}
+
+        \begin{defitheo}{Orthogonal d’un ensemble}{}
+            \begin{soient}
+                \item $(E,\spr{.}{.})$ un espace préhilbertien réel
+                \item $A$ un sous-ensemble non-vide de $E$
+            \end{soient}
+            L’orthogonal de $A$ est l’ensemble 
+            \[ A^{\perp} = \{ x \in E, \, \forall a \in A, \, x \perp a \} \]
+            On a alors 
+            \begin{enumerate}
+                \item $A^{\perp}$ est un sous-espace vectoriel de $E$.
+                \item $A \subset B \implies B^{\perp} \subset A^{\perp}$
+                \item Si $A$ est fini, $A^{\perp} = \left(\Vect(A)\right)^{\perp}$
+            \end{enumerate}
+        \end{defitheo}
+
+        \subsubsection{Orthogonal d’un sous-espace vectoriel}
+
+        \begin{prop}{CNS d’appartenance à l’orthogonal d’un sous-espace vectoriel}{}
+            \begin{soient}
+                \item $(E,\spr{.}{.})$ un espace préhilbertien réel
+                \item $F$ un sous-espace vectoriel de $E$ de dimension finie
+                \item $\mathcal{G} = (e_1, \ldots, e_s)$ une famille génératrice finie de $F$
+                \item $y \in E$
+            \end{soient}
+            Alors 
+            \[ y \in F^{\perp} \iff \forall i \in \intervalleEntier{1}{s}, \, \spr{y}{e_i} = 0 \]
+        \end{prop}
+    
+        \begin{theo}{}{}
+            \begin{soient}
+                \item $(E,\spr{.}{.})$ un espace préhilbertien réel
+                \item $F$ un sous-espace vectoriel de $E$
+            \end{soient}
+            \begin{alors}
+                \item $F^{\perp}$ est un sev de $E$.
+                \item $F^{\perp} \cap F = \{ 0 \}$
+                \item Si $F$ est de dimension finie, $E = F \oplus F^{\perp}$
+                \item Si $F$ est de dimension finie, $\dim(F^{\perp}) = \dim(E) - \dim(F)$
+            \end{alors}       
+        \end{theo}
+    
+        \begin{demo}{Démonstration}{myred}
+            \begin{enumerate}
+                \item Voir les propriétés des orthogonaux.
+                \item $0 \in F \cap F^{\perp}$ car ce sont des sev de $E$.
+                
+                Soit $x \in F \cap F^{\perp}$. 
+                
+                $\forall y \in F, \, \spr{x}{y} = 0$. En particulier, $\spr{x}{x} =0$ donc $x = 0$.
+                
+                Ainsi, $F \cap F^{\perp} = \{ 0 \}$
+                \item $F + F^{\perp} = F \oplus F^{\perp}$ d’après (ii). $F \oplus F^{\perp} \subset E$ cas sont des sev de $E$.
+                
+                Soit $x \in E$. Comme $F$ est de dim. finie, il possède des bases orthonormées. Soit $(\varepsilon_1,\ldots,\varepsilon_s)$ une base de $F$. Soit $y = \sum\limits_{i=1}^s \spr{x}{\varepsilon_i}\varepsilon_i \in F$ et $z = x-y$. Soit $j \in \intervalleEntier{1}{s}$.
+                \begin{align*}
+                    \spr{z}{\varepsilon_j} &= \spr{x - \sum\limits_{i=1}^s \spr{x}{\varepsilon_i}\varepsilon_i}{\varepsilon_j} \\
+                    &= \spr{x}{\varepsilon_j} - \sum\limits_{i=1}^s \spr{x}{\varepsilon_i} \underbrace{\spr{\varepsilon_i}{\varepsilon_j}}_{\delta_{i,j}} \\
+                    &= \spr{x}{\varepsilon_j} - \spr{x}{\varepsilon_j} \\
+                    &= 0
+                \end{align*}
+                Donc $z \in F^{\perp}$. Or $x = z + y \in E$, donc $E \subset F \oplus F^{\perp}$. Ainsi, $E = F \oplus F^{\perp}$
+                \item Immédiat par \textbf{(iii)}.
+            \end{enumerate}
+        \end{demo}
+
+        \begin{omed}{Remarque \textcolor{black}{Importance de la dimension finie}}{myred}
+            Soient $E=\mathcal{C}(\intervalleFF{0}{1},\mathbb{R})$ muni du produit scalaire défini par $\spr{f}{g} = \int_0^1 f(t)g(t)dt$ et $F=\left\{ f \in E, \, f(0) = 0 \right\}$ qui est un sev strict de $E$.
+            
+            Soit $g \in F^{\perp}$. Alors $\fonction{f}{\intervalleFF{0}{1}}{\mathbb{R}}{t}{t^2 g(t)} \in F$, donc $\spr{f}{g} = 0$ \textit{i.e.} $\int_0^1 t^2g^2(t)dt = 0$. Or $\et{\forall t \in \intervalleFF{0}{1},  t^2g^2(t) \geq 0}{t \mapsto t^2 g^2(t) \in \mathcal{C}(\intervalleFF{0}{1},\mathbb{R})}$ donc $\forall t \in \intervalleFF{0}{1}, t^2 g^2(t) =0$ \textit{i.e.} $\forall t \in \intervalleOF{0}{1}, g(t) = 0$.
+            
+            Comme $g$ est continue, $g(0) = 0$. Ainsi, 
+            \[ E = \tikzmarknode[draw, myolive, fill = myolive!2, rounded corners, inner sep=4pt]{sev}{F} \oplus \tikzmarknode[draw, mypurple, fill = mypurple!2, rounded corners, inner sep=4pt]{nul}{F^{\perp}} \]   
+            \begin{center}
+                \footnotesize \tikzmarknode[draw, myolive, fill = myolive!2, rounded corners, inner sep=4pt]{sev2}{sev strict} \hspace*{5cm} \tikzmarknode[draw, mypurple, fill = mypurple!2, rounded corners, inner sep=4pt]{nul2}{$ = \{ 0 \}$}
+            \end{center}
+            \begin{tikzpicture}[remember picture, overlay]
+                \draw[->, myolive] (sev2.north) [out=90, in = 270] (sev.south);
+                \draw[->, mypurple] (nul2.north) [out=90, in = 270] (nul.south);
+            \end{tikzpicture}
+            Ce qui est absurde.
+        \end{omed}
+
+        \subsubsection{Hyperplans}
+
+        \begin{defi}{Vecteur normal}{}
+            \begin{soient}
+                \item $(E,\spr{.}{.})$ un espace préhilbertien réel de dimension finie
+                \item $F$ un hyperplan de $E$
+            \end{soient}
+            Dans ce cas, $F^{\perp}$ est une droite. On appelle \textbf{vecteur normal} à $F$ tout vecteur non-nul de $F^{\perp}$.
+        \end{defi}
+    
+        \begin{prop}{}{}
+            \begin{soient}
+                \item $(E,\spr{.}{.})$ un espace préhilbertien réel de dimension finie
+                \item $\mathcal{B} = (\varepsilon_1,\ldots,\varepsilon_n)$ une base orthonormée de $E$
+                \item $F$ un hyperplan de $E$
+                \item $(a_1,\ldots,a_n) \in \mathbb{R}^n \backslash \{(0,\ldots,0)\}$
+            \end{soient}
+            Alors
+            \[ F \text{ a pour équation } \sum\limits_{i=1}^n a_i x_i = 0 \iff \sum\limits_{i=1}^n a_i \varepsilon_i \text{ est un vecteur normal à } F \] 
+        \end{prop}
+
+        \subsubsection{Sous espaces orthogonaux}
+
+        \begin{defitheo}{Sous espaces vectoriels orthogonaux}{}
+            \begin{soient}
+                \item $(E,\spr{.}{.})$ un espace préhilbertien réel
+                \item $F,G$ deux sous-espaces vectoriels de $E$
+            \end{soient}
+            \begin{enumerate}
+                \item On dit que $F$ et $G$ sont \textbf{orthogonaux} lorsque \[ \forall (x,y) \in F \times G, \, \spr{x}{y} = 0 \] 
+                On note $F \perp G$.
+                \item On dit que $G$ est un \textbf{supplémentaire orthogonal} de $F$ losque \[ \et{F \oplus G = E}{F \perp G} \]
+                C’est le cas de $F$ et $F^{\perp}$.
+            \end{enumerate}
+        \end{defitheo}
+
+    \subsection{Projecteur orthogonal}
+
+        \subsubsection{Projecteurs et symétries orthogonaux sur un sous espace vectoriel}
+
+        \begin{defitheo}{Projecteur et projeté orthogonal, caractérisation et inégalité de Bessel}{}
+            \begin{soient}
+                \item $(E,\spr{.}{.})$ un espace préhilbertien réel
+                \item $F$ un sev de $E$ de dimension finie
+            \end{soient}
+            Le \textbf{projecteur orthogonal} sur $F$ est le projecteur $p_F$ sur $F$ parallèlement à $F^{\perp}$. 
+            
+            Pour $x \in E, \, p_F(x)$ est appelé \textbf{projeté orthogonal} de $x$ sur $F$.
+            \begin{enumerate}
+                \item Si $\mathcal{G}$ est une famille génératrice finie de $F$, 
+                \begin{align*}
+                    y = p_F(x) &\iff \et{y \in F}{x - y \in F^{\perp}} \\
+                    &\iff \et{y \in F}{\forall e \in \mathcal{G}, \, \spr{x-y}{e}=0}
+                \end{align*}
+                \item Si $(\varepsilon_1,\ldots,\varepsilon_n)$ est une b.o.n. de $F$, 
+                \[ p_F(x) = \sum\limits_{i=1}^n \spr{x}{\varepsilon_i}\varepsilon_i \] 
+            \end{enumerate}
+            En particulier, on a toujour l’\textbf{inégalité de Bessel}
+            \[ \forall x \in E, \norm{p_F(x)} \leq \norm{x} \]
+        \end{defitheo}
+
+        \begin{demo}{Preuves}{mypurple}
+            \begin{enumerate}
+                \item Par caractérisation d’un projeté, non nécessairement orthogonal.
+                \item Soit $x \in E$. $x = \sum_{i=1}^{n} \spr{x}{e_i}e_i + x - \sum_{i=1}^{n} \spr{x}{e_i}e_i$ où $\sum_{i=1}^{n} \spr{x}{e_i}e_i \in F$ et $x - \sum_{i=1}^{n} \spr{x}{e_i}e_i \in F^{\perp}$, donc la projection orthogonale de $x$ est $p_F(x) = \sum_{i=1}^{n} \spr{x_i}{e_i} e_i$.
+            \end{enumerate}
+            Pour la démonstration de l’inégalité de Bessel, on peut remarquer que 
+            \[ \norm{p_F(x)} = \norm{x + p_F(x) - x} \leq \norm{x} + \norm{p(x) - x} \leq \norm{x} \]
+            ou bien se ramener à $\norm{p_F(x)}^2 \leq \norm{x}^2$, où 
+            \begin{align*}
+                \norm{x}^2 
+                &= \spr{x}{x} \\
+                &= \spr{p_F(x) + x - p_F(x)}{p_F(x) + x - p_F(x)} \\
+                &= \spr{p_F(x)}{p_F(x)} + \spr{x-p_F(x)}{x - p_F(x)} \\
+                &= \norm{p_F(x)}^2 + \norm{x - p(x)}^2
+            \end{align*}
+            Dans ces deux cas, on retrouve le cas d’égalité : $x = p_F(x)$.
+        \end{demo}
+
+        \begin{prop}{Un projecteur orthogonal est autoadjoint}{}
+            \begin{soit}
+                \item $E$ un eve.
+            \end{soit}
+            Alors $p$ est un projecteur orthogonal \textit{ssi} $p$ est autoadjoint.
+        \end{prop}
+
+        \begin{demo}{Preuve}{myolive}
+            \begin{itemize}
+                \item[$\implies$] Si $p$ est un projecteur orthogonal, et $x,y \in E$, alors 
+                \begin{align*}
+                    \spr{p(x)}{y} 
+                    &= \spr{p(x)}{y - p(y) + p(y)} \\
+                    &= \spr{p(x)}{y - p(y)} + \spr{p(x)}{p(y)} \\
+                \end{align*}
+                Or $p(x) \in \Ima(p)$ et $y - p(y) \in \Ima(p)^{\perp}$, donc $\spr{p(x)}{y} = \spr{p(x)}{p(y)}$. Par symétrie des variables $x$ et $y$, on a de même $\spr{p(y)}{x} = \spr{p(y)}{p(x)}$, d’où $\spr{p(x)}{y} = \spr{x}{p(y)}$.
+                \item[$\impliedby$] On suppose que $p$ est autoadjoint. Pour prouver que $p$ est un projecteur orthogonal, on doit montrer que $\ker(p) = \Ima(p)^{\perp}$. Soit $x \in \ker(p)$ et $y \in Ima(p)^{\perp}$. 
+                \begin{align*}
+                    \spr{x}{y} 
+                    & \quad \downarrow \quad \text{car } y \in \Im(p)
+                    &= \spr{x}{p(y)} \\
+                    &= \spr{p(x)}{y} \\
+                    &= 0
+                \end{align*}
+                Donc $\ker(p) \subset \Ima(p)^{\perp}$, et 
+                \[ \dim(\ker(p)) = \dim(E) - \dim(\Ima(p)) = \dim(\Ima(p)^{\perp}) \]   donc $\ker(p) = \Ima(p)^{\perp}$, \textit{i.e.} $p$ est un projecteur orthogonal.
+            \end{itemize}
+        \end{demo}
+
+        \begin{defi}{Symétrie orthogonale}{}
+            \begin{soient}
+                \item $(E,\spr{.}{.})$ un espace préhilbertien réel
+                \item $F$ un sev de $E$ de dimension finie
+            \end{soient}
+            On appelle symétrie orthogonale par rapport à $F$ la symétrie par rapport à $F$ parallèlement à $F^{\perp}$.
+        \end{defi}
+
+        \subsubsection{Distance à un sous espace vectoriel}
+
+        \begin{defitheo}{Distance à un sous-espace vectoriel}{}
+            \begin{soient}
+                \item $(E,\spr{.}{.})$ un espace préhilbertien réel, de norme associée $\norm{.}$
+                \item $F$ un sous-espace vectoriel de $E$ de dimension finie
+                \item $x \in E$
+            \end{soient}
+            La \textbf{distance} de $x$ à $F$ est le nombre 
+            \[ \dist(x,F)=\inf\left(\left\{\norm{x-y}, \, y \in F\right\}\right) \]
+            En particulier, 
+            \[ \exists ! y_0 \in F, \, \dist(x,F) = \norm{x - y_0} \] 
+            et $y_0$ est le projeté orthogonal de $x$ sur $F$.
+        \end{defitheo}
+
+        Cette distance représente la plus petite distance entre $x$ et un élément de $F$. 
+
+        \begin{demo}{Idée}{mypurple}
+            Soit $y \in F$.
+            \begin{align*}
+                \norm{x - y}^2 
+                &= \spr{x - y}{x-y} \\
+                &= \spr{p(x) + x - p(x) - y}{p(x) + x - p(x) - y} \\
+                &\quad \downarrow \quad x - p(x) \in F^{\perp} \esp{et} p(x) - y \in F \\
+                &= \spr{x - p(x)}{x - p(x)} + \spr{p(x) - y}{p(x) - y} \\
+                &= \norm{x - p(x)}^2 + \norm{p(x) - y}^2
+            \end{align*} 
+            Ainsi, $\inf\left(\left\{\norm{x-y}, \, y \in F\right\}\right) \leq \norm{x - p(x)}$, avec égalité \textit{ssi} $y = p(x)$. Ainsi, $d(x,F) = \norm{x - p(x)}$.
+        \end{demo}
+
+        \begin{omed}{Application directe}{mypurple}
+            Calculons $\inf_{a,b \in \mathbb{R}} \int_{0}^{2\pi} \left(t - a \cos(t) - b \sin(t)\right)^2$.
+
+            On pose $E = \mathcal{C}(\intervalleFF{0}{2\pi})$ muni du produit scalaire $\spr{f}{g} = \int_{0}^{2\pi} fg$, et on remarque que l’on doit calculer 
+            \[ \inf_{t \in F} \norm{t - f}^2 = \dist(t,F) \esp{avec} F = \Vect(\cos, \sin) \]   
+            On trouve que $\left(\frac{\cos}{\sqrt{\pi}}, \frac{\sin}{\sqrt{\pi}}\right)$ est une base orthonormée de $F$, d’où $p_F(t) = - 2\sin(t)$ après calculs. Ainsi, 
+            \[ \dist(p,F) = \norm{t - p_F(t)}^2 = \norm{t}^2 - \norm{p_F(t)}^2 = \frac{8 \pi^3}{3} - 4\pi \]   
+        \end{omed}
+
+        \begin{omed}{Exemple \textcolor{black}{(Projecteur sur un hyperplan)}}{mypurple}
+            Posons $H = \Vect(u)^{\perp}$ un hyperplan de $E$. Pour tout $x \in E$, on a 
+            \[ d(x,H) = \frac{\abs{\spr{x}{u}}}{\norm{u}} \]    
+            En effet, en notant $p$ le projecteur orthogonal sur $H$, on sait que 
+            \begin{align*}
+                d(x,H)
+                &= \norm{x - p(x)} \\
+                &\quad \downarrow \quad q = \id - p \text{ le proj orth sur } H^{\perp} \\
+                &= \norm{q(x)}
+            \end{align*}
+            On sait que $(u)$ est une base de $H^{\perp}$, d’où $(\frac{u}{\norm{u}})$ en est une orthonormée. Ainsi, $q(x) = \spr{x}{\frac{u}{\norm{u}}} \frac{u}{\norm{u}}$. D’où $d(x,H) = \norm{q(x)} = \norm{\spr{x}{\frac{u}{\norm{u}}}} = \abs{\spr{x}{\frac{u}{\norm{u}}}}\times \norm{\frac{u}{\norm{u}}} = \frac{\spr{x}{u}}{\norm{u}}$.
+        \end{omed}
+
+        \begin{omed}{Exercice \textcolor{black}{(Distance aux colonnes d’une matrice)}}{mypurple}
+            Soient $M \in \GL_n(\mathbb{K})$, $C_1,\ldots,C_n$ les colonnes de $M$ et $L_1,\ldots,L_n$ les colonnes de $M^{-1}$. OC que $C_1,\ldots, C_n \in \mathbb{R}^n$, et on munit $\mathbb{R}^n$ du produit scalaire canonique. Posons 
+            \[ H_i = \Vect\left\{C_1,\ldots, C_{i-1}, C_{i+1}, \ldots, C_n\right\} \]   
+            Montrons que 
+            \[ \dist(C_i, H_i) = \frac{1}{\norm{L_i}} \]
+        \end{omed}
+
+        \begin{demo}{Résolution}{mypurple}
+            On cherche $U_i$ TQ $H_i^{\perp} = \Vect(U_i)$. 
+            \begin{align*}
+                M^{-1} M = I_n 
+                &\iff \forall (i,j) \in \intervalleEntier{1}{n}^2, \spr{L_i}{C_j} = \delta_{i,j} \\
+            \end{align*}
+            Ainsi, $L_i \in \Vect\left\{C_1,\ldots,C_{i-1},C_{i+1},\ldots,C_n\right\}^{\perp} = H_i^{\perp}$
+            Donc $H_i^{\perp} = \Vect(L_i)$, puis par la formule de l’exemple précédent, $d(C_i,H_i) = \frac{\abs{\spr{C_i}{L_i}}}{\norm{L_i}} = \frac{1}{\norm{L_i}}$.
+        \end{demo}
+
+        Ainsi, si la distance décroît, \text{i.e.} $C_i$ se rapproche de l’espace engendré par les autres colonnes, alors $\norm{L_i} \to +\infty$, et la matrice inversible disparaît.
+
+        \begin{omed}{Exercice \textcolor{black}{(Avec des polynômes)}}{mypurple}
+            Soient $P,Q \in \mathbb{R}_n[X]$ et le produit scalaire défini par 
+            $\spr{P}{Q} = \sum_{i=0}^{n} \binom{n}{i}^{-1} a_i b_i$ 
+            \begin{enumerate}
+                \item Montrons que $(\mathbb{R}_n[X], \spr{.}{.})$ est un ev euclidien.
+                \item Soit $x_0 \in \mathbb{R}$ et $H_{x_0} = \enstq{P \in E}{P(x_0) = 0}$. Montrons que $\dist(P,H_{x_0}) = \frac{\abs{P(x_0)}}{\left(1 + x_0^2\right)^{n/2}}$.
+            \end{enumerate}
+        \end{omed}
+
+        \begin{demo}{Résolution}{mypurple}
+            \begin{itemize}
+                \item Se fait.
+                \item On remarque tout d’abord que $H_{x_0} = \left\{(X - x_0)Q, Q \in \mathbb{R}_{n-1}[X]\right\} = (X - X_0) \mathbb{R}_{n-1}[X]$ qui est un idéal de $\mathbb{R}_n[X]$. On se ramène donc à la distance à un hyperplan, donnée, dans le cas où $H = \Vect(u)^{\perp}$, par $\dist(x,H) = \frac{\abs{\spr{x}{u}}}{\norm{u}}$. On cherche donc $Q \in \mathbb{R}_n[X]$ TQ $H_{x_0} = \Vect(Q)^{\perp}$ \textit{i.e.} $H_{x_0}^{\perp} = \Vect\left\{Q\right\}$. Une base de $H_{x_0}$ est $\mathcal{B} = \left(X^k - x_0^k , k \in \intervalleEntier{1}{n}\right)$. Ainsi, $Q \in H_{x_0}^{\perp} \iff \forall k, \spr{Q}{X^k - x_0^k} = 0$. Or, en posant $Q = b_0 + \cdots + b_{n-1}X^{n-1} + b_n X^n \in H_{x_0}^{\perp}$, on a pour tout $k$ l’égalité \[ \spr{Q}{X^k - x_0^k} = \binom{n}{k}^{-1} b_k - b_0 x_0^k = 0\]   
+                On peut poser $b_0 = 1$ sans perte de généralité -- car si $b_0 = 0$, tous les coefficients de $Q$ sont nuls et tous les multiples de $Q$ sont solution--, d’où 
+                \[ Q(X) = \sum_{k=0}^{n} \binom{n}{k } x_0^k X^k = \left(1 + x_0 X\right)^n \]    
+                On a donc \begin{align*}
+                    \norm{Q}^2 
+                    &= \spr{Q}{Q} = \sum_{k=0}^{n} \binom{n }{k }^{-1} \left(\binom{n }{k } x_0^k\right)^2 \\
+                    &= \sum_{k=0}^{n} \binom{n }{k } (x_0^2)^k \\
+                    &= (1 + x_0^2)^n
+                \end{align*}
+                Ainsi, d’après la formule de la distance à un hyperplan,  
+                \begin{align*}
+                    \dist(P,H_{x_0}) 
+                    &= \frac{\abs{\spr{P}{Q}}}{\norm{Q}} \\
+                    &= \frac{1}{(1 + x_0^2)^{n / 2}} \abs{\sum_{k=0}^{n} \binom{n }{k }^{-1} a_k \binom{n }{k } x_0^k} \\
+                    &= \frac{1}{(1 + x_0^2)^{n / 2}} \abs{P(x_0)}
+                \end{align*}
+            \end{itemize}  
+        \end{demo}
+
+    \subsection{Complément sur les espaces préhilbertiens}
+
+    \subsubsection{Suites totales}
+
+    On cherche ici à généraliser l’expression, étant donné un vecteur $x$ de $E$ et une famille orthonormale de vecteurs $(e_i)_{i \in \mathbb{N}}$, de $x = \sum\limits_{i =1}^n \spr{x}{e_i} e_i$ valable en dimension finie en s’extrayant du monde des combinaisons linéaires pour donner un sens à $\sum\limits_{i=1}^{+\infty} \spr{x}{e_i} e_i$.
+
+    \begin{defi}{Suites totales}{}
+        On dit qu’une suite de vecteurs $(e_i)_{i \in \mathbb{N}}$ de $E$ est \textbf{totale} si pour tout $x \in E$, 
+        \[ \forall \varepsilon > 0, \exists y \in \Vect_{i \in \mathbb{N}}(e_i), \norm{x-y} < \varepsilon \] 
+    \end{defi}
+
+    Par caractérisation séquentielle de la limite, cela revient à dire qu’il existe une suite $(x_n)_{n \in \mathbb{N}}$ d’éléments de $\Vect_{i \in \mathbb{N}}(e_i)$ qui converge vers $x$. En d’autres termes, $\Vect_{i \in \mathbb{N}}(e_i)$ est dense dans $E$.
+
+    \begin{theo}{}{}
+        \begin{soient}
+            \item $(e_i)_{i \in \mathbb{N}}$ une suite orthonormale totale d’éléments de $E$
+            \item pour tout $n \in \mathbb{N}, p_n$ le projecteur orthogonal sur $\Vect(e_0, \ldots, e_n)$. 
+        \end{soient}
+        Alors pour tout $x \in E, (p_n(x))_{n \in \mathbb{N}}$ converge vers $x$.
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        Soit $x \in E$ et, pour $n \in \mathbb{N}$, $F_n = \Vect_{0 \leq i \leq n}(e_i)$. On fixe $\epsilon > 0$.
+
+        Par définition d’une famille totale, il existe $y \in \Vect_{i \in \mathbb{N}}(e_i)$ tel que $\norm{x - y} < \epsilon$.
+
+        Le vecteur $y$ étant cl d’un nombre nécessairement fini de vecteurs $e_i$, il existe $n_0 \in \mathbb{N}$ tel que $y \in F_{n_0}$. Remarquons qu’alors, pout tout $n \geq n_0$, $y \in F_n$, et donc 
+        \[ \norm{x - p_n(x)} = \inf_{u \in F_n} \norm{x - u} \leq \norm{x - y} \leq \epsilon \]
+    \end{demo}
+
+    On vient d’établir que pour tout $x \in E, x = \lim\limits_{n \rightarrow +\infty} p_n(x) = \lim\limits_{n \rightarrow +\infty} \sum\limits_{i =1}^n \spr{x}{e_i} e_i = \sum\limits_{i =1}^{+\infty} \spr{x}{e_i} e_i$
+
+    On obtient alors la version « complète » de l’inégalité de Bessel.
+
+    \begin{coro}{Égalité de Parseval}{}
+        Soit $(e_i)_{i \in \mathbb{N}}$ une suite orthonormale totale d’éléments de $E$.
+
+        Alors, pour tout $x \in E$, $\norm{x}^2 = \sum\limits_{i=0}^{+\infty} \spr{x}{e_i}^2$
+    \end{coro}
+
+    \begin{demo}{Preuve}{myorange}
+        Le théorème de Pythagore nous permet d’écrire, pour tout $x \in E$, 
+        \[ \norm{x}^2 = \norm{p_n(x)}^2 + \norm{x - p_n(x)}^2 = \sum\limits_{i = 1}^n \sum\limits_{i =1}^n \spr{x}{e_i}^2 + \norm{x - p_n(x)}^2 \underset{n \rightarrow + \infty}{\Longrightarrow} \sum\limits_{i=0}^{+\infty} \spr{x}{e_i}^2 \]
+    \end{demo}
+
+    \subsubsection{Méthode des moindres carrées}
+
+    Il est courant, en physique-chimie, en sciences industrielles, ou plus généralement dans toute discipline expérimentale (biologie, chimie, économie, \ldots), d’avoir à comparer des données expérimentales et de conjecturer une éventuelle dépendance linéaire entre deux paramètres donnés (par exemple entre l’allongement d’un ressort et la force de traction exercée sur celui-ci).
+
+    Supposons que l’on dispose d’une série de $n$ mesuresde la forme $(x_i,y_i)$ avec $i \in \intervalleEntier{1}{n}$. On cherche à trouver « la droite de meilleure approximation » de nos mesures, c’est-à-dire la droite qui décrit au mieux la tendance du nuage observé. C’est le principe de régression linéaire.
+
+    Mais quel sens donner à cette fameuse « droite de meilleure approximation » ?
+
+    Si la droite recherchée a pour équation $y = ax + b$, l’écart ponctuel entre la mesure obtenue $(x_i,y_i)$ et la mesure attendue $(x_i, ax_i + b)$ vaut $\abs{y_i -ax_i - b}$. On peut dès lors chercher à minimiser l’écart global entre les points et la droite, écart qui peut être défini de différentes façons. Par exemple, 
+    \[ \max_{1 \leq i \leq n} \abs{y_i - ax_i - b}, \quad \sum\limits_{i=1}^n \abs{y_i -ax_i - b}, \quad \sum\limits_{i=1}^n (y_i -ax_i -b)^2 \] 
+
+    C’est cette dernière quantité que l’on souhaite minimiser dans la méthode dite des \textbf{moindres carrés}.
+
+    On peut déterminer $\inf_{(a,b) \in \mathbb{R}^2} \sum\limits_{i=1}^n (y_i -ax_i - b)^2$ en l’interprétant comme la distance d’un vecteur à un certain sous-espace vectoriel de $\mathbb{R}^n$.
+
+    Posons $X = (x_1,\ldots,x_n)$, $Y = (y_1,\ldots,y_n)$, $Z = aX + b$ et $F = \Vect(X,(1,\ldots,1))$. On a ainsi 
+    \[ \inf_{(a,b) \in \mathbb{R}^2} \sum\limits_{i=1}^n (y_i -ax_i - b)^2 = \inf_{(a,b) \in \mathbb{R}^2} \norm{Y - Z}^2 = \inf_{Z \in F} \norm{Y - Z}^2 = \dist^2(Y,F) \]
+ 
+    D’après ce qui précède, $\dist^2(Y,F)$ vaut $\norm{Y - p(Y)}^2$ où $p$ est la projection orthogonale sur $F$. Alors $Y - Z = Y - p(Y) \in F^{\perp}$ i.e. 
+    \[ \et{\spr{Y-Z}{X} = 0}{\spr{Y-Z}{(1,\ldots,1)} = 0} \] 
+    Cela nous conduit à résoudre le système suivant d’inconnues $a$ et $b$ 
+    \[ \et{\sum\limits_{i = 1}^n (y_i - ax_i - b)x_i = 0}{\sum\limits_{i = 1}^n (y_i - ax_i - b) = 0} \] 
+    On obtient après simplification le système linéaire $2 \times 2$ suivant :
+    \[ \et{a \sum\limits_{i = 1}^n x_i^2 + b \sum\limits_{i=1}^n x_i = \sum\limits_{i=1}^n x_i y_i}{a \sum\limits_{i=1}^n x_i + nb = \sum\limits_{i = 1}^n y_i} \]
+
+    On a ainsi obtenu les coefficients $a$ et $b$ recherchés. 
+
+    \begin{omed}{Attention}{myred}
+        Rien ne nous garantit que la loi étudiée est linéaire a priori, il faut pouvoir s’en assurer.
+    \end{omed}
+
+\section{Espaces vectoriels normés}
+
+Dans tout ce chapitre, $\mathbb{K}$ désignera $\mathbb{R}$ ou $\mathbb{C}$, et $\left(E,\norm{.}_E\right), \left(F, \norm{.}_F\right)$ deux espaces vectoriels normés. En l’absence d’ambiguïté, on emploiera la notation $\norm{.}$ pour désigner la norme associée à l’un ou l’autre de ces espaces.
+
+\subsection{Notions générales de topologie}
+
+    Cette introduction à la topologie a pour but de formaliser les concepts plus ou moins intuitifs de voisinage, d’infiniment petit et d’infiniment grand, d’où découleront les notions de limite et de continuité présentées dans le cadre des espaces vectoriels normés. Si ce cadre commode est celui retenu par le programme, tous les concepts abordés dans ce chapitre sont de portée plus générale et peuvent être étendus à des familles plus vastes d’espaces\footnote[2]{espaces métriques et topologiques}.
+
+    \subsubsection{Voisinages, ouverts et fermés}
+
+    Rappelons que la boule ouverte de centre $a \in E$ et de rayon $r \in \mathbb{R}_+^*$ est définie par 
+    \[ B(a,r) = \big\{ x \in E \big| \norm{x - a} < r \big\} = \big\{ x \in E \big| \dist(x,a) < r \big\} \] 
+
+    \begin{defi}{Voisinage, ouvert et fermé}{}
+        Soit $A$ une partie de $E$ et $x$ un élément de $E$. On dit que :
+        \begin{itemize}
+            \item $A$ est un \textbf{voisinage} de $x$ s’il existe $r > 0$ tel que $B(x,r) \subset A$.
+            \item $A$ est un \textbf{ouvert} de $E$ si $A$ est un voisinage de chacun de ses points, c’est-à-dire si $ \forall x \in A, \exists r > 0, B(x,r) \subset A$ 
+            \item $A$ est un \textbf{fermé} de $E$ si son complémentaire est un ouvert.
+        \end{itemize}
+    \end{defi}
+
+    \begin{prop}{}{}
+        \begin{enumerate}
+            \item $\emptyset$ et $E$ sont des parties ouvertes et fermées de $E$.
+            \item Les boules ouvertes sont des ouverts.
+            \item Les boules fermées et les sphères sont des fermés, en particulier les singletons.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{omed}{Exemple}{myolive}
+        Les intervalles de $\mathbb{R}$ de la forme $\intervalleFO{a}{b}$ ne sont ni ouverts ni fermés, alors que les intervalles de la forme $\intervalleFF{a}{b}$ sont des fermés et de la forme $\intervalleOO{a}{b}$ des ouverts.
+    \end{omed}
+
+    \begin{prop}{Stabilité par réunion et intersection}{}
+        \begin{enumerate}
+            \item Toute réunion d’ouverts est un ouvert, toute intersection \textbf{finie} d’ouverts est un ouvert.
+            \item Toute réunion \textbf{finie} de fermés est un fermé, toute intersection de fermés est un fermé.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        L’assertion sur les fermés est une conséquence directe de la première.
+        \begin{itemize}
+            \item Soient $(O_i)_{i \in I}$ une famille qcq d’ouverts et $x \in \bigcup\limits_{i \in I} O_i$. Il existe donc $i_0 \in I$ tel que $x \in O_{i_0}$ et comme $O_{i_0}$ est un ouvert, il existe $r > 0$ tel que $B(x,r) \subset O_{i_0} \subset \bigcup\limits_{i \in I} O_i$
+            \item Soient $(O_i)_{1 \leq i \leq n}$ une famille finie d’ouverts et $x \in \bigcap\limits_{1 \leq i \leq n} O_i$. Il existe pour chaque $i \in \intervalleEntier{1}{n}$ un réel strictement positif $r_i$ tel que $B(x,r_i) \subset O_i$. On a alors $B(x,\min_{1 \leq i \leq n} r_i) \subset \bigcap\limits_{i \in I} O_i$
+        \end{itemize}
+    \end{demo}
+
+    \begin{omed}{Exemple}{myolive}
+        $\bigcup\limits_{n \in \mathbb{N}^*} \intervalleFF{0}{1-\frac{1}{n}} = \intervalleFO{0}{1}$ n’est pas un fermé et $\bigcap\limits_{n \in \mathbb{N}^*} \intervalleOO{0}{1 + \frac{1}{n}} = \intervalleOF{0}{1}$ n’est pas un ouvert.
+    \end{omed}
+
+    \begin{prop}{Stabilité par produit fini}
+        Tout produit fini d’ouverts est un ouvert, tout produit fini de fermés est un fermé.
+    \end{prop}
+
+    Notons que la définition d’une partie fermée n’est guère commode. On dispose cependant d’une caractérisation extrêmement pratique : pour montrer qu’une partie $A$ est fermée, il suffit de montrer que toute suite convergente de $A$ a sa limite dans $A$, i.e. $A$ est fermée lorsqu’on ne sort pas de $A$ par passage à la limite.
+
+    \begin{prop}{Caractérisation séquentielle d’un fermé}{}
+        $A$ est une partie fermée de $E$ si et seulement si la limite de toute suite convergente d’éléments de $A$ appartient à $A$.
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        \begin{itemize}
+            \item[$\impliedby$] Pour montrer que $A$ est un fermé de $E$, on montre que $E \backslash A$ est un ouvert. Raisonnons par l’absurde, et choisissons $a \in A^C$ tel que pour tout $r > 0, B(a,r) \notin A^C$. Cela implique l’existence, pour tout $n \in \mathbb{N}^*$, de $x_n \in B(a,1/n) \cap A$. On a ainsi construit une suite $(x_n)_{n \in \mathbb{N}^*}$ d’éléments de $A$ qui converge vers $a \notin A$ puisque $d(x_n,a) < 1/n$.
+            \item[$\implies$] Supposons $A^C$ ouverte et considérons une suite d’éléments $(x_n)_{n \in \mathbb{N}^*}$ de $A$ qui converge vers $a$. Si $a \in A^C$, il existe $\epsilon > 0$ tel que $B(a,\epsilon) \subset A^C$. À partir d’un certain rang, tous les éléments $x_n$ appartiennent à $B(a,\epsilon)$ donc à $A^C$, ce qui contredit la définition de la suite $(x_n)_{n \in \mathbb{N}^*}$. Donc $a \in A$. 
+        \end{itemize}
+    \end{demo}
+
+    Attention, ce résultat ne signifie pas pour autant que toute suite dans un fermé converge.
+
+    \begin{omed}{Exemples}{myolive}
+        \begin{itemize}
+            \item L’intervalle $\intervalleFO{0}{1}$ n’est pas un fermé de $\mathbb{R}$, $\mathbb{Z}$ est un fermé de $\mathbb{R}$, $\mathbb{Q}$ n’est pas un fermé de $\mathbb{R}$.
+            \item $\mathcal{C}(\intervalleFF{a}{b},\mathbb{K})$ est une partie fermée de $\mathcal{F}(\intervalleFF{a}{b},\mathbb{K})$ pour la norme $\norm{.}_{\infty}$.
+            \item L’ensemble des polynômes n’est pas un fermé de $\mathcal{C}(\intervalleFF{a}{b},\mathbb{K})$ pour la norme $\norm{.}_{\infty}$.
+        \end{itemize}
+    \end{omed}
+
+    \subsubsection{Intérieur, adhérence et frontière}
+
+    \begin{defi}{Point intérieur, point adhérent}{}
+        Soient $A$ une partie de $E$ et $x$ un élément de $E$.
+
+        On dit que :
+        \begin{itemize}
+            \item $x$ est un point intérieur à $A$ s’il existe $r > 0$ tel que $B(x,r) \subset A$ (i.e. si $A$ est un voisinage de $x$).
+            \item $x$ est un point adhérent à $A$ si pour tout $r > 0, B(x,r) \cap A \neq \emptyset$
+        \end{itemize}
+    \end{defi}
+
+    \begin{defi}{Intérieur, adhérence et frontière}
+        Soit $A$ une partie de $E$.
+        \begin{itemize}
+            \item On appelle intérieur de $A$ et on note $\mathring{A}$ l’ensemble des points intérieurs à $A$.
+            \item On appelle adhérence de $A$ et on note $\barr{A}$ l’ensemble des points adhérents à $A$.
+            \item On appelle frontière de $A$ et on note $\Fr(A)$ ou $\partial A$ l’ensemble $\barr{A} \backslash \mathring{A} = \barr{A} \cap \left(\mathring{A}\right)^C$
+        \end{itemize}
+    \end{defi}
+
+    L’intérieur de $A$ est la réunion de tous les ouverts inclus dans $A$, quand l’adhérence de $A$ est l’intersection de tous les fermés contenant $A$.
+
+    \begin{prop}{Caractérisation de l’intérieur et de l’adhérence}
+        Soit $A$ une partie de $E$.
+        \begin{enumerate}
+            \item L’intérieur de $A$ est un ouvert de $E$, c’est même le plus grand des ouverts inclus dans $A$.
+            \item L’adhérence de $A$ est un fermé de $E$, c’en est même le plus petit.
+            \item La frontière de $A$ est un fermé de $E$.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Notons $O$ la réunion de tous les ouverts inclus dans $A$ (c’est donc bien un ouvert de $E$). Montrons que $O = \mathring{A}$.
+        \begin{itemize}
+            \item[$\subset$] Soit $x \in O$. $x$ appartient à un ouvert de $A$ donc appartient à une boule incluse dans $A$, donc $x \in \mathring{A}$.
+            \item[$\supset$] Soit $x \in \mathring{A}$. Il existe $r > 0$ tel que $B(x,r) \subset A$ donc $B(x,r) \subset O$. Ainsi, $x \in O$.
+        \end{itemize}
+        Le raisonnement est analogue pour les points suivants.
+    \end{demo}
+
+    On en tire les propriétés fondamentales suivantes :
+    \begin{enumerate}
+        \item $\mathring{A} \subset A \subset \barr{A}$
+        \item $A$ est une partie ouverte $\iff$ $\mathring{A} = A$
+        \item $A$ est une partie fermée $\iff$ $\barr{A} = A$
+    \end{enumerate}
+
+    \begin{prop}{Caractérisation séquentielle des points adhérents}
+        Un point $x$ de $E$ est adhérent à $A$ si et seulement s’il existe une suite d’éléments de $A$ convergeat vers $x$.
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        Un fermé contenant $A$ doit contenir toutes les limites des suites convergentes de $A$. Donc 
+        \[ F = \left\{\lim\limits_{n \rightarrow +\infty} x_n \middle| (x_n) \in A_{\mathbb{N}} \text{ converge}\right\} \subset \barr{A} \] 
+        Réciproquement, considérons $a \in \barr{A}$. Pour tout $r > 0$, $B(a,r) \cap A \neq \emptyset$. On peut donc construire une suite $(x_n)_{n \in \mathbb{N}^*}$ tel que pour tout $n \in \mathbb{N}^*$, $x_n \in B(a,1/n) \cap A$. Cette suite d’éléments de $A$ converge vers $a$, donc $a \in F$.
+    \end{demo}
+
+    On a donc établi que 
+    \[ a \in \barr{A} \iff \forall r > 0, B(a,r) \cap A \neq \emptyset \iff \exists (x_n) \in A^{\mathbb{N}}, x_n \underset{n \rightarrow +\infty}{\longrightarrow} a \] 
+    Cette caractérisation séquentielle permettra de donner un sens à $\lim\limits_{x \rightarrow a} f(x)$ pour une fonction $f$ définie sur $A$ et $a \in \barr{A}$.
+
+    \begin{omed}{Exemple}{myolive}
+        Si $A$ est une partie bornée et non vide de $\mathbb{R}$, $\sup(A)$ et $\inf(A)$ appartiennent à $\barr{A}$.
+    \end{omed}
+
+    \begin{defi}{Densité}{}
+        Soient $A$ et $B$ deux parties de $E$.
+        \begin{itemize}
+            \item On dit que $A$ est dense dans $E$ si $\barr{A} = E$.
+            \item On dit que $A$ est dense dans $B$ si $B \subset \barr{A}$.
+        \end{itemize}
+    \end{defi}
+
+    De façon équivalente, $A$ est dense dans $B$ si et seulement si l’une des assertions suivantes est vérifiée : 
+    \begin{itemize}
+        \item Tout élément de $B$ est limite d’une suite d’éléments de $A$.
+        \item Pour tout $x \in B$, pour tout $r > 0$, $B(x,r) \cap A \neq \emptyset$
+    \end{itemize}
+
+    \begin{omed}{Exemples}{myyellow}
+        \begin{itemize}
+            \item $\mathbb{Q}$ et $\mathbb{R} \backslash \mathbb{Q}$ sont denses dans $\mathbb{R}$.
+            \item L’ensemble des fonctions en escalier sur $\intervalleFF{a}{b}$ est dense dans $\mathcal{C}_{pm}(\intervalleFF{a}{b},\mathbb{R})$ pour la norme $\norm{.}_{\infty}$.
+            \item L’ensemble des fonctions polynomiales définies sur $\intervalleFF{a}{b}$ est dense dans $\mathcal{C}(\intervalleFF{a}{b})$ pour la norme $\norm{.}_{\infty}$.
+        \end{itemize}
+    \end{omed}
+
+    Rappelons que si deux normes sur un espace vectoriel sont équivalentes, toute suite convergent au sens de la première converge au sens de la seconde. En dimension finie, il est donc inutile de préciser la norme choisie. De manière plus générale, deux normes équivalentes définissent sur un espace la même topologie : les parties ouvertes pour l’une sont ouvertes pour l’autre et il en va de même pour les parties fermées.
+
+    \begin{exo}{}{}
+        Montrons que $\mathcal{G}\ell_p(\mathbb{K})$ est dense dans $\mk{p}$.
+    \end{exo}
+
+    \begin{demo}{Solution}{nfpgreen}
+        Soit $M \in \mk{p}$. Construisons une suite de matrices inversibles qui converge vers $M$.
+         
+        Si $M$ est inversible, une suite constante suffit. Si $M$ ne l’est pas, nous allons « perturber « sa diagonale pour parvenir à nos fins. En effet, on pose $M_n = M - \frac{1}{n} I_p$ pour $n \in \mathbb{N}^*$.
+        \begin{itemize}
+            \item D’une part, de manière évidente, $M_n \underset{n \rightarrow + \infty}{\longrightarrow} M$.
+            \item D’autre part, les matrices $M_n$ sont toutes inversibles, au moins à partir d’un certain rang. En effet, $\det(M-\lambda I_p)$ s’annule au plus $p$ fois.
+        \end{itemize}
+    \end{demo}
+
+    Un argument de densité servira à étendre une propriété valable pour les éléments d’un ensemble $A$ à une propriété vérifiée par les éléments de $B = \barr{A}$.
+
+    \subsubsection{Topologie induite}
+
+    Soit $F$ un sev de l’espace normé $(E, \norm{.})$. Notons que $\norm{.}$ définie une norme sur $F$ et qu’elle confère donce à $F$ le statut d’espace vectoriel normé. On peut alors s’intéresser à la topologie induite sur $F$. Les boules ouvertes de $F$ (ou \textit{relativement} à $F$) sont de la forme 
+    \[ B_F(a,r) = \big\{ x \in F \big| \norm{x - a} < r \big\} = B(a,r) \cap F \] 
+    Notons que cette boule du « point de vue » de $F$ n’est, en dehors de quelques cas pathologiques, pas une boule pour $E$. On peut alors montrer que les ouverts relatifs à $F$ (resp. les fermés relatifs à $F$) sont l’intersection de $F$ et des ouverts de $E$ (resp. les fermés de $E$). Ce qui motive la définition qui suit pour une partie cette fois-ci quelconque de $E$.
+
+    \begin{defi}{}{}
+        Soit $X$ une partie de $A \subset E$. On dit que : 
+        \begin{itemize}
+            \item $X$ est un voisinage de $x$ relatif à $A$ si $X$ est l’intersection de $A$ et d’un voisinage de $x$ dans $E$.
+            \item $X$ est un ouvert relatif à $A$ si $X$ est l’intersection de $A$ et d’un ouvert de $E$.
+            \item $X$ est un fermé relatif à $A$ si $X$ est l’intersection de $A$ et d’un fermé de $E$.
+        \end{itemize}
+    \end{defi}
+
+    On montre que ce sont respectivement des voisinages-ouverts-fermés pour la topologie induite sur $A$. On retiendra l’exemple suivant : pour tout $\epsilon > 0, \intervalleFO{0}{\epsilon}$ est un voisinage de $0$ relativement à $\mathbb{R}_+$, mais pas relativement à $\mathbb{R}$.
+
+\subsection{Continuité dans un espace vectoriel normé}
+
+    Sauf mention contraire, $f$ désignera une fonction définie sur $E$ et à valeurs dans $F$, où $E$ et $F$ désignent des ev resp. munis des normes $\norm{.}_E$ et $\norm{.}_F$.
+
+    \subsubsection{Limites}
+
+    \begin{defi}{}{}
+        \begin{soient}
+            \item $A$ une partie non vide de $E$ 
+            \item $f : A \rightarrow F$
+            \item $a \in \barr{A}$
+            \item $b \in F$
+        \end{soient}
+        On dit que $f$ a pour limite $b$ en $a$ si 
+        \[ \forall \epsilon > 0, \exists \alpha > 0, \forall x \in A, \norm{x-a}_E \leq \alpha \implies \norm{f(x)-b}_F < \epsilon \] 
+        On écrira alors $\lim\limits_{a} f = b$ ou $f(x) \underset{x \rightarrow a}{\longrightarrow} b$.
+    \end{defi}
+
+    Lorsque la limite existe, elle est unique.
+
+    On peut reformuler la définition de la limite à l’aide de boules ou voisinages : 
+    \begin{align*}
+        b = \lim\limits_{x \rightarrow a}  f(x) & \iff \forall \epsilon > 0, \exists \alpha > 0, \forall x \in A, x \in B(a,\alpha) \implies f(x) \in B(b,\epsilon) \\
+        & \iff \forall \epsilon > 0, \exists \alpha > 0, f\left(B(a,\alpha)\right) \subset B(b,\epsilon) \\
+        & \iff \forall V \in \mathcal{V}(B), \exists U \in \mathcal{V}(a), f(U) \subset V
+    \end{align*}
+
+    On peut étendre la définition de limite dans le cas d’une limite en l’infini ou d’une limite infinie : 
+
+    \begin{defi}{}{}
+        \begin{enumerate}
+            \item Pour $f : \mathbb{R} \rightarrow F$, on dira que $f$ admet une limite $b \in F$ en $+ \infty$ si 
+            \[ \forall \epsilon > 0, \exists M \in \mathbb{R}, \forall x \in \mathbb{R}, x \geq M \implies \norm{f(x)-b}_F < \epsilon \] 
+            \item Pour $f : A \subset E \rightarrow \mathbb{R}$, on dira que $f$ admet comme limite $+ \infty$ en $a \in \barr{A}$ si 
+            \[ \forall M' \in \mathbb{R}, \exists \alpha > 0, \forall x \in A, \norm{x-a}_E \leq \alpha \implies f(x) \geq M' \] 
+            \item Pour $f : \mathbb{R} \rightarrow \mathbb{R}$, on dira que $f$ comme une limite $+\infty$ en $+\infty$ si 
+            \[ \forall M' \in \mathbb{R}, \exists M \in \mathbb{R}, \forall x \in A, x \geq M \implies f(x) \geq M' \] 
+            \item Pour $f : A \subset E \rightarrow F$ avec $A$ non bornée, on dira que $f$ admet une limite $b \in F$ en $+ \infty$ si 
+            \[ \forall \epsilon > 0, \exists M \in \mathbb{R}, \forall x \in A, \norm{x}_E \geq M \implies \norm{f(x)-b}_F < \epsilon \] 
+            On écrira alors $\lim\limits_{\norm{x} \rightarrow + \infty} f(x) = b$.
+        \end{enumerate}
+    \end{defi}
+
+    \begin{omed}{Remarque}{myyellow}
+        On adapte facilement les définitions \textbf{(i)}, \textbf{(ii)} et \textbf{(iii)} pour une limite en $-\infty$ qui vaudrait $-\infty$.
+
+        Il suffit en fait d’étendre la notion de voisinage à $+ \infty$ pour obtenir une définition unique, la seule qui vaille :
+        \[ \lim\limits_{x \rightarrow a} f(x) = b \iff \forall V \in \mathcal{V}(b), \exists U \in \mathcal{V}(a), f(U) \subset V \]
+    \end{omed}
+
+    \begin{prop}{Caractérisation séquentielle}{}
+        \begin{soient}
+            \item $f : A \rightarrow F$
+            \item $a \in \barr{A}$
+            \item $b \in F$
+        \end{soient}
+        $\lim\limits_{x \rightarrow a} f(x) = b$ si et seulement si pour toute suite $(u_n)_{n \in \mathbb{N}}$ d’éléments de $A$ qui converge vers $a$, $f(u_n) \underset{n \rightarrow +\infty}{\longrightarrow} b$
+    \end{prop}
+
+    Ce résultat se prolonge dans le cas où $A \subset \mathbb{R}$ et $a = \pm \infty$. Nous ne détaillerons pas ici les propriétés classiques de la limite (pour une combinaison linéaire, une composée\ldots). Un dernier résultat est néanmoins à connaître, celui de la limite d’une application à valeurs dans un espace produit.
+
+    \begin{prop}{}{}
+        \begin{soient}
+            \item $F = F_1 \times \ldots \times F_p$ le produit des espaces vectoriels $(F_k, N_k)$, muni de la forme définie par $N(x) = \max_{1 \leq k \leq p} N_k(x)$
+            \item $A \subset E$
+            \item $\fonction{f}{A}{F}{x}{\left(f_1(x), \ldots, f_p(x)\right)}$
+            \item $a \in \barr{A}$
+        \end{soient}
+        $f$ admet une limite en $a$ si et seulement si chaque $f_k$ admet une limite en $a$. Dans ce cas, $\lim_a f = \left(\lim_a f_1,\ldots, \lim_a f_p\right)$
+    \end{prop}
+
+    \subsubsection{Continuité}
+
+    On considère toujours une fonction $f : A \subset E \rightarrow F$.
+
+    \begin{defi}{}{}
+        \begin{itemize}
+            \item $f$ est dite continue en $a \in A$ si $f(x) \underset{x \rightarrow a}{\longrightarrow} f(a)$ i.e.
+            \[ \forall \epsilon > 0, \exists \alpha > 0, \forall x \in A, \norm{x-a}_E < \alpha \implies \norm{f(x) - f(a)}_F < \epsilon \]
+            \item $f$ est dite continue sur $A$ lorsque $f$ est continue en tout point de $A$.
+        \end{itemize}
+    \end{defi}
+
+    Les opérations classiques sur les limites nous permettent de montrer que 
+    \begin{itemize}
+        \item l’ensemble $\mathcal{C}(A,F)$ des fonctions continues sur $A$ est un espace vectoriel.
+        \item l’ensemble $\mathcal{C}(A,\mathbb{K})$ des fonctions continues sur $A$ et à valeurs dans $\mathbb{K}$ est une $\mathbb{K}$-algèbre (le produit de deux fonctions continues est en particulier continu).
+        \item si $f : A \rightarrow F$ et $g : B \rightarrow G$ sont continues avec $f(A) \subset B$, alors $g \circ f$ est continue sur $A$.
+    \end{itemize}
+
+    \begin{prop}{Caractérisation séquentielle de la continuité}{}
+        $f$ est continue en $a \in A$ si pour toute suite $(x_n)_{n \in \mathbb{N}}$ d’éléments de $A$ convergent vers $a$, $\left(f(x_n)\right)_{n \in \mathbb{N}}$ converge dans $F$.
+
+        Dans ce cas, 
+        \[ \lim\limits_{n \rightarrow +\infty} f(x_n) = f \left(\lim\limits_{n \rightarrow +\infty} x_n\right) = f(a) \] 
+    \end{prop}
+
+    Ce dernier résultat est utilisé autant dans le cas d’une fonction continue que pour montrer qu’une fonction ne l’est pas.
+
+    \begin{omed}{Exemple}{myolive}
+        Soit une suite $(u_n)_{n \in \mathbb{N}}$ vérifiant $u_{n+1} = f(u_n)$ avec $f$ continue.
+
+        Si $(u_n)_{n \in \mathbb{N}}$ converge vers $l$, alors $f(l)=l$.
+    \end{omed}
+
+    \begin{prop}{}{}
+        Soient $f,g : A \rightarrow F$ deux applications continues qui coïncident sur une partie dense de $A$. 
+
+        Alors $f = g$.
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        Supposons que $f$ et $g$ sont continues sur $A$ et qu’elles coïncident sur $D$ avec $\barr{D} = A$.
+
+        Soit $x \in A$. Il existe alors une suite $(u_n)_{n \in \mathbb{N}}$ d’éléments de $D$ qui converge vers $x$. Par continuité de $f$ et $g$,
+        \[ f(x) = \lim\limits_{n \rightarrow +\infty} f(u_n) = \lim\limits_{n \rightarrow +\infty} g(u_n) = g(x) \] 
+    \end{demo}
+
+    \begin{defi}{Application lipschitzienne}{}
+        L’application $f : E \rightarrow F$ est dite lipschitzienne de rapport $K \geq 0$ si 
+        \[ \forall x,y \in E, \norm{f(x) - f(y)}_F \leq K \norm{x-y}_E \] 
+    \end{defi}
+
+    Pour une fonction $f: \mathbb{R} \rightarrow \mathbb{R}$, la $K$-lipschitzianité a une interprétation géométrique simple : les pentes des cordes du graphe de $f$ sont majorées (en valeur absolue) par $K$.
+
+    \begin{omed}{Exemples}{myyellow}
+        \begin{itemize}
+            \item L’application $x \rightarrow \abs{x}$ est lipschitzienne sur $\mathbb{R}$.
+            \item L’application $x \rightarrow \frac{1}{x}$ est lipschitzienne sur $\intervalleFO{1}{+\infty}$ mais pas sur $\mathbb{R}_+^*$.
+            \item L’application $x \rightarrow \sqrt{x}$ n’est pas lipschitzienne sur $\mathbb{R}_+^*$.
+        \end{itemize}
+    \end{omed}
+
+    \begin{prop}{}{}
+        Si $f : \intervalleFF{a}{b} \rightarrow \mathbb{R}$ est dérivable et $f'$ est bornée, alors $f$ est lipschitzienne.
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        Supposons que $\abs{f'} \leq M$. La continuité de $f$ sur $\intervalleFF{a}{b}$ et la dérivabilité sur $\intervalleOO{a}{b}$  nous permet d’utiliser le théorème des accroissements finis.
+        \[ \forall x,y \in \intervalleFF{a}{b}, \exists c \in \intervalleOO{x}{y}, \abs{f(x)-f(y)} = \abs{f'(c)}\abs{x-y} \text{ donc } \abs{f(x) - f(y)} \leq M \abs{x-y} \] 
+    \end{demo}
+
+    \begin{prop}{}{}
+        Toute fonction lipschitzienne est continue.
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        Supposons $f : E \rightarrow F$ une fonction $K$-lipschitzienne. Soit $x_0 \in E$.
+        \[ \forall x \in E, \norm{f(x)-f(x_0)} \leq K \norm{x - x_0} \] 
+        Un simple passage à la limite permet de justifier que $f(x) \underset{x \rightarrow x_0}{\longrightarrow} f(x_0)$
+    \end{demo}
+
+    \begin{coro}{(essentiel)}{}
+        Les deux applications $x \mapsto \norm{x}$ et $x \mapsto \dist(x,A) = \inf_{a \in A} \norm{x-a}$ sont $1$-lipschitziennes donc continues sur $E$.
+    \end{coro}
+
+    \begin{demo}{Démonstration}{myorange}
+        Ces deux applications sont définies sur $E$ et à valeurs dans $\mathbb{R}_+$. On doit donc prouver que pour tous $x,y \in E$, 
+        \[ \abs{f(x)-f(y)} \leq \norm{x-y} \] 
+        \begin{enumerate}
+            \item Pour la norme, cela découle de l’inégalité triangulaire étendue 
+        \[ \forall x,y \in E, \abs{\norm{x} - \norm{y}} \leq \norm{x-y} \]
+            \item Soit $A$ une partie non vide de $E$. $\dist(.,A)$ est bien définie puisque pour $x \in E, \big\{ \norm{x-a}, a \in A \big\}$ est une partie non vide et minorée de $\mathbb{R}$. Soient $x,y \in E$.
+            \[ \forall a \in A, \dist(x,A) \leq \norm{x-a} \leq \norm{x-y} + \norm{y-a} \] 
+            $\norm{y-a} \geq \dist(x,A) - \norm{x-y}$ pour tout $a \in A$, donc par passage à la borne inf, 
+            \[ \dist(y,A) \geq \dist(x,A) - \norm{x-y} \] 
+            Les rôles de $x$ et $y$ étant symétriques, on a donc 
+            \[ \abs{\dist(x,A) - \dist(y,A)} \leq \norm{x-y} \] 
+        \end{enumerate}
+
+        Par composition, si $f$ est continue, alors $\norm{f}$ est continue. Pour une norme différente, le résultat n’est plus garanti.
+    \end{demo}
+
+    \begin{defi}{Applications uniformément continues}{}
+        On dit que $f : A \subset E \rightarrow F$ est uniformément continue sur $A$ si 
+        \[ \forall \epsilon > 0, \exists \alpha > 0, \forall x,y \in A, \norm{x-y}_E < \alpha \implies \norm{f(x)-f(y)}_F < \epsilon \]
+    \end{defi}
+
+    Cette propriété est bien entendu plus forte que la continuité.
+
+    \begin{omed}{Exemple}{myyellow}
+        Toute application lipschitzienne est uniformément continue.
+    \end{omed}
+
+    En résumé, 
+    \[ \lilbox{myyellow}{$f$ lipschitzienne} \implies \lilbox{myyellow}{$f$ uniformément continue} \implies \lilbox{myyellow}{$f$ continue} \]
+
+    Rappelons que si $X$ désigne une partie de $F$ et $f : E \rightarrow F$, par définition,
+    \[ f^{-1}(X) = \big\{ x \in E \big| f(x) \in X \big\} \subset E \]
+    L’image réciproque de $X$ par $f$, est l’ensemble des antécédents des éléments de $X$ par $f$. On notera $A \subset f^{-1}(X)$ si et seulement si $f(A) \subset X$.
+
+    \begin{theo}{Image réciproque d’un ouvert/fermé par une application continue}{}
+        Une application de $E$ dans $F$ est continue si et seulement si l’une de ces deux assertions est vraie : 
+        \begin{itemize}
+            \item L’image réciproque de tout ouvert de $F$ est un ouvert de $E$.
+            \item L’image réciproque de tout fermé de $F$ est un fermé de $E$.
+        \end{itemize}
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        On considère l’application $f : E \rightarrow F$.
+        \begin{itemize}
+            \item On suppose que $f$ est continue. Soit $X$ un ouvert de $F$. Montrons que $f^{-1}(X)$ est un ouvert de $E$.
+            
+            Considérons $x \in f^{-1}(X)$. Comme $f(x) \in X$ et $X$ est ouvert, il existe $\epsilon > 0$ tel que $B(f(x),\epsilon) \subset X$. Par continuité de $f$ en $x$, il existe $\alpha > 0$ tel que $f(B(x,\alpha)) \subset B(f(x),\epsilon) \subset X$. Ainsi, $B(x,\alpha) \subset f^{-1}(X)$.
+            \item On suppose que l’image réciproque de tout ouvert par $f$ est un ouvert. Montrons que $f$ est continue.
+            
+            Soient $x \in E$ et $\epsilon > 0$. $B(f(x),\epsilon)$ est un ouvert de $F$ donc son image réciproque (qui contient $x$) également. Il existe donc $\alpha > 0$ tel que $f(B(x,\alpha)) \subset B(f(x),\epsilon)$.
+            \item La version « fermés » du théorème découle de l’égalité $\left(f^{-1}(X)\right)^C = f^{-1}(X^C)$ pour une partie $X$ quelconque.
+        \end{itemize}
+    \end{demo}
+
+    Ce résultat est un formidable outil pour montrer qu’une partie est ouverte/fermée. Par exemple, si $f : E \rightarrow \mathbb{R}$ est continue,
+    \begin{align*}
+        & \big\{ x \in E, f(x) > 0 \big\} = f^{-1}\left(\mathbb{R}_+^*\right) \text{ est ouvert} \\
+        & \big\{ x \in E, f(x) \geq 0 \big\} = f^{-1}\left(\mathbb{R}_+\right) \text{ est fermé} \\
+        &\big\{ x \in E, f(x) = 0 \big\} = f^{-1}\left(\{ 0 \}\right) \text{ est fermé}
+    \end{align*}
+
+    Pour montrer qu’une partie décrite avec des inégalités strictes est ouverte (ou décrite par des inégalités larges est fermée), on introduira une fonction adaptée pour décrire la partie étudiée comme image réciproque et conclure facilement.
+
+    \begin{omed}{Exemples}{myred}
+        \begin{itemize}
+            \item Le demi-plan d’inéquation $ax + by > 0$ est un ouvert de $\mathbb{R}^2$, la droite d’équation $ax + by = 0$ est un fermé.
+            \item L’intérieur de l’ellipse d’inéquation $\frac{x^2}{a^2} + \frac{y^2}{b^2} \leq 1$ est un fermé de $\mathbb{R}^2$.
+            \item $\left\{ (x,y) \in \mathbb{R}^2, -1 < x < 1 \text{ et } -2 < y < 2 \right\}$ est un ouvert de $\mathbb{R}^2$.
+            \item $\mathbb{Z}$ est un fermé de $\mathbb{R}$
+        \end{itemize}
+    \end{omed}
+
+    \begin{omed}{Attention !}{myred}
+        L’image d’un fermé par une application continue n’est pas nécessairement fermée. Par exemple, le fermé $\intervalleFO{0}{+\infty}$ a pour image par la fonction continue arctan est $\intervalleFO{0}{\pi / 2}$.
+    \end{omed}
+
+    \subsubsection{Continuité d’une application linéaire, norme d’opérateur}
+
+    Les applications linéaires auront un statut particulier dans ce chapitre car plus que pour toute autre application, on dispose d’un critère simple de continuité. Il repose sur le fait que la continuité d’une application linéaire se ramène par linéarité à sa continuité en $0$. En effet, si $u \in \mathcal{L}(E,F)$ et $x_0 \in E$,
+    \[ u(x) \underset{x \rightarrow x_0}{\longrightarrow} u(x_0) \iff u(x-x_0) \underset{x \rightarrow x_0}{\longrightarrow} u(0) = 0 \]
+    
+    \begin{theo}{Critère de continuité d’une application linéaire}{}
+        L’application linéaire $u \in \mathcal{L}(E,F)$ est continue si et seulement s’il existe $C > 0$ tel que 
+        \[ \forall x \in E, \norm{u(x)}_F \leq C \norm{x}_E \] 
+    \end{theo}
+
+    \begin{demo}{Preuve}{myred}
+        \begin{itemize}
+            \item[$\implies$] Supposons $u \in \mathcal{L}(E,F)$ continue.
+            
+            Soit $\epsilon > 0$. La continuité en $0$ nous garantit l’existence de $\alpha > 0$ tel que $\norm{x} \leq \alpha \implies \norm{u(x)} \leq \epsilon$.
+
+            Soit $x \neq 0_E$. Le vecteur $\frac{\alpha x}{\norm{x}}$ est de norme inférieure ou égale à $\alpha$ donc 
+            \[ \norm{u\left(\frac{\alpha x}{\norm{x}}\right)}= \frac{\alpha \norm{u(x)}}{\norm{x}} \leq \epsilon \quad \text{i.e. } \norm{u(x)} \leq \frac{\epsilon}{\alpha} \norm{x} \] 
+            Le résultat est encore valable pour $x = 0_E$. Il suffit ainsi de prendre $C = \frac{\alpha}{\epsilon}$.
+            \item[$\impliedby$] Supposons qu’il existe $C>0$ tel que pour tout $x \in E, \norm{u(x)} \leq C \norm{x}$ et soit $x_0 \in E$. 
+            \[ \norm{u(x) - u(x_0)} =\norm{u(x-x_0)} \leq C \norm{x-x_0} \]
+            Il suffit alors de faire tendre $x$ vers $x_0$ pour obtenir la continuité en $x_0$.
+        \end{itemize}
+    \end{demo}
+
+    On peut reformuler ce théorème de bien des manières. Pour qu’une application linéaire soit continue, il faut et il suffit qu’elle soit lipschitzienne, qu’elle soit uniformément continue, qu’elle soit bornée sur la boule unité\ldots Mais quand il s’agira d’étudier la continuité d’une application linéaire, il suffira, hors scénario exotique,
+    \begin{itemize}
+        \item d’invoquer un argument de dimension : nous verrons qu’en dimension finie, toute application linéaire est continue.
+        \item de majorer $\norm{u(x)}$ afin de trouver $C$ tel que pour tout $x \in E, \norm{u(x)} \leq C \norm{x}$.
+        \item d’exhiber une suite $(x_n)_{n \in \mathbb{N}}$ de $E$ tel que pour tout $n \in \mathbb{N}, \norm{u(x_n)} > n \norm{x_n}$ et justifier ainsi la non-continuité.
+        \item Utiliser des arguments de compacité (voir section suivante).
+    \end{itemize}
+
+    \begin{omed}{Exemple}{myred}
+        $\tr : \mk{n} \rightarrow \mathbb{K}$ est une application linéaire et $\mk{n}$ est de dimension finie donc $\tr$ est continue.
+
+        $\Ker(\tr) = \tr^{-1}(\{ 0 \})$, l’hyperplan des matrices de traces nulles, est donc un fermé de $\mk{n}$.
+    \end{omed}
+
+    De manière générale, tout noyau d’applicaton linéaire en dimension finie est fermé.
+
+    \begin{omed}{Exemple}{myred}
+        La forme linéaire $u : f \rightarrow f(1)$ définie sur $G = \mathcal{C}(\intervalleFF{0}{1}, \mathbb{K})$ est continue ou non en fonction de la norme choisie.
+        \begin{itemize}
+            \item Elle est continue si on munit $G$ de $\norm{.}_{\infty}$ :
+            \[ \forall f \in G, \abs{u(f)} = \abs{f(1)} \leq \sup_{x \in \intervalleFF{0}{1}} \abs{f(x)} = \norm{f}_{\infty} \] 
+            \item Elle n’est pas continue si on munit $G$ de $\norm{.}_1$. On considère pour cela la suite de fonctions $f_n : x \mapsto (n+1)x^n$ : 
+            \[ \forall n \in \mathbb{N}, \norm{f_n}_1 = \int_{0}^{1} (n+1)x^n dx = 1 \text{ et } \abs{u(f_n)} = n+1 \text{ donc on ne peut avoir } \abs{u(f_n)} \leq C \norm{f_n}_1 \]
+        \end{itemize}
+    \end{omed}
+
+    La caractérisation de la continuité d’une application linéaire s’étend facilement aux applications multilinéaires.
+
+    \begin{theo}{Critère de continuité d’une application multilinéaire}{}
+        L’application multilinéaire $u$ de $E_1 \times \ldots \times E_n$ dans $F$ est continue si et seulement s’il existe $C > 0$ tel que 
+        \[ \forall x = (x_1, \ldots, x_n) \in E_1 \times \ldots \times E_n, \norm{u(x)}_F \leq C \cdot \norm{x_1}_{E_1} \times \cdots \times \norm{x_n}_{E_n} \]
+    \end{theo}
+
+    \begin{omed}{Exemple}{myred}
+        Tout produit scalaire $\spr{.}{.}$ défini sur un espace vectoriel $E$ est une application continue puisqu’elle est bilinéaire et qu’elle satisfait de plus l’inégalité de Cauchy-Schwarz 
+        \[ \forall x,y \in E, \abs{\spr{x}{y}} \leq \norm{x} \cdot \norm{y} \] 
+    \end{omed}
+
+    Fermons cette parenthèse pour revenir aux applications linéaires. On note en général $\mathcal{L}_C(E,F)$ l’ensemble des applications linéaires continues de $E$ dans $F$. C’est un sous-espace vectoriel de $\mathcal{L}(E,F)$ et même un sous-espace vectoriel normé, quitte à le munir d’une norme dite d’opérateur. Cette dernière « se fabrique » au moyen d’une norme sur $E$ et d’une norme sur $F$ : c’est le plus petit réel positif $C$ tel que pour tout $x \in E, \norm{u(x)}_F \leq C \norm{x}_E$ , c’est-à-dire le réel :
+    \[ \normm{u} = \sup_{x \neq 0_E} \frac{\norm{u(x)}_F}{\norm{x}_E} \]
+    Observons de suite que par linéarité de $u$ et homogénéité de $\norm{.}_F$, 
+    \[ \normm{u} = \sup_{x \neq 0_E} \norm{u\left(\frac{x}{\norm{x}_E}\right)}_F = \sup_{\norm{y}_E = 1} \norm{u(y)}_F \] 
+    Il suffit donc de déterminer une telle borne supérieure non pas sur $E \backslash \{ 0_E \}$ mais sur $\mathcal{S}(0,1)$.
+
+    \begin{theo}{Norme d’opérateur (ou norme subordonnée)}
+        Pour tout $u \in \mathcal{L}_c(E,F)$, on pose $\normm{u} = \sup_{x neq 0_E} \frac{\norm{u(x)}_F}{\norm{x}_E}$. 
+
+        L’application $\normm{.}$ est une norme sur $\mathcal{L}_c(E,F)$, appelée norme d’opérateur subordonnée à $\norm{.}_E$ et $\norm{.}_F$. On la note parfois $\norm{.}_{op}$, voire $\norm{.}$ lorsqu’il n’y a pas d’ambiguïté.
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        \begin{itemize}
+            \item Le critère de continuité d’une application linéaire nous assure l’existence de $\normm{u}$ pour $u \in \mathcal{L}_c(E,F)$.
+            \item $\normm{.}$ est de plus une norme sur $\mathcal{L}_c(E,F)$. L’application est clairement à valeurs dans $\mathbb{R}_+$. En outre, 
+            \begin{itemize}
+                \item Si $u \in \mathcal{L}_c(E,F)$ et $\normm{u} = 0$, alors $u = 0_{\mathcal{L}(E,F)}$.
+                \item Si $u \in \mathcal{L}_c(E,F)$ et $\lambda \in \mathbb{K}$, $\normm{\lambda u} = \sup_{x neq 0_E} \frac{\norm{\lambda u(x)}_F}{\norm{x}_E} = \abs{\lambda} \sup_{x neq 0_E} \frac{\norm{u(x)}_F}{\norm{x}_E} = \abs{\lambda} \cdot \normm{u}$
+                \item Soient $u,v \in \mathcal{L}_c(E,F)$. Alors, pour tout $x \in E$, 
+                \[ \norm{(u+v)(x)}_F \leq \norm{u(x)}_F + \norm{v(x)}_F \leq \normm{u} \cdot \norm{x}_E + \normm{v} \cdot \norm{x}_E \] 
+                Pour tout $x \neq 0_E, \frac{\norm{(u+v)(x)}_F}{\norm{x}_E} \leq \normm{u} + \normm{v}$. Par passage à la borne supérieure, $\normm{u+v} \leq \normm{u} + \normm{v}$.
+            \end{itemize}
+        \end{itemize}
+    \end{demo}
+
+    \begin{omed}{Comment déterminer une norme d’opérateur ?}{myred}
+        En pratique, on majorera $\norm{u(x)}$ pour trouver une inégalité de la forme $\norm{u(x)} \leq C \norm{x}$. S’il y a égalité pour un vecteur $x_0$ donné, elle sera optimale. En dimension finie, nous nous assurerons qu’un tel vecteur $x_0$ existe toujours.
+    \end{omed}
+
+    \begin{omed}{Exemple}{myred}
+        Nous avons vu que la forme linéaire $u : f \mapsto f(1)$, définie sur $G = \mathcal{C}(\intervalleFF{0}{1},\mathbb{K})$ muni de la norme $\norm{.}_{\infty}$, à valeurs dans $\mathbb{K}$ muni de la norme $\abs{.}$, est continue. En outre,
+        \[ \forall f \in G, \abs{u(f)} = \abs{f(1)} \leq \norm{f}_{\infty} = \lilbox{myred}{$1$} \times \norm{f}_{\infty} \]
+        Cette inégalité est une égalité pour $f$ constante égale à $1$. Ainsi, $\normm{u} = 1$.
+    \end{omed}
+
+    De façon immédiate, $\normm{\id_E} = 1$. La norme $\normm{.}$ est de plus sous-multiplicative.
+
+    \begin{prop}{Sous-multiplicativité de la norme opérateur}{}
+        Pour tous $u,v \in \mathcal{L}_c(E), \normm{u \circ v} \leq \normm{u} \cdot \normm{v}$
+    \end{prop}
+
+    \begin{demo}{Idée}{myolive}
+        Pour tout vecteur $x$ unitaire, $\norm{u(v(x))} \leq \normm{u} \cdot \norm{v(x)} \leq \normm{u} \cdot \normm{v} \cdot \norm{x} = \normm{u} \cdot \normm{v}$.
+
+        On conclut par passage à la borne supérieure.
+    \end{demo}
+
+    La sous-multiplicativité de la norme d’opérateur se traduit par la continuité de l’application bilinéaire $(u,v) \longmapsto u \circ v$. 
+
+    On dit alors que $\normm{.}$ défini une \textbf{norme d’algèbre} sur $\left(\mathcal{L}_c(E), +, \circ, \cdot\right)$.
+
+    Cette propriété assure en particulier la continuité de toute application de la forme $u \mapsto u^n$ avec $n \in \mathbb{N}$ et donc plus généralement de toute application polynomiale $u \mapsto P(u)$, où $P \in \mathbb{K}[X]$ et $u \in \mathcal{L}_c(E)$. Notons qu’en dimension finie, un tel argument est inutile : toute application multilinéaire est continue. C’est en particulier le cas du produit matriciel $(A,B) \mapsto AB$. 
+
+    Donnons pour finir quelques exemples de normes matricielles construites comme normes subordonnées. En identifiant $\mk{n}$ à $\mathcal{L}(\mathbb{K}^n)$, il suffit de choisir une norme sur $\mathbb{K}^n$ en tant qu’espace de départ et une norme sur $\mathbb{K}^n$ (éventuellement différente) en tant qu’espace d’arrivée. On peut par exemple définir 
+    \[ \forall A \in \mk{n}, \normm{A}_{p,q} = \sup_{\norm{X}_p= 1} \norm{AX}_q \quad \text{où on rappelle que } \norm{X}_p = \left(\sum\limits_{k=1}^n \abs{x_k}^p\right)^{1/p} \]
+    On montre que les normes définies par $\normm{A} = \max_{1 \leq i \leq n} \sum\limits_{j=1}^n \abs{a_{i,j}}$ et $\normm{A} = \max_{1 \leq j \leq n} \sum\limits_{i =1}^n \abs{a_{i,j}}$ sont des normes subordonnées.
+
+    \begin{omed}{Attention !}{myolive}
+        Toutes les normes sur $\mk{n}$ précédemment rencontrées ne sont pas des normes subordonnées : 
+        \begin{itemize}
+            \item La norme euclidienne définie par $\norm{A} = \sqrt{\tr\left(A^T A\right)}$ est sous-multiplicative mais $\norm{I_n} = \sqrt{n} \neq 1$.
+            \item La norme définie par $\norm{A} = \sup_{1 \leq i,j \leq n} \abs{a_{i,j}}$ n’est tout simplement pas sous-multiplicative.
+        \end{itemize}
+    \end{omed}
+
+\subsection{Parties compactes d’un espace vectoriel normé}
+
+    Rappelons qu’on appelle 
+    \begin{itemize}
+        \item suite extraite ou sous-suite de $(u_n)_{n \in \mathbb{N}} \in E^{\mathbb{N}}$ toute suite de la forme $(u_{\varphi(n)})_{n \in \mathbb{N}}$ où $\varphi : \mathbb{N} \rightarrow \mathbb{N}$ est strictement croissante.
+        \item valeur d’adhérence de $(u_n)_{n \in \mathbb{N}} \in E^{\mathbb{N}}$ toute limite de sous-suites de $(u_n)_{n \in \mathbb{N}}$. $\lambda$ est une valeur d’adhérence de $(u_n)_{n \in \mathbb{N}}$ si et seulement si 
+        \[ \forall \epsilon > 0, \forall N \in \mathbb{N}, \exists n \geq N, u_n \in B(\lambda,\epsilon) \]
+    \end{itemize}
+    Une suite converge vers $\ell \in E$ ssi toutes ses sous-suites conv. vers $\ell$. La limite est donc l’unique valeur d’adhérence d’une suite convergente. En revanche, l’existence d’une unique valeur d’adhérence ne garantit pas la convergence.
+
+    \subsubsection{Définition et premières propriétés}
+
+    $A$ désignera par la suite une partie d’un espace vectoriel normé $\left(E, \norm{.}\right)$.
+
+    \begin{defi}{Partie compacte}{}
+        $A$ est dite \textbf{compacte} si et seulement si toute suite d’éléments de $A$ admet une sous-suite qui converge dans $A$.
+    \end{defi}
+
+    \begin{omed}{Exemples}{myyellow}
+        \begin{itemize}
+            \item D’après le principe des tiroirs, toute partie finie est compacte.
+            \item D’après le théorème de Bolzano-Weierstrass, les segments de $\mathbb{R}$ sont des compacts.
+        \end{itemize}
+    \end{omed}
+
+    Toute suite d’un compact admet par définition au moins une valeur d’adhérence. Une telle suite convergera dès lors qu’elle en admet au plus une.
+
+    \begin{prop}{}{}
+        Une suite d’éléments d’une partie compacte converge si et seulement si elle admet une seule valeur d’adhérence.
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        \begin{itemize}
+            \item[$\implies$] Toute suite convergente admet une seule valeur d’adhérence (la limite de la suite).
+            \item[$\impliedby$] Raisonnons par contraposition. Supposons pour cela qu’une suite $(u_n)_{n \in \mathbb{N}}$ d’une partie compacte $A$ diverge et prouvons qu’elle admet au moins deux valeurs d’adhérence. Par définition de la compacité, $(u_n)_{n \in \mathbb{N}}$ admet au moins une valeur d’adhérence notée $\lambda$. Puisque $(u_n)_{n \in \mathbb{N}}$ ne converge pas vers $\lambda$, on sait qu’il existe $\epsilon > 0$ tel que pour tout $N \in \mathbb{N}$, il existe $n \geq N$ tel que $u_n \notin B(\lambda,\epsilon)$. Cela nous assure l’existence d’une suite extraite dont aucun des termes n’est dans $B(\lambda,\epsilon)$. Une telle suite à valeurs dans $A$ admet nécessairement une valeur d’adhérence $\lambda' \neq \lambda$, également valeur d’adhérence de $(u_n)_{n \in \mathbb{N}}$. 
+        \end{itemize}
+    \end{demo}
+
+    \begin{theo}{}{}
+        Toute partie compacte est fermée et bornée.
+    \end{theo}
+
+    \begin{demo}{Preuve}{myred}
+        Supposons que $A$ est une partie compacte de $E$.
+        \begin{itemize}
+            \item $A$ est fermée : en effet, soit $(u_n)_{n \in \mathbb{N}}$ une suite d’éléments de $A$ convergent vers $\ell \in E$. Par compacité de $A$, il existe une sous-suite qui converge vers $A$, mais aussi nécessairement vers $\ell$. Donc $\ell \in A$.
+            \item $A$ est bornée : supposons qu’elle ne le soit pas. On pourrait alors construire pour chaque entier $n \in \mathbb{N}, u_n \in A$ tel que $\norm{u_n} \geq n$. On ne peut extraire de $(u_n)_{n \in \mathbb{N}}$ une sous-suite convergente puisque $\norm{u_{\varphi(n)}} \geq \varphi(n) \geq n$ ce qui montre que la suite extraite n’est même pas \textit{a minima} bornée.
+        \end{itemize}
+    \end{demo}
+
+    Nous verrons plus tard, avec un peu de travail, que la réciproque est vraie en dimension finie. Contentons-nous pour l’instant d’un contre-exemple en dimension infinie.
+
+    \begin{omed}{(Contre-)Exemple}{myred}
+        On munit $\mathbb{K}[X]$ de la norme $P = \sum\limits_{k=0}^{+\infty} a_k X^k \longmapsto \norm{P} = \sup_{k \in \mathbb{N}} \abs{a_k}$.
+
+        On considère la sphère unité de $E$, i.e. $\mathcal{S}(\tilde{0},1) = \big\{ P \in \mathbb{K}[X] \big| \norm{P} = 1 \big\}$. C’est bien entendu un fermé borné de $E$. Posons alors, pour tout $n \in \mathbb{N}, P_n = X^n$. La suite $(P_n)_{n \in \mathbb{N}}$ est une suite de $\mathcal{S}(\tilde{0},1)$ qui ne peut pourtant pas admettre de sous-suite convergente puisque pour tous $n,m \in \mathbb{N}$ avec $n \neq m$, $\norm{P_n - P_m} = 1 \geq 1$.
+    \end{omed}
+
+    Les parties compactes d’un compact sont les parties fermées de ce compact. En d’autres termes : 
+
+    \begin{prop}{}{}
+        Soit $X \subset A$ où $A$ est une partie compacte de $E$. 
+
+        Alors $X$ est compacte si et seulement si $X$ est fermée.
+    \end{prop}
+
+    \begin{prop}{}{}
+        Le produit fini de compacts d’espaces normés est compact (pour la norme produit).
+    \end{prop}
+
+    \subsubsection{Compacité et continuité}
+
+    \begin{theo}{}{}
+        L’image d’un compact par une application continue est compacte.
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        Soient $A$ une partie compacte de $E$ et $f : E \rightarrow F$ continue.
+
+        Considérons une suite $\left(f(u_n)\right)_{n \in \mathbb{N}}$ de $f(A)$. La suite $(u_n)_{n \in \mathbb{N}}$ du compacte $A$ admet une sous-suite $\left(u_{\varphi(n)}\right)_{n \in \mathbb{N}}$ qui converge vers $\ell \in A$. Par continuité de $f$, la sous-suite $\left(f(u_{\varphi(n)})\right)_{n \in \mathbb{N}}$ converge vers $f(\ell) \in f(A)$.
+    \end{demo}
+
+    On en déduit un fameux corollaire, la généralisation de « toute fonction continue sur un segment est bornée et atteint ses bornes ». Ce résultat permettra de prouver efficacement l’existence d’un maximum ou d’un minimum.
+
+    \begin{coro}{Théorème des bornes atteintes}{}
+        Si $f$ est une application continue sur un compact et à valeurs dans $\mathbb{R}$, $f$ est bornée et atteint ses bornes.
+    \end{coro}
+
+    \begin{demo}{Preuve}{myorange}
+        Si $f : A \subset E \rightarrow \mathbb{R}$ est continue et $A$ compact, $f(A)$ est un compact donc une partie fermée et bornée de $\mathbb{R}$. 
+
+        Du caractère borné, on tire l’existence de $\inf_{x \in A} f(x)$ et de $\sup_{x \in A}f(x)$. 
+
+        Du caractère fermé, on tire l’appartenance de ces bornes inf et sup à l’adhérence de $f(A)$, donc à $f(A)$ lui-même. Ainsi, $\inf_A f = \min_A f$ et $\sup_A f = \max_A f$.
+    \end{demo}
+
+    Rappelons que si $E = \mathbb{R}$ et $A$ est un intervalle ouvert, $f(A)$ n’a aucune raison d’être bornée ou fermée.
+
+    Le théorème des bornes atteintes s’applique couramment à une fonction $f$ continue sur un compact $A$ pour montrer qu’une norme est atteinte : $\sup_{x \in A} \norm{f(x)} = \max_{x \in A} \norm{f(x)} = \norm{f(x_0)}$.
+
+    \begin{theo}{Théorème de Heine}{}
+        Toute application continue sur un compact y est uniformément continue.
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        Nous allons raisonner par l’absurde. Soit $f : A \subset E \rightarrow F$ continue avec $A$ une partie compacte de $E$. Supposons que $f$ ne soit pas uniformément continue sur $A$, i.e. que pour un certain $\epsilon > 0$, 
+        \[ \forall \alpha > 0, \exists x,y \in A, \norm{x-y} < \alpha \text{ et } \norm{f(x) - f(y)} \geq \epsilon \] 
+        \begin{itemize}
+            \item Pour tout entier $n \in \mathbb{N}^*$, il existe $x_n, y_n \in A$ tels que $\norm{x_n - y_n} < 1/n$ et $\norm{f(x_n) - f(y_n)} \geq \epsilon$.
+            \item On peut extraire de la suite $(x_n)_{n \in \mathbb{N}}$ (du compact $A$) une sous-suite convergente $\left(x_{\varphi(n)}\right)_{n \in \mathbb{N}}$ vers $\ell \in A$. $\norm{x_{\varphi(n)} - y_{\varphi(n)}} < 1/n$ donc $\left(y_{\varphi(n)}\right)_{n \in \mathbb{N}}$ cv aussi vers $\ell$.
+            \item $\norm{f(x_{\varphi(n)}) - f(y_{\varphi(n)})} \geq \epsilon$ mais par continuité, $\norm{f(x_{\varphi(n)}) - f(y_{\varphi(n)})} \underset{n \rightarrow + \infty}{f(l)-f(l)} = 0$, ce qui est absurde.
+        \end{itemize}
+    \end{demo}
+
+\subsection{Espaces vectoriels normés de dimension finie}
+
+    \subsubsection{Équivalence des normes}
+
+    \begin{theo}{Équivalence des normes en dimension finie}
+        En dimension finie, toutes les normes sont équivalentes.
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        Soient $\left(E, \norm{.}\right)$ un espace de dimension finie et $(e_1,\ldots,e_n)$ une base de $E$. On définit une nouvelle norme sur $E$ en posant, pour tout $x = \sum_{i = 1}^n x_i e_i \in E, N_{\infty}(x) = \max_{1 \leq i \leq n} \abs{x_i}$. Nous allons justifier l’équivalence des normes $\norm{.}$ et $N_{\infty}$.
+        \begin{enumerate}
+            \item Montrons que $\norm{.}$ est une application continue de $(E,N_{\infty})$ dans $(\mathbb{R}, \abs{.})$ en justifiant sa lipschitzianité. En effet, par inégalité triangulaire, 
+            \[ \forall x \in E, \norm{x} = \norm{\sum_{i = 1}^n x_i e_i} \leq \sum_{i=1}^n \abs(x_i) \cdot \norm{e_i} \leq \sum_{i = 1}^n N_{\infty}(x) \cdot \norm{e_i} \]
+            Ainsi, $\norm{x} \leq M \cdot N_{\infty}(x)$ en posant $M = \sum_{i = 1}^n \norm{e_i}$. On a enfin, par l’inégalité triangulaire étendue, 
+            \[ \forall x,y \in E, \abs{\norm{x} - \norm{y}} \leq \norm{x-y} \leq M \cdot N_{\infty} (x-y) \] 
+
+            \item On établit que la sphère unité $\mathcal{S}$ de $(E, N_{\infty})$ est compacte. 
+            \begin{enumerate}[label=(\alph*)]
+                \item Commençons par justifier que la sphère unité $\mathcal{S}'$ de $\left(\mathbb{K}^n, \norm{.}_{\infty}\right)$ où $\norm{x}_{\infty} = \max_{1 \leq i \leq n} \abs{x_i}$ pour $x = (x_1, \ldots, x_n)$ est elle-même compacte. En effet, d’après le théorème de Bolzano-Weierstrass, le segment $\intervalleFF{-1}{1}$ est un compact de $\mathbb{R}$, tout comme le disque unité fermé $D_f(0,1)$ est un compact de $\mathbb{C}$. Par produit, $\intervalleFF{-1}{1}^n$ (cas réel) et $D_f(0,1)^n$ (cas complexe) sont des compacts de $\mathbb{K}^n$. 
+                
+                $\mathcal{S}'$ étant une partie fermée incluse dans l’un de ces deux compacts, $\mathcal{S}'$ est compacte.
+
+                \item Entre, $\mathcal{S}$ et $\mathcal{S}'$, il n’y a pas de grandes différences. Plus précisément, $\varphi(\mathcal{S}') = \mathcal{S}$ où 
+                \[ \fonction{\varphi}{\left(\mathbb{K}^n, \norm{.}_{\infty}\right)}{\left(E,N_{\infty}\right)}{(x_1,\ldots,x_n)}{\sum_{i=1}^n x_i e_i} \] 
+                est une fonction établissant un isomorphisme entre $\mathbb{K}^n$ et $E$ et est surtout continue car $N_{\infty} (\varphi(x)) = \norm{x}_{\infty}$. $\mathcal{S}$ est ainsi l’image d’un compact par une application continue : c’est un compact.
+            \end{enumerate}
+            \item On prouve enfin que $\norm{.}$ et $N_{\infty}$ sont équivalentes. 
+            
+            La sphère unité $\mathcal{S}$ étant compacte, l’application continue $\norm{.}$ est ainsi bornée sur $\mathcal{S}$ et atteint ses bornes. Comme elle est de plus à valeurs positives, il existe $\alpha, \beta \in \mathbb{R}_+^*$ tels que 
+            \[ \forall y \in E, N_{\infty}(y) = 1 \implies \alpha \leq \norm{y} \leq \beta \] 
+            Soit $x \in E$ non nul. $\frac{x}{N_{\infty}(x)}$ étant unitaire au sens de $N_{\infty}$, $\alpha \leq \norm{\frac{x}{N_{\infty}(x)}} \leq \beta$, soit $\alpha N_{\infty}(x) \leq \norm{x} \leq \beta N_{\infty}(x)$. L’encadrement étant encore valable pour $x = 0_E$, on a montré l’équivalence des normes $\norm{.}$ et $N_{\infty}$.
+
+            \item Toutes les normes sur $E$ sont équivalentes à $N_{\infty}$ donc équivalentes entre elles par transitivité.
+        \end{enumerate}
+    \end{demo}
+
+    Il s’en suit l’invariance, en dimension finie, des ouverts, fermés, voisinages\ldots
+
+    \subsubsection{Compacité des fermés bornés}
+
+    Comme nous l’avons établi, un compact est fermé et borné. En dimension finie, la réciproque est vraie : les parties compactes sont exactement les fermés bornés de l’espace.
+
+    \begin{theo}{Caractérisation des parties compactes en dimension finie}{}
+        Une partie d’un espace normé de dimension finie est compacte si et seulement si elle est fermée et bornée.
+    \end{theo}
+
+    Tout repose sur le fait que la convergence d’une suite (ou l’existence d’une limite de fonction) à valeurs dans un e.v.n. de dimension finie équivaut à celle de chacune de ses coordonnées dans une base ; on peut donc ainsi se ramener à $\mathbb{R}$ ou $\mathbb{C}$.
+
+    \begin{demo}{Démonstration}{myred}
+        Soient $A$ une partie fermée et bornée de $\left(E, \norm{.}\right)$, supposé de dimension finie, et une suite $(x_n)_{n \in \mathbb{N}}$ d’éléments de $A$. Nous appuyant sur la démonstration du théorème précédent, introduisons une base $(e_1,\ldots, e_p)$ de $E$.
+
+        Par l’équivalence des normes, $A$ est fermée et bornée au sens de la norme $N_{\infty}$. Ainsi, pour tout $n \in \mathbb{N}$, 
+        \[ x_n = \sum_{k=1}^p x_n^{(k)} e_k \]
+        Les suites de coordonnées $(x_n^{(k)})_{n \in \mathbb{N}}$ sont bornées pour la norme $N_{\infty}$ puisque pour tout $n \in \mathbb{N}$, $\abs{x_n^{(k)}} \leq N_{\infty}(x_n)$ et à valeurs dans $\mathbb{K}$. Elles admettent donc toutes une sous-suite convergente. Il en va donc de même pour $(x_n)_{n \in \mathbb{N}}$.
+    \end{demo}
+
+    Il y a à ce théorèmes trois conséquences immédiates et importantes :
+    \begin{itemize}
+        \item En dimension finie, la boule unité fermée et la sphère unité sont compactes.
+        \item Toute application continue sur un fermé borné en dimension finie et à valeurs dans $\mathbb{R}$ est bornée et atteint ses bornes.
+        \item Le théorème de Bolzane-Weierstrass s’étend à tout espace vectoriel de dimension finie.
+    \end{itemize}
+
+    On en déduit un autre résultat : 
+
+    \begin{coro}{}{}
+        Une suite bornée d’un espace normé de dimension finie converge si et seulement si elle a une unique valeur d’adhérence.
+    \end{coro}
+
+    \subsubsection{Continuité d’une application linéaire}
+
+    \begin{theo}{}{}
+        Si $E$ est de dimension finie, toute application linéaire de $E$ dans $F$ est continue.
+    \end{theo}
+
+    Autrement dit, si $E$ est de dimension finie, $\mathcal{L}(E,F) = \mathcal{L}_c(E,F)$.
+
+    \begin{demo}{Preuve}{myred}
+        Une application $u \in \mathcal{L}(E,F)$ est continue si et seulement s’il existe $C \geq 0$ tel que pour tout $x \in E, \norm{u(x)}_F \leq C \cdot \norm{x}_E$. Supposons $E$ de dimension finie et notons $(e_1,\ldots,e_n)$ une base de $E$ et $N_{\infty}$ la norme définie par $N_{\infty}(x) = \max_{1 \leq k \leq n} \abs{x_k}$. 
+        \begin{itemize}
+            \item Comme $\norm{E}$ et $N_{\infty}$ sont équivalentes, il existe $\alpha, \beta > 0$ tels que $\alpha \norm{.}_E \leq N_{\infty} \leq \beta \norm{.}_E$.
+            \item Soit $x \in E$.
+            \[ \norm{u(x)}_F = \norm{\sum_{k=1}^n x_k u(e_k)}_F \leq \sum_{k=1}^n \abs{x_k} \cdot \norm{u(e_k)}_F \leq N_{\infty}(x) \cdot \sum_{k=1}^n \norm{u(e_k)}_F \leq \underbrace{\beta \sum_{k=1}^n \norm{u(e_k)}_F}_{= C} \cdot \norm{x}_E \]
+        \end{itemize}
+        D’où la continuité de l’application linéaire $u$.
+    \end{demo}
+
+    En dimension finie, la sphère unité étant compacte, nous disposons du corollaire immédiat suivant : si $u \in \mathcal{L}(E,F), \normm{u} = \sup_{\norm{x}_E = 1} \norm{u(x)}_F = \max_{\norm{x}_E = 1} \norm{u(x)}_F = \norm{u(x_0)}_F$ pour un certain $x_0$ unitaire.
+
+    Plus généralement, 
+
+    \begin{theo}{}{}
+        Tout sous-espace vectoriel de dimension finie d’un espace normé est fermé.
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        Soient un sous-espace vectoriel $F$ de dimension finie de $E$ et une suite $(x_n)_{n \in \mathbb{N}}$ d’éléments de $F$ qui converge vers $\ell \in \barr{F}$. Montrons que la limite en question appartient nécessairement à $F$. On considère une base $(e_1,\ldots,e_p)$ de $F$, ce qui nous permet d’écrire :
+        \[ \forall n \in \mathbb{N}, x_n = \sum_{k=1}^p x_n^{(k)} e_k \] 
+        Chaque suite $(x_n^{(k)})_{n \in \mathbb{N}}$ converge comme image de la suite $(x_n)$ par la forme linéaire $\varphi_k : x \mapsto x_k$ continue ($F$ étant de dimension finie). Notons $\ell_k$ les limites respectives de ces suites. Par passage à la limite, on a 
+        \[ \ell = \sum_{k=1}^p \ell_k e_k \in F \] 
+    \end{demo}
+
+    \begin{omed}{Exemples}{myred}
+        \begin{itemize}
+            \item $\mathcal{S}_n(\mathbb{K})$ est un fermé de $\mk{n}$ en tant que sev de dimension finie. Autrement dit, toute limite de suites de matrices symétriques est une matrice symétriques.
+            \item $\mathcal{G}\ell_n(\mathbb{K})$ n’est quant à lui pas un fermé de $\mk{n}$. Non pas que ce n’est pas un sev de $\mk{n}$, mais parce que $\barr{\mathcal{G}\ell_n(\mathbb{K})} = \mk{n}$.
+        \end{itemize}
+    \end{omed}
+
+    \subsubsection{Continuité des applications polynomiales et multilinéaires}
+
+    \begin{defi}{Polynômes}{}
+        Soient $E$ un $\mathbb{K}$-ev et $(e_1,\ldots,e_n)$ une base de $E$. On appelle :
+        \begin{itemize}
+            \item \textbf{monôme} défini sur $E$ et à valeurs dans $\mathbb{K}$ toute application de la forme $x = \sum_{i=1}^n x_i e_i \longmapsto x_1^{\alpha_1} \cdots x_n^{\alpha_n}$ où $\alpha_1,\ldots,\alpha_n \in \mathbb{N}$.
+            \item \textbf{fonction polynomiale} définie sur $E$ toute combinaison linéaire de monômes.
+        \end{itemize}
+    \end{defi}
+
+    Remarquons que le choix de la base importe peu : un changement de base montre qu’une application polynomiale suivant une base reste polynomiale suivant une autre.
+    En notant $\pi_k$ la forme linéaire qui associe au vecteur $x$ sa coordonnée suivant $e_k$ (c’est-à-dire l’application $x \mapsto x_k$ ), on peut écrire tout monôme sous la forme $\pi_{1}^{\alpha_1} \times \cdots \times \pi_n^{\alpha_n}$. En dimension finie, ces formes linéaires $\pi_k$, qu’on appelle applications coordonnées, sont nécessaires continues. D’où le résultat suivant, par produit de fonctions continues à valeurs dans $\mathbb{R}$.
+
+    \begin{prop}{}{}
+        Toute application polynomiale définie sur un ev normé en dimension finie est continue.
+    \end{prop}
+
+    Généralisons désormais le théorème de continuité des applications multilinéaires en dimension fine :
+
+    \begin{theo}{Continuité des applications multilinéaires en dimension finie}{}
+        Soient $E_1,\ldots, E_n$ des $\mathbb{K}$-ev normés, tous supposés de dimension finie, et $F$ un $\mathbb{K}$-ev normé.
+
+        Toute application multilinéaire définie sur $E_1 \times \cdots \times E_n$ et à valeurs dans $F$ est continue.
+    \end{theo}
+
+    \begin{omed}{Exemples}{myred}
+        \begin{itemize}
+            \item $M \mapsto \Det(M)$ est continue sur $\mk{n}$ et $u \mapsto \det(u)$ est continue sur $\mathcal{L}(E)$.
+            \item $\mathcal{G}\ell_n(\mathbb{K})$ est un ouvert dense de $\mk{n}$ et $\mathcal{G}\ell(E)$ un ouvert dense de $\mathcal{L}(E)$.
+        \end{itemize}
+    \end{omed}
+
+\subsection{Parties connexes par arcs d’un espace vectoriel normé}
+
+    \begin{defi}{Connexité par arcs}{}
+        Soient $A$ une partie de $E$ non vide et $a,b \in A$. 
+        \begin{itemize}
+            \item On appelle chemin continu (ou arc) joignant les points $a$ et $b$ toute application $\gamma : \intervalleFF{0}{1} \rightarrow A$ continue et vérifiant $\gamma(0) = a$ et $\gamma(1) = b$. 
+            \item On dit que $a \mathcal{R} b$ s’il existe un chemin continu de $A$ joignant $a$ et $b$.
+            \item $A$ est dite connexe par arcs si pour tous $a,b \in A$, il existe un chemin continu dans $A$ joignant $a$ et $b$.
+        \end{itemize}
+    \end{defi}
+
+    L’existence d’un chemin continu entre $a$ et $b$ revient à joindre les deux points à l’aide d’un stylo sans lever le crayon. Notons qu’on pourra remplacer le segment $\intervalleFF{0}{1}$ par n’importe quel autre segment de $\mathbb{R}$.
+
+    \begin{prop}{}{}
+        $\mathcal{R}$ est une relation d’équivalence sur $A$.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        On veut montrer que la relation binaire $\mathcal{R}$ est réflexive, symétrique et transitive.
+        \begin{itemize}
+            \item Réflexivité : $a$ est relié avec lui-même par le chemin continu $\gamma : t \mapsto a$.
+            \item Symétrie : S’il existe un chemin continu $\gamma$ joignant $a$ et $b$, alors $t \mapsto \gamma(1-t)$ est un chemin continu joignant $b$ et $a$.
+            \item Transitivité : S’il existe un chemin continu $\gamma_1$ (resp. $\gamma_2$) joignant $a$ et $b$ (resp. $b$ et $c$), alors l’application $\gamma : t \mapsto \sisi{\gamma_1(2t)}{t \leq 1/2}{\gamma_2(2t-1)}{t \geq 1/2}$ est un chemin continu joignant $a$ et $c$.
+        \end{itemize}
+    \end{demo}
+
+    \begin{defi}{}{}
+        On appelle composantes connexes de la partie $A$ les classes d’équivalences de $A$ relativement à la relation $\mathcal{R}$.
+    \end{defi}
+
+    Autrement dit, deux points de $A$ sont dans une même composante connexe s’il sont reliés par un chemin continu. $A$ sera connexe par arcs si elle possède une seule composante connexe : la partie est d’un seul tenant !
+
+    On dispose d’exemples très simples de parties connexes par arcs.
+    \begin{omed}{Exemples}{myyellow}
+        \begin{itemize}
+            \item Les parties convexes de $E$ sont connexes par arcs. Il suffit de considérer pour une partie convexe $\mathcal{C}$ donnée un chemin rectiligne (continu) joignant $a,b \in \mathcal{C}$ : $\forall t \in \intervalleFF{0}{1}, (1-t)a + tb \in \mathcal{C}$
+            \item Les parties étoilées de $E$ sont connexes par arcs. Ce sont les parties $\mathcal{E}$ pour lesquelles il existe $x \in \mathcal{E}$ tel que pour tout $y \in \mathcal{E}, \intervalleFF{x}{y} \subset \mathcal{E}$.
+        \end{itemize}
+    \end{omed}
+
+    \begin{prop}{}{}
+        Les parties connexes par arcs de $\mathbb{R}$ sont les intervalles.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Soient $x,y \in A$, où $A$ est une partie connexe par arcs de $\mathbb{R}$, et $\gamma : \intervalleFF{0}{1} \rightarrow A$ un chemin continu les reliant. D’après le théorèmes des valeurs intermédiaires (version réelle), l’image d’un intervalle par une fonction continue est un intervalle. $\gamma(\intervalleFF{0}{1})$ est donc un intervalle de $A$ qui contient $x$ et $y$. Le segment $\intervalleFF{x}{y}$ est donc inclus dans $A$. $A$ est donc convexe, c’est un intervalle de $\mathbb{R}$.
+    \end{demo}
+
+    Dans $\mathbb{R}$, intervalles, parties connexes par arcs et parties convexes sont donc confondus. C’est faux en général.
+
+    On dispose d’un résultat pratique pour montrer qu’une partie est connexe par arcs : l’image d’une partie connexe par arcs par une application continue est connexe par arcs.
+
+    \begin{theo}{}{}
+        Soit $f : E \rightarrow F$ une application continue et $A$ une partie connexe par arcs de $E$. Alors $f(A)$ est connexe par arcs.
+    \end{theo}
+
+    \begin{coro}{Généralisation du théorème des valeurs intermédiaires}{}
+        Soient $A$ une partie connexe par arcs et $f : A \rightarrow \mathbb{R}$ une application continue. Alors $f(A)$ est un intervalle.
+    \end{coro}
+
+    Comme dans le cas purement réel, on utilise souvent ce résultat pour justifier que $f$ s’annule sur $A$ en trouvant $x,y \in A$ tels que $f(x) \cdot f(y) \leq 0$.
+
+\section[Dénombremement dans un ev fini]{Dénombrement dans un espace vectoriel fini}
+
+Dans cette section, on considère un espace vectoriel $E$ de dimension finie $n \in \mathbb{N}^*$ sur un corps fini $\mathbb{F}_q$. Comme $E$ est isomorphe à $\mathbb{F}_q^n$, le cardinal de $E$ est $q^n$.
+
+\subsection{Dénombrement des endomorphismes de E}
+
+    \begin{prop}{Dénombrement des endomorphismes de E}{}
+        \begin{enumerate}
+            \item Le cardinal de $\mathcal{L}(E)$ est $q^{n^2}$.
+            \item Le cardinal de $\GL(E)$ est 
+            \[ \card(\GL(E)) \lilbox{myred}{=} \card(\GL_n(\mathbb{F}_q)) \lilbox{mypurple}{=} \prod_{k=0}^{n-1} (q_n - q_k) \]
+            \item Le cardinal de $\SL(E)$ est 
+            \[ \card(\SL(E)) \lilbox{myred}{=} \card(\SL_n(\mathbb{F}_q)) = \frac{1}{q-1} \prod_{k=0}^{n-1} (q^n - q^k) \]
+        \end{enumerate}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        \begin{enumerate}
+            \item L’espace vectoriel $\mathcal{L}(E)$ est de dimension $n^2$ sur le corps $\mathbb{F}_q$, donc il est isomorphe à $\mathbb{F}_q^{n^2}$, d’où le résultat.
+            \item \begin{enumerate}
+                \item En fixant une base de $E$, on obtient une bijection de $\GL(E)$ sur $\GL_n(\mathbb{F}_q)$, d’où \lilbox{myred}{=}. 
+                \item Si $M \in \mathcal{M}_n(\mathbb{F}_q)$, notons $M_1,\ldots,M_n \in \mathbb{F}_q^n$ les colonnes de $M$. Une matrice $M \in \mathcal{M}_n(\mathbb{F}_q)$ est inversible \textit{ssi} 
+                \[ M_1 \neq 0, \quad  M_2 \in \mathbb{F}_q^n \big\backslash \Vect(M_1), \quad \ldots, \quad M_n \in \mathbb{F}_q^n \big\backslash \Vect(M_1,\ldots,M_{n-1}) \]
+                On dispose donc de $q^n - 1$ possibilités pour la colonne $M_1$ puis $q^n - q^{k-1}$ pour les suivantes, d’où \lilbox{mypurple}{=}.
+            \end{enumerate}
+            \item \begin{enumerate}
+                \item En fixant une base de $E$, on obtient une bijection de $\SL(E)$ sur $\SL_n(\mathbb{F}_q)$, d’où \lilbox{myred}{=}. 
+                \item Le morphisme de groupe $\det : \GL(E) \to \mathbb{F}_q^*$ est surjectif de noyau $\SL(E)$, donc 
+                \[ \card(\GL(E)) = \card(\SL(E)) \cdotp \card(\mathbb{F}_q^*) \]   
+                d’où \lilbox{mypurple}{=}.
+            \end{enumerate}
+        \end{enumerate}
+    \end{demo}
+
+    Finalement, rappelons que les centres respectifs de $\GL(E)$ et de $\SL(E)$ ne contiennent que des homothéties.
+
+    \begin{prop}{Centres de $\GL(E)$ et $\SL(E)$}{}
+        Le centre de $\GL(E)$ est de cardinal $q - 1$ et le cardinal de $\SL(E)$ est de cardinal $n \wedge (q-1)$.
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        \begin{itemize}
+            \item Les homothéties dans $\GL(E)$ sont les applications $\lambda\cdotp\id_E$ avec $\lambda \in \mathbb{F}_q^*$, d’où le résultat pour le centre de $\GL(E)$.
+            \item Les homothéties dans $\SL(E)$ sont les $\lambda \cdotp \id_E$ avec $\lambda \in \mathbb{F}_q^*$ vérifiant $\lambda^n = 1$. Comme $\mathbb{F}_q^*$ est un groupe d’ordre $q-1$, on a $\lambda^{q-1} = 1$ pour tout $\lambda \in \mathbb{F}^*_q$. En notant $d = n \wedge (q-1)$, on en déduit que $\lambda^n = 1$ \textit{ssi} $\lambda^{d} = 1$ en utilisant l’identité de Bézout, donc 
+            \[ Z(\SL(E)) = \enstq{\lambda\cdotp\id_E \in \GL(E)}{\lambda \in \mathbb{F}^*_q, \quad \lambda^d = 1} \]
+            Finalement, comme $d$ divise $q-1$ et que $\mathbb{F}^*_q$ est un groupe cyclique d’ordre $q-1$, il est classique que $\enstq{\lambda \in \mathbb{F}_q^*}{\lambda^d = 1}$ est l’unique sous-groupe d’ordre $d$ de $\mathbb{F}_q^*$.
+        \end{itemize}
+    \end{demo}
+
+\subsection{Nombre de sous-espaces vectoriels}
+
+    \begin{prop}{}{}
+        Soit $d \in \intervalleEntier{0}{n}$.
+
+        Le nombre de sous-espaces vectoriels de $E$ de dimension $d$ est 
+        \[ \begin{bmatrix}
+            n \\
+            d
+        \end{bmatrix}_q = \prod_{k=0}^{d-1} \frac{q^n - q^k}{q^d - q^k} \]
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Si $F$ est sous espace vectoriel de $E$ de dimension $d$, alors chaque base de $F$ est une famille libre de cardinal $d$ dans l’espace vectoriel $E$. Par le même argument utilisé pour $\card(\GL(E))$, le nombre de telle familles libres est 
+        \[ \alpha_d = \prod_{k=0}^{d-1} q_n - q_k \]   
+        De plus, l’espace vectoriel $F$ admet $\card(\GL_d(\mathbb{F}_q))$ bases distinctes. On a donc que le nombre cherché est 
+        \[ \frac{\alpha_d}{\card(\GL_d(\mathbb{F}_q))} \]
+    \end{demo}
+
+    \begin{omed}{Remarques}{myolive}
+        \begin{enumerate}[label=\textcolor{myolive}{(\arabic*)}]
+            \item En particulier, le nombre de droites vectorielles dans $E$ est $\frac{q^n - 1}{q - 1}$.
+            \item Le nombre $\begin{bmatrix}
+                n \\
+                d
+            \end{bmatrix}_q$ est appelé un coefficient $q$-binomial.
+            \item Comme un sous-espace vectoriel de $E$ de dimension finie correspond de manière unique à un sous-espace vectoriel de dimension $n - d$ de $E^*$ par dualité, on en déduit la relation 
+            \[ \forall d \in \intervalleEntier{0}{n} \quad \begin{bmatrix}
+                n \\
+                d
+            \end{bmatrix}_q = \begin{bmatrix}
+                n \\
+                n-d
+            \end{bmatrix}_q\]
+        \end{enumerate} 
+    \end{omed}
+
+    \begin{prop}{}{}
+        Soit $(n_1,\ldots,n_r) \in \mathbb{N}^r$ avec $n_1 + \cdots + n_r = n$ et $r \in \mathbb{N}^*$. 
+
+        Le nombre de décompositions en somme directe $E = F_1 \oplus \cdots \oplus F_r$ où $F_i$ est un sous-espace vectoriel de $E$ tel que $\dim(F_i) = n_i$ est 
+        \[ \frac{\card(\GL_n(\mathbb{F}_q))}{\card(\GL_{n_1}(\mathbb{F}_q)) \cdots \card(\GL_{n_r}(\mathbb{F}_q))} \]
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Notons $\mathcal{D}$ l’ensemble des $(F_1,\ldots,F_r)$ vérifiant les conditions. Le groupe $\GL(E)$ agit transitivement sur $\mathcal{D}$ par 
+        \[ u \cdotp (F_1,\ldots,F_r) = (u(F_1),\ldots,u(F_r)) \]   
+        De plus, le stabilisateur d’un élément $(F_1,\ldots,F_r) \in \mathcal{D}$ est isomorphe à 
+        \[ \GL(F_1) \times \cdots \times \GL(F_r) \simeq \GL_{n_1}(\mathbb{F}_q) \times \cdots \times \GL_{n_r}(\mathbb{F}_q) \]   
+        On obtient donc le résultat avec la formule usuelle 
+        \[ \card(\Orb(F_1,\ldots,F_r)) = \frac{\card(\GL(E))}{\card(\Stab(F_1,\ldots,F_r))} \]
+    \end{demo}

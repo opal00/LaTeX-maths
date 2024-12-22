@@ -1,0 +1,960 @@
+\customchapter{Arithmétique}{On étudiera ici en grande partie les nombres entiers, et les propriétés qui découlent de leur construction. On s’étendra jusqu’au cas des polynômes, qui peuvent être étudiés dans un contexte similaire à celui des entiers.}
+
+\section{Rudiments d’arithmétique dans Z}
+
+    \begin{theo}{Plus petits et plus grands éléments de $\mathbb{N}$}{}
+        \begin{enumerate}[label=(\roman*)]
+            \item Toute partie non vide de $\mathbb{N}$ admet un plus petit élément.
+            \item Toute partie majorée de $\mathbb{N}$ est finie.
+            \item Toute partie finie non vide de $\mathbb{N}$ admet un plus grand élément.
+            \item Toute partie non vide et majorée de $\mathbb{N}$ admet un plus grand élément.
+    \end{enumerate}
+    \end{theo}
+
+    \begin{coro}{}{}
+        \begin{enumerate}[label=(\roman*)]
+        
+        \item Il n’existe pas de suite infinie d’entiers naturels strictement décroissante.
+        \item Toute suite d’entiers naturels strictement croissante est non-majorée.
+        
+        \end{enumerate}
+    \end{coro}
+
+\subsection{Diviseurs et multiples}
+
+    \begin{defi}{Diviseur et multiple}{}
+	Soient $a,b \in \mathbb{Z}$.
+	    \begin{itemize}
+		    \item On dit que $b$ est un \textbf{multiple} de $a$ si \[ \exists \, c \in \mathbb{Z}, \, b = a \times c \]
+		    \item Si $a \neq 0$, on dit que $a$ est un \textbf{diviseur} de $b$ et on note $a \, | \, b$.
+	    \end{itemize}
+    \end{defi}
+
+    \begin{prop}{Stabilité par CL}{}
+        Soient $a,b,c \in \mathbb{Z}^*$.
+    
+        Alors \[ \forall (n,m) \in \mathbb{N}^*, \,\left\{ \begin{array}{l}
+            c \, | \, a \\
+            c \, | \, b
+        \end{array} \right. \implies c \, | \, na + mb \]
+    \end{prop}
+
+    \begin{theo}{Division euclidienne dans $\mathbb{Z}$}{}
+        Soit $(a,b) \in \mathbb{Z} \times \mathbb{Z}^*$. 
+    
+        Alors \[ \exists ! (q,r) \in \mathbb{Z} \times \mathbb{N}, \, \left\{ \begin{array}{l}
+            a = bq + r\\
+            0 \leq r < |b| 
+            \end{array} \right. \]
+    \end{theo}
+
+    \begin{prop}{Existence du PGCD et PPCM}{}
+        Soit $(a,b) \in \mathbb{Z} \times \mathbb{Z}^*$.
+    
+        Alors il existe un entier maximal $c$ tel que $c \, | \, a$ et $c \, | \, b$. 
+    
+        Inversement, si $a \neq 0$ et $b \neq 0$, il existe un entier minimal $c$ tel que $a \, |\, c$ et $b \,|\, c$.
+    \end{prop}
+    
+    \begin{defi}{PGCD et PPCM}{}
+        Soient $a,b \in \mathbb{Z}$.
+        \begin{itemize}
+            \item Si $(a,b) \neq (0,0)$, le plus grand entier naturel qui divise $a$ et $b$ est appelé pgcd (plus grand commun diviseur) de $a$ et $b$, et noté pgcd$(a,b)$ ou $a \wedge b$. Par convention, pgcd$(0,0) = 0$.
+            \item Si $ a \neq 0$ et $b \neq 0$, le plus petit entier naturel non-nul divisible par $a$ et $b$ est appelé ppcm (plus petit commun multiple), et noté ppcm$(a,b)$ ou $a \vee b$. Par convention, ppcm$(a,0) = 0$.
+        \end{itemize}
+    \end{defi}
+
+    \begin{lem}{Division euclidienne par méthode du PGCD}{}
+        Soient $(a,b) \in \mathbb{N} \times \mathbb{N}^{*}$, et $(q,r)$ le quotient et le reste de la division euclidienne de $a$ par $b$. Alors $a \land b = b \land r$.
+    \end{lem}
+        
+    \begin{tcblisting}{listing only, enhanced, breakable,
+        left=1mm, right=1mm, top=1mm, bottom=1mm,
+        leftrule=.1mm, rightrule=.1mm, toprule=.1mm, bottomrule=.1mm, titlerule=.1mm, title=Algorithme d’Euclide,
+        drop small lifted shadow,
+        arc=2mm,
+        fonttitle=\normalfont\bfseries,
+        colframe=mybrown, colback=mybrown!2, coltitle=mybrown, colbacktitle = mybrown!2
+        }
+    def lcd(a,b):
+        while b != O :
+            a, b = b, a%b
+        return a
+    \end{tcblisting}
+    
+    \begin{prop}{}{}
+        L’algorithme d’Euclide termine, et renvoie pgcd$(a,b)$.
+    \end{prop}
+
+\subsection{Décomposition en nombres premiers}
+
+    \begin{defi}{Nombre premier}{}
+	    Soit $p \in \mathbb{N}$.
+
+	    Alors $p$ est \textbf{premier} si \[ d\,| \,p \implies d= 1 \text{ ou } d =p \]
+    \end{defi}
+
+    \begin{prop}{Lemme d’Euclide}{}
+        Soient $(a,b) \in \mathbb{N}$ et p un nombre premier.
+        
+        Alors \[ p \, | \, ab \iff p \, | \, a \text{ ou } p \, | \, b \]
+        \end{prop}
+        
+        \begin{prop}{}{}
+        Tout entier supérieur ou égal à 2 admet au moins un diviseur premier.
+        \end{prop}
+        
+        \begin{theo}{Théorème d’Euclide}{}
+        Il y a une infinité de nombres premiers.
+        \end{theo}
+        
+        \begin{theo}{Décomposition en facteurs premiers}{}
+        Soit n $\geq$ 2.
+        
+        Alors il existe $k \in \mathbb{N}^{*}$, $p_1,\ldots,p_k$ des nombres premiers distincts et $\alpha_1,\ldots,\alpha_k \in \mathbb{N}^{*}$ tels que \[ n = p_{1}^{\alpha_1}p_{2}^{\alpha_2}\ldots p_{k}^{\alpha_k} \]
+        De plus, si on impose $p_1 < p_2 < \ldots < p_k$, alors cette décomposition est unique.
+        \end{theo}
+        
+        Connaître la décomposition en facteurs premiers permet de déterminer les diviseurs d’un entier. Soit $n = p_{1}^{\alpha_1}p_{2}^{\alpha_2}\ldots p_{k}^{\alpha_k}$ et $m \in \mathbb{N}^{*}$ :
+        \[ m \, | \, n \iff m = \prod\limits_{p \in \mathbb{P}}p_{i}^{\beta_{i}} \text{ où } \forall i, \, \beta_{i} \in  [\![0;\alpha_{i}]\!] \] 
+        Chaque entier possède donc $ \prod\limits_{i}(\alpha_{i} + 1)$ diviseurs.
+        
+        \begin{defi}{Valuation $p$-adique}{}
+            Soient $a \in \mathbb{Z}^*$ et $p$ un nombre premier.
+        
+            La valuation $p$-adique de $a$ (notée $v_{p}(a)$) est l'exposant de $p$ dans la décomposition de $a$ en produit de facteurs premiers. 
+
+            Par convention, $v_{p}(0) = + \infty$.
+        \end{defi}
+        
+        \begin{prop}{}{}
+            Soient $a,b \in \mathbb{N}$ tels que $a = p_{1}^{\alpha_1}p_{2}^{\alpha_2}\ldots p_{k}^{\alpha_k}$ et \newline $b = p_{1}^{\beta_1}p_{2}^{\beta_2}\ldots p_{k}^{\beta_k}$.
+        
+            Alors \begin{align*}
+                a \land b &= \prod\limits_{p \in \mathbb{P},\, p \, | \, ab} p^{\min(v_{p}(\alpha),v_{p}(\beta))} \\
+                a \lor b &= \prod\limits_{p \in \mathbb{P},\, p \, | \, ab} p^{\max(v_{p}(\alpha), v_{p}(\beta))}
+            \end{align*}
+        \end{prop}
+        
+        \begin{coro}{}{}
+        \[ \forall (a,b) \in \mathbb{N}^{2}, (a \wedge b).(a \vee b) = ab \]
+        \end{coro}
+
+\section{Résultats classiques}
+
+\subsection{Théorème et identité de Bézout}
+
+    \begin{theo}{Théorème de Bézout}{Theoreme de Bezout}
+        Deux entiers relatifs $a$ et $b$ sont premiers entre eux si et seulement si il existe deux entiers relatifs $u$ et $v$ tels que $au + bv = 1$.
+    \end{theo}
+
+    \begin{demo}{Preuve}{myred}
+        \begin{itemize}
+            \item On suppose que $a$ et $b$ sont premiers entre eux i.e. $a \wedge b = 1$. L’un des deux est non nul, par exemple $a$. 
+            
+            Soit $\mathcal{E} = \left\{ au + bv, (u,v) \in \mathbb{Z}^2 \right\}$. $\mathcal{E}$ contient $a$ et $-a$ donc au moins un entier strictement positif. Soit $\delta = a u_0 + b v_0$ le plus petit d’entre eux. 
+
+            La d.e. de $a$ par $\delta$ s’écrit $a = \delta q + r$ d’où $r = a(1 -q u_0) + b(-q v_0)$. Donc \lilbox{myred}{$r \in \mathcal{E}$}. Or \lilbox{myred}{$0 \leq r < \delta$} donc $r = 0$ d’où $a = \delta q$ et $\delta \, | \, a$. 
+
+            On montre de même que $\delta \, | \, b$. Or $a$ et $b$ sont premiers entre eux, donc $\delta = 1$. Donc il existe bien $u_0$ et $v_0$ tels que $a u_0 + b v_0 = 1$.
+            \item S’il existe $u$ et $v$ tels que $au + bv = 1$, alors $d = a \wedge b$ divise $a$ et $b$, donc divise $au + bv = 1$. Donc $d$ vaut 1 et $a$ et $b$ sont premiers entre eux.
+        \end{itemize}
+    \end{demo}
+
+    \begin{coro}{Identité de Bachet-Bézout}{Identite de Bachet-Bezout}
+        Soient $a$ et $b$ deux entiers relatifs, et $d = a \wedge b$.
+        
+        Alors il existe deux entiers relatifs $u$ et $v$ tels que $au + bv = d$.
+    \end{coro}
+
+    \begin{demo}{Preuve}{myorange}
+        Pour l’identité, on note $d$ le pgcd de $a$ et $b$. Soient $a'$ et $b'$ les entiers tels que $a = da'$ et $b = db'$. Comme $a'$ et $b'$ sont premiers entre eux, il existe $u$ et $v$ tels que $a' u + b' v = 1$. On a donc $ua'd + vb'd = d$ d’où $au + bv = d$.
+    \end{demo}
+
+    \begin{prop}{}{}
+        Un nombre premier est premier avec tous les entiers qu’il ne divise pas.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Soit $p$ un nombre premier et $a$ un entier non divisible par $p$. On note $d$ leur pgcd. Comme $d$ divise $p$, $d$ vaut 1 ou $p$. Or $d$ ne peut pas être égal à $p$ car $a$ n’est pas divisible par $p$ d’où $d = 1$.
+    \end{demo}
+
+    \begin{prop}{}{}
+        Si un entier est premier avec deux entiers, alors il est premier avec leur produit.
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        Soit $a$ un entier premier avec $b$ et $c$. 
+
+        D’après le Théorème de Bézout, il existe $u,v$ et $u',v'$ tels que $au + bv = 1$ et $au' + cv' =1$. Le produit membre à membre donne 
+        \[ \lilbox{myolive}{$ a(auu' + cuv' + bvu') + bc(vv') $} = 1 \] 
+        D’après le Théorème de Bézout, $a$ et $bc$ sont premiers entre eux.
+    \end{demo}
+
+\subsection{Théorème de Gauss}
+
+    \begin{theo}{Théorème de Gauss}{Theoreme de Gauss}
+        Soit $a,b$ et $c$ trois entiers non nuls. 
+        
+        Si $a$ divise $bc$ et si $a$ est premier avec $b$, alors $a \, | \, c$.
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        Comme $a$ et $b$ sont premiers entre eux, $\exists u,v \in \mathbb{Z}, au + bv = 1$. Donc \lilbox{myred}{$cau + cbv = c$}. Or $a \, | \, bv$ donc $a \, | \, cbv$. De plus, $a \, | cau$ donc $a \, | cau + cbv = c$.
+    \end{demo}
+
+    \begin{coro}{}{}
+        \begin{enumerate}
+            \item Si deux entiers $a$ et $b$ premiers entre eux divisent un entier $c$, alors $ab \, | \, c$.
+            \item Si un nombre premier $p$ divise un produit $ab$, alors $\ou{p \, | \, a}{p \, | \, b}$
+        \end{enumerate}
+    \end{coro}
+
+    \begin{demo}{Preuve}{myorange}
+        \begin{enumerate}
+            \item $\exists a',b' \in \mathbb{Z}, \lilbox{myorange}{$c = aa' = bb'$}$ donc $b \, | \, cc'$. Or, d’après le théorème de Gauss, comme $b$ et $c$ sont premiers entre eux, $b \, | \, c'$. Donc $\exists k \in \mathbb{Z} , c' = bk$. On a donc $a = bck$ et ainsi $bc \, | a$.
+            \item Si $p \, \not| \, a$, alors $p \wedge a = 1$ et d’après le théorème de Gauss $p \, | b$, et le résultat est vrai. Sinon, le résultat est vrai.
+        \end{enumerate}
+    \end{demo}
+
+\subsection{Petit théorème de Fermat}
+
+    \begin{lem}{}{}
+        Si $p$ est un nombre premier et $n \in \mathbb{N}$, alors $n^p \equiv n \pmod p$.
+    \end{lem}
+
+    \begin{demo}{Preuve}{mybrown}
+        \begin{itemize}
+            \item Le cas $n = 0$ est évident.
+            \item Supposons la propriété vraie pour $n \in \mathbb{N}$.
+            \[ (n+1)^p = \sum\limits_{k=0}^p \binom{p}{k} n^k \] 
+            Or, pour $1 \leq k \leq p-1$, $\binom{p}{k}$ est divisible par $p$ ; en effet, \lilbox{mybrown}{$ k! \binom{p}{k} = p (p-1) \ldots (p-k+1) $} et $p$ est premier avec $k, k-1, \ldots, 1$. D’après le théorème de Gauss, on a donc $p \, | \, \binom{p}{k}$.
+            
+            Ainsi, $(n+1)^p \equiv n^p + 1 \pmod p$. L’hypothèse de récurrence donne ainsi $(n+1)^p \equiv n + 1 \pmod p$.
+        \end{itemize}
+    \end{demo}
+
+    \begin{theo}{Petit théorème de Fermat}{Petit theoreme de Fermat}
+        Soit $n \in \mathbb{N}$.
+        
+        Si $p$ est un nombre premier ne divisant pas $n$, alors $n^{p-1} \equiv 1 \pmod p$
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        D’après le lemme, $n^p - n \equiv 0 \pmod p$, d’où $p \, | \, n^p - n = n(n^{p-1} - 1)$. 
+
+        Or, $p$ et $n$ sont premiers entre eux, donc le théorème de Gauss montre que $p$ divise $n^{p-1} - 1$ i.e. $ n^{p-1} \equiv 1 \pmod p$.
+    \end{demo}
+
+\section{Arithmétique dans K[X]}
+
+    La structure de $\mathbb{K}$-espace vectoriel exploite les propriétés des lois interne $+$ et externe $.$. Dans $\mathbb{K}[X]$, on dispose aussi d’une multiplication interne $\times$. On peut remarquer que les lois $+$ et $\times$ de $\mathbb{K}[X]$ ont les mêmes propriétés que celles de $\mathbb{Z}$ :
+
+    \begin{prop}{Propriétés de $\mathbb{K}[X]$}{}
+        \begin{enumerate}
+            \item $(\mathbb{K}[X],+)$ est un groupe commutatif.
+            \item \begin{enumerate}[label=\alph*.]
+                \item $\times$ est associative et commutative.
+                \item $\times$ possède un élement neutre, le polynôme constant égal à 1.
+                \item $\times$ est distributive sur $+$.
+                \item $\times$ est intègre.
+            \end{enumerate}
+        \end{enumerate}
+    \end{prop}
+
+    \begin{prop}{}{}
+        Soient $n \in \mathbb{N}$ et $(P,Q) \in \mathbb{K}[X]$.
+
+        \begin{alors}
+            \item $(P + Q)^n = \sum\limits_{k=0}^n \binom{n}{k} P^k Q^{n-k}$
+            \item Si $n \in \mathbb{N}^*$, $P^n - Q^n = (P-Q)\sum\limits_{k=0}^{n-1} P^{n-1-k} Q^k $
+        \end{alors}
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        Vue dans le chapitre de Calcul.
+    \end{demo}
+
+    \begin{defi}{Diviseur et multiple}{}
+        Soit $(A,B) \in \mathbb{K}[X]^2$.
+    
+        Alors on dit que $A$ divise $B$ lorsque \[ \exists Q \in \mathbb{K}[X], B = AQ \]
+        On note $A | B$ et on dit que $A$ est un diviseur de $B$, ou que $B$ est un multiple de $A$.
+    \end{defi}
+    
+    \begin{prop}{Propriétés des diviseurs et multiples}{}
+        Soient $A,B,C \in \mathbb{K}[X]$.
+    
+        \begin{alors}
+            \item $ Si \et{A | B}{B \neq 0}$, alors $\deg(A) \leq \deg(B)$.
+            \item $A | A$ (Réflexivité)
+            \item $\et{A | B}{B | C} \implies A | C$ (Transitivité)
+            \item $\et{A | B}{B | A} \implies \exists a \in \mathbb{K}^*, \, A =aB$
+            \item $\et{C|A}{C|B} \iff \forall (u,v) \in \mathbb{K}[X]^2, \, C | uA + vB$
+            \item $(\forall A \in \mathbb{K}[X], \, A | B) \iff B =0$
+            \item $(\forall B \in \mathbb{K}[X], \, A | B) \iff \deg(A) = 0$
+        \end{alors}
+    \end{prop}
+    
+    \begin{demo}{Heuristique}{myolive}
+        Revenir à chaque fois à la définition, et utiliser des raisonnements sur les degrés.
+    \end{demo}
+
+    \begin{theo}{Division euclidienne}{}
+        Soit $(A,B) \in \mathbb{K}[X]^2$. 
+    
+        On suppose que $B \neq 0$.
+    
+        Alors \[ \exists ! (Q,R) \in \mathbb{K}[X]^2, \, \et{A = BQ + R}{\deg(R) < \deg(B)} \]
+        $A$ est appelé dividende, $B$ diviseur. $Q$ et $R$ sont respectivement le quotient et le reste de la division euclidienne de $A$ par $B$.
+    \end{theo}
+    
+    \begin{demo}{Démonstration}{myred}
+        On montre dans un premier temps l’\textbf{unicité}.
+        
+        En prenant $(Q_1,R_1)$ et $(Q_2,R_2)$ convenant, on obtient \[ B(Q_2-Q_1) = R_2 - R_1 \] qui représente clairement un problème de degré.
+        
+        On utilise un algorithme pour montrer l’\textbf{existence}.
+    \end{demo}
+    
+    \begin{omed}{Algorithme}{myred}
+        \textbf{Entrée} $A,B \in \mathbb{K}[X]$ tq $B \neq 0$
+        
+        \textbf{Sortie} $Q,R \in \mathbb{K}[X]$ tq $\et{A = BQ + R}{\deg(R) < \deg(B)}$
+        
+        \textbf{Début}
+        \begin{align*}
+            &b,d \longleftarrow \text{coef. dominant de } B, \, \deg(B) \\
+            &Q,R \longleftarrow 0,A \\
+            &\text{Tant que } \deg(R) \geq d, \\
+            &\hspace*{1cm} a \longleftarrow \text{coef. dom. de } R \\
+            &\hspace*{1cm} Q \longleftarrow Q + \frac{a}{b} X^{\deg(R)-d} \\
+            &\hspace*{1cm} R \longleftarrow R - \frac{a}{b} X^{\deg(R)-d}B \\
+            &\text{Retourner } Q,R
+        \end{align*}
+        \textbf{Fin}
+    \end{omed}
+    
+    \begin{demo}{Terminaison et correction}{myred}
+        \begin{itemize}
+            \item \textbf{Terminaison} \quad Utiliser comme variant de boucle le degré de $R$, qui est décroissant
+            \item \textbf{Correction} \quad Utiliser comme invariant de boucle $A = BQ + R$
+        \end{itemize}
+    \end{demo}
+
+\subsection{Racines d’un polynôme}
+
+    \subsubsection{Racines}
+
+    \begin{defi}{Racine}{}
+        Soient $P \in \mathbb{K}[X]$ et $\alpha \in \mathbb{K}$.
+
+        On dit que $\alpha$ est une \textbf{racine} (ou un zéro) du polynôme $P$ lorsque $(X-\alpha) \tq P$.
+    \end{defi}
+    
+    \begin{theo}{Caractérisation d’une racine}{}
+        Soient $P \in \mathbb{K}[X]$ et $\alpha \in \mathbb{K}$.
+    
+        Alors \[ (X-\alpha) \tq P \iff \widetilde{P}(\alpha) = 0 \] 
+    \end{theo}
+    
+    \begin{demo}{Preuve}{myred}
+        $\exists Q,R \in \mathbb{K}[X], \, \et{P = (X-\alpha)Q + R}{ \deg(R) < 1}$
+        \begin{align*}
+            (X-\alpha) \, | P \, & \iff R = 0 \\
+            & \iff \tilde{R}(\alpha) = 0 \\
+            & \iff \tilde{P}(\alpha) = 0
+        \end{align*}
+    \end{demo}
+
+    \begin{defi}{Multiplicité d’une racine}{}
+        Soient $P \in \mathbb{K}[X]$ un polynôme non-nul, $\alpha \in \mathbb{K}$ et $k \in \mathbb{N}^*$.
+        \begin{itemize}
+            \item On dit que $\alpha$ est racine de $P$ d’\textbf{ordre de multiplicité} $k$ lorsque \[ \et{(X-\alpha)^k \, | \, P}{(X - \alpha)^{k+1} \, \not| \, P} \] 
+            $k$ est alors appelé l’ordre de multiplicité de $\alpha$ comme racine de $P$.
+            \item Une racine d’ordre 1 est appelée racine simple.
+            \item Une racine d’ordre 2 est appelée racine double.
+            \item Une racine d’ordre 3 est appelée racine triple.
+        \end{itemize}
+    \end{defi}
+    
+    \begin{theo}{Caractérisation des racines d’ordre de multiplicité $k$}{}
+        Soient $P \in \mathbb{K}[X]$ non-nul, $\alpha \in \mathbb{K}$ et $k \in \mathbb{N}^*$. 
+    
+        Alors \begin{align*}
+            \alpha & \text{ est racine d’ordre } k \text{ de } P \\
+            & \iff \et{\forall \ell \in \intervalleEntier{0}{k-1}, \, \alpha \text{ est racine de } D^{\ell}(P)}{\alpha \text{ n’est pas racine de } D^k(P)} \\
+            & \iff \et{\forall \ell \in \intervalleEntier{0}{k-1}, \, \widetilde{D^{\ell}(P)}(\alpha) = 0}{\widetilde{D^k(P)}(\alpha) \neq 0}
+            \end{align*}
+    \end{theo}
+    
+    \begin{demo}{Preuve}{myred}
+        Écrire les divisions euclidiennes de $P$ par $\et{(X-\alpha)^{k+1}}{(X-\alpha)^k}$, en tenant compte du polynôme écrit selon Taylor 
+            \[ P = \sum\limits_{l=0}^n \frac{P^{(l)}(\alpha)}{l!} (X-\alpha)^l \]
+            On a ainsi \begin{align*}
+                & \alpha \text{ est racine d’ordre } k \text{ de } P \\
+                \iff & \et{(X-\alpha)^k \, | \, P}{(X - \alpha)^{k+1} \, \not| \, P} \\
+                \iff & \et{\text{le reste de la d.e de } P \text{ par } (X-\alpha)^k = 0}{\text{le reste de la d.e de } P \text{ par } (X-\alpha)^{k+1} \neq 0} \\
+                \iff & \et{\sum\limits_{l=0}^{k-1} \frac{P^{(l)}(\alpha)}{l!} (X-\alpha)^l = 0}{\sum\limits_{l=0}^{k} \frac{P^{(l)}(\alpha)}{l!} (X-\alpha)^l \neq 0} \\
+                \iff & \et{\forall l \in \intervalleEntier{0}{k-1}, \, P^{(l)}(\alpha) = 0}{P^{(k)}(\alpha) \neq 0}
+            \end{align*}
+    \end{demo}
+
+    \begin{theo}{Polynôme défini par ses racines}{}
+        \begin{soient}
+            \item $P \in \mathbb{K}[X]$
+            \item $\alpha_1,\ldots,\alpha_s$ des racines de $P$ deux à deux distinctes
+            \item $m_1,\ldots,m_s$ leur multiplicité respective
+        \end{soient}
+    
+        Alors \[ \prod\limits_{i = 1}^s (X - \alpha_i)^{m_i} \tq P \] 
+    \end{theo}
+    
+    \begin{demo}{Démonstration}{myred}
+        Récurrence finie sur $\intervalleEntier{1}{s}$, peu commode.
+    \end{demo}
+    
+    \begin{coro}{}{}
+        Soit $n \in \mathbb{N}^*$. 
+    
+        \begin{alors}
+            \item Tout polynôme de degré $n$ admet au plus $n$ racines deux à deux distinctes, comptées autant de fois que leur multiplicité.
+            \item Si $P$ est de degré au plus $n$ et admet $n+1$ racines deux à deux distinctes, comptées autant de fois que leur multiplicité, alors $P = 0$.
+        \end{alors}
+    \end{coro}
+    
+    \begin{demo}{Démonstration}{myorange}
+        $ \prod\limits_{i=1}^s (X-\alpha_i)^{m_i} \tq P$
+    
+        Or $P \neq 0$, donc \begin{align*}
+            & \deg\left(\prod\limits_{i=1}^s (X-\alpha_i)^{m_i}\right) \leq \deg(P) \\
+            \text{i.e.} & \sum\limits_{k=0}^s m_i \leq n 
+        \end{align*}
+        Ainsi, si $P$ admet $n + 1$ racines, nécéssairement $P = 0$.
+    \end{demo}
+    
+    \begin{omed}{Méthode}{myorange}
+        Pour montrer qu’un polynôme est nul, il suffit de montrer que :
+        \begin{itemize}
+            \item Soit qu’il est de degré au plus $n$ et qu’il admet $n+1$ racines.
+            \item Soit qu’il admet une infinité de racines.
+        \end{itemize}
+    \end{omed}
+
+    \subsubsection{Polynômes scindés}
+
+    \begin{defi}{Polynôme scindé}{}
+        Un polynôme $P \in \mathbb{K}[X]$ est dit \textbf{scindé} sur $\mathbb{K}$ lorsque 
+        \[ \exists \, s \in \mathbb{N}^*, \, \exists(\alpha_1,\ldots,\alpha_s) \in \mathbb{K}^s, \, \exists (m_1,\ldots,m_s) \in (\mathbb{N}^*)^s, \exists \, \lambda \in \mathbb{K}, \, P = \lambda \prod\limits_{i=1}^s (X-\alpha_i)^{m_i} \]
+    \end{defi}
+    
+    \begin{theo}{Théorème de d’Alembert Gauss}{}
+        Soit $P \in \mathbb{C}[X]$.
+    
+        Alors $P$ est scindé.
+    \end{theo}
+    
+    \begin{prop}{Retour aux racines n-ème de l’unité}{}
+        Soit $n \in \mathbb{N}^*$.
+    
+        Alors \[ X^n -1 = \prod\limits_{k = 0}^{n-1} (X - e^{k \frac{2i \pi}{n}}) \]
+    \end{prop}
+    
+    \begin{coro}{}{}
+        Soient $P$ et $Q$ dans $\mathbb{C}[X]$. 
+
+        On suppose que $P$ est non constant.
+    
+        \begin{alors}
+            \item $P$ admet au moins une racine dans $\mathbb{C}$.
+            \item Soient $\alpha_1,\ldots,\alpha_s$ des racines deux à deux distinctes et $m_1,\ldots,m_s$ leur multiplicité respective. 
+            
+            Alors 
+            \[ P | Q \iff \forall i \in \intervalleEntier{0}{s}, \alpha_i \text{ est racine de } Q, \text{de multiplicité supérieure ou égale à } m_i \]
+        \end{alors}
+    \end{coro}
+    
+    \begin{prop}{Relations coefficients-racines}{}
+        \begin{soient}
+            \item $P = \sum\limits_{k=0}^n a_k X^k \in \mathbb{K}[X]$ un polynôme scindé de degré $n$
+            \item $\alpha_1,\ldots,\alpha_s$ ses racines
+            \item $m_1,\ldots,m_s$ leur ordre de multiplicité respectif
+        \end{soient}
+    
+        Alors \[ \et{\sum\limits_{i=1}^s m_i \alpha_i = -\frac{a_{n-1}}{a_n}}{\prod\limits_{i=1}^s \alpha_i^{m_i} = (-1)^n \frac{a_0}{a_n}} \]
+    \end{prop}
+
+    \subsubsection{Polynôme irréductible, décomposition en facteurs irréductibles}
+
+    \begin{defi}{Polynôme irréductible}{}
+        Un polynôme $P \in \mathbb{K}[X]$ est dit \textbf{irréductible} lorsque 
+        \begin{itemize}
+            \item $P$ est non-constant
+            \item les seuls diviseurs de $P$ sont les polynômes constants non-nuls et les $\lambda P$ pour $\lambda \in \mathbb{K}^*$.
+        \end{itemize}
+    \end{defi}
+
+    \begin{prop}{Dans $C[X]$}{}
+        Les polynômes irréductibles de $\mathbb{C}[X]$ sont les polynômes de degré 1.
+    \end{prop}
+    
+    \begin{coro}{Dans $R[X]$}{}
+        Les polynômes irréductibles de $\mathbb{R}$ sont les polynômes :
+        \begin{enumerate}
+            \item de degré 1.
+            \item de degré 2 avec discriminant strictement négatif.
+        \end{enumerate}
+    \end{coro}
+
+    \begin{theo}{Décomposition en facteurs irréductibles}{}
+        Soit $P \in \mathbb{K}[X]$ non-constant.
+    
+        Alors il existe : 
+            \begin{enumerate}
+                \item $\lambda \in \mathbb{K}^*$ et $r \in \mathbb{N}^*$
+                \item $P_1, \ldots, P_r$ des polynômes unitaires irréductibles deux à deux distincts
+                \item $m_1,\ldots,m_r \in \mathbb{N}^*$
+            \end{enumerate}    
+        tels que \[ P = \lambda P_1^{m_1} \times \ldots \times P_r^{m_r} \] 
+        Cette écriture est unique à l’ordre près des facteurs.
+    \end{theo}
+
+    \begin{coro}{Décomposition d’un polynôme dans $C[X]$}{}
+        Soit $P \in \mathbb{C}[X]$ non-constant.
+    
+        Alors il existe : 
+            \begin{enumerate}
+                \item $\lambda \in \mathbb{K}^*$ et $r \in \mathbb{N}^*$
+                \item $\alpha_1, \ldots, \alpha_r \in \mathbb{C}$
+                \item $m_1,\ldots,m_r \in \mathbb{N}^*$
+            \end{enumerate}    
+        tels que \[ P = \lambda \prod\limits_{i=1}^{r} (X- \alpha_i)^{m_i} \] 
+        Cette écriture est unique à l’ordre près des facteurs.
+    \end{coro}
+
+    \begin{coro}{Décomposition d’un polynôme dans $\mathbb{R}[X]$}{}
+        Soit $P \in \mathbb{R}[X]$ non-constant.
+    
+        Alors il existe : 
+            \begin{enumerate}
+                \item $\lambda \in \mathbb{K}^*$ et $r,s \in \mathbb{N}$
+                \item $\alpha_1, \ldots, \alpha_r \in \mathbb{R}$
+                \item $(b_1,c_1), \ldots, (b_s,c_s) \in \mathbb{R}^2 \text{ tels que } \forall i \in \intervalleEntier{1}{s}, \, b_i^2-4c_i^2 < 0$
+                \item $m_1,\ldots,m_{r+s} \in \mathbb{N}^*$
+            \end{enumerate}    
+        tels que \[ P = \lambda \prod\limits_{i=1}^{r} (X- \alpha_i)^{m_i} \prod\limits_{i=1}^s (X^2 + b_iX + c_i)^{m_{i+r}} \] 
+        Cette écriture est unique à l’ordre près des facteurs.
+    \end{coro}
+
+    \begin{coro}{}{}
+        Deux racines complexes conjuguées d’un polynôme de $\mathbb{R}[X]$ ont la même multiplicité.
+    \end{coro}
+
+\subsection{PGCD, PPCM}
+
+    Dans ce paragraphe, $\mathbb{K}$ est un corps quelconque.
+
+    Pour tout $P \in \mathbb{K}[X]$, on notera $\dive(P)$ l’ensemble des diviseurs de $P$ dans $\mathbb{K}[X]$. L’ensemble des multiples de $P$ est quant à lui noté $P \mathbb{K}[X]$.
+
+    \begin{defi}{PCGD et PPCM}{}
+        Soient $A_1, \ldots, A_r \in \mathbb{K}[X]$.
+        \begin{itemize}[label=\textcolor{myyellow}{$\star$}]
+            \item \textbf{PGCD} \quad On appelle \textbf{plus grand diviseur commun} de $A_1, \ldots,A_r$ tout polynôme unitaire ou nul $D \in \mathbb{K}[X]$ pour lequel 
+            \[ \dive(A_1) \cup cdots \cup \dive(A_r) = \dive(D) \]   
+            S’il existe, un tel polynôme $D$ est unique, et noté $A_1 \wedge \cdots \wedge A_r$.
+            \item \textbf{PPCM} \quad On appelle plus petit commun multiple de $A_1, \ldots, A_r$ tout polynôme unitaire ou nul $M \in \mathbb{K}[X]$ pour lequel 
+            \[ A_1 \mathbb{K}[X] \cap \cdots \cap A_r \mathbb{K}[X] = M \mathbb{K}[X] \]
+            S’il existe, un tel polynôme $M$ est unique et noté $A_1 \vee \cdots \vee A_r$.
+        \end{itemize}
+    \end{defi}
+
+    \begin{demo}{Justification}{myyellow}
+        Pour tous PGCD $D, \Tilde{D}$ de $A_1, \ldots, A_r$, $\dive(D) = \dive(\Tilde{D})$, donc $D$ et $\Tilde{D}$ se divisent mutuellement, donc sont associés, donc sont égaux puisqu’ils sont unitaires ou nuls. De même pour le PPCM.
+    \end{demo}
+
+    \subsubsection{Existence et calcul}
+
+    Soient $A,B,P \in \mathbb{K}[X]$. On peut justifier que $\dive(A) \cap \dive(AP + B) = \dive(A) \cap \dive(B)$ : tout diviseur commun de $A$ et $B$ divise $A$ et $AP + B$, et inversement, tout diviseur commun de $A$ et $AP+B$ divise $A$ et $AP+B - AP= B$.
+
+    En particulier, si on note $R$ le reste de la division euclidienne de $A$ par $B$, $\dive(A) \cap \dive(B) = \dive(B) \cap \dive(R)$.
+
+    \begin{theo}{Existence du PGCD}{}
+        Toute famille finie de polynômes possède un PGCD.
+
+        Plus précisément, pour deux polynômes $A,B \in \mathbb{K}[X]$, dont au moins l’un est non nul, $A \wedge B$ est l’unique diviseur commun unitaire de degré maximal de $A$ et $B$. En outre, $0 \wedge 0 = 0$.
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        \begin{itemize}
+            \item \textbf{Cas de deux polynômes (algorithme d’Euclide)} \quad Soient $A,B \in \mathbb{K}[X]$ avec $\deg(B) \leq \deg(A)$ sans perte de généralité. On définit une famille de polynômes $R_0, R_1,\ldots,$ de la manière suivante :
+            \begin{itemize}
+                \item Au départ, on pose $R_0 = A$ et $R_1 = B$.
+                \item Pour $k \in \mathbb{N}$, tant que $R_{k+1} \neq 0$, on note $R_{k+2}$ le reste de la division euclidienne de $R_k$ par $R_{k+1}$, ce qui implique en particulier que $\deg(R_{k+2}) < \deg(R_{k+1})$.
+            \end{itemize}
+            À l’issue de cette construction, $\deg(R_0) \geq \deg(R_1) > \deg(R_2) > \ldots$, et comme il n’existe qu’un nombre fini d’entiers naturels entre $0$ et $\deg(R_0)$, $\deg(R_N) = - \infty$ pour un certain $N \in \mathbb{N}^*$, \textit{i.e.} $R_N = 0$, de sorte que l’algorithme termine. Or, on a 
+            \begin{align*}
+                \dive(A) \cap \dive(B) 
+                &= \dive(R_0) \cap \dive(R_1) = \ldots = \dive(R_{N-1}) \cap \dive(R_n) \\
+                &= \dive(R_{N-1}) \cap \underbrace{\dive(0)}_{= \mathbb{K}[X]} \\
+                &= \dive(R_{N-1})
+            \end{align*}
+            Donc $A$ et $B$ possèdent un PGCD, en l’occurence $R_{N-1}$ divisé par son coefficient dominant.
+            \item \textbf{Cas général} \quad Par récurrence, dont l’initialisation a été faite pour deux polynômes à l’instant.
+            
+            \textbf{Hérédité} \quad Soit $r \geq 2$. On suppose que toute famille de $r$ polynômes possède un PGCD. Pour tout $A_1,\ldots,A_{r+1} \in \mathbb{K}[X]$, 
+            \begin{align*}
+                \dive(A_1) \cap \cdots \cap \dive(A_{r+1}) 
+                &= \left(\dive(A_1) \cap \cdots \cap \dive(A_r)\right) \cap \dive(A_{r+1}) \\
+                &\tikzmarknode{eg}{=} \dive(A_1 \wedge \cdots \wedge A_r) \cap \dive(A_{r+1}) = \dive\left((A_1 \wedge \cdots \wedge A_r) \wedge A_{r+1}\right)
+            \end{align*}
+            \tikzmarknode[text = myred]{hdr}{Hypothèse de récurrence} \hfill donc $A_1, \ldots, A_{r+1}$ possèdent un PGCD.
+            \begin{tikzpicture}[remember picture, overlay]
+                \draw[myred, ->] (hdr.north) to[out=90,in=180] (eg.west);
+            \end{tikzpicture}
+        \end{itemize}
+    \end{demo}
+
+    \begin{theo}{Factorisation d’un PGCD}{}
+        Pour tous $A_1,\ldots,A_r \in \mathbb{K}[X]$ et $P \in \mathbb{K}[X]$ unitaire, 
+        \[ (A_1 P) \wedge \cdots \wedge (A_r P) = (A_1 \wedge \cdots \wedge A_r) P \]
+    \end{theo}
+
+    \begin{theo}{Relation de Bézout}{}
+        Soient $A_1,\ldots, A_r \in \mathbb{K}[X]$. 
+
+        Il existe des polynômes $U_1,\ldots,U_r \in \mathbb{K}[X]$ pour lesquels 
+        \[ A_1 \wedge \cdots \wedge A_r = A_1 U_1 + cdots + A_r U_r \]   
+        Une telle relation est appelée \textbf{\textsc{UNE}} relation de Bézout de $A_1,\ldots,A_r$.
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        Contentons-nous du cas de deux polynômes $A$ et $B$ avec $\deg(B) \leq \deg(A)$ sans perte de généralité. Intéressons-nous de nouveau aux restes successifs $R_0, \ldots R_N$ décrits dans l’algorithme d’Euclide. 
+
+        Montrons par récurrence double que $R_k \in A \mathbb{K}[X] + B \mathbb{K}[X]$ pour tout $k \in \intervalleEntier{0}{N}$. Cela montrera en particulier que $R_{N-1} \in A \mathbb{K}[X] + B \mathbb{K}[X]$ et donc que $A \wedge B \in A \mathbb{K}[X] + B \mathbb{K}[X]$.
+
+        Observons en amont que pour tous $P,Q \in A \mathbb{K}[X] + B \mathbb{K}[X]$ et $M,N \in \mathbb{K}[X]$, 
+        \[MP + NQ \in A \mathbb{K}[X] + B \mathbb{K}[X] \eqlabel{\ding{71}}\]
+        \begin{itemize}
+            \item \textbf{Initialisation} \quad $R_0 = A \times 1 + B \times 0 \in A \mathbb{K}[X] + B \mathbb{K}[X]$ et $R_1 = A \times 0 + B \times 1 \in A \mathbb{K}[X] + B \mathbb{K}[X]$.
+            \item \textbf{Hérédité} \quad Soit $k \in \intervalleEntier{0}{N-2}$. Si $R_k \in A \mathbb{K}[X] + B \mathbb{K}[X]$ et $R_{k+1} \in A \mathbb{K}[X] + B \mathbb{K}[X]$, alors en notant $Q$ le quotient de la division euclidienne de $R_k$ par $R_{k+1}$, le reste $R_{k+2} = R_k - Q R_{k+1} \in A \mathbb{K}[X] + B \mathbb{K}[X]$ d’après \ding{71}.
+        \end{itemize}
+    \end{demo}
+
+    Le procédé de construction des polynômes $U$ et $V$ de cette démonstration s’appelle l’\textbf{algorithme d’Euclide étendu} et sa mise en oeuvre concrète sera plus claire après un exemple. En résumé, si l’algorithme d’Euclide « simple » ne s’intéresse qu’aux restes des divisions euclidiennes là où l’algorithme d’Euclide étendu va plus loin et tient aussi compte des quotients.
+
+    \begin{omed}{Exemple}{myred}
+        Trouver une relation de Bézout pour les polynômes 
+        \[ A = 6X^4 + 8 X^3 - 7X^2 - 5X -2 \esp{et} B = 6X^3 - 4X^2 - X -1 \]   
+        On calcule d’abord les restes successifs associés à $A$ et $B$ 
+            \begin{align*}
+                \lilbox{myred}{$A$} &= (X + 2) \times \lilbox{mypurple}{$B$} + \lilbox{myolive}{$2X^2 - 2X$} \\
+                \lilbox{mypurple}{$B$} &= (3X + 1) \times \lilbox{myolive}{$2X^2 - 2X$} + \lilbox{mygreen}{$X - 1$} \\
+                \lilbox{myolive}{$2X^2 - 2X$} &= 2 \times \tikzmarknode[draw, mygreen, fill = mygreen!2, rounded corners, inner sep=4pt]{val}{X-1} 
+                + \lilbox{myyellow}{$0$} \qquad \qquad  \tikzmarknode[text=mygreen]{pgcd}{\textsc{PGCD}}
+            \end{align*}
+        \begin{tikzpicture}[remember picture, overlay]
+            \draw[mygreen, ->] (pgcd.west) to[out=180,in=270] (val.south);
+        \end{tikzpicture}
+        Pour calculer un jeu de coefficients de Bézout associé, on remonte la chaîne des divisions euclidiennes successives en partant du PGCD $X-1$.
+        \begin{align*}
+            \lilbox{mygreen}{$X - 1$} &= \lilbox{mypurple}{$B$} - (3X + 1) \times \lilbox{myolive}{$2X^2 - 2X$} \\
+            &= \lilbox{mypurple}{$B$} - (3X + 1) \times \left(\lilbox{myred}{$A$} - (X+2) \times \lilbox{mypurple}{$B$} \right) \\
+            &= - (3X + 1) \times \lilbox{myred}{$A$} + (3X^2 + 7X + 3) \times \lilbox{mypurple}{$B$}
+        \end{align*}
+    \end{omed}
+
+    \begin{theo}{Existence du PPCM, lien avec le PGCD}{}
+        Toute famille finie de polynômes possède un PPCM.
+
+        Plus précisément, pour deux polynômes $A,B \in \mathbb{K}[X]$ non nuls, $A \vee B$ est l’unique multiple commun unitaire de dégré minimal de $A$ et $B$.
+
+        \textbf{Lien avec le PGCD} \quad Les polynômes $AB$ et $(A \vee B)(A \wedge B)$ sont associés.
+    \end{theo}
+
+    \begin{prop}{Divisibilité et changement de corps}
+        Soient $\mathbb{L}$ un corps et $\mathbb{K}$ un sous corps de $\mathbb{R}$ et $A,B,A_1,\ldots,A_r \in \mathbb{K}[X]$.
+        \begin{enumerate}
+            \item $A$ divise $B$ dans $\mathbb{L}[X]$ \textit{ssi} $A$ divise $B$ dans $\mathbb{K}[X]$.
+            \item Le PGCD (resp. PPCM) de $A_1,\ldots,A_r$ défini au sens de la divisibilité dans $\mathbb{L}[X]$ est le même que celui défini au dens de la divisibilité dans $\mathbb{K}[X]$
+        \end{enumerate}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        \begin{enumerate}
+            \item On peut effectuer a priori deux divisions euclidiennes de $B$ par $A$, une dans $\mathbb{K}[X]$ et une dans $\mathbb{L}[X]$. Cela dit, la division euclidienne dans $\mathbb{K}[X]$ en est aussi une dans $\mathbb{L}[X]$, donc par unicité de la division euclidienne dans $\mathbb{L}[X]$, on a le résultat.
+            \item Le PGCD de $A_1,\ldots,A_r$ au sens de $\mathbb{K}[X]$ divise $A_1,\ldots,A_r$ dans $\mathbb{K}[X]$, donc dans $\mathbb{L}[X]$ d’après \textbf{(i)}, donc il divide leur PGCD au sens de $\mathbb{L}[X]$. Réciproquement, on trouve que le PGCD au sens de $\mathbb{L}[X]$ divise le PGCD au sens de $\mathbb{K}[X]$. Unitaires, les deux PGCD sont donc égaux. De même pour les PPCM.
+        \end{enumerate}
+    \end{demo}
+
+    \subsubsection{Unicité de la factorisation irréductible}
+
+    Sur $\mathbb{R}$ et $\mathbb{C}$, le théorème de d’Alembert-Gauss nous a permis d’atteindre les irréductibles et l’unicité de la factorisation irréductible sans difficulté majeure. Ici, nous travaillons sur un corps quelconque et les irréductibles sont indescriptibles en toute généralité, chaque corps a ses spécificités. L’unicité de la factorisation irréductible, en revanche, est préservée.
+
+    \begin{prop}{Deux propriétés des irréductibles}{}
+        Soient $P \in \mathbb{K}[X]$ irréductible, $A,B \in \mathbb{K}[X]$ et $n \in \mathbb{N}$.
+        \begin{enumerate}
+            \item $P \, \not| \, A \iff A \wedge P = 1$
+            \item \textbf{Lemme d’Euclide} \quad $P \tq AB iff P \tq A \text{ ou } P \tq B$, et en particulier $P \tq A^n \iff P \tq A$
+        \end{enumerate}
+    \end{prop}
+
+    Le lemme d’Euclide nous a permis de montrer l’additivité des valuations $p$-adiques pour des entiers, et l’unicité de la factorisation première en a découlé aussitôt. La même piste peut être suivie dans $\mathbb{K}[X]$, mais on ne parle pas de valuations $p$-adiques pour les polynômes.
+
+    \subsubsection{Polynômes premiers entre eux}
+
+    \begin{defi}{Polynômes premiers entre eux}{}
+        Soient $A,B,A_1,\ldots,A_r \in \mathbb{K}[X]$.
+        \begin{itemize}
+            \item \textbf{Cas de deux polynômes} \quad On dit que $A$ et $B$ sont \textbf{premiers entre eux} si $1$ est leur seul diviseur commun unitaire, \textit{i.e.} si $A \wedge B = 1$.
+            \item \textbf{Dans leur ensemble} \quad On dit que $A_1,\ldots,A_r$ sont \textbf{premiers entre eux dans leur ensemble} si $1$ est leur seul diviseur commun unitaire, \textit{i.e.} si $A_1 \wedge \cdots \wedge A_r = 1$.
+            \item \textbf{Deux à deux} \quad On dit que $A_1,\ldots,A_r$ sont \textbf{premiers entre eux deux à deux} si $A_i$ et $A_j$ sont premiers entre eux pour tous $i,j \in \intervalleEntier{1}{r}$ tels que $i \neq j$.
+        \end{itemize}
+    \end{defi}
+
+    \begin{theo}{Théorèmes de Bézout, Gauss et conséquences}{}
+        Soient $A,B,C,P,A_1,\ldots,A_r \in \mathbb{K}[X]$.
+        \begin{enumerate}
+            \item \textbf{Théorème de Bézout} \quad $A \wedge B = 1 \iff \exists U,V \in \mathbb{K}[X], \quad AU + BV = 1$.
+            \item \textbf{Théorème de Gauss} \quad Si $A \tq BC$ avec $A \wedge B = 1$, alors $A \tq C$.
+            \item \textbf{Produits de polynômes} 
+            \begin{itemize}
+                \item Si chacun des polynômes $A_1,\ldots,A_r$ est premier avec $P$, leur produit $A_1 \cdots A_r$ l’est aussi.
+                \item Si $A_1,\ldots,A_p$ divisent $P$ et sont premiers entre eux \textsc{\textbf{deux à deux}}, leur produit $A_1 \cdots A_r$ aussi.
+            \end{itemize}
+        \end{enumerate}
+    \end{theo}
+
+\subsection{Fractions rationnelles}
+
+    \subsubsection{Construction des fractions rationnelles}
+
+    \begin{defi}{Ensemble $\mathbb{K}(X)$}{}
+        On construit dans la preuve ci dessous un ensemble $\mathbb{K}(X)$ vérifiant les trois assertions suivantes :
+        \begin{enumerate}[label=\textcolor{myyellow}{\textbf{(\arabic*)}}]
+            \item À tout couple $(A,B) \in \mathbb{K}^2[X]$ avec $B$ non nul, on peut associer un unique élément de $\mathbb{K}(X)$, noté $\frac{A}{B}$.
+            \item Tout élément de $\mathbb{K}(X)$ peut être écrit sous la forme $\frac{A}{B}$ pour certains $A,B \in \mathbb{K}[X]$ avec $B$ non nul.
+            \item Pour tous $(A,B), (C,D) \in \mathbb{K}^2[X]$ avec $B$ et $D$ non nuls, 
+            \[ \frac{A}{B} = \frac{C}{D} \iff AD = BC \]
+        \end{enumerate}
+    \end{defi}
+
+    \begin{demo}{Justification}{myyellow}
+        On pose $\mathcal{F} = \mathbb{K}[X] \times \left(\mathbb{K}[X] \backslash \{0\}\right)$. Pour tous $(A,B),(C,D) \in \mathcal{F}$, on dit que $(A,B) \sim (C,D)$ si $AD = BC$. La relation $\sim$ ainsi définie est une relation d’équivalence sur $\mathcal{F}$.
+        \begin{itemize}[label=\textcolor{myyellow}{$\star$}]
+            \item \textbf{Réflexivité} \quad Pour tous $(A,B) \in \mathcal{F}$, $AB = AB$ donc $(A,B) \sim (A,B)$.
+            \item \textbf{Transitivité} \quad Soit $(A,B), (C,D), (E,F) \in \mathcal{F}$ tels que $(A,B) \sim (C,D)$ et $(C,D) \sim (E,F)$. Alors 
+            $AD = BC$ et $CF = DE$, donc $ADF = BCF = BDE$. Cela dit, $\mathbb{K}[X]$ est intègre et $D \neq 0$ donc $AF = BE$, \textit{i.e.} $(A,B) \sim (E,F)$.
+            \item \textbf{Symétrie} \quad Pour tous $(A,B), (C,D) \in \mathcal{F}$, si $(A,B) \sim (C,D)$, alors $AD = BC$, donc $CB = DA$, \textit{i.e.} $(C,D) \sim (A,B)$.
+        \end{itemize}
+        On note finalement $\mathbb{K}(X)$ l’ensemble quotient $\mathcal{F} \Big/ \sim $ et, pour tout $(A,B) \in \mathcal{F}$, $\frac{A}{B}$ la classe d’équivalence de $(A,B)$. 
+
+        L’ensemble ainsi construit satisfait par définition les propriétés désirées. 
+    \end{demo}
+
+    \begin{defi}{Structure de corps de $\mathbb{K}(X)$}{}
+        On munit $\mathbb{K}(X)$ de deux lois internes $+$ et $\times$ qui en font un corps en posant pour tous $(A,B), (C,D) \in \mathbb{K}^2[X]$ avec $B$ et $D$ non nuls 
+        \[ \frac{A}{B} + \frac{C}{D} = \frac{AD + BC}{BD} \esp{et} \frac{A}{B} \times \frac{C}{D} = \frac{AC}{BD} \]
+    \end{defi}
+
+    \begin{demo}{Preuve}{myyellow}
+        Soient $A,B,C,D,E,F \in \mathbb{K}[X]$ avec $B,D,F$ non nuls.
+        \begin{itemize}[label=\textcolor{myyellow}{$\star$}]
+            \item \textbf{Bonne définition de $+$ et $\times$} \quad \textit{où est le problème ?} \quad Les fonctions $\frac{A}{B}$ et $\frac{C}{D}$ sont définies à l’aide de quatre polynômes précis $A,B,C,D$, mais une fraction a plein d’écritures possibles, \textit{e.g.} $\frac{A}{B} = \frac{\Tilde{A}}{\Tilde{B}}$ et $\frac{C}{D} = \frac{\Tilde{C}}{\Tilde{D}}$ avec $\Tilde{A},\Tilde{B},\Tilde{C},\Tilde{D} \in \mathbb{K}[X]$ et $\Tilde{B}, \Tilde{D}$ non nuls. Pour que les définitions de $+$ et $\times$ aient du sens, il faut s’assurer que les égalités 
+            \[ \frac{AD + BC}{BD} = \frac{\Tilde{AD} + \Tilde{BC}}{\Tilde{BD}} \esp{et} \frac{AC}{BD} = \frac{\Tilde{AC}}{\Tilde{BD}} \]   
+            Or, par définiton de $\sim$, 
+            \[ AC \times \Tilde{BD} = A \Tilde{B} \times C \Tilde{D} = B \Tilde{A} + D \Tilde{C} = BD \times \Tilde{AC} \]   
+            et 
+            \[ (AD + BC) \times \Tilde{BD} = A \Tilde{B} \times D \Tilde{D} + B \Tilde{B} \times C \Tilde{D} = B \Tilde{A} \times D \Tilde{D} + B \Tilde{B} \times C \Tilde{D} = BD \times ( \Tilde{AD} + \Tilde{BC}) \]
+            \item \textbf{Commutativité de $+$} \quad $\frac{A}{B} + \frac{C}{D} = \frac{AD + BC}{BD} = \frac{CB + DA}{DB} = \frac{C}{D} + \frac{A}{B}$
+            \item \textbf{Associativité de $+$} \quad 
+            \[ \left(\frac{A}{B} + \frac{C}{D}\right) + \frac{E}{F} = \frac{(AD + BC)F + (BD)E}{(BD)F} = \frac{A(DF) + B(CF + DE)}{B(DF)} = \frac{A}{B} + \left(\frac{C}{D} + \frac{E}{F}\right) \]
+            \item \textbf{Neutralité de $\frac{0}{1}$ pour $+$} \quad $\frac{A}{B} + \frac{0}{1} = \frac{A \times 1 + B \times 0}{B \times 1} = \frac{A}{B}$ et de même $\frac{0}{1} + \frac{A}{B} = \frac{A}{B}$.
+            \item \textbf{Inverses pour $+$} \quad $\frac{A}{B} + \frac{-A}{B} = \frac{AB + B(-A)}{B^2} = \frac{0}{B^2} = \frac{0}{1}$ et de même $\frac{-A}{B} + \frac{A}{B} = \frac{0}{1}$.
+            \item À ce stade, $\left(\mathbb{K}(X), +\right)$ est un groupe associatif d’élément neutre $\frac{0}{1}$. Pour montrer que $\left(\mathbb{K}(X), +, \times\right)$ est un anneau, il reste à montrer comme ci-dessus que $\left(\mathbb{K}(X), \times\right)$ est un magma d’élément neutre $\frac{1}{1}$ et que $\times$ est distributive sur $+$. Il reste, pour montrer que $\left(\mathbb{K}(X), +, \times\right)$ est un corps, que $\times$ est commutative et que toute fraction non nulle $\frac{A}{B}$ admet un inverse, en l’occurrence $\frac{B}{A}$.
+        \end{itemize}
+    \end{demo}
+
+    \begin{theo}{Les polynômes sont des fractions rationnelles}{}
+        L’application $P \mapsto \frac{P}{1}$ est un morphisme injectif d’anneaux de $\mathbb{K}[X]$ dans $\mathbb{K}(X)$.
+
+        Grâce à cette injection, on identifiera tout polynôme $P \in \mathbb{K}[X]$ à la fraction rationnelle $\frac{P}{1}$. Cette identification fait de $\mathbb{K}[X]$ un sous-anneau de $\mathbb{K}(X)$.
+    \end{theo}
+
+    \begin{demo}{Preuve}{myred}
+        L’application $P \overset{\varphi}{\longmapsto} \frac{P}{1}$ est un morphisme d’anneaux car $\varphi(1) = \frac{1}{1}$ et pour tous $P,Q \in \mathbb{K}[X]$ 
+        \[ \varphi(P) + \varphi(Q) = \frac{P}{1} + \frac{Q}{1} = \frac{P + Q}{1} = \varphi(P + Q) \esp{et} \varphi(P)\varphi(Q) = \frac{P}{1} \times \frac{Q}{1} = \frac{PQ}{1} = \varphi(PQ) \]
+        Ensuite, $\varphi$ est injective, autrement dit $\Ker(\varphi) \subset \{0\}$, car pour tout $P \in \Ker(\varphi)$, $\frac{P}{1} = \varphi(P) = \frac{0}{1}$ donc $P = 0$.
+    \end{demo}
+
+    \begin{theo}{Structure d’espace vectoriel de $\mathbb{K}(X)$}{}
+        Parce que tout élément de $\mathbb{K}$ peut être identifié à un polynôme et donc à une fraction rationnelle, on sait multiplier toute fraction rationnelle de $\mathbb{K}(X)$ par un scalaire. Cette identification fait de $\mathbb{K}(X)$ un $\mathbb{K}$-espace vectoriel.
+    \end{theo}
+
+    Dans tout ce qui suit, on écrira $R = \frac{A}{B}$ en sous-entendant $(A,B) \in \mathbb{K}^2[X]$ et $B \neq 0$.
+
+    \begin{defi}{Forme irréductible d’une fraction rationnelle}{}
+        Soit $R \in \mathbb{K}(X)$. 
+
+        On appelle \textbf{forme irréductible} de $R$ tout écritude de la forme $R = \frac{A}{B}$ avec $A$ et $B$ premiers entre eux. Une telle écriture est toujours possible, et unique à une multiplication près par des scalaires non nuls.
+    \end{defi}
+
+    \begin{defi}{Dérivée d’une fraction rationnelle}{}
+        Pour tout $R = \frac{A}{B} \in \mathbb{K}(X)$, la fraction rationelle $\frac{A'B - AB'}{B^2}$ dépend de $R$ sans dépendre du choix de $(A,B)$. On l’appelle la \textbf{dérivée} de $R$ et on la note $R'$.
+        
+        Pour tous $R,S \in \mathbb{K}(X)$, 
+        \begin{enumerate}
+            \item $(R + S)' = R' + S'$
+            \item $(RS)' = R'S + R S'$
+            \item si $S$ est non nulle, $\left(\frac{R}{S}\right)' = \frac{R'S - RS'}{S^2}$
+        \end{enumerate}
+        En outre, la dérivée d’un polynôme coïncide avec sa dérivée comme fraction rationnelle.
+    \end{defi}
+
+    \begin{defi}{Degré d’une fraction rationnelle}{}
+        Pour tout $R = \frac{A}{B} \in \mathbb{K}(X)$, la quantité $\deg(A) - \deg(B)$ dépend de $R$ sans dépendre du choix de $(A,B)$. On l’appelle degré de $R$ et on la note $\deg(R)$. Le degré d’une fraction rationnelle est ainsi soit un entier \textbf{\textsc{relatif}}, soit $-\infty$.
+
+        Pour tous $R,S \in \mathbb{K}(X)$, 
+        \begin{enumerate}
+            \item $\deg(R+S) \leq \max \big\{ \deg(R), \deg(S) \big\}$
+            \item $\deg(RS) = \deg(R) + \deg(S)$
+        \end{enumerate}
+        En outre, le degré d’un polynôme coïncide avec son degré comme fraction rationnelle.
+    \end{defi}
+
+    \begin{defi}{Fontion rationnelle}{}
+        Soit $R = \frac{A}{B} \in \mathbb{K}(X)$ \textbf{\textsc{irréductible}}. 
+
+        La fonction $x \longmapsto \frac{A(x)}{B(x)}$ définie sur $\mathbb{K}$ privé des racines de $B$ est appelée la \textbf{fonction rationnelle} associée à $R$ et encore notée $R$.
+    \end{defi}
+
+    On notera que cette définition est possible car la fonction dépend de $R$ sans dépendre du choix de $(A,B)$. 
+
+    On impose ici à l’écriture $R = \frac{A}{B}$ d’être irréductible pour que le dénominateur de $R$ ait le moins de racines possible, et donc que pour $R$, comme fonction, soit définie sur le plus grand ensemble possible. 
+
+    \begin{defi}{Zéros et pôles d’une fraction rationnelle, multiplicité}{}
+        Soit $R = \frac{A}{B} \in \mathbb{K}(X)$ \textbf{\textsc{irréductible}}.
+        \begin{itemize}
+            \item \textbf{Zéros} \quad Soit $\lambda \in \mathbb{K}$. On dit que $\lambda$ est un zéro de $R$ si $\lambda$ est une racine de $A$. La multiplicité de $\lambda$ dans $A$ est alors appelée la \textbf{multiplicité} de $\lambda$ dans $R$.
+            \item \textbf{Pôles} \quad Soit $\mu \in \mathbb{K}$. On dit que $\mu$ est un pôle de $R$ si $\mu$ est une racine de $B$. La multiplicité de $\mu$ dans $B$ est alors appelée multiplicité de $\mu$ dans $R$. 
+        \end{itemize}
+    \end{defi}
+
+    S’assurer que $R$ est irréductible permet de garantir la différence entre les pôles et les zéros deux à deux.
+
+    \begin{theo}{Partie entière}{}
+        Soit $R = \frac{A}{B} \in \mathbb{K}(X)$.
+
+        Il existe un unique polynôme $E \in \mathbb{K}[X]$ et une unique fraction rationnelle $Q \in \mathbb{K}(X)$ pour lesquels 
+        \[ R = E + Q \esp{et} \deg(Q) < 0  \]    
+    \end{theo}
+
+    En particulier, la partie entière de $R$ est nulle si $\deg(R) < 0$.
+
+    \begin{demo}{Preuve}{myred}
+        \begin{itemize}
+            \item \textbf{Existence} \quad Notons $E$ le quotient de la division euclidienne de $A$ par $B$ et $F$ son reste, et posons $Q = \frac{F}{B}$.
+            
+            Alors $R = \frac{A}{B} = \frac{EB + F}{B} = E + Q$ d’une part, et $\deg(Q) = \deg(F) - \deg(B) < 0$ d’autre part.
+            \item \textbf{Unicité} \quad Soient $R = E + Q$ et $R = \Tilde{E} + \Tilde{R}$ deux décomposition de $R$. Le polynôme $E - \Tilde{E}$ est de degré $\deg(\Tilde{Q} - Q) \leq \max\big\{ \deg(\Tilde{Q}), \deg(Q) \big\} < 0$ donc est nul, donc $E = \Tilde{E}$ et $Q = \Tilde{Q}$.
+        \end{itemize}
+    \end{demo}
+
+    \subsubsection{Décomposition en éléménts simples}
+
+    \begin{theo}{Décomposition en éléments simples sur $\mathbb{C}$}{}
+        Soit $\mathbb{R} \in \mathbb{C}(X)$ de partie entière $E$ et de pôles distincts $\lambda_1, \ldots, \lambda_r$ de multiplicités respectives $m_1,\ldots,m_r$.
+
+        Il existe une unique famille $(a_{i,k})_{\substack{1 \leq i \leq r \\ 1 \leq k \leq m_i}}$ de nombres complexes telle que 
+        \[ R = \tikzmarknode{pe}{E} + \sum_{i=1}^{r} \lilbox{mypurple}{\tikzmarknode{pp}{$\sum_{k=1}^{m_i} \frac{a_{i,k}}{(X-\lambda_i)^k}$}} \]
+        \begin{center}\footnotesize 
+            \tikzmarknode[text=myolive, align = center]{pee}{On n’oublie pas \\ la partie entière !}
+            \hspace*{5cm}
+            \tikzmarknode[text=mypurple, align = center]{ppp}{Partie polaire \\ associée au pôle $\lambda_i$}
+        \end{center}
+        \begin{tikzpicture}[remember picture, overlay]
+            \draw[myolive, ->] (pee.north) to[out=90,in=270] (pe.south);
+            \draw[mypurple, ->] (ppp.north) to[out=90,in=270] (pp.south);
+        \end{tikzpicture}
+        Cette décomposition de $R$ est appelée sa décomposition en éléments simples sur $\mathbb{C}$.
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        L’existence de la décomposition est intéressante à comprendre. 
+
+        Écrivons $R$ sous la forme $R = \frac{A}{B}$ avec $A \in \mathbb{C}[X]$ et $B = (X - \lambda_1)^{m_1} \cdots (X - \lambda_r)^{m_r}$. Les \textbf{\textsc{polynômes}} $\frac{B}{(X-\lambda_1)^{m_1}}, \ldots, \frac{B}{(X-\lambda_r)^{m_r}}$ sont premiers entre eux dans leur ensemble, donc $1 = \sum_{i=1}^{r} \frac{BU_i}{(X - \lambda_i)^{m_i}}$ pour certains $U_1,\ldots,U_r \in \mathbb{C}[X]$ (relation de Bézout). En multipliant par $R$, on obtient donc $R = \sum_{i=1}^{r} \frac{A U_i}{(X - \lambda_i)^{m_i}}$.
+
+        Pour tout $i \in \intervalleEntier{1}{r}$, $A U_i = (X - \lambda_i)^{m_i} E_i + R_i$ pour certains $E_i \in \mathbb{C}[X]$ et $R_i \in \mathbb{C}_{m_i - 1}[X]$ par division euclidienne et nous pouvons décomposer $R_i$ dans la base $(1, X - \lambda_i, \ldots, (X - \lambda_i)^{m_i - 1})$ de $\mathbb{C}_{m_i - 1}[X]$ \textit{i.e.} $R_i = \sum_{k=1}^{m_i} a_{i,k} (X-\lambda_i)^{m_i - k}$ pour certains $a_{i,1},\ldots,a_{i,m_i} \in \mathbb{C}$. 
+
+        Ainsi, 
+        \[ R = \sum_{i=1}^{r} \frac{AU_i}{(X-\lambda_i)^{m_i}} = \sum_{i=1}^{r} \frac{(X-\lambda_i)^{m_i} E_i + R_i}{(X - \lambda_i)^{m_i}} = \tikzmarknode{Ent}{\sum_{i=1}^{r} E_i} + \tikzmarknode{Pol}{\sum_{i=1}^{r} \frac{R_i}{(X-\lambda_i)^{m_i}}} = E + \sum_{k=1}^{r} \sum_{k=1}^{m_i} \frac{a_{i,k}}{(X-\lambda_i)^k} \]
+        \begin{center}\footnotesize 
+            \hspace*{2cm}
+            \tikzmarknode[text=myolive, align = center]{PEnt}{Polynôme}
+            \hspace*{3cm}
+            \tikzmarknode[text=mypurple, align = center]{PPol}{Fraction de degré \\ strictement négatif}
+        \end{center}
+        \begin{tikzpicture}[remember picture, overlay]
+            \draw[myolive, ->] (PEnt.north) to[out=90,in=270] (Ent.south);
+            \draw[mypurple, ->] (PPol.north) to[out=90,in=270] (Pol.south);
+        \end{tikzpicture}
+    \end{demo}
+
+    \begin{theo}{Décomposition en éléments simples sur $\mathbb{R}$}{}
+        Soit $\mathbb{R} = \frac{A}{B} \in \mathbb{R}(X)$ \textbf{\textsc{irréductible}} de partie entière $E$.
+        
+        On introduit la factorisation irréductible de $B$
+        \[ B = \beta \prod_{i=1}^{r}(X - \lambda_i)^{m_i} \prod_{j=1}^{s} (X^2 + b_j X + c_j)^{n_j} \]
+        Il existe des familles uniques $(a_{i,k})_{\substack{1 \leq i \leq r \\ 1 \leq k \leq m_i}}$, $(u_{j,k})_{\substack{1 \leq j \leq s \\ 1 \leq k \leq n_j}}$ et $(u_{j,k})_{\substack{1 \leq j \leq s \\ 1 \leq k \leq n_j}}$ de réels telles que 
+        \[ R = \tikzmarknode{partent}{E} + \sum_{i=1}^{r} \lilbox{mypurple}{\tikzmarknode{partpol}{$\sum_{k=1}^{m_i} \frac{a_{i,k}}{(X-\lambda_i)^k}$}} + \sum_{j=1}^{s} \sum_{k=1}^{n_j} \frac{u_{j,k}X + v_{j,k}}{(X^2 + b_j X + c_j)^k} \]
+        \begin{center}\footnotesize 
+            \tikzmarknode[text=myolive, align = center]{partentf}{On n’oublie pas \\ la partie entière !}
+            \hspace*{5cm}
+            \tikzmarknode[text=mypurple, align = center]{partpolp}{Partie polaire \\ associée au pôle $\lambda_i$}
+        \end{center}
+        \begin{tikzpicture}[remember picture, overlay]
+            \draw[myolive, ->] (partentf.north) to[out=90,in=270] (partent.south);
+            \draw[mypurple, ->] (partpolp.west) to[out=180,in=270] (partpol.south);
+        \end{tikzpicture}
+        Cette décomposition de $R$ est appelée décomposition en éléments simples sur $\mathbb{R}$.
+    \end{theo}
+
+    Dans la pratique, on calcul les coefficients en utilisant les techniques :
+    \begin{itemize}
+        \item multiplier par $(X - \lambda)^m$ puis évaluer en $\lambda$ ;
+        \item multiplier par $X$ puis passer à la limite en $+\infty$ ;
+        \item évaluer en un point ;
+        \item mettre au même dénominateur et identifier.
+    \end{itemize}
+
+    \begin{theo}{Partie polaire associée à un pôle simple}{}
+        Soient $R = \frac{A}{B} \in \mathbb{C}(X)$ et $\lambda \in \mathbb{C}$.
+
+        Si $\lambda$ est une racine \textbf{\textsc{simple}} de $B$ (donc un pôle simple de $\mathbb{R}$), et si on note $\frac{a}{X - \lambda}$ la partie polaire de $R$ associée à $\lambda$, alors $a = \frac{A(\lambda)}{B'(\lambda)}$.
+    \end{theo}
+
+    \begin{demo}{Preuve}{myred}
+        Comme $\lambda$ est racine simple de $B$, $B = (X - \lambda) C$ pour un certain $C \in \mathbb{K}[X]$ avec $C(\lambda) \neq 0$ et la décomposition en éléments simples de $R$ sur $\mathbb{C}$ s’écrit $R = \frac{a}{X-\lambda} + Q$ pour une certaine fraction $Q \in \mathbb{C}(X)$ n’admettant pas $\lambda$ pour pôle. 
+
+        Ainsi, $\frac{A}{C} = (X - \lambda) R = a + (X - \lambda)Q$ donc $\frac{A(\lambda)}{C(\lambda)} = a$ après évaluation en $\lambda$. Or $B' = C + (X - \lambda) C'$, donc $B'(\lambda) = C(\lambda)$ et enfin $a = \frac{A(\lambda)}{B'(\lambda)}$.
+    \end{demo}
+
+    \begin{omed}{Remarque}{myred}
+        Un résultat tout à fait similaire est retrouvé par l’étude des polynômes de Lagrange.
+    \end{omed}
+
+    \begin{theo}{Décomposition en éléments simples sur $\mathbb{C}$ de $\frac{P'}{P}$}{}
+        Soit $\mathbb{P} \in \mathbb{C}[X]$ non nul.
+        
+        En notant $\lambda_1,\ldots, \lambda_r$ les racines de $P$ et $m_1,\ldots,m_r$ leur multiplicité respective, 
+        \[ \frac{P'}{P} = \sum_{k=1}^{r} \frac{m_k}{X - \lambda_k} \]
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        Pour tous $P_1,\ldots,P_n \in \mathbb{C}[X]$, 
+        \[ (P_1 \cdots P_n)' = P_1' P_2 \cdots P_n + \cdots + P_1 \cdots P_{n-1} P_n' \]    
+        d’où $\frac{\left(P_1 \cdots P_n\right)'}{P_1 \cdots P_n} = \frac{P_1 '}{P_1} + \cdots + \frac{P_n'}{P_n}$. En appliquant ce résultat à la forme scindée de $P$ qui est $\alpha (X - \lambda_1)^{m_1} \cdots (X - \lambda_r)^{m_r}$, on obtient 
+        \[ \frac{P'}{P} = \frac{\alpha'}{\alpha} + \sum_{k=1}^{r} \frac{\left((X-\lambda_k)^{m_k}\right)'}{(X - \lambda_k)^{m_k}} = \sum_{k = 1}^{r} \frac{m_k}{X - \lambda_k} \]
+    \end{demo}
+
+    
+

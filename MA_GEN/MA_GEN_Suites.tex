@@ -1,0 +1,873 @@
+\customchapter{Suites numériques}{Les suites sont des objets simples \textit{a priori}, dont les nombreuses propriétés nous aideront pour l’étude d’ensembles indexés par $\mathbb{N}$.}
+
+\section{Généralités}
+
+    \begin{defi}{Suites numériques}{}
+        \begin{itemize}
+            \item Une \textbf{suite numérique} est une application définie sur une partie $\mathcal{A} \subset \mathbb{N}$, à valeurs dans $\mathbb{K}$.
+            \item L’ensemble des suites définies sur $\mathbb{N}$ et à valeurs dans $\mathbb{K}$ est noté $\mathbb{K}^{\mathbb{N}}$.
+        \end{itemize}
+    \end{defi}
+
+    \begin{prop}{Suites géométriques, arithmétiques, arithmético-géométriques}{}
+        Soit $(u_n)_n$ une suite numérique.
+        \begin{enumerate}
+            \item On dit que $(u_n)_n$ est une \textbf{suite géométrique} si 
+            \[ \exists \, q \in \mathbb{K}, \, \forall n \in \mathbb{N}, \, u_{n+1} = qu_n \]
+            \item On dit que $(u_n)_n$ est une \textbf{suite arithmétique} si 
+            \[ \exists \, r \in \mathbb{K}, \, \forall n \in \mathbb{N}, \, u_{n+1} = u_n + r \]
+            \item On dit que $(u_n)_n$ est une \textbf{suite arithmético-géométrique} si 
+            \[ \exists \, (a,b) \in \mathbb{K}^2, \, \forall n \in \mathbb{N}, \, u_{n+1} = au_n + b \]
+        \end{enumerate}
+        On peut trouver des définitions explicites de ces suites.
+        \begin{enumerate}
+            \item $(u_n)_{n \geq n_0}$ est géométrique de raison $q$ si et seulement si \[ \forall n \geq n_0, u_n = q^{n-n_0} u_{n_0} \]
+            \item $(u_n)_{n \geq n_0}$ est arithmétique de raison $r$ si et seulement si \[ \forall n \geq n_0, u_n = u_{n_0} + (n - n_0)r \]
+            \item $(u_n)_{n \geq n_0}$ est arithmético-géométrique si et seulement si \[\forall n \geq n_0, u_n = c + (u_{n_0} - c)a^{n-n_0} \text{, avec } c = \frac{b}{1-a} \]
+        \end{enumerate}
+    \end{prop}
+
+    \begin{omed}{Méthode \textcolor{black}{Suite arithmético-géométrique}}{myolive}
+        \begin{enumerate}
+            \item On trouve un point fixe de l’équation $x = ax + b$, noté $c$.
+            \item Alors $(u_n - c)_n$ est une suite géométrique de raison $a$, dont on détermine la valeur explicite.
+            \item On a donc une expression de $u_n$.
+        \end{enumerate}
+    \end{omed}
+
+    \begin{prop}{Expresssion d’une suite à récurrence linéaire homogène d’ordre 2}{}
+        Soient $(a,b) \in \mathbb{K} \times \mathbb{K}^*$ et $(u_n)_n \in \mathbb{K}^{\mathbb{N}}, \, u_{n+1} = au_n + bu_{n-1}$. 
+
+        On pose $ P = X^2 -aX -b$. 
+
+        \begin{alors}
+            \item Si $P$ admet deux racines distinctes $r_1$ et $r_2$ dans $\mathbb{K}$,
+            \[ u_n = \lambda r_1^n + \mu r_2^n, \, (\lambda, \mu) \in \mathbb{K}^2 \] et 
+            $\et{u_0 = \lambda + \mu}{u_1 = \lambda r_1 + \mu r_2}$
+            \item Si $P$ admet une racine double $r$ dans $\mathbb{K}$,
+            \[ u_n = (\lambda n + \mu)r^n, \, (\lambda, \mu) \in \mathbb{K}^2 \] et 
+            $\et{u_0 = \mu}{u_1 = (\lambda + \mu)r}$ 
+            \item Si $\mathbb{K} = \mathbb{R}$ et $P$ admet deux racines complexes conjuguées $\rho e^{\pm i \theta}$,
+            \[ u_n = (\lambda cos(n \theta)+ \mu sin(n \theta))\rho^n, \, (\lambda, \mu) \in \mathbb{K}\] et 
+            $\et{u_0 = \lambda}{u_1 = \lambda \cos(\theta) + \mu \sin(\theta)\rho}$
+        \end{alors}
+    \end{prop}
+
+\section{Limite d’une suite}
+
+    \begin{defi}{Convergence d’une suite}{}
+        Soient $(u_n)_n$ une suite numérique et $\ell \in \mathbb{K}$.
+
+        Alors la suite $(u_n)_n$ \textbf{converge} vers $\ell$ si 
+        \[ \forall \varepsilon > 0, \, \exists \, N \in \mathbb{N}, \, \forall n \geq N, \, |u_n-\ell| \overset{\text{ou } <}{\leq} \varepsilon\]
+        On note $\lim\limits_{n \rightarrow +\infty} u_n = \ell$.
+    \end{defi}
+
+    \begin{prop}{Propriétés d’une suite convergente}{}
+        \begin{enumerate}
+            \item Unicité de la limite d’une suite convergente.
+            \item Toute suite convergente est bornée.
+            \item Toute suite extraite d’une suite convergente converge vers la même limite.
+            \item Si les sous-suites d’indices pairs et impairs convergent vers la même limite, la suite converge.
+            \item Toute suite convergente de limite non-nulle ne s’annule pas apcr.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{theo}{Convergence d’une suite géométrique}{}
+        Soit $q \in \mathbb{C}$.
+
+        Alors \[ (q^n)_n \text{ converge} \iff q = 1 \text{ ou } |q| < 1 \]
+    \end{theo}
+
+    \begin{prop}{}{}
+        Soient $(u_n)_n, (v_n)_n$ deux suites numériques réelles et $\ell, \ell' \in \overline{\mathbb{R}}$.
+
+        \begin{suppose}
+            \item $\exists \, N \in \mathbb{N}, \, \forall n \geq N, \, u_n \leq v_n$,
+            \item $\lim\limits_{n \rightarrow +\infty} u_n = \ell$,
+            \item $\lim\limits_{n \rightarrow +\infty} v_n = \ell'$.
+        \end{suppose}
+        Alors \[ \ell \leq \ell' \]
+    \end{prop}
+
+    \begin{theo}{Théorème des gendarmes, ou d’encadrement}{}
+        Soient $(u_n)_n,(v_n)_n$ et $(w_n)_n$ trois suites numériques réelles et $\ell \in \mathbb{R}$.
+
+        \begin{suppose}
+            \item $(u_n)_n$ et $(w_n)_n$ convergent vers $\ell$,
+            \item $\exists N \in \mathbb{N}, \, \forall n \geq N, \, u_n \leq v_n \leq w_n$.
+        \end{suppose}
+        \begin{alors}
+            \item $ (v_n)_n $ converge.
+            \item $ \lim\limits_{n \rightarrow +\infty} v_n = \ell $.
+        \end{alors}
+    \end{theo}
+
+    \begin{prop}{Critère de d’Alembert}{}
+        Soit $(u_n)_{n \geq n_0}$ une suite numérique réelle.
+
+        \begin{suppose}
+            \item $\forall n \geq n_0, \, u_n > 0$,
+            \item $\frac{u_{n+1}}{u_n} \underset{n \rightarrow +\infty}{\longrightarrow} \ell \in \intervalleFO{0}{+\infty} \cup \left\{ +\infty \right\}$.
+        \end{suppose}
+        \begin{alors}
+            \item si $\ell > 1$, alors $(u_n)_n$ diverge vers $+\infty$.
+            \item si $\ell < 1$, alors $(u_n)_n$ converge vers 0.
+            \item si $\ell = 1$, on ne peut pas conclure.
+        \end{alors}
+    \end{prop}
+
+    \begin{omed}{Méthode}{myolive}
+        Pour montrer qu’une suite est croissante, on peut
+        \begin{itemize}
+            \item soit démontrer que $u_{n+1} - u_n$ est positif,
+            \item soit, si $u_n > 0$, comparer $\frac{u_{n+1}}{u_n}$ à 1.
+        \end{itemize}
+    \end{omed}
+
+    \begin{prop}{Caractérisation séquentielle des bornes supérieure et inférieure}{}
+        Soient $\mathcal{A}$ une partie non vide de $\mathbb{R}$, $s,i \in \mathbb{R}$.
+
+        Alors
+        \[ s = \sup(\mathcal{A}) \iff \et{\forall a \in \mathcal{A},  a \leq s}{\exists (x_n)_n \in \mathcal{A}^{mathbb{N}}, x_n \limi{n}{+\infty} s} \]
+       
+        et 
+
+        \[ i = \inf(\mathcal{A}) \iff \et{\forall a \in \mathcal{A},  a \geq i}{\exists (x_n)_n \in \mathcal{A}^{\mathbb{N}}, x_n \limi{n}{+\infty} i} \]
+    \end{prop}
+
+    \begin{theo}{Limite d’une suite monotone}{}
+        Soit $(u_n)_n \in \mathbb{R}^{\mathbb{N}}$.
+
+        \textbf{Si $(u_n)$ est croissante} \quad
+        \begin{alors}
+            \item Si $(u_n)_n$ est majorée, alors elle converge vers 
+            \[ \sup(\left\{u_n \, | \, n \in \mathbb{N}\right\}) \]
+            \item Si $(u_n)_n$ n’est pas majorée, alors elle diverge vers $+\infty$
+        \end{alors} 
+
+        \textbf{Si $(u_n)$ est décroissante} \quad
+        \begin{alors}
+            \item Si $(u_n)_n$ est minorée, alors elle converge vers
+            \[ \inf(\left\{u_n \, | \, n \in \mathbb{N}\right\}) \]
+            \item Si $(u_n)_n$ n’est pas minorée, alors elle diverge vers $-\infty$
+        \end{alors}
+    \end{theo}
+
+    \begin{defi}{Suites adjacentes}{}
+        Deux suites réelles sont dites \textbf{adjacentes} lorsqu’elles sont monotones de variations opposées et leur différence tend vers 0 en $+\infty$.
+    \end{defi}
+
+    \begin{theo}{Suites adjacentes}{}
+        Soient $(u_n)_n$ et $(v_n)_n$ deux suites adjacentes.
+
+        On suppose que $(u_n)_n$ est croissante et $(v_n)_n$ décroissante.
+    
+        Alors $(u_n)_n$ et $(v_n)_n$ convergent vers la même limite $\ell \in \mathbb{R}$ et 
+        \[ \forall n \in \mathbb{N}, \, u_n \leq \ell \leq v_n \]
+    \end{theo}
+
+    \begin{defi}{Nombre décimal}{}
+        Un \textbf{nombre décimal} est un réel $x$ tel qu’il existe $n \in \mathbb{N}$ tel que $10^n x \in \mathbb{Z}$.
+    \end{defi}
+
+    \begin{prop}{Valeur décimale approchée par défaut}{}
+        Soient $x \in \mathbb{R}$ et $n \in \mathbb{N}$.
+
+        Alors \[ \exists ! x_n \in \mathbb{R} \text{ tel que } \left\{ \begin{array}{ll}
+            10^n x_n \in \mathbb{Z} \\
+            x_n \leq x < x_n + \frac{1}{10^n}
+        \end{array} \right. \]
+        Ce nombre $x_n$ est appelé valeur décimale approchée par défaut de $x$, et $x_n + \frac{1}{10^n}$ est appelé valeur décimale approchée par excès de $x$.
+    \end{prop}
+
+    \begin{coro}{$\mathbb{Q}$ est dense dans $\mathbb{R}$}{}
+        \[ \forall x \in \mathbb{R} , \, \exists (x_n)_n \in \mathbb{Q}^{\mathbb{N}}, \, x_n \underset{n \rightarrow +\infty}{\longrightarrow} x \]
+    \end{coro}
+
+\section{Relations de comparaison}
+
+\subsection{Négligeabilité}
+
+    \begin{defi}{Négligeabilité}{}
+	    Soient $(u_n)_n$ et $(v_n)_n$ deux suites numériques.
+
+	    Alors on dit que $(u_n)_n$ est \textbf{négligeable} devant $(v_n)_n$ et on note $u_n \underset{n \rightarrow +\infty}{=} o(v_n)$ si
+	    \[ \exists (\varepsilon_n)_n \in \mathbb{R}^{\mathbb{N}} \text{ tel que } \left\{ \begin{array}{ll}
+	    \underset{n \rightarrow + \infty}{\lim} \varepsilon_n = 0 \\
+	    u_n \underset{n \rightarrow +\infty}{=} \varepsilon_n v_n
+	    \end{array} \right. \]
+    \end{defi}
+
+    \begin{theo}{Caractérisation de la négligeabilité}{}
+	    Soient $(u_n)_n$ et $(v_n)_n$ deux suites numériques.
+
+	    On suppose que $(v_n)_n$ ne s’annule pas à partir d’un certain rang.
+
+	    Alors 
+	    \[ u_n \underset{n \rightarrow +\infty}{=} o(v_n) \iff \frac{u_n}{v_n} \underset{n \rightarrow +\infty}{\longrightarrow} 0 \]
+    \end{theo}
+
+    \begin{theo}{Propriétés des $o$}{}
+        Soient $(u_n)_n, (v_n)_n, (w_n)_n, (a_n)_n$ et $(b_n)_n$ des suites numériques et $\lambda \in \mathbb{K}$.
+    
+        \begin{alors}
+            \item $u_n \underset{n \rightarrow +\infty}{=} o(v_n) \implies \left\{ \begin{array}{l}
+                u_n \underset{n \rightarrow +\infty}{=} o(\lambda v_n) \emph{ si } \lambda \neq 0 \\
+                \lambda u_n \underset{n \rightarrow +\infty}{=} o(v_n)
+            \end{array}\right.$
+            \item $\left\{ \begin{array}{l}
+                u_n \underset{n \rightarrow +\infty}{=} o(v_n) \\
+                v_n \underset{n \rightarrow +\infty}{=} o(w_n)
+            \end{array} \right. \implies u_n \underset{n \rightarrow +\infty}{=} o(w_n)$
+            \item $\left\{ \begin{array}{l}
+                u_n \underset{n \rightarrow +\infty}{=} o(w_n) \\
+                v_n \underset{n \rightarrow +\infty}{=} o(w_n)
+            \end{array} \right. \implies u_n + v_n \underset{n \rightarrow +\infty}{=} o(w_n)$
+            \item $\left\{ \begin{array}{l}
+                u_n \underset{n \rightarrow +\infty}{=} o(a_n) \\
+                v_n \underset{n \rightarrow +\infty}{=} o(b_n)
+            \end{array} \right. \implies u_n v_n \underset{n \rightarrow +\infty}{=} o(a_n b_n)$
+            \item $ u_n \underset{n \rightarrow +\infty}{=} o(v_n) \implies u_n a_n \underset{n \rightarrow +\infty}{=} o(v_n a_n)$
+            \item $ u_n \underset{n \rightarrow +\infty}{=} o(v_n) \implies \frac{1}{v_n} \underset{n \rightarrow +\infty}{=} o\left(\frac{1}{u_n}\right)$
+        \end{alors}
+    \end{theo}
+
+\subsection{Domination}
+
+    \begin{defi}{Domination}{}
+	    Soient $(u_n)_n$ et $(v_n)_n$ deux suites numériques.
+
+	    Alors on dit que $(u_n)_n$ est \textbf{dominée} par $(v_n)_n$ et on note $u_n \underset{n \rightarrow +\infty}{=} \mathcal{O}(v_n)$ si
+	    \[ \exists (\beta_n)_n \in \mathbb{R}^{\mathbb{N}} \text{ tel } que \left\{ \begin{array}{ll}
+	    (\beta_n)_n \text{ est bornée} \\
+	    u_n \underset{n \rightarrow +\infty}{=} \beta_n v_n
+	    \end{array} \right. \]
+    \end{defi}
+
+    \begin{theo}{Caractérisation de la domination}{}
+        Soient $(u_n)_n$ et $(v_n)_n$ deux suites numériques.
+    
+        On suppose que $(v_n)_n$ ne s’annule pas à partir d’un certain rang.
+    
+        Alors \[ u_n \underset{n \rightarrow +\infty}{=} \mathcal{O}(v_n) \iff \left( \frac{u_n}{v_n} \right)_n \text{ est bornée} \]
+    \end{theo}
+
+    \begin{prop}{Lien entre $o$ et $\mathcal{O}$}{}
+        Soient $(u_n)_n$ et $(v_n)_n$ deux suites numériques.
+    
+        Alors \[ u_n \underset{n \rightarrow +\infty}{=} o(v_n) \implies u_n \underset{n \rightarrow +\infty}{=} \mathcal{O}(v_n) \]
+    \end{prop}
+
+    \begin{theo}{Propriétés des $\mathcal{O}$}{}
+        Soient $(u_n)_n, (v_n)_n, (w_n)_n, (a_n)_n$ et $(b_n)_n$ des suites numériques et $\lambda \in \mathbb{K}$.
+    
+        \begin{alors}
+            \item $u_n \underset{n \rightarrow +\infty}{=} \mathcal{O}(v_n) \implies \left\{ \begin{array}{ll}
+                u_n \underset{n \rightarrow +\infty}{=} \mathcal{O}(\lambda v_n) \emph{ si } \lambda \neq 0 \\
+                \lambda u_n \underset{n \rightarrow +\infty}{=} \mathcal{O}(v_n)
+            \end{array}\right.$
+            \item $\left\{ \begin{array}{l}
+                u_n \underset{n \rightarrow +\infty}{=} \mathcal{O}(v_n) \\
+                v_n \underset{n \rightarrow +\infty}{=} \mathcal{O}(w_n)
+            \end{array} \right. \implies u_n \underset{n \rightarrow +\infty}{=} \mathcal{O}(w_n)$
+            \item $\left\{ \begin{array}{l}
+                u_n \underset{n \rightarrow +\infty}{=} \mathcal{O}(w_n) \\
+                v_n \underset{n \rightarrow +\infty}{=} \mathcal{O}(w_n)
+            \end{array} \right. \implies u_n + v_n \underset{n \rightarrow +\infty}{=} \mathcal{O}(w_n)$
+            \item $\left\{ \begin{array}{l}
+                u_n \underset{n \rightarrow +\infty}{=} \mathcal{O}(a_n) \\
+                v_n \underset{n \rightarrow +\infty}{=} \mathcal{O}(b_n)
+            \end{array} \right. \implies u_n v_n \underset{n \rightarrow +\infty}{=} \mathcal{O}(a_n b_n)$
+            \item $ u_n \underset{n \rightarrow +\infty}{=} \mathcal{O}(v_n) \implies u_n a_n \underset{n \rightarrow +\infty}{=} \mathcal{O}(v_n a_n)$
+            \item $ u_n \underset{n \rightarrow +\infty}{=} \mathcal{O}(v_n) \implies \frac{1}{v_n} \underset{n \rightarrow +\infty}{=} \mathcal{O}\left(\frac{1}{u_n}\right)$
+        \end{alors}
+    \end{theo}
+
+\subsection{Équivalence}
+
+    \begin{defi}{Équivalence}{}
+        Soient $(u_n)_n$ et $(v_n)_n$ deux suites numériques.
+    
+        Alors on dit que $(u_n)_n$ et $(v_n)_n$ sont \textbf{équivalentes} et on note $u_n \underset{n \rightarrow +\infty}{\sim} v_n$ si
+        \[ \exists (\alpha_n)_n \in \mathbb{R}^{\mathbb{N}} \text{ tel que } \left\{ \begin{array}{ll}
+        \underset{n \rightarrow + \infty}{\lim} \alpha_n = 1 \\
+        u_n \underset{n \rightarrow +\infty}{=} \alpha_n v_n
+        \end{array} \right. \]
+    \end{defi}
+    
+    \begin{theo}{Caractérisation de l’équivalence}{}
+        Soient $(u_n)_n$ et $(v_n)_n$ deux suites numériques.
+    
+        On suppose que $(v_n)_n$ ne s’annule pas à partir d’un certain rang.
+    
+        Alors \[ u_n \underset{n \rightarrow +\infty}{\sim} v_n \iff \frac{u_n}{v_n} \underset{n \rightarrow +\infty}{\longrightarrow} 1 \]
+    \end{theo}
+
+    \begin{prop}{Propriétés de $\sim$}{}
+        Soient $(u_n)_n, (v_n)_n$ et $(w_n)_n$ trois suites numériques.
+    
+        \begin{alors}
+            \item $ u_n \underset{n \rightarrow +\infty}{\sim} u_n$ (Réflexivité)  \item $ u_n \underset{n \rightarrow +\infty}{\sim} v_n \iff v_n  \underset{n \rightarrow +\infty}{\sim} u_n$ (Symétrie)
+            \item $\left\{ \begin{array}{l}
+                u_n \underset{n \rightarrow +\infty}{\sim} v_n \\
+                v_n \underset{n \rightarrow +\infty}{\sim} w_n
+            \end{array} \right. \implies u_n \underset{n \rightarrow +\infty}{\sim} w_n$ (Transitivité)
+        \end{alors}
+    \end{prop}
+    
+    \begin{prop}{lien entre $\sim$, $o$ et $\mathcal{O}$}{}
+        Soient $(u_n)_n$ et $(v_n)_n$ deux suites numériques.
+    
+        \begin{alors}
+            \item $ u_n \underset{n \rightarrow +\infty}{\sim} v_n \implies \left\{ \begin{array}{l}
+                u_n \underset{n \rightarrow +\infty}{=} \mathcal{O}(v_n) \\
+                v_n \underset{n \rightarrow +\infty}{=} \mathcal{O}(u_n)
+            \end{array} \right. $
+            \item $u_n \underset{n \rightarrow +\infty}{\sim} v_n \iff u_n - v_n \underset{n \rightarrow +\infty}{=} o(u_n) \underset{n \rightarrow +\infty}{=} o(v_n) $. 
+            
+            On note cela $u_n = v_n + o(v_n)$.
+        \end{alors}
+    \end{prop}
+
+    \begin{prop}{Caractérisation de l’équivalent par la limite}{}
+        Soient $(u_n)_n$ une suite numérique, et $\ell \in \mathbb{K}$.
+    
+        On suppose que $\ell \neq 0$.
+    
+        Alors \[ u_n \underset{n \rightarrow +\infty}{\longrightarrow} \ell \iff u_n \underset{n \rightarrow +\infty}{\sim} \ell \]
+    \end{prop}
+
+    \begin{prop}{Équivalents et multiplication}{}
+        Soient $(u_n)_n, (v_n)_n, (a_n)_n$ et $(b_n)_n$ des suites numériques et $\lambda \in \mathbb{K}$.
+    
+        \begin{alors}
+            \item $u_n \underset{n \rightarrow +\infty}{\sim} v_n \implies \lambda u_n \underset{n \rightarrow +\infty}{\sim} \lambda v_n$
+            \item $ u_n \underset{n \rightarrow +\infty}{\sim} v_n \implies a_n u_n \underset{n \rightarrow +\infty}{\sim} a_n v_n$
+            \item $\left\{ \begin{array}{l}
+                u_n \underset{n \rightarrow +\infty}{\sim} a_n \\
+                v_n \underset{n \rightarrow +\infty}{\sim} b_n
+            \end{array} \right. \implies u_n v_n \underset{n \rightarrow +\infty}{\sim} a_n b_n$
+            \item $ u_n \underset{n \rightarrow +\infty}{\sim} v_n \implies \frac{1}{u_n} \underset{n \rightarrow +\infty}{\sim} \frac{1}{v_n}$ 
+        \end{alors}
+    \end{prop}
+
+    \begin{prop}{Composition d’un équivalent par une fonction}{}
+        En général, on n’applique pas une fonction à des équivalents.
+
+        Cependant, si $u_n \sim v_n$,
+        \begin{enumerate}
+            \item $u_n^r \underset{n \rightarrow + \infty}{\sim} v_n^r$ pour $r \in \mathbb{R}$.
+            \item Si $u_n \not\sim 1$, $\ln(u_n) \sim \ln(v_n)$.
+        \end{enumerate}
+    \end{prop}
+
+\section{Complément sur les suites numériques}
+
+    \begin{defi}{Valeur d’adhérence d’une suite}{}
+        Soit $(u_n) \in \mathbb{K}^{\mathbb{N}}$ et $a \in \mathbb{K}$.
+
+        On dit que $a$ est une \textbf{valeur d’adhérence} de $(u_n)$ s’il existe $(v_n)$ une suite extraite de $u_n$ telle que $v_n \limi{n}{+\infty} a$.
+    \end{defi}
+
+    \begin{prop}{Caractérisation des valeurs d’adhérence}{}
+        \begin{soient}
+            \item $\un$
+            \item $a \in \mathbb{K}$
+        \end{soient}
+        Alors $a$ est une v.a. de $(u_n)$ ssi \[ \forall \varepsilon > 0, \forall N \in \mathbb{N}, \exists n \geq N, \abs{u_n - \ell} \leq \varepsilon \quad (1) \] 
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        \begin{itemize}
+            \item[\textcolor{myolive}{$\implies$}] Si $a \in \VA(u_n)$, il existe $\varphi : \mathbb{N} \rightarrow \mathbb{N}$ strictement croissante telle que $u_{\varphi(n)} \limi{n}{+\infty} a$. Soit $\varepsilon > 0$ et $N \in \mathbb{N}$. Il existe $N'$ tel que $\forall n \geq N', \abs{u_{\varphi(n)} - a} \leq \varepsilon$. Posons $m = \max(N,N')$. Alors $\varphi(m) \geq N, N'$ donc $\abs{u_{\varphi(m)}-a} \leq \varepsilon$. Ainsi, $\varphi(m)$ convient pour l’assertion $(1)$.
+            \item[\textcolor{myolive}{$\impliedby$}] Supposons $(1)$. Montrons que pour tout $k \in \mathbb{N}$, il existe $n_0 < \ldots < n_k$ tels que $\forall i \in \intervalleEntier{0}{k}, \abs{u_{n_i} - a} \leq \frac{1}{i + 1}$, par récurrence forte sur $k$.
+            \begin{itemize}
+                \item On applique $(1)$ avec $\varepsilon = 1$ et $N = 0$. Il existe $n_0$ tel que $\abs{u_{n_0} - a} \leq 1$.
+                \item Soient $n_0, \ldots, n_k$ convenant. On applique $(1)$ avec $\varepsilon = \frac{1}{k+2}$ et $N = n_k + 1$. On a donc $n_{k-1}$. Par principe de récurrence, il existe une suite $(u_{n_k})_{k \in \mathbb{N}}$ strictement croissante et telle que $\forall k \in \mathbb{N}, \abs{u_{n_k} - a} \leq \frac{1}{k+1}$. En particulier, $(u_{n_k})$ est une suite extraite de $(u_n)$ et tend vers $a$ en $+\infty$, donc $a \in \VA(u_n)$.
+            \end{itemize}
+        \end{itemize}
+    \end{demo}
+
+    \begin{theo}{de Bolzano-Weierstrass}{}
+        \begin{soient}
+            \item $(u_n) \in \textcolor{myred}{\mathbb{R}}^{\mathbb{N}}$
+            \item $(u_n)$ est bornée
+        \end{soient}
+        Alors $(u_n)$ possède une suite extraite qui converge.
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        \begin{enumerate}
+            \item Construction d’une suite de segments emboîtés $\left( \intervalleFF{a_n}{b_n} \right)_{n \in \mathbb{N}}$ telle que 
+            \begin{itemize}
+                \item $\forall n \in \mathbb{N}, \intervalleFF{a_n}{b_n}$ contient infinité de termes de $(u_n)_n$ \quad $(1)$
+                \item $\forall n \in \mathbb{N}, \abs{b_{n+1} - a_{n+1}} = \frac{1}{2} \abs{b_n - a_n}$ \quad $(2)$
+                \item $\forall n \in \mathbb{N}, \intervalleFF{a_{n+1}}{b_{n+1}} \subset \intervalleFF{a_n}{b_n}$ \quad $(3)$
+            \end{itemize}
+            Par récurrence forte sur $n$.
+            \begin{itemize}
+                \item Comme $(u_n)$ est bornée, il existe $\intervalleFF{a_0}{b_0}$ tel que $\forall n \in \mathbb{N}, u_n \in \intervalleFF{a_0}{b_0}$. 
+                \item Supposons $(1)$, $(2)$ et $(3)$ vrais pour $i \in \intervalleEntier{0}{n}$ et posons $m = \frac{1}{2}(b_n - a_n)$. 
+                
+                $\intervalleFF{a_n}{b_n} = \intervalleFF{a_n}{m} \cup \intervalleFF{m}{b_n}$, et $\intervalleFF{a_n}{b_n}$ contient une infinité de termes, donc un des deux découpages contient une infinité de termes. Si c’est $\intervalleFF{a_n}{m}$, on pose $a_{n+1} = a_n$ et $b_{n+1} = m$, sinon $a_{n+1} = m$ et $b_{n+1} = b_n$. Dans chaque cas, $\intervalleFF{a_{n+1}}{b_{n+1}}$ convient.
+            \end{itemize}
+            \item On peut montrer, par une récurrence immédiate, qu’il existe une suite $(u_{n_k})_{k \in \mathbb{N}}$ une suite extraite de $(u_n)$ telle que $\forall k \in \mathbb{N}, u_{n_k} \in \intervalleFF{a_k}{b_k}$.
+            \item $\forall k \in \mathbb{N}, a_k \leq u_{n_k} \leq b_k$. On remarque que les suites $a_n$ et $b_n$ sont adjacentes, car 
+            \[ \forall n \in \mathbb{N}, \et{a_n \leq a_{n+1} \leq b_{n+1} \leq b_n}{\abs{b_n - a_n} = \frac{1}{2^n} \abs{b_0 - a_0} \limi{n}{+\infty} 0} \] 
+            Donc $(u_{n_k})$ converge.
+        \end{enumerate}
+    \end{demo}
+
+    \begin{defi}{Critère de Cauchy}{}
+        Soit $\un$.
+
+        On dit que $(u_n)$ vérifie le \textbf{critère de Cauchy} si 
+        \[ \forall \varepsilon > 0, \exists N \in \mathbb{N}, \forall n,p \geq N, \abs{u_n - u_p} \leq \varepsilon \]
+    \end{defi}
+
+    \begin{theo}{du Critère de Cauchy}{}
+        Toute suite numérique est convergente \textit{ssi} elle suit le C.C.
+    \end{theo}
+
+    \begin{demo}{Preuve}{myred}
+        \begin{itemize}
+            \item[\textcolor{myred}{$\implies$}] Soit $\un$ telle que $u_n \limi{n}{+\infty} \ell$ et $\varepsilon > 0$. Comme $(u_n)$ converge vers $\ell$, il existe $N \in \mathbb{N}$ tel que $\forall n \geq N, \abs{u_n - \ell} \leq \frac{\varepsilon}{2}$. 
+        
+            Soient $n,p \geq N$.
+            \[ \abs{u_n - u_p} \leq \abs{u_n - \ell} + \abs{u_p - \ell} \leq \varepsilon \] 
+            \item[\textcolor{myred}{$\impliedby$}] Soit $\un$ vérifiant le C.C. Il existe $N \in \mathbb{N}$ tel que $\forall n,p \geq N, \abs{u_n - u_p} \leq 1$. Donc $\forall n \geq N, \abs{u_n - u_N} \leq 1$ \textit{i.e.} $\abs{u_n} \leq \abs{u_N} + 1$. On en déduit que 
+            \[ \forall n \in \mathbb{N}, \abs{u_n} \leq \max\left\{ \abs{u_0}, \ldots, \abs{u_{N-1}}, \abs{u_N} + 1 \right\} \] 
+            Donc $(u_n)$ est bornée. 
+
+            Par le théorème de Bolzano-Weierstrass, comme $(u_n)$ est bornée, elle admet une VA.
+
+            Soit $\varepsilon > 0$. Comme $(u_n)$ vérifie le C.C., il existe un rang $N$ tel que $\forall n,p \geq N, \abs{u_n - u_p} \leq \frac{\varepsilon}{2}$. D’après la caractérisation des valeurs d’adhérence, il existe $n_0 \geq N$ tel que $\abs{u_{n_0} - a} \leq \frac{\varepsilon}{2}$. 
+
+            Soit $n \geq N$.
+            \[ \abs{u_n - a} \leq \abs{u_n - u_{n_0}} + \abs{u_{n_0} - a} \leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon \]
+            Donc $(u_n)$ converge vers $a$.
+        \end{itemize}  
+    \end{demo}
+
+\section{Suites définies par récurrence}
+
+    \begin{defi}{Sous ensemble stable par une fonction}{}
+        Soient $f$ une fonction définie sur $\mathcal{D}$ à valeurs dans $\mathcal{A}$ et $\mathcal{A}$ un sous-ensemble de $\mathcal{D}$.
+
+        On dit que $\mathcal{A}$ est stable par $f$ si $f(\mathcal{A}) \subset \mathcal{A}$.
+    \end{defi}
+
+    \begin{theo}{}{}
+        \begin{soient}
+            \item $\mathcal{D}$ un sous-ensemble de $\mathbb{R}$
+            \item $\f{R}$
+            \item $\mathcal{A} \subset \mathcal{D}$ un ensemble stable par $f$
+            \item $u_0 \in \mathcal{A}$
+        \end{soient}
+        Alors on peut définir de manière unique une suite $(u_n)_n$ vérifiant 
+        \[ \forall n \in \mathbb{N}, \, u_{n+1} = f(u_n) \] 
+        Cette suite est à valeurs dans $ \mathcal{A}$.
+    \end{theo}
+
+    \begin{prop}{}{}
+        \begin{soient}
+            \item $\f{R}$
+            \item $\mathcal{A}$ un sous-ensemble de $\mathcal{D}$ stable par $f$
+            \item $u_0 \in \mathcal{A}$
+            \item $(u_n)_n$ la suite définie par récurrence par $\forall n \in \mathbb{N}, \, u_{n+1} = f(u_n)$
+        \end{soient}
+        \begin{suppose}
+            \item la restriction de $f$ à $\mathcal{A}$ est monotone.
+        \end{suppose}
+        \begin{alors}
+            \item Si $f$ est croissante sur $\mathcal{A}$, la suite $(u_n)_n$ est monotone, de sens déterminé par le signe de $u_0-u_1$.
+            \item Si $f$ est décroissante sur $\mathcal{A}$, les suites $(u_{2n})_n$ et $(u_{2n+1})_n$ sont monotones de sens contraire.
+        \end{alors}
+    \end{prop}
+
+    \begin{omed}{Méthode}{myolive}
+        Pour exploiter le résultat, on essaie de déterminer un ensemble $\mathcal{A}$ stable par $f$ tel que $f \vert_{\mathcal{A}}$ est monotone et $u_0 \in \mathcal{A}$ (ou $u_n \in \mathcal{A}$ apcr).
+    \end{omed}
+
+    \begin{theo}{Correspondance entre la limite de la suite et celle de la fonction}{}
+        \begin{soient}
+            \item D une union d’intervalles de $\mathbb{R}$ non réduits à un point
+            \item $f \in \mathcal{F}(D, \mathbb{R})$
+            \item $\mathcal{A} \subseteq \mathcal{D}$ une partie stable par $f$
+            \item $u_0 \in \mathcal{A}$
+            \item $(u_n)_n$ la suite définie par $\forall n \in \mathbb{N}, \, u_{n+1} = f(u_n)$
+        \end{soient}
+        \begin{suppose}
+            \item $\lim\limits_{n \rightarrow +\infty} u_n = L \in \barr{\mathbb{R}}$
+            \item $\lim\limits_{x \rightarrow L} f(x) = L' \in \barr{\mathbb{R}}$
+        \end{suppose}
+        Alors \[ L = L' \]
+    \end{theo}
+
+    \begin{omed}{Méthode}{myred}
+        Après avoir montré que $(u_n)_n$ admet une limite $L$ (ou $\ell$ si $L \in \mathbb{R}$), on justifie que $\ell = f(\ell)$ ou $L = \lim\limits_{x \rightarrow L} f(x)$, puis on résout l’équation.
+    \end{omed}
+
+    \begin{exo}{}{}
+        Étudier la suite 
+        \[ \left\{ \begin{array}{ll}
+            u_0 \in [-1,1] \\
+            \forall n \in \mathbb{N}, \, u_{n+1} = \cos(u_n)
+        \end{array} \right. \]
+    \end{exo}
+
+    \begin{omed}{Résolution}{nfpgreen}
+    Tout d’abord, on cherche les points fixes du cosinus. Soit 
+    \[ g : \left\{ \begin{array}{l}
+    \intervalleFF{-1}{1} \rightarrow \mathbb{R} \\
+    x \mapsto x - \cos(x) \end{array} \right. \]
+    \begin{itemize}[label=$\diamond$]
+        \item $ \intervalleFF{-1}{1}$ est un intervalle
+        \item $g$ est continue sur $ \intervalleFF{-1}{1}$
+        \item $\forall x \in  \intervalleFF{-1}{1}, \, g'(x) = 1 + \sin(x) > 0$
+    \end{itemize}
+    Donc g est strictement croissante sur $ \intervalleFF{-1}{1}$. Par le théorème de la bijection monotone, 
+    \[ g \text{ est bijective de } \intervalleFF{-1}{1} \text{ sur } \intervalleFF{-1 - \cos(1)}{1 - \cos(1)} \]
+    Or $0 \in \intervalleFF{-1 - \cos(1)}{1 - \cos(1)}$, donc 
+    \[ \exists! \alpha \in  \intervalleFF{-1}{1}, \, g(\alpha) = 0 \esp{i.e.} \exists ! \alpha \in  \intervalleFF{-1}{1}, \, \cos(\alpha) = \alpha \]
+    \begin{itemize}[label=$\diamond$]
+    \item cos est continue sur $ \intervalleFF{-1}{1}$
+    \item cos est dérivable sur $ \intervalleOO{-1}{1}$
+    \item $\forall x \in \intervalleOO{-1}{1}, \, \left| \cos'(x) \right| = \left| \sin(x) \right| \leq \sin(1) < 1$
+    \end{itemize} 
+    Donc par l’inégalité des accroissements finis, 
+    \[ \forall (x,y) \in \intervalleFF{-1}{1}^2, \, \left| \cos(y) - \cos(x) \right| \leq \sin(1) \left| y-x \right| \]
+    En prenant $y = u_n$ et $x = \alpha$,
+    \[ \forall n \in \mathbb{N}, \,  \left| \cos(u_n) - \cos(\alpha) \right| \leq \sin(1) \left| u_n-\alpha \right| \]
+    d’où
+    \[ \forall n \in \mathbb{N}, \, \left| u_{n+1} - \alpha \right| \leq \sin(1) \left| u_n-\alpha \right| \]
+    Par récurrence immédiate, on trouve 
+    \[ \forall n \in \mathbb{N}, \left| u_{n} - \alpha \right| \leq \sin^n(1) \left| u_0-\alpha \right|\]
+    Or $\left| \sin(1) \right| < 1$, donc $ \sin^n(1) \left| u_0 - \alpha\right| \underset{n \rightarrow +\infty}{\longrightarrow} 0$.  Ainsi, 
+    \[ u_n \underset{n \rightarrow +\infty}{\longrightarrow} \alpha \]
+    \end{omed}
+
+\section{Suite de fonctions}
+
+\subsection{Modes de convergence}
+
+    \begin{defi}{Convergence simple (CS)}{}
+        Soit $f_n : I \rightarrow \mathbb{K}$.
+
+        On dit que $(f_n)$ \textbf{converge simplement} vers $f : I \rightarrow \mathbb{K}$ si 
+        \[ \forall x \in I, \left( f_n(x) \right) \limi{n}{+\infty} f(x) \] 
+        On note $(f_n) \rightarrow f$ simplement.
+    \end{defi}
+
+    \begin{defi}{Convergence uniforme (CU)}{}
+        Soient $f_n : I \rightarrow \mathbb{K}$ et $f : I \rightarrow \mathbb{K}$ une fonction bornée.
+        
+        On dit que $(f_n)$ \textbf{converge uniformément} vers $f$ si 
+        \[ \nnorm{\infty}{f_n - f} \limi{n}{+\infty} 0 \]
+    \end{defi}
+
+    \begin{prop}{}{}
+        Soit $f_n : I \rightarrow \mathbb{K}$ telle que $(f_n) \rightarrow f$ uniformément.
+
+        Alors $(f_n) \rightarrow f$ simplement.
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        Soit $x \in I$. 
+        \[ 0 \leq \abs{f_n(x) - f(x)} \leq \nnorm{\infty}{f_n - f} \limi{n}{+\infty} 0 \] 
+        Par encadrement, $(f_n(x)) \limi{n}{+\infty} f(x)$, \textit{i.e.} $(f_n) \rightarrow f$ simplement.
+    \end{demo}
+
+\subsection{Propriétés de la limite d’une suite de fonctions}
+
+    \begin{prop}{Continuité de la limite d’une suite de fonctions}{}
+        Soit $(f_n)$ une suite de fonctions $I \rightarrow \mathbb{K}$. 
+        \begin{suppose}
+            \item pour tout $n \in \mathbb{N}$, $f_n$ est continue
+            \item $(f_n)$ converge uniformément vers $f$ sur $I$ (ou sur tout $\intervalleFF{a}{b} \subset I$)
+        \end{suppose}
+        Alors $f$ est continue.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Soit $x_0 \in I$ et $\varepsilon > 0$.
+
+        Comme $(f_n)$ converge vers $f$ uniformément, il existe $N$ tel que 
+        \[ \forall n \geq N, \nnorm{\infty}{f_n - f} \leq \frac{\varepsilon}{3} \] 
+        Pour tout $x \in I$,
+        \begin{align*}
+            \abs{f(x) - f(x_0)} 
+            &\leq \abs{f(x) - f_N(x)} + \abs{f_N(x) - f_N(x_0)} + \abs{f_N(x_0) - f(x_0)} \\
+            &\leq 2 \nnorm{\infty}{f - f_N} + \abs{f_N(x) - f_N(x_0)} \\
+            &\leq 2 \frac{\varepsilon}{3} + \abs{f_N(x)} - f_N(x_0)
+        \end{align*}
+        Comme $f_N$ est continue en $x_0$, il existe $\delta > 0$ tel que 
+        \[ \forall x \in \intervalleOO{x_0 - \delta}{x_0 + \delta}, \abs{f_N(x) - f_N(x_0)} \leq \frac{\varepsilon}{3} \]   
+        D’où, si $x \in \intervalleOO{x_0 - \delta}{x_0 + \delta} \cap I$, on a 
+        \[ \abs{f(x) - f(x_0)} \leq \varepsilon \] 
+        D’où $f$ est continue sur $I$.
+    \end{demo}
+
+    \begin{prop}{Caractère $\mathcal{C}^1$ de la limite d’une suite de fonctions}{}
+        Soit $(f_n)$ une suite de fonctions $I \rightarrow \mathbb{K}$. 
+        \begin{suppose}
+            \item Pour tout $n \in \mathbb{N}, f_n \in \mathcal{C}^1(I,\mathbb{K})$
+            \item $(f_n)$ converge simplement vers $f$ sur $I$
+            \item $(f_n')$ converge uniformément vers $g$ sur $I$ (ou sur tout $\intervalleFF{a}{b} \subset I$)
+        \end{suppose}
+        Alors $f$ est de classe $\mathcal{C}^1(I,\mathbb{R})$.
+
+        De plus, sa dérivée $f' = g$, et $\forall \intervalleFF{a}{b} \subset I$, $(f_n) \rightarrow f$ uniformément sur $\intervalleFF{a}{b}$.
+
+        On a donc obtenu une permutation possible entre limite et dérivée.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Soient $a \in I$ et $x \in I$. Pour tout $n \in \mathbb{N}$, 
+        \begin{align*}
+            \abs{f_n(x) - f_n(a) - \int_{a}^{x} g(t)dt}
+            &= \int_{a}^{x} f_n'(t)dt - \int_{a}^{x} g(t) dt \\
+            &= \int_{a}^{x} (f_n'(t) - g(t))dt \\
+            &\leq \abs{x-a} \nnorm{\infty, \intervalleFF{a}{x}}{f_n'-g} \\
+            &\leq \abs{x-a} \underbrace{\nnorm{\infty, I}{f_n'-g}}_{\limi{n}{+\infty} 0 \text{ (c)}}
+        \end{align*}
+        Or, d’après la deuxième hypothèse, $f_n(x) \limi{n}{+\infty} f(x)$ et $f_n(a) \limi{n}{+\infty} f(a)$, donc, en faisant tendre $n$ vers $+\infty$,
+        \[ f(x) = f(a) + \int_{a}^{x} g(t)dt \] 
+        Donc $f$ est $\mathcal{C}^1$ sur $I$ et $f' = g$.
+
+        Soit $\intervalleFF{a}{b} \subset I$. Si $x \in \intervalleFF{a}{b}$, 
+        \begin{align*}
+            \abs{f_n(x) - f_n(a) - \int_{a}^{x} g(t)dt} 
+            &\leq (b-a) \nnorm{\infty}{f_n'-g} \\
+            & \quad \downarrow \quad f' = g \\
+            \abs{f_n(x) - f_n(a) - \int_{a}^{x} f'(t)dt} 
+            &\leq (b-a) \nnorm{\infty}{f_n'-g} \\
+            \abs{f_n(x) - f(x) - \left(f_n(a) - f(a)\right)} 
+            &\leq (b-a) \nnorm{\infty}{f_n'-g} \\
+            &\quad \downarrow \quad \text{Inégalité triangulaire} \\
+            \abs{f_n(x) - f(x)} 
+            & \leq \abs{f_n(a) - f(a)} + (b-a) \nnorm{\infty}{f' - g} \quad \text{indép. de } x \\
+            & \quad \downarrow \quad \text{Borne sup} \\
+            \nnorm{\infty, \intervalleFF{a}{b}}{f_n - f}
+            & \leq \underbrace{f_n(a) - f(a)}_{\limi{n}{+\infty} 0 \textit{ (b)}} + \underbrace{(b-a) \nnorm{\infty}{f_n' - g}}_{\limi{n}{+\infty} 0 \textit{ (c)}}
+        \end{align*}
+    \end{demo}
+
+
+
+    \begin{demo}{Démonstration}{myolive}
+        \begin{itemize}
+            \item Si $k=1$, la proposition précédente nous donne le résultat.
+            \item Supposons l’ordre $k$. Soit $(f_n)$ telle que 
+            \begin{enumerate}[label=\textit{(\alph*)}]
+                \item $\forall n \in \mathbb{N}, f_n \in \mathcal{C}^{k+1}$
+                \item $\forall i \in \intervalleEntier{0}{k}$, $(f_n)$ converge simplement 
+                \item $\left(f_n^{(k+1)}\right)$ converge uniformément 
+            \end{enumerate}
+            Alors $(f_n')$ vérifie les hypothèses à l’ordre $k$. On lui applique donc la proposition. Posons que $(f_n') \rightarrow g$ simplement sur $I$ et $\left(f_n'^{(k)}\right) = \left(f_n^{(k+1)}\right) \rightarrow h$ uniformément sur $I$. Ainsi, on obtient que $g$ est de classe $\mathcal{C}^k$  et $g^{(k)} = h$. De plus, $(f_n') \rightarrow g$ uniformément sur tout $\intervalleFF{a}{b} \subset I$. Donc on peut appliquer la proposition $\mathcal{C}^1$ à $f_n$. En notant $(f_n) \rightarrow f$ simplement sur $I$, on a $f \in \mathcal{C}^1$ avec $f' = g$. Donc $f \in \mathcal{C}^{k+1}$, avec $f^{(k+1)} = g^{(k)} = h$.
+        \end{itemize}
+    \end{demo}
+
+    \begin{prop}{Caractère $\mathcal{C}^k$}{}
+        Soit $(f_n)$ une suite de fonctions $I \rightarrow \mathbb{K}$ et $k \in \mathbb{N}^*$. 
+        \begin{suppose}
+            \item Pour tout $n \in \mathbb{N}, f_n \in \mathcal{C}^k(I,\mathbb{K})$
+            \item Pour tout $i \in \intervalleEntier{0}{k-1}$, $\left(f_n^{(i)}\right)$ converge simplement vers une application $g_i$
+            \item $\left(f_n^{(k)}\right)$ converge uniformément vers $h$ sur $I$.
+        \end{suppose}
+        Alors, si on note $f = g_0$, on a que \begin{enumerate}
+            \item $f$ est de classe $\mathcal{C}^k$ sur $I$.
+            \item Pour tout $i \in \intervalleEntier{1}{k-1}, g_i = f^{(i)}$ et $h = f^{(k)}$. 
+        \end{enumerate}
+        De plus, $\left(f_n^{(i)}\right) \rightarrow g_i$ uniformément sur tout $\intervalleFF{a}{b} \subset I$.
+    \end{prop}
+
+    \begin{prop}{Interversion entre limite et intégrale}{}
+        Soit $(f_n)$ une suite de fonctions $\intervalleFF{a}{b} \rightarrow \mathbb{K}$. 
+        \begin{suppose}
+            \item Pour tout $n \in \mathbb{N}, f_n \in \mathcal{C}^0$
+            \item $(f_n) \rightarrow f$ uniformément sur $\intervalleFF{a}{b}$
+        \end{suppose}
+        Alors \[ \lim_{n \rightarrow +\infty} \int_{a}^{b} f_n(t)dt = \int_{a}^{b} \underbrace{\lim_{n \rightarrow +\infty} f_n(t)}_{= f(t)} dt \] 
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Pour $n \in \mathbb{N}$, 
+        \begin{align*}
+            \abs{\int_{a}^{b} f(t)dt - \int_{a}^{b} f_n(t)dt} 
+            &= \abs{\int_{a}^{b} f(t) - f_n(t) dt } \\
+            &\leq (b-a) \nnorm{\infty}{f - f_n} \limi{n}{+\infty} 0
+        \end{align*}
+    \end{demo}
+
+    \begin{omed}{Exemple \textbf{\textcolor{black}{(Intégrale de Gauss)}}}{myolive}
+        Calculons l’intégrale de Gauss 
+        \[ \int_{0}^{+\infty} e^{-x^2} dx = \frac{\sqrt{\pi}}{2} \] 
+        \textit{\textcolor{myolive}{Rappel :}} On sait que si $\fonction{f_n}{\mathbb{R}_+}{\mathbb{R}}{t}{\sisi{\left(1-\frac{t}{n}\right)^n}{t \leq n}{0}{t \geq n}}$ et $f : t \mapsto e^{-t}$, on a 
+        \[ \nnorm{\infty}{f_n - f} \leq \frac{e^{-1}}{n} \]   
+        Posons $g_n(t) = f_n(t^2)$. Pour tout $n \in \mathbb{N}$, 
+        \begin{align*}
+            \abs{\int_{0}^{+\infty} e^{-t^2} - \int_{0}^{+\infty} g_n(t)dt} 
+            &= \abs{\int_{0}^{\sqrt{n}} e^{-t^2} - g_n(t)dt + \int_{\sqrt{n}}^{+\infty} e^{-t^2}dt} \\
+            &\leq \sqrt{n} \cdot \nnorm{\infty,\mathbb{R}_+}{e^{-t^2} -g_n(t)} + \int_{\sqrt{n}}^{+\infty} e^{-t^2}dt \\
+            &= \sqrt{n} \cdot \nnorm{\infty,\mathbb{R}_+}{e^{-t} - f_n(t)} + \int_{\sqrt{n}}^{+\infty} e^{-t^2}dt \\
+            &\leq \sqrt{n} \frac{e^{-1}}{n} + \int_{\sqrt{n}}^{+\infty} e^{-t^2}dt \\
+            &= \frac{e^{-1}}{\sqrt{n}} + \int_{\sqrt{n}}^{+\infty} e^{-t^2}dt \\
+            &\leq \frac{e^{-1}}{\sqrt{n}} \int_{\sqrt{n}}^{+\infty} t e^{-t^2}dt \\
+            &= \frac{e^{-1}}{n} + \frac{e^{-n}}{2} \limi{n}{+\infty} 0 
+        \end{align*}
+        Donc 
+        \[ \lim_{n \rightarrow +\infty} \int_{0}^{+\infty} g_n(t)dt = \int_{0}^{+\infty} e^{-t^2}dt \]   
+        Soit $n \in \mathbb{N}$.
+        \begin{align*}
+            \int_{0}^{+\infty} g_n(t)dt 
+            &= \int_{0}^{\sqrt{n}} \left(1 - \frac{t^2}{n}\right)^n dt \\
+            & \quad \downarrow \quad u = \frac{t}{\sqrt{n}} \\
+            &= \sqrt{n} \int_{0}^{1} \left(1-u^2\right)^n du \\
+            & \quad \downarrow \quad u = \cos(\theta) \\
+            &= \sqrt{n} \int_{\pi / 2}^{0} (1 -\cos^2(\theta))^n \cdot (-\sin(\theta))d\theta \\
+            &= \sqrt{n} \int_{0}^{\pi / 2} \sin^{2n+1} (\theta) d\theta \\
+            &= \sqrt{n} W_{2n+1}
+        \end{align*}
+        \textit{\textcolor{myolive}{Rappel :}} $W_{2n+1} = \frac{2n \cdots 2}{(2n+1) \cdots 3} = \frac{\left(2^n n!\right)^2}{(2n+1)!}$. 
+
+        Donc 
+        \[ \int_{0}^{+\infty} g_n(t)dt = \sqrt{n} \frac{\left(2^n n!\right)^2}{(2n+1)!} \] 
+        \textit{\textcolor{myolive}{Rappel :}} $n! \limit{\sim}{n}{+\infty} \sqrt{2\pi n} \left(\frac{n}{e}\right)^n$ 
+
+        Donc 
+        \begin{align*}
+            \int_{0}^{+\infty} g_n(t)dt  
+            &\sim \frac{\sqrt{n} 2^{2n} (2\pi n) \left(\frac{n}{e}\right)^{2n}}{\sqrt{2\pi(2n+1)} \left(\frac{2n+1}{e}\right)_{2n+1}} \\
+            &\sim \frac{2\pi}{\sqrt{2 \pi}} \frac{n^{3 / 2}}{(2n)^{1/2}} e \frac{(2n)^{2n}}{(2n+1)^{2n+1}} \\
+            &\sim e\sqrt{\pi} \cdot \frac{n}{2n+1} \cdot \left(\frac{2}{2n+1}\right)^{2n} \\
+            &\sim \frac{\sqrt{\pi}}{2} \cdot e \cdot \left(1 + \frac{1}{2n}\right)^{-2n} \\
+            &\sim \frac{\sqrt{\pi}}{2}
+        \end{align*}
+        Donc on a trouvé le résultat.
+    \end{omed}
+
+\section{Résultats classiques}
+
+\subsection{Suite de Fibonacci}
+
+    \subsubsection{Définition}
+
+    \begin{defi}{Suite de Fibonacci}{}
+        La suite de Fibonacci est une suite d’entiers définie par 
+        \[ \left\{ \begin{array}{l}
+            F_0 = 0 \\
+            F_1 = 1 \\
+            \forall n \in \mathbb{N}, F_{n+2} = F_{n+1} + F_{n}
+        \end{array} \right. \]
+        On appelle souvent $F_n$ le $n$-ème nombre de Fibonacci.
+    \end{defi}
+
+    \begin{prop}{Formule de Binet}{}
+        Soit $n \in \mathbb{N}$.
+
+        On pose $\varphi = \frac{1+\sqrt{5}}{2}$ et $\psi = \frac{1-\sqrt{5}}{2}$
+        
+        Alors \[ F_n = \frac{1}{\sqrt{5}}(\varphi^n - \psi^n) \]
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        La suite de Fibonacci est linéairement récurrente d’ordre 2 et d’équation caractéristique $r^2 - r - 1 = 0$ qui a pour solution $\varphi$ et $\psi$. Donc \lilbox{myolive}{$F_n \in \Vect(\varphi^n, \psi^n)$}. En utilisant les C.I., on trouve que $F_n = \alpha \varphi^n + \beta \psi^n$ où les deux constantes respectent \lilbox{myolive}{$\et{\alpha + \beta = 0}{\alpha \varphi + \beta \psi = 1}$}. On obtient après calcul le résultat.
+    \end{demo}
+
+    \begin{omed}{Remarque}{myolive}
+        On remarque que $F_n \underset{+\infty}{\sim} \frac{\varphi^n}{\sqrt{5}}$, ce qui permet d’en déduire que le taux de croissance des nombres de Fibonacci $\frac{F_{n+1}}{F_n}$ converge vers $\varphi$.
+    \end{omed}
+
+    \subsubsection{Quelques résultats}
+
+    \begin{prop}{Identité de Cassini}{}
+        Soit $n \in \mathbb{N}$.
+        
+        Alors \[ F_{n+2}F_{n} - F_{n+1}^2 = (-1)^n \]
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        On procède par récurrence, en initialisant à $n = 0$, sans difficulté.
+        
+        Pour l’hérédité, il suffit d’écrire que 
+        \begin{align*}
+            F_{n+3}F_{n+1} - F_{n+2}^2 &= (F_{n+2} + F_{n+1})F_{n+1} - (F_{n+1} + F_n) F_{n+2} \\
+            &= F_{n+1}^2 - F_{n+2}F_n \\
+            & \downarrow \mathcal{H}_n \\
+            &= -(-1)^n = (-1)^{n+1}
+        \end{align*}
+    \end{demo}
+
+    \begin{prop}{}{}
+        Soit $n \in \mathbb{N}^*$.
+        
+        Alors \[ \forall p \in \mathbb{N}, F_{n+p} = F_{n-1} F_p + F_n F_{p+1} \] 
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        Par récurrence double sur $n \in \mathbb{N}^*$.
+        \begin{itemize}
+            \item Pour $n = 1$, on doit montrer \[ F_{p+1} = \textcolor{myolive}{\underbrace{\textcolor{black}{F_0}}_{=0}} F_p + \textcolor{myolive}{\underbrace{\textcolor{black}{F_1}}_{=1}} F_{p+1} \] qui est donc vérifié.
+            \item Pour $n = 2$, on doit montrer \[ F_{p+2} = \textcolor{myolive}{\underbrace{\textcolor{black}{F_1}}_{=1}} F_p + \textcolor{myolive}{\underbrace{\textcolor{black}{F_2}}_{=1}} F_{p+1} \] qui est aussi vérifié.
+            \item Soit $n \geq 2$. On suppose l’égalité vraie pour $n$ et $n-1$. Alors 
+            \begin{align*}
+                F_{n+1+p} &= F_{n+p} + F_{n-1+p} \\
+                &= (F_{n-1} F_p + F_n F_{p+1}) + (F_{n-2}F_p + F_{n-1}F_{p+1}) \\
+                &= (F_{n-1} + F_{n-2})F_p + (F_n + F_{n-1})F_{p+1} \\
+                &= F_n F_p + F_{n+1}F_{p+1}
+            \end{align*}
+        \end{itemize}
+    \end{demo}
+
+\subsection{Lemme de Césaro}
+
+    \begin{lem}{Lemme de Cesàro}{Lemme de Cesaro}
+        Soit $(a_n)_{n \in \mathbb{N*}} \in \mathbb{K}^{\mathbb{N}}$.
+        
+        On suppose que la suite $(a_n)_{n \in \mathbb{N*}}$ converge vers $\ell \in \mathbb{K}$.
+        
+        Alors $(c_n)_{n \in \mathbb{N*}} = \left(\frac{1}{n} \sum\limits_{k=1}^n a_k\right)_{n \in \mathbb{N*}}$ converge également vers $\ell$. 
+        
+        Le résultat est conservé si la suite diverge.
+    \end{lem}
+
+    Un autre résultat est similaire à celui-ci :
+
+    \begin{lem}{De l’escalier}{}
+        Soit $(u_n)_{n \in \mathbb{N}} \in \mathbb{K}^{\mathbb{N}}$.
+        
+        On suppose que $u_n - u_{n-1} \underset{+\infty}{\longrightarrow} \ell$
+    
+        Alors $\frac{u_n}{\ell} \underset{+\infty}{\longrightarrow} \ell$
+    \end{lem}
+
+    \begin{demo}{Démonstration}{mybrown}
+        On commence par la preuve dans le cas de la convergence.
+
+        Soit $(a_n)_{n \in \mathbb{N*}} \in \mathbb{K}^{\mathbb{N}}$ une suite qui converge vers $\ell \in \mathbb{K}$.
+    \begin{enumerate}
+    \item Soit $\varepsilon > 0$. \newline
+    Comme $a_n \underset{+\infty}{\longrightarrow} \ell$,
+    \[ \exists N_1 \in \mathbb{N}^*, \forall n \geq N_1, \abs{u_n - \ell} \leq \frac{\varepsilon}{2} \] 
+    Soit $n \in \mathbb{N}$ tel que $n > N_1$. 
+    \begin{align*}
+        \abs{c_n - \ell} &= \abs{\frac{1}{n} \sum\limits_{k=1}^n (u_k-\ell)} \\
+        &\leq \frac{1}{n} \sum\limits_{k=1}^n \abs{u_k-\ell} \\
+        &= {\color{mypurple}\underbrace{{\color{black}\frac{1}{n} \sum\limits_{k=1}^{N_1} \abs{u_k-\ell}}}_{b_n}} + \frac{1}{n} \sum\limits_{k=N_1+1}^{n} \abs{u_k-\ell}
+    \end{align*}
+    \item Étant donné que $b_n \underset{+\infty}{\longrightarrow} 0$, 
+    \[ \exists N_2 \in \mathbb{N}^*, \forall n \geq N_2, b_n \leq \frac{\varepsilon}{2} \] 
+    \item Ainsi, en notant $N = \max(N_1,N_2)$, on obtient 
+    \begin{align*}
+        \forall n \geq N, \lilbox{mypurple}{$\abs{c_n - \ell}$} &\leq b_n + \frac{1}{n} \sum\limits_{k=N_1+1}^{n} \abs{u_k-\ell} \\
+        &\leq \frac{\varepsilon}{2} + \frac{n-N}{n} \frac{\varepsilon}{2} \leq \lilbox{mypurple}{$\varepsilon$}
+    \end{align*}
+    Donc $c_n \underset{+\infty}{\longrightarrow} \ell$
+    \end{enumerate}
+
+    Pour la preuve dans le cas de la divergence, on suppose que $a_n \underset{+\infty}{\longrightarrow} + \infty$. 
+    
+    Alors pour tout réel $A > 0$, il existe une suite $b_n \leq a_n$ telle que $b_n \underset{+\infty}{\longrightarrow} A$. La suite des moyennes de $(b_n)_n$ converge donc vers $A$, et minore celle des moyennes de $(a_n)_n$ qui est $c_n$. Ceci vaut pour tout $A > 0$, donc la suite $(c_n)_n$ a bien pour limite $+ \infty$.
+    \end{demo}

@@ -1,0 +1,621 @@
+%%-----PAGE-LAYOUT-----%%
+
+\usepackage[left=1cm, right=1cm, top=2cm, bottom=2cm, headheight=1cm, headsep=.5cm, footskip=1cm]{geometry}
+
+%-----USEFUL-PACKAGES-----%
+
+\usepackage{comment}
+\usepackage{xpatch}
+\usepackage[final]{microtype}
+
+%-----FONT------%
+
+\usepackage{fontspec}
+\usepackage{fourier-otf}
+
+%-----COULEURS-----%
+
+\usepackage{color}
+\usepackage[svgnames, dvipsnames]{xcolor} 
+
+\definecolor{myred}{rgb}{0.82, 0.1, 0.26}
+\definecolor{myblue}{rgb}{0.27, 0.42, 0.81}
+\definecolor{mynavyblue}{rgb}{0.0, 0.0, 0.5}
+\definecolor{mygreen}{rgb}{0.0, 0.26, 0.15}
+\definecolor{myyellow}{rgb}{1.0, 0.65, 0.0}
+\definecolor{mypink}{rgb}{0.65, 0.04, 0.37}
+\definecolor{myorange}{rgb}{0.91, 0.45, 0.32}
+\definecolor{myjade}{rgb}{0.0, 0.66, 0.42}
+\definecolor{mytea}{rgb}{0.96, 0.76, 0.76}
+\definecolor{mybrown}{rgb}{0.44, 0.26, 0.08}
+\definecolor{mypurple}{rgb}{0.2, 0.07, 0.48}
+\definecolor{myolive}{rgb}{0.33, 0.42, 0.18}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{RGB}{0.98, 0.98, 0.98}
+
+\definecolor{nfpgreen}{RGB}{52, 176, 109}
+\definecolor{nfpred}{RGB}{229, 0, 42}
+\definecolor{nfpyellow}{RGB}{255, 238, 0}
+\definecolor{nfppurple}{RGB}{150, 19, 130}
+\definecolor{nfppink}{RGB}{230, 0, 82}
+
+\definecolor{titlecolor}{rgb}{0,0,0}%{0.18, 0.08, 0.05}
+
+%-------------------%
+
+%-----TIKZ-SETTINGS-----%
+
+\usepackage{tikz}
+\usepackage{tkz-tab}
+\usetikzlibrary{patterns}
+\usetikzlibrary{decorations.fractals}
+\usetikzlibrary{decorations.text}  
+\usetikzlibrary{angles,quotes}
+\usetikzlibrary{shapes.multipart, arrows.meta, calc, tikzmark, positioning}
+\usetikzlibrary{shapes.geometric}
+
+%-COMMANDS-%
+
+\newcommand*{\annotate}[4]{
+    \begin{tikzpicture}[remember picture, overlay]
+        \draw[->, #4] ($(#1.south)+(0,-#3em)$) node[#4, yshift=-1.5mm]{\tiny #2} -- (#1.south);
+    \end{tikzpicture}
+}
+\newcommand*{\lilbox}[2]{
+    \tikz[baseline=(char.base)]{
+    \node[shape=rectangle, rounded corners, draw, #1, fill= #1!2, inner sep=4pt] (char) {#2}
+    } 
+}
+
+%-----FANCYHDR-SETTINGS-----%
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{authoraftertitle}
+
+\renewcommand{\headrule}{\color{titlecolor}{\hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+
+\fancyhead[C]{\color{black!70}  \textsc{\bfseries \thechapter \, \leftmark \, /  \, \nouppercase{\rightmark}}}
+\fancyhead[LE, RO]{\href{https://creativecommons.org/licenses/by-nc/4.0/}{\ccbync}}
+\fancyhead[RE, LO]{
+    \tikz[baseline=(char.base)]{
+    \node[shape=rectangle, fill=titlecolor, text=white, inner sep=4pt] (char) {\thepage}
+    } 
+    \hspace{-5.5pt}
+    }
+
+\fancyfoot[C]{}
+\fancyfoot[LE]{\color{black!70} \textsc{\bfseries PC}}
+\fancyfoot[RO]{\color{black!70} \textsc{\bfseries Lycée Hoche, \MyDate}}
+\fancyfoot[RE, LO]{\color{black!70} \textsc{\bfseries Olivier Allard}}
+
+\fancypagestyle{plain}{
+    \fancyhead[C]{}
+}
+
+%-------------------%
+
+%-----TITLES-&-TOC-----%
+
+\usepackage{titletoc}
+\usepackage[newparttoc]{titlesec}
+
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{2}
+
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\thesubsection}{\Alph{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{subsubsection}} 
+
+%--TOC--%
+
+\titlecontents{part}[0pt]
+    {\addvspace{15pt}\Large\bfseries}
+    {\tikz[baseline=(char.base)]{
+        \node[shape=rectangle, rounded corners, fill=black, text=white, inner sep=6pt] (char) {Partie \thecontentslabel}} \quad}
+    {}
+    {\hfill Page~\contentspage}
+    [\addvspace{10pt}]
+
+\titlecontents{chapter}[3pt]
+    {\addvspace{10pt}\large\bfseries}
+    {\tikz[baseline=(char.base)]{
+        \node[shape=rectangle, rounded corners, fill=black, text=white, inner sep=4pt] (char) {Chapitre \thecontentslabel}} \quad}
+    {}
+    {\hfill Page~\contentspage}
+    [\addvspace{5pt}]
+
+%--TITLES--%
+
+\titleformat{\part}[display]
+    {\Huge\bfseries\filcenter}
+    {\tikz[baseline=(char.base)]{
+        \node[shape=rectangle, rounded corners, fill=black, text=white, inner sep=8pt] (char) {Partie \thepart}} 
+        }
+    {0pt}
+    {}
+    {}
+
+\titleformat{\chapter}[display]
+    {\huge\bfseries\filcenter}
+    {\tikz[baseline=(char.base)]{
+        \node[shape=rectangle, rounded corners, fill=black, text=white, inner sep=6pt] (char) {Chapitre \thechapter}}}
+    {0pt} 
+    {}
+    {}
+\titlespacing*{\chapter}{0mm}{6mm}{18mm}
+
+\titleformat{\section}
+  {\Large\bfseries\scshape\color{titlecolor}} 
+  {\tikz[baseline=(char.base)]{
+    \node[text=white, inner sep=.5em] (char) {\thesection};
+    \begin{scope}
+        \shade[rounded corners=.5em, left color=titlecolor!30, right color= titlecolor, overlay, remember picture] ($(char.east)+(-5em,-.8em)$) rectangle ++(5.1em,1.6em);
+    \end{scope}
+    \node[text=white, inner sep=.5em] (char) {\thesection};}}
+  {.5em}
+  {}
+  {}
+\titlespacing*{\section}{0mm}{8mm}{8mm}
+
+\titleformat{\subsection}
+  {\large\bfseries\scshape\color{titlecolor}} 
+  {\tikz[baseline=(char.base)]{
+    \node[text=white, inner sep=.5em] (char) {\thesubsection};
+    \begin{scope}
+        \shade[rounded corners=.5em, left color=titlecolor!30, right color= titlecolor, overlay, remember picture] ($(char.east)+(-4em,-.8em)$) rectangle ++(4.1em,1.6em);
+    \end{scope}
+    \node[text=white, inner sep=.5em] (char) {\thesubsection};}}
+  {.5em}
+  {}
+  {}
+\titlespacing*{\subsection}{0mm}{6mm}{6mm}
+
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\scshape\color{titlecolor}} 
+  {\tikz[baseline=(char.base)]{
+    \node[text=white, inner sep=.5em] (char) {\thesubsubsection};
+    \begin{scope}
+        \shade[rounded corners=.5em, left color=titlecolor!30, right color= titlecolor, overlay, remember picture] ($(char.east)+(-3em,-.8em)$) rectangle ++(3.1em,1.6em);
+    \end{scope}
+    \node[text=white, inner sep=.5em] (char) {\thesubsubsection};}}
+  {.5em}
+  {}
+  {}
+\titlespacing*{\subsubsection}{0mm}{4mm}{4mm}
+
+\newcommand*\customchapter[2]{
+  \chapter{#1}
+  \vfill
+  \chaptertoc
+  \vfill
+  \begin{center}
+    \large\bfseries But du chapitre
+  \end{center}
+  \textit{#2}
+  \vfill
+  \newpage
+}
+
+%------ENUMITEM-SETTINGS-----%
+
+\usepackage{enumitem}
+\setenumerate{topsep=1pt, itemsep=1pt, parsep=0pt, partopsep=0pt} 
+\setitemize{topsep=1pt, itemsep=1pt, parsep=0pt, partopsep=0pt} 
+
+\setlist[enumerate,1]{label=\textbf{(\roman*)}}
+\setlist[enumerate,2]{label=\textit{(\alph*)}}
+\setlist[enumerate,3]{label=(\arabic*)}
+
+\setlist[itemize,1]{label=$\star$}
+\setlist[itemize,2]{label=$\to$}
+\setlist[itemize,3]{label=$\circ$}
+
+\setlength{\columnseprule}{0pt}
+\setlength{\columnsep}{0.5cm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 0.5pt minus 0.5pt}
+
+%---------------------%
+
+%-----TCB-----%
+
+\usepackage[most]{tcolorbox}
+
+%--SET--%
+
+\tcbset{
+    enhanced, breakable,
+    left=1.5mm, right=1.5mm, top=1.5mm, bottom=1.5mm, arc=1.5mm,
+    leftrule=.2mm, rightrule=.2mm, toprule=.2mm, bottomrule=.2mm, titlerule=.2mm,
+    fonttitle=\bfseries,
+    theorem/.style={
+        theorem style = break,
+        drop small lifted shadow,
+        oversize,
+        theorem hanging indent=1cm,
+        lower separated=false,
+        description color=black, description font=\bfseries, description delimiters parenthesis,
+        terminator sign none,
+        separator sign={\quad}
+    }
+}
+
+%--RD--%
+
+\newcommand{\chaptertoc}{
+    \begin{tcolorbox}[enhanced, oversize, top=3mm, title=Plan du chapitre,
+        colframe=titlecolor,colback=titlecolor!2,colbacktitle=titlecolor!2,
+        fonttitle=\bfseries, coltitle=titlecolor, attach boxed title to top center=
+        {yshift=-0.25mm-\tcboxedtitleheight/2,yshifttext=2mm-\tcboxedtitleheight/2},
+        boxed title style={boxrule=0.5mm,
+        frame code={ \path[tcb fill frame] ([xshift=-4mm]frame.west)
+        -- (frame.north west) -- (frame.north east) -- ([xshift=4mm]frame.east)
+        -- (frame.south east) -- (frame.south west) -- cycle; },
+        interior code={ \path[tcb fill interior] ([xshift=-2mm]interior.west)
+        -- (interior.north west) -- (interior.north east)
+        -- ([xshift=2mm]interior.east) -- (interior.south east) -- (interior.south west)
+        -- cycle;} }, drop small lifted shadow]
+        \startcontents[chapters]
+        \printcontents[chapters]{}{1}{}{}
+    \end{tcolorbox}
+}
+
+%--THEOREMS--%
+
+\newcounter{theoremcounter}
+\newcounter{propositioncounter}
+\newcounter{corollarycounter}
+\newcounter{lemmacounter}
+\newcounter{exercicecounter}
+\newcounter{definitioncounter}
+\newcounter{definitiontheoremcounter}
+
+\newtcbtheorem[use counter=theoremcounter]{theo}{Théorème}{%
+    drop small lifted shadow,
+    oversize,
+    attach boxed title to top left = {xshift = 1cm, yshift=-\tcboxedtitleheight/2, yshifttext=-5mm},
+    boxed title style={
+        frame code={ 
+            \draw[myred, line width = .2mm, tcb fill interior] (frame.west) -- ($(frame.south west)+(2mm,0)$) -- ($(frame.south east)+(-2mm,0)$) -- (frame.east) -- ($(frame.north east)+(-2mm,0)$) -- ($(frame.north west)+(2mm,0)$) -- cycle;
+            \draw[myred, fill=myred!2, line width=.2mm] (frame.west) circle (1mm) ;
+            \draw[myred, fill=myred!2, line width=.2mm] (frame.east) circle (1mm) ;
+        },
+        interior code={}},
+    description color=black, description font=\bfseries, description delimiters parenthesis, terminator sign none,
+    separator sign={\quad},
+    colframe=myred, colback=myred!2, coltitle=myred, colbacktitle=myred!2,
+    }{theo}
+\newtcbtheorem[use counter=propositioncounter]{prop}{\hspace*{5mm}Proposition}{%
+    theorem,
+    colframe=myolive, colback=myolive!2, coltitle=myolive, colbacktitle = myolive!2, 
+    overlay unbroken and first={\draw[myolive, fill=myolive!2, line width=.2mm] ($(frame.north west)+(.12mm,-4.5mm)$) circle (1mm);}
+    }{prop}
+\NewTcbTheorem[use counter=corollarycounter]{coro}{\hspace*{5mm}Corollaire}{%
+    theorem,
+    colframe=myorange, colback=myorange!2, coltitle=myorange, colbacktitle = myorange!2, 
+    overlay unbroken and first={\draw[myorange, fill=myorange!2, line width=.2mm] ($(frame.north west)+(.12mm,-4.5mm)$) circle (1mm);}
+    }{coro}
+\NewTcbTheorem[use counter= lemmacounter]{lem}{\hspace*{5mm}Lemme}{%
+    theorem,
+    colframe=mybrown, colback=mybrown!2, coltitle=mybrown, colbacktitle = mybrown!2,
+    overlay unbroken and first={\draw[mybrown, fill=mybrown!2, line width=.2mm] ($(frame.north west)+(.12mm,-4.5mm)$) circle (1mm);} 
+    }{lem}
+\newtcbtheorem[use counter=exercicecounter]{exo}{\hspace*{5mm}Exercice}{%
+    theorem,
+    colframe=nfpgreen, colback=nfpgreen!2, coltitle=nfpgreen, colbacktitle = nfpgreen!2,
+    overlay unbroken and first={\draw[nfpgreen, fill=nfpgreen!2, line width=.2mm] ($(frame.north west)+(.12mm,-4.5mm)$) circle (1mm);} 
+    }{exo}
+\newtcbtheorem[use counter= definitioncounter]{defi}{\hspace*{5mm}Définition}{%
+    theorem,
+    colframe=myyellow, colback=myyellow!2, coltitle=myyellow,  colbacktitle=myyellow!2, 
+    overlay unbroken and first={\draw[myyellow, fill=myyellow!2, line width=.2mm] ($(frame.north west)+(.12mm,-4.5mm)$) circle (1mm);}
+    }{defi}
+\newtcbtheorem[use counter=definitiontheoremcounter]{defitheo}{\hspace*{5mm}Définition-Théorème}{%
+    theorem,
+    colframe=mypurple, colback=mypurple!2, coltitle=mypurple, colbacktitle = mypurple!2,
+    overlay unbroken and first={\draw[mypurple, fill=mypurple!2, line width=.2mm] ($(frame.north west)+(.12mm,-4.5mm)$) circle (1mm);} 
+    }{defitheo}
+
+\NewDocumentEnvironment{omed}{mm}{
+    \begin{tcolorbox}[
+        oversize,
+        frame hidden,
+        detach title, before upper={\tcbtitle\quad},
+        title=#1,
+        colframe=white, colback=white, coltitle=#2, colbacktitle = white,
+    ]
+}{
+    \end{tcolorbox}
+}
+
+\NewDocumentEnvironment{demo}{mm}{
+    \begin{tcolorbox}[
+        left skip = .5cm, 
+        frame hidden,
+        detach title, before upper={\tcbtitle\quad},
+        title=#1,
+        colframe=white, colback=white, coltitle=#2, colbacktitle = white,
+    ]
+}{
+    \null\hfill{\textcolor{#2}{\ding{113}}}
+    \end{tcolorbox}
+}
+
+%-------------------%
+
+%---TBLR SETTINGS---%
+
+\usepackage{tabularray}
+
+%%-----PACKAGES-----%%
+
+\usepackage{polyglossia}
+\setdefaultlanguage[frenchpart=false]{french}
+\usepackage{setspace}   
+\usepackage{amsmath} 
+\everymath{\displaystyle}
+\allowdisplaybreaks
+\usepackage{graphicx}
+\usepackage{rotating}
+\usepackage{wrapfig}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{multicol}
+\usepackage{lipsum}  
+\usepackage{fancybox}
+\usepackage{fancyvrb}
+\usepackage{framed}
+\usepackage{array}
+\setcounter{MaxMatrixCols}{20}
+\usepackage{centernot}
+\usepackage{pstricks}
+\usepackage[european, straightvoltages, RPvoltages, cute inductor]{circuitikz}
+\usepackage{stmaryrd}
+\usepackage{siunitx}
+\sisetup{
+     detect-all,
+     output-decimal-marker={,},
+     group-minimum-digits = 3,
+     group-separator={~},
+     number-unit-separator={~},
+     inter-unit-product={~},
+     list-separator = {, },
+     list-final-separator = { et },
+     range-phrase = --,
+     separate-uncertainty = true,
+     multi-part-units = single,
+     list-units = single,
+     range-units = single
+}
+\usepackage{arydshln}
+\setlength{\dashlinedash}{0.2pt}
+\setlength{\dashlinegap}{1.5pt}
+\usepackage{pdfpages}
+\usepackage{verbatim}
+\usepackage{float}
+\usepackage[normalem]{ulem}
+\usepackage{soul}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{ifthen}
+\usepackage{listings}
+\lstdefinestyle{mystyle}{
+    numberstyle=\tiny,
+    basicstyle=\sffamily\footnotesize,
+    breakatwhitespace=true,         
+    breaklines=true,                 
+    captionpos=t,                  
+    keepspaces=true,                                 
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,  
+    numbers=left,                    
+    numbersep=2pt         
+}
+\lstset{style=mystyle}
+\usepackage{xparse}
+\usepackage{pdflscape}
+\usepackage{JeuxCartes}
+\usepackage{makecell}
+\usepackage{booktabs}
+\usepackage{ccicons}
+\usepackage{upgreek}
+
+%-----HYPERREF-SETTINS-----%
+
+\usepackage{hyperref} 
+\hypersetup{%
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=mynavyblue,
+    filecolor=mypurple,
+    pdfauthor=Olivier Allard
+    }
+
+%-----ENVIRONNEMENTS-----%
+
+\newenvironment{soient}{%
+    Soient
+    \begin{itemize}[label=$\circ$]
+    }
+    {
+    \end{itemize}
+    }
+\newenvironment{soit}{%
+    Soit
+    \begin{itemize}[label=$\circ$]
+        \begin{multicols}{2}
+    }
+    {           
+        \end{multicols}
+    \end{itemize}
+    }
+\newenvironment{suppose}{%
+    On suppose que
+    \begin{enumerate}[label=\textit{(\alph*)}]
+    }
+    {
+    \end{enumerate}
+    }
+\newenvironment{alors}{%
+    Alors
+    \begin{enumerate}
+    }
+    {
+    \end{enumerate}
+    }
+
+%-------------------%
+
+%%-----COMMANDS-----%%
+
+\newcommand*\f[1]{f \in \mathcal{F}(\mathcal{D},\mathbb{#1})}
+\newcommand*\g[1]{g \in \mathcal{F}(\mathcal{D'},\mathbb{#1})}
+\newcommand*\un{(u_n)_n \in \mathbb{K}^{\mathbb{N}}}
+\newcommand*\mk[1]{\mathcal{M}_{#1}(\mathbb{K})}
+\newcommand*\mat[2]{\text{Mat}_{#1}\left(#2\right)}
+\newcommand*\pass[2]{P_{#1 \rightarrow #2}}
+\newcommand*\esp[1]{\quad \text{#1} \quad}
+\newcommand*\eqlabel[1]{\quad (\text{#1})}
+\newcommand*\modulo[1]{\phantom{o} \left[#1\right]}
+\newcommand*\eqmodulo[3]{#1 \equiv #2 \phantom{o} \left[#3\right]}
+
+\newcommand*{\cita}[2]{\textit{« #1 »} (\textbf{\textsc{p}}. \oldstylenums{text})}
+
+%--BRACES--%
+
+\newcommand*\application[4]{%
+    \left\{ \begin{array}{ccl} 
+      #1 & \longrightarrow & #2 \\
+      #3 & \longmapsto & #4 
+    \end{array} \right. \kern-\nulldelimiterspace
+    }
+\newcommand*\fonction[5]{%
+    #1 : \left\{ \begin{array}{ccl} 
+      #2 & \longrightarrow & #3 \\
+      #4 & \longmapsto & #5 
+    \end{array} \right. \kern-\nulldelimiterspace
+    }
+\newcommand*\sisi[4]{%
+    \left\{ \begin{array}{cl}
+        #1 & \text{si } #2 \\
+        #3 & \text{si } #4 
+    \end{array} \right. \kern-\nulldelimiterspace
+}   
+\newcommand*\sisinon[3]{%
+    \left\{ \begin{array}{cl}
+        #1 & \text{si } #2 \\
+        #3 & \text{sinon}  
+    \end{array} \right. \kern-\nulldelimiterspace
+}   
+\newcommand*\et[2]{
+    \left\{ \begin{array}{l}
+        #1  \\
+        #2  
+    \end{array} \right. \kern-\nulldelimiterspace
+}
+\newcommand*\ou[2]{
+    \left| \begin{array}{l}
+        #1  \\
+        #2  
+    \end{array} \right. \kern-\nulldelimiterspace
+}
+\newcommand*\textou[2]{
+    \left| \begin{array}{l}
+        \text{#1}  \\
+        \text{#2}  
+    \end{array} \right. \kern-\nulldelimiterspace
+}
+%--DELIMITERS AND OPERATORS--%
+
+\newcommand*\tq{\, \big| \,}
+\newcommand*\intervalleOO[2]{\left] #1 \, , #2 \right[}
+\newcommand*\intervalleFF[2]{\left[ #1 \, , #2 \right]}
+\newcommand*\intervalleOF[2]{\left] #1 \, , #2 \right]}
+\newcommand*\intervalleFO[2]{\left[ #1 \, , #2 \right[}
+\newcommand*\intervalleEntier[2]{\left\llbracket #1 \, , #2 \right\rrbracket}
+\newcommand*\ent[1]{\left\lfloor #1 \right\rfloor}
+\newcommand*\fract[1]{\left\lceil #1 \right\rceil}
+\newcommand*\enstq[2]{\left\{ #1 \, , \, #2 \right\}}
+\newcommand*\enspr[2]{\left\{#1 \, \middle| \, #2\right\}}
+\newcommand*\spr[2]{\left<\,#1\,\middle|\,#2\,\right>}
+\newcommand*\abs[1]{\left\lvert #1\right\rvert}
+\newcommand*\norm[1]{\left\lVert\,#1\,\right\rVert}
+\newcommand*\normm[1]{\mathcal{N}(#1)}
+\newcommand*\nnorm[2]{\left\lVert\,#2\,\right\rVert_{#1}}
+\newcommand*\vect[1]{\overrightarrow{#1}}
+\newcommand*\barr[1]{\overline{#1}}
+\newcommand*\vbar{\, \middle| \,}
+\newcommand*\independent{\perp\mkern-9.5mu\perp}
+\newcommand*\notindependent{\centernot{\independent}}
+\newcommand*\limi[2]{\underset{#1 \rightarrow #2}{\longrightarrow}}
+\newcommand*\limit[3]{\underset{#2 \rightarrow #3}{#1}}
+\newcommand*\comp[4]{#1_{#2 \rightarrow #3} \left(#4\right)}
+\newcommand*\dpart[2]{\frac{\partial #1}{\partial #2}}
+
+%--MATHOPERATORS--%
+
+\DeclareMathOperator{\card}{Card}
+\DeclareMathOperator{\Ima}{Im}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Vect}{Vect}
+\DeclareMathOperator{\rg}{rg}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Det}{Det}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\dist}{d}
+\let\det\relax
+\DeclareMathOperator{\det}{det}
+\DeclareMathOperator{\dive}{div}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\Diag}{Diag}
+\DeclareMathOperator{\Sp}{Sp}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\VA}{VA}
+\DeclareMathOperator{\CM}{CM}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\Ort}{O}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\cste}{cste}
+\DeclareMathOperator{\rot}{rot}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\pgcd}{pgcd}
+\DeclareMathOperator{\ppcm}{ppcm}
+\DeclareMathOperator{\Com}{Com}
+\DeclareMathOperator{\Sym}{S}
+
+%--RESTRICTIONS--%
+
+\newcommand\restr[2]{{
+  \left.\kern-\nulldelimiterspace
+  #1
+  \vphantom{\big|}
+  \right|_{#2}
+  }}
+\newcommand\corestr[2]{{
+    \left.\kern-\nulldelimiterspace
+    #1
+    \vphantom{\big|}
+    \right|^{#2}
+    }}
+\newcommand\restrcorestr[3]{{
+    \left.\kern-\nulldelimiterspace
+    #1
+    \vphantom{\big|}
+    \right|_{#2}^{#3}
+    }}
+
+%--------------------%
+
+

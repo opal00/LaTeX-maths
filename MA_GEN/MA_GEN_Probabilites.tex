@@ -1,0 +1,1146 @@
+\customchapter{Probabilités}{Comprendre les notions d’expériences et d’univers, pour que, associées aux dénombrement, elles puissent former un outil puissant du calcul de probabilités.}
+
+\section{Fondements des probabilités}
+
+\subsection{Dénombrement}
+
+    \subsubsection{Cardinal d’un ensemble}
+
+    \begin{defi}{Cardinal}{}
+        Soit $\mathcal{E}$ un ensemble fini non vide.
+
+        Le \textbf{cardinal} de $\mathcal{E}$ (ou nombre d’éléments de $\mathcal{E}$) est l’unique entier $n \in \mathbb{N}^*$ tel que $\mathcal{E}$ soit en bijection avec $\intervalleEntier{1}{n}$. 
+
+        On le note $\card(\mathcal{E})$ (ou $\abs{\mathcal{E}}$, $\sharp \mathcal{E}$). 
+
+        On convient que $\card(\emptyset) = 0$.
+    \end{defi}
+
+    \begin{lem}{Lemme des tiroirs}{}
+        \begin{soient}
+            \item $\mathcal{E}$ et $\mathcal{F}$ deux ensembles finis
+            \item $\varphi$ une application de $\mathcal{E}$ dans $\mathcal{F}$
+        \end{soient}
+        On suppose que $\card(\mathcal{E}) > \card(\mathcal{F})$.
+
+        Alors $\varphi$ n’est pas injective.
+    \end{lem}
+
+    \begin{prop}{Cardinal d’une union disjointe, ou principe d’addition}{}
+        Soient $\mathcal{E}$ et $\mathcal{F}$ deux ensembles finis. 
+
+        On suppose que $\mathcal{E} \cap \mathcal{F} = \emptyset$.
+
+        Alors 
+        \[ \et{\mathcal{E} \cup \mathcal{F} \text{ est fini}}{\card(\mathcal{E} \cup \mathcal{F}) = \card(\mathcal{E}) + \card(\mathcal{F})} \]
+    \end{prop}
+
+    \begin{coro}{Cardinal d’un complémentaire, ou principe de soustraction}{}
+        Soient $\mathcal{E}$ un ensemble fini, et $\mathcal{F} \subset \mathcal{E}$.
+    
+        Alors 
+        \[ \et{\mathcal{F} \cup \mathcal{E} \backslash \mathcal{F} \text{ sont finis}}{\card(\mathcal{E} \backslash \mathcal{F}) = \card(\mathcal{E}) - \card(\mathcal{F})} \]
+    \end{coro}
+
+    \begin{coro}{Cardinal d’une union quelconque}{}
+        Soient $\mathcal{E}$ et $\mathcal{F}$ deux ensembles finis. 
+    
+        Alors 
+        \[ \et{\mathcal{F} \cap \mathcal{E} \text{ est fini}}{\card(\mathcal{E} \cup \mathcal{F}) = \card(\mathcal{E}) + \card(\mathcal{F}) - \card(\mathcal{E} \cap \mathcal{F})} \]
+    \end{coro}
+
+    \begin{coro}{Principe de partition}{}
+        \begin{soient}
+            \item $\mathcal{E}$ un ensemble non-vide
+            \item $\mathcal{F}_1, \ldots, \mathcal{F}_r$ une partition de $\mathcal{E}$
+        \end{soient}
+        On suppose que $\forall i \in \intervalleEntier{1}{r}, \, \mathcal{F}_i \text{ est fini}$
+
+        Alors \[ \et{\mathcal{E} \text{ est fini}}{\card(\mathcal{E}) = \sum\limits_{i=1}^n \card(\mathcal{F}_i)} \]
+    \end{coro}
+
+    \begin{prop}{Principe des bergers}{}
+        \begin{soient}
+            \item $\mathcal{E}$ et $\mathcal{F}$ deux ensembles
+            \item $f$ une application de $\mathcal{E}$ dans $\mathcal{F}$
+        \end{soient}
+        \begin{suppose}
+            \item $\mathcal{F}$ est fini
+            \item $\exists \, r \in \mathbb{N}^*, \, \forall y \in \mathcal{F}, \, \card(f^{-1}(y)) = r$
+        \end{suppose}
+        Alors 
+        \[ \et{\mathcal{E} \text{ est fini}}{\card(\mathcal{E}) = r \card(\mathcal{F})} \]
+    \end{prop}
+
+    \begin{omed}{Remarque \textcolor{black}{(Principe de division)}}{myolive}
+        Si $\mathcal{E}$ est fini, $f(\mathcal{E})$ l’est également. Le résultat reste donc vrai en remplaçant l’hypothèse « $\mathcal{F}$ est fini » par « $\mathcal{E}$ est fini » et la conclusion par \[ \et{\mathcal{F} \text{ est fini}}{\card(\mathcal{F}) =  \frac{1}{r} \card(\mathcal{E})} \]
+    \end{omed}
+
+    \begin{prop}{Cardinal d’un produit cartésien}{}
+        \begin{soient}
+            \item $n \in \mathbb{N} \backslash \{ 0,1 \}$
+            \item $\mathcal{E}_1,\ldots,\mathcal{E}_n$ des ensembles finis
+        \end{soient}
+        \begin{alors}
+            \item $\mathcal{E}_1 \times \ldots \times \mathcal{E}_n$ est fini.
+            \item $\card(\mathcal{E}_1 \times \ldots \times \mathcal{E}_n) = \card(\mathcal{E}_1) \times \ldots \times \card(\mathcal{E}_n)$
+        \end{alors}
+    \end{prop}
+
+    \begin{omed}{Méthode \textcolor{black}{(Principe de décomposition ou de multiplication)}}{myolive}
+        Lorsqu’une expérience comporte $p$ étapes, et que la $i$-ème étape peut se déroules de $n_i$ manières, alors le nombre total de possibilités est $n_1 \times \ldots \times n_p$.
+    \end{omed}
+
+    \subsubsection{Outils de dénombrement}
+
+    \begin{defi}{$p$-liste}{}
+        Soient $\mathcal{E}$ un ensemble non-vide, et $p \in \mathbb{N}^*$.
+
+        Une liste à $p$ éléments ou \textbf{$p$-liste} de $\mathcal{E}$ est un $p$-uplet $(x_1,\ldots,x_p)$ d’éléments de $\mathcal{E}$.
+    \end{defi}
+
+    \begin{theo}{Ensemble des $p$-listes}{}
+        Soient $\mathcal{E}$ un ensemble fini non vide et $p \in \mathbb{N}^*$.
+    
+        Alors l’ensemble des $p$-listes sur $\mathcal{E}$ est de cardinal $\card(\mathcal{E})^p$.
+    \end{theo}
+
+    \begin{defi}{Arrangement}{}
+        Soient $\mathcal{E}$ un ensemble non-vide, et $p \in \mathbb{N}^*$.
+
+        Un \textbf{arrangement à $p$ éléments} de $\mathcal{E}$ est un $p$-uplet $(x_1,\ldots,x_p)$ d’éléments de $\mathcal{E}$ sans répétition.
+    \end{defi}
+
+    \begin{theo}{Ensemble des arrangements}{}
+        Soient $\mathcal{E}$ un ensemble non-vide de cardinal $n$, et $p \in \intervalleEntier{1}{n}$.
+
+        Alors l’ensemble des arrangements à $p$ éléments de $\mathcal{E}$ est de cardinal $A_n^p = \frac{n!}{(n-p)!}$
+    \end{theo}
+
+    \begin{defi}{Combinaison}{}
+        Soient $\mathcal{E}$ un ensemble non-vide, et $p \in \mathbb{N}^*$.
+
+        On appelle \textbf{combinaison à $p$ éléments} de $\mathcal{E}$ toute partie de $\mathcal{E}$ à $p$ éléments.
+    \end{defi}
+
+    \begin{theo}{Ensemble des combinaisons}{}
+        Soient $\mathcal{E}$ un ensemble non-vide de cardinal $n$, et $p \in \intervalleEntier{1}{n}$.
+
+        Alors le nombre de combinaisons à $p$ éléments de $\mathcal{E}$ est  $C_n^p = \binom{n}{p} = \frac{n!}{p!(n-p)!}$
+    \end{theo}
+
+    \subsubsection{Dénombrement d’applications}
+
+    \begin{theo}{}{}
+        Soient $\mathcal{E}$ et $\mathcal{F}$ deux ensembles finis non vides.
+
+        Alors 
+        \[ \et{\mathcal{A}(\mathcal{E},\mathcal{F}) \text{ est fini}}{\card(\mathcal{A}(\mathcal{E}),\mathcal{F}) = \card(\mathcal{F})^{\card(\mathcal{E})}} \]
+    \end{theo}
+
+    \begin{coro}{}{}
+        \begin{soient}
+            \item $\mathcal{E}$ un ensemble fini non-vide de cardinal $n$
+            \item $\mathcal{P}(\mathcal{E})$ l’ensemble des parties de $\mathcal{E}$
+        \end{soient}
+        Alors 
+        \[ \et{\mathcal{P}(\mathcal{E}) \text{ est fini}}{\card(\mathcal{P}(\mathcal{E})) = 2^{\card(\mathcal{E})}} \]
+    \end{coro}
+
+    \begin{prop}{}{}
+        Soient $\mathcal{E}$ et $\mathcal{F}$ deux ensembles finis et non vides de cardinaux respectifs $n$ et $p$.
+
+        On suppose que $n \leq p$.
+
+        Alors l’ensemble des applications injectives de $\mathcal{E}$ dans $\mathcal{F}$ est fini de cardinal $A_p^n = \frac{p!}{(p-n)!}$.
+    \end{prop}
+
+    \begin{coro}{}{}
+        Soient $\mathcal{E}$ et $\mathcal{F}$ deux ensembles finis et non vides de même cardinal $n$.
+
+        Alors l’ensemble des bijections de $\mathcal{E}$ dans $\mathcal{F}$ est fini de cardinal $n!$.
+    \end{coro}
+
+    \subsubsection{Démonstrations combinatoires}
+
+    \begin{prop}{Démonstrations combinatoires}{}
+        Soit $n \in \mathbb{N}$.
+
+        \begin{alors}
+            \item Pour $p \in \intervalleEntier{0}{n}, \, \binom{n}{p} = \binom{n}{n-p}$
+            \item On suppose que $n \geq 2$ et $p \in \intervalleEntier{1}{n-1}$, \[ \binom{n}{p} = \binom{n-1}{p-1} + \binom{n-1}{p} \quad \text{(Triangle de Pascal)} \]
+            \item $\sum\limits_{p=0}^n \binom{n}{p} = 2^n$
+            \item $\forall (a,b) \in \mathbb{C}^2, \, (a+b)^n = \sum\limits_{k=0}^n \binom{n}{k} a^k b^{n-k}$
+            \item Pour $p,q \in \mathbb{N}$ et $n \in \intervalleEntier{0}{p+q}$, $\binom{p+q}{n} = \sum\limits_{k=0}^n \binom{p}{k} \binom{q}{n-k}$
+        \end{alors}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Raisonner sur l’interprétation ensembliste, \textit{e.g.} pour \textbf{(v)} :
+
+        D’une part, considérons un ensemble $\mathcal{E}$ de cardinal $p+q$. Il y a $\binom{p+q}{n}$ sous-ensembles de $\mathcal{E}$ à $n$ éléments. 
+
+        D’autre part, considérons deux ensembles $\mathcal{F}$ et $\mathcal{G}$ de cardinaux respectifs $p$ et $q$. Pour dénombrer le nombre de sous-ensembles possibles à $n$ éléments choisis parmi les deux ensembles, 
+        \begin{itemize}
+            \item On choisit $k$ éléments dans le premier ensemble, il y a $\binom{p}{k}$ possibilités.
+            \item On choisit $n-k$ éléments dans le second, il y $\binom{q}{n-k}$ possibilités.
+            \item On itère pour $k$ allant de $0$ à $n$.
+        \end{itemize}
+        Il y a donc $\sum\limits_{k=0}^n \binom{p}{k} \binom{q}{n-k}$ sous-ensembles à $n$ éléments choisis parmi les deux ensembles. Nous avons ainsi dénombré le même ensemble de deux manières différentes, ce qui donne que 
+        \[ \binom{p+q}{n} = \sum\limits_{k=0}^n \binom{p}{k} \binom{q}{n-k} \] 
+    \end{demo}
+
+    \subsubsection{Fonction indicatrice}
+
+    \begin{defitheo}{Fonction indicatrice}{}
+        Si $A$ est une partie de $E$, on définit la fonction indicatrice de $A$ sur $E$ par 
+        \[ \forall x \in E, \quad \mathbb{1}_A(x) = \sisi{1}{x \in A}{0}{x \notin A} \]   
+        Les opérations sur les ensembles peuvent se traduire par des opérations sur les indicatrices.
+        \begin{enumerate}
+            \begin{multicols}{2}
+                \item $A = B \iff \mathbb{1}_A = \mathbb{1}_B$
+                \item $A \subset B \iff \mathbb{1}_A \leq \mathbb{1}_B$ 
+                \item $\mathbb{1}_{\barr{A}} = 1 - \mathbb{1}_A$
+                \item $\mathbb{1}_{A \cap B} = \mathbb{1}_A \cdotp \mathbb{1}_B$
+                \item $\mathbb{1}_{A \cup B} = \mathbb{1}_A + \mathbb{1}_B - \mathbb{1}_A \cdotp \mathbb{1}_B$
+                \item $\card(A)= \sum_{x \in E} \mathbb{1}_A(x)$
+            \end{multicols}
+        \end{enumerate}
+    \end{defitheo}
+
+\subsection{Espace probabilisé sur un univers fini}
+
+    \subsubsection{Espace probabilisé}
+
+    \begin{defi}{Univers}{}
+        \begin{enumerate}
+            \item Une \textbf{expérience aléatoire} est une expérience dont le résultat dépend du hasard.
+            \item L’ensemble des résultats possibles d’une expérience aléatoire est appelé \textbf{univers}, noté $\Omega$.
+            \item Les éléments $\omega$ de l’univers sont appelés \textbf{issues} ou résultats possibles ou réalisations de l’expérience aléatoire.
+        \end{enumerate}
+    \end{defi}
+
+    \begin{defi}{Évènements}{}
+        Soit $\Omega$ un univers.
+        \begin{enumerate}
+            \item Un \textbf{événement} de $\Omega$ est un sous-ensemble de $\Omega$.
+            \item Les singletons $\{ \omega \}$ sont appelés \textbf{événements élémentaires}.
+            \item On dit que les événements $A$ et $B$ sont \textbf{incompatibles} ou \textbf{disjoints} lorsque $A \cap B = \emptyset$.
+            \item Un \textbf{système complet d’événements} est une famille $A_1,\ldots,A_s$ d’événements telle que
+            \begin{itemize}
+                \item $\bigcup\limits_{i=1}^s A_i = \Omega$
+                \item $\forall (i,j) \in \intervalleEntier{1}{s}^2, \, i \neq j \implies A_i \cap A_j = \emptyset$
+            \end{itemize}
+        \end{enumerate}
+    \end{defi}
+
+    \begin{defi}{Espace probabilisé}{}
+        \begin{enumerate}
+            \item Soit $\Omega$ un univers fini. 
+    
+            On appelle \textbf{probabilité} sur $\Omega$ tout application $P$ telle que
+            \begin{itemize}
+                \item $\forall A \in \mathcal{P}(\Omega), \, P(A) \in \intervalleFF{0}{1}$
+                \item $P(\Omega) = 1$
+                \item $\forall (A,B) \in \mathcal{P}(\Omega)^2, \\ A \cap B = \emptyset \implies P(A \cup B) = P(A) + P(B)$
+            \end{itemize}
+            \item Un \textbf{espace probabilisé fini} est un couple $(\Omega,P)$, où $\Omega$ est un univers fini, et $P$ une probabilité sur $\Omega$.
+        \end{enumerate}
+    \end{defi}
+
+    \begin{prop}{Propriétés de la probabilité}{}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé fini
+            \item $A,B$ deux événemements de $\Omega$
+        \end{soient}
+        \begin{alors}
+            \item $P(\barr{A}) = 1 - P(A)$
+            \item $P(\emptyset) = 0$
+            \item $P(B \backslash A) = P(B) - P(A \cap B)$
+            \item Si $A \subset B$, alors $P(A) \leq P(B)$ (croissance de la probabilité)
+            \item $P(A \cup B) = P(A) + P(B) - P(A \cap B)$
+        \end{alors}
+    \end{prop}
+
+    \begin{prop}{Probabilité d’une intersection d’événements disjoints}{}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé
+            \item $A_1, \ldots, A_s$ des événements de $\Omega$
+        \end{soient}
+        On suppose que $\forall (i,j) \in \intervalleEntier{1}{s}^2, \, i \neq j \implies A_i \cap A_j = \emptyset$
+
+        Alors 
+        \[ P\left(\bigcup\limits_{i=1}^s A_i\right) = \sum\limits_{i=1}^n P(A_i) \]
+    \end{prop}
+
+    \begin{demo}{Idée}{myolive}
+        Récurrence finie sur $\intervalleEntier{1}{n}$.
+    \end{demo}
+
+    \begin{defi}{Distribution de probabilités}{}
+        Soit $\Omega$ un ensemble fini.
+
+        Une \textbf{distribution de probabilités} sur $\Omega$ est une famille d’éléments de $\mathbb{R}_+$ indexée par $\Omega$ et de somme 1, i.e une famille $(P_{\omega})_{\omega \in \Omega}$ telle que 
+        \begin{itemize}
+            \item $\forall \omega \in \Omega, \, P_{\omega} \geq 0$
+            \item $\sum\limits_{\omega \in \Omega} P_{\omega} = 1$
+        \end{itemize}
+    \end{defi}
+
+    \begin{theo}{Détermination d’une probabilité à l’aide de singletons}{}
+        \begin{soient}
+            \item $\Omega$ un univers fini
+            \item $(P_{\omega})_{\omega \in \Omega}$ une distribution de probabilités sur $\Omega$.
+        \end{soient}
+    
+        Alors il existe une unique probabilité $P$ sur $\Omega$ telle que $\forall \omega \in \Omega, \, P(\{\omega\}) = P_{\omega}$
+    \end{theo}
+
+    \begin{theo}{Probabilité d’un événement pour l’équiprobabilité}{}
+        \begin{soient}
+            \item $\Omega$ un univers fini
+            \item $P$ la probabilité uniforme sur $\Omega$
+            \item $A$ un événement de $\Omega$
+        \end{soient}
+        Alors 
+        \[ P(A) = \frac{\card(A)}{\card(\Omega)} = \frac{\text{nombre de cas favorables}}{\text{nombre de cas possibles}} \]
+    \end{theo}
+
+\subsection{Extension aux familles infinis}
+
+    \subsubsection{Tribu et événements}
+
+    Rappelons quelques éléments de vocabulaire probabiliste, simples traductions de termes ensemblistes :
+
+    \begin{longtblr}[caption=Vocabulaire probabiliste]{
+        colspec={|Q[m,l,3]|Q[m,c,2]|}, width = \linewidth,
+        rowhead = 1, row{odd} = {myorange!10}, row{1} = {myorange, fg=white, font=\bfseries},
+        hlines={0.4pt, black}
+    }
+    Langage probabiliste & Langage ensembliste \\
+    Résultat possible & $\omega \in \Omega$ \\
+    Événement & $A \subset \Omega$ \\
+    Événement certain & $\Omega$ \\
+    Événement impossible & $\emptyset$ \\
+    Événement contraire & $\barr{\Omega}$ \\
+    Événement « A ou B » & $A \cup B$ \\
+    Événement « A et B » & $A \cap B$ \\
+    Événements incompatibles & $A \cap B = \emptyset$ \\
+    Système complet d’événements & $\Omega = \bigsqcup_{k=1}^n A_k$
+    \end{longtblr}
+
+    Munir $\Omega$ d’une probabilité revient à définir sur $\mathcal{P}(\Omega)$ une application $\mathbf{P}$ à valeurs dans $\intervalleFF{0}{1}$ vérifiant $\mathbf{P}(\Omega) = 1$ et une propriété d’additivité $\mathbf{P}(A \sqcup B) = \mathbf{P}(A) + \mathbf{P}(B)$ pour tous événements $A$ et $B$ incompatibles. On doit donc se ramener à l’introduction d’une probabilité comme une application $\mathbf{P} : \mathcal{P}(\Omega) \to \intervalleFF{0}{1}$ vérifiant 
+    \[ \mathbf{P}(\Omega) = 1 \esp{et} \mathbf{P}\left(\bigsqcup_{n=0}^{+\infty} A_n\right) = \sum_{n=0}^{+\infty} \mathbf{P}(A_n) \]    
+    La deuxième propriété, dite d’additivité dénombrable ou $\sigma$-additivité, s’avère indispensable si l’on souhaite sortir du cadre fini et effectuer des passages à la limite. Se doter d’une telle probabilité revient encore à se donner une famille de réels positifs $(p_k)_{k \in \mathbb{N}}$ de somme égale à $1$. La probabilité de toute partie de $\Omega$, \textit{i.e.} de tout événement, se retrouve alors au moyen de 
+    \[ \mathbf{P}(A) = \sum_{\omega_k \in A} \mathbf{P}(\{\omega_k\}) \]   
+    En revanche, lorsque l’univers n’est pas dénombrable, un fait nouveau et déroutant se produit, tout droit issu de la théorie de la mesure : toutes les parties de $\Omega$ ne peuvent être considérées comme des événements car il est impossible de définir une probabilité véritablement intéressante sur $\mathcal{P}(\Omega)$.
+
+    Ne perdons cependant pas espoir de définir une probabilité sur un univers non dénombrable. Si $\mathbf{P}(\Omega)$ est trop riche, et c’est le cas lorsque $\Omega$ n’est pas dénombrable, il suffit de se débarrasser de ses éléments les plus exotiques. L’ablation sera indolore, de telles parties de $\Omega$ ne peuvent se décrire au moyen d’une liste de parties élémentaires et d’opérations ensemblistes : inaccessibles, elles sont en quelque sorte invisibles à nos yeux.
+
+    Fixons-nous un cahier des charges pour définir une partie $\mathcal{A}$ de $\mathcal{P}(\Omega)$ qui regrouperait les parties de $\Omega$ qui seraient par la suite qualifiées d’événements. Quelques considérations s’imposent :
+    \begin{itemize}
+        \item Si $A$ est un évémenement, on s’attend à ce que $\barr{A}$ le soit aussi.
+        \item De même, si nous disposons d’une suite $(A_n)$ d’événements, on souhaiterait que $\bigcup_{n=0}^{+\infty} A_n$ soit encore un événement, donc un élément de $\mathcal{A}$. Cette propriété devrait s’étendre au cas des intersections dénombrables.
+    \end{itemize}
+
+    \begin{defi}{Tribu ou $\sigma$-algèbre}
+        Soit $\Omega$ un ensemble non vide. On appelle \textbf{tribu} (ou \textbf{$\sigma$-algèbre}) sur $\Omega$ toute partie $\mathcal{A}$ de $\mathcal{P}(\Omega)$ qui vérifie :
+        \begin{itemize}
+            \item $\Omega \in \mathcal{A}$
+            \item Si $A \in \mathcal{A}$, alors $\barr{A} \in \mathcal{A}$ (\textit{stabilité par passage au complémentaire})
+            \item Si $(A_n)_{n \in \mathbb{N}}$ est une suite d’éléments de $\mathcal{A}$, alors $\bigcup_{n=0}^{+\infty} A_n \in \mathcal{A}$ (\textit{stabilité par réunion dénombrable})
+        \end{itemize}
+        Le couple $(\Omega, \mathcal{A})$ est alors appelé \textbf{espace probabilisable}, et tout élément de $\mathcal{A}$ est appelé \textbf{évémenement} de $\Omega$.
+    \end{defi}
+
+    \begin{omed}{Remarque}{myyellow}
+        L’association des deuxième et troisième propriétés montrent qu’une tribu est \textit{stable par intersection dénombrable}.
+    \end{omed}
+
+    \begin{omed}{Exemples}{myyellow}
+        Si $\Omega$ est un ensemble non vide, voici deux exemples de tribus naturelles :
+        \[ \mathcal{A} = \{\emptyset, \Omega\} \textit{ (tribu grossière)} \esp{et} \mathcal{A} = \mathcal{P}(\Omega) \textit{ (tribu exhaustive)} \]
+    \end{omed}
+
+    En pratique, si $\Omega$ est au plus dénombrable, on choisira $\mathcal{A} = \mathcal{P}(\Omega)$, et la notion de tribu n’est alors plus très pertinente. Si $\Omega$ est non dénobrable, il faut alors trouver un tribu convenable, autre que $\mathcal{P}(\Omega)$.
+
+    \begin{defi}{Système complet d’événements}{}
+        Soit $(\Omega, \mathcal{A})$ un espace probabilisable. 
+        
+        On appelle système complet d’événements toute famille finie ou dénombrable $(A_i)_{i \in I}$ d’événements vérifiant :
+        \begin{itemize}
+            \item pour tous $i,j \in I$ distincts, $A_i \cap A_j = \emptyset$ ;
+            \item $\bigcup_{i \in I} A_i = \Omega$
+        \end{itemize}
+    \end{defi}
+
+    \begin{omed}{Exemples}{myyellow}
+        Soit $(\Omega,\mathcal{A})$ un espace probabilisable.
+        \begin{enumerate}[label=\textcolor{myyellow}{\arabic*}]
+            \item Si $A$ est un événement, $(A, \barr{A})$ est un s.c.e. ;
+            \item Si l’univers $\Omega = \{ \omega_1,\ldots,\omega_n\}$ est fini, $(\{\omega_1\}, \ldots, \{\omega_n\})$ est un système complet d’événements ;
+            \item Plus généralement, pour tout univers au plus dénombrable $\Omega = \{\omega_i, \, i \in \mathbb{N} \}$, la famille $(\{\omega_i\})_{i \in \mathbb{N}}$ est un s.c.e.
+        \end{enumerate}
+    \end{omed}
+
+    \subsubsection{Probabilité}
+
+    On peut, de la même façon qu’en univers dénombrable, définir une probabilité sur un espace probabilisable, qui en conservera les propriétés déjà vues.
+
+\subsection{Conditionnement \& indépendance}
+
+    \subsubsection{Probabilités conditionnelles}
+
+    \begin{defi}{Probabilité conditionnelle}{}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé fini
+            \item $A,B$ deux événements de $\Omega$
+        \end{soient}
+        On suppose que $P(B) > 0$.
+
+        La \textbf{probabilité conditionnelle} de $A$ sachant $B$ est \[ P(A | B) = \frac{P(A \cap B)}{P(B)} \]
+        On la note également $P_B(A)$.
+    \end{defi}
+
+    \begin{theo}{}{}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé fini
+            \item $A,B$ deux événements de $\Omega$
+        \end{soient}
+        On suppose que $P(B) > 0$.
+
+        Alors 
+        \[ \fonction{P(.|B)}{\mathcal{P}(\Omega)}{\mathbb{R}}{A}{P(A|B)} \text{ est une probabilité sur } \Omega \]
+    \end{theo}
+
+    \begin{omed}{Remarque}{myred}
+        S’il est difficile de montrer que $P(B) > 0$, on peut convenir que si $P(B) = 0$, $P(A|B)P(B) = 0$.
+    \end{omed}
+
+    \begin{theo}{Formule des probabilités composées}{}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé fini
+            \item $A_1,\ldots,A_n$ des événements de $\Omega$
+        \end{soient}
+        On suppose que $P(A_1 \cap \ldots \cap A_{n-1}) > 0$.
+
+        \begin{alors}
+            \item $\forall k \in \intervalleEntier{1}{n-1}, \, P(A_1 \cap \ldots \cap A_k) > 0$
+            \item $ P(A_1 \cap \ldots \cap A_n) = P(A_n | A_1 \cap \ldots \cap A_{n-1})P(A_{n-1}|A_1 \cap \ldots \cap A_{n-2}) \ldots P(A_2|A_1)P(A_1) $
+        \end{alors}
+    \end{theo}
+
+    \begin{theo}{Formule des probabilités totales}{}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé fini
+            \item $B_1,\ldots,B_n$ un système complet d’événements de $\Omega$
+            \item $A$ un événement de $\Omega$
+        \end{soient}
+        On suppose que $\forall i \in \intervalleEntier{1}{n}, \, P(B_i) > 0$.
+
+        Alors 
+        \[ P(A) = \sum\limits_{i=1}^n P(A\,|\,B_i)P(B_i) \]
+    \end{theo}
+
+    \begin{coro}{}{}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé fini
+            \item $A,B$ des événements de $\Omega$
+        \end{soient}
+        On suppose que $P(B) \notin \{0,1\}$.
+
+        Alors 
+        \[ P(A) = P(A\,|\,B)P(B) + P(A\,|\,\barr{B})P(\barr{B}) \]
+    \end{coro}
+
+    \begin{theo}{Formule de Bayes}{}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé fini
+            \item $A,B$ des événements de $\Omega$
+        \end{soient}
+        On suppose que $P(A) > 0$ et $P(B) > 0$.
+
+        Alors 
+        \[ P(A\,|\,B) = P(B\,|\,A)\frac{P(A)}{P(B)} \]
+    \end{theo}
+
+    \subsubsection{Événements indépendants}
+
+    \begin{defi}{Événements indépendants}{}
+        Soit $(\Omega, P)$ un espace probabilisé.
+
+        On dit que deux événements $A$ et $B$ de $\mathcal{P}(\Omega)$ sont \textbf{indépendants} (pour la probabilité $P$) lorsque \[ P(A \cap B) = P(A)P(B) \]
+    \end{defi}
+
+    \begin{prop}{}{}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé fini
+            \item $A,B$ des événements de $\Omega$
+        \end{soient}
+        On suppose que $P(B) > 0$.
+
+        Alors 
+        \[ A \text{ et } B \text{ sont indépendants} \iff P(A\,|\,B) = P(A) \]
+    \end{prop}
+
+    \begin{defi}{Indépendance (mutuelle) d’une famille d’événements}{}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé fini
+            \item $A_1, \ldots, A_n$ des événements de $\Omega$
+        \end{soient}
+        On dit que les événements $(A_1 , \ldots, A_n)$ sont (mutuellement) indépendants lorsque 
+        \begin{align*}
+            \forall s \in \intervalleEntier{2}{n}, \, \forall (i_1, \ldots, i_s) \in \intervalleEntier{1}{n}^s, \\
+            \left( \forall(k,l) \in \intervalleEntier{1}{s}^2, \, k \neq l \implies i_k \neq i_l \right) \\
+            \implies P \left( \bigcap\limits_{j = 1}^s A_{i_j} \right) = \prod\limits_{j=1}^s P(A_{i_j})
+        \end{align*}
+        On dit aussi que la famille $(A_1, \ldots, A_n)$ est une \textbf{famille d’événements indépendants}.
+    \end{defi}
+
+    \begin{prop}{}{}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé fini
+            \item $A_1, \ldots, A_n$ des événements de $\Omega$
+            \item Pour tout $i \in \intervalleEntier{1}{n}, \, B_i \in \{ A_i, \barr{A_i} \} $
+        \end{soient}
+        On suppose que $(A_1, \ldots, A_n)$ sont mutuellement indépendants.
+    
+        Alors $(B_1, \ldots, B_n)$ sont mutuellement indépendants.
+    \end{prop}
+
+\subsection{Variables aléatoires discrètes}
+
+    \subsubsection{Loi d’une variable aléatoire}
+
+    \begin{defi}{Variable aléatoire}{}
+        Soit $\Omega$ un univers fini.
+    
+        Une \textbf{variable aléatoire} sur $\Omega$ est une application définie sur $\Omega$, à valeurs dans un ensemble $\mathcal{E}$.
+
+        Lorsque $\mathcal{E} = \mathbb{R}$ (ou $\mathbb{C}$), on parle de variable aléatoire réelle (ou complexe).
+    \end{defi}
+
+    \begin{omed}{Notations}{myyellow}
+        \begin{soient}
+            \item $\Omega$ un univers fini
+            \item $X$ une variable aléatoire sur $\Omega$, à valeurs dans $\mathcal{E}$
+            \item $A$ une partie de $\mathcal{E}$
+        \end{soient}
+        Alors $X^{-1}(A) = \{ \omega \in \Omega, \, X(\omega) \in A \}$ est un sous-ensemble de $\Omega$ i.e. est un \textbf{événement}.
+        \begin{itemize}
+            \item Si $A = \{ x \}$, on note $X = x$ pour $ \{ \omega \in \Omega, \, X(\omega) = x \}$
+            \item Si $A = \intervalleOF{-\infty}{x}$, on note $X \leq x$ pour $\{ \omega \in \Omega, \, X(\omega) \leq x \}$
+        \end{itemize}
+    \end{omed}
+
+    \begin{defi}{Loi d’une variable aléatoire}{}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé fini
+            \item $X$ une variable aléatoire sur $\Omega$ à valeurs dans un ensemble $\mathcal{E}$
+        \end{soient}
+        La \textbf{loi de probabilité} de la variable $X$ est la probabilité 
+        \[ \fonction{P_X}{\mathcal{P}(E)}{\intervalleFF{0}{1}}{A}{P(X \in A)} \]
+        Cette loi est une probabilité sur $\mathcal{E}$
+    \end{defi}
+
+    \begin{demo}{Justification}{myyellow}
+        Vérifier les trois points définissant une probabilité.
+    \end{demo}
+
+    \begin{theo}{}{}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé fini
+            \item $X$ une variable aléatoire sur $\Omega$ à valeurs dans un ensemble $\mathcal{E}$
+        \end{soient}
+        \begin{alors}
+            \item $\left(P(X=x)\right)_{x \in X(\Omega)}$ est une distribution de probabilités sur $X(\Omega)$
+            \item $P_X$ est l’unique probabilité qui correspond à cette distribution.
+        \end{alors}
+    \end{theo}
+
+    \begin{defi}{VA de même loi de probabilité}{}
+        \begin{soient}
+            \item $(\Omega_1,P_1)$ et $(\Omega_2,P_2)$ deux espaces probabilisés finis
+            \item $X$ et $Y$ des variables aléatoires sur $\Omega_1$ et $\Omega_2$ respectivement
+        \end{soient}
+        On dit que $X$ et $Y$ sont de \textbf{même loi de probabilité}, et on note $X \sim Y$ lorsque 
+        \begin{enumerate}
+            \item $X(\Omega_1) = Y(\Omega_2)$
+            \item $\forall x \in X(\Omega_1) = Y(\Omega_2), \, P_1(X=x) = P_2(Y=x)$
+        \end{enumerate}
+    \end{defi}
+
+    \begin{defi}{Loi uniforme}{}
+        Soient un espace probabilisé fini $(\Omega,P)$ et $X$ une variable aléatoire sur $\Omega$.
+    
+        On dit que $X$ suit une \textbf{loi uniforme} sur $X(\Omega)$ lorsque 
+        \[ \forall x \in X(\Omega), P(X = x) = \frac{1}{\card(X(\Omega))} \]
+        On note $X \sim \mathcal{U}(X(\Omega))$
+    \end{defi}
+
+    \begin{defi}{Loi de Bernoulli}{}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé fini
+            \item $X$ une variable aléatoire sur $\Omega$
+            \item $p \in \intervalleFF{0}{1}$
+        \end{soient}
+        On dit que $X$ suit une \textbf{loi de Bernoulli} de paramètre $p$ lorsque $\et{X(\Omega) = \{0,1\}}{P(X=1) = 1 \text{ et } P(X=0)= 1-p}$ 
+        
+        On note $X \sim \mathcal{B}(p)$
+    \end{defi}
+
+    \begin{prop}{Caractérisation de l’indicatrice par une probabilité}{}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé fini
+            \item $A \in \mathcal{P}(\Omega)$
+        \end{soient}
+
+        Alors $\mathbb{1}_A \sim \mathcal{B}(P(A))$
+    \end{prop}
+
+    \begin{defi}{Loi binomiale}{}
+        \begin{soit}
+            \item $(\Omega,P)$ un espace probabilisé
+            \item $X$ une variable aléatoire sur $\Omega$
+            \item $p \in \intervalleOO{0}{1}$
+            \item $n \in \mathbb{N}^*$
+        \end{soit}
+        On dit que $X$ suit une \textbf{loi binomiale} de paramètres $n$ et $p$ lorsque 
+        \[ \et{X(\Omega) \in \intervalleEntier{0}{n}}{\forall k \in \intervalleEntier{0}{n}, \, P(X=k) =\binom{n}{k} p^k (1-p)^{n-k}} \]
+    \end{defi}
+
+    \begin{prop}{Composition}{}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé
+            \item $X$ une variable aléatoire sur $\Omega$
+            \item $\mathcal{F}$ un ensemble
+            \item $f\, : \, X(\Omega) \longrightarrow \mathcal{F}$
+        \end{soient}
+        \begin{alors}
+            \item $\fonction{Y}{\Omega}{\mathcal{F}}{\omega}{f(X(\omega))}$ est une variable aléatoire qu’on note $f(X)$ (ou $f \circ X$)
+            \item $Y(\Omega) = f(X(\Omega))$ et 
+            \[ \forall y \in Y(\Omega), P(Y=y) = \sum\limits_{x \in f^{-1}(\{y\})} P(X=x) = \sum\limits_{\substack{x \in X(\Omega) \\ f(x) = y}} P(X = x) \]
+        \end{alors}
+    \end{prop}
+
+    \begin{prop}{Composition de VA de même loi de probabité}{}
+        \begin{soient}
+            \item $(\Omega_1,P_1)$ et $(\Omega_2,P_2)$ deux espaces probabilisés finis
+            \item $X$ et $Y$ des variables aléatoires sur $\Omega_1$ et $\Omega_2$ respectivement
+            \item $f$ une fonction définie sur $X(\Omega_1)$ à valeurs dans un ensemble $\mathcal{E}$
+        \end{soient}
+        On suppose que $X \sim Y$.
+
+        Alors $f(X) \sim f(Y)$.
+    \end{prop}
+
+\subsection{Familles de variables aléatoires et indépendance}
+
+    \subsubsection{Couple de VA}
+
+    \begin{defi}{Lois conjointes, marginales et conditionnelles}{}
+        Soient $X$ et $Y$ deux variables aléatoires sur un même espace probabilisé fini $(\Omega,P)$.
+        \begin{itemize}
+            \item La loi du couple $(X,Y)$ est appelée \textbf{loi conjointe} de $(X,Y)$. On la note $P_{(X,Y)}$.
+            \item Pour $(x,y) \in X(\Omega) \times Y(\Omega)$, on note $P(X=x,Y=y)$ pour $P((X,Y) = (x,y))$.
+            \item Les lois de $X$ et $Y$ sont appelées \textbf{lois marginales} du couple $(X,Y)$.
+            \item Pour tout $x \in X(\Omega)$ tel que $P(X=x) \neq 0$, la \textbf{loi conditionnelle} de $Y$ sachant $X=x$ est la loi de la variable $Y'$ définie par $\forall y \in Y(\Omega), \, P(Y' = y) = P(Y=y \, | \, X=x)$
+        \end{itemize}
+    \end{defi}
+
+    \begin{defi}{VA indépendantes}{}
+        Soit $(X,Y)$ un couple de variables aléatoires défini sur un espace probabilisé fini $(\Omega,P)$.
+
+        On dit que les variables aléatoires $X$ et $Y$ sont \textbf{indépendantes} lorsque 
+        \[ \forall (A,B) \in \mathcal{P}(X(\Omega)) \times \mathcal{P}(Y(\Omega)), \{ X \in A \} \text{ et } \{Y \in B \} \text{ sont indépendantes} \]
+        On note $X \independent Y$.
+    \end{defi}
+
+    \begin{theo}{Caractérisation de l’indépendance de deux VA}{}
+        \begin{soient}
+            \item un espace probabilisé fini $(\Omega,P)$
+            \item $(X,Y)$ un couple de variables aléatoires défini sur $\Omega$
+        \end{soient}
+        Alors 
+        \[ X \independent Y \iff \forall (x,y) \in X(\Omega) \times Y(\Omega), \, P(X=x,Y=y) = P(X=x)P(Y=y) \]
+    \end{theo}
+
+    \begin{prop}{Composition par une fonction}{}
+        \begin{soient}
+            \item $(X,Y)$ un couple de variables aléatoires défini sur un espace probabilisé fini $(\Omega,P)$
+            \item $f$ une fonction définie sur $X(\Omega)$, et $g$ une fonction définie sur $Y(\Omega)$
+        \end{soient}
+        On suppose que $X \independent Y$.
+
+        Alors $f(X) \independent g(Y)$.
+    \end{prop}
+
+    \subsubsection{Famille de variables aléatoires (mutuellement indépendantes)}
+
+    \begin{prop}{Caractérisation des VA indépendantes}{}
+        Soient $X_1,\ldots,X_n$ des variables aléatoires définies sur un même espace probabilisé $(\Omega,P)$.
+
+        Alors $X_1,\ldots,X_n$ sont indépendantes 
+        \begin{align*}
+            \iff &  \forall (A_1,\ldots,A_n) \in \mathcal{P}(X_1(\Omega)) \times \ldots \times \mathcal{P}(X_n(\Omega)), P(X_1 \in A_1,\ldots, X_n \in A_n) = \prod\limits_{i=1}^n P(X_i \in A_i) \\
+            \iff & \forall (x_1,\ldots,x_n) \in X_1(\Omega) \times \ldots \times X_n(\Omega), \text{les év. } (X_1 = x_1), \ldots, (X_n = x_n) \text{ sont indépendants} \\
+            \iff & \forall (x_1,\ldots,x_n) \in X_1(\Omega) \times \ldots \times X_n(\Omega), P(X_1=x_1,\ldots,X_n=x_n) = \prod\limits_{i=1}^n P(X_i = x_i)
+        \end{align*}
+    \end{prop}
+
+    \begin{prop}{Lemme des coalitions}{}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé
+            \item $n \geq 2$ et $m \in \intervalleEntier{1}{n-1}$
+            \item $(X_1,\ldots,X_n)$ des variables aléatoires sur $\Omega$
+            \item $f$ une fonction définie sur $X_1(\Omega) \times \ldots \times X_m(\Omega)$
+            \item $g$ une fonction définie sur $X_{m+1}(\Omega) \times \ldots \times X_n(\Omega)$
+        \end{soient}
+        On suppose que $(X_1,\ldots,X_n)$ sont mutuellement indépendantes.
+
+        Alors $f(X_1,\ldots,X_{m})$ et $g(X_{m+1},\ldots,X_n)$ sont indépendantes.
+    \end{prop}
+
+    \begin{prop}{Espérance du produit de variables aléatoires indépendantes}{Espérance du produit de variables aléatoires indépendantes}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé
+            \item $n \geq 2$
+            \item $(X_1,\ldots,X_n)$ des variables aléatoires sur $\Omega$
+        \end{soient}
+        On suppose que $(X_1,\ldots,X_n)$ sont indépendantes.
+
+        Alors 
+        \[ E\left(\prod\limits_{i=1}^n X_i\right) = \prod\limits_{i=1}^n E(X_i) \] 
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        Pour $k \in \intervalleEntier{1}{n}$, on pose $\mathcal{H}_k$ : $E\left(\prod\limits_{i=1}^k X_i\right) = \prod\limits_{i=1}^k E(X_i)$
+
+        Dans l’hérédité, utiliser le lemme des coalitions pour écrire que $\prod\limits_{i=1}^k X_i$ et $X_{k+1}$ sont indépendants.
+    \end{demo}
+
+    \begin{prop}{Espérance du produit de variables aléatoires indépendantes}{Espérance du produit de variables aléatoires indépendantes}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé
+            \item $n \geq 2$
+            \item $(X_1,\ldots,X_n)$ des variables aléatoires sur $\Omega$
+        \end{soient}
+        On suppose que $(X_1,\ldots,X_n)$ sont indépendantes.
+
+        Alors 
+        \[ E\left(\prod\limits_{i=1}^n X_i\right) = \prod\limits_{i=1}^n E(X_i) \] 
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        Pour $k \in \intervalleEntier{1}{n}$, on pose $\mathcal{H}_k$ : $E\left(\prod\limits_{i=1}^k X_i\right) = \prod\limits_{i=1}^k E(X_i)$
+
+        Dans l’hérédité, utiliser le lemme des coalitions pour écrire que $\prod\limits_{i=1}^k X_i$ et $X_{k+1}$ sont indépendants.
+    \end{demo}
+
+    \begin{prop}{Loi faible des grands nombres}{}
+        Soit $(X_n)_{n \in \mathbb{N}^*}$ une famille de variables aléatoires réelles sur un univers probabilisé fini $(\Omega,P)$.
+
+        \begin{suppose}
+           \item $\exists \, m \in \mathbb{R}, \, \forall n \in \mathbb{N}^*, \, E(X_n) = m$
+           \item $\exists \, \sigma \in \mathbb{R}, \, \forall n \in \mathbb{N}^*, \, V(X_n) = \sigma^2$
+           \item les variables $X_n$ sont deux à deux indépendantes
+        \end{suppose}
+        Pour tout $n \in \mathbb{N}^*$, on pose $S_n = \frac{1}{n} \sum\limits_{k=1}^n X_k$
+
+        Alors \[ \forall \varepsilon > 0, \, \lim\limits_{n \rightarrow + \infty} \left(P(\abs{S_n-n} \geq \varepsilon)\right) = 0 \] 
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        \begin{align*}
+            E(S_n) &= E\left(\frac{1}{n} \sum\limits_{k=1}^n X_k\right) \\
+            &= \frac{1}{n} \sum\limits_{k=1}^n E(X_k) = m
+        \end{align*}
+        Comme $X_1,\ldots,X_n$ sont indépendantes,
+        \begin{align*}
+            V(S_n) &= \frac{1}{n^2} V(\sum\limits_{k=1}^n X_k) \\
+            &= \frac{1}{n^2} \sum\limits_{k=1}^n V(X_k) \\
+            &= \frac{\sigma^2}{n}
+        \end{align*}
+        Par l’inégalité de Bienaymé-Tchebycheff, 
+        \begin{align*}
+            P(\abs{S_n-n} \geq \varepsilon) & \leq \frac{V(S_n)}{\varepsilon^2} \\
+            & \leq \frac{\sigma^2}{n \varepsilon^2}
+        \end{align*}
+    \end{demo}
+
+    \begin{prop}{Somme de variables aléatoires de Bernoulli indépendantes}{Somme de variables aléatoires de Bernoulli indépendantes}
+        Soient $X_1,\ldots,X_n$ des variables aléatoires et $p \in \intervalleOO{0}{1}$.
+
+        \begin{suppose}
+            \item $X_1,\ldots,X_n$ sont (mutuellement indépendantes)
+            \item Pour $k \in \intervalleEntier{1}{n}, \, X_k \sim \mathcal{B}(p)$
+        \end{suppose}
+
+        Alors 
+        \[ \sum\limits_{i=1}^n X_i \sim \mathcal{B}(n,p) \] 
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        Pour $k \in \intervalleEntier{1}{n}$, on pose $\mathcal{H}_k$ : $\sum\limits_{i=1}^k X_i \sim \mathcal{B}(k,p)$
+        
+        Évident pour $k=1$.
+        
+        Soit $k \in \intervalleEntier{1}{n-1}$ tel que $\mathcal{H}_k$ est vraie. 
+        
+        $\left( \sum\limits_{i=1}^{k+1} X_i \right)(\Omega) = \intervalleEntier{0}{k+1}$.
+        
+        \begin{align*}
+            P\left(\sum\limits_{i=1}^{k+1} X_i = 0\right) &= P(X_1 =0,\ldots,X_{k+1}=0) \\
+            & \downarrow X_1,\ldots,X_n \text{ indép.} \\
+            &= (1-p)^{k+1} \\
+            &= \binom{k+1}{0} p^0 (1-p)^{k+1} \\
+            P\left(\sum\limits_{i=1}^{k+1} X_i = k+1\right) &= P(X_1 =1,\ldots,X_{k+1}=1) \\
+            & \downarrow X_1,\ldots,X_n \text{ indép.} \\
+            &= p^{k+1} \\
+            &= \binom{k+1}{k+1} p^{k+1} (1-p)^{k+1-(k+1)} \\
+        \end{align*}
+        Soit $j \in \intervalleEntier{1}{k}$. Comme $X_1,\ldots,X_n$ sont mutuellement indépendantes, par le lemme des coalitions, $\sum\limits_{i=1}^k X_i$ et $X_{k+1}$ sont indépendants.
+        
+        $\et{(X_{k+1}=0, X_{k+1}=1) \text{ est un syst. complet d’év.}}{P(X_{k+1}=0) = 1-p > 0 \text{ et } p(X_{k+1}=1) = p > 0}$ donc d’après la formule des probabilités totales, 
+        \begin{align*}
+            P\left(\sum\limits_{i=1}^{k+1} X_i = j\right) &=  P\left(\sum\limits_{i=1}^{k+1} X_i = j \, \big| \, X_{k+1} = 0\right) P(X_{k+1} = 0) \\
+            &+ P\left(\sum\limits_{i=1}^{k+1} X_i = j \, \big| \, X_{k+1} = 1\right) P(X_{k+1} = 1) \\
+            & \downarrow \text{lemme des coalitions} \\ 
+            &= P\left(\sum\limits_{i=1}^{k+1} X_i = j\right) (1-p) \\
+            & + P\left(\sum\limits_{i=1}^{k+1} X_i = j-1 \right) p \\
+            & \downarrow \mathcal{H}_k \\
+            &= \binom{k}{j} p^j (1-p)^{k+1-j} \\
+            &+ \binom{k}{j-1}p^j (1-p)^{k+1-j} \\
+            & \downarrow \text{formule du triangle de Pascal}  \\
+            &= \binom{k+1}{j} p^j (1-p)^{k+1-j} 
+        \end{align*}
+        Donc $\sum\limits_{i=1}^{k+1} X_i \sim \mathcal{B}(k+1,p)$
+        Par récurrence finie sur $\intervalleEntier{1}{n}$, $\mathcal{H}_n$ est vraie.
+    \end{demo}
+
+\section{Moments d’une variable aléatoire}
+
+\subsection{Espérance}
+
+    \begin{defi}{Espérance}{}
+        Soient $(\Omega,P)$ un espace probabilisé fini et $X$ une variable aléatoire réelle ou complexe sur $\Omega$.
+        \begin{itemize}
+            \item L’\textbf{espérance} de $X$ est le nombre \[ E(X) = \sum\limits_{x \in X(\Omega)} xP(X=x) \]
+            \item On dit que la variable est \textbf{centrée} lorsque le jeu est équitable, i.e. $E(X) = 0$.
+        \end{itemize}
+    \end{defi}
+
+    \begin{prop}{Expression de l’espérance}{}
+        Soient $(\Omega,P)$ un espace probabilisé fini et $X$ une variable aléatoire réelle ou complexe sur $\Omega$.
+
+        Alors 
+        \[ E(X) = \sum\limits_{\omega \in \Omega} X(\omega) P(\{\omega\}) \]
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        \begin{align*}
+            E(X) &= \sum\limits_{x \in X(\Omega)} xP(X=x) \\
+            &= \sum\limits_{x \in X(\Omega)} xP(\{\omega \in \Omega, \, X(\Omega) = x \}) \\
+            &= \sum\limits_{x \in X(\Omega)} xP(\bigcup\limits_{\substack{\omega \in \Omega \\ X(\omega) = x}} \{ \omega \}) \\
+            &= \sum\limits_{x \in X(\Omega)}x \sum\limits_{\substack{\omega \in \Omega \\ X(\omega) = x}} P(\{\omega\}) \\
+            &= \sum\limits_{x \in X(\Omega)} \sum\limits_{\substack{\omega \in \Omega \\ X(\omega) = x}} X(\omega) P(\{\omega\}) \\
+            &= \sum\limits_{\omega \in \Omega} X(\omega) P(\{\omega\})
+        \end{align*}
+    \end{demo}
+
+    \begin{prop}{Propriétés de l’espérance}{}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé fini
+            \item $X,Y$ deux variables aléatoires réelles ou complexes sur $\Omega$
+        \end{soient}
+        \begin{alors}
+            \item Si $X$ est constante égale à $a$, $E(X) = a$
+            \item Si $X$ est la fonction indicatrice d’un événement $A$, $E(X) = P(A)$
+            \item $\forall \lambda \in \mathbb{K}, \, E(\lambda X + Y) = \lambda E(X) + E(Y)$
+            \item $X \leq Y \implies E(X) \leq E(Y)$
+            \item $\abs{E(X)} \leq E(\abs{X})$
+        \end{alors}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        \begin{enumerate}
+            \item $E(X) = a\underbrace{P(X=a)}_{=1} = 1$
+            \item On suppose que $X= \mathbb{1}_A$
+            \begin{align*}
+                E(X) &= 0P(\mathbb{1}_A =0) + 1P(\mathbb{1}_A = 1) \\
+                &= P(\{ \omega \in \Omega, \, \mathbb{1}_A(\omega) = 1 \}) \\
+                &= P(A)
+            \end{align*}
+            \item \begin{align*}
+                E(\lambda X + Y) &= \sum\limits_{\omega \in \Omega} (\lambda X(\omega) + Y(\omega))P(\omega) \\
+                &= \lambda \sum\limits_{\omega \in \Omega} X(\omega) P(\omega) + \sum\limits_{\omega \in \Omega} Y(\omega) P(\omega) \\
+                &= \lambda E(X) + E(Y)
+            \end{align*}
+            \item On suppose que $\forall \omega \in \Omega, \, X(\omega) \leq Y(\omega)$
+             
+            $\forall \omega \in \Omega, \, P(\{ \omega \}) \geq 0$ 
+         
+            donc $\forall \omega \in \Omega, \, X(\omega) P(\{ \omega \}) \leq Y(\omega)P(\{ \omega \})$. 
+            
+            Ainsi, $E(X) \leq E(Y)$
+            \item \begin{align*}
+                \abs{E(X)} &= \abs{\sum\limits_{\omega \in \Omega} X(\omega)P(\{ \omega \})} \\
+                &\leq \sum\limits_{\omega \in \Omega} \abs{X(\omega)P(\{ \omega \})} \\
+                & \downarrow P(\{\omega\}) \geq 0 \\
+                &\leq \sum\limits_{\omega \in \Omega} \abs{X(\omega)}P(\{ \omega \}) = E(\abs{X})
+            \end{align*}
+        \end{enumerate}
+    \end{demo}
+
+    \begin{theo}{Dit « de transfert »}{}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé fini
+            \item $X$ une variable aléatoire sur $\Omega$
+            \item $g \, : \, X(\Omega) \longrightarrow \mathbb{R}$ (ou $\mathbb{C}$)
+        \end{soient}
+        Alors 
+        \[ E(g(X)) = \sum\limits_{x \in X(\Omega)} g(x) P(X = x) \] 
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        \begin{align*}
+            E(g(X)) &= \sum\limits_{\omega \in \Omega} g(X(\omega)) P(\omega) \\
+            &= \sum\limits_{x \in X(\Omega)} \sum\limits_{\substack{\omega \in \Omega \\ X(\omega) = x}} g(x) P(\omega) \\
+            &= \sum\limits_{x \in X(\Omega)} g(x) \sum\limits_{\substack{\omega \in \Omega \\ X(\omega) = x}} P(\omega) \\
+            &= \sum\limits_{x \in X(\Omega)} g(x) P\Big(\bigcup\limits_{\substack{\omega \in \Omega \\ X(\omega) = x}} \{ \omega \} \Big) \\
+            &= \sum\limits_{x \in X(\Omega)} g(x) P(X = x)
+        \end{align*}
+    \end{demo}
+
+\subsection{Variance, covariance et écart type}
+
+    \begin{defi}{Variance et écart type}{}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé fini
+            \item $X$ une variable aléatoire sur $\Omega$
+        \end{soient}
+        \begin{itemize}
+            \item La \textbf{variance} de la variable aléatoire $X$ est \[ V(X) = E\left((X-E(X))^2\right) \]
+            \item L’\textbf{écart type} de la variable aléatoire $X$ est
+            \[ \sigma(X) = \sqrt{V(X)} \]
+            \item La variable aléatoire $X$ est dite \textbf{réduite} lorsque $\sigma(X) = 1$ $(=V(X))$
+        \end{itemize}
+    \end{defi}
+
+    \begin{prop}{Formule de Huygens}{}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé fini
+            \item $X$ une variable aléatoire sur $\Omega$
+        \end{soient}
+
+        Alors 
+        \[ V(X) = E(X^2) - (E(X))^2 \] 
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        \begin{align*}
+            V(X) &= E\left((X-E(X))^2\right) \\
+            &= E\left(X^2 - 2XE(X) + (E(X))^2\right) \\
+            &= E(X^2) - 2E(X)E(X) + (E(X))^2 \\
+            &= E(X^2) - (E(X))^2
+        \end{align*}
+    \end{demo}
+
+    \begin{prop}{Propriétés de la variance}{}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé fini
+            \item $X$ une variable aléatoire sur $\Omega$
+        \end{soient}
+        \begin{alors}
+            \item $V(X) \geq 0$
+            \item $\forall (a,b) \in \mathbb{R}^2, \, \et{V(aX + b) = a^2 V(X)}{\sigma(aX+b) = \abs{a}\sigma(X)}$
+            \item Si $\sigma(X) > 0, \, \frac{X-E(X)}{\sigma(X)}$ est centrée réduite.
+        \end{alors}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        \begin{enumerate}
+            \item Comme $X$ est à valeurs réelles, 
+            \[ E(X) = \sum\limits_{x \in X(\Omega)} x P(X=x) \in \mathbb{R} \] 
+            puis $(X-E(X))^2 \geq 0$ donc $V(X) \geq 0$
+            \item Soit $(a,b) \in \mathbb{R}^2$.
+            \begin{align*}
+                V(aX+b) &= E \left(((aX+b) - E(aX+b))^2\right) \\
+                &= E\left((aX - E(aX))^2\right) \\
+                &= E\left(a^2(X-E(X))^2\right) \\
+                &= a^2 V(X)
+            \end{align*}
+            puis $\sigma(X) = \sqrt{V(X)} = \abs{a}\sigma(X)$
+            \item $E\left(\frac{X-E(X)}{\sigma(X)}\right) = \frac{1}{\sigma(X)}(E(X)-E(X)) = 0$ et 
+            \begin{align*}
+                V\left(\frac{X-E(X)}{\sigma(X)}\right) &= V\left(\frac{1}{\sigma(X)}X - \frac{E(X)}{\sigma(X)}\right) \\
+                &= \frac{1}{\sigma^2(X)}V(X) = 1 
+            \end{align*}
+        \end{enumerate}
+    \end{demo}
+
+    \subsubsection{Produit de VA}
+
+    \begin{theo}{Espérance du produit de deux variables aléatoires indépendantes}{Espérance du produit de deux variables aléatoires indépendantes}
+        Soit $(X,Y)$ un couple de variables aléatoires définies sur un espace probabilisé fini $(\Omega,P)$.
+
+        On suppose que les variables $X$ et $Y$ sont indépendantes.
+
+        Alors \[ E(XY) = E(X)E(Y) \] 
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        \begin{align*}
+            E(XY) &= \sum\limits_{(x,y) \in X(\Omega)\times Y(\Omega)} xy P(X=x,Y=y)  \\
+            &= \sum\limits_{(x,y) \in X(\Omega)\times Y(\Omega)} xP(X=x)yP(Y=y)  \\
+            & \downarrow X, \, Y \text{ indép.} \\
+            &= \sum\limits_{x \in X(\Omega)} \sum\limits_{y \in Y(\Omega)} xP(X=x)yP(Y=y)  \\
+            &= \sum\limits_{x \in X(\Omega)} xP(X=x) \sum\limits_{y \in Y(\Omega)} yP(Y=y)  \\
+            &= E(X) E(Y)
+        \end{align*}
+    \end{demo}
+
+    \begin{defi}{Covariance}{}
+        Soit $(X,Y)$ un couple de variables aléatoires défini sur un espace probabilisé fini $(\Omega,P)$. 
+        \begin{itemize}
+            \item La \textbf{covariance} des variables aléatoires est le nombre \[ \Cov(X,Y) = E(XY)-E(X)E(Y) \]
+            \item On dit que les variables aléatoires sont \textbf{décorrélées} lorsque $\Cov(X,Y) = 0$
+        \end{itemize}
+    \end{defi}
+
+    \begin{prop}{}{}
+        Soit $(X,Y)$ un couple de variables aléatoires défini sur un espace probabilisé fini $(\Omega,P)$.
+
+        Alors 
+        \[ V(X+Y) = V(X) + V(Y) + 2\Cov(X,Y) \]
+        En particulier, si $X \independent Y$ (ou sont même juste décorrélées), \[V(X+Y) = V(X) + V(Y) \]   
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        \begin{align*}
+            V(X+Y) &= E((X+Y)^2) - (E(X+Y))^2 \\
+            &= E(X^2 + 2XY + Y^2) - (E(X) + E(Y))^2 \\
+            &= E(X^2) + E(Y^2)  + 2E(XY) \\ 
+            &- (E(X))^2 - (E(Y))^2 - 2E(X)E(Y) \\
+            &= V(X) + V(Y) + 2\Cov(X,Y)
+        \end{align*}
+    \end{demo}
+
+    \subsubsection{Espérance et variance des lois classiques}
+
+    \begin{prop}{Espérance et variance d’une loi de Bernoulli}{}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé fini
+            \item $X$ une variable aléatoire sur $\Omega$
+            \item $p \in \intervalleFF{0}{1}$
+        \end{soient}
+        On suppose que $X \sim \mathcal{B}(p)$
+
+        Alors $\et{E(X) = p}{V(X) = p(1-p)}$
+    \end{prop}
+
+    \begin{demo}{Idée}{myolive}
+        Faire les calculs.
+    \end{demo}
+
+    \begin{prop}{Espérance et variance d’une loi binomiale}{}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé fini
+            \item $X$ une variable aléatoire sur $\Omega$
+            \item $n \in \mathbb{N}^*$ et $p \in \intervalleFF{0}{1}$
+        \end{soient}
+        On suppose que $X \sim \mathcal{B}(n,p)$
+
+        Alors $\et{E(X) = np}{V(X) = np(1-p)}$
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        \begin{align*}
+            E(X) &= \sum\limits_{k=0}^n k \binom{n}{k} p^k (1-p)^{n-k} \\
+            &= 0 + \sum\limits_{k=1}^n \frac{n!}{(k-1)!(n-k)!} p^k (1-p)^{n-k} \\
+            &= np \sum\limits_{k=1}^n \frac{(n-1)!}{(k-1)!((n-1)-(k-1))!} p^{k-1} (1-p)^{n-k} \\
+            &= np \sum\limits_{k=0}^{n-1} \binom{n-1}{k-1} p^{k-1} (1-p)^{n-1-k} \\
+            &= np \\
+            E(X^2) &= \sum\limits_{k=0}^n k^2 \binom{n}{k} p^k (1-p)^{n-k} \\
+            &= \underbrace{\sum\limits_{k=0}^n k(k-1) \binom{n}{k} p^k (1-p)^{n-k}}_B \\
+            &+ \underbrace{\sum\limits_{k=0}^n k \binom{n}{k} p^k (1-p)^{n-k}}_{E(X)}
+        \end{align*}
+        Si $n =1$, on vérifie facilement le résultat.
+        
+        Si $n \geq 2$,
+        \begin{align*}
+            B &= 0 + \sum\limits_{k=2}^n \frac{n!}{(k-2)!(n-k)!} p^k (1-p)^{n-k} \\
+            &= \sum\limits_{k=2}^n \frac{ p^2 n(n-1) \times (n-2)!}{(k-2)!((n-2)-(k-2))!} p^{k-2} (1-p)^{n-k} \\
+            &= p^2 n(n-1) \sum\limits_{k=*}^{n-2} \binom{n-2}{k} p^{k-2} (1-p)^{n-2-k} \\
+            &= p^2 n(n-1)
+        \end{align*}
+        Donc 
+        \begin{align*}
+            V(X) &= E(X^2) - (E(X))^2 \\
+            &= p^2 n(n-1) + E(X) - (E(X))^2 \\
+            &= np(1-p)
+        \end{align*}
+    \end{demo}
+
+\subsection{Fonctions génératrices}
+
+.
+
+\subsection{Inégalités de concentration}
+
+    \begin{prop}{Inégalité de Markov}{}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé
+            \item $X$ une variable aléatoire réeel sur $\Omega$
+            \item $a > 0$
+        \end{soient}
+        Alors 
+        \[ P(\abs{X} \geq a) \leq \frac{1}{a} E(\abs{X}) \] 
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        On considère la variable aléatoire $\mathbb{1}_{\abs{X} \geq a}$.
+        
+        Soit $\omega \in \Omega$.
+        \begin{itemize}
+            \item Si $\abs{X} \geq a$, alors $\frac{1}{a} \abs{X(\omega)} \geq 1 = \mathbb{1}_{\abs{X} \geq a}(\omega)$
+            \item Si $\abs{X} < a$, alors $\frac{1}{a} \abs{X(\omega)} \geq 0 = \mathbb{1}_{\abs{X} \geq a}(\omega)$
+        \end{itemize}
+        Donc $\frac{1}{a}\abs{X} \geq \mathbb{1}_{\abs{X} \geq a}$
+        
+        Donc $E\left(\frac{1}{a}\abs{X}\right) \geq E\left(\mathbb{1}_{\abs{X} \geq a}\right)$ \textit{i.e.} $\frac{1}{a}E\left(\abs{X}\right) \geq P\left(\abs{X} \geq a\right)$
+    \end{demo}
+
+    \begin{theo}{Inégalité de Bienaymé-Tchebycheff}{}
+        \begin{soient}
+            \item $(\Omega,P)$ un espace probabilisé
+            \item $X$ une variable aléatoire réeel sur $\Omega$
+            \item $a > 0$
+        \end{soient}
+        Alors 
+        \[ P(\abs{X- E(X)} \geq a) \leq \frac{1}{a^2} \sigma^2(X) \] 
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        On applique l’inégalité de Markov à $\left(X - E(X)\right)^2$
+        \begin{align*}
+            P\big(\abs{X-E(X)} \geq a\big) &= P\left(\abs{X-E(X)}^2 \geq a^2\right) \\
+            &\leq \frac{1}{a^2} E\left(\abs{X-E(X)}^2\right) = \frac{1}{a^2}V(X)
+        \end{align*}
+    \end{demo}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
