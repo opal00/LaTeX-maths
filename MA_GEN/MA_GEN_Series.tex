@@ -1,6 +1,6 @@
-\customchapter{Séries numériques}{On étudiera ici majoritairement la question de la convergence ou non d’une série, pour éventuellement en faire un objet pratique, notamment dans la question de l’intégration.}
+\customchapter{Séries}{On étudiera ici majoritairement la question de la convergence ou non d’une série, pour éventuellement en faire un objet pratique, notamment dans la question de l’intégration.}
 
-\section{Séries}
+\section{Séries numériques}
 
     \subsection{Définition}
 
@@ -683,205 +683,6 @@
             Donc $\frac{2\pi}{K^2} = 1 \iff K = \sqrt{2\pi}$. 
         \end{demo}
 
-\section{Séries entières}
-
-\subsection{Rayon de convergence}
-
-    On note $\mathbb{K}$ le corps $\mathbb{R}$ ou $\mathbb{C}$.
-
-    \subsubsection{Définitions}
-
-    \begin{defi}{Série entière}{}
-        On appelle \textbf{série entière} une série dont le terme général est de la forme $a_n z^n$, où $(a_n)$ est une suite d’éléments de $\mathbb{K}$.
-
-        On la note $\sum a_n z^n$.
-    \end{defi}
-
-    \begin{defi}{Domaine de convergence}{}
-        Soit $\sum a_n z^n$ une série entière.
-
-        On appelle \textbf{domaine de convergence} de la série entière l’ensemble, noté $D$, des scalaires $z$ pour lesquels la série numérique $\sum a_n z^n$ converge.
-    \end{defi}
-
-    \begin{lem}{dit d’Abel}{}
-        Soit $\sum a_n z^n$ une série entière et $z_0 \in \mathbb{K}$ tel que la suite $(a_n z_0^n)$ est bornée. 
-
-        Alors pour tout scalaire $z$ tel que $\abs{z} < \abs{z_0}$, la série numérique $\sum a_n z^n$ est absolument convergente.
-    \end{lem}
-
-    \begin{defi}{Rayon de convergence}{}
-        Soit $\sum a_n z^n$ une série entière.
-
-        On appelle \textbf{rayon de convergence} de la série entière le réel $R$ défini par 
-        \[ R = \sup \big\{ \rho \in \mathbb{R}_+,\quad (a_n \rho^n) \text{ est bornée} \big\} \quad \in \mathbb{R}_+ \cup \{ +\infty \} \]
-    \end{defi}
-
-    \begin{prop}{Encadrement du domaine de convergence}{}
-        Soit $\sum a_n z^n$ une série entière de rayon de convergence $R$ et de domaine de convergence $D$.
-
-        Alors 
-        \[ \enstq{z \in \mathbb{K}}{\abs{z} < R} \subset D \subset \enstq{z \in \mathbb{K}}{\abs{z} \leq R} \]
-    \end{prop}
-
-    \begin{defi}{Disque ouvert de convergence}{}
-        Soit $\sum a_n z^n$ une série entière de rayon de convergence $R$.
-
-        On appelle \textbf{disque ouvert de convergence} l’ensemble 
-        \[ \enstq{z \in \mathbb{K}}{\abs{z} < R} \] 
-        sur lequel il y a convergence absolue de la série.
-    \end{defi}
-
-    \subsubsection{Détermination du rayon de convergence}
-
-    \begin{prop}{Règle de d’Alembert}{}
-        Soit $a_n z^n$ une série entière.
-        \begin{suppose}
-            \item il existe $n_0$ tel que pour tout $n \geq n_0$, $a_n \neq 0$ ;
-            \item $\abs{\frac{a_{n+1}}{a_n}} \limi{n}{+\infty} \ell \in \mathbb{R}_+ \cup \{+\infty\}$
-        \end{suppose}
-        Alors le rayon de convergence de la série entière $\sum a_n z^n$ est $R = \frac{1}{\ell}$, avec la convention $\frac{1}{0} = +\infty$ et $\frac{1}{+\infty} = 0$.
-    \end{prop}
-
-    \begin{prop}{Comparaison de deux rayons de convergence}{}
-        Notons $R_a$ et $R_b$ les rayons de convergence respectifs des séries entières 
-        \[ \sum a_n z^n \esp{et} \sum b_n z^n \]
-        \begin{alors}
-            \item Si $a_n = \comp{\mathcal{O}}{n}{+\infty}{b_n}$, alors $R_a \geq R_b$.
-            \item Si $a_n \limit{\sim}{n}{+\infty} b_n$, alors $R_a = R_b$.
-        \end{alors}
-    \end{prop}
-
-    \subsubsection{Opérations sur les séries entières}
-
-    \begin{prop}{Somme de séries entières}{}
-        Soient $\sum a_n z^n$ et $\sum b_n z^n$ deux séries entières de rayons de convergence $R_a$ et $R_b$. 
-
-        Alors la série entière $\sum (a_n + b_n) z^n$ admet un rayon de convergence tel que 
-        \begin{enumerate}
-            \item $R \geq \min(R_a,R_b)$ ;
-            \item si $R_a \neq R_b$, alors $R = \min(R_a,R_b)$
-        \end{enumerate}
-    \end{prop}
-
-    \begin{defi}{Produit de Cauchy de deux séries entières}{}
-        Soient $\sum a_n z^n$ et $\sum b_n z^n$ deux séries entières. 
-
-        On appelle \textbf{produit de Cauchy} des deux séries la série entière $\sum c_n z^n$ définie par 
-        \[ \forall n \in \mathbb{N}, \quad c_n = \sum_{k=0}^{n} a_k b_{n-k} = \sum_{i + j = n} a_i b_j \]
-    \end{defi}
-
-    \begin{omed}{Remarque}{myyellow}
-        L’ensemble des séries entières (noté $\mathbb{K}(X)$) muni des opérations d’addition et de multiplication (au sens du produit de Cauchy) et du produit externe est une $\mathbb{K}$-algèbre.
-    \end{omed}
-
-    \begin{prop}{Produit de Cauchy}{}
-        Soient $\sum a_n z^n$ et $\sum b_n z^n$ deux séries entières de rayons de convergence $R_a$ et $R_b$.
-
-        \begin{alors}
-            \item Le produit de Cauchy des  séries entières $\sum a_n z^n$ et $\sum b_n z^n$ a un rayon de convergence $R \geq \min(R_a,R_b)$.
-            \item Pour tout $z \in \mathbb{K}$ tel que $\abs{z} \leq \min(R_a, R_b)$, 
-            \[ \sum_{n=0}^{+\infty} c_n z^n = \left(\sum_{n=0}^{+\infty} a_n z^n\right) \cdotp \left(\sum_{n=0}^{+\infty} b_n z^n\right) \]
-        \end{alors}
-    \end{prop}
-
-    \begin{defi}{Primitive d’une série entière}{}
-        Soit $\sum a_n z^n$ une série entière.
-
-        On appelle \textbf{primitive} de cette série la série entière 
-        \[ \sum a_n \frac{z^{n+1}}{n+1} \]
-    \end{defi}
-
-    \begin{prop}{Rayon de convergence de la primitive}{}
-        Les séries entières $\sum a_n z^n$ et $\sum a_n \frac{z^{n+1}}{n+1}$ ont le même rayon de convergence.
-    \end{prop}
-
-    \begin{coro}{}{}
-        Les séries entières $\sum a_n z^n$ et $\sum n a_n z^{n-1}$ ont le même rayon de convergence.
-    \end{coro}
-
-\subsection{Régularité de la somme d’une série entière}
-
-    \subsubsection{Convergence normale}
-
-    \begin{prop}{}{}
-        Soit $\sum a_n z^n$ une série entière de rayon de convergence $R > 0$.
-
-        Alors pour tout $D = \intervalleFF{a}{b} \subset \intervalleOO{-R}{R}$ (ou tout disque fermé $D$ inclus dans $\enstq{z \in \mathbb{C}}{\abs{z} < R}$), la série converge normalement.
-    \end{prop}
-
-    \begin{coro}{Continuité de la somme d’une série entière}{}
-        L’application $x \longmapsto \sum_{n=0}^{+\infty} a_n x^n$ est continue sur $\intervalleOO{-R}{R}$.
-    \end{coro}
-
-    \subsubsection{Intégration terme à terme}
-
-    \begin{theo}{Intégration terme à terme}{}
-        Soit $\sum a_n x^n$ une série entière \textcolor{myred}{réelle} de rayon de convergence $R > 0$. 
-
-        Pour tout $x \in \intervalleOO{-R}{R}$,
-        \begin{align*}
-            \int_{0}^{x} \left(\sum_{n=0}^{+\infty} a_n t^n \right) dt 
-            &= \sum_{n=0}^{+\infty} \int_{0}^{x} a_n t^n dt \\
-            &= \sum_{n=0}^{+\infty} a_n \frac{x^{n+1}}{n+1}
-        \end{align*}
-    \end{theo}
-
-    \subsubsection{Caractère C8}
-
-    \begin{theo}{Caractère $\mathcal{C}^{\infty}$}
-        Soit $\sum a_n x^n$ une série entière \textcolor{myred}{réelle} de rayon de convergence $R > 0$. 
-
-        Alors l’application $S : x \mapsto \sum_{n=0}^{+\infty} a_n x^n$ est de classe $\mathcal{C}^{\infty}$ sur $\intervalleOO{-R}{R}$.
-
-        De plus, pour tout $k \in \mathbb{N}$, pour tout $x \in \intervalleOO{-R}{R}$,
-        \begin{align*}
-            S^{(k)}(x) 
-            &= \sum_{n=k}^{+\infty} n(n-1) \cdots (n-k+1) a_n x^{n-k} \\
-            &= \sum_{n=0}^{+\infty} \frac{(n+k)!}{n!} a_{n+k} x^n
-        \end{align*}
-        En particulier, toutes les séries entières ont le même rayon de convergence $R$.
-    \end{theo}
-
-    \begin{coro}{}{}
-        Soit $\sum a_n x^n$ une série entière \textcolor{myorange}{réelle} de rayon de convergence $R > 0$. 
-
-        Pour tout $n \in \mathbb{N}$, 
-        \[ a_n = \frac{S^{(n)}(0)}{n!} \]   
-    \end{coro}
-
-\subsection{Développement en série entière}
-
-    Dans cette section, toute les séries entières seront réelles.
-
-    \subsubsection{Fonction développable en série entière}
-
-    \begin{defi}{Fonction développable en série entière}{}
-        \begin{soit}
-            \item $I$ un intervalle de $\mathbb{R}$
-            \item $f : I \to \mathbb{R}$
-            \item $R_0 > 0$ tel que $\intervalleOO{-R_0}{R_0} \subset I$
-        \end{soit}
-        On dit que $f$ est \textbf{développable en série entière} sur $\intervalleOO{-R_0}{R_0}$ s’il existe une série entière $\sum a_n x^n$ telle que 
-        \[ \forall x \in \intervalleOO{-R_0}{R_0}, \quad f(x) = \sum_{n=0}^{+\infty} a_n x^n \]
-
-        On dira de même que $f$ est développable en série entière au voisinage de $x_0$ s’il existe $\delta > 0$ tel que l’application $x \longmapsto f(x_0 + x)$ est développable en série entière sur $\intervalleOO{-\delta}{\delta}$.
-    \end{defi}
-
-    \begin{prop}{}{}
-        Soit $f : I \to \mathbb{R}$ développable en série entière sur $\intervalleOO{-R}{R}$ avec, pour tout $x \in \intervalleOO{-R}{R}$, 
-        \[ f(x) = \sum_{n=0}^{+\infty} a_n x^n \]
-        \begin{alors}
-            \item Toute primitive $F$ de $f$ est développable en série entière sur $\intervalleOO{-R}{R}$, avec 
-            \[ \forall x \in \intervalleOO{-R}{R}, \quad F(x) = F(0) + \sum_{n=1}^{+\infty} \frac{a_{n-1}}{n} x^n \]
-            \item La dérivée $f'$ de $f$ est développable en série entière sur $\intervalleOO{-R}{R}$, avec 
-            \[ \forall x \in \intervalleOO{-R}{R}, \quad f'(x) = \sum_{n=1}^{+\infty} (n+1) a_{n+1} x^n \]
-        \end{alors}
-    \end{prop}
-
-    \begin{prop}{Stabilité des développements en série entière}{}
-        Si $f$ et $g$ sont deux fonctions développables en série entière sur $\intervalleOO{-R}{R}$, alors $f+g$ et $fg$ sont développable en série entière sur $\intervalleOO{-R}{R}$.
-    \end{prop}
-
 \section{Série de fonctions}
 
 \subsection{Modes de convergence d’une série de fonctions}
@@ -1437,6 +1238,706 @@
             Donc en passant à la limite, 
             \[ \sum\limits_{n=1}^{+\infty} \frac{1}{n^4} = \frac{1}{16}\sum\limits_{n=1}^{+\infty} \frac{1}{n^4} + \frac{\pi^4}{96} \quad \text{soit} \quad \sum\limits_{n=1}^{+\infty} \frac{1}{n^2} = \frac{\pi^4}{90} \] 
         \end{enumerate}
+    \end{omed}
+
+\section{Séries entières}
+
+\subsection{Rayon de convergence}
+
+    On note $\mathbb{K}$ le corps $\mathbb{R}$ ou $\mathbb{C}$.
+
+    \subsubsection{Définitions}
+
+    \begin{defi}{Série entière}{}
+        On appelle \textbf{série entière} une série dont le terme général est de la forme $a_n z^n$, où $(a_n)$ est une suite d’éléments de $\mathbb{K}$.
+
+        On la note $\sum a_n z^n$.
+    \end{defi}
+
+    Il ne faut pas confondre ces séries avec des séries numériques classiques. Pour cela, on identifie si le $z$ est défini ou non. Si ce n’est pas le cas, c’est une série entière.
+
+    \begin{defi}{Domaine de convergence}{}
+        Soit $\sum a_n z^n$ une série entière.
+
+        On appelle \textbf{domaine de convergence} de la série entière l’ensemble, noté $D$, des scalaires $z$ pour lesquels la série numérique $\sum a_n z^n$ converge.
+    \end{defi}
+
+    \begin{omed}{Exemples}{myyellow}
+        \begin{enumerate}[label=\textcolor{myyellow}{\arabic*.}]
+            \item $\sum z^n \quad ; \quad D = \left\{z \in \mathbb{C}, \quad \abs{z} < 1\right\}$
+            \item $\sum \frac{z^n}{n!} \quad ; \quad D = \mathbb{K}$
+        \end{enumerate}
+    \end{omed}
+
+    \begin{lem}{dit d’Abel}{}
+        Soit $\sum a_n z^n$ une série entière et $z_0 \in \mathbb{K}$ tel que la suite $(a_n z_0^n)$ est bornée. 
+
+        Alors pour tout scalaire $z$ tel que $\abs{z} < \abs{z_0}$, la série numérique $\sum a_n z^n$ est absolument convergente.
+    \end{lem}
+
+    \begin{demo}{Démonstration}{mybrown}
+        Il existe $M \in \mathbb{R}_+$ tel que $\forall n \in \mathbb{N}, \abs{a_n z_0^n} \leq M$. Soit $z \in \mathbb{K}^*$ tel que $\abs{z} \leq \abs{z_0}$. Alors $\forall n \in \mathbb{N}$,
+        \begin{align*}
+            \abs{a_n z^n} 
+            &= \abs{a_n z_0^n} \times \abs{\frac{z}{z_0}}^n \\
+            &\leq M \abs{\frac{z}{z_0}}^n
+        \end{align*}
+        Comme $\abs{\frac{z}{z_0}} < 1$, la série $\sum \abs{\frac{z}{z_0}}^n$ converge. Par comparaison des séries à termes positifs, on a donc $\sum a_n z^n$ converge absolument.
+    \end{demo}
+
+    \begin{defi}{Rayon de convergence}{}
+        Soit $\sum a_n z^n$ une série entière.
+
+        On appelle \textbf{rayon de convergence} de la série entière le réel $R$ défini par 
+        \[ R = \sup \big\{ \rho \in \mathbb{R}_+,\quad (a_n \rho^n) \text{ est bornée} \big\} \quad \in \mathbb{R}_+ \cup \{ +\infty \} \]
+    \end{defi}
+
+    \begin{omed}{Exemples}{myyellow}
+        \begin{enumerate}[label=\textcolor{myyellow}{\arabic*.}]
+            \item $\sum z^n \quad ; \quad R = 1$
+            \item $\sum \frac{z^n}{n!} \quad ; \quad R = +\infty$
+        \end{enumerate}
+    \end{omed}
+
+    \begin{prop}{}{}
+        Soit $\sum a_n z^n$ une SE de rayon $R$.
+        \begin{enumerate}
+            \item Soit $z \in \mathbb{K}$ tel que $\abs{z} < R$. Alors $\sum a_n z^n$ est absolument convergente donc converge.
+            \item Soit $z \in \mathbb{K}$ tel que $\abs{z} > R$. Alors $\sum a_n z^n$ diverge grossièrement.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        \begin{enumerate}
+            \item Si $\abs{z} < R$, il existe $z_0 \in \mathbb{K}$ tel que $(a_n z_0^n)$ est bornée et $\abs{z} \leq \abs{z_0}$. On conclut par le lemme d’Abel.
+            \item Si $\abs{z} > R$, $(a_n z^n)$ n’est pas bornée donc $\sum a_n z^n$ diverge grossièrement.
+        \end{enumerate}
+    \end{demo}
+
+    Par la connaissance du rayon, on s’approche donc largement du disque de convergence. Il manque simplement la donnée des cas pathologiques $z$ tels que $\abs{z} = R$, qu’il faudra étudier à part.
+
+    \begin{coro}{Encadrement du domaine de convergence}{}
+        Soit $\sum a_n z^n$ une série entière de rayon de convergence $R$ et de domaine de convergence $D$. Alors 
+        \[ \enstq{z \in \mathbb{K}}{\abs{z} < R} \subset D \subset \enstq{z \in \mathbb{K}}{\abs{z} \leq R} \]
+    \end{coro}
+
+    \begin{defi}{Disque ouvert de convergence}{}
+        Soit $\sum a_n z^n$ une série entière de rayon de convergence $R$.
+
+        On appelle \textbf{disque ouvert de convergence} l’ensemble 
+        \[ \enstq{z \in \mathbb{K}}{\abs{z} < R} \] 
+        sur lequel il y a convergence absolue de la série.
+    \end{defi}
+
+    \subsubsection{Détermination du rayon de convergence}
+
+    \begin{prop}{Critère de d’Alembert}{}
+        Soit $a_n z^n$ une série entière.
+        \begin{suppose}
+            \item il existe $n_0$ tel que pour tout $n \geq n_0$, $a_n \neq 0$ ;
+            \item $\abs{\frac{a_{n+1}}{a_n}} \limi{n}{+\infty} \ell \in \mathbb{R}_+ \cup \{+\infty\}$
+        \end{suppose}
+        Alors le rayon de convergence de la série entière $\sum a_n z^n$ est $R = \frac{1}{\ell}$, avec les convention $\frac{1}{0} = +\infty$ et $\frac{1}{+\infty} = 0$.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Soit $z \in \mathbb{K}^*$. Posons $u_n(z) = a_n z^n$. On applique le critère de d’Alembert pour les séries numériques :
+        \begin{align*}
+            \abs{\frac{u_{n+1}(z)}{u_{n}(z)}} &= \abs{\frac{a_{n+1} z^{n+1}}{a_n z^n}} \\
+            &= \abs{z} \times \abs{\frac{a_{n+1}}{a_n}} \\
+            &\limi{n}{+\infty} \abs{z} \ell
+        \end{align*}
+        \begin{itemize}
+            \item Si $\abs{z} \ell < 1$, $\sum u_n(z)$ converge, \textit{i.e.} $\sum a_n z^n$ converge. Donc $z \leq R$. Ainsi, $\abs{z} < \frac{1}{\ell} \implies \abs{z} \leq R$.
+            \item Si $\abs{z} \ell > 1$, $\sum a_n z^n$ diverge, donc $z \geq R$. Ainsi, $\abs{z} > \frac{1}{\ell} \implies \abs{z} \geq R$.
+        \end{itemize}
+        Donc $R = \frac{1}{\ell}$. 
+
+        Dans le cas où $\ell = 0$, On a que $\abs{\frac{a_{n+1} z^{n+1}}{a_n z^n}} \limi{n}{+\infty} 0$ donc $\sum a_n z^n$ converge et $\abs{z} \leq R$ pour tout $z \in \mathbb{K}$.
+    \end{demo}
+
+    Il faut toujours être vigilent à l’hypothèse $a_n \neq 0$ apcr, et bien noter que la réciproque est fausse.
+
+    \begin{omed}{Exemples}{myyellow}
+        \begin{enumerate}[label=\textcolor{myyellow}{\arabic*.}]
+            \item $\sum z^n \quad ; \quad R = 1$
+            \item $\sum \frac{z^n}{n!}$. $a_n = \frac{1}{n!}$ est bien non nul apcr, et $\frac{a_{n+1}}{a_n} = \frac{1}{n+1} \limi{n}{+\infty} 0$.
+            \item $\sum n^n z^n$. $a_n = n^n$ est bien non nul apcr, et $\frac{a_{n+1}}{a_n} = (n+1)(1 + \frac{1}{n})^n \limi{n}{+\infty}$ donc le rayon de cette SE est $0$.
+        \end{enumerate}
+    \end{omed}
+
+    \begin{prop}{Comparaison de deux rayons de convergence}{}
+        Notons $R_a$ et $R_b$ les rayons de convergence respectifs des séries entières $\sum a_n z^n \text{ et } \sum b_n z^n$.
+        \begin{alors}
+            \item Si $a_n = \comp{\mathcal{O}}{n}{+\infty}{b_n}$, alors $R_a \geq R_b$.
+            \item Si $a_n \limit{\sim}{n}{+\infty} b_n$, alors $R_a = R_b$.
+        \end{alors}
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        \begin{enumerate}
+            \item Soit $z \in \mathbb{K}$ tel que $\abs{z} < R_b$. Alors $\sum b_n z^n$ est absolument convergente, et comme $\abs{a_n z^n} = \comp{\mathcal{O}}{n}{+\infty}{\abs{b_n z^n}}$, la série $\sum a_n z^n$ converge absolument pareil. Ainsi, $\abs{z} \leq R_a$. On a donc obtenu $\abs{z} \leq R_a$. 
+            \item Si $a_n \limit{\sim}{n}{+\infty} b_n$, on applique le premier point dans les deux sens, d’où $R_a = R_b$.
+        \end{enumerate}
+    \end{demo}
+
+    \begin{omed}{Application}{myolive}
+        Soit $\sum z^{2n}$. Posons $a_n = \sisi{0}{n \text{ impair}}{1}{n \text{ pair}}$. Le critère de d’Alembert ne s’applique pas car la nullité apcr n’est pas garantie. On a que $a_n = \comp{\mathcal{O}}{n}{+\infty}{1}$ et que $\sum z^n$ a pour rayon de convergence $R = 1$. Donc $R \geq 1$. Si $z =1$, $\sum z^{2n}$ diverge, donc $R = 1$.
+    \end{omed}
+
+    \begin{omed}{Exemples}{myolive}
+        \begin{enumerate}[label=\textcolor{myolive}{\arabic*.}]
+            \item $\sum \ln\left(1 + \frac{1}{n}\right)$. Posons $a_n = \ln\left(1 + \frac{1}{n}\right)$ et $b_n = \frac{1}{n}$. $a_n \sim b_n$ et $\sum \frac{z^n}{n}$ a pour RDC, $R_b = 1$, donc $R_a = 1$.
+            \item $\sum a_n z^n$ où $a_n = \tan\left(n \frac{\pi}{7}\right)$. La fonction tan est $\pi$ périodique donc $a_{n+7} = a_n$ d’où $(a_n)$ est bornée et $a_n = \comp{\mathcal{O}}{n}{+\infty}{1}$. Or, $\sum z^n$ a pour RDC $1$, donc $R \geq 1$. Si $z = 1$, $\sum \tan(n \frac{\pi}{7}) z^n$ diverge, donc $R \leq 1$. Ainsi, $R = 1$.
+        \end{enumerate}
+    \end{omed}
+
+    \subsubsection{Opérations sur les séries entières}
+
+    \begin{prop}{Somme de séries entières}{}
+        Soient $\sum a_n z^n$ et $\sum b_n z^n$ deux séries entières de rayons de convergence $R_a$ et $R_b$. Alors la série entière $\sum (a_n + b_n) z^n$ admet un rayon de convergence $R$ tel que 
+        \begin{enumerate}
+            \item $R \geq \min(R_a,R_b)$ ;
+            \item si $R_a \neq R_b$, alors $R = \min(R_a,R_b)$
+        \end{enumerate}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        \begin{enumerate}
+            \item Soit $z \in \mathbb{K}$ tel que $\abs{z} < \min(R_a, R_b)$. Alors $\sum a_n z^n$ converge et $\sum b_n z^n$ converge, donc $\sum (a_n + z_n) z^n$ converge, et donc $\abs{z} \leq R$. Ainsi, $\min(R_a,R_b) \leq R$. 
+            \item Si $R_a \neq R_b$, supposons $R_a < R_b$. Soit $z \in \mathbb{K}$ tel que $R_a < \abs{z} < R_b$. Alors $\sum a_n z^n$ diverge et $\sum b_n z^n$ converge, donc $\sum (a_n + b_n) z^n$ diverge et $\abs{z} \geq R$. Donc $R_a \geq R$ \textit{i.e.} $\min(R_a,R_b) \geq R$ Ainsi, $R = \min(R_a,R_b)$.
+        \end{enumerate}
+        
+    \end{demo}
+
+    \begin{defi}{Produit de Cauchy de deux séries entières}{}
+        Soient $\sum a_n z^n$ et $\sum b_n z^n$ deux séries entières. On appelle \textbf{produit de Cauchy} des deux séries la série entière $\sum c_n z^n$ définie par 
+        \[ \forall n \in \mathbb{N}, \quad c_n = \sum_{k=0}^{n} a_k b_{n-k} = \sum_{i + j = n} a_i b_j \]
+    \end{defi}
+
+    \begin{omed}{Remarque}{myyellow}
+        L’ensemble des séries entières (noté $\mathbb{K}(X)$) muni des opérations d’addition et de multiplication (au sens du produit de Cauchy) et du produit externe est une $\mathbb{K}$-algèbre.
+    \end{omed}
+
+    \begin{prop}{Produit de Cauchy}{}
+        Soient $\sum a_n z^n$ et $\sum b_n z^n$ deux séries entières de rayons de convergence $R_a$ et $R_b$.
+        \begin{alors}
+            \item Le produit de Cauchy des  séries entières $\sum a_n z^n$ et $\sum b_n z^n$ a un rayon de convergence $R \geq \min(R_a,R_b)$.
+            \item Pour tout $z \in \mathbb{K}$ tel que $\abs{z} < \min(R_a, R_b)$, 
+            \[ \sum_{n=0}^{+\infty} c_n z^n = \left(\sum_{n=0}^{+\infty} a_n z^n\right) \cdotp \left(\sum_{n=0}^{+\infty} b_n z^n\right) \]
+        \end{alors}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Rappelons dans un premier temps le résultat sur les séries numériques : Si $\sum a_n$ et $\sum b_n$ sont deux séries absolument convergentes, alors $\sum c_n$ est absolument convergente et $\sum_{n \geq 0} c_n = \left(\sum_{n \geq 0} a_n\right)\times\left(\sum_{n \geq 0} b_n\right)$.
+        \begin{enumerate}
+            \item Soit $z \in \mathbb{K}$ tel que $\abs{z} < \min(R_a,R_b)$. Alors $\sum a_n z^n$ et $\sum b_n z^n$ sont absolument convergentes, donc leur produit de Cauchy est absolument convergente, \textit{i.e.} $\sum c_n z^n$ converge. Donc $\min(R_a, R_b) \leq R_c$.
+            \item De plus, si $\abs{z} < \min(R_a,R_b)$, alors $\sum_{n \geq 0} c_n z^n = \left(\sum_{n \geq 0} a_n z^n\right)\left(\sum_{n \geq 0} b_n z^n\right)$.
+        \end{enumerate}
+    \end{demo}
+
+    \begin{omed}{Exemple}{myolive}
+        Pour tout $z \in \mathbb{C}$, on pose $e^z = \sum_{n=0}^{+\infty} \frac{z^n}{n!}$. On sait que le RDC de la SE $\sum a_n z^n$ où $a_n = \frac{1}{n!}$ est $+\infty$. Soit $z \in \mathbb{C}$. 
+        \begin{align*}
+            e^z \times e^z 
+            &= \sum_{n=0}^{+\infty} \left(\sum_{k=0}^{n} \frac{1}{k!} \times \frac{1}{(n-k)!}\right) z^n \\
+            &= \sum_{n=0}^{+\infty} \left(\sum_{k=0}^{n} \binom{n }{k } \right) \frac{z^n}{n!} \\
+            &= e^{2 z}
+        \end{align*}
+        On appelle ce résultat (généralisable en $e^z e^{z'} = e^{z + z'}$) l’équation fonctionnelle de exp.
+    \end{omed}
+
+    \begin{omed}{Remarque}{myolive}
+        Si on pose $\sum a_n z^n$ et $\sum b_n z^n$ deux SE de RDC $R_a$ et $R_b$, et $\sum c_n z^n$ leur produit de Cauchy de RDC $R_c$. On peut avoir $R_a \neq R_b$ et $R_c > \min(R_a,R_b)$.
+
+        En effet, considérons $a_n = 1$ pour tout $n \in \mathbb{R}$ (d’où $R_a = 1$) et $b_0 = 1, b_1 = -1$ puis $b_n = 0$ si $n \geq 2$ (d’où $R_b = +\infty)$. Si $\abs{z} < 1$, 
+        \[ \left(\sum_{k=0}^{+\infty} z^n\right)(1-z) = 1 \]    
+
+        Calculons le produit de Cauchy de $\sum a_n z^n$ et $\sum b_n z^n$. Si $n = 0$, $c_0 = a_0 b_0 = 1$. Si $n \geq 1$, $c_n = \sum_{k=0}^{n} a_k b_{n-k} = \sum_{k=0}^{1} b_k = 0$, donc $R_c = +\infty \neq \min(R_a,R_b)$.
+    \end{omed}
+
+    \begin{omed}{Exercice}{myolive}
+        Soient $\sum a_n z^n$ et $\sum b_n z^n$ deux SE telles que $R_a = R_b$, et $\forall n \in \mathbb{N}, a_n b_n = 0$. Montrer que le RDC de $\sum (a_n + b_n)z^n$ est égal à $R_a = R_b$.
+    \end{omed}
+
+    \begin{demo}{Résolution}{myolive}
+        On note $R$ le RDC cherché. On sait dans un premier temps que $R \geq \min(R_a,R_b)$. Soit $z \in \mathbb{K}$ tel que $\abs{a_n z^n}$ n’est pas majoré, \textit{i.e.} $\left(a_n \abs{z}^n\right)$ n’est pas bornée. Alors $\abs{z} \geq R_a$. On a, pour tout $n \in \mathbb{N}$, $\abs{a_n + b_n}\abs{z^n} \geq \abs{a_n} \abs{z}^n$ donc $\abs{a_n + b_n} \abs{z}^n$ n’est pas majorée, donc $\abs{z} \geq R$. Ainsi, $R_a \geq R$ et puis $R = R_a$.
+    \end{demo}
+
+    \begin{defi}{Primitives et dérivée d’une série entière}{}
+        Soit $\sum a_n z^n$ une série entière. On appelle \textbf{primitive} de cette série une série entière 
+        \[ \sum a_n \frac{z^{n+1}}{n+1} + C \]
+        On appelle \textbf{dérivée} de la SE la série entière 
+        \[ \sum_{n \geq 1} n a_n z^{n-1} = \sum (n+1) a_{n+1} z^n \]   
+    \end{defi}
+
+    En particulier, toute série entière possède une dérivée et des primitives.
+
+    \begin{prop}{Rayon de convergence de la primitive}{}
+        Soit $\sum a_n z^n$ une SE de rayon de convergence $R > 0$. 
+        Les séries entières $\sum n a_n z^{n-1}$ et $\sum a_n \frac{z^{n+1}}{n+1}$ ont le même rayon de convergence.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Il suffit de montrer que les séries entières $\sum a_n z^n$ et $\sum a_n \frac{z^{n+1}}{n+1}$ ont le même RDC. Notons $R$ et $R'$ les RDC respectifs de ces deux SE. 
+
+        On montre, comme dans de nombreuses preuves avec les SE, que $\et{R \geq R'}{R \leq R'}$. \begin{itemize}
+            \item Soit $z \in \mathbb{K}$ tel que $\abs{z} < R$. D’après le lemme d’abel, $\sum a_n z^n$ est absolument convergente, donc $a_n z^n \limi{n}{+\infty} 0$ et donc il existe $M$ tel que $\forall n \in \mathbb{N}, \abs{a_n z^n} < M$. Donc $\abs{a_n \frac{z^{n+1}}{n+1}} = \frac{\abs{z}}{n+1} \times \abs{a_n z^n} \leq \frac{\abs{z} M}{n+1} \limi{n}{+\infty} 0$. Donc $\abs{z} \leq R'$, \textit{i.e.} $R \leq R'$.
+            \item Soit $z \in \mathbb{K}$ tel que $\abs{z} < R'$. IL existe $\rho \in \mathbb{R}_+$ tel que $\abs{z} < \rho < R'$, donc $\sum a_n \frac{\rho^{n+1}}{n+1}$ converge absolument, d’où l’existence de $M$ tel que $\forall n \in \mathbb{N}, \abs{a_n \frac{\rho^{n+1}}{n+1}} < M$. On en déduit que, pour $z \neq 0$,
+            \begin{align*}
+                \abs{a_n z^n} 
+                &= \frac{n+1}{\abs{z}} \times \abs{a_n \frac{z^{n+1}}{n+1}} \\
+                &= \frac{n+1}{\abs{z}} \times \abs{a_n \frac{\rho^{n+1}}{n+1}} \times \abs{\frac{z}{\rho}}^{n+1} \\
+                &= \frac{n+1}{\rho} \times \abs{a_n \frac{\rho^{n+1}}{n+1}} \times \abs{\frac{z}{\rho}}^{n} \\
+                &\leq \frac{M}{\rho} (n+1) \abs{\frac{z}{\rho}}^n \\
+                &\limi{n}{+\infty} 0
+            \end{align*}
+            Donc $\abs{z} \leq R$ \textit{i.e.} $R' \leq R$.
+        \end{itemize}
+        Finalement, on a obtenu que $R = R'$.
+    \end{demo}
+
+\subsection{Régularité de la somme d’une série entière}
+
+    Dans cette section, on s’intéresse à des SE réelles.
+
+    \subsubsection{Convergence normale}
+
+    \begin{prop}{}{}
+        Soit $\sum a_n z^n$ une série entière de rayon de convergence $R > 0$.
+
+        Alors pour tout $D = \intervalleFF{a}{b} \subset \intervalleOO{-R}{R}$ (ou tout disque fermé $D$ inclus dans $\enstq{z \in \mathbb{C}}{\abs{z} < R}$), la série converge normalement.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Posons $f_n : x \mapsto a_n x^n$ définie sur $\intervalleOO{-R}{R}$. On a 
+        \begin{align*}
+            \nnorm{\infty, \intervalleFF{a}{b}}{f_n} 
+            &= \abs{a_n} \max\left(\abs{a}, \abs{b}\right)^n \\
+        \end{align*}
+        où $\max(\abs{a}, \abs{b}) < R$ donc la série $\sum \nnorm{\infty, \intervalleFF{a}{b}}{f_n}$ converge, \textit{i.e.} la série est normalement convergente sur $\intervalleFF{a}{b} \subset \intervalleOO{-R}{R}$.
+    \end{demo}
+
+    Cette convergence n’est pas valable sur le disque ouvert, mais seulement sur tout intervalle qui y est inclus. 
+
+    \begin{omed}{Contre-exemple sur le disque ouvert}{myolive}
+        OC $\sum x^n$ de rayon de convergence $R = 1$. OP $f_n(x) = x^n$. $\nnorm{\infty, \intervalleOO{-1}{1}}{f_n} = 1$ et $\sum 1$ diverge, donc $\sum x^n$ ne converge pas normalement sur $\intervalleOO{-1}{1}$.
+    \end{omed}
+
+    \begin{coro}{Continuité de la somme d’une SER}{}
+        L’application $S : x \longmapsto \sum_{n=0}^{+\infty} a_n x^n$ est continue sur $\intervalleOO{-R}{R}$.
+    \end{coro}
+
+    \begin{demo}{Idée}{myorange}
+        OP $f_n : x \mapsto a_n x^n$, qui est $\mathcal{C}^0$ sur $\intervalleOO{-R}{R}$. De plus, $\sum f_n$ converge normalement donc uniformément sur tout $\intervalleFF{a}{b} \subset \intervalleOO{-R}{R}$, donc $S$ est continue (d’après le théorème de continuité pour une somme de série de fonction).
+    \end{demo}
+
+    \subsubsection{Intégration terme à terme}
+
+    \begin{theo}{Intégration terme à terme}{}
+        Soit $\sum a_n x^n$ une série entière \textcolor{myred}{réelle} de rayon de convergence $R > 0$. 
+
+        Pour tout $x \in \intervalleOO{-R}{R}$,
+        \begin{align*}
+            \int_{0}^{x} \left(\sum_{n=0}^{+\infty} a_n t^n \right) dt 
+            &= \sum_{n=0}^{+\infty} \int_{0}^{x} a_n t^n dt \\
+            &= \sum_{n=0}^{+\infty} a_n \frac{x^{n+1}}{n+1}
+        \end{align*}
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        OP $f_n(t) = a_n t^n$. La série de fonction $\sum f_n$ converge normalement sur $\intervalleFF{0}{x}$ donc uniformément sur $\intervalleFF{0}{x}$. Par le théorème d’intégration terme à terme, on a donc 
+        \[ \int_{0}^x \sum_{n=0}^{+\infty} a_n t^n dt = \sum_{n=0}^{+\infty} \int_{0}^{x} a_n t^n dt \]
+    \end{demo}
+
+    On peut aussi passer par une preuve directe, qui est applicable dans la pratique aussi :
+
+    \begin{demo}{Preuve directe}{myred}
+        \begin{align*}
+            \abs{\int_{0}^{x} \sum_{n=0}^{+\infty} a_n t^n dt - \sum_{n=0}^{N} \int_{0}^{x} a_n t^n dt} 
+            &= \abs{\int_{0}^{x} \sum_{n=0}^{+\infty} a_n t^n - \sum_{n=0}^{N} a_n t^n dt} \\
+            &= \abs{\int_{0}^{x} \sum_{n=N+1}^{+\infty} a_n t^n dt} \\
+            &\leq \int_{0}^{x} \sum_{n=N+1}^{+\infty} \abs{a_n} x^n dt \\
+            & \quad \downarrow \quad \text{reste d’une série cv} \\
+            &\limi{n}{+\infty} 0
+        \end{align*}
+    \end{demo}
+
+    \begin{omed}{Exemple}{myred}
+        OC $\sum x^n$, de RDC $R = 1$. Pour $x \in \intervalleOO{-1}{1}$, on a 
+        \[ \frac{1}{1-x} = \sum_{n=0}^{+\infty} x^n \]   
+        Par le théorème d’ITT, 
+        \begin{align*}
+            \int_{0}^{x} \frac{dt}{1-t} 
+            &= \sum \int_{0}^{x} t^n dt \\
+            \textit{i.e. } -\ln(1-x) 
+            &= \sum_{n=0}^{+\infty} \frac{x^{n+1}}{n+1} \\
+        \end{align*}
+        Donc, pour $x \in \intervalleOO{-1}{1}$, $\ln(1-x) = \sum_{n=1}^{+\infty} \frac{x^{n+1}}{n+1}$, ou encore $\ln(1+x) = \sum_{n=0}^{+\infty} (-1)^n \frac{x^{n+1}}{n+1}$.
+    \end{omed}
+
+    \subsubsection{Caractère C8}
+
+    \begin{theo}{Caractère $\mathcal{C}^{\infty}$}{}
+        Soit $\sum a_n x^n$ une série entière \textcolor{myred}{réelle} de rayon de convergence $R > 0$. 
+
+        Alors l’application $S : x \mapsto \sum_{n=0}^{+\infty} a_n x^n$ est de classe $\mathcal{C}^{\infty}$ sur $\intervalleOO{-R}{R}$.
+
+        De plus, pour tout $k \in \mathbb{N}$, pour tout $x \in \intervalleOO{-R}{R}$,
+        \begin{align*}
+            S^{(k)}(x) 
+            &= \sum_{n=k}^{+\infty} n(n-1) \cdots (n-k+1) a_n x^{n-k} \\
+            &= \sum_{n=0}^{+\infty} \frac{(n+k)!}{n!} a_{n+k} x^n
+        \end{align*}
+        En particulier, toutes les séries entières ont le même rayon de convergence $R$.
+    \end{theo}
+
+    \begin{demo}{Preuve}{myred}
+        On s’appuie sur le théorème donnant le caractère $\mathcal{C}^k$ d’une série de fonctions. OP $f_n : x \mapsto a_n x^n$.
+        \begin{enumerate}[label=$(h_{\alph*})$]
+            \item $\forall n \in \mathbb{N}$, $f_n \in \mathcal{C}^{\infty}$ sur $\intervalleOO{-R}{R}$.
+            \item Si $\intervalleFF{a}{b} \subset \intervalleOO{-R}{R}$, $\sum f_n^{(k)} = \sum \frac{(n+k)!}{n!} a_{n+k} x^n$ a le même rayon de convergence que $\sum a_n x^n$ donc son rayon de convergence est $R > 0$. Ainsi, $\sum f_n^{(k)}$ converge normalemente sur $\intervalleFF{a}{b}$.
+        \end{enumerate}
+        Ainsi, $S^{(k)}$ est de classe $\mathcal{C}^{\infty}$ sur $\intervalleOO{-R}{R}$.
+    \end{demo}
+
+    \begin{coro}{}{}
+        Soit $\sum a_n x^n$ une série entière \textcolor{myorange}{réelle} de rayon de convergence $R > 0$. 
+
+        Pour tout $n \in \mathbb{N}$, 
+        \[ a_n = \frac{S^{(n)}(0)}{n!} \]   
+        D’où $S(x) = \sum_{n=0}^{+\infty} \frac{S^{(n)}(0)}{n!} x^n$, \textit{i.e.} $S$ est la somme de sa série de Taylor.
+    \end{coro}
+
+    \begin{omed}{Exercice}{myred}
+        Soit la SER $\sum n^2 x^n$.
+        \begin{enumerate}
+            \item RDC ?
+            \item Expression de la somme $S$.
+        \end{enumerate}
+    \end{omed}
+
+    \begin{demo}{Résolution}{myred}
+        \begin{enumerate}
+            \item On applique le critère de d’Alembert : $\frac{(n+1)^2}{n^2} \limi{n}{+\infty} 1$ donc $R = 1$.
+            \item Soit $x \in \intervalleOO{-1}{1}$. OP $S(x) = \sum_{n=0}^{+\infty} n^2 x^n$. 
+            \begin{align*}
+                S(x) 
+                &= \sum n(n-1) x^n + n x^n \\
+                &\quad \downarrow \quad R = 1 \text{ pour les deux SE} \\
+                &= \sum n(n-1) x^n + \sum n x^n \\
+                &= x^2 \sum n(n-1)x^{n-2} + x \sum n x_{n-1} \\
+                &= x^2 \left(\sum_{n=0}^{+\infty} x^n\right)''+ x \left(\sum_{n=0}^{+\infty}\right)' \\
+                &= x^2 \left(\frac{1}{1-x}\right)'' + x \left(\frac{1}{1-x}\right)' \\
+                &= \frac{2 x^2}{(1-x)^3} + \frac{x}{(1-x)^2} \\
+                &= \frac{x(1 + x)}{(1-x)^3}
+            \end{align*}
+            Ainsi, pour tout $x \in \intervalleOO{-1}{1}$, on a 
+            \[ \sum_{n=0}^{+\infty} n^2 x^n = \frac{x(1+x)}{(1-x)^3} \]   
+        \end{enumerate}
+    \end{demo}
+
+    On a obtenu ce qu’on appelle un développement en série entière de l’application $f : x \mapsto \frac{x(1+x)}{(1-x)^3}$. De la même façon, on a obtenu précédemment un DSE de l’application $\ln(1+x) = \sum_{n=0}^{+\infty} (-1)^n \frac{x^{n+1}}{n+1}$.
+
+\subsection{Développement en série entière}
+
+    Dans cette section, toute les séries entières seront réelles.
+
+    \subsubsection{Fonction développable en série entière}
+
+    \begin{defi}{Fonction développable en série entière}{}
+        \begin{soit}
+            \item $I$ un intervalle de $\mathbb{R}$
+            \item $f : I \to \mathbb{R}$
+            \item $R_0 > 0$ tel que $\intervalleOO{-R_0}{R_0} \subset I$
+        \end{soit}
+        On dit que $f$ est \textbf{développable en série entière} sur $\intervalleOO{-R_0}{R_0}$ s’il existe une série entière $\sum a_n x^n$ telle que 
+        \[ \forall x \in \intervalleOO{-R_0}{R_0}, \quad f(x) = \sum_{n=0}^{+\infty} a_n x^n \]
+
+        On dira de même que $f$ est développable en série entière \textbf{au voisinage de} $x_0$ s’il existe $\delta > 0$ tel que l’application $x \longmapsto f(x_0 + x)$ est développable en série entière sur $\intervalleOO{-\delta}{\delta}$.
+    \end{defi}
+
+    Il faut notamment que la SE $\sum a_n (x-x_0)^n$ aie un RDC $R \geq R_0$. 
+
+    Il est important de garder en tête le fait que toute fonction de classe $\mathcal{C}^{\infty}$ n’a pas nécessairement de DSE en tout point. Par exemple, OP $f : x \mapsto \sisi{0}{x \leq 0}{e^{-1/x^2}}{x > 0}$. Alors $f$ est $\mathcal{C}^{\infty}$ sur $\mathbb{R}$ et n’admet pas de DSE au voisinage de $0$.
+
+    \begin{omed}{Exemple}{myyellow}
+        Soit $\fonction{f}{\mathbb{R}_+^*}{\mathbb{R}}{x}{\sisinon{1}{x=1}{\frac{\ln(x)}{x-1}}}$. Montrons que $f$ admet un DSE(1). OP $g(u) = f(1+u) = \sisinon{1}{u=0}{\frac{\ln(1+u)}{u}}$. On sait que $\forall u \in \intervalleOO{-1}{1}$, $\ln(1+u) = \sum_{n=0}^{+\infty} (-1)^n \frac{u^{n+1}}{n+1}$. Donc si $u \in \intervalleOO{-1}{1} \backslash \left\{0\right\}$, on a 
+        \[ \frac{\ln(1+u)}{u} = \sum_{n=0}^{+\infty} (-1)^n \frac{u^n}{n+1} \]   
+        Donc si $x \in \intervalleOO{0}{1} \cup \intervalleOO{1}{2}$, 
+        \begin{align*}
+            f(x) &= g(x-1) \\
+            &= \sum_{n=0}^{+\infty} (-1)^n \frac{(x-1)^n}{n+1} \\
+            &= \sum_{n=0}^{+\infty} \frac{(1-x)^n}{n+1}
+        \end{align*}
+        On remarque que cette identité est vraie si $x = 1$, donc on a obtenu un DSE de $f$ sur $\intervalleOO{0}{2}$. 
+    \end{omed}
+
+    \begin{prop}{}{}
+        Soit $f : I \to \mathbb{R}$ développable en série entière sur $\intervalleOO{-R}{R}$ avec, pour tout $x \in \intervalleOO{-R}{R}$, 
+        \[ f(x) = \sum_{n=0}^{+\infty} a_n x^n \]
+        \begin{alors}
+            \item Toute primitive $F$ de $f$ est développable en série entière sur $\intervalleOO{-R}{R}$, avec 
+            \[ \forall x \in \intervalleOO{-R}{R}, \quad F(x) = F(0) + \sum_{n=1}^{+\infty} \frac{a_{n-1}}{n} x^n \]
+            \item La dérivée $f'$ de $f$ est développable en série entière sur $\intervalleOO{-R}{R}$, avec 
+            \[ \forall x \in \intervalleOO{-R}{R}, \quad f'(x) = \sum_{n=0}^{+\infty} (n+1) a_{n+1} x^n \]
+        \end{alors}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        On sait que $\sum a_n x^n$ et $\sum n a_n x^{n-1}$ ont même RDC, et on sait que pour tout $x \in \intervalleOO{-R}{R}$, 
+        \[ f'(x) = \sum_{n=1}^{+\infty} n a_n x_{n-1} = \sum_{n=0}^{+\infty} (n+1) a_{n+1} x^n \]   
+        De plus, on sait que $\sum a_n x^n$ et $\sum a_n \frac{x^{n+1}}{n+1}$ ont même RDC, et que pour tout $x \in \intervalleOO{-R}{R}$, 
+        \begin{align*}
+            F(x) - F(0) 
+            &= \int_{0}^{x} f(t)dt \\
+            &= \sum_{n=0}^{+\infty} a_n \frac{x^{n+1}}{n+1}
+        \end{align*}
+    \end{demo}
+
+    \begin{prop}{Stabilité des développements en SE}{}
+        Si $f$ et $g$ sont deux fonctions développables en SE sur $\intervalleOO{-R}{R}$ et $\intervalleOO{-R'}{R'}$, telles que 
+        \[ f(x) = \sum a_n x^n \esp{et} g(x) = \sum b_n x^n \]   
+        Alors $f+g$ et $fg$ sont DSE(0) avec, pour $x \in \intervalleOO{-\min(R,R')}{\min(R,R')}$,
+        \[ (f+g)(x) = \sum (a_n + b_n) x^n \esp{et} (fg)(x) = \sum \left(\sum_{k=0}^{n} a_k b_{n-k}\right) x^n \]
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        \begin{enumerate}
+            \item On sait que la SE $\sum (a_n + b_n) x^n$ a un RDC $R'' \geq \min(R,R')$ puis l’expression est donnée par somme.
+            \item On sait que la SE $\sum (\sum_{k=0}^{n} a_n b_{n-k})x^n$ a un RDC $R''' \geq \min(R,R')$ puis l’expression est donnée par produit de Cauchy.
+        \end{enumerate}
+    \end{demo}
+
+    \subsubsection{Exemples} 
+
+    \begin{theo}{CS de DSE(0)}{}
+        Soit $f \in \mathbb{C}^{\infty}(\intervalleOO{-R}{R})$. OS qu’il existe $M$ tel que $\forall k \in \mathbb{N}, \forall x \in \intervalleOO{-R}{R}, \abs{f^{(k)}(x)} \leq M$. Alors $f$ est DSE(0), sur $\intervalleOO{-R}{R}$. 
+
+        Dans ce cas, $\forall x \in \intervalleOO{-R}{R}$, 
+        \[ f(x) = \sum_{n=0}^{+\infty} \frac{f^{(n)}(0)}{n!} x^n \]   
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        Soit $N \in \mathbb{N}$, $x \in \intervalleOO{-R}{R}$, on sait que 
+        \[ \abs{f(x) - \sum_{n=0}^{N} \frac{f^{(n)}(0)}{n!} x^n} \leq \nnorm{\infty}{f^{(N+1)}} \frac{\abs{x}^{N+1}}{(N+1)!} \leq M \frac{R^{N+1}}{(N+1)!} \limi{N}{+\infty} 0 \] 
+    \end{demo}
+
+    \begin{omed}{Exemples}{myred}
+        \begin{enumerate}[label=\textcolor{myred}{\alph*.}]
+            \item \textbf{sin et cos} \quad $\sin, \cos \in \mathcal{C}^{\infty}(\mathbb{R})$, et $\forall x \in \mathbb{R}, \forall k \in \mathbb{N}$, on peut prendre $M = 1$. Ainsi, 
+            \begin{align*}
+                \cos(x) &= \sum_{n=0}^{+\infty} \frac{\cos^{(n)}(0)}{n!} x^n \\
+                &= \sum_{n = 0}^{+\infty} (-1)^n \frac{x^{2n}}{(2n)!} \\
+                \sin(x) &= \sum_{n=0}^{+\infty} \frac{\sin^{(n)}(0)}{n!} x^n \\
+                &= \sum_{n=0}^{+\infty} (-1)^n \frac{x^{2n + 1}}{(2n+1)!}
+            \end{align*}
+            \item \textbf{exp} \quad $\exp \in \mathcal{C}^{\infty}(\mathbb{R})$ et en prenant $M = e^R$, on obtient que 
+            \begin{align*}
+                \exp(x) = \sum_{n=0}^{+\infty} \frac{x^n}{n!}
+            \end{align*}
+            \item OP $f(x) = \sisinon{0}{x \leq 0}{e^{-1/x^2}}$. $f \in \mathcal{C}^{\infty}(\mathbb{R})$. On cherche $f^{(k)}(0)$. On se ramène pour cela à l’utilisation du théorème de la limite de la dérivée, en procédant par récurrence :
+            \[ (H_n) : \left\{ \begin{array}{l}
+                f \in \mathcal{C}^n(\mathbb{R}) \\
+                f^{(n)}(0) = 0 \\
+                \forall x \in \mathbb{R}^*_+, \exists P_n \in \mathbb{R}[X], f^{(n)}(x) = \frac{P_n(x)}{x^{3n}} e^{-1/x^2} 
+            \end{array} \right. \]
+            \begin{itemize}
+                \item[\textbf{I}] $\lim_{x \to 0^+} f(x) = 0 = f(0)$ donc $f \in \mathcal{C}^0(\mathbb{R})$, et on peut prendre $P_0 = 1$, donc $(H_0)$ est vraie.
+                \item[\textbf{H}] Par hypothèse, $f \in \mathcal{C}^n(\mathbb{R})$ et $f \in \mathcal{C}^{n+1}(\mathbb{R}^*)$. On applique donc le théorème de la limite de la dérivée à $f^{(n)}$. Si $x \in \mathbb{R}_+^*$,
+                \begin{align*}
+                    f^{(n+1)}(x) 
+                    &= \left(\frac{2}{x^3} \frac{P_n(x)}{x^{3n}} + \frac{P_n'(x)}{x^{3n}} - \frac{3n P_n(x)}{x^{3n + 1}}\right)\times e^{-1/x^2} \\
+                    &= \frac{2 P_n(x) + x^3 P_n'(x) - 3n x^2 P_n(x)}{x^{3(n+1)}} e^{-1/x^2} \\
+                    &= \frac{P_{n+1}(x)}{x^{3n+1}} e^{-1/x^2}
+                \end{align*}
+                On en déduit que $\lim_{x \to 0^+} f^{(n+1)}(x) = 0$. Or $\lim_{x \to 0^-} f^{(n+1)}(x) = 0$, d’où $f^{(n)}$ est dérivable en $0$ et $f^{(n+1)}(0) = 0$. Ainsi, $f \in \mathcal{C}^{n+1}(\mathbb{R})$ d’où $(H_{n+1})$ est vraie.
+            \end{itemize}
+            Ainsi, on a bien que $f \in \mathcal{C}^{\infty}(\mathbb{R})$. OS que $f$ est DSE(0), \textit{i.e.} il existe $R > 0$ tel que 
+            \[ \forall x \in \intervalleOO{-R}{R}, \quad f(x) = \sum_{n=0}^{+\infty} \frac{f^{(n)}(0)}{n!} x^n = 0 \]   
+            C’est absurde, d’où la non-existence d’un DSE(0) pour $f$.
+        \end{enumerate}
+    \end{omed}
+
+    \begin{omed}{Application (\textcolor{black}{Solution d’une ED})}{myred}
+        OP $(E) : 4x y'' + 2 y' - y = 0$. Supposons que $(E)$ possède une solution DSE(0) \textit{i.e.} $y(x) = \sum a_n x^n$ de RDC $R$. On sait que $y'(x) = \sum_{n \geq 1} n a_n x^{n-1}$ et $y''(x) = \sum_{n \geq 2} n(n-1) a_n x^{n-2}$ pour tous $x \in \intervalleOO{-R}{R}$. En remplaçant dans $(E)$, on obtient que 
+        \begin{align*}
+            (E) 
+            & \iff \sum_{n=2}^{+\infty} 4n(n-1) a_n x^{n-1} + \sum_{n=1}^{+\infty} 2 n a_n x^{n-1}  - \sum_{n=0}^{+\infty} a_n x^n = 0 \\
+            & \iff \sum_{n=1}^{+\infty} 4 (n+1) n a_{n+1} x^n + \sum_{n=0}^{+\infty} 2 (n+1) a_{n+1} x^n - \sum_{n=0}^{+\infty} a_n x^n = 0 \\
+            & \iff \sum_{n = 0}^{+\infty } 4 (n+1) n a_{n+1} x^n + \sum_{n=0}^{+\infty} 2 (n+1) a_{n+1} x^n - \sum_{n=0}^{+\infty} a_n x^n = 0 \\
+            & \iff \sum_{n=0}^{+\infty} \left(2(2n+1)(n+1) a_{n+1} - a_n\right)x^n = 0 
+        \end{align*}
+        Donc $y$ est solution de $(E)$ \textit{ssi} $\forall n \in \mathbb{N}$, $a_{n+1} = \frac{1}{(2n+2)(2n+1)}$. Ainsi, $a_n = \frac{1}{(2n)!} a_0$. En calculant $\frac{a_{n+1}}{a_n} = \frac{1}{(2n+2)(2n+1)} \limi{n}{+\infty} 0$ d’où $R = +\infty$. Ainsi, la fonction $y(x) = a_0 \sum_{n=0}^{+\infty} \frac{x^n}{(2n)!}$ est solution sur $\mathbb{R}$.
+    \end{omed}
+
+    \subsubsection{DSE usuels}
+
+    \begin{prop}{Exponentielle complexe}{}
+        Pour tout $z \in \mathbb{C}$, on a 
+        \[ e^z = \sum_{n=0}^{+\infty} \frac{z^n}{n!} \qquad R = +\infty \]
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Posons $z = a + ib$. On a $e^z = e^a e^{ib} = e^a (\cos(b) + i \sin(b))$ où $e(a) = \sum_{n=0}^{+\infty} \frac{a^n}{n!}$, $\cos(b) = \sum_{n=0}^{+\infty} (-1)^n \frac{b^{2n}}{(2n)!}$ et $\sin(b) = \sum_{n=0}^{+\infty} (-1)^n \frac{b^{2n+1}}{(2n+1)!}$. Ainsi,
+        \begin{align*}
+            \cos(b) + i \sin(b) &= \sum_{n=0}^{+\infty} \lambda_n b^n \esp{où} \lambda_n = \sisi{\frac{(-1)^p}{(2p)!} = \frac{i^{2p}}{(2p)!}}{n = 2p}{\frac{i(-1)^p}{(2p+1)!} = \frac{i^{2p+1}}{(2p+1)!}}{n = 2p + 1} = \frac{i^{n}}{n!} \\
+            e^a (\cos(b) + i \sin(b)) 
+            &= \sum_{n=0}^{+\infty} \left(\sum_{k=0}^n \frac{a^k}{k!} \lambda_{n-k} b^{n-k}\right) \\
+            &= \sum_{n=0}^{+\infty} \left(\sum_{k=0}^{n} \frac{a^k (ib)^{n-k}}{k! (n-k)!}\right) \\
+            &= \sum_{n=0}^{+\infty} \left(\frac{1}{n!} (a + ib)^n \right) \\
+            &= \sum_{n=0}^{+\infty} \frac{z^n}{n!}
+        \end{align*}
+    \end{demo}
+
+    \begin{prop}{Fonctions hyperboliques}{}
+        \begin{align*}
+            \cosh(x) &= \sum_{n=0}^{+\infty} \frac{x^{2n}}{(2n)!} & R = +\infty \\
+            \sinh(x) &= \sum_{n=0}^{+\infty} \frac{x^{2n+1}}{(2n+1)!} & R = +\infty
+        \end{align*}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Soit $x \in \mathbb{R}$. 
+        \begin{align*}
+            \cosh(x) 
+            &= \frac{e^x + e^{-x}}{2} \\
+            &= \frac{1}{2} \left( \sum_{n=0}^{+\infty} \frac{x^n}{n!} + \sum_{n=0}^{+\infty} \frac{(-x)^n}{n!} \right)
+            &= \sum_{n=0}^{+\infty} \frac{x^{2n}}{(2n)!}
+        \end{align*}
+        De même pour sinh.
+    \end{demo}
+
+    \begin{prop}{Logarithmes}{}
+        \begin{align*}
+            \ln(1-x) &= - \sum_{n=1}^{+\infty} \frac{x^n}{n} & R = 1 \\
+            \ln(1+x) &= \sum_{n=1}^{+\infty} (-1)^{n+1} \frac{x^n}{n} & R = 1 
+        \end{align*}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        On sait que $\frac{1}{1-x} = \sum_{n=0}^{+\infty} x^n$ a pour RDC $R = 1$. En intégrant entre $0$ et $x$, on obtient 
+        \[ -\ln(1-x) = \sum_{n=0}^{+\infty} \frac{x^{n+1}}{n+1} = \sum_{n=1}^{+\infty} \frac{x^n}{n} \]  
+        puis remplacer par $-x$ pour le second.
+    \end{demo}
+
+    \begin{prop}{}{}
+        Soit $\alpha \in \mathbb{R} \backslash \mathbb{N}$.
+        \begin{align*}
+            (1+x)^{\alpha} = \sum_{n=0}^{+\infty} \frac{\alpha(\alpha-1)\cdots(\alpha-n+1)}{n!} x^n 
+        \end{align*}
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        OP $f(x) = (1+x)^{\alpha}$. $f$ est dérivable sur $\intervalleOO{-1}{1}$ avec $f'(x) = \alpha(1+x)^{\alpha - 1}$. Ainsi, $f$ est l’unique solution du système de Cauchy 
+        \[ (C) : \et{(1+x)y' - \alpha y = 0}{y(0) = 1} \quad x \in \intervalleOO{-1}{1} \]    
+        Soit $y(x) = \sum_{n=0}^{+\infty} a_n x^n$ pour $x \in \intervalleOO{-R}{R}$. En remplaçant dans $(C)$, on obtient 
+        \begin{align*}
+            (C)
+            &\iff (1+x) \sum_{n=0}^{+\infty} (n+1) a_{n+1} x^n - \alpha \sum_{n=0}^{+\infty} a_n x^n = 0 \\
+            &\iff \sum_{n=0}^{+\infty} (n+1) a_{n+1} x^n + \sum_{n=0}^{+\infty} n a_n x^n - \sum_{n=0}^{+\infty} \alpha a_n x^n = 0 \\
+            &\iff \sum_{n=0}^{+\infty} \left((n+1)a_{n+1} + (n-\alpha) a_n\right)x^n = 0 
+        \end{align*}
+        Donc $y$ est solution de $(E)$ \textit{ssi} $\forall n \in \mathbb{N}$, $a_{n+1} = \frac{\alpha - n}{n+1} a_n$. En itérant, on trouve que $a_n = \frac{(\alpha - n + 1) \cdots (\alpha - 1) \alpha}{n!} a_0$. De plus, $y(0) = a_0 = 1$. Enfin, $\frac{a_{n+1}}{a_n} \limi{n}{+\infty} 1$ donc $R = 1$.
+
+        Par unicité de la solution, on obtient le DSE voulu.
+    \end{demo}
+
+    \begin{coro}{Cas particuliers}{}
+        \begin{align*}
+            \frac{1}{\sqrt{1 + x}} &= \sum_{n=0}^{+\infty} (-1)^n \frac{1 \times 3 \times \cdots \times (2n-1)}{2 \times 4 \times \cdots 2n} x^n & R = 1 \\
+            \sqrt{1 + x} &= 1 + \sum_{n=1}^{+\infty} (-1)^{n-1} \frac{1 \times 3 \times \cdots \times (2n-3)}{2 \times 4 \times \cdots \times 2n} x^n & R = 1
+        \end{align*}
+    \end{coro}
+
+    \begin{prop}{}{}
+        \begin{align*}
+            \arctan(x) &= \sum_{n=0}^{+\infty} (-1)^n \frac{x^{2n+1}}{2n+1} & R = 1 \\
+            \argtanh(x) &= \frac{1}{2} \ln\left(\frac{1 + x}{1 - x}\right) \\
+            &= \sum_{n=0}^{+\infty} \frac{x^{2n+1}}{2n+1} & R = 1
+        \end{align*}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Dans un premier temps, on calcule le DSE de $\frac{1}{1 + x^2}$ sur $\intervalleOO{-1}{1}$, que l’on intègre. Celui-ci sera $\sum_{n=0}^{+\infty} (-1)^n x^{2n}$ et donc $\arctan(x) = 0 + \sum_{n=0}^{+\infty} (-1)^n \frac{x^{2n+1}}{2n+1}$. 
+
+        Secondement, on part de l’expression de $\argtanh$, 
+        \begin{align*}
+            \argtanh 
+            &= \frac{1}{2} \left(\ln(1+x) - \ln(1 - x)\right) \\
+            &= \frac{1}{2} \left(\sum_{n=1}^{+\infty} (-1)^{n+1} \frac{x^n}{n} +- \sum_{n=1}^{+\infty} \frac{x^n}{n} \right) \\
+            &= \sum_{n=1}^{+\infty} \frac{x^{2n+1}}{2n+1}
+        \end{align*}
+        On aurait aussi pu intégrer le DSE de la dériveé de $\argtanh$, qui vaut $\frac{1}{1-x^2}$.
+    \end{demo}
+
+    \subsubsection{Nouveaux exemples}
+
+    \begin{omed}{Exemple}{mybrown}
+        Soit $p \in \mathbb{N}$, et $f : x \mapsto \frac{1}{(1-x)^p}$. On cherche un DSE(0) de $f$.
+        \begin{itemize}
+            \item $f'(x) = \frac{p}{(1-x)^p}$ donc $f$ vérifie $(1-x)y' - py = 0$ avec $f(0) = 1$.
+            \item On peut se ramener à la formule de $(1+x)^{\alpha}$, avec $\alpha = -p$ et $x \leftarrow -x$.
+            \item On peut aussi voir que $\left(\frac{1}{1-x}\right)^{(p)} = \frac{p!}{(1-x)^{p+1}}$, d’où, pour tout $x \in \intervalleOO{-1}{1}$, 
+            \begin{align*}
+                f(x) 
+                &= \frac{1}{(p-1)!} \left(\frac{1}{1-x}\right)^{(p-1)} \\
+                &= \frac{1}{(p-1)!} \left(\sum_{n=0}^{+\infty} x^n \right)^{(p-1)} \\
+                &= \frac{1}{(p-1)!} \left(\sum_{n=0}^{+\infty} \frac{(n+p-1)!}{n!}  x^n\right) \\
+                &= \sum_{n=0}^{+\infty} \binom{n+p-1}{n} x^n & R = 1
+            \end{align*}
+        \end{itemize}
+    \end{omed}
+
+    \begin{omed}{Exemple 2}{mybrown}
+        Calculons le DSE(0) de $f : x \mapsto \frac{\ln(1+x)}{1+x}$. 
+        
+        On peut utiliser le produit de Cauchy, en sachant que, sur l’intervalle $\intervalleOO{-1}{1}$,
+            \[ \ln(1+x) = \sum_{n=1}^{+\infty} (-1)^{n+1} \frac{x^n}{n} \esp{et} \frac{1}{1+x} = \sum_{n=0}^{+\infty} (-1)^n x^n \]
+            OP $a_n = \sisinon{0}{n=0}{\frac{(-1)^{n+1}}{n}}$ et $b_n = (-1)^n$. Alors lorsque $n \geq 1$, $c_n = \sum_{k=0}^{n} a_k b_{n-k} = (-1)^{n+1} \sum_{k=1}^{n} \frac{1}{k} = (-1)^{n+1} H_n$ et $c_0 = 0$. Finalement, 
+            \begin{align*}
+                f(x) &= \sum_{n=1}^{+\infty} (-1)^{n-1} H_n x^n & R > 1  \\
+                &\quad \downarrow \quad \text{divergence en } x = 1 \\
+                &= \sum_{n=1}^{+\infty} (-1)^{n-1} H_n x^n & R = 1
+            \end{align*}
+    \end{omed}
+
+    \begin{omed}{Exemple 3}{mybrown}
+        Calculons le DSE(0) de $f : x \mapsto \sqrt{2-x}$. OR que $f(x) = \sqrt{2}\sqrt{1 - \frac{x}{2}}$, et on sait que, pour $x \in \intervalleOO{-1}{1}$,
+        \[ \sqrt{1 + x} = 1 + \sum_{n=1}^{+\infty} (-1)^{n-1} \frac{1 \times 3 \times \cdots \times (2n-3)}{2 \times 4 \times \cdots \times 2n} x^n \] 
+        Donc pour $x \in \intervalleOO{-2}{2}$, 
+        \begin{align*}
+            \sqrt{1 - \frac{x}{2}} 
+            &= 1 - \sum_{n=1}^{+\infty} \frac{1 \times 3 \times \cdots \times (2n-3)}{2 \times 4 \times \cdots \times 2n} \frac{1}{2^n} x^n \\
+            f(x) 
+            &= \sqrt{2} - \sqrt{2} \sum_{n=1}^{+\infty} \frac{1 \times 3 \times \cdots \times (2n-3)}{2 \times 4 \times \cdots \times 2n} \frac{x^n}{2^n}
+        \end{align*}  
+    \end{omed}
+
+    \begin{omed}{Exemple 4}{mybrown}
+        Quel est le RDC de la SE $\sum n^{((-1)^n)} x^n$ ? 
+
+        OP $a_n = n^{((-1)^n)} = \sisi{n}{n \text{ pair}}{\frac{1}{n}}{n \text{ impair}}$. $a_n = \comp{\mathcal{O}}{n}{+\infty}{n}$, et $\sum n x^n$ est de RDC $1$, donc $R \geq 1$. Or, si $x = 1$, il y a divergence grossière, d’où $R = 1$.
+
+        OP $x \in \intervalleOO{-1}{1}$
+        \begin{align*}
+            S(x) 
+            &= \sum_{n=0}^{+\infty} n^{(-1)^n} x^n \\
+            &= \sum_{p=0}^{+\infty} 2p x^{2p} + \sum_{p=1}^{+\infty} \frac{1}{2p+1} x^{2p+1} \\
+            &= x\left(\sum_{p=0}^{+\infty} x^{2p}\right)' + \argtanh(x) \\
+            &= x \left(\frac{1}{1 - x^2}\right)' + \argtanh(x) \\
+            &= \frac{2x^2}{(1 - x^2)^2} + \argtanh(x)
+        \end{align*}
+    \end{omed}
+
+    \begin{omed}{Exemple 5}{mybrown}
+        On a vu précédemment qu’une solution de $4xy'' + 2 y' - y = 0$ est de la forme $f(x) = a_0 \sum_{n=0}^{+\infty} \frac{x^n}{(2n)!}$. On sait que 
+        \[ \cosh(x) = \sum_{n=0}^{+\infty} \frac{x^{2n}}{(2n)!} \esp{avec} R = +\infty \]    
+        \begin{itemize}
+            \item Dans le cas où $x \geq 0$, $x = \left(\sqrt{x}\right)^2$ donc $f(x) = a_0 \cosh(\sqrt{x})$. 
+            \item Dans le cas où $x < 0$, $x = - \left(\sqrt{-x}\right)^2$ donc $f(x) = a_0 \sum_{n=0}^{+\infty} (-1)^n \frac{(\sqrt{-x})^{2n}}{(2n)!} = a_0 \cos\sqrt{-x}$.
+        \end{itemize}
+        Comme $f$ est DSE sur $\mathbb{R}$, $f \in \mathcal{C}^{\infty}$.
     \end{omed}
 
     
