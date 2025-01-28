@@ -1347,48 +1347,275 @@
 
 \section{Intégrales à paramètre}
 
-\subsection{Continuité d’une intégrale à paramètre}
+On note $\mathbb{K}$ le corps $\mathbb{K}$ ou $\mathbb{C}$.
 
-    \begin{theo}{Continuité d’une fonction définie par une intégrale}{}
-        Soit $f : A \times I \to \mathbb{K}$. 
+Dans ce chapitre, $A$ et $I$ désignent des intervalles de $\mathbb{R}$, et on considère une fonction 
+\[ f : A \times I \to \mathbb{K} \]   
+On étudie alors l’application $F$ définie par 
+\[ F : x \longmapsto = \int_I f(x,t) dt \]   
+On appelle $F$ une intégrale à paramètre. Par la suite, on note $f(x,.)$ l’application $t \mapsto f(x,t)$ et $f(.,t)$ l’application $x \mapsto f(x,t)$.
+
+\subsection{Continuité de F}
+
+    \begin{theo}{Continuité d’une intégrale à paramètre}{}
+        \begin{soit}
+            \item $A,I$ deux intervalles de $\mathbb{R}$
+            \item $f : A \times I \to \mathbb{K}$
+        \end{soit}
         \begin{suppose}
-            \item pour tout $t \in I$, $f(.,t)$ est continue sur $A$ ;
-            \item pour tout $x \in A$, $f(x,.)$ est continue par morceaux et intégrable sur $I$ ;
-            \item il existe une application $\varphi : I \to \mathbb{R}_+$ continue par morceaux et intégrable telle que 
-            \[ \forall (x,t) \in A \times I, \quad \abs{f(x,t)} \leq \varphi(t) \quad \textbf{hypothèse de domination} \]
+            \item Pour tous $t \in I$, $f(.,t) \in \mathcal{C}^0(A)$
+            \item Pour tous $x \in A$, $f(x,.) \in \CM(I) \quad (\cap \quad \LI^1(I))$
+            \item Il existe $\varphi : I \to \mathbb{R}_+ \in \LI^1(I)$ telle que $\forall x \in A$, $\forall t \in I$, $\abs{f(x,t)} \leq \varphi(t)$ (hypothèse de domination)
         \end{suppose}
-        Alors l’application $F : x \longmapsto \int_I f(x,t) dt$ est dite continue sur $A$.
+        Alors $F : x \mapsto \int_{I} f(x,t) dt \in \mathcal{C}^0(A)$
     \end{theo}
 
-\subsection{Dérivabilité d’une intégrale à paramètre}
+    On peut noter que l’hypothèse selon laquelle $t \mapsto f(x,t) \in \LI^1(I)$ est donnée directement par l’hypothèse de domination. De plus, on peut se contenter de vérifier que $\forall \intervalleFF{a}{b} \subset A$, il existe $\varphi$ dominant $f(x,t)$.
 
-    \subsubsection{Caractère C1}
+    \begin{omed}{Rappel \textcolor{black}{(Caractérisation séquentielle de la continuité)}}{myred}
+        Soit $f : A \to \mathbb{K}$ et $x_0 \in A$. La fonction $f$ est continue en $x_0$ \textit{ssi} 
+        \[ \forall (u_n) \in A^{\mathbb{N}}, (u_n) \to x_0 \implies (f(u_n)) \to f(x_0) \]   
+    \end{omed}
 
-    \begin{theo}{Caractère $\mathcal{C}^1$ (Théorème de Leibniz)}{}
-        Soit $f : A \times I \to \mathbb{K}$. 
+    \begin{omed}{Rappel \textcolor{black}{(Théorème de convergence dominée)}}{myred}
+        Soit $I$ un intervalle de $\mathbb{R}$ et $f_n$ une suite de fonctions. 
         \begin{suppose}
-            \item pour tout $t \in I$, $f(.,t)$ est de classe $\mathcal{C}^1$ sur $A$ ;
-            \item pour tout $x \in A$, $f(x,.)$ est continue par morceaux et intégrable sur $I$ ;
-            \item pour tout $t \in I$, $t \longmapsto \dpart{f}{x}(x,t)$ est continue par morceaux sur $I$ et il existe une application $\varphi$ intégrable sur $I$ telle que 
-            \[ \forall (x,t) \in A \times I, \quad \abs{\dpart{f}{x}(x,t)} \leq \varphi(t) \quad \textbf{hypothèse de domination} \]
+            \item pour tout $n \in \mathbb{N}$, $f_n$ est CM sur $I$
+            \item $(f_n) \to f$ simplement sur $I$ où $f$ est CM sur $I$
+            \item \textbf{Hypothèse de domination} \quad il existe $\varphi : I \mathbb{R}_+$ intégrable telle que 
+            \[ \forall n \in \mathbb{N}, \forall t \in I, \abs{f_n(t)} \leq \varphi(t) \]   
         \end{suppose}
-        Alors l’application $F : x \longmapsto \int_I f(x,t) dt$ est de classe $\mathcal{C}^1$ sur $A$ et 
-        \[ \forall x \in A, \quad F'(x) = \int_I \dpart{f}{x}(x,t)dt \]
+        Alors $f$ et $f_n$ sont intégrables et 
+        \[ \lim_{n \to +\infty} \int_I f_n = \int_I f \]
+    \end{omed}
+
+    \begin{demo}{Preuve}{myred}
+        Soit $x_0 \in A$ et $(u_n) \in A^{\mathbb{N}}$ telle que $(u_n) \to x_0$. OP $\fonction{g_n}{I}{\mathbb{K}}{t}{f(u_n,t)}$.
+        \begin{enumerate}
+            \item $t \mapsto f(u_n,t) \in \CM(I)$.
+            \item Pour $t \in I$, $\lim_{n \to +\infty} g_n(t) = \lim_{n \to +\infty} f(u_n,t) = f(x_0,t)$ car $x \mapsto f(x,t) \in \mathcal{C}^0(A)$. Ainsi, $(g_n)$ converge simplement vers $t \mapsto f(x_0,t)$.
+            \item Soit $n \in \mathbb{N}$ : $\abs{g_n(t)} = \abs{f(u_n,t)} \leq \varphi(t)$ où $\varphi \in L^1(t)$. 
+        \end{enumerate}
+        Ainsi, par le théorème de convergence dominée, $\lim_{n \to +\infty} \int_{I} g_n(t) dt = \int_{I} f(x_0,t) dt$ \textit{i.e.} $\lim_{n \to + \infty} F(u_n) = F(x_0)$ d’où $F \in \mathcal{C}^0(x_0)$. Ceci est vrai pour $x_0 \in A$, donc $F \in \mathcal{C}^0(A)$.
+    \end{demo} 
+
+    \begin{omed}{Exemple}{myred}
+        OP $f(x,t) = \frac{\sin(t)}{e^{xt} - 1}$, $A = I = \mathbb{R}_+^*$, puis $F(x) = \int_{0}^{+\infty} \frac{\sin(t)}{e^{xt} - 1} dt$. MQ $F \in \mathcal{C}^0(\mathbb{R}_+^*)$.
+        \begin{itemize}
+            \item En $0$, l’application $t \mapsto \frac{\sin(t)}{e^{xt} - 1}$ se prolonge par continuité par $\frac{1}{x}$, donc pour $t \in \mathbb{R}_+^*$, $x \mapsto f(x,t) \in \mathcal{C}^0$.
+            \item Pour $x > 0$, $t \mapsto f(x,t) \in \CM$. $\abs{\frac{\sin(t)}{e^{xt} - 1}} = \comp{\mathcal{O}}{n}{+\infty}{\frac{1}{t^2}}$ donc $\frac{\sin(t)}{e^{xt} - 1} \in \LI^1(\mathbb{R}_+)$. 
+            \item Soit $x \in \intervalleFF{a}{b} \subset \mathbb{R}_+^*$,
+            \[ \abs{f(x,t)} = \abs{\frac{\sin(t)}{e^{xt} - 1}} \leq \frac{\abs{\sin(t)}}{e^{xt}- 1} := \varphi(t)  \]
+            $\varphi$ se prolonge par continuité en $0$ par $\frac{1}{a}$, et est intégrable sur $\intervalleOF{0}{1}$. $\varphi(t) = \comp{\mathcal{O}}{n}{+\infty}{\frac{1}{t^2}}$ donc est intégrablle sur $\intervalleFO{1}{+\infty}$. Donc $\varphi$ est intégrable sur $\mathbb{R}^*_+$.
+        \end{itemize}
+        On en déduit que $F$ est $\mathcal{C}^0$ sur $\mathbb{R}_+^*$.
+    \end{omed}
+
+    \begin{omed}{Exemple}{myred}
+        Soit $F(x) = \int_{0}^{+\infty} \ln(x^2 - 2x \cos(t) + 1) dt$. On cherche à déterminer les intervalles de continuité de $F$.
+        \begin{itemize}
+            \item \textbf{Domaine de définition} \quad On pose $f(x,t) = \ln(x^2 - 2x \cos(t) + 1) = \ln((x - \cos(t))^2 + \sin^2(t))$ où $(x - \cos(t))^2 + \sin^2(t) \geq 0$ s’annule en $(x,t) = (1,0)$ ou $(-1,\pi)$. Lorsque $x \notin \left\{-1,1\right\}$, l’application $t \mapsto \ln(x^2 - 2 x \cos(t) + 1)$ est continue sur $\intervalleFF{0}{\pi}$ donc intégrable.
+            
+            Lorsque $x = 1$, l’application est continue sur $\intervalleOF{0}{\pi}$ et au voisinage de $0^+$ est équivalente à $2 \ln(t)$ négative et intégrable, donc est intégrable sur $\intervalleOF{0}{\pi}$. Le raisonnement est analogue si $x = -1$. 
+            \item \textbf{Continuité de F} On pose $A = \mathbb{R}$ et $I = \intervalleOO{0}{\pi}$. 
+            \begin{itemize}
+                \item Pour $x \in A$, $f(x,.)$ est continue sur $I$.
+                \item Pour tout $t \in I$, $f(.,t)$ est continue sur $A$.
+                \item Soit $a > 1$ et $t \in \intervalleOO{0}{\pi}$. Étudions sur $\intervalleFF{-a}{a} \subset \mathbb{R}$ la fonction $f(.,t)$ :
+                \begin{center}
+                \begin{tikzpicture}
+                    \tkzTabInit{$x$ / 1, $f(.,t)$ / 3}{$-a$, $\cos(t)$, $a$}
+                    \tkzTabVar{+/ $f(-a,t)$, -/ $2 \ln(\sin(t))$, +/ $f(a,t)$}
+                \end{tikzpicture}
+                \end{center}
+                On en déduit que 
+                \begin{align*}
+                    \abs{f(x,t)} 
+                    &\leq \max\left\{\abs{f(-a,t)}, 2 \abs{\ln(\sin(t))}, \abs{f(a,t)}\right\} \\
+                    &\leq \abs{f(-a,t)} + 2 \abs{\ln(\sin(t))} + \abs{f(a,t)}
+                \end{align*}
+                qui est la somme de trois fonctions intégrables, donc est intégrable sur $\intervalleOO{0}{\pi}$. Ainsi, $F$ est continue sur $\mathbb{R}$.
+            \end{itemize}
+        \end{itemize}
+    \end{omed}
+
+    \subection{Caractère C1}
+
+    \begin{theo}{Caractère $\mathcal{C}^1$, théorème de Leibniz}{}
+        Soient $A$ et $I$ des intervalles de $\mathbb{R}$ et $f : A \times I \to \mathbb{K}$ telle que 
+        \begin{enumerate}[label=$(h_{\alph*})$]
+            \item Pour tout $x \in A$, $f(x,.) \in \CM \cap \LI_1(I)$.
+            \item Pour tout $t \in I$, $f(.,t) \in \mathcal{C}^1(A)$.
+            \item Pour tout $x \in A$, $t \mapsto \dpart{f}{x}(x,t) \in \CM(I)$ et il existe $\varphi$ intégrable sur $I$ telle que 
+            \[ \forall (x,t) \in A \times I, \quad \abs{\dpart{f}{x}(x,t)} \leq \varphi(t) \]   
+        \end{enumerate}
+        Alors $F : x \mapsto \int_{I} f(x,t)dt$ est de classe $\mathcal{C}^1$ sur $A$ et 
+        \[ \forall x \in A, \quad F'(x) = \int_{I} \dpart{f}{x}(x,t)dt \]   
     \end{theo}
 
-    \subsubsection{Caractère Ck}
+    De la même façon que pour le théorème de continuité, on peut se contenter de vérifier l’hypothèse de domination sur tout segment $\intervalleFF{a}{b} \subset A$. 
 
-    \begin{theo}{Caractère $\mathcal{C}^1$}{}
-        Soient $f : A \times I \to \mathbb{K}$ et $k \in \mathbb{N}^* \cup \{ +\infty \}$.
+    \begin{demo}{Preuve}{myred}
+        Soit $x_0 \in A$ et $(u_n) \in A^{\mathbb{N}}$ telle que $(u_n) \to x_0$. Pour tout $n \in \mathbb{N}$ et $t \in I$, on pose $g_n(t) = \frac{f(u_n,t) - f(x_0,t)}{u_n - x_0}$. D’après le théorème des accroissements finis, pour tout $t \in I$, $\exists c_n \in A$ tel que 
+        \[ \abs{\frac{f(u_n,t) - f(x_0,t)}{u_n - x_0}} = \abs{\dpart{f}{x}(c_n,t)} \leq \varphi(t) \]   
+        On en déduit que la suite de fonctions $(g_n)$ converge simplement vers $\dpart{f}{x}(x_0,t)$, et d’après le théorème de convergence dominée, 
+        \[ \lim_{n \to +\infty} \int_I g_n(t)dt = \int_I \dpart{f}{x}(x_0,t)dt \] 
+        Ainsi, 
+        \[ \lim_{n \to +\infty} \frac{F(u_n) - F(x_0)}{u_n - x_0} = \int_I \dpart{f}{x}(x_0,t)dt \] d’où $F$ est dérivable en $x_0$ et $F'(x_0) = \int_I \dpart{f}{x}(x_0,t)dt$. La continuité de $F'$ est assurée par le théorème précédent, donc $F$ est de classe $\mathcal{C}^1$ sur $A$.  
+    \end{demo}
+
+    \begin{omed}{Exemple}{myred}
+        OP $F(x) = \int_{0}^{\pi} \ln(x - \cos(t))dt$ pour $x > 1$. Prouvons que $F$ est de classe $\mathcal{C}^1$ sur $\intervalleOO{1}{+\infty}$. OP $f(x,t) = \ln(x - \cos(t))$.
+        \begin{enumerate}
+            \item Pour $x > 1$, $f(x,.)$ est continue sur $\intervalleFF{0}{\pi}$ donc intégrable.
+            \item Pour tout $t \in \intervalleFF{0}{\pi}$, $f(.,t)$ est de classe $\mathcal{C}^1$ sur $\intervalleOO{1}{+\infty}$ avec 
+            \[ \dpart{f}{x}(x,t) = \frac{1}{x - \cos(t)} \]   
+            Donc $t \mapsto \dpart{f}{x}(x,t)$ est continue sur $\intervalleOO{0}{\pi}$.
+            \item Soit $\intervalleFF{a}{b} \subset \intervalleOO{1}{+\infty}$, 
+            \[ \abs{\dpart{f}{x}(x,t)} \leq \frac{1}{a-1} := \varphi \in \LI_1 \]   
+        \end{enumerate}
+        D’après le théorème, $F$ est de classe $\mathcal{C}^1$, avec 
+        \begin{align*}
+            F'(x) &= \int_{0}^{\pi} \frac{dt}{x - \cos(t)} \\
+            &\quad \downarrow \quad u = \tan(t / 2) \\
+            &= \int_{0}^{+\infty} \frac{2 du}{x(1 + u^2) - (1 - u^2)} \\
+            &= \frac{2}{x-1} \int_{0}^{+\infty} \frac{du}{1 + \left(\sqrt{\frac{x+1}{x-1}} u\right)^2} \\
+            &= \frac{2}{x-1} \left[\frac{1}{\sqrt{\frac{x+1}{x-1}}} \times \arctan\left(\sqrt{\frac{x+1}{x-1}} u\right)\right]^{+\infty}_0 \\
+            &= \frac{\pi}{\sqrt{x^2 - 1}}
+        \end{align*}
+        On en déduit qu’il existe $C \in \mathbb{R}$ tel que $F(x) = \pi \argcosh + C = \pi \ln(x - \sqrt{x^2 - 1}) + C$
+    \end{omed}
+
+    \subsection{Caractère Ck}
+
+    \begin{theo}{Caractère $\mathcal{C}^k$}{}
+        Soient $k \in \mathbb{N}^*$, $A$ et $I$ des intervalles de $\mathbb{R}$ et $f : A \times I \to \mathbb{K}$. 
         \begin{suppose}
-            \item pour tout $t \in I$, $f(.,t)$ est de classe $\mathcal{C}^k$ sur $A$ ;
-            \item pour tout $i \in \intervalleEntier{0}{k}$, pour tout $x \in A$, $\frac{\partial^i f}{\partial x^i}(x,t)$ est continue par morceaux et intégrable sur $I$ ;
-            \item pour tout $i \in \intervalleEntier{1}{k}$, il existe une application $\varphi_i$ intégrable sur $I$ telle que 
-            \[ \forall (x,t) \in A \times I, \quad \abs{\frac{\partial^i f}{\partial x^i}(x,t)} \leq \varphi_i(t) \quad \textbf{hypothèse de domination} \]
+            \item Pour tout $t \in I$, $f(.,t) \in \mathcal{C}^k(A)$
+            \item Pour tout $i \in \intervalleEntier{0}{k}$ et $x \in A$, $t \longmapsto \frac{\partial^i f}{\partial x^i}(x,t) \in \CM(I)$
+            \item Pour tout $i \in \intervalleEntier{1}{.}$, il existe $\varphi_i$ intégrable sur $I$ telle que 
+            \[ \forall (x,t) \in A \times I, \quad \abs{\frac{\partial^i f}{\partial x^i}(x,t)} \leq \varphi_i(t) \]
         \end{suppose}
-        Alors l’application $F : x \longmapsto \int_I f(x,t) dt$ est de classe $\mathcal{C}^k$ sur $A$ et 
-        \[ \forall i \in \intervalleEntier{0}{k}, \quad \forall x \in A, \quad F^{(i)}(x) = \int_I \frac{\partial^i f}{\partial x^i}(x,t)dt \]
+        Alors l’application $F : x \mapsto \int_I f(x,t)dt \in \mathcal{C}^k$ sur $A$ et 
+        \[ \forall i \in \intervalleEntier{0}{k}, \forall x \in A, \quad F^{(i)}(x) = \int_I \frac{\partial^i f}{\partial x^i}(x,t)dt \]   
     \end{theo}
+
+    On peut très bien choisir $k = +\infty$, et se contenter de l’hypothèse de domination sur tout $\intervalleFF{a}{b} \subset A$.    
+
+    \begin{demo}{Idée de la démonstration}{myred}
+        On raisonne par récurrence sur $k$. Si $k = 1$, il s’agit du résultat précédent. Supposons que $f$ vérifie les hypothèses du théorème à l’ordre $k+1$. Alors $F$ est de classe $\mathcal{C}^1$ en appliquant le résultat précédent et l’hypothèse de récurrence appliquée à $F'$ donne que $F'$ est de classe $\mathcal{C}^k$. On déduit le résulat avec permutation dérivation intégrale.
+    \end{demo}
+
+    \begin{omed}{Exemple}{myred}
+        La fonction $\Gamma$ est définie sur $\intervalleOO{0}{+\infty}$ par $\Gamma(x) = e^{-t} t^{x-1} dt$. Prouvons que $\Gamma$ est de classe $\mathcal{C}^{\infty}$ sur son domaine et que pour tout $x > 0$, et $n \in \mathbb{N}^*$, 
+        \[ \Gamma^(n)(x) = \int_{0}^{+\infty} e^{-t} \ln^n(t) t^{x-1}dt \]   
+        OP $f(x,t) = e^{-t} t^{x-1} = e^{-t + (x-1)\ln(t)}$.
+        \begin{itemize}
+            \item Pour $t > 0$, $f(.,t)$ est de classe $\mathcal{C}^{\infty}(\intervalleOO{0}{+\infty})$.
+            \item Soit $k \in \mathbb{N}$, et $x \in \intervalleOO{0}{+\infty}$, $t \mapsto \frac{\partial^k f}{\partial x^k}(x,t) = \ln^k(t) e^{-t + (x-1) \ln(t)} \in \CM(\intervalleOO{0}{+\infty})$.
+            \item Soit $\intervalleFF{a}{b} \subset \intervalleOO{0}{+\infty}$. OS $a < 1 < b$. Pour tout $k \in \mathbb{N}$, on a 
+            \[ \frac{\partial^k f}{\partial x^k}(x,t) = \abs{\ln^k(t) e^{-t + (x-1)\ln(t)}} \leq e^{-t} \abs{\ln^k(t)} (t^{a-1} + t^{b-1}) := \varphi_k(t) \]    
+            Montrons que $\varphi_k$ est une fonction intégrable sur $\intervalleOO{0}{+\infty}$. Il est clair que c’est une fonction continue par morceaux sur $\intervalleOO{0}{+\infty}$, et 
+            \begin{itemize}
+                \item $\varphi_k(t) = \comp{\mathcal{O}}{t}{+\infty}{\frac{1}{t^2}}$, donc $\varphi_k$ est intégrable sur $\intervalleFO{1}{+\infty}$.
+                \item Au voisinage de $0^+$, en posant $\alpha \in \intervalleOO{0}{a}$, 
+                \[ \lim_{t \to 0^+} \frac{\varphi_k(t)}{t^{\alpha - 1}} = 0 \esp{donc} 0 \leq \varphi_k(t) = \comp{\mathcal{O}}{t}{0^+}{t^{\alpha-1}} \]   
+                et donc $\varphi_k$ est intégrable sur $\intervalleOF{0}{1}$.
+            \end{itemize}
+        \end{itemize}
+        La fonction $\Gamma$ est donc bien de classe $\mathcal{C}^{\infty}$.
+    \end{omed}
+
+    \begin{omed}{Application \textcolor{black}{(Intégrale de Dirichlet)}}{myred}
+        On cherche à calculer $\int_{0}^{+\infty} \frac{\sin(t)}{t} dt$, dite intégrale de Dirichlet.
+
+        OP $f(x,t) = \frac{\sin(t)}{t} e^{-xt}$ et $F(x) = \int_{0}^{+\infty} f(x,t) dt$.
+
+        \begin{itemize}
+            \item Montrons que $F$ est de classe $\mathcal{C}^1$ sur $\intervalleOO{0}{+\infty}$ :
+            \begin{enumerate}
+                \item Pour tout $x > 0$, $f(x,.) \in CM(\intervalleOO{0}{+\infty})$
+                \item Pour tout $t > 0$, $f(.,t) \in \mathcal{C}^1(\intervalleOO{0}{+\infty})$
+                \item Soit $\intervalleFF{a}{b} \subset \intervalleOO{0}{+\infty}$, 
+                \[ \abs{\dpart{f}{x}(x,t)} = \abs{-t f(x,t)} \leq e^{-at} := \varphi(t) \]
+                où $\varphi$ est intégrable sur $\intervalleOO{0}{+\infty}$.
+            \end{enumerate}
+            Donc $F$ est de classe $\mathcal{C}^1$ sur $\intervalleOO{0}{+\infty}$, et 
+            \[ F'(x) = - \int_{0}^{+\infty} \sin(t) e^{-xt} \]   
+            \item On cherche désormais une expression de $F$. Soit $x > 0$.
+            \[ F'(x) = - \Im\left(\int_{0}^{+\infty} e^{it} e^{-xt} dt\right) = - \Im\left(\left[\frac{e^{(i-x)t}}{i-x}\right]_0^{+\infty}\right) = \frac{-1}{1 + x^2} \]
+            Donc il existe $C \in \mathbb{R}$ tel que $F(x) = - \arctan(x) - C$. De plus, $\lim_{x \to +\infty} F(x) = -\frac{\pi}{2} + C$ et 
+            \[ \abs{F(x)} \leq \int_{0}^{+\infty} e^{-xt} dt = \frac{1}{x} \limi{x}{+\infty} 0 \]   
+            Donc $F(x) = \frac{\pi}{2} - \arctan(x)$ si $x > 0$.
+            \item Étudions la continuité de $F$ en $0^+$. Le théorème de continuité ne s’applique pas en $0$, mais on a 
+            \[ F(x) - F(0) = \int_{0}^{+\infty} \frac{\sin(t)}{t} (e^{-xt} - 1) dt \]   
+            On intègre par parties en posant $G(x) = \int_{x}^{+\infty} \frac{\sin(t)}{t}dt$ :
+            \begin{align*}
+                F(x) - F(0) 
+                &= \left[-G(t)(e^{-xt} - 1)\right]_0^{+\infty} - \int_{0}^{+\infty} G(t) x e^{-xt} dt \\
+                &= -x \int_{0}^{+\infty} G(t) e^{-xt} dt \\
+                &= - \int_{0}^{+\infty} G(u/x) e^{-u} du 
+            \end{align*}
+            On pose $h(x,u) = \sisi{G(x/u) e^{-u}}{x > 0}{0}{x = u}$. On a $\lim_{t \to +\infty} G(t) = 0$ donc $x \mapsto h(x,u)$ est continue sur $\mathbb{R}_+$ et $\abs{h(x,u)} \leq \nnorm{\infty}{G} e^{-u}$ qui est intégrable sur $\mathbb{R}_+$, donc par le théorème de continuité des intégrales à paramètres, 
+            \[ \lim_{x \to 0^+} \int_{0}^{+\infty} G(u/x) e^{-u} du = \int_{0}^{+\infty} \lim_{x \to 0^+} G(u/x) e^{-u} du = 0 \]   
+            Par conséquent, $\lim_{x \to 0^+} F(x) = F(0)$, \textit{i.e.} 
+            \[ \int_{0}^{+\infty} \frac{\sin(t)}{t} dt = \frac{\pi}{2} \]  
+        \end{itemize}
+    \end{omed}
+
+    \begin{omed}{Exemple}{myred}
+        Calcul de $\int_{-\infty}^{+\infty} \frac{\cos(x)}{x^2 + 1} dx = 2 \int_{0}^{+\infty} \frac{\cos(x)}{x^2 + 1}$ par parité de l’application. 
+
+        OP $F(x) = 2 \int_{0}^{+\infty} \frac{\cos(tx)}{t^2 + 1} dt$, et on cherche $F(1)$.
+        \begin{itemize}
+            \item Montrons que $F$ est $\mathcal{C}^1$ sur $\mathbb{R}$. 
+            
+            On pose $I = \intervalleOO{0}{+\infty} $, $A = \mathbb{R}$, et $f(x,t) = 2 \frac{\cos(xt)}{t^2 + 1}$. 
+            \begin{enumerate}
+                \item Si $t > 0$, $f(.,t) = \in \mathcal{C}^1$ sur $\mathbb{R}$.
+                \item Si $x \in \mathbb{R}$, $f(x,.) \in \CM$.
+                \item Si $x \in \mathbb{R}$, $\dpart{f}{x}(x,t) = \frac{2t}{t^2 + 1} \times (-\sin(xt))$, que l’on ne peut pas dominer par une fonction intégrable.
+            \end{enumerate}
+
+            Calculons donc $F$ par IPP : 
+            \begin{align*}
+                F(x) 
+                &= 2 \int_{0}^{+\infty} \frac{\cos(xt)}{t^2 + 1} dt \\
+                &= 2 \left( \left[\frac{\sin(xt)}{x(t^2 + 1)}\right]_0^{+\infty} + \frac{1}{x} \int_{0}^{+\infty} \frac{\sin(xt) \times 2t}{(t^2 + 1)^2} dt \right) \\
+                &= \frac{-2}{x} \int_{0}^{+\infty} \frac{2t}{(t^2 + 1)^2} \sin(xt) dt \\
+                &:= \frac{2}{x} G(x)
+            \end{align*}
+
+            Montrons que $G$ est $\mathcal{C}^1$ sur $\mathbb{R}$.
+
+            On pose $I = \mathbb{R}^*_+$, $A = \mathbb{R}$ et $g(x,t) = \frac{2t}{(t^2 + 1)^2} \sin(xt)$.
+            \begin{enumerate}
+                \item Si $t > 0$, $g(.,t) \in \mathcal{C}^1$ sur $\mathbb{R}$.
+                \item Si $x \in \mathbb{R}$, $g(x,.) \in \CM$ sur $I$.
+                \item Pour $x \in \mathbb{R}$ et $t > 0$, 
+                \[ \abs{\dpart{g}{x}(x,t)} = \abs{\frac{2t^2}{(t^2 + 1)^2} \cos(xt)} \leq \frac{2}{t^2 + 1} \in \LI^1(I) \]   
+            \end{enumerate}
+            Donc $G$ est de classe $\mathcal{C}^1$ sur $\mathbb{R}$ et 
+            \begin{align*}
+                G'(x) &= \int_{0}^{+\infty} \frac{2t^2}{(t^2 + 1)^2} \cos(xt) dt \\
+                &= \int_{0}^{+\infty} \frac{2t}{(t^2 + 1)^2} \times t \cos(xt) dt \\
+                &= \left[-\frac{1}{t^2 + 1}(t \cos(xt))\right]_0^{+\infty} + \int_{0}^{+\infty} \frac{1}{t^2 + 1} (\cos(xt) - xt \sin(xt)) dt \\
+                &= \int_{0}^{+\infty} \frac{1}{t^2 + 1} \left(\cos(xt) - xt \sin(xt)\right)dt \\
+                &= \frac{1}{2} F(x) - \int_{0}^{+\infty} \frac{xt}{t^2 + 1} \sin(xt) dt 
+            \end{align*}
+            On a $F(x) = \frac{2}{x} G(x)$, donc $F$ est $\mathcal{C}^1$ sur $\mathbb{R}*$ et si $x \neq 0$, on a 
+            \begin{align*}
+                F'(x) &= -\frac{2}{x^2} G(x) + \frac{2}{x} G'(x) \\
+                    &\vdots \\
+                    &= - \int_{0}^{+\infty} \frac{t \sin(xt)}{t^2 + 1} dt 
+                    &\quad \downarrow \quad \text{IPP} \\
+                    &= - \underbrace{\int_{0}^{+\infty} \frac{\sin(xt)}{t} dt}_{= \pi / 2 \text{ (int. de Dirichlet)}} + \int_{0}^{+\infty} \frac{\sin(xt)}{t(t^2 + 1)} dt \\
+            \end{align*}
+            On pose $h(x,t) = \frac{\sin(xt)}{t(t^2 + 1)}$. On vérifie rapidement les hypothèses, et 
+            \[ \abs{\dpart{h}{x}(x,t)} = \abs{\frac{\cos(xt)}{t^2 + 1}} \leq \frac{1}{1 + t^2} \]   
+            Donc $F''(x) = \int_{0}^{+\infty} \frac{\cos(xt)}{t^2 + 1} dt = F(x)$. Ainsi, $F$ est solution de $y'' - y = 0$, i.e. il existe $A,B \in \mathbb{R}$ tels que $\forall x \in \mathbb{R}, F(x) = Ae^x + Be^{-x}$, avec $2 F(0) = \int_{0}^{+\infty} \frac{2}{t^2 + 1} dt = \pi$ et $F'(0) = -\frac{\pi}{2}$. D’où $A = \pi / 4$ et $B = 3 \pi /4$ puis on en déduit $F(1)$.
+        \end{itemize}
+    \end{omed}
 
 \newpage
 

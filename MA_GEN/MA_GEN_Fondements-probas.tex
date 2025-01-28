@@ -1,0 +1,1043 @@
+\customchapter{Fondements des probabilités}{Comprendre les notions d’expériences et d’univers, pour que, associées aux dénombrement, elles puissent former un outil puissant du calcul de probabilités.}
+
+\section{Préliminaire : Éléments de dénombrement}
+
+    \subsection{Cardinal d’un ensemble}
+
+    \begin{defi}{Cardinal}{}
+        Soit $\mathcal{E}$ un ensemble fini non vide.
+
+        Le \textbf{cardinal} de $\mathcal{E}$ (ou nombre d’éléments de $\mathcal{E}$) est l’unique entier $n \in \mathbb{N}^*$ tel que $\mathcal{E}$ soit en bijection avec $\intervalleEntier{1}{n}$. 
+
+        On le note $\card(\mathcal{E})$ (ou $\abs{\mathcal{E}}$, $\sharp \mathcal{E}$). 
+
+        On convient que $\card(\emptyset) = 0$.
+    \end{defi}
+
+    \begin{lem}{Lemme des tiroirs}{}
+        \begin{soient}
+            \item $\mathcal{E}$ et $\mathcal{F}$ deux ensembles finis
+            \item $\varphi$ une application de $\mathcal{E}$ dans $\mathcal{F}$
+        \end{soient}
+        On suppose que $\card(\mathcal{E}) > \card(\mathcal{F})$.
+
+        Alors $\varphi$ n’est pas injective.
+    \end{lem}
+
+    \begin{prop}{Cardinal d’une union disjointe, ou principe d’addition}{}
+        Soient $\mathcal{E}$ et $\mathcal{F}$ deux ensembles finis. 
+
+        On suppose que $\mathcal{E} \cap \mathcal{F} = \emptyset$.
+
+        Alors 
+        \[ \et{\mathcal{E} \cup \mathcal{F} \text{ est fini}}{\card(\mathcal{E} \cup \mathcal{F}) = \card(\mathcal{E}) + \card(\mathcal{F})} \]
+    \end{prop}
+
+    \begin{coro}{Cardinal d’un complémentaire, ou principe de soustraction}{}
+        Soient $\mathcal{E}$ un ensemble fini, et $\mathcal{F} \subset \mathcal{E}$.
+    
+        Alors 
+        \[ \et{\mathcal{F} \cup \mathcal{E} \backslash \mathcal{F} \text{ sont finis}}{\card(\mathcal{E} \backslash \mathcal{F}) = \card(\mathcal{E}) - \card(\mathcal{F})} \]
+    \end{coro}
+
+    \begin{coro}{Cardinal d’une union quelconque}{}
+        Soient $\mathcal{E}$ et $\mathcal{F}$ deux ensembles finis. 
+    
+        Alors 
+        \[ \et{\mathcal{F} \cap \mathcal{E} \text{ est fini}}{\card(\mathcal{E} \cup \mathcal{F}) = \card(\mathcal{E}) + \card(\mathcal{F}) - \card(\mathcal{E} \cap \mathcal{F})} \]
+    \end{coro}
+
+    \begin{coro}{Principe de partition}{}
+        \begin{soient}
+            \item $\mathcal{E}$ un ensemble non-vide
+            \item $\mathcal{F}_1, \ldots, \mathcal{F}_r$ une partition de $\mathcal{E}$
+        \end{soient}
+        On suppose que $\forall i \in \intervalleEntier{1}{r}, \, \mathcal{F}_i \text{ est fini}$
+
+        Alors \[ \et{\mathcal{E} \text{ est fini}}{\card(\mathcal{E}) = \sum\limits_{i=1}^n \card(\mathcal{F}_i)} \]
+    \end{coro}
+
+    \begin{prop}{Principe des bergers}{}
+        \begin{soient}
+            \item $\mathcal{E}$ et $\mathcal{F}$ deux ensembles
+            \item $f$ une application de $\mathcal{E}$ dans $\mathcal{F}$
+        \end{soient}
+        \begin{suppose}
+            \item $\mathcal{F}$ est fini
+            \item $\exists \, r \in \mathbb{N}^*, \, \forall y \in \mathcal{F}, \, \card(f^{-1}(y)) = r$
+        \end{suppose}
+        Alors 
+        \[ \et{\mathcal{E} \text{ est fini}}{\card(\mathcal{E}) = r \card(\mathcal{F})} \]
+    \end{prop}
+
+    \begin{omed}{Remarque \textcolor{black}{(Principe de division)}}{myolive}
+        Si $\mathcal{E}$ est fini, $f(\mathcal{E})$ l’est également. Le résultat reste donc vrai en remplaçant l’hypothèse « $\mathcal{F}$ est fini » par « $\mathcal{E}$ est fini » et la conclusion par \[ \et{\mathcal{F} \text{ est fini}}{\card(\mathcal{F}) =  \frac{1}{r} \card(\mathcal{E})} \]
+    \end{omed}
+
+    \begin{prop}{Cardinal d’un produit cartésien}{}
+        \begin{soient}
+            \item $n \in \mathbb{N} \backslash \{ 0,1 \}$
+            \item $\mathcal{E}_1,\ldots,\mathcal{E}_n$ des ensembles finis
+        \end{soient}
+        \begin{alors}
+            \item $\mathcal{E}_1 \times \ldots \times \mathcal{E}_n$ est fini.
+            \item $\card(\mathcal{E}_1 \times \ldots \times \mathcal{E}_n) = \card(\mathcal{E}_1) \times \ldots \times \card(\mathcal{E}_n)$
+        \end{alors}
+    \end{prop}
+
+    \begin{omed}{Méthode \textcolor{black}{(Principe de décomposition ou de multiplication)}}{myolive}
+        Lorsqu’une expérience comporte $p$ étapes, et que la $i$-ème étape peut se déroules de $n_i$ manières, alors le nombre total de possibilités est $n_1 \times \ldots \times n_p$.
+    \end{omed}
+
+    \subsection{Outils de dénombrement}
+
+    \begin{defi}{$p$-liste}{}
+        Soient $\mathcal{E}$ un ensemble non-vide, et $p \in \mathbb{N}^*$.
+
+        Une liste à $p$ éléments ou \textbf{$p$-liste} de $\mathcal{E}$ est un $p$-uplet $(x_1,\ldots,x_p)$ d’éléments de $\mathcal{E}$.
+    \end{defi}
+
+    \begin{theo}{Ensemble des $p$-listes}{}
+        Soient $\mathcal{E}$ un ensemble fini non vide et $p \in \mathbb{N}^*$.
+    
+        Alors l’ensemble des $p$-listes sur $\mathcal{E}$ est de cardinal $\card(\mathcal{E})^p$.
+    \end{theo}
+
+    \begin{defi}{Arrangement}{}
+        Soient $\mathcal{E}$ un ensemble non-vide, et $p \in \mathbb{N}^*$.
+
+        Un \textbf{arrangement à $p$ éléments} de $\mathcal{E}$ est un $p$-uplet $(x_1,\ldots,x_p)$ d’éléments de $\mathcal{E}$ sans répétition.
+    \end{defi}
+
+    \begin{theo}{Ensemble des arrangements}{}
+        Soient $\mathcal{E}$ un ensemble non-vide de cardinal $n$, et $p \in \intervalleEntier{1}{n}$.
+
+        Alors l’ensemble des arrangements à $p$ éléments de $\mathcal{E}$ est de cardinal $A_n^p = \frac{n!}{(n-p)!}$
+    \end{theo}
+
+    \begin{defi}{Combinaison}{}
+        Soient $\mathcal{E}$ un ensemble non-vide, et $p \in \mathbb{N}^*$.
+
+        On appelle \textbf{combinaison à $p$ éléments} de $\mathcal{E}$ toute partie de $\mathcal{E}$ à $p$ éléments.
+    \end{defi}
+
+    \begin{theo}{Ensemble des combinaisons}{}
+        Soient $\mathcal{E}$ un ensemble non-vide de cardinal $n$, et $p \in \intervalleEntier{1}{n}$.
+
+        Alors le nombre de combinaisons à $p$ éléments de $\mathcal{E}$ est  $C_n^p = \binom{n}{p} = \frac{n!}{p!(n-p)!}$
+    \end{theo}
+
+    \subsubsection{Dénombrement d’applications}
+
+    \begin{theo}{}{}
+        Soient $\mathcal{E}$ et $\mathcal{F}$ deux ensembles finis non vides.
+
+        Alors 
+        \[ \et{\mathcal{A}(\mathcal{E},\mathcal{F}) \text{ est fini}}{\card(\mathcal{A}(\mathcal{E}),\mathcal{F}) = \card(\mathcal{F})^{\card(\mathcal{E})}} \]
+    \end{theo}
+
+    \begin{coro}{}{}
+        \begin{soient}
+            \item $\mathcal{E}$ un ensemble fini non-vide de cardinal $n$
+            \item $\mathcal{P}(\mathcal{E})$ l’ensemble des parties de $\mathcal{E}$
+        \end{soient}
+        Alors 
+        \[ \et{\mathcal{P}(\mathcal{E}) \text{ est fini}}{\card(\mathcal{P}(\mathcal{E})) = 2^{\card(\mathcal{E})}} \]
+    \end{coro}
+
+    \begin{prop}{}{}
+        Soient $\mathcal{E}$ et $\mathcal{F}$ deux ensembles finis et non vides de cardinaux respectifs $n$ et $p$.
+
+        On suppose que $n \leq p$.
+
+        Alors l’ensemble des applications injectives de $\mathcal{E}$ dans $\mathcal{F}$ est fini de cardinal $A_p^n = \frac{p!}{(p-n)!}$.
+    \end{prop}
+
+    \begin{coro}{}{}
+        Soient $\mathcal{E}$ et $\mathcal{F}$ deux ensembles finis et non vides de même cardinal $n$.
+
+        Alors l’ensemble des bijections de $\mathcal{E}$ dans $\mathcal{F}$ est fini de cardinal $n!$.
+    \end{coro}
+
+    \subsection{Démonstrations combinatoires}
+
+    \begin{prop}{Démonstrations combinatoires}{}
+        Soit $n \in \mathbb{N}$.
+
+        \begin{alors}
+            \item Pour $p \in \intervalleEntier{0}{n}, \, \binom{n}{p} = \binom{n}{n-p}$
+            \item On suppose que $n \geq 2$ et $p \in \intervalleEntier{1}{n-1}$, \[ \binom{n}{p} = \binom{n-1}{p-1} + \binom{n-1}{p} \quad \text{(Triangle de Pascal)} \]
+            \item $\sum\limits_{p=0}^n \binom{n}{p} = 2^n$
+            \item $\forall (a,b) \in \mathbb{C}^2, \, (a+b)^n = \sum\limits_{k=0}^n \binom{n}{k} a^k b^{n-k}$
+            \item Pour $p,q \in \mathbb{N}$ et $n \in \intervalleEntier{0}{p+q}$, $\binom{p+q}{n} = \sum\limits_{k=0}^n \binom{p}{k} \binom{q}{n-k}$
+        \end{alors}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Raisonner sur l’interprétation ensembliste, \textit{e.g.} pour \textbf{(v)} :
+
+        D’une part, considérons un ensemble $\mathcal{E}$ de cardinal $p+q$. Il y a $\binom{p+q}{n}$ sous-ensembles de $\mathcal{E}$ à $n$ éléments. 
+
+        D’autre part, considérons deux ensembles $\mathcal{F}$ et $\mathcal{G}$ de cardinaux respectifs $p$ et $q$. Pour dénombrer le nombre de sous-ensembles possibles à $n$ éléments choisis parmi les deux ensembles, 
+        \begin{itemize}
+            \item On choisit $k$ éléments dans le premier ensemble, il y a $\binom{p}{k}$ possibilités.
+            \item On choisit $n-k$ éléments dans le second, il y $\binom{q}{n-k}$ possibilités.
+            \item On itère pour $k$ allant de $0$ à $n$.
+        \end{itemize}
+        Il y a donc $\sum\limits_{k=0}^n \binom{p}{k} \binom{q}{n-k}$ sous-ensembles à $n$ éléments choisis parmi les deux ensembles. Nous avons ainsi dénombré le même ensemble de deux manières différentes, ce qui donne que 
+        \[ \binom{p+q}{n} = \sum\limits_{k=0}^n \binom{p}{k} \binom{q}{n-k} \] 
+    \end{demo}
+
+    \subsection{Fonction indicatrice}
+
+    \begin{defitheo}{Fonction indicatrice}{}
+        Si $A$ est une partie de $E$, on définit la fonction indicatrice de $A$ sur $E$ par 
+        \[ \forall x \in E, \quad \mathbb{1}_A(x) = \sisi{1}{x \in A}{0}{x \notin A} \]   
+        Les opérations sur les ensembles peuvent se traduire par des opérations sur les indicatrices.
+        \begin{enumerate}
+            \begin{multicols}{2}
+                \item $A = B \iff \mathbb{1}_A = \mathbb{1}_B$
+                \item $A \subset B \iff \mathbb{1}_A \leq \mathbb{1}_B$ 
+                \item $\mathbb{1}_{\barr{A}} = 1 - \mathbb{1}_A$
+                \item $\mathbb{1}_{A \cap B} = \mathbb{1}_A \cdotp \mathbb{1}_B$
+                \item $\mathbb{1}_{A \cup B} = \mathbb{1}_A + \mathbb{1}_B - \mathbb{1}_A \cdotp \mathbb{1}_B$
+                \item $\card(A)= \sum_{x \in E} \mathbb{1}_A(x)$
+            \end{multicols}
+        \end{enumerate}
+    \end{defitheo}
+
+\section{Familles sommables} 
+
+    On veut définir le sens de l’écriture $\sum_{i \in I} x_i$, où les $x_i \in \mathbb{K}$ et $I$ est un ensemble d’indexation. Nous avons jusqu’à présent été amenés à ne sommer que des termes réels ou complexes préalablement ordonnés. Que se passe-t-il si l’on permute deux termes de la suite $(u_n)_{n \in \mathbb{N}}$. 
+
+    \begin{theo}{Convergence commutative}{}
+        Si $\sum u_n$ converge absolument, pour tout permutation $\sigma$ de $\mathbb{N}$, $\sum u_{\sigma(n)}$ converge absolument vers $\sum_{n = 0}^{+\infty} u_n$.
+    \end{theo}
+
+    La convergence absolue nous garantit donc que la somme obtenue ne dépend pas de l’ordre de sommation.
+
+    Les prochaines parties visent dans cette optique à développer une théorie de la sommation robuste, nous permettant de sommer avec souplesse des familles de nombres complexes indépendamment de l’ordre choisi. Elle offrira au passage la possibilité de travailler avec des familles indexées par des ensembles autres que $mathbb{N}$. Notre capacité à manipuler des sommes, en particulier des sommes doubles, en sortira renforcée. Cela justifiera tous les efforts consentis !
+
+    \subsection{Ensemble dénombrable}
+
+    \begin{defi}{Ensemble fini}{}
+        Un ensemble $E$ est dit fini s’il est vide ou s’il existe $n$ non nul et une bijection de $E$ dans $\intervalleEntier{1}{n}$. L’entier $n$ est alors appelé cardinal de $E$.
+    \end{defi}
+
+    \begin{defi}{Ensemble dénombrable}{}
+        On dit que $E$ est \textbf{dénombrable} s’il existe $\varphi : E \to \mathbb{N}$ bijective.
+
+        On dit que $E$ est \textbf{au plus dénombrable} s’il existe $\varphi : E \to \mathbb{N}$ injective. C’est le cas si $E$ est dénombrable ou fini.
+
+        Dans le cas où $E$ est dénombrable, on peut écrire $E = \left\{x_n , n \in \mathbb{N}\right\}$.
+    \end{defi}
+
+    En particulier, $mathbb{N}^*$ est dénombrable d’après $\fonction{\varphi}{\mathbb{N}}{\mathbb{N}^*}{n}{n+1}$, et $\mathbb{Z}$ d’après $\varphi(k) = 2k$ si $k$ est positif, et $\varphi(k) = -(2k+1)$ si $k$ est négatif.
+
+    \begin{prop}{Produit cartésien}{}
+        Si $E$ et $F$ sont dénombrables, alors $E \times F$ est dénombrable.
+    \end{prop}
+
+    On peut généraliser à un nombre fini d’ensembles dénombrables.
+
+    \begin{demo}{Preuve}{myolive}
+        Soit $\varphi : E \to \mathbb{N}$ et $\psi : F \to \mathbb{N}$ deux applications bijectives. 
+
+        Alors $\application{E \times F}{\mathbb{N}}{(x,y)}{2 \varphi(x) + 1} 2^{\psi(y)}$ est bijective d’après le théorème de factorisation des nombres premiers : tout entier $n$ s’écrit de manière unique sous la forme $2^i p_1 \cdots p_r$ où $p_1, \ldots, p_r$ sont des facteurs premiers entiers impairs.
+    \end{demo}
+
+    \begin{defi}{}{}
+        Soit $(E_i)_{i \in I}$ une famille de parties de $E$. On note 
+        \[ \bigcup_{i \in I} E_i = \left\{x \in E, \quad \exists i \in I, x \in E_i\right\} \]    
+    \end{defi}
+
+    Cet ensemble est toujours défini, même si $I$ n’est pas dénombrable. Par la suite, $I$ sera toujours au plus dénombrable.
+
+    \begin{prop}{}{}
+        Soient $I$ au plus dénombrable et $(E_i)_{i \in I}$ une famille d’ensembles dénombrables. Alors $\bigcup_{i \in I} E_i$ est dénombrable.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Soit $(E_k)_{k \in \mathbb{N}}$ une famille d’ensemble dénombrables. Pour $k \in \mathbb{N}$, on note $\varphi_k$ une bijection de $\mathbb{N}$ sur $E_k$. On considère alors l’application 
+        \[ \fonction{\varphi}{\mathbb{N} \times \mathbb{N}}{\bigcup_{n \in \mathbb{N}} E_k}{(n,k)}{\varphi_k(n)} \]    
+        Elle réalise clairement une bijection de $\mathbb{N} \times \mathbb{N}$ sur $\bigcup_{n \in \mathbb{N}} E_k$.
+    \end{demo}
+
+    \begin{coro}{}{}
+        L’ensemble $\mathbb{Q}$ est dénombrable.
+    \end{coro}
+
+    \begin{demo}{Preuve}{myorange}
+        Il suffit d’écrire $\mathbb{Q} = \bigcup_{(p,q) \in \mathbb{Z} \times \mathbb{N}^*} \left\{\frac{p}{q}\right\}$.
+    \end{demo}
+
+    \begin{prop}{}{}
+        Les ensembles $\mathbb{R}, \left\{0,1\right\}^{\mathbb{N}}$ et $\mathbb{N}^{\mathbb{N}}$ ne sont pas dénombrables.
+    \end{prop}
+
+    \begin{demo}{Démonstration \textcolor{black}{(Diagonale de Cantor)}}{}
+        Nous démontrerons uniquement le résultat pour $\left\{0,1\right\}^{\mathbb{N}}$, mais la démonstration est reproductible pour $\mathbb{R}$ et $\mathbb{N}^{\mathbb{N}}$. Il suffit de montrer que toute partie dénombrable de $\left\{0,1\right\}^{\mathbb{N}}$ ne contient pas tous ses éléments. Soit $\mathcal{P}$ une partie dénombrable de $\left\{0,1\right\}^{\mathbb{N}}$. On peut poser $\mathcal{P} = \left\{(u_n^{(k)})_{n \in \mathbb{N}}, \quad k \in \mathbb{N}^*\right\}$. Si on considère la suite $v$ de $\left\{0,1\right\}^{\mathbb{N}}$ définie, pour tout $k \in \mathbb{N}$, par $v_k = 1 - u_k^{(k)}$, $v \notin \mathcal{P}$ puisqu’elle diffère par un terme au moins de chaque élément de $\mathcal{P}$.
+    \end{demo}
+
+\subsection{Familles sommable}
+
+    \subsubsection{Famille de réels positifs}
+
+    On considère ici $I$ au plus dénombrable, et on se place dans $\mathbb{R}_+$. On constitue ainsi un cas de base, auquel on essayera de se ramener toujours. 
+
+    Notre définition de la somme de la famille $(u_i)_{i \in I}$ doit respecter deux contraintes : elle ne peut privilégier un ordre de sommation particulier et doit fournir des résultats cohérents avec la sommation « naturelle » lorsque $I = \mathbb{N}$. Pour cela, on considère toutes les sommes d’un nombre fini de termes à travers l’ensemble 
+    \[ \left\{\sum_{j \in J} u_j, \quad J \subset I, J \text{ finie}\right\} \]
+    Cette ensemble est une partie non-vide de $\mathbb{R}_+$, donc admet une borne supérieure dans $\intervalleFF{0}{+\infty}$, ce qui conduit à la définition suivante :
+
+    \begin{defi}{Famille sommable}{}
+        Soit $(x_i)_{i \in I}$ une famille de $\mathbb{R}_+$. On pose 
+        \[ \sum_{i \in I} x_i = \sup\left\{\sum_{i \in A} x_i , \quad A \subset I, \text{ fini}\right\} \in \mathbb{R}_+ \cup \left\{+\infty\right\} \]   
+        On dit que $(x_i)_{i \in I}$ est \textbf{sommable} si $\sum_{i \in I} x_i$ est définie \textit{i.e.} $\sum_{i \in I} x_i < + \infty$.
+    \end{defi}
+
+    Si $I$ est fini, on retrouve la somme définie au sens usuel. Si $I = \mathbb{N}$, on retombe sur les séries numériques.
+
+    \begin{defi}{Partition}{}
+        On dit que $(I_n)_{n \in \mathbb{N}}$ est une partition de $I$ si 
+        \begin{enumerate}
+            \item $\bigcup_{n \in \mathbb{N}} I_n = I$
+            \item $\forall (n,n') \in \mathbb{N}^2, n \neq n' \implies I_n \cap I_{n'} = \emptyset$
+        \end{enumerate}
+    \end{defi}
+
+    \begin{prop}{Principe de sommation par paquets}{}
+        Soit $(x_i)_{i \in I}$ une famille de réels positifs. OC $(I_n)$ une partition de $I$. Alors 
+        \[ \sum_{x \in I} x_i = \sum_{n=0}^{+\infty} \sum_{i \in I_n} x_i  \]  
+    \end{prop}
+
+    Cette égalité, valable dans $\intervalleFF{0}{+\infty}$, est redoutable : à condition de travailler avec des réels positifs, tous les calculs peuvent être menés en pratique sans aucune justification préalable de sommabilité, et on peut regrouper les termes comme on l’entend. Obtenir à la fin des calculs une somme finie justifiera \textit{a posteriori} la sommabilité de la famille. 
+
+    \begin{lem}{}{}
+        Soit $(x_i)_{i \in I \cup J}$ une famille sommable de $\mathbb{R}_+$ et $I \cap J = \emptyset$, alors $(x_i)_{i \in I}$ et $(x_i)_{i \in J}$ sont sommables et $\sum_{i \in I} x_i + \sum_{i \in J} x_i = \sum_{i \in I \cup J} x_i$.
+    \end{lem}
+
+    \begin{demo}{Preuve}{mybrown}
+        Si $A \subset I$ est une partie finie de $I$, alors $A \subset I \cup J$ et $\sum_{i \in A} x_i \leq \sum_{i \in I \cup J} x_i < + \infty$. Donc $(x_i)_{i \in I}$ est sommable.
+
+        Soit $A \subset I \cup J$. On pose $A_1 = A \cap I$ et $A_2 = A \cap J$. Alors $A = A_1 \cup A_2$. On a 
+        \begin{align*}
+            \sum_{i \in A} x_i 
+            &= \sum_{i \in A_1} x_i + \sum_{i \in A_2} x_i \\
+            &\leq \sum_{i \in I} x_i + \sum_{i \in J} x_i 
+        \end{align*}
+        Puis en passant à la borne sup, on a donc 
+        \[ \sum_{i \in I \cup J} \leq \sum_{i \in I} x_i + \sum_{i \in J} x_i \]   
+        Soient désormais $A_1 \subset I$ finie et $A_2 \subset J$ finie. Alors
+        \[ \sum_{i \in A_1} + \sum_{i \in A_2} x_i = \sum_{i \in A_1 \cup A_2} x_i \leq \sum_{i \in I \cup J} x_i \]    
+        En passant à la borne sup (2 fois),
+        \begin{align*}
+            \sum_{i \in I} x_i + \sum_{i \in J} x_i \leq \sum_{i \in I \cup J} x_i
+        \end{align*}
+    \end{demo}
+
+    \begin{lem}{}{}
+        Si $I \subset J$ et $(x_i)_{i \in J}$ est une famille sommable de $\mathbb{R}_+$, alors $(x_i)_{i \in I}$ est sommable et 
+        \[ \sum_{i \in I} x_i \leq \sum_{i \in J} x_i \]   
+    \end{lem}
+
+    \begin{demo}{Preuve}{mybrown}
+        Soit $A \subset I$ finie. Alors $A \subset J$ donc $\sum_{i \in A} x_i \leq \sum_{i \in J} x_i < + \infty$. Donc $(x_i)_{i \in I}$ est sommable et l’inégalité est vraie.
+    \end{demo}
+
+    \begin{demo}{Démonstration de la proposition}{myolive}
+        Posons $a_n = \sum_{i \in I_n} x_i$ et $A \subset I$. ON $A_n = A \cap I_n$. Comme $A$ est fini, il existe $N \in \mathbb{N}$ tel que $A = A_1 \cup \cdots \cup A_N$, donc 
+        \begin{align*}
+            \sum_{i \in A} x_i 
+            &= \sum_{k=0}^N \sum_{i \in A_k} x_i \\
+            &\leq \sum_{k=0}^{N} \sum_{i \in I_k} x_i = \sum_{k=0}^N a_k \\
+            &\leq \sum_{k=0}^{+\infty} a_k
+        \end{align*}
+        En passant à la borne supérieure, on obtient $\sum_{i \in I} x_i \leq \sum_{n = 0}^{+\infty} a_n$.
+
+        Soit $N \in \mathbb{N}$, on a 
+        \begin{align*}
+            \sum_{n=0}^N a_n 
+            &= \sum_{n=0}^{N} (\sum_{i \in I_n} x_i) \\
+            &\quad \downarrow \quad \text{premier lemme} \\
+            &= \sum_{i \in \bigcup_{n=0}^N I_n} x_i \\
+            &\leq \sum_{i \in I} x_i \\
+            &\quad \downarrow \quad N \to +\infty \\
+            \sum_{n = 0}^{+\infty} a_n &\leq \sum_{i \in I} x_i 
+        \end{align*}
+    \end{demo} 
+
+    \begin{omed}{Exemple}{myolive}
+        Pour $I = \left(\mathbb{N}^*\right)^2$ et $x_{i,j} = \frac{1}{2^{i + j}} \geq 0$. On pose $I = \bigcup_{n \in \mathbb{N}^*} I_n$ où $I_n = \left\{(n,
+        k), k \in \mathbb{N}^*\right\}$, tel que $(I_n)_{n \in \mathbb{N}^*}$ est une partition de $I$. On a 
+        \begin{align*}
+            \sum_{n=1}^{+\infty} \left(\sum_{j \in \mathbb{N}^*} \frac{1}{2^{n + j}}\right) 
+            &= \sum_{n=1}^{+\infty} \frac{1}{2^n} \sum_{j = 1}^{+\infty} \frac{1}{2^j} \\
+            &= \sum_{n=1}^{+\infty} \frac{1}{2^n} \frac{1/2}{1 - 1/2} \\
+            &= 1
+        \end{align*}
+        Donc $(x_{i,j})$ est sommable, et sa somme vaut $1$.
+    \end{omed}
+
+    Avant d’étendre la notion de sommabilité à une famille quelconque de nombres complexes et de préciser les propriétés générales relatives aux familles sommables, revenons quelques instants sur l’hypothèse de dénombrabilité faite sur $I$.
+
+    \begin{prop}{}{}
+        Soient $I$ un ensemble quelconque et $(u_i)_{i \in I}$ une famille de réels positifs. Si $(u_i)_{i \in I}$ est sommable, alors $\left\{i \in I, \quad u_i \neq 0\right\}$ est au plus dénombrable.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Par positivité de $(u_i)_{i \in I}$, $\left\{i \in I, \quad u_i \neq 0\right\}= \bigcup_{n \in \mathbb{N}^*} I_n$ où $I_n = \left\{i \in I, \quad u_i \geq \frac{1}{n}\right\}$. 
+
+        Montrons que pour $n \in \mathbb{N}^*$ fixé, $I_n$ est fini. La famille étant sommable, il existe $M \in \mathbb{R}_+$ tel que pour toute partie finie $J$ de $I$, $\sum_{j \in J} u_j \leq M$. Considérons une partie finie $J$ de $I_n$. $M \geq \sum_{i \in J} u_i \geq \sum_{i \in J} \frac{1}{n} = \frac{\card(J)}{n}$. Ainsi, $\card(J) \leq nM$. Par l’absurde, $I_n$ est fini.
+    \end{demo}
+
+    On peut donc sommer sur $\mathbb{R}$ à la seule condition que l’ensemble des indices $i$ pour lesquels $u_i \neq 0$ est au plus dénombrable. Bref, cela revient à sommer sur un ensemble dénombrable. Les familles sommables se réduisent donc essentiellement aux suites sommables.
+
+    \subsubsection{Familles sommables de réels et complexes}
+
+    On se place désormais sur $\mathbb{K} = \mathbb{R}$ ou $\mathbb{C}$. $I$ désigne toujours un ensemble au plus dénombrable mais on considère cette fois-ci une famille quelconque de nombres complexes $(u_i)_{i \in I}$. La notion de borne supérieure perdant tout son sens dans $\mathbb{C}$, il nous reste à retrouver le cadre confortable offert par $\barr{\mathbb{R}_+}$, en se ramenant au cas des familles de réels positifs.
+
+    \begin{defi}{Famille sommable dans $\mathbb{K}$}{}
+        Soit $I$ au plus dénombrable et $(x_i)_{i \in I}$ une famille d’éléments de $\mathbb{K}$. On dit que $(x_i)_{i \in I}$ est sommable si $\left(\abs{x_i}\right)_{i \in I}$ est sommable dans $\mathbb{R}_+$. 
+    \end{defi}
+
+    Si $I = \mathbb{N}$, $(x_i)_{i \in \mathbb{N}}$ est sommable si la série $\sum x_i$ est absolument convergente.
+
+    \begin{prop}{}{}
+        Soient $I$ au plus dénombrable, et $(x_i)_{i \in I}$ une famille de $\mathbb{K}$ telle que 
+        \[ \forall i \in I, \quad \abs{x_i} \leq \alpha_i \] où $(\alpha_i)_{i \in I}$ est sommable. Alors $(x_i)_{i \in I}$ est sommable.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Soit $A \subset I$ finie. On a 
+        \[ \sum_{i \in A} \abs{x_i} \leq \sum_{i \in A} \alpha_i \leq \sum_{i \in I} \alpha_i < +\infty \]   
+        Donc, en passant à la borne supérieure, $\sum_{i \in I} \abs{x_i} \leq \sum_{i \in I} \alpha_i < + \infty$, donc $(x_i)_{i \in I}$ est sommable.
+    \end{demo}
+
+    \begin{defi}{Somme}{}
+        Soit $I$ au plus dénombrable.
+        
+        Si $(x_i)_{i \in I}$ est une famille sommable de $\mathbb{R}$, on pose 
+        \[ \sum_{i \in I} x_i := \sum_{i \in I} x_i^+ - \sum_{i \in I} x_i^- \]   
+        où $x_i^+ = \max(x_i, 0)$ et $x_i^- = \max(-x_i,0)$.
+
+        Si $(x_j)_{j \in I}$ est une famille sommable de $\mathbb{C}$, on pose
+        \[ \sum_{j \in I} x_j := \sum_{j \in I} \Re(x_j) + i \sum_{j \in I} \Im(x_j) \]    
+    \end{defi}
+
+    On justifie que les familles sommées dans cette définition sont sommables en utilisant que $x_i^+ \leq \abs{x_i}$, de même pour $x_i^-$, et que $\abs{\Re(x_j)} \leq \abs{x_j}$, de même pour $\Im$.
+
+    On veut désormais calculer concrètement ces sommes. Pour cela, introduisons un lemme :
+
+    \begin{lem}{}{}
+        Soit $I$ au plus dénombrable, $(x_i)_{i \in I}$ une famille d’éléments de $\mathbb{K}$. Soit $(A_n)_{n \in \mathbb{N}}$ telle que 
+        \begin{itemize}
+            \item $\forall n \in \mathbb{N}, A_n \subset A_{n +1}$ 
+            \item $\bigcup_{n \in \mathbb{N}} A_n = 1$
+        \end{itemize}
+        (On dit que $(A_n)_{n \in \mathbb{N}}$ est croissante et converge vers $I$ au sens de l’inclusion). Alors pour tout $n \in \mathbb{N}$, $(x_i)_{i \in A_n}$ est sommable et $\lim_{n \to +\infty} \sum_{i \in A_n} x_i = \sum_{i \in I} x_i$.
+    \end{lem}
+
+    \begin{demo}{Preuve}{mybrown}
+        Soit $n \in \mathbb{N}$, $B \subset A_n$ finie. On a 
+        \[ \sum_{i \in B} \abs{x_i} \leq \sum_{i \in I} \abs{x_i} < +\infty \]   
+        Donc $(x_i)_{i \in A_n}$ est sommable.
+
+        OS $\forall i \in I, x_i \geq 0$. Alors 
+        \[ \sum_{i \in A_n} x_i \leq \sum_{i \in I} x_i < +\infty \]   
+        De plus, comme $(A_n)$ est croissante, $\left(\sum_{i \in A_n} x_i\right)$ est croissante et majorée, donc converge. En passant à la limite, on obtient que 
+        \[ \lim_{n \to +\infty} \sum_{i \in A_n} x_i \leq \sum_{i \in I} x_i \]   
+        Inversement, soit $B \subset I$ finie. Il existe $N \in \mathbb{N}$ tel que $\forall n \geq N, B \subset A_n$. Donc $\sum_{i \in B} x_i \leq \sum_{i \in A_n} x_i \leq \lim_{n \to +\infty} \sum_{i \in A_n} x_i$. En passant à la borne supérieure, on obtient donc l’inégalité inverse, d’où l’égalité.
+
+        OS désormais que $(x_i)_{i \in I}$ est une famille de $\mathbb{R}$. 
+        \begin{align*}
+            \lim_{n \to +\infty} \sum_{i \in A_n} x_i 
+            &= \lim_{n \to +\infty} \left(\sum_{i \in A_n} x_i^+ - \sum_{i \in A_n} x_i^-\right) \\
+            &= \sum_{i \in I} x_i^+ - \sum_{i \in I} x_i^- \\
+            &= \sum_{i \in I} x_i
+        \end{align*}
+
+        OS maintenant que $(x_j)_{j \in I}$ est une famille de $\mathbb{C}$. 
+        \begin{align*}
+            \lim_{n \to +\infty} \sum_{j \in A_n} x_j 
+            &= \lim_{n \to +\infty} \left(\sum_{j \in A_n} \Re(x_j) + i \sum_{j \in A_n} \Im(x_j) \right) \\
+            &= \sum_{j \in I} \Re(x_j) + i \sum_{j \in I} \Im(x_j) \\
+            &= \sum_{j \in I} x_j
+        \end{align*}
+    \end{demo}
+
+    \begin{prop}{}{}
+        Soient $I$ au plus dénombrable, $(x_i)_{i \in I}$, $(y_i)_{i \in I}$ des familles dénombrables de $\mathbb{K}$, et $\lambda \in \mathbb{K}$. Alors $(x_i + \lambda y_i)_{i \in I}$ est sommable et 
+        \[ \sum_{i \in I} x_i + \lambda y_i = \sum_{i \in I} x_i + \lambda \sum_{i \in I} y_i \]   
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        On a, pour tout $i \in I$, $\abs{x_i + \lambda y_i}$. Soit $A \subset I$ fini, 
+        \begin{align*}
+            \sum_{i \in A} \abs{x_i + \lambda y_i} 
+            &\leq \sum_{i \in A} \abs{x_i} + \lambda \sum_{i \in A} \abs{y_i} \\
+            &\leq \sum_{i \in I} \abs{x_i} + \lambda \sum_{i \in I} \abs{y_i} 
+        \end{align*}
+        Donc $(x_i + \lambda y_i)_{i \in I}$ est sommable.
+
+        Soit $(A_n)_{n \in \mathbb{N}}$ croissante, telle que $\bigcup_{n \in \mathbb{N}} A_n = I$. On peut supposer $A_n$ finie. Grâce au lemme, on a que 
+        \begin{align*}
+            \sum_{i \in I} x_i + \lambda y_i 
+            &= \lim_{n \to +\infty} \sum_{i \in A_n} x_i + \lambda y_i \\ 
+            &= \lim_{n \to +\infty} \left(\sum_{i \in A_n} x_i + \lambda \sum_{i \in A_n} y_i\right) \\
+            &= \sum_{i \in I} x_i + \lambda \sum_{i \in I} y_i
+        \end{align*}
+    \end{demo}
+
+    \begin{prop}{}{}
+        Soit $I$ au plus dénombrable, $(x_i)_{i \in I}$ et $(y_i)_{i \in I}$ deux familles sommables de $\mathbb{R}$ telles que $\forall i \in I, x_i \leq y_i$. 
+        Alors $\sum_{i \in I} x_i \leq \sum_{i \in I} y_i$.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        On pose $(A_n)_{n \in \mathbb{N}}$ telle que $A_n$ est finie, $A_n \subset A_{n+1}$ et $\bigcup_{n \in \mathbb{N}} A_n = I$. Alors la propriété est vraie pour les $A_n$, puis on passe à la limite.
+    \end{demo}
+
+    \begin{omed}{Exemple}{myolive}
+        Soit $z \in \mathbb{C}$, $\abs{z} < 1$, MQ $\sum_{n = 0}^{+\infty} \frac{z^{2^n}}{1 - z^{2^{n+1}}}$ converge et la calculer.
+
+        On a 
+        \begin{align*}
+            \frac{1}{1 - z^{2^{n+1}}} &= \sum_{k=0}^{+\infty} \left(z^{2^{n+1}}\right)^k \esp{car } \abs{z} < 1 \\
+            &= \sum_{k=0}^{+\infty} z^{k 2^{n+1}}
+        \end{align*}
+        Donc on s’intéresse à 
+        \begin{align*}
+            \sum_{n = 0}^{+\infty} \sum_{k = 0}^{+\infty} z^{2^n} z^{k 2^{n+1}} 
+            &= \sum_{(k,n) \in \mathbb{N}^2} z^{(2k+1)2^n}
+        \end{align*}
+        Il faut donc montrer que $(z^{(2k+1)2^n})$ est une famille sommable. Posons $A_n = \left\{2^n (2k+1), k \in \mathbb{N}\right\}$. Alors $(A_n)_{n \in \mathbb{N}}$ est une partition de $\mathbb{N}^*$ car tout entier s’écrit comme une puissance de $2$ multipliée par un impair. Or $(z^n)_{n \in \mathbb{N}}$ car $\sum \abs{z}^n$ converge. Ainsi, 
+        \begin{align*}
+            \sum_{n=0}^{+\infty} \left(\sum_{i = 0}^{+\infty} z^{2^n (2i + 1)}\right) 
+            &= \sum_{n=0}^{+\infty}z^{2^n} \sum_{i = 0}^{+\infty} (z^{2^{n+1}})^i \\
+            &= \sum_{n=0}^{+\infty} \frac{z^{2^n}}{1 - z^{2^{n+1}}} \\
+        \end{align*}
+        D’autre part, 
+        \begin{align*}
+            \sum_{n=0}^{+\infty} \sum_{k \in A_n} z^k &\quad \downarrow \quad \text{sommation par paquets} \\
+            &= \sum_{i \in \mathbb{N}^*} z^i \\
+            &= \frac{z}{1 - z}
+        \end{align*}
+    \end{omed}
+
+    \begin{theo}{de Fubini discret}{}
+        Soient $I,J$ au plus dénombrables, $(x_{i,j})_{(i,j) \in I \times J}$ sommable. Alors 
+        \begin{enumerate}
+            \item $\left(\sum_{j \in J} x_{i,j}\right)_{i \in I}$ et $\left(\sum_{j \in J} x_{i,j}\right)_{j \in J}$ sont sommables.
+            \item $\sum_{i \in I} \sum_{j \in J} x_{i,j} = \sum_{j \in J} \sum_{i \in I} x_{i,j}$
+        \end{enumerate}
+    \end{theo}
+
+    \begin{demo}{Preuve}{myred}
+        \begin{enumerate}
+            \item Soit $A \subset I$ finie, on a 
+            \begin{align*}
+                \sum_{i \in A} \abs{\sum_{j \in J} x_{i,j}} 
+                &\leq \sum_{i \in A} \sum_{j \in J} \abs{x_{i,j}} \\
+                &= \sum_{(i,j) \in A \times J} x_{i,j}
+                &\leq \sum_{(i,j) \in I \times J} x_{i,j} < +\infty
+            \end{align*}
+            Donc $\left(\sum_{j \in J} x_{i,j}\right)_{i \in I}$ est sommable. De même pour l’autre.
+            \item Soit $(I_n)$ une suite croissante convergent vers $I$. Alors 
+            \[ \lim_{n \to +\infty} \sum_{i \in I_n} \left(\sum_{j \in J} x_{i,j}\right) = \sum_{i \in I} \sum_{j \in J} x_{i,j} \]   
+            Alors $(I_n \times J)$ est croissante et converge vers $I \times J$. Donc \[ \lim_{n \to +\infty} \sum_{(i,j) \in I_n \times J} x_{i,j} = \lim_{n \to +\infty} \sum_{i \in I_n} \sum_{j \in J} x_{i,j} = \sum_{(i,j) \in I \times J} x_{i,j} \]   
+        \end{enumerate}
+    \end{demo}
+
+    \begin{omed}{Exemple}{myred}
+        OP $a_{i,j} = \frac{2i+1}{i+j+2} - \frac{i}{i + j + 1} - \frac{i + 1}{i + j + 3}$. MQ $(a_{i,j})$ ne peut pas être sommable.
+        \begin{align*}
+            \sum_{j = 0}^{+\infty} a_{i,j} 
+            &= \sum_{j = 0}^{+\infty} \frac{2i+1}{i+j+2} - \frac{i}{i + j + 1} - \frac{i + 1}{i + j + 3} \\
+            &= i\left(\sum_{j \geq 0} \frac{1}{i + j + 2} - \frac{1}{i + j 1}\right) + (i+1) \sum_{j \geq 0} \frac{1}{i + j + 2} - \frac{1}{i + j + 3} \\
+            &= i\left(-\frac{1}{i + 1}\right) + (i+1) \left(\frac{1}{i + 2}\right) \\
+            &= \frac{1}{i + 1} - \frac{1}{i + 2} \\
+            \sum_{i \geq 0} \sum_{j \geq 0} a_{i,j} &= \sum_{i \geq 0} \frac{1}{i + 1} - \frac{1}{i + 2} \\
+            &= 1 \\
+            \sum_{i = 0}^{+\infty} a_{i,j} &= \sum_{i = 0}^{+\infty} \frac{2i + 1}{i + j + 2} - \frac{i}{i + j + 1} - \frac{i + 1}{i + j + 3} \\
+            &= \sum_{i = 0}^{+\infty} \frac{i}{1 + j + 2} - \frac{i}{1 + j + 1} + \frac{i+ 1}{i + j + 2} - \frac{i + 1}{i + j + 3} \\
+            &= \sum_{i = 0}^{+\infty} -\frac{i}{(i + j + 1)(i + j + 2)} + \frac{(i+ 1)}{(i + j + 2)(1 + j + 3)} \\
+            = 0 
+        \end{align*}
+        Donc le théorème de Fubini discret ne s’applique pas ici, et les deux sommes ne sont pas permutables.
+    \end{omed}
+
+    \begin{prop}{}{}
+        Soient $I,J$ au plus dénombrables, $(x_i)_{i \in I}$ et $(y_j)_{j \in J}$ des familles sommables, alors $(x_i y_j)_{(i,j) \in I \times J}$ est sommable, de somme 
+        \[ \sum_{(i,j) \in I \times J} x_i y_j = \left(\sum_{i \in I} x_i\right)\left(\sum_{j \in J} y_j\right) \]      
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Soit $A \subset I \times J$ finie, il existe $A_1 \subset I$ et $A_2 \subset J$ telles que $A \subset A_1 \times A_2$. Alors 
+        \[ \sum_{(i,j) \in A} \abs{x_i y_j} \leq \sum_{(i,j) \in A_1 \times A_2} \abs{x_i y_j} = \sum_{i \in A_1} \abs{x_i} \sum_{j \in A_2} \abs{x_j} \leq \sum_{i \in I} \abs{x_i} \sum_{j \in J} \abs{y_j} < +\infty \]  
+        Donc la famille $(x_i y_j)$ est sommable. Soient $(I_n), (J_n)$ des famille croissantes finies qui convergent vers $I,J$. Alors $(I_n \times J_n)$ est croissante et converge vers $I \times J$. 
+        \[ \sum_{(i,j) \in I \times J} x_i y_j = \lim_{n \to +\infty} \sum_{(i,j) \in I_n \times J_n} \abs{x_i y_j} = \lim_{n \to +\infty} \left(\sum_{i \in I_n} x_i\right) \left(\sum_{j \in j_n} y_j \right) = \left(\sum_{i \in I} x_i\right) \left(\sum_{j \in J} y_j\right) \]
+    \end{demo}
+
+\section{Espace probabilisé}
+
+    \subsection{Tribus sur un ensemble}
+
+    \begin{defi}{Tribu}{}
+        Soit $\Omega$ un ensemble et $\mathcal{F}$ une famille de parties de $\Omega$. On dit que $\mathcal{F}$ est une \textbf{tribu} si 
+        \begin{enumerate}
+            \item $\emptyset \in \mathcal{F}$
+            \item $\forall A \in \mathcal{F}$, $\barr{A} \in \mathcal{F}$, où $\barr{A} = \Omega \backslash A$
+            \item Si $(A_i)_{i \in \mathbb{N}}$ est une famille d’éléments de $\mathcal{F}$, alors $\bigcup_{i \in \mathbb{N}} A_i \subset \mathcal{F}$ (stabilité par union dénombrable).
+        \end{enumerate}
+    \end{defi}
+
+    \begin{prop}{}{}
+        Si $\mathcal{F}$ est une tribu sur $\Omega$, alors 
+        \begin{enumerate}
+            \item $\mathcal{F}$ est stable par intersection dénombrable.
+            \item $\mathcal{F}$ est stable par union et intersection finies.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Pour ce qui est de l’union finie, OC $A_0, \ldots, A_n \in \mathbb{F}$, on pose $B_i = A_i$ si $i \in \intervalleEntier{0}{n}$ et $B_i = \emptyset$ si $i >n$. Alors on applique la stabilité par union dénombrable, ce qui nous donne la stablilité par union finie. De même pour l’intersection finie, à moins d’avoir montré la stablilité par intersection dénombrable.
+
+        Soient $(A_i)_{i \in \mathbb{N}}$ une famille d’éléments de $\mathcal{F}$. Alors $(\barr{A_i})_{i \in \mathbb{N}}$ l’est aussi. Donc par stabilité par union dénombrable, $\bigcup_{i \in \mathbb{N}} \barr{A_i} = \barr{\bigcap_{i \in \mathbb{N}} A_i} \in F$ et donc $\bigcap_{i \in \mathbb{N}} A_i \in F$.
+    \end{demo}
+
+    \begin{omed}{Exemples}{myolive}
+        \begin{itemize}
+            \item Si $\Omega$ est un ensemble, $\mathcal{F} = \left\{\emptyset, \Omega\right\}$ est une tribu, dite tribu triviale sur $\Omega$. 
+            \item Soit $A \subset \Omega$, alors $\mathcal{F} = \left\{\emptyset, A, \barr{A}, \Omega\right\}$ est une tribu. C’est la plus petite tribu contenant $A$.
+            \item $\mathcal{P}(\Omega)$ est également une tribu triviale.
+        \end{itemize}
+    \end{omed}
+
+    \begin{prop}{}{}
+        Soit $\Omega$ un ensemble et $(\mathcal{F}_i)_{i \in I}$ une famille de tribus sur $\Omega$. Alors $\bigcap_{i \in I} \mathcal{F}_i$ est une tribu sur $\Omega$.
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        Pour tout $i \in I$, $\emptyset \in I$. Si $A \subset \bigcap_{I} \mathcal{F}_i$, alors $\barr{A} \in \bigcap_{I} \mathcal{F}_i$ car $\barr{A} \in \mathcal{F}_i$ pour tout $i \in \mathcal{F}_i$. De même, si $(A_n)_{n \in \mathbb{N}}$ est telle que $\forall n \in \mathbb{N}, A_n \in \bigcap \mathcal{F}_i$, alors $\bigcup_{n \in \mathbb{N}} A_n \in \mathcal{F}_i$ pour $i$ donc $\bigcup_n A_n \in \bigcap_i \mathcal{F}_i$.
+    \end{demo}
+
+    \begin{defi}{}{}
+        Soit $\Omega$ un ensemble et $\mathcal{J} = \left\{J_i, i \in I\right\}$ une famille de parties de $\Omega$. Alors on appelle tribu engendré par $\mathcal{J}$ l’intersection de toutes les tribus contenant $\mathcal{J}$.
+    \end{defi}
+
+    C’est la plus petite au sens de l’inclusion contenant $\mathcal{J}$.
+
+    \begin{omed}{Exemple}{myyellow}
+        \begin{itemize}
+            \item Si $\Omega$ est dénombrable, la tribu engendrée par les singletons de $\Omega$ est $\mathcal{F} = \mathcal{P}(\Omega)$. En effet, si $A \subset \Omega$, alors $A = \bigcup_{a \in A} \left\{a\right\} \in \mathcal{F}$.
+            \item Si $\Omega = \mathbb{R}$, on appelle tribu borélienne de $\mathbb{R}$, notée $(\mathcal{B}(\mathbb{R}))$, la tribu engendrée par $\intervalleOO{a}{b}$, $a,b \in \mathbb{R}$. 
+        \end{itemize}
+    \end{omed}
+
+    \subsection{Mesure}
+
+    \begin{defi}{Espace mesurable}{}
+        On appelle \textbf{ensemble mesurable} le couple $(\Omega, \mathcal{F})$ où $\Omega$ est un ensemble et $\mathcal{F}$ une tribu sur $\Omega$.
+    \end{defi}
+
+    \begin{defi}{Mesure}{}
+        Soit $(\Omega, \mathcal{F})$ un ensemble mesurable, on appelle mesure sur $(\Omega, \mathcal{F})$ une application 
+        \[ \fonction{\mu}{\mathcal{F}}{\mathbb{R}_+ \cup \left\{+\infty\right\}}{A}{\mu(A)} \]    
+        telle que $\mu(\emptyset) = 0$ et $\mu$ soit $\sigma$-additive, \textit{i.e.} si $(A_i)_{i \in \mathbb{N}}$ est une famille dénombrable d’éléments de $\mathcal{F}$ deux à deux disjoints, alors $\mu\left(\bigcup_{i \in \mathbb{N}} A_i\right) = \sum_{i \in \mathbb{N}} \mu(A_i)$
+    \end{defi}
+
+    \begin{defi}{}{}
+        Soit $\mu$ une mesure sur $(\Omega, \mathcal{F})$, on dit que $\mu$ est une mesure finie si $\mu(\Omega) < +\infty$. 
+    \end{defi}
+
+    Alors pour tout $A \in \mathcal{F}$, $\mu(A) < +\infty$.
+
+    \begin{omed}{Exemples}{myyellow}
+        \begin{enumerate}
+            \item \textbf{Mesure de Dirac} Soit $(\Omega, \mathcal{F})$ un ensemble mesurable et $x_0 \in \Omega$. On pose $\delta(A) = \sisinon{1}{x_0 \in A}{0}$. Alors $\delta$ est une mesure sur $\mathcal{F}$.
+            \item \textbf{Mesure de Lebesgue} dans $\mathbb{R}$, muni de la tribu borélienne. Il existe une unique mesure sur $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$ telle que $\lambda(\intervalleOO{a}{b}) = b-a$.
+        \end{enumerate}
+    \end{omed}
+
+    \subsection{Espace probabilisé}
+
+    \begin{defi}{}{}
+        Soit $\Omega$ un ensemble, et $\mathcal{F}$ une tribu sur $\Omega$. On appelle \textbf{probilité} toute application 
+        \[ \fonction{\mathbf{P}}{\mathcal{F}}{\intervalleFF{0}{1}}{A}{\mathbf{P}(A)} \]   
+        telle que $\mathbf{P}(\Omega) = 1$ et pour toute famille $(A_i)_{i \in \mathbb{N}}$ d’éléments de $\mathcal{F}$ disjoints, $\mathbf{P}(\bigcup_{i \in \mathbb{N}} A_i) = \sum_{i \in \mathbb{N}} \mathbf{P}(A_i)$. 
+
+        On dit que $(\Omega, \mathcal{F}, \mathbf{P})$ est un espace probabilisé. 
+    \end{defi}
+
+    Pour la suite, on notera $\mathbf{P}$ une probabilité sur un espace mesurable.
+
+    \begin{prop}{}{}
+        \begin{enumerate}
+            \item $\mathbf{P}(\emptyset) = 0$. En particulier, $\mathbf{P}$ est une mesure, de mesure totale $1$.
+            \item Si $A,B \in \mathcal{F}$, $A \cap B = \emptyset$, alors $\mathbf{P}(A \cup B) = \mathbf{P}(A) + \mathbf{P}(B)$
+            \item Si $A_1, \ldots, A_n \in F$, 2 à 2 disjoints, alors $\mathbf{P}\left(\bigcup_{i=1}^n A_i\right) = \sum_{i =1}^n \mathbf{P}(A_i)$
+            \item Si $A \in F$, $\mathbf{P}(\barr{A}) = 1 - \mathbf{P}(A)$
+            \item Si $A, B \in \mathcal{F}$, $A \subset B$, alors $\mathbf{P}(A) \leq \mathbf{P}(B)$
+            \item Si $A, B \in \mathcal{F}$, $\mathbf{P}(A \cup B) = \mathbf{P}(A) + \mathbf{P}(B) - \mathbf{P}(A \cap B)$
+        \end{enumerate}
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        \begin{enumerate}
+            \item On pose $A_0 = \Omega$ et $A_i = \emptyset$ si $i \geq 1$. Par $\sigma$-additivité, $\mathbf{P}(\Omega) = \mathbf{P}(\Omega) + \sum_{i=1}^{+\infty} \mathbf{P}(\emptyset)$ donc $\sum_{i=1}^{+\infty} \mathbf{P}(\emptyset) = 0$ \textit{i.e.} $\mathbf{P}(\emptyset) = 0$.
+            \item On pose $A_0 = A$, $A_1 = B$ et $A_i = \emptyset$ si $i \geq 2$. Par $\sigma$-additivité, $\mathbf{P}(A \cup B) = \mathbf{P}(A) + \mathbf{P}(B)$.
+            \item On réalise la même opération.
+            \item Si $A \in \mathcal{F}$, $\Omega = A \sqcup \barr{A}$ donc $\mathbf{P}(\Omega) = \mathbf{P}(A) + \mathbf{P}(\barr{A})$.
+            \item Si $A \subset B$, $B = A \sqcup (B \backslash A)$ donc $\mathbf{P}(B) = \mathbf{P}(A) + \mathbf{P}(B \backslash A) \geq \mathbf{P}(A)$.
+            \item On a $A \cup B = A \sqcup (B \backslash A)$ donc $\mathbf{P}(A \cup B) = \mathbf{P}(A) + \mathbf{P}(B \backslash A)$. Or $B = (B \backslash A) \sqcup (A \cap B)$ donc $\mathbf{P}(B) = \mathbf{P}(B \backslash A) + \mathbf{P}(A \cap B)$ d’où le résultat.
+        \end{enumerate}
+    \end{demo}
+
+    \begin{defi}{}{}
+        \begin{itemize}
+            \item Soit $(A_n)_{n \in \mathbb{N}}$ une famille de $\mathcal{F}$. On dit que $(A_n)_{n \in \mathbb{N}}$ est croissante convergeant vers $A$ si 
+            \begin{enumerate}
+                \item $\forall n \in \mathbb{N}, A_n \subset A_{n +1}$
+                \item $\bigcup_{n \in \mathbb{N}} A_n = A$
+            \end{enumerate}
+            \item Soit $(B_n)_{n \in \mathbb{N}}$ une famille de $\mathcal{F}$. On dit que $(B_n)$ est décroissante convergeant vers $B$ si 
+            \begin{enumerate}
+                \item $\forall n \in \mathbb{N}, B_{n+1} \subset B_n$
+                \item $\bigcap_{n \in \mathbb{N}} B_n = B$
+            \end{enumerate}
+        \end{itemize}
+        En particulier, $A$ et $B$ sont nécessairement des éléments de $\mathcal{F}$.
+    \end{defi}
+
+    \begin{prop}{}{}
+        Si $(A_n)_{n \in \mathbb{N}}$ est une suite croissante convergeant vers $A$, alors $\lim_{n \to +\infty} \mathbf{P}(A_n) = \mathbf{P}(A)$. De la même façon, si $(B_n)$ est une suite décroissante convergeant vers $B$, alors $\lim_{n \to +\infty} \mathbf{P}(B_n) = \mathbf{P}(B)$.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Posons $C_0 = A_0$ et $C_n = A_n \backslash A_{n -1}$ si $n \geq 1$. Alors les éléments de $(C_i)_{i \in \mathbb{N}}$ sont disjoints, donc par $\sigma$-additivité, 
+        \begin{align*}
+            \mathbf{P}\left(\bigcup_{i \in \mathbb{N}} C_i\right) 
+            &= \sum_{i = 0}^{+\infty} \mathbf{P}(C_i) \\
+            &= \mathbf{P}(A_0) + \sum_{i=1}^{+\infty} \mathbf{P}(C_i) \\
+            \mathbf{P}\left(\bigcup_{i \in \mathbb{N}} C_i\right) &= \mathbf{P}\left(\bigcup_{i \in \mathbb{N}} A_i\right) = \mathbf{P}(A)
+        \end{align*}
+        Donc $\sum \mathbf{P}(C_i)$ est une série convergente. De plus, $A = A_n \sqcup \left(\bigsqcup_{i = n+1}^{+\infty} A_n\right)$ donc $\mathbf{P}(A) = \mathbf{P}(A_n) + \sum_{i =n+1}^{+\infty} \mathbf{P}(C_i)$. Le reste d’une série convergente $\limi{n}{+\infty} 0$ d’où le résultat. Pour $(B_n)$, il suffit de passer au complémentaire.
+    \end{demo}
+
+    \begin{prop}{Formule du crible de Poincaré}{}
+        Soient $A_1, \ldots, A_n \in \mathcal{F}$. 
+        \[ \mathbf{P}(A_1 \cup \cdots A_n) = \sum_{k = 1}^n (-1)^{k - 1} \sum_{1 \leq i_1 < \cdots < i_k \leq n} \mathbf{P}(A_{i_1} \cap \cdots \cap A_{i_k}) \]   
+    \end{prop}
+
+    \begin{demo}{Preuve \textcolor{black}{(Récurrence sur $n$)}}{myolive}
+        \begin{itemize}
+            \item[$\mathcal{H}_2$] \quad La formule s’écrit 
+            \[ \mathbf{P}(A_1 \cup A_2) = \mathbf{P}(A_1) + \mathbf{P}(A_2) - \mathbf{P}(A_1 \cap A_2) \]   
+            et est vraie.
+            \item[$\mathcal{H}_{n + 1}$] \quad Supposons l’ordre $n$. 
+            \begin{align*}
+                \mathbf{P}(A_1 \cup \cdots \cup A_{n+1}) 
+                &= \mathbf{P}(A_1 \cup \cdots \cup A_n) + \mathbf{P}(A_{n + 1}) - \mathbf{P}\left(\left(\bigcup_{i = 1}^n A_i\right) \cap A_{n+1} \right) \\
+                &= \sum_{k = 1}^{n} (-1)^{k-1} \sum_{1 \leq i_1 < \cdots < i_k \leq n} \mathbf{P}(A_{i_1} \cap \cdots \cap A_{i_k}) + \mathbf{P}(A_{n+1}) - \mathbf{P}\left(\bigcup_{i = 1}^n (A_1 \cap A_{n + 1})\right) \\
+                \mathbf{P}\left(\bigcup_{i = 1}^n (A_1 \cap A_{n + 1})\right) &= \sum_{k=1}^n (-1)^{k-1} \sum_{1 \leq i_1 < \cdots < i_k \leq n} \mathbf{P}\left(\bigcap_{j = 1}^k (A_{i_j} \cap A_{n+1})\right) \\
+                &= \sum_{k=1}^n (-1)^{k-1} \sum_{\substack{1 \leq i_1 < \cdots < i_k < i_{k+1} \leq n+1 \\ i_{k+1} = n+1}} \mathbf{P}\left(\bigcap_{j = 1}^{k+1} A_{i_j}\right) \\
+                &\quad \downarrow \quad k \leftarrow k+1 \\
+                &= \sum_{k = 2}^{n+1} (-1)^k \sum_{\substack{1 \leq i_1 < \cdots < i_k\leq n+1 \\ i_{k} = n+1}} \mathbf{P}\left(\bigcap_{j = 1}^{k} A_{i_j}\right) \\
+                \mathbf{P}(A_1 \cup \cdots \cup A_{n+1})
+                &= \sum_{k = 1}^{n} (-1)^{k-1} \sum_{\substack{1 \leq i_1 < \cdots < i_k \leq n+1 \\ i_k \neq n+1}} \mathbf{P}(A_{i_1} \cap \cdots \cap A_{i_k}) + \mathbf{P}(A_{n+1}) - \mathbf{P}\left(\bigcup_{i = 1}^n (A_1 \cap A_{n + 1})\right) \\
+                &= \sum_{k = 1}^{n} (-1)^{k-1} \sum_{\substack{1 \leq i_1 < \cdots < i_k \leq n+1 \\ i_k \neq n+1}} \mathbf{P}(A_{i_1} \cap \cdots \cap A_{i_k}) + \mathbf{P}(A_{n+1}) + \sum_{k = 2}^{n+1} (-1)^{k-1} \sum_{\substack{1 \leq i_1 < \cdots < i_k\leq n+1 \\ i_{k} = n+1}} \mathbf{P}\left(\bigcap_{j = 1}^{k} A_{i_j}\right) \\
+                &= sum_{k = 1}^{\color{myblue} n+1} (-1)^{k-1} \sum_{\substack{1 \leq i_1 < \cdots < i_k \leq n+1 \\ i_k \neq n+1}} \mathbf{P}(A_{i_1} \cap \cdots \cap A_{i_k}) + \sum_{k = \color{myblue} 1}^{n+1} (-1)^{k-1} \sum_{\substack{1 \leq i_1 < \cdots < i_k\leq n+1 \\ i_{k} = n+1}} \mathbf{P}\left(\bigcap_{j = 1}^{k} A_{i_j}\right) \\ 
+                &= \sum_{k= 1}^{n+1} (-1)^{k-1} \sum_{1 \leq i_1 < \cdots < i_k < n+1} \mathbf{P}(A_{i_1} \cap \cdots \cap A_{i_k})
+            \end{align*}
+        \end{itemize}
+    \end{demo}
+
+    \begin{omed}{Vocabulaire}{myyellow}
+        On note $(\Omega, \mathcal{F}, \mathbf{P})$ un espace probabilisé. On dit que $\Omega$ est l’univers et les éléments de $\mathcal{F}$ sont appelés des événements en langage probabiliste.
+
+        \begin{longtblr}[caption=Vocabulaire probabiliste et ensembliste]{
+            colspec={Q[m,l,1]|Q[m,l,3]|Q[m,c,2]|}, width = \linewidth,
+            rowhead = 1, row{odd} = {myorange!10}, row{1} = {myorange, fg=white, font=\bfseries},
+            hlines={0.4pt, black}
+        }
+        Notation & Langage ensembliste & Langage probabiliste \\
+        $\emptyset$ & Ensemble vide & Événement impossible \\
+        $\Omega$ & Ensemble plein & Événement certain \\
+        $\omega \in \Omega$ & Élément de $\Omega$ & Événement élémentaire \\
+        $A \subset \Omega$ ou $A \in \mathcal{F}$ & Partie de $\Omega$ & Événement \\
+        $w \in A \in F$ & Élément de $A$ & Réalisation de $A$ \\
+        $A \subset B$ & $A$ inclus dans $B$ & $A$ implique $B$ \\
+        $A \cup B$ & Union de $A$ et $B$ & Événement « $A$ ou $B$ » \\
+        $A \cap B$ & Intersection de $A$ et $B$ & Événement « $A$ et $B$ » \\
+        $\barr{A}$ & Complémentaire & Événement « non $A$ » \\
+        $A \cap B = \emptyset$ & $A$ et $B$ sont disjoints & Événement incompatibles \\
+        $\Omega = \bigsqcup_{k=1}^n A_k$ & $(A_k)$ forme une partition de $\Omega$ & Système complet d’événements \\
+        \end{longtblr}
+    \end{omed}
+
+    \subsection{Probabilité uniforme}
+
+    Soit $\Omega$ un \textbf{\textsc{ensemble fini}}, $\mathcal{F} = \mathcal{P}(\Omega)$. On peut définir une probabilité en prenant $\forall \omega \in \Omega, \mathbf{P}(\left\{\omega\right\}) = p_{\omega}$ où $\forall \omega \in \Omega, p_{\omega} \in \intervalleFF{0}{1}$ et $\sum_{\omega \in \Omega} p_{\omega} = 1$. On définit ainsi, pour $A \in \mathcal{P}(\Omega)$, $\mathbf{P}(A) = \sum_{\omega \in A} p_{\omega}$.
+
+    \begin{defi}{Probabilité uniforme}{}
+        On dit que $\mathbf{P}$ est la probabilité uniforme s’il existe $p \in \intervalleFF{0}{1}$ tel que $\forall \omega \in \Omega, \mathbf{P}(\left\{\omega\right\}) = p$.
+    \end{defi}
+
+    \begin{theo}{}{}
+        On suppose que $\mathbf{P}$ est une probabilité uniforme. Alors
+        \[ \forall A \in \mathcal{F}, \quad \mathbf{P}(A) = \frac{\card(A)}{\card(\Omega)} \]   
+    \end{theo}
+
+    \begin{demo}{Preuve}{myred}
+        On a $\mathbf{P}(\Omega) = 1 = \mathbf{P}\left(\bigcup_{\omega \in \Omega} \left\{\omega\right\}\right) = \sum_{\omega \in \Omega} \mathbf{P}(\left(\omega\right)) = \card(\Omega) \times p$ donc $p = \frac{1}{\card(\Omega)}$.
+
+        Ainsi, si $A \in \mathcal{F}$, $\mathbf{P}(A) = \mathbf{P}\left(\bigcup_{\omega \in A} \left\{\omega\right\}\right) = \sum_{\omega \in A} p = p \card(A) = \frac{\card(A)}{\card(\Omega)}$.
+    \end{demo}
+
+    Dans cette situation, le calcul de probabilités se ramène à du dénombrement, et peut se réécrire 
+    \[ \mathbf{P}(A) = \frac{\text{nombre de cas favorables}}{\text{nombre de cas total}} \]   
+
+    \begin{omed}{Exemple}{myred}
+        On lance 2 dés, une infinité de fois. On s’intéresse à l’événement $\mathcal{E} : \text{On obtient 9 avant 7}$.
+        \begin{itemize}
+            \item Pour le premier lancer, on définit les événements $A_1 : \text{La somme des dés est 9}$, $B_1 : \text{La somme des dés est 7}$ et $C_1 = \barr{A_1 \cup B_1}$. Alors $\mathbf{P}(A_1) = \frac{4}{36} = \frac{1}{9}$, $\mathbf{P}(B_1) = \frac{6}{36} = \frac{1}{6}$ et $\mathbf{P}(C_1) = 1 - \mathbf{P}(A_1)- \mathbf{P}(B_1) = \frac{13}{18}$. 
+            \item Pour le $i$-ème lancer, on définit de la même façon $A_i, B_i$ et $C_i$. On note $E_n : \text{ni 7 ni 9 ne sont obtenus au bout de } n-1 \text{ lancers et 9 est obtenu au } n\text{-ème}$. Alors $\mathbf{P}(E_n) = \prod_{i=1}^{n-1} \mathbf{P}(C_i) \times \mathbf{P}(B_n) = \left(\frac{13}{18}\right)^n \times \frac{1}{9}$. 
+             
+            $E = \bigcup_{i = 1}^{+\infty} E_n$ donc par $\sigma$-additivité, $\mathbf{P}(E) = \sum_{i=1}^n \mathbf{P}(E_n) = \frac{1}{9} \frac{1}{1 - \frac{13}{18}} = \frac{2}{5}$.
+        \end{itemize}
+    \end{omed}
+
+    \begin{omed}{Exemple}{myred}
+        On tire $n$ nombres entre $1$ et $100$, avec une probabilité uniforme, et on cherche la probabilité $p$ de tirer que des nombres différents. Le nombre de cas totaux est $100^n$. Pour tirer un $n$-uplet convenant, il faut tirer un nombre entre $1$ et $100$, il y a 100 possibilités, puis un différent, il y a 99 possibilités, et ainsi de suite, donc 
+        \[ p = \frac{100 \times 99 \times \cdots \times (100 - n + 1)}{100^n} = \frac{100!}{(100 - n)! 100^n} \] 
+    \end{omed}
+
+    \begin{omed}{Exemple}{myred}
+        OP un jeu de 32 cartes, quelle est la probabilité que tous les joueurs ait un valet ? Le nombre total de combinaisons s’obtient en en donnant $8$ au premier, $8$ au second\ldots, soit $\binom{32}{8} \times \binom{24}{8} \times \binom{16}{8} \times \binom{8}{8}$. Pour que chaque joeur ait un valet, on distribue les cartes qui ne sont pas des valets, puis on distribue les valets : il y a $\binom{28}{7} \binom{21}{7} \binom{14}{7} \binom{7}{7} \times \binom{4}{1} \binom{3}{1} \binom{2}{1} \binom{1}{1}$ possibilités.
+
+        \[ p = \frac{4!\times \frac{28!}{(7!)^4}}{\frac{32!}{(8!)^4}} = \frac{4 ! \times 8^4}{(32 \times 31 \times 30 \times 29 \times 28)} = \frac{2^9}{5 \times 899} = \frac{512}{4495} \approx 0,11 \]
+    \end{omed}
+
+    \begin{omed}{Exemple}{myred}
+        Qu’elle est la probabilité que 2 élèves aient la même date d’anniversaire dans une classe de 38 élèves ? -- On considèrera une année de 365 jours, et une distribution de probabilité équiprobables --.
+
+        Soit $E$ l’événement dont on cherche la probabilité. 
+        \begin{align*}
+            \mathbf{P}(E) &= 1 - \mathbf{P}(\barr{E}) \\
+            &= 1 - \frac{365 \times 364 \times \cdots \times 348}{365^38} \\
+            &= 1 - \prod_{i=0}^{37} \frac{365 - i}{365} \\
+            &\approx 
+        \end{align*}
+    \end{omed}
+
+\section{Conditionnement et indépendance}
+
+    \subsection{Probabilité conditionnelle}
+
+    On cherche l’influence que peut avoir la vérification d’un événement $B$ sur un autre événement $A$. On se place de nouveau dans un espace probabilisé $(\Omega, \mathcal{F}, \mathbf{P})$.
+
+    \begin{defi}{Probabilité conditionnelle}{}
+        Soit $B \in \mathcal{F}$ tel que $\mathbf{P}(B) > 0$. On appelle \textbf{probabilité de $A$ sachant $B$} le réel 
+        \[ \mathbf{P}(A \tq B) = \frac{\mathbf{P}(A \cap B)}{\mathbf{P}(B)} \]   
+        On peut aussi noter $\mathbf{P}_B(A)$. 
+    \end{defi}
+
+    \begin{omed}{Exemple}{myyellow}
+        Dans le cas d’une probabilité uniforme, 
+        \begin{align*}
+            \mathbf{P}(A \tq B) 
+            &= \frac{\mathbf{P}(A \cap B)}{\mathbf{P}(B)} \\
+            &= \frac{\card(A \cap B)}{\card(B)} \\
+            &= \frac{\text{nb de cas fav}}{\text{nb de cas total}}
+        \end{align*}
+    \end{omed}
+
+    Il faut interpréter cette probabilité comme la probabilité de $A$, pour une mesure de probabilité différente $\mathbf{P}(. \tq B)$. 
+
+    \begin{prop}{}{}
+        L’application $A \mapsto \mathbf{P}(A \tq B)$ est une mesure de probabilité sur l’espace mesurable $(\Omega, \mathcal{F})$. 
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        $\mathbf{P}(\Omega \tq B) = \frac{\mathbf{P}(\Omega \cap B)}{\mathbf{P}(B)} = \frac{\mathbf{P}(B)}{\mathbf{P}(B)} = 1$ et si $(A_i)_{i \in I} \in \mathcal{F}$ sont des éléments 2 à 2 disjoints, où $I$ est dénombrable, alors 
+        \begin{align*}
+            \mathbf{P}\left(\bigcup_{i \in I} A_i \tq B\right) 
+            &= \frac{\mathbf{P}\left(\left(\bigcup_{i \in I} A_i\right) \cap B\right)}{\mathbf{P}(B)} \\
+            &= \frac{\mathbf{P}\left(\bigcup_{i \in I} (A_i \cap B)\right)}{\mathbf{P}(B)} \\
+            &\argu (A_i \cap B)_{i \in I} \text{ est une famille d’éléments disjoints} \\
+            &= \sum_{i \in I} \mathbf{P}(A_i \tq B) \\
+        \end{align*}
+    \end{demo}
+
+    \begin{prop}{Formule des probabilités composées}{}
+        Soit $(A_0, \ldots, A_n)$ une famille de $\mathcal{F}$ telle que $\mathbf{P}\left(\bigcap_{i =0}^n A_i\right) > 0$. Alors 
+        \begin{align*}
+            \mathbf{P}\left(\bigcap_{i =0}^n A_i\right)
+            &= \mathbf{P}(A_0) \times \mathbf{P}(A_1 \tq A_0) \times \mathbf{P}(A_2 \tq A_0 \cap A_1) \times \cdots \times \mathbf{P}(A_n \tq A_0 \cap \cdots \cap A_{n - 1})
+        \end{align*}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        \begin{align*}
+            &\mathbf{P}(A_0) \times \mathbf{P}(A_1 \tq A_0) \times \mathbf{P}(A_2 \tq A_0 \cap A_1) \times \cdots \times \mathbf{P}(A_n \tq A_0 \cap \cdots \cap A_{n - 1}) \\
+            &= \mathbf{P}(A_0) \times \frac{\mathbf{P}(A_0 \cap A_1)}{\mathbf{P}(A_0)} \times \frac{\mathbf{P}(A_0 \cap A_1 \cap A_2)}{\mathbf{P}(A_0 \cap A_1)} \times \cdots \times \frac{\mathbf{P}(A_0 \cap \cdots \cap A_n)}{\mathbf{P}(A_0 \cap \cdots \cap A_{n-1})} \\
+            &= \mathbf{P}(A_0 \cap \cdots \cap A_n)
+        \end{align*}
+    \end{demo}
+
+    \begin{defi}{Système complet d’événements}{}
+        Soit $(A_i)_{i \in I}$ une famille d’éléments de $\mathcal{F}$, où $I$ est au plus dénombrable. On dit que cette famille est un \textbf{système complet d’événements} si 
+        \begin{enumerate}
+            \item $\forall (i,j) \in I^2$, $i \neq j \implies A_i \cap A_j = \emptyset$
+            \item $\bigcup_{i \in I} A_i = \Omega$
+            \item $\forall i \in I, \mathbf{P}(A_i) > 0$
+        \end{enumerate}
+    \end{defi}
+
+    \begin{prop}{Formule des probabilités totales}{}
+        OS que $(A_i)_{i \in I}$ est un système complet d’événements et $B \in \mathcal{F}$. Alors 
+        \[ \mathbf{P}(B) = \sum_{i \in I} \mathbf{P}(B \tq A_i) \mathbf{P}(A_i) \]    
+    \end{prop}
+
+    \begin{demo}{Démonstration}{myolive}
+        \begin{align*}
+            \mathbf{P}(B) 
+            &= \mathbf{P}\left(B \cap \left(\bigcup_{i \in I} A_i\right)\right) \\
+            &= \mathbf{P}\left(\bigcup_{i \in I} (B \cap A_i)\right) \\
+            &\argu \text{par } \sigma\text{-additivité de } \mathbf{P} \\
+            &= \sum_{i \in I} \mathbf{P}(B \cap A_i) \\
+            &= \sum_{i \in I} \mathbf{P}(B \tq A_i) \mathbf{P}(A_i)
+        \end{align*}
+    \end{demo}
+
+    \begin{prop}{Formule de Bayes}{}
+        Soit $(A_i)_{i \in I}$ un système complet d’événements et $B \in \mathcal{F}$ tel que $\mathbf{P}(B) > 0$. Alors, pour tout $j \in I$, on a 
+        \[ \mathbf{P}(A_j \tq B) = \frac{\mathbf{P}(B \tq A_j) \mathbf{P}(A_j)}{\sum_{i \in I} \mathbf{P}(B \tq A_i) \mathbf{P}(A_i)} \]    
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        On sait que $\mathbf{P}(A_j \tq B) = \frac{\mathbf{P}(A_j \cap B)}{\mathbf{P}(B)} = \frac{\mathbf{P}(B \tq A_j)\mathbf{P}(A_j)}{\mathbf{P}(B)}$ puis on remplace $\mathbf{P}(B)$ à l’aide de la formule des probabilités totales.
+    \end{demo}
+
+    \begin{omed}{Exemple \textcolor{black}{(Lancer de dés)}}{myolive}
+        On lance 2 dés une infinité de fois. On pose $E : \text{On obtient 9 avant 7}$. On pose 
+        \[ \left\{ \begin{array}{l}
+            A : \text{le lancer donne 9} \\
+            B : \text{le lancer donne 7} \\
+            C : \text{le lancer ne donne ni 7 ni 9}
+        \end{array} \right. \]
+        $(A, B, C)$ est un système complet d’événements pour l’univers des résultats d’un lancer, donc d’après la formule des probabilités totales 
+        \begin{align*}
+            \mathbf{P}(E) 
+            &= \underbrace{\mathbf{P}(E \tq A)}_{= 1} \mathbf{P}(A) + \underbrace{\mathbf{P}(E \tq B)}_{= 0} \mathbf{P}(B) + \underbrace{\mathbf{P}(E \tq C)}_{= \mathbf{P}(E)} \mathbf{P}(C) \\
+            &= \frac{1}{9} + \frac{13}{18} \mathbf{P}(E) 
+        \end{align*}
+        En résolvant cette équation, on trouve $\mathbf{P}(E) = \frac{2}{5}$.
+    \end{omed}
+
+    \begin{omed}{Exemple \textcolor{black}{(QCM)}}{myolive}
+        OS que pour chaque question, \begin{itemize}
+            \item il y a $m$ réponses possibles ;
+            \item $p \in \intervalleFF{0}{1}$ est la probabilité qu’un étudiant connaisse la bonne réponse ;
+            \item si l’étudiant connaît la bonne réponse, il la donne, sinon il répond au hasard.
+        \end{itemize}
+        Quelle est la probabilité qu’un étudiant connaisse la bonne réponse sachant qu’il répond justement à celle-ci.
+
+        OP $A : \text{L’étudiant connaît la bonne réponse}$ et $B : \text{L’étudiant répond juste}$. $(A, \barr{A})$ forme un système complet d’événements, donc d’après la formule de Bayes, 
+        \begin{align*}
+            \mathbf{P}(A \tq B) 
+            &= \frac{\mathbf{P}(B \tq A) \mathbf{P}(A)}{\mathbf{P}(B \tq A) \mathbf{P}(B) + \mathbf{P}(B \tq \barr{A}) \mathbf{P}(\barr{A})} \\
+            &\argu \mathbf{P}(B \tq A) = 1 \esp{et} \mathbf{P}(B \tq \barr{A}) = \frac{1}{m} \\
+            &= \frac{p}{p + \frac{1 - p}{m}} = \frac{mp}{mp + 1 - p} \geq p \\
+        \end{align*}
+    \end{omed}
+
+    \begin{omed}{Exemple \textcolor{black}{(Test sanguin)}}{myolive}
+        OS qu’il y a un virus virulant. \begin{itemize}
+            \item Si le virus touche un individu, le test est à 95\% positifs.
+            \item Si un individu est sain, le test est positif à 1\%. 
+            \item 0,5\% de la population est porteuse.
+        \end{itemize}
+        Quelle est la probabilité d’être contaminé si le test est positif ? 
+
+        OP $V : \text{L’individu est porteur du virus}$ et $T : \text{Le test de l’individu est positif}$. On cherche $\mathbf{P}(V \tq T)$. On applique la formule de Bayes au système complet d’événement $(V, \barr{V})$:
+        \begin{align*}
+            \mathbf{P}(V \tq T) 
+            &= \frac{\mathbf{P}(T \tq V) \mathbf{P}(V)}{\mathbf{P}(T \tq V) \mathbf{P}(V) + \mathbf{P}(T \tq \barr{V}) \mathbf{P}(\barr{V})} \\
+            &\argu \mathbf{P}(T \tq V) = 0,95 \quad \mathbf{P}(T \tq \barr{V}) = 0,01 \quad \mathbf{P}(V) = 0,005 \\
+            &= \frac{0,95 \times 0,005}{0,95 \times 0,005 + 0,01 \times 0,995} \\
+            &= \frac{95 \times 5}{95 \times 5 + 1 \times 995} \\
+            &= \frac{95}{95 + 199}  \\
+            &= \frac{95}{294}  \\
+            &\approx 0,32
+        \end{align*}
+        
+        Si le test est positif, on en passe un second dans les même conditions. Quelle est la probablité que le patient soit porteur si les deux tests sont positifs ? 
+
+        On pose $T_1 : \text{Le premier test est positif}$ et $T_2 : \text{Le second test est positif}$. On cherche $\mathbf{P}(V \tq T_1 \cap T_2)$. On applique la formule de Bayes au système complet d’événements $(V, \barr{V})$.
+        \begin{align*}
+            \mathbf{P}(V \tq T_1 \cap T_2) 
+            &= \frac{\mathbf{P}(T_1 \cap T_2 \tq V) \mathbf{P}(V)}{\mathbf{P}(T_1 \cap T_2 \tq V) \mathbf{P}(V) + \mathbf{P}(T_1 \cap T_2 \tq \barr{V}) \mathbf{P}(\barr{V})} \\
+            &\argu \mathbf{P}(T_1 \cap T_2 \tq V) = \mathbf{P}(T \tq V)^2 = (0,95)^2 \quad \mathbf{P}(T_1 \cap T_2 \tq \barr{V}) = \mathbf{P}(T \tq \barr{V})^2 = (0,01)^2 \\
+            &= \frac{0,95^2 \times 0,005}{0,95^2 \times 0,005 + 0,01^2 \times 0,995} \\
+            &= \frac{95^2 \times 5}{95^2 \times 5 + 995} \\
+            &= \frac{95^2}{95^2 + 199} \\
+            &\approx 0,978
+        \end{align*}
+    \end{omed}
+
+    \subsection{Événements indépendants}
+
+    On se place dans un espace probabilisé $(\Omega, \mathcal{F}, \mathbf{P})$.
+
+    \begin{defi}{Événements indépendants}{}
+        Soient $A$ et $B$ deux éléments de $\mathcal{F}$. On dit que $A$ et $B$ sont \textbf{indépendants} si $\mathbf{P}(A \cap B) = \mathbf{P}(A) \mathbf{P}(B)$.
+    \end{defi}
+
+    \begin{prop}{}{}
+        Si $\mathbf{P}(A), \mathbf{P}(B) \neq 0$, les affirmations suivantes sont équivalentes : 
+        \begin{enumerate}
+            \item $A$ et $B$ sont indépendants ;
+            \item $\mathbf{P}(A \tq B) = \mathbf{P}(A)$ ;
+            \item $\mathbf{P}(B \tq A) = \mathbf{P}(B)$.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Les propriétes \textbf{(ii)} et \textbf{(iii)} sont symétriques, donc montrons simplement \textbf{(i)} $\iff$ \textbf{(ii)} :
+        \begin{align*}
+            \mathbf{P}(A \tq B) = \mathbf{P}(A) 
+            &\iff \frac{\mathbf{P}(A \cap B)}{\mathbf{P}(B)} = \mathbf{P}(A) \\
+            &\iff \mathbf{P}(A \cap B) = \mathbf{P}(B) \mathbf{P}(A)
+        \end{align*}
+    \end{demo}
+
+    \begin{omed}{Exemple \textcolor{black}{(Urne)}}{myolive}
+        OC une urne qui contient 4 boules (bleue, blanche, rouge et tricolore). On tire une boule, et on pose \begin{itemize}
+            \item $A : \text{La boule contient du bleu}$
+            \item $B : \text{La boule contient du blanc}$
+            \item $C : \text{La boule contient du rouge}$
+        \end{itemize}
+        On a $\mathbf{P}(A) = \frac{1}{2} = \mathbf{P}(B) = \mathbf{P}(C)$. Par ailleurs, $\mathbf{P}(A \cap B) = \frac{1}{4} = \mathbf{P}(A \cap C) = \mathbf{P}(B \cap C) = \mathbf{P}(B)\mathbf{P}(A)$ donc les événements sont indépendants 2 à 2. Toutefois, $\mathbf{P}(A \cap B \cap C) = \frac{1}{4} \neq \mathbf{P}(A) \mathbf{P}(B) \mathbf{P}(C)$ donc les événements $(A,B,C)$ sont indépendants dans leur ensemble.
+    \end{omed}
+
+    \begin{defi}{Indépendance mutuelle}{}
+        On dit que qu’une famille finie $(A_1, \ldots, A_n)$ d’événements sont (mutuellement) indépendants si pour tous $k$-uplet $(i_1,\ldots,i_k)$ tel que $1 \leq i_1 < \cdots < i_k \leq n$, 
+            \[ P(A_{i_1} \cap \cdots \cap A_{i_k}) = P(A_{i_1}) \cdots P(A_{i_k}) \]  
+        On peut étendre cette définition à $(A_i)_{i \in I}$ où $I$ est au plus dénombrable.
+    \end{defi}
+
+    \begin{prop}{}{}
+        Soit $(A_1, \ldots, A_n)$ des événements indépendants. Alors toute famille $(B_1, \ldots, B_n)$, où $B_i \in \left\{A_i, \barr{A_i}\right\}$ est indépendante.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}   
+        Il suffit de montrer que l’opération est réalisable pour un unique passage au complémentaire. Soient $1 \leq i_1 < \cdots < i_k \leq n$. Si $i_k \leq n-1$, $P(A_{i_1} \cap \cdots A_{i_k}) = P(A_{i_1}) \cdots P(A_{i_k})$. Si $i_k = n$, 
+        \begin{align*}
+            P(A_{i_1} \cap \cdots \cap A_{i_{k-1}}) &= P(A_{i_1}) \cdots P(A_{i_{k-1}}) \\
+            &= P(A_{i_1} \cap \cdots \cap A_{i_{k-1}} \cap \left(A_n \cup \barr{A_n}\right)) \\
+            &= P(A_{i_1}) \cdots P(A_{i_k}) + P(A_{i_1} \cap \cdots \cap A_{i_{k-1}} \cap \barr{A_n}) \\
+            \textit{i.e.} P(A_{i_1} \cap \cdots \cap A_{i_{k-1}} \cap \barr{A_n}) &= P(A_{i_1}) \cdots P(A_{i_{k-1}}) \left(1 - P(A_n)\right)
+        \end{align*}
+    \end{demo}
+
