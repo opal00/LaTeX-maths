@@ -1423,10 +1423,10 @@ On appelle $F$ une intégrale à paramètre. Par la suite, on note $f(x,.)$ l’
                 \item Pour tout $t \in I$, $f(.,t)$ est continue sur $A$.
                 \item Soit $a > 1$ et $t \in \intervalleOO{0}{\pi}$. Étudions sur $\intervalleFF{-a}{a} \subset \mathbb{R}$ la fonction $f(.,t)$ :
                 \begin{center}
-                \begin{tikzpicture}
-                    \tkzTabInit{$x$ / 1, $f(.,t)$ / 3}{$-a$, $\cos(t)$, $a$}
-                    \tkzTabVar{+/ $f(-a,t)$, -/ $2 \ln(\sin(t))$, +/ $f(a,t)$}
-                \end{tikzpicture}
+                    \begin{tikzpicture}
+                        \tkzTabInit{$x$ / 1, $f_{(x,t)}$ / 3}{$-a$, $a$, $a$}
+                        \tkzTabVar{+/ $f_{(-a,t)}$, -/ $2 \ln(\sin(t))$, +/ $f_{(a,t)}$}
+                    \end{tikzpicture}
                 \end{center}
                 On en déduit que 
                 \begin{align*}
@@ -1439,7 +1439,19 @@ On appelle $F$ une intégrale à paramètre. Par la suite, on note $f(x,.)$ l’
         \end{itemize}
     \end{omed}
 
-    \subection{Caractère C1}
+    \begin{prop}{Théorème limite pour une borne de $A$}{}
+        Soit $a$ une borne de $A$ et 
+        \begin{itemize}
+            \item Pour tout $t \in I$, $\lim_{x \to a} f(x,t) = l(t)$ ;
+            \item $t \mapsto f(x,t)$ et $t \mapsto l(t)$ sont $CM$ sur $I$;
+            \item Il existe $\varphi$ intégrable telle que $\forall x \in A$, $\forall t \in I$, 
+            \[ \abs{f(x,t)} \leq \varphi(t) \]   
+        \end{itemize}
+        Alors $t \mapsto l(t)$ est intégrable et 
+        \[ \lim_{x \to a} F(X) = \int_I f(t) \]   
+    \end{prop}
+
+    \subsection{Caractère C1}
 
     \begin{theo}{Caractère $\mathcal{C}^1$, théorème de Leibniz}{}
         Soient $A$ et $I$ des intervalles de $\mathbb{R}$ et $f : A \times I \to \mathbb{K}$ telle que 
@@ -1838,213 +1850,8 @@ On appelle $F$ une intégrale à paramètre. Par la suite, on note $f(x,.)$ l’
         ce qui permet, en prenant $\alpha = 1$, d’obtenir la transformée de Fourier de la fonction $t \longmapsto \frac{1}{1+t^2}$ qui est $s \longmapsto \pi e^{-2 \pi s}$
     \end{omed}
 
-\section{Intégrale de Lebesgue}
 
-\subsection{Cardinaux, dénombrabilité}
-
-    \subsubsection{Cardinalité}
-
-    \begin{defi}{Ensembles équipotents}{}
-        Deux ensembles $E$ et $F$ sont dit \textbf{équipotents} s’il existe une bijection de $E$ dans $F$. On note alors $E \simeq F$ ou $\card(E) = \card(F)$.
-    \end{defi}
-
-    \begin{omed}{Exemple}{myyellow}
-        Si $E$ est un ensemble, $\mathcal{P}(E) \simeq \big\{ 0,1 \big\}^E$ car la fonction $A \subset E \mapsto \mathbb{1}_A$ est une bijection.
-    \end{omed}
-
-    \begin{omed}{Notation}{myyellow}
-        Si $E$ et $F$ sont deux ensembles, on note $\card(E) \leq \card(F)$ s’il existe une injection de $E$ dans $F$, et $\card(E) < \card(F)$ si de plus ils ne sont équipotents. De la même façon, on définit les notations $\geq$ et $>$.
-    \end{omed}
-
-    \begin{omed}{Remarque \textcolor{black}{(Axiome du choix)}}{myyellow}
-        Soit $E$ un ensemble non vide. Il existe une fonction choix $f : \mathcal{P}(E) \to E$ telle que pour tout partie non vide $A$ de $E$, on ait $f(A) \in A$. 
-        
-        Une formulation équivalente est que si $I$ est un ensemble et $(E_i)_{i \in I}$ une famille d’ensembles non vides, alors le produit cartésien $\prod_{i \in I} E_i$ est non vide.
-    \end{omed}
-
-    \begin{prop}{}{}
-        \begin{itemize}
-            \item Si $\card(E) \leq \card(F)$, alors $\card(F) \geq \card(E)$.
-            \item Si $\card(F) \leq \card(E)$, alors $\card(E) \geq \card(F)$.
-        \end{itemize}
-    \end{prop}
-
-    \begin{theo}{Cantor-Bernstein}{}
-        Si $\card(E) \leq \card(F)$ et $\card(F) \leq \card(E)$, alors $\card(E) = \card(F)$.
-    \end{theo}
-
-    \begin{prop}{}{}
-        Si $E$ est non vide, alors $\card(E) < \card(\mathcal{P}(E))$.
-    \end{prop}
-
-    \begin{demo}{Preuve}{myolive}
-        On sait déjà que $\card(E) \leq \card(\mathcal{P}(E))$ car la fonction $x \in E \mapsto \{x\} \in \mathcal{P}(E)$ est clairement injective. 
-
-        Par l’absurde, supposons l’égalité. Alors il existe une fonction $\varphi : E \to \mathcal{P}(E)$ bijective. On pose alors 
-        \[ A = \enstq{x \in E}{x \notin \varphi(x)} \]
-        Comme $\varphi$ est une bijection, il existe $a \in E$ tel que $\varphi(a) = A$. Si $a \in A$, alors $a \notin \varphi(a) = A$, ce qui est absurde. Si $a \notin A$, alors $a \in \varphi(a) = A$, ce qui est également absurde. 
-    \end{demo}
-
-    \subsubsection{Dénombrabilité}
-
-    \begin{defi}{Ensemble dénombrable}{}
-        On dit qu’un ensemble $E$ est \textbf{dénombrable} si $\card(E) \leq \card(\mathbb{N})$.
-    \end{defi}
-
-    \begin{omed}{Exemples}{myyellow}
-        \begin{enumerate}[label=\textcolor{myyellow}{(\arabic*)}]
-            \item Les ensembles $\mathbb{Z}$ et $\mathbb{N}^2$ sont dénombrables par les bijections 
-            \[ n \in \mathbb{Z} \mapsto \sisinon{2n}{n \geq 0}{-2n-1} \esp{et} (n,m) \in \mathbb{N}^2 \mapsto \frac{(n+m)(n+m+1)}{2} + m \]
-            \item On peut montrer par récurrence que $\card(\mathbb{N}^k) = \card(\mathbb{N})$ pour tout $k \in \mathbb{N}^*$.
-            \item Si $E_1,\ldots,E_k$ sont $k$ ensembles dénombrables, alors $\prod_{i=1}^{k} E_i$ est dénombrable.
-            \item L’ensemble $\mathbb{Q}$ est dénombrable.
-            \item L’ensemble $\mathcal{P}(\mathbb{N})$ ne l’est pas car $\card(\mathbb{N}) < \card(\mathcal{P}(\mathbb{N}))$, d’où $\big\{ 0,1 \big\}^{\mathbb{N}}$ ne l’est pas.
-        \end{enumerate}
-    \end{omed}
-
-    \begin{prop}{}{}
-        Si $(E_n)_{n \in \mathbb{N}}$ est une suite d’ensembles dénombrables, alors $\bigcup_{n \in \mathbb{N}} E_n$ est dénombrable.
-    \end{prop}
-
-    \begin{theo}{}{}
-        L’ensemble $\mathbb{R}$ n’est pas dénombrable.
-    \end{theo}
-
-    \begin{demo}{Preuve}{myred}
-        La fonction 
-        \[ (x_n)_{n \in \mathbb{N}} \in \big\{ 0,1 \big\}^{\mathbb{N}} \mapsto \sum_{n \geq 0} \frac{2 x_n}{3^{n+1}} \in \intervalleFF{0}{1} \]   
-        est injective, donc $\card(\mathbb{N}) < \card\big\{ 0,1 \big\}^{\mathbb{N}} \leq \card\intervalleFF{0}{1} \leq \card(\mathbb{R})$.
-    \end{demo}
-
-\subsection{Tribus, tribu borélienne}
-
-    \subsubsection{Définitions et exemples}
-
-    Soit $E$ un ensemble. On appelle \textbf{classe de parties} de $E$ tout sous-ensemble de $\mathcal{P}(E)$.
-
-    \begin{defi}{Tribu ou $\sigma$-algèbre}{}
-        On appelle \textbf{tribu ou $\sigma$-algèbre} sur $E$ toute classe de parties $\mathcal{A}$ de $E$ telle que 
-        \begin{enumerate}
-            \item $\emptyset \in \mathcal{A}$ ;
-            \item $A \in \mathcal{A} \implies A^{C} \in \mathcal{A}$ (\textit{stabilité par passage au complémentaire});
-            \item si $(A_n)_{n \in \mathbb{N}}$ est une suite de $\mathcal{A}$, alors $\bigcup_{n \in \mathbb{N}} A_n \in \mathcal{A}$ (\textit{stabilité par union dénombrable}).
-        \end{enumerate}
-        On appelle alors $(E,\mathcal{A})$ un \textbf{espace mesurable}
-    \end{defi}
-
-    Les propriétés deuxième et troisième permettent de confirmer la stabilité par intersection dénombrable. 
-
-    \begin{omed}{Exemples}{myyellow}
-        \begin{enumerate}[label=\textcolor{myyellow}{\arabic*}]
-            \item La classe de parties $\{\emptyset, E\}$ est appelée \textbf{tribu groissière}.
-            \item La classe de parties $\mathcal{P}(E)$ est appelée \textbf{tribu triviale}.
-            \item Si $A \subset E$, alors $\{ \emptyset, E, A, A^{C} \}$ est une tribu.
-            \item La classe de parties $\{ A \subset E, A \text{ dénombrable ou } A^{C} \text{ dénombrable}\}$ est une tribu.
-        \end{enumerate}
-    \end{omed}
-
-    Une intersection de tribus sur $E$ est encore une tribu sur $E$.
-
-    \begin{defitheo}{}{}
-        Si $\mathcal{C}$ est une classe de parties de $E$, alors il existe une plus petite tribu (au sens de l’inclusion) contenant $\mathcal{C}$. On appelle cette tribu la \textbf{tribu engendrée} par $\mathcal{C}$ et on la note $\sigma(\mathcal{C})$. En d’autres termes, si $\mathcal{A}$ est une tribu sur $E$ telle que $\mathcal{C} \subset \mathcal{A}$, alors $\sigma(\mathcal{C}) \subset \mathcal{A}$.
-    \end{defitheo}
-
-    \begin{demo}{Idée}{mypurple}
-        La plus petite tribu qui contient $\mathcal{C}$ est clairement 
-        \[ \sigma(\mathcal{C}) = \bigcup_{\substack{\mathcal{A} \text{ tribu de } E \\ \mathcal{C} \subset \mathcal{A}}} \mathcal{A} \]
-    \end{demo}
-
-    Ainsi, si $A \subset E$, alors $\sigma(\{A\}) = \{ \emptyset, A, A^{C}, E \}$.
-
-    \subsubsection{Tribu borélienne}
-
-    \begin{defi}{Topologie}{}
-        Soit $E$ un ensemble. On appelle \textbf{topologie} sur $E$ toute classe de parties $\mathcal{J}$ sur $E$ vérifiant 
-        \begin{itemize}
-            \item $\emptyset \in \mathcal{J}$ et $E \in \mathcal{J}$ ;
-            \item si $(\Omega_i)_{i \in I}$ est une famille d’éléments de $\mathcal{J}$, alors $\bigcup_{i \in I} \Omega_i \in \mathcal{J}$ ;
-            \item si $\Omega_1,\ldots,\Omega_n \in \mathcal{J}$, alors $\bigcap_{i=1}^n \Omega_i \in \mathcal{J}$.
-        \end{itemize}
-        On appelle \textbf{ouverts} les éléments de $\mathcal{J}$ et on note $\mathcal{O}(E)$ l’ensemble des ouverts de $E$. On appelle \textbf{fermés} leurs complémentaires. On appelle alors $(E,\mathcal{J})$ un \textbf{espace topologique}.
-    \end{defi}
-
-    On remarque qu’une intersection quelconque de topologies sur $E$ est encore une topologie sur $E$. Si $\mathcal{C} \subset \mathcal{P}(E)$, il existe une plus petite topologie sur $E$ contenant $\mathcal{C}$ : on l’appelle \textbf{topologie engendrée} par $\mathcal{C}$.
-
-    \begin{defi}{Tribu borélienne}{}
-        Soit $(E,\mathcal{J})$ un espace topologique. On appelle \textbf{tribu borélienne} sur $E$ la tribu engendrée par les ouverts de $E$. 
-
-        On la note $\mathcal{B}(E) := \sigma(\mathcal{J})$. Les éléments de $\mathcal{B}(E)$ sont appelés les \textbf{boréliens} de $E$.
-    \end{defi}
-
-    \begin{omed}{Remarques}{myyellow}
-        \begin{itemize}
-            \item La tribu borélienne $\mathcal{B}(E)$ est aussi engendrée par les fermés de $E$.
-            \item En général, on n’a pas $\mathcal{B}(E) = \mathcal{P}(E)$ : c’est le cas de $\mathbb{R}$. En effet, on peut construire des parties de $\mathbb{R}$ non boréliennes (avec ou sans axiome du choix). En fait, on peut montrer que $\card(\mathcal{B}(\mathbb{R})) = \card(\mathbb{R})$.
-        \end{itemize}
-    \end{omed}
-
-    \begin{prop}{Boréliens de $\mathbb{R}$}{}
-        On a 
-        \[ \mathcal{B}(\mathbb{R}) = \sigma\big(\big\{ \intervalleOO{\alpha}{\beta}, \, \alpha, \beta \in \mathbb{Q} \big\}\big) = \sigma\big(\big\{ \intervalleOO{-\infty}{a}, \, a \in \mathbb{Q} \big\}\big) \]   
-        De même avec les autres types d’intervalles pour la seconde égalité.
-    \end{prop}
-
-    \begin{demo}{Preuve}{myolive}
-        \begin{itemize}
-            \item \textbf{Première égalité} \quad Si $\alpha, \beta \in \mathbb{Q}$, alors $\intervalleOO{\alpha}{\beta} \in \mathcal{O}(\mathbb{R})$, donc $\sigma\big(\big\{ \intervalleOO{\alpha}{\beta}, \, \alpha, \beta \in \mathbb{Q} \big\}\big) \subset \sigma(\mathcal{O}(\mathbb{R})) = \mathcal{B}(\mathbb{R})$. 
-            
-            Réciproquement, soit $\Omega \in \mathcal{O}(\mathbb{R})$. Alors 
-            \[ \Omega = \bigcup_{\substack{\intervalleOO{\alpha}{\beta} \subset \Omega \\ \alpha,\beta \in \mathbb{Q}}} \intervalleOO{\alpha}{\beta} \in \sigma\big(\big\{ \intervalleOO{\alpha}{\beta}, \, \alpha, \beta \in \mathbb{Q} \big\}\big) \]
-            \item \textbf{Deuxième égalité} \quad Comme $\intervalleOO{-\infty}{a} \subset \mathcal{O}(\mathbb{R})$ pour tout $a \in \mathbb{Q}$, on a $\sigma\big(\big\{ \intervalleOO{-\infty}{a}, \, a \in \mathbb{Q} \big\}\big) \subset \sigma(\mathcal{O}(\mathbb{R})) = \mathcal{B}(\mathbb{R})$.
-            
-            Réciproquement, soient $\alpha,\beta \in \mathbb{Q}$. On a 
-            \[ \intervalleOO{\alpha}{\beta} = \intervalleOO{-\infty}{\beta} \big\backslash \intervalleOF{-\infty}{\alpha} = \intervalleOO{-\infty}{\beta} \big\backslash \bigcap_{n \in \mathbb{N}^*} \intervalleOO{-\infty}{\alpha + \frac{1}{n}} \subset \sigma\big(\big\{ \intervalleOO{-\infty}{a}, \, a \in \mathbb{Q} \big\}\big) \]
-            Donc $\mathcal{B}(\mathbb{R}) = \sigma\big(\big\{ \intervalleOO{\alpha}{\beta}, \, \alpha, \beta \in \mathbb{Q} \big\}\big) \subset \sigma\big(\big\{ \intervalleOO{-\infty}{a}, \, a \in \mathbb{Q} \big\}\big)$.
-        \end{itemize}
-    \end{demo}
-
-    \begin{prop}{Boréliens de $\mathbb{R}^d$}{}
-        On a 
-        \[ \mathcal{B}(\mathbb{R}^d) = \sigma\big( \big\{ \intervalleOO{\alpha_1}{\beta_1} \times \cdots \times \intervalleOO{\alpha_d}{\beta_d}, \, \alpha_1,\ldots \beta_d \in \mathbb{Q} \big\} \big) \]   
-        En particulier, si $B \in \mathcal{B}(\mathbb{R}^d)$ et $a \in \mathbb{R}^d$, alors $B + a \in \mathcal{B}(\mathbb{R}^d)$.
-    \end{prop}
-
-    \begin{demo}{Idée de preuve}{myolive}
-        Soit $a \in \mathbb{R}^d$. On montre que la classe de parties $\mathcal{A} := \{ B \in \mathcal{B}(\mathbb{R}^d), \, B + a \in \mathcal{B}(\mathbb{R}^d) \}$ contient $\mathcal{O}(\mathbb{R}^d)$ et que c’est une tribu sur $\mathbb{R}^d$, ce qui permet de conclure que $\mathcal{B}(\mathbb{R}^d) = \sigma(\mathcal{O}(\mathbb{R}^d)) \subset \mathcal{A}$.
-    \end{demo}
-
-    On peut étendre les boréliens de $\mathbb{R}$ à $\barr{\mathbb{R}}$, en introduisant deux éléments $-\infty$ et $+\infty$ et étendant la relation d’ordre totale en posant $-\infty \leq x \leq +\infty$ pour tout $x \in \barr{\mathbb{R}}$. On munit $\barr{\mathbb{R}}$ de la topologie engendrée par les ouverts de $\mathbb{R}$, les ensembles $\intervalleFO{-\infty}{a}$ et $\intervalleOF{a}{-\infty}$ avec $a \in \mathbb{R}$. On a alors $\mathcal{B}(\barr{\mathbb{R}}) = \sigma \big( \big\{ \intervalleFO{-\infty}{a}, \, a \in \mathbb{Q} \big\} \big)$.
-
-    \subsubsection{Tribu image réciproque, tribu image}
-
-    \begin{omed}{Notation}{mypurple}
-        Si $\mathcal{C}$ est une classe de parties de $F$, on note 
-        \[ f^{-1} (\mathcal{C}) = \{ f^{-1}(C), \, C \in \mathcal{C}\} \]   
-    \end{omed}
-
-    \begin{defitheo}{Tribu image réciproque}{}
-        Si $\mathcal{B}$ est une tribu sur $F$, alors $f^{-1}(\mathcal{B})$ est une tribu sur $E$. On l’appelle \textbf{tribu image réciproque}.
-    \end{defitheo}
-
-    Par exemple, soit $\mathcal{B}$ est une tribu sur $E$ et $A \subset E$. On note $i : x \in A \mapsto x \in E$. Alors $i^{-1}(\mathcal{B})$ est une tribu sur $A$, appelée \textbf{tribu trace}.
-
-    Toutefois, si $E$ et $F$ sont deux ensembles et $f : E \to F$, et $\mathcal{A}$ une tribu sur $E$, la classe de parties 
-    \[ f(\mathcal{A}) := \{ f(A), \, A \subset \mathcal{A}\} \] 
-    n’est pas une tribu sur $F$ : il suffit de prendre $E = F = \{0,1\}$ muni de $\mathcal{A} = \mathcal{P}(E)$ et $f : x \in E \mapsto 0$. On a alors $f(\mathcal{P}(E)) = \{\emptyset, \{0\}\}$ qui n’est pas une tribu.
     
-    \begin{defi}{Tribu image}{}
-        Si $\mathcal{A}$ est une tribu sur $E$, alors $\{ B \subset F, \, f^{-1}(B) \in \mathcal{A} \}$ est une tribu sur $F$, appelée \textbf{tribu image} de $\mathcal{A}$ par $f$.
-    \end{defi}
-
-    \begin{lem}{dit de transport}{}
-        Soit $\mathcal{C}$ une classe de parties de $F$. Alors $\sigma(f^{-1}(\mathcal{C})) = f^{-1}(\sigma(\mathcal{C}))$.
-    \end{lem}
-
-    \begin{demo}{Preuve}{mybrown}
-        On a $\mathcal{C} \subset \sigma(\mathcal{C})$, donc $f^{-1}(\mathcal{C}) \subset f^{-1}(\sigma(\mathcal{C}))$ d’où $\sigma(f^{-1}(\mathcal{C})) \subset f^{-1}(\sigma(\mathcal{C}))$.
-
-        Réciproquement, montrons que $f^{-1}(\sigma(\mathcal{C})) \subset \sigma(f^{-1}(\mathcal{C}))$ \textit{i.e.} que $f^{-1}(B) \subset \sigma(f^{-1}(\mathcal{C}))$ pour $B \in \sigma(\mathcal{C})$. Or la classe de parties $\mathcal{B} := \{ B \subset F, \, f^{-1}(B) \in \sigma(f^{-1}(\mathcal{C}))\}$ est une tribu sur $F$ (la tribu image de $\sigma(f^{-1}(\mathcal{C}))$ par $f$). On a clairement $\mathcal{C} \subset \mathcal{B}$ donc $\sigma(\mathcal{C}) \subset \mathcal{B}$ d’où le résultat.
-    \end{demo}
 
 
 

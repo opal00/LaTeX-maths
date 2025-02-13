@@ -3372,6 +3372,253 @@
         Si $M$ est nilpotente, il existe $k \in \mathbb{N}$ tel que $M^k = 0$ \textit{i.e.} $X^k$ est annulateur donc $\Sp(M) \subset \left\{0\right\}$. Si $\mathbb{K} = \mathbb{C}$, alors $\chi_M$ est scindé, donc $\chi_M = X^n$. Ainsi, $\chi_M(M) = 0 = M^n$.
     \end{demo}
 
+\subsection{Applications de la réduction}
+
+    \subsubsection{Terme général d’une suite vérifiant une relation de récurrence linéaire}
+
+    Soit $(u_n) \in \mathbb{K}^n$ une suite telle que $p \in \mathbb{N}^*$ et $(a_0, \ldots, a_{p-1}) \in \mathbb{K}^p$ vérifiant, pour tout $n \in \mathbb{N}$, $u_{n+p} = a_0 u_n + \cdots + a_{p-1} u_{n + p-1}$. On cherche le \textsc{terme général} de $(u_n)$. 
+    
+    Posons $X_n = \begin{bmatrix}
+        u_n \\
+        \vdots \\
+        u_{n + p-1}
+    \end{bmatrix}$. Alors $(u_n)$ vérifie la relation de récurrence \textit{ssi} $(X_n)$ vérifie 
+    \[ X_{n + 1} = \underbrace{\begin{bmatrix}
+        0 & 1 & 0 & \ldots & 0 \\
+        \vdots & \ddots & \ddots & \ddots & \vdots \\
+        \vdots & & \ddots & \ddots & 0 \\
+        0 & \cdots & \cdots & 0 &  1 \\
+        a_0 & a_1 & \cdots & \cdots & a_{p-1}
+    \end{bmatrix}}_{M} X_n \]  
+    Ainsi, pour tout  $n \in \mathbb{N}$, $X_n = M^n X_0$. Supposons que $M$ possède $p$ valeurs propres. Alors ces valeurs propres sont de multiplicité $1$ car $M \in \mk{p}$, donc $M$ est diagonalisable, et il existe $Q \in \GL_p(\mathbb{K})$ telle que 
+    \[ M = Q \diag(\lambda_1,\ldots,\lambda_p)Q^-1 \esp{d’où} M^n = Q \diag(\lambda_1^n, \ldots, \lambda_p^n) Q^{-1} \] 
+    Ainsi, pour tout $n \in \mathbb{N}$, $X_n = Q \begin{bmatrix}
+        \lambda_1^n & & 0 \\
+        & \ddots & \\
+        0 & & \lambda_p^n
+    \end{bmatrix} Q^{-1} X_0$, \textit{i.e.} il existe $A_1,\ldots,A_p \in \mathbb{K}$ tel que 
+    \[ \forall n \in \mathbb{N}, u_n = A_1 \lambda_1^n + \cdots + A_p \lambda_p^n \]   
+    D’où $(u_n) \in \Vect((\lambda_1)^n, \ldots, (\lambda_p)^n)$.
+
+    \begin{omed}{Exemple \textcolor{black}{(Suite de Fibonacci)}}{myolive}
+        On appelle \textbf{suite de Fibonacci} la suite $(f_n)$ définie par $f_0 = f_1 = 1$ et la relation $f_{n+2} = f_{n+1} + f_n$. 
+
+        Posons $X_n = \begin{bmatrix}
+            f_n \\
+            f_{n+1}
+        \end{bmatrix}$. Alors $X_{n+1} = \underbrace{\begin{bmatrix}
+            0 & 1 \\
+            1 & 1
+        \end{bmatrix}}_M X_n$ d’où $X_n = M^n X_0$.
+
+        Le polynôme $\chi_M(X) = X^2 - X - 1$ possède deux racines réelles distinctes $\frac{1 \pm \sqrt{5}}{2}$, qui sont valeurs propres de $M$, donc il existe $\alpha$ et $\beta$ tels que 
+        \[ \forall n \in \mathbb{N}, f_n = \alpha \left( \frac{1 + \sqrt{5}}{2} \right)^n + \beta \left( \frac{1-\sqrt{5}}{2} \right)^n \]
+        
+        Or, sachant que $f_0 = f_1 = 1$, on trouve que 
+        \[ \forall n \in \mathbb{N}, f_n = \frac{1}{2} \left( \left( \frac{1 + \sqrt{5}}{2} \right)^{n+1} - \left( \frac{1-\sqrt{5}}{2} \right)^{n+1}  \right) \]
+    \end{omed}
+
+    \subsubsection{Calcul d’un déterminant circulant}
+
+    Soient $(a_0, \ldots, a_{n-1}) \in \mathbb{K}^n$ et $M = \begin{bmatrix}
+        a_0 & a_1 & \cdots & a_{n-1} \\
+        a_{n-1} & a_0 & \cdots & a_{n-2} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_1 & a_2 & \cdots & a_0
+    \end{bmatrix}$. On cherche à calculer le déterminant, dit \textbf{circulant}, de $M$.
+
+    Posons $J = \begin{bmatrix}
+        0 & 1 & & 0 \\
+        \vdots & \ddots & \ddots & \\
+        0 & & \ddots & 1 \\
+        1 & 0 & \cdots & 0
+    \end{bmatrix}$. Soit $f$ canoniquement associée à $J$ et $\mathcal{B} = (e_1,\ldots, e_n)$ la base canonique de $\mathbb{K}^n$. Alors $\forall i \in \intervalleEntier{1}{n}$, $f(e_i) = \barr{e_{i-1}}$. Ainsi, $f^p(e_i) = \barr{e_{i - p}}$. 
+
+    On peut donc écrire $M = a_0 I_n + a_1 J + \cdots + a_{n-1} J^{n-1}$. Si $P = a_0 + a_1 X + \cdots a_{n-1} X^{n-1}$, alors $M = P(J)$. Ainsi, si on peut diagonaliser $J$, cela revient à pouvoir diagonaliser $M$.
+
+    $J$ est-elle diagonalisable ?
+    \begin{align*}
+        \chi_J(X) 
+        &= \det(X I_n - J) \\
+        &= \begin{vmatrix}
+            X & - 1 & 0 & \cdots & 0 \\
+            0 & \ddots & \ddots & \ddots & \vdots \\
+            \vdots & & & \ddots & 0 \\
+            0 & & & \ddots & -1 \\
+            -1 & 0 & \cdots & 0 & X
+        \end{vmatrix} \\
+        &\quad \downarrow \quad \text{dvp p/r à la prem. colonne} \\
+        &= X^n + (-1)^n \times (-1)^{n-1} \\
+        &= X^n - 1
+    \end{align*}
+    Donc les valeurs propres de $J$ sont les racines $n$-ième de l’unité, \textit{i.e.} $\Sp_{\mathbb{C}}(J) = \left\{e^{\frac{2ik\pi}{n}}, k \in \intervalleEntier{0}{n-1}\right\}$. On pose $\omega = e^{\frac{2i\pi}{n}}$. $J$ possède $n$ valeurs propres distinctes, donc est diagonalisable, et il existe $Q \in \GL_n(\mathbb{C})$ telle que $J = Q \diag(1,\omega, \ldots, \omega^{n-1}) Q^{-1}$. Ainsi, $\det(M) = \prod_{k=0}^{n-1} P(\omega^k)$.
+
+    \begin{omed}{Exemple}{myblue}
+        Calcul de $\Delta_n = \begin{vmatrix}
+            1 & 2 & \cdots & n \\
+            n & 1 & \cdots & \vdots \\
+            \vdots & \vdots & \ddots & 2 \\
+            2 & 3 & \cdots & 1
+        \end{vmatrix}$. On pose $P = 1 + 2X + \cdots + n X^{n-1}$, et on sait que $\Delta_n = \prod_{k=0}^{n-1} P(\omega^k)$.
+
+        On remarque que $P = (1 + X + \cdots + X^n)'$, d’où
+        \begin{align*}
+            P(x) 
+            &= (1 + x + \cdots + x^n)'\\
+            &= \left(\frac{1-x^{n+1}}{1-x}\right)' \\
+            &= \frac{-(n+1)x^n (1-x) + 1 - x^{n+1}}{(1-x)^2}
+        \end{align*}
+        \begin{itemize}
+            \item Si $k \in \intervalleEntier{1}{n-1}$,
+            \begin{align*}
+                P(\omega^k) 
+                &= \frac{-(n+1)(\omega^k)^n (1 - \omega^k) + 1 - (\omega^k)^{n+1}}{(1 - \omega^k)^2} \\
+                &= \frac{-(n+1)(1 - \omega^k) + 1 - \omega^k}{(1 - \omega^k)^2} \\
+                & = \frac{-n}{1 - \omega^k}
+            \end{align*}
+            \item Si $k = 0$, $P(\omega^k) = P(1) = \frac{n(n+1)}{2}$
+        \end{itemize}
+        Finalement, 
+        \begin{align*}
+            \Delta_n
+            &= \frac{n(n+1)}{2} \times \prod_{k=1}^{n-1} \frac{-n}{1 - \omega^k} \\
+            &= \frac{(-1)^{n-1}(n+1)n^n}{2 \prod_{k=1}^{n-1}(1 - \omega^k)} 
+        \end{align*}
+
+        Calculons séparément le produit $\prod_{k=1}^{n-1} (1 - \omega^k)$. $1 - \omega^k$ est racine de $(1 - X)^n - 1$, d'où $(1 - X)^n - 1 = (-1)^n \prod_{k=0}^{n-1} (X - (1- \omega^k))$. On cherche le produit des racines \textsc{\textbf{non nulles}} de ce polynôme, \textit{i.e.} le coefficient de degré $1$ de $(1 - X)^n -1$, qui est $-n$ par dénombrement. Ainsi, on obtient $-n = (-1)^{2n-1} \prod_{k=1}^{n-1} (1 - \omega^k)$ \textit{soit} $n = \prod_{k=1}^{n-1} (1 - \omega^k)$.
+
+        Donc 
+        \begin{align*}
+            \Delta_n 
+            &= \frac{(-1)^{n-1} (n+1) n^{n-1}}{2}
+        \end{align*}
+
+        On aurait aussi pu directement remarquer que $1 + X + \cdots + X^{n-1} = \frac{1 - X^n}{1 - X} = \prod_{k=1}^{n-1} (X - \omega^k)$ d’où $\prod_{k=1}^{n-1} (1 - \omega^k) = n$ en évaluant en $1$.
+    \end{omed}
+
+    \subsubsection{Traces successives nulles}
+
+    \begin{omed}{Traces successives nulles}{myjade}
+        Soit $M \in \mathcal{M}_n(\mathbb{C})$ telle que $\forall k \in \intervalleEntier{1}{n}, \tr(M^k) = 0$. Montrons que $M$ est nilpotente.
+    \end{omed}
+
+    \begin{demo}{Résolution}{myjade}
+        On sait que $\chi_M$ est scindé, donc $M$ est trigonalisable. Il existe $P \in \GL_n(\mathbb{C})$ et $T = \begin{bmatrix}
+            \lambda_1 & & \star \\
+             & \ddots & \\
+            0 & & \lambda_n
+        \end{bmatrix}$ telles que $M = P T P^{-1}$. Donc $\tr(M) = \sum_{i=1}^{n} \lambda_i = 0$.
+
+        De plus, si $k \in \intervalleEntier{1}{n}$, $M^k = P T^k P^{-1}$. Or, pour tout $k \in \intervalleEntier{1}{n}$, $T^k = \begin{bmatrix}
+            \lambda_1^k & & \star \\
+             & \ddots & \\
+            0 & & \lambda_n^k
+        \end{bmatrix}$ et ainsi $\sum_{i=1}^{n} \lambda_i^k = 0$.
+
+        Montrons que cela implique que ces $\lambda_k$ sont tous nuls en raisonnant par l’absurde. On suppose qu’il existe une valeur propre non nulle. Posons $P(X) = \prod_{\substack{i = 1 \\ \lambda_i \neq 0}}^{n} (X - \lambda_i)$ qui est de degré non nul $k$. On peut écrire $P(X) = a_0 + a_1 X + \cdots + a_k X^k$. Et donc 
+        \begin{align*}
+            \prod_{\substack{i = 1 \\ \lambda_i \neq 0}}^{n} P(\lambda_i) 
+            &= 0 \\
+            &= \sum_{\substack{i = 1 \\ \lambda_i \neq 0}}^{n} (a_0 + a_1 \lambda_i + \cdots + a_n \lambda_i^k) \\
+            &= a_0 \sum_{\substack{i = 1 \\ \lambda_i \neq 0}}^{n} 1 + a_1 \sum_{\substack{i = 1 \\ \lambda_i \neq 0}}^{n} \lambda_i + \cdots + a_k \sum_{\substack{i = 1 \\ \lambda_i \neq 0}}^{n} \lambda_i^k 
+            &= a_0 \card\left\{i \in \intervalleEntier{1}{n}, \lambda_i \neq 0\right\} + a_1 \underbrace{\sum_{\substack{i = 1 \\ \lambda_i \neq 0}}^{n} \lambda_i}_{= 0} + \cdots + a_n \underbrace{\sum_{\substack{i = 1 \\ \lambda_i \neq 0}}^{n} \lambda_i^k}_{= 0}
+        \end{align*}
+        On en déduit que $a_0 = 0$ puisque l’on a supposé $\card\left\{i \in \intervalleEntier{1}{n}, \lambda_i \neq 0\right\} \neq 0$. Or $P(0) = \prod_{\substack{i = 1 \\ \lambda_i \neq 0}}^{n} (- \lambda_i) = (-1)^k \prod_{\substack{i = 1 \\ \lambda_i \neq 0}}^{n} \lambda_i$, ce qui est absurde. Donc $M$ est semblable à $T = \begin{bmatrix}
+            0 & & \star \\
+             & \ddots & \\
+            0 & & 0
+        \end{bmatrix}$. Ainsi, $\chi_M = \chi_T = X^n$ est annulateur par le théorème de Cayley-Hamilton, d’où $T^n = 0$ puis $M^n = 0$.
+    \end{demo}
+
+    \begin{omed}{Une matrice nilpotente}{myred}
+        Soient $A,B \in \mk{n}$ et $C = AB - BA$. On suppose que $C$ commute avec $A$ où $B$. Montrons que $C$ est nilpotente.
+    \end{omed}
+
+    \begin{demo}{Solution}{myred}
+        On a tout d’abord $\tr(C) = \tr(AB) - \tr(BA) = 0$. Est-ce le cas pour tout $C^k$ où $k \in \intervalleEntier{1}{n}$ ? 
+
+        Supposons arbitrairement que $C$ commute avec $A$. Alors $CA = AC$, et
+        \begin{align*}
+            \tr(C^k) 
+            &= \tr(C^{k-1}(AB - BA)) \\
+            &= \tr(C^{k-1} AB) - \tr(C^{k-1} BA) \\
+            &\quad \downarrow \quad A C^k = C^k A \\
+            &= \tr(A C^{k-1} B) - \tr(C^{k-1} BA) \\ 
+            &\quad \downarrow \quad \tr(XY) = \tr(YX) \\
+            &= 0
+        \end{align*} 
+    \end{demo}
+
+\subsection{Généralisation des résultats de réduction}
+
+    \subsubsection{Lemme des noyaux}
+
+    \begin{lem}{dit des noyaux}{}
+        On considère un espace vectoriel $E$ sur un corps commutatif $K$ et $u \in \mathcal{L}(E)$. Soit $s \in \mathbb{N}^*$.
+
+        Si $Q_1,\ldots,Q_s \in K[X]$ sont des polynômes premiers entre eux deux à deux, alors 
+        \[ \Ker\left[(Q_1\cdots Q_s)(u)\right] = \bigoplus_{i=1}^s \Ker(Q_i(u)) \]
+        De plus, chacun des projecteurs associés à cette décomposition en somme directe est la restriction à $\Ker\left[(Q_1\cdots Q_s)(u)\right]$ d’un polnôme en $u$.
+    \end{lem}
+
+    \begin{demo}{Preuve}{mybrown}
+        \begin{enumerate}[label=\textcolor{myjade}{(\arabic*)}]
+            \item Les polynômes $R_1,\ldots,R_s \in K[X]$ définis par 
+            \[ \forall k \in \intervalleEntier{1}{s}, \quad R_k = \prod_{\substack{1 \leq i \leq s \\ i \neq k}} Q_i \]    
+            sont premiers entre eux dans leur ensemble, donc d’après le théorème de Bézout, il existe des polynômes $V_1, \ldots, V_s \in K[X]$ tels que 
+            \[ V_1 R_1 + \ldots + V_s R_s = 1 \]    
+            \item Si $x \in \Ker\left[(Q_1\cdots Q_s)(u)\right]$, on déduit de la relation précédente que 
+            \[ x = x_1 + \ldots + x_s \quad \text{où } \forall i \in \intervalleEntier{1}{s}, x_i = \left[(V_i R_i)(u)\right](x) \]
+            De plus, pour chaque $i \in \intervalleEntier{1}{s}$, on a 
+            \[ \left[Q_i(u)\right](x_i) = \left[(Q_i V_i R_i)(u)\right](x) = V_i(u) \left(\left[(Q_1 \cdots Q_s)(u)\right](x)\right) = 0 \]
+            Donc $x_i \in \Ker((Q_i(u)))$. On a donc montré que 
+            \[ \Ker\left[(Q_1 \cdots Q_s)(u)\right] = \Ker\left((Q_1(u))\right) + \ldots + \Ker\left(Q_s(u)\right) \]     
+            \item Considérons un élément 
+            \[ (x_1,\ldots,x_s) \in \Ker(Q_1(u)) \times \cdots \times \Ker(Q_s(u)) \]   
+            vérifiant $x_1 + \ldots + x_s = 0$. En remarquant que pour tout couple $(i,j) \in \intervalleEntier{1}{s}^2$ avec $i \neq j$, on a $\left[R_i(u)\right](x_j) = 0$ et en utilisant la relation de Bézout, on a 
+            \[ x_i = \sum_{j=1}^{s} \left[V_j R_j(u)\right](x_i) = \left[V_i R_i (u)\right](x_i) = \left[V_i R_i(u)\right]\left(- \sum_{\substack{j = 1 \\ j \neq i}}^{s} x_j\right) = 0 \]
+            donc la somme est directe.
+        \end{enumerate}
+    \end{demo}
+
+    \subsubsection{Sous-espaces caractéristiques}
+
+    Nous avons vu que, lorsque $f$ est diagonalisable, on a $E = E_{\lambda_1} \oplus \cdots \oplus E_{\lambda_r}$ avec $E_{\lambda_i} = \Ker(f - \lambda_i \id_E)$ le sous-espace propre associé à la valeur propre $\lambda_i$. Nous allons montrer que si $f$ n’est pas diagonalisable, mais si son polynôme caractéristique est scindé sur $\mathbb{K}$, on a 
+    \[ E = \Ker(f - \lambda_1 \id)^{m_1} \oplus \cdots \oplus \Ker(f - \lambda_r \id)^{m_r} \]   
+    où $m_i$ est la multiplicité de la valeur propre $\lambda_i$ comme racine du polynôme caractéristique de $f$.
+
+    \begin{defi}{}{}
+        Soit $f$ un endomorphisme de $E$. Soit $\lambda$ une valeur propre de $f$ et $m$ sa multiplicité en tant que racine de $\chi_f$. Le \textbf{sous-espace caractéristique} de $f$ pour la valeur propre $\lambda$ est 
+        \[ N_{\lambda} = \Ker\left((f - \lambda \id)^m\right) \]     
+    \end{defi}
+
+    Pour $\lambda$ valeur propre de $f$, on a $E_{\lambda} \subset N_{\lambda}$ car $\Ker(f - \lambda \id) \subset \Ker(f - \lambda \id)^m$ quel que soit $k \geq 1$.
+
+    \begin{theo}{}{}
+        Soit $f$ un endomorphisme de $E$ tel que $\chi_f$ est scindé sur $\mathbb{K}$. Notons $\chi_f = \pm (X - \lambda_1)^{m_1} \cdots (X - \lambda_r)^{m_r}$. Alors 
+        \begin{enumerate}
+            \item Tout $N_{\lambda_i}$ est stable par $f$.
+            \item $E = N_{\lambda_1} \oplus \cdots \oplus N_{\lambda_r}$.
+            \item $\dim N_{\lambda_i} = m_i$.
+        \end{enumerate}
+    \end{theo}
+
+    Autrement dit, l’espace vectoriel $E$ est la somme directe des sous-espaces caractéristiques. En plus, la dimension du sous-espace caractéristique associé à la valeur de $\lambda$ est sa multiplicité comme racine de $\chi_f$.
+
+    \begin{demo}{Preuve}{myred}
+        \begin{itemize}
+            \item Soit $x \in N_{\lambda} = \Ker(f - \lambda \id)^m$. On a $(f - \lambda \id)^m(x) = 0$. Or 
+            \[ (f - \lambda \id)^m \circ f(x) = f \circ (f - \lambda \id)^m (x) = 0 \]   
+            D’où $f(x) \in N_{\lambda}$. Cela vient donc du fait que $f - \lambda \id$ et $f$ commutent, qui est un résultat que nous avons déjà rencontré.
+            \item C’est une application directe du lemme des noyaux : Les polynômes $(X - \lambda_i)^{m_i}$ sont premiers entre eux dans leur ensemble puisque les valeurs propres sont distinctes. Par le lemme des noyaux, on obtient : 
+            \[ \Ker \chi_f(f) = \Ker(f - \lambda_1 \id)^{m_1} \oplus \cdots \oplus \Ker(f - \lambda_r \id)^{m_r} = N_{\lambda_1} \oplus \cdots \oplus N_{\lambda_r} \]    
+            Or d’après le théorème de Cayley-Hamilton, on a $\chi_f(f) = 0$, donc $\Ker \chi_f(f) = E$, d’où le résultat.
+            \item Notons $g_i = \restr{f}{N_{\lambda_i}}$ pour $1 \leq i \leq r$. Pour $i \neq j$, $N_{\lambda_i} \cap N_{\lambda_j} = \left\{0\right\}$. Le polynôme caractéristique de $g_i$ est scindé (car il divise celui de $f$) et sa seule racine est la valeur propre de $g_i$, \textit{i.e.} $\lambda_i$. Ainsi, $\chi_{g_i} (X) = \pm (X - \lambda_i)^{n_i}$ où $n = \dim N_{\lambda_i}$. De plus, 
+            \[ \pm (X - \lambda_1)^{m_1} \cdots (X - \lambda_r)^{m_r} = \chi_f(X) = \chi_{g_1}(X) \cdots \chi_{g_r}(X) \]    
+            En identifiant les exposants des facteurs irréductibles, on a directement $n_i = \dim N_{\lambda_i} = m_i$ pour $i \in \intervalleEntier{1}{r}$.
+        \end{itemize}
+    \end{demo}
+
 \subsection{Trigonalisation}    
 
     \subsubsection{Endomorphismes et matrices trigonalisables}
@@ -3487,34 +3734,6 @@
     \end{demo}
 
     \subsubsection{Méthode de trigonalisation d’une matrice}
-
-    \begin{lem}{dit des noyaux}{}
-        On considère un espace vectoriel $E$ sur un corps commutatif $K$ et $u \in \mathcal{L}(E)$. Soit $s \in \mathbb{N}^*$.
-
-        Si $Q_1,\ldots,Q_s \in K[X]$ sont des polynômes premiers entre eux deux à deux, alors 
-        \[ \Ker\left[(Q_1\cdots Q_s)(u)\right] = \bigoplus_{i=1}^s \Ker(Q_i(u)) \]
-        De plus, chacun des projecteurs associés à cette décomposition en somme directe est la restriction à $\Ker\left[(Q_1\cdots Q_s)(u)\right]$ d’un polnôme en $u$.
-    \end{lem}
-
-    \begin{demo}{Preuve}{mybrown}
-        \begin{enumerate}[label=\textcolor{myjade}{(\arabic*)}]
-            \item Les polynômes $R_1,\ldots,R_s \in K[X]$ définis par 
-            \[ \forall k \in \intervalleEntier{1}{s}, \quad R_k = \prod_{\substack{1 \leq i \leq s \\ i \neq k}} Q_i \]    
-            sont premiers entre eux dans leur ensemble, donc d’après le théorème de Bézout, il existe des polynômes $V_1, \ldots, V_s \in K[X]$ tels que 
-            \[ V_1 R_1 + \ldots + V_s R_s = 1 \]    
-            \item Si $x \in \Ker\left[(Q_1\cdots Q_s)(u)\right]$, on déduit de la relation précédente que 
-            \[ x = x_1 + \ldots + x_s \quad \text{où } \forall i \in \intervalleEntier{1}{s}, x_i = \left[(V_i R_i)(u)\right](x) \]
-            De plus, pour chaque $i \in \intervalleEntier{1}{s}$, on a 
-            \[ \left[Q_i(u)\right](x_i) = \left[(Q_i V_i R_i)(u)\right](x) = V_i(u) \left(\left[(Q_1 \cdots Q_s)(u)\right](x)\right) = 0 \]
-            Donc $x_i \in \Ker((Q_i(u)))$. On a donc montré que 
-            \[ \Ker\left[(Q_1 \cdots Q_s)(u)\right] = \Ker\left((Q_1(u))\right) + \ldots + \Ker\left(Q_s(u)\right) \]     
-            \item Considérons un élément 
-            \[ (x_1,\ldots,x_s) \in \Ker(Q_1(u)) \times \cdots \times \Ker(Q_s(u)) \]   
-            vérifiant $x_1 + \ldots + x_s = 0$. En remarquant que pour tout couple $(i,j) \in \intervalleEntier{1}{s}^2$ avec $i \neq j$, on a $\left[R_i(u)\right](x_j) = 0$ et en utilisant la relation de Bézout, on a 
-            \[ x_i = \sum_{j=1}^{s} \left[V_j R_j(u)\right](x_i) = \left[V_i R_i (u)\right](x_i) = \left[V_i R_i(u)\right]\left(- \sum_{\substack{j = 1 \\ j \neq i}}^{s} x_j\right) = 0 \]
-            donc la somme est directe.
-        \end{enumerate}
-    \end{demo}
 
     \begin{omed}{Exemple}{mybrown}
         Soit $A = \begin{bmatrix}
@@ -3720,15 +3939,6 @@
         \end{itemize}
     \end{omed}
 
-    Une réduction plus fine est possible, mais ne sera pas étudiée cette année, dit réduction de Jordan, permettant d’exprimer la matrice $A$ par 
-    \[ A = P \begin{bmatrix}
-        1 & 1 & 0 & 0 \\
-        0 & 1 & 1 & 0 \\
-        0 & 0 & 1 & 1 \\
-        0 & 0 & 0 & 1
-    \end{bmatrix} P^{-1} \]   
-    en choissisant plus finement les vecteurs colonnes de la matrice $P$.
-
     \begin{omed}{Principe de trigonalisation}{myred}
         \begin{itemize}
             \item Soit $A \in \mk{n}$ trigonalisable -- \textit{i.e.} $\chi_A$ est scindé --. Posons $\chi_A = \prod_{i=1}^{p} (X - \lambda_i)^{m_i}$. D’après le théorème de Cayley-Hamilton, $\chi_A$ est annulateur. Posons $P_i(X) = (X - i)^{m_i}$, tel que $\chi_A = \prod_{i=1}^{p} P_i$ et donc $\prod_{i=1}^{p} P_i(A) = 0$. Ainsi, $(P_1,\ldots,P_p)$ sont premiers entre eux dans leur ensemble, et d’après le lemme des noyaux, 
@@ -3844,182 +4054,427 @@
         \end{itemize}
     \end{omed}
 
-\subsection{Applications de la réduction}
+\subsection{Décomposition de Dunford}
 
-    \subsubsection{Terme général d’une suite vérifiant une relation de récurrence linéaire}
+    Nous allons montrer que toute matrice, dont le polynôme caractéristique est scindé, peut s’écrire comme somme d’une matrice diagonalisable et d’une matrice nilpotente. Autrement dit, cette matrice est semblable à la somme d’une matrice diagonale et d’une matrice nilpotente.
 
-    Soit $(u_n) \in \mathbb{K}^n$ une suite telle que $p \in \mathbb{N}^*$ et $(a_0, \ldots, a_{p-1}) \in \mathbb{K}^p$ vérifiant, pour tout $n \in \mathbb{N}$, $u_{n+p} = a_0 u_n + \cdots + a_{p-1} u_{n + p-1}$. On cherche le \textsc{terme général} de $(u_n)$. 
-    
-    Posons $X_n = \begin{bmatrix}
-        u_n \\
-        \vdots \\
-        u_{n + p-1}
-    \end{bmatrix}$. Alors $(u_n)$ vérifie la relation de récurrence \textit{ssi} $(X_n)$ vérifie 
-    \[ X_{n + 1} = \underbrace{\begin{bmatrix}
-        0 & 1 & 0 & \ldots & 0 \\
-        \vdots & \ddots & \ddots & \ddots & \vdots \\
-        \vdots & & \ddots & \ddots & 0 \\
-        0 & \cdots & \cdots & 0 &  1 \\
-        a_0 & a_1 & \cdots & \cdots & a_{p-1}
-    \end{bmatrix}}_{M} X_n \]  
-    Ainsi, pour tout  $n \in \mathbb{N}$, $X_n = M^n X_0$. Supposons que $M$ possède $p$ valeurs propres. Alors ces valeurs propres sont de multiplicité $1$ car $M \in \mk{p}$, donc $M$ est diagonalisable, et il existe $Q \in \GL_p(\mathbb{K})$ telle que 
-    \[ M = Q \diag(\lambda_1,\ldots,\lambda_p)Q^-1 \esp{d’où} M^n = Q \diag(\lambda_1^n, \ldots, \lambda_p^n) Q^{-1} \] 
-    Ainsi, pour tout $n \in \mathbb{N}$, $X_n = Q \begin{bmatrix}
-        \lambda_1^n & & 0 \\
-        & \ddots & \\
-        0 & & \lambda_p^n
-    \end{bmatrix} Q^{-1} X_0$, \textit{i.e.} il existe $A_1,\ldots,A_p \in \mathbb{K}$ tel que 
-    \[ \forall n \in \mathbb{N}, u_n = A_1 \lambda_1^n + \cdots + A_p \lambda_p^n \]   
-    D’où $(u_n) \in \Vect((\lambda_1)^n, \ldots, (\lambda_p)^n)$.
+    \begin{theo}{Décomposition du Dunford}{}
+        Soit $f$ un endomorphisme de $E$ tel que $\chi_f$ soit scindé sur $\mathbb{K}$. Alors il existe un unique couple $(n,d)$ d’endomorphismes tel que :
+        \begin{enumerate}
+            \item $n$ est nilpotent et $d$ est diagonalisable ;
+            \item $f = n + d$ ;
+            \item $n \circ d = d \circ n$.
+        \end{enumerate}
+    \end{theo}
 
-    \begin{omed}{Exemple \textcolor{black}{(Suite de Fibonacci)}}{myolive}
-        On appelle \textbf{suite de Fibonacci} la suite $(f_n)$ définie par $f_0 = f_1 = 1$ et la relation $f_{n+2} = f_{n+1} + f_n$. 
+    On pourrait de plus montrer que $d$ et $n$ sont des polynômes en $f$. En particulier, si $\mathbb{K} = \mathbb{C}$, cette décomposition existe toujours. Le théorème peut aussi s’écrire matriciellement : 
 
-        Posons $X_n = \begin{bmatrix}
-            f_n \\
-            f_{n+1}
-        \end{bmatrix}$. Alors $X_{n+1} = \underbrace{\begin{bmatrix}
-            0 & 1 \\
-            1 & 1
-        \end{bmatrix}}_M X_n$ d’où $X_n = M^n X_0$.
+    \begin{theo}{Décomposition de Dunford \textcolor{black}{(Version matricielle)}}{}
+        Pour toute matrice $A \in \mk{n}$ ayant un polynôme caractéristique scindé sur $\mathbb{K}$, il existe une unique matrice $N$ nilpotente et une unique matrice $\Delta$ diagonalisable telles que 
+        \[ A = N + \Delta \esp{et} N \Delta = \Delta N \]     
+    \end{theo}
 
-        Le polynôme $\chi_M(X) = X^2 - X - 1$ possède deux racines réelles distinctes $\frac{1 \pm \sqrt{5}}{2}$, qui sont valeurs propres de $M$, donc il existe $\alpha$ et $\beta$ tels que 
-        \[ \forall n \in \mathbb{N}, f_n = \alpha \left( \frac{1 + \sqrt{5}}{2} \right)^n + \beta \left( \frac{1-\sqrt{5}}{2} \right)^n \]
-        
-        Or, sachant que $f_0 = f_1 = 1$, on trouve que 
-        \[ \forall n \in \mathbb{N}, f_n = \frac{1}{2} \left( \left( \frac{1 + \sqrt{5}}{2} \right)^{n+1} - \left( \frac{1-\sqrt{5}}{2} \right)^{n+1}  \right) \]
-    \end{omed}
+    Il est très important de noter que $\Delta$ n’est qu’une matrice diagonalisable, et non diagonale. Il existe alors $P \in \GL_n(\mathbb{K})$ et $D$ diagonale telles que $D = P^{-1} \Delta P$. Si on note $N' = P^{-1} N P$, alors $N'$ est encore nilpotente et $N' D = D N'$. Une autre façon d’écrire la décomposition de Dunford est donc d’écrire $P^{-1} A P = D + N'$, \textit{i.e.} $A$ est semblable à la somme d’une matrice diagonale et d’une matrice nilpotente.
 
-    \subsubsection{Calcul d’un déterminant circulant}
-
-    Soient $(a_0, \ldots, a_{n-1}) \in \mathbb{K}^n$ et $M = \begin{bmatrix}
-        a_0 & a_1 & \cdots & a_{n-1} \\
-        a_{n-1} & a_0 & \cdots & a_{n-2} \\
-        \vdots & \vdots & \ddots & \vdots \\
-        a_1 & a_2 & \cdots & a_0
-    \end{bmatrix}$. On cherche à calculer le déterminant, dit \textbf{circulant}, de $M$.
-
-    Posons $J = \begin{bmatrix}
-        0 & 1 & & 0 \\
-        \vdots & \ddots & \ddots & \\
-        0 & & \ddots & 1 \\
-        1 & 0 & \cdots & 0
-    \end{bmatrix}$. Soit $f$ canoniquement associée à $J$ et $\mathcal{B} = (e_1,\ldots, e_n)$ la base canonique de $\mathbb{K}^n$. Alors $\forall i \in \intervalleEntier{1}{n}$, $f(e_i) = \barr{e_{i-1}}$. Ainsi, $f^p(e_i) = \barr{e_{i - p}}$. 
-
-    On peut donc écrire $M = a_0 I_n + a_1 J + \cdots + a_{n-1} J^{n-1}$. Si $P = a_0 + a_1 X + \cdots a_{n-1} X^{n-1}$, alors $M = P(J)$. Ainsi, si on peut diagonaliser $J$, cela revient à pouvoir diagonaliser $M$.
-
-    $J$ est-elle diagonalisable ?
-    \begin{align*}
-        \chi_J(X) 
-        &= \det(X I_n - J) \\
-        &= \begin{vmatrix}
-            X & - 1 & 0 & \cdots & 0 \\
-            0 & \ddots & \ddots & \ddots & \vdots \\
-            \vdots & & & \ddots & 0 \\
-            0 & & & \ddots & -1 \\
-            -1 & 0 & \cdots & 0 & X
-        \end{vmatrix} \\
-        &\quad \downarrow \quad \text{dvp p/r à la prem. colonne} \\
-        &= X^n + (-1)^n \times (-1)^{n-1} \\
-        &= X^n - 1
-    \end{align*}
-    Donc les valeurs propres de $J$ sont les racines $n$-ième de l’unité, \textit{i.e.} $\Sp_{\mathbb{C}}(J) = \left\{e^{\frac{2ik\pi}{n}}, k \in \intervalleEntier{0}{n-1}\right\}$. On pose $\omega = e^{\frac{2i\pi}{n}}$. $J$ possède $n$ valeurs propres distinctes, donc est diagonalisable, et il existe $Q \in \GL_n(\mathbb{C})$ telle que $J = Q \diag(1,\omega, \ldots, \omega^{n-1}) Q^{-1}$. Ainsi, $\det(M) = \prod_{k=0}^{n-1} P(\omega^k)$.
-
-    \begin{omed}{Exemple}{myblue}
-        Calcul de $\Delta_n = \begin{vmatrix}
-            1 & 2 & \cdots & n \\
-            n & 1 & \cdots & \vdots \\
-            \vdots & \vdots & \ddots & 2 \\
-            2 & 3 & \cdots & 1
-        \end{vmatrix}$. On pose $P = 1 + 2X + \cdots + n X^{n-1}$, et on sait que $\Delta_n = \prod_{k=0}^{n-1} P(\omega^k)$.
-
-        On remarque que $P = (1 + X + \cdots + X^n)'$, d’où
-        \begin{align*}
-            P(x) 
-            &= (1 + x + \cdots + x^n)'\\
-            &= \left(\frac{1-x^{n+1}}{1-x}\right)' \\
-            &= \frac{-(n+1)x^n (1-x) + 1 - x^{n+1}}{(1-x)^2}
-        \end{align*}
+    \begin{coro}{}{}
+        Soit $f$ un endomorphisme avec une décomposition de Dunford $f = d + n$. Alors 
         \begin{itemize}
-            \item Si $k \in \intervalleEntier{1}{n-1}$,
-            \begin{align*}
-                P(\omega^k) 
-                &= \frac{-(n+1)(\omega^k)^n (1 - \omega^k) + 1 - (\omega^k)^{n+1}}{(1 - \omega^k)^2} \\
-                &= \frac{-(n+1)(1 - \omega^k) + 1 - \omega^k}{(1 - \omega^k)^2} \\
-                & = \frac{-n}{1 - \omega^k}
-            \end{align*}
-            \item Si $k = 0$, $P(\omega^k) = P(1) = \frac{n(n+1)}{2}$
+            \item $f \text{ diagonalisable } \iff f = d \iff n = 0$ ;
+            \item $f \text{ nilpotent } \iff  f = n \iff d = 0$
         \end{itemize}
-        Finalement, 
-        \begin{align*}
-            \Delta_n
-            &= \frac{n(n+1)}{2} \times \prod_{k=1}^{n-1} \frac{-n}{1 - \omega^k} \\
-            &= \frac{(-1)^{n-1}(n+1)n^n}{2 \prod_{k=1}^{n-1}(1 - \omega^k)} 
-        \end{align*}
+    \end{coro}
 
-        Calculons séparément le produit $\prod_{k=1}^{n-1} (1 - \omega^k)$. $1 - \omega^k$ est racine de $(1 - X)^n - 1$, d'où $(1 - X)^n - 1 = (-1)^n \prod_{k=0}^{n-1} (X - (1- \omega^k))$. On cherche le produit des racines \textsc{\textbf{non nulles}} de ce polynôme, \textit{i.e.} le coefficient de degré $1$ de $(1 - X)^n -1$, qui est $-n$ par dénombrement. Ainsi, on obtient $-n = (-1)^{2n-1} \prod_{k=1}^{n-1} (1 - \omega^k)$ \textit{soit} $n = \prod_{k=1}^{n-1} (1 - \omega^k)$.
+    Avant de démontrer ces théorèmes de décomposition de Dunford, introduisons quelques lemmes.
 
-        Donc 
-        \begin{align*}
-            \Delta_n 
-            &= \frac{(-1)^{n-1} (n+1) n^{n-1}}{2}
-        \end{align*}
+    \begin{lem}{}{}
+        Si $f$ est nilpotent, alors $0$ est son unique valeur propre et on a 
+        \[ \chi_f(X) = (-1)^n X^n \]  
+    \end{lem}
 
-        On aurait aussi pu directement remarquer que $1 + X + \cdots + X^{n-1} = \frac{1 - X^n}{1 - X} = \prod_{k=1}^{n-1} (X - \omega^k)$ d’où $\prod_{k=1}^{n-1} (1 - \omega^k) = n$ en évaluant en $1$.
-    \end{omed}
-
-    \subsubsection{Traces successives nulles}
-
-    \begin{omed}{Traces successives nulles}{myjade}
-        Soit $M \in \mathcal{M}_n(\mathbb{C})$ telle que $\forall k \in \intervalleEntier{1}{n}, \tr(M^k) = 0$. Montrons que $M$ est nilpotente.
-    \end{omed}
-
-    \begin{demo}{Résolution}{myjade}
-        On sait que $\chi_M$ est scindé, donc $M$ est trigonalisable. Il existe $P \in \GL_n(\mathbb{C})$ et $T = \begin{bmatrix}
-            \lambda_1 & & \star \\
-             & \ddots & \\
-            0 & & \lambda_n
-        \end{bmatrix}$ telles que $M = P T P^{-1}$. Donc $\tr(M) = \sum_{i=1}^{n} \lambda_i = 0$.
-
-        De plus, si $k \in \intervalleEntier{1}{n}$, $M^k = P T^k P^{-1}$. Or, pour tout $k \in \intervalleEntier{1}{n}$, $T^k = \begin{bmatrix}
-            \lambda_1^k & & \star \\
-             & \ddots & \\
-            0 & & \lambda_n^k
-        \end{bmatrix}$ et ainsi $\sum_{i=1}^{n} \lambda_i^k = 0$.
-
-        Montrons que cela implique que ces $\lambda_k$ sont tous nuls en raisonnant par l’absurde. On suppose qu’il existe une valeur propre non nulle. Posons $P(X) = \prod_{\substack{i = 1 \\ \lambda_i \neq 0}}^{n} (X - \lambda_i)$ qui est de degré non nul $k$. On peut écrire $P(X) = a_0 + a_1 X + \cdots + a_k X^k$. Et donc 
-        \begin{align*}
-            \prod_{\substack{i = 1 \\ \lambda_i \neq 0}}^{n} P(\lambda_i) 
-            &= 0 \\
-            &= \sum_{\substack{i = 1 \\ \lambda_i \neq 0}}^{n} (a_0 + a_1 \lambda_i + \cdots + a_n \lambda_i^k) \\
-            &= a_0 \sum_{\substack{i = 1 \\ \lambda_i \neq 0}}^{n} 1 + a_1 \sum_{\substack{i = 1 \\ \lambda_i \neq 0}}^{n} \lambda_i + \cdots + a_k \sum_{\substack{i = 1 \\ \lambda_i \neq 0}}^{n} \lambda_i^k 
-            &= a_0 \card\left\{i \in \intervalleEntier{1}{n}, \lambda_i \neq 0\right\} + a_1 \underbrace{\sum_{\substack{i = 1 \\ \lambda_i \neq 0}}^{n} \lambda_i}_{= 0} + \cdots + a_n \underbrace{\sum_{\substack{i = 1 \\ \lambda_i \neq 0}}^{n} \lambda_i^k}_{= 0}
-        \end{align*}
-        On en déduit que $a_0 = 0$ puisque l’on a supposé $\card\left\{i \in \intervalleEntier{1}{n}, \lambda_i \neq 0\right\} \neq 0$. Or $P(0) = \prod_{\substack{i = 1 \\ \lambda_i \neq 0}}^{n} (- \lambda_i) = (-1)^k \prod_{\substack{i = 1 \\ \lambda_i \neq 0}}^{n} \lambda_i$, ce qui est absurde. Donc $M$ est semblable à $T = \begin{bmatrix}
-            0 & & \star \\
-             & \ddots & \\
-            0 & & 0
-        \end{bmatrix}$. Ainsi, $\chi_M = \chi_T = X^n$ est annulateur par le théorème de Cayley-Hamilton, d’où $T^n = 0$ puis $M^n = 0$.
+    \begin{demo}{Preuve}{mybrown}
+        \begin{itemize}
+            \item Notons $A$ la matrice de $f$ dans une base. Comme $f$ est nilpotent, il existe $k \geq 1$ tel que $A^k = 0$. Cela implique $\det(A^k) = 0$, puis $\det(A) = 0$. La matrice $A$ n’est donc pas inversible, $f$ n’est pas bijectif, et donc non injectif -- l’ensemble de départ étant aussi celui d’arrivée --. Ainsi, $\Ker(f) \neq \left\{0\right\}$, ce qui est exactement dire que $0$ est une valeur propre de $f$. 
+            \item Supposons que $\lambda$ soit une valeur propre de $f$ : il existe alors $x \neq 0$ tel que $f(x) = \lambda x$. Par récurrence immédiate, cela signifie que $f^n(x) = \lambda^n x = 0$ -- provient du fait que si $f$ est nilpotent, son indice de nilpotence est inférieur à la dimension de l’espace --, donc $\lambda = 0$. Ainsi, la seule valeur propre de $f$, et donc la seule racine de son polynôme caractéristique est $0$. 
+            \item Si $\mathbb{K} = \mathbb{R}$, on considère l’endomorphisme aussi défini sur $\mathbb{C}$. En termes de matrices, cela revient à dire que la matrice à coefficients réels $A$ peut aussi être vue à coefficient complexes. Or, sur $\mathbb{C}$, un polynôme dont la seule racine est $0$ est de la forme $a X^n$, donc $\chi_f(X) = (-1)^n X^n$, étant donné que le coefficient dominant d’un polynôme caractéristique est $(-1)^n$.
+        \end{itemize}
     \end{demo}
 
-    \begin{omed}{Une matrice nilpotente}{myred}
-        Soient $A,B \in \mk{n}$ et $C = AB - BA$. On suppose que $C$ commute avec $A$ où $B$. Montrons que $C$ est nilpotente.
+    \begin{lem}{}{}
+        Soit $f$ un endomorphisme de $E$ diagonalisable. On note $\lambda_1,\ldots, \lambda_r$ ses valeurs propres et $E_{\lambda_1}, \ldots, E_{\lambda_r}$ les sous-espaces propres correspondants. Si $F$ est un sev de $E$ stable par $f$, alors on a 
+        \[ F = (F \cap E_{\lambda_1}) \oplus \cdots \oplus (F \cap E_{\lambda_{r}}) \]    
+    \end{lem}
+
+    \begin{demo}{Preuve}{mybrown}
+        Soit $x \in F$. Comme $x \in E$, il existe $x_1,\ldots,x_r$ uniques tels que $x_i \in E_{\lambda_i}$ et $x = x_1 + \ldots + x_r$. 
+
+        Le sous-espace $F$ est stable par $f$, donc également par $P(f)$ pour tout $P \in \mathbb{K}[X]$. Comme $x_i \in E_{\lambda_i}$, alors $f(x_i) = \lambda_i x_i$ et plus généralement $P(f)(x_i) = P(\lambda_i) x_i$. Pour $1 \leq i \leq r$, on définit 
+        \[ P_i(X) = \prod_{\substack{k = 1 \\ k \neq i}}^{r} (X - \lambda_k) \]    
+        On a ainsi $P_i(\lambda_j) = 0$ si $i \neq j$ et $P_i(\lambda_i) \neq 0$. On peut donc écrire 
+        \[ P_i(f)(x) = P_i(f)(x_1 + \ldots + x_r) = P_i(\lambda_i) x_i \]    
+        Or $P_i(f)(x) \in F$ par stabilité de $f$, donc $x_i \in F$. Ainsi, pour tout $1 \leq i \leq r$, $x_i \in F \cap E_{\lambda_i}$, d’où le résultat.
+    \end{demo}
+
+    \begin{lem}{}{}
+        Si $f$ est diagonalisable et $F$ est un sous-espace vectoriel de $E$, stable par $f$, alors la restriction de $f$ à $F$ est aussi diagonalisable. 
+    \end{lem}
+
+    Une preuve de ce lemme a déjà été faite dans la partie sur les polynôme d’endomorphismes, mais en voici une autre : 
+
+    \begin{demo}{Démonstration}{mybrown}
+        Notons $g$ la restriction de $f$ au sous-espace $F$. $g = \restr{f}{F}$ est bien définie car $F$ est stable par $f$. Soient $ \lambda_1,\ldots, \lambda_r$ les valeurs propres de $f$. L’endomorphisme $f$ étant supposé diagonalisable, on a 
+        \[ E = E_{\lambda_1} \oplus \cdots \oplus E_{\lambda_r} \]   
+        Ainsi, d’après le lemme précédent, 
+        \[ F = (F \cap E_{\lambda_1}) \oplus \cdots \oplus (F \cap E_{\lambda_r}) \]    
+        Or, quel que soit $\mu \in \mathbb{K}$, $\Ker(g - \mu \id) = F \cap \Ker(f - \mu \id)$, donc les valeurs propres de $g$, notées $\mu_1,\ldots,\mu_s$ appartiennent à l’ensemble $\left\{\lambda_1,\ldots,\lambda_r\right\}$. Ces $\mu_i$ forment exactement l’ensemble des valeurs propres de $f$ pour lesquels $F \cap E_{\lambda_i} \neq \left\{0\right\}$, et 
+        \[ F = \Ker(g - \mu_1 \id) \oplus \cdots \oplus \Ker(g - \mu_s \id) \]    
+        ce qui prouve que $g$ est diagonalisable.
+    \end{demo}
+
+    \begin{lem}{}{}
+        Soient $f,g$ deux endomorphismes diagonalisables. On suppose que $f \circ g = g \circ f$. Alors il existe une base commune de vecteurs propres de $f$ et de $g$. 
+    \end{lem}
+
+    Autrement dit, si $A,B \in \mk{n}$ sont diagonalisables et commutent, alors on peut les diagonaliser dans une base commune, \textit{i.e.} il existe $P \in \mk{n}$ inversible telle que $P^{-1} A P$ et $P^{-1} B P$ soient toutes les deux diagonales.
+
+    \begin{demo}{Preuve}{mybrown}
+        Soient $\lambda_1,\ldots,\lambda_r$ les valeurs propres de $f$. Notons $E_{\lambda_i} = \left\{x \in E, \quad f(x) = \lambda_i x\right\}$. On a alors, pour $x \in E_{\lambda_i}$., 
+        \[ f(g(x)) = g(f(x)) = g(\lambda_ix) = \lambda_i g(x) \]   
+        donc $g(x_i) \in E_{\lambda_ï}$, ce qui prouve que $E_{\lambda_i}$ est stable par $g$. D’après le lemme 4, la restriction de $g$ à $E_{\lambda_i}$ est donc diagonalisable. On considère, dans $E_{\lambda_i}$, une base $\mathcal{B}_i$ de vecteurs propres de $g$. Ce sont aussi des vecteurs propres de $f$, et comme $f$ est diagonalisable, 
+        \[ E = E_{\lambda_1} \oplus \cdots \oplus E_{\lambda_r} \]   
+        La base $\mathcal{B}_1 \cup \cdots \cup \mathcal{B}_r$ est donc une base de $E$ formée de vecteurs propres qui le sont à la fois pour $f$ et $g$.
+    \end{demo}
+
+    Passons désormais à la preuve du théorème. Voici l’idée générale :
+    \begin{itemize}
+        \item On décompose l’ev $E$ en somme des SE caractéristiques $N_{\lambda_i}$, où les $\lambda_i$ sont les valeurs propres de $f$ ;
+        \item Sur chacun de ces SE, on décompose la restriction de $f$ en $d_i + n_i$, avec $d_i = \lambda_i \id_{N_{\lambda_i}}$ qui est diagonalisable ;
+        \item On montre que $n_i$, qui est $f- d_i$ restreit à $N_{\lambda_i}$, est nilpotent ;
+        \item Comme $d_i$ est $\lambda_i$ fois l’identité, alors $d_i$ commute en particulier avec $n_i$.
+    \end{itemize}
+
+    \begin{demo}{Démonstration}{myred}
+        \begin{itemize}[label=\textcolor{myred}{$\to$}]
+            \item \textbf{Construction} \quad \begin{itemize}
+                \item Soit $\chi_f$ le polynôme caractéristique de $f$ qui est par hypothèse scindé sur $\mathbb{K}$. Notons $\lambda_i$ une valeur propre de $f$, et $m_i$ sa multiplicité : 
+                \[ \chi_f(X) = \pm \prod_{i = 1}^r (X - \lambda_i)^{m_i} \]   
+                Soient $N_{\lambda_i}$ les SE caractéristiques de $f$. Pour $i \in \intervalleEntier{1}{r}$, on a 
+                \[ N_{\lambda_i} = \Ker(f - \lambda_i  \id)^{m_i} \esp{et} E = N_{\lambda_1} \oplus \cdots \oplus N_{\lambda_r} \]    
+                \item Pour tout $N_{\lambda_i}$, on définit $d$ par \[ d : x \in N_{\lambda_i} \mapsto \lambda_i x \]   
+                L’espace vectoriel $E$ étant sommme directe des $N_{\lambda_i}$, $d$ est définie sur $E$ tout entier. En effet, si $x \in E$ est décomposé en $x = x_1 + \cdots + x_r$, avec $x_i \in N_{\lambda_i}$, alors 
+                \[ d(x) = \lambda_1 x_1 + \cdots + \lambda_r x_r \]   
+                On pose enfin $n(x) = f(x) - d(x)$. Il nous reste à vérifier que $n$ et $d$ conviennent.
+            \end{itemize}
+            \item \textbf{Propriétés} \begin{enumerate}
+                \item Par construction, $d$ est diagonalisable. En effet, fixons une base pour chaque SE $N_{\lambda_i}$. Pour chaque vecteur $x$ de cette base, $d(x) = \lambda_i x$. Comme $E$ est somme directe des $N_{\lambda_i}$, alors dans la base de $E$ formée de l’union des bases des $N_{\lambda_i}$, $d$ est diagonalisable.
+                \item On a défini $n = f - d$. $N_{\lambda_i}$ est stable par $n$ (car c’est vrai pour $f$ et $d$). On pose $n_i = \restr{n}{N_{\lambda_i}} = \restr{f}{N_{\lambda_i}} - \id_{N_{\lambda_i}}$. Alors par définition, $N_{\lambda_i} = \Ker(n_ï^{m_i})$, et donc $n_i^{m_i} = 0$. Ainsi, en posant $m = \max\left\{m_i\right\}_{i \in \intervalleEntier{1}{m}}$, on obtient que $n^m = 0$.
+                \item On va vérifier que $d \circ n = n \circ d$. Si $x \in E$, il se décompose en $x = x_1 + \cdots + x_r$ avec $x_i \in N_{\lambda_i}$. Sur chaque $N_{\lambda_i}$, $\restr{d}{N_{\lambda_i}}$ commute avec tout endomorphisme, en particulier avec $d \circ n(x_i) = n \circ d(x_i)$ puisque $N_{\lambda_i}$ est stable par $n$. On a donc 
+                \[ d \circ n(x) = d \circ n(x_1 + \cdots + x_r) = d \circ n(x_1) + \cdots + d \circ n(x_r) = n \circ d(x_1) + \cdots + n \circ d(x_r) = n \circ d(x) \]
+                Ainsi, $d$ et $n$ commutent.
+                \item Il reste à prouver l’unicité. Supposons que $(n,d)$ soit le couple construit ci-dessus et $(n', d')$ un autre couple vérifiant les propriétés \textbf{(i)}, \textbf{(ii)} et \textbf{(iii)} de la décomposition de Dunford.
+                \begin{itemize}
+                    \item Montrons que $d$ et $d'$ commutent, et $n$ et $n'$. On a $f = d + n = d' + n'$, donc 
+                    \[ d \circ f = d \circ (d + n) = (d + n) \circ d = f \circ d \]    
+                    car $n$ et $d$ commutent. Ainsi, $f$ et $d$ commutent, et il en va de même pour $d'$. Soit $x \in N_{\lambda_i} = \Ker(f - \lambda_i \id)^{m_i}$. Alors 
+                    \[ (f - \lambda_i \id)^{m_i} \circ d'(x) = d' \circ (f - \lambda_i \id)_{m_i}(x) = 0 \]   
+                    d’où $N_{\lambda_i}$ est stable par $d'$. Par construction, $\restr{d}{\lambda_{N_i}} = \lambda_i \id_{N_{\lambda_i}}$, donc $d$ et $d'$ commutent sur chaque $N_{\lambda_i}$ et donc sur $E$ tout entier.
+                    
+                    Or $n = f - d$ et $n' = f - d'$, donc $n$ et $n'$ commutent également.
+                    \item Comme $d$ et $d'$ commutent, d’après un des lemmes, il existe une base commune de vecteurs propres, en particulier, $d - d'$ est diagonalisable. 
+                    
+                    Comme les endomorphismes $n$ et $n'$ sont nilpotents et commutent, $n - n'$ est également nilpotent. 
+                    \item Ainsi, $d - d' = n' - n$ est un endomorphisme à la fois diagonalisable et nilpotent. Comme il est nilpotent, sa seule valeur propre est $0$ -- voir un lemme ci-dessus --. Et comme il est diagonalisable, c’est nécessairement l’endomorphisme nul. On a donc $d - d' = n' - n = 0$, ce qui donne l’unicité.
+                \end{itemize}
+            \end{enumerate}
+        \end{itemize}
+    \end{demo}
+
+    \begin{omed}{Piège classique}{myred}
+        Une matrice triangulaire peut toujours s’écrire comme somme d’une matrice diagonale et d’une matrice nilpotente, mais, en général, celles-ci ne commutent pas. 
+        \[ A = \begin{bmatrix}
+            1 & 3 \\
+            0 & 2
+        \end{bmatrix} \qquad D = \begin{bmatrix}
+            1 & 0 \\
+            0 & 2
+        \end{bmatrix} \qquad N = \begin{bmatrix}
+            0 & 3 \\
+            0 & 0
+        \end{bmatrix} \]   
+        en est un exemple : on n’a pas $ND = DN$, et la décomposition de Dunford n’est pas ainsi trouvée. La décomposition de Dunford est ici tout simplement $D = A$ et $N$ est la matrice nulle car $A$ est diagonalisable.
     \end{omed}
 
-    \begin{demo}{Solution}{myred}
-        On a tout d’abord $\tr(C) = \tr(AB) - \tr(BA) = 0$. Est-ce le cas pour tout $C^k$ où $k \in \intervalleEntier{1}{n}$ ? 
+    \begin{omed}{Pratique de la décomposition}{myred}
+        La méthode pour trouver la décomposition de Dunford d’une matrice $A \in \mk{n}$ consiste à suivre les étapes de la preuve : 
+        \begin{enumerate}
+            \item On calcule le polynôme caractéristique $\chi_A$ de $A$ : il doit être scindé. On calcule ses racines, qui sont les valeurs propres de $A$.
+            \item Pour chaque valeur propre $\lambda$, de multiplicité $m$, on note $N_{\lambda} = \Ker(A - \lambda \id)^m$. C’est un EV de dimension $m$. On détermine $m$ vecteurs formant une base de $N_{\lambda}$. L’union de toutes les bases $\mathcal{B}_{\lambda}$ des $N_{\lambda}$ forme une base $\mathcal{B} = (v_1,\ldots, v_n) \in \mathbb{K}^n$.
+            \item On définit l’endomorphisme $d$ par $d(v_i) = \lambda v_i$ pour chaque $v_i \in N_{\lambda}$. On peut remarquer que dans la base $\mathcal{B}$, la matrice de $d$ est diagonale. On note $\mathcal{B}_0 = (e_1,\ldots,e_n)$ la base canonique de $\mathbb{K}^n$, et $A$ la matrice de $f$ dans la base $\mathcal{B}_0$. Alors $\Delta$ sera la matrice de $d$ dans la base $\mathcal{B}_0$, \textit{i.e.} les colonnes de $\Delta$ sont les coordonnées de $d(e_i)$ exprimées dans la base $(e_1,\ldots, e_n)$. 
+            \item On pose $N = A - \Delta$. Par la démonstration du théorème de décomposition de Dunford, $\Delta$ est diagonalisable, $N$ est nilpotente et $\Delta N = N \Delta$. La matrice de passage $P$ de la base $\mathcal{B}$ vers la base canonique $\mathcal{B}_0$ transforme $\Delta$ en une matrice diagonale $D = P^{-1} \Delta P$.
+        \end{enumerate}
+    \end{omed}
 
-        Supposons arbitrairement que $C$ commute avec $A$. Alors $CA = AC$, et
-        \begin{align*}
-            \tr(C^k) 
-            &= \tr(C^{k-1}(AB - BA)) \\
-            &= \tr(C^{k-1} AB) - \tr(C^{k-1} BA) \\
-            &\quad \downarrow \quad A C^k = C^k A \\
-            &= \tr(A C^{k-1} B) - \tr(C^{k-1} BA) \\ 
-            &\quad \downarrow \quad \tr(XY) = \tr(YX) \\
-            &= 0
-        \end{align*} 
-    \end{demo}
+    \begin{omed}{Exemple}{myred}
+        Calculons la décomposition de Dunford de la matrice 
+        \[ A = \begin{bmatrix}
+            1 & 1 & 1 \\
+            0 & 1 & 1 \\
+            0 & 0 & 2
+        \end{bmatrix} \in \mathcal{M}_3(\mathbb{R}) \]   
+        \begin{enumerate}
+            \item Le polynôme caractéristique $\chi_A$ est égal à 
+            \[ \chi_A(X) = \det(A - X I_3) = \begin{vmatrix}
+                1 - X & 1 & 1 \\
+                0 & 1- X & 1 \\
+                0 & 0 & 2- X
+            \end{vmatrix} = -(X-1)^2(X-2) \]   
+            Nous avons donc deux valeurs propres qui sont $\lambda_1$ et $\lambda_2 = 2$. La valeur propre $1$ est de multiplicité $m_1 = 2$, alors que, pour la valeur propre 2, $m_2 = 1$.
+            \item On note $N_1 = \Ker(A - I_3)^2$ et $N_2 = \Ker(A - 2 I_3)$. L’espace vectoriel $\mathbb{R}^3$ s’écrit comme somme directe 
+            \[ \mathbb{R}^3 = \Ker(A - I_3)^2 \oplus \Ker(A - 2 I_3) \]    
+            Déterminons ces SE caractéristiques : 
+            \begin{itemize}
+                \item On sait que $N_1 = \Ker(A - I_3)^2$ est un EV de dimension $2$. 
+                \[ A - I_3 = \begin{bmatrix}
+                    0 & 1 & 1 \\
+                    0 & 0 & 1 \\
+                    0 & 0 & 1
+                \end{bmatrix} \qquad (A - I_3)^2 = \begin{bmatrix}
+                    0 & 0 & 2 \\
+                    0 & 0 & 1 \\
+                    0 & 0 & 1
+                \end{bmatrix} \]   
+                Ainsi, $N_1$ est le plan vectoriel engendré par les vecteurs $v_1 = (1,0,0)$ et $v_2 = (0,1,0)$, \textit{i.e.} $N_1 = \mathbb{R} v_1 + \mathbb{R} v_2$. Au passage, notons que la matrice $A$ n’est pas diagonalisable : en effet, la valeur $1$ est de multiplicité $2$, mais $E_1 = \Ker(A - I_3) = \left\{v \in \mathbb{R}^3, \quad Av = v\right\}$ est de dimension seulement $1$ car $E_1 = \mathbb{R} v_1$.
+                \item On sait que $N_2$ est un EV de dimension $1$. Pour déterminer le noyau $\Ker(A - I_3) = \left\{v \in \mathbb{R}^3, \quad Av = 2v\right\}$, si $v = (x,y,z)$, on résout :
+                \[ \left\{ \begin{array}{rcl}
+                    x + y + z & = & 2x \\
+                    y + z & = & 2y \\
+                    2z & = & 2z
+                \end{array} \right. \iff \et{x = 2z}{y = z} \]  
+                Le SE $N_2$ est donc la droite vectorielle engendrée par le vecteur $v_3 = (2,1,1)$ : $N_2 = \mathbb{R}v_3$. 
+                \item La famille $\mathcal{B} = (v_1, v_2, v_3)$ est une base de $\mathbb{R}^3$ : 
+                \[ \mathbb{R}^3 = \mathbb{R} v_1 \oplus \mathbb{R} v_2 \oplus \mathbb{R} v_3 \]   
+            \end{itemize}
+            \item On définit l’endomorphisme $d$ par $d(v_1) = v_1$, $d(v_2) = v_2$ et $d(v_3) = 2 v_3$. Dans la base $\mathcal{B}$, la matrice de $d$ est donc $D = \begin{bmatrix}
+                1 & 0 & 0 \\
+                0 & 1 & 0 \\
+                0 & 0 & 2 
+            \end{bmatrix}$. Or nous voulons la matrice de $d$ dans la base canonique $\mathcal{B}_0 = (e_1, e_2, e_3)$. 
+            \begin{align*}
+                d(e_1) &= d((1,0,0)) = (1,0,0) = e_1 \\
+                d(e_2) &= e_2 \\
+                d(e_3) &= d((0,0,1)) \\
+                &= d(-2v_1 - v_2 + v_3) \\
+                &= -2 d(v_1) - d(v_2) + d(v_3) \\
+                &= -2v_1 - v_2 + 2 v_3 \\
+                &= 2e_1 + e_2 + 2e_3
+            \end{align*}
+            Ainsi, 
+            \[ \Delta = \mat{\mathcal{B}_0}{d} = \begin{bmatrix}
+                1 & 0 & 2 \\
+                0 & 1 & 1 \\
+                0 & 0 & 2
+            \end{bmatrix} \]   
+            \item On pose \[ N = A - \Delta = \begin{bmatrix}
+                0 & 1 & -1 \\
+                0 & 0 & 0 \\
+                0 & 0 & 0
+            \end{bmatrix}\] La décomposition de Dunford est $A = \Delta + N$. La preuve du théorème de décomposition affirme que $\Delta$ est diagonalisable, $N$ est nilpotente et $\Delta N = N \Delta$. 
+            \item On note $P$ la matrice de passage de la base $\mathcal{B}_0$ vers la $\mathcal{B}$. $P$ contient donc, en colonnes, les vecteurs de la nouvelle base $\mathcal{B} = (v_1, v_2, v_3)$ exprimés dans l’ancienne base $\mathcal{B}_0 = (e_1, e_2, e_3)$. Comme $v_1 = e_1$, $v_2 = e_2$ et $v_3 = 2e_1 + e_2 + e_3$, alors 
+            \[ P = \begin{bmatrix}
+                1 & 0 & 2 \\
+                0 & 1 & 1 \\
+                0 & 0 & 1
+            \end{bmatrix} \esp{et on calcule} P^{-1} = \begin{bmatrix}
+                1 & 0 & -2 \\
+                0 & 1 & -1 \\
+                0 & 0 & 1
+            \end{bmatrix} \]   
+            Si besoin, on peut diagonaliser $\Delta$ : 
+            \[ D = P^{-1} \Delta P = \begin{bmatrix}
+                1 & 0 & 0 \\
+                0 & 1 & 0 \\
+                0 & 0 & 2
+            \end{bmatrix} \]    
+        \end{enumerate}
+    \end{omed}
+
+    $D$ et $N$ sont uniques, mais il y a plusieurs choix possibles pour les vecteurs $v_i$ et donc pour la matrice $P$.
+
+    \begin{omed}{Application au calcul de puissance}{myred}
+        La décomposition de Dunford est utile pour calculer les puissances d’une matrice. Voyons les étapes pour calculer $A^p$, où $A \in \mk{n}$.
+        \begin{enumerate}
+            \item Écrire la décomposition de Dunford $A = \Delta + N$.
+            \item Diagonaliser $\Delta$ en $D = P^{-1} \Delta P$ où $D$ est diagonale. On peut ainsi calculer $D^k$ facilement pour $k \geq 0$.
+            \item On note $N' = P^{-1} N P$. la matrice $N'$ est toujours nilpotente, et on calcule ses puissances successives en sachant qu’APCR, tous les $N'^k$ sont nuls.
+            \item Comme $D$ et $N'$ commutent (car $\Delta$ et $N$ commutent), on applique la formule du binôme de Newton : 
+            \[ (D + N')^p = \sum_{k=0}^{p} \binom{p}{k} D^{p-k} N'^k \]   
+            La somme a peu de termes non nuls car $N'^k$ est nulle APCR.
+            \item Finalement, on a $A = \Delta + N = P(D + N') P^{-1}$. 
+            \[ A^p = P(D + N')P^{-1} \]   
+        \end{enumerate}
+    \end{omed}
+
+\subsection{Réduction de Jordan}
+
+    Nous allons montrer que toute matrice, dont le polynôme caractéristique est scindé, est semblable à une matrice diagonale par blocs, avec blocs « presque diagonaux ».
+
+    \begin{defi}{}{}
+        Un \textbf{bloc de Jordan} est une matrice de la forme 
+        \[ J(\lambda) = \begin{bmatrix}
+            \lambda & 1 & 0 & 0 \\
+            0 & \lambda & \ddots & 0 \\
+            \vdots & \ddots & \ddots & 1 \\
+            0 & \cdots & 0 & \lambda
+        \end{bmatrix} \in \mk{p} \]   
+        avec $\lambda \in \mathbb{K}$ et $p \geq 1$. 
+    \end{defi}
+
+    C’est donc une matrice triangulaire supérieure, avec des coeffictiens $\lambda$ sur la diagonale, des 1 juste au-dessus, puis des 0 encore au-dessus. 
+
+    On peut montrer par exemple que $(J(\lambda) - \lambda I_p)^p = 0$, et que le polynôme caractéristique de $J(\lambda)$ est $(-1)^p(X - \lambda)^p$. Son polynôme minimal est $(X - \lambda)^p$.
+
+    \begin{defi}{}{}
+        Une \textbf{Matrice de Jordan} est une matrice diagonale par blocs de la forme 
+        \[ \begin{bmatrix}
+            J_1(\lambda_1) & 0 & \cdots & 0 \\
+            0 & J_2(\lambda_2) & \ddots & \vdots \\
+            \vdots & \ddots & \ddots & 0 \\
+            0 & \cdots & 0 & J_r(\lambda_r) 
+        \end{bmatrix} \]  
+        où les $J_i(\lambda_i)$ sont des blocs de Jordan.
+    \end{defi}
+
+    Les blocs de Jordan peuvent être de tailles différentes, et les valeurs $\lambda_i \in \mathbb{K}$ sont quelconques, et peuvent être égales.
+
+    \begin{theo}{Réduction de Jordan, version matricielle}{}
+        Soit $A \in \mk{n}$ une matrice de polynôme caractéristique scindé sur $\mathbb{K}$. Alors $A$ est semblable sur $\mathbb{K}$ à une matrice de Jordan, appelée \textbf{réduite de Jordan} de $A$. Il existe donc $P \in \mk{n}$ inversible telle que 
+        \[ P^{-1} A P = \diag(J_1,\ldots,J_r) \]   
+        où les $J_i$ sont des blocs de Jordan
+    \end{theo}
+
+    \begin{theo}{Réduction de Jordan, version endomorphismes}{}
+        Soit $f$ un endomorphisme de $E$ dont le polynôme caractéristique $\chi_f(X)$ est scindé sur $\mathbb{K}$. Il existe une base $\mathcal{B}$ de $E$ où la matrice de $f$ est de Jordan, \textit{i.e.} 
+        \[ \mat{\mathcal{B}}{f} = \diag(J_1,\ldots,J_r) \]   
+    \end{theo}
+
+    Nous admettons ces théorèmes, mais nous verrons sur des exemples comment obtenir la matrice de Jordan. 
+
+    Les $\lambda$ qui apparaissent dans les blocs de Jordan sont les valeurs propres de $A$, (ou de $f$) et donc les racines du polynôme caractéristique. Une même valeur de $\lambda$ peut apparaître dans plusieurs blocs différents. EP, ce théorème s’applique à toutes les matrices complexes. 
+
+    Cette décomposition est unique dans le sens où le nombre est la taille des blocs de Jordan ne dépendent que de $A$ (ou de $f$). Par contre, on s’autorise à permuter les blocs de Jordan entre eux.
+
+    Le nombre de blocs associés à la valeur propre $\lambda$ est égal à la dimension du sous-espace propre $E_{\lambda}$. La somme des tailles des blocs de Jordan associés à $\lambda$ est la multiplicité de $\lambda$ comme racine du polynôme caractéristique. La taille du plus grand bloc de Jordan associé à $\lambda$ est la multiplicité de $\lambda$ comme racine du polynôme minimal.
+
+    \begin{omed}{Méthode}{myred}
+        \begin{enumerate}
+            \item Calculer le polynôme caractéristique et les valeurs propres de $A$.
+            \item Pour chaque valeur propre $\lambda$, calculer le SEP $E_{\lambda} = \Ker(A - \lambda I_n)$ et trouver une base de $E_{\lambda}$. Le nombres de blocs de Jordan associés à $\lambda$ est $\dim E_{\lambda}$. 
+            \item Pour chaque vecteur propre de la base de $E_{\lambda}$, on construit le bloc de Jordan associé : 
+            \begin{itemize}
+                \item Si $v_1 \in E_{\lambda}$ est un vecteur propre de la base de $E_{\lambda}$, on cherche $v_2 \in \mathbb{K}^n$ tel que $(A - \lambda I_n) v_2 = v_1$.
+                \item Puis on cherche s’il existe $v_3 \in \mathbb{K}^n$ tel que $(A - \lambda I_n) v_3 = v_2$. 
+                \item On arrête le processus lorsqu’il n’y a pas de solution.
+                \item On a $Av_1 = \lambda v_1$, $Av_2 = v_1 + \lambda v_2$, \ldots, $A v_p = v_{p-1} + \lambda v_p$.
+                \item Donc, dans le SE engendré par ces $(v_1,\ldots,v_p)$, la matrice associée à $A$, dans cette base, est exactement le bloc de Jordan 
+                \[ J(\lambda) = \begin{bmatrix}
+            \lambda & 1 & 0 & 0 \\
+            0 & \lambda & \ddots & 0 \\
+            \vdots & \ddots & \ddots & 1 \\
+            0 & \cdots & 0 & \lambda
+        \end{bmatrix} \in \mk{p} \]
+                \item On peut aussi savoir quand s’arrêter en utilisant le fait que le bloc de Jordan est toujours d’une taille $p$ inférieure ou égale à la multiplicité de $\lambda$ comme racine du polynôme caractéristique (et même du polynôme minimal).    
+            \end{itemize}
+            \item On procède ainsi pour tout SEP de $A$, et on obtient une matrice réduite de Jordan.
+        \end{enumerate}
+    \end{omed}
+
+    \begin{omed}{Exemple}{myred}
+        Soit 
+        \[ A = \begin{bmatrix}
+            4 & 3 & -2 \\
+            -3 & -1 & 3 \\
+            2 & 3 & 0 
+        \end{bmatrix} \in \mathcal{M}_3(\mathbb{R}) \]   
+        Calculons sa réduite de Jordan $J$ et une matrice de passage $P$ telle que $P^{-1} A P = J$.
+        \begin{enumerate}
+            \item On commence par calculer le polynôme caractéristique de $A$ : 
+            \[ \chi_A(X) = \det(A - X I_3) = \begin{vmatrix}
+                4 - X & 3 & -2 \\
+                -3 & -1 -X & 3 \\
+                2 & 3 & -X
+            \end{vmatrix} = -(X + 1)(X - 2)^2 \]   
+            Il y a donc deux valeurs propres $-1$ et $2$. 
+            \item Valeur propre $-1$. \quad La valeur propre -1 est de multiplicité $1$. Le sous-espace propre associé $E_{-1} = \Ker(A + I_3) = \left\{v \in \mathbb{R}^3, \quad A v = -v\right\}$ est donc de dimension $1$. Après calculs, on trouve que $E_{-1} = \mathbb{R} v_1$ où $v_1 = (-1, 1 ,-1)$. Comme la multiplicité de $-1$ comme racine de $\chi_{A}(X)$ est $1$, alors la valeur propre $-1$ sera juste associée à un bloc de Jordan de taille $1 \times 1$.
+            \item Valeur propre $2$. \quad La valeur propre $2$ est de multiplicité $2$. Il faut déterminer le sous-espace propre associé à $E_2 = \Ker(A - 2 I_3) = \left\{v \in \mathbb{R}^3, \quad A v = 2 v \right\}$. Après calculs, on trouve que $E_2 = \mathbb{R} v_2$ où $v_2 = (1,0,1)$. Comme $E_2$ est un EV de dimension $1$, alors que $2$ est de multiplicité $2$, la matrice $A$ n’est pas diagonalisable, et on sait alors que la valeur propre $2$ sera associée à un bloc de Jordan de taille $2 \times 2$. 
+            \item Bloc de Jordan. \quad On cherche $v_3 \in \mathbb{R}^3$ tel que $(A - 2I_3) v_3 = v_2$. Si $v_3 = (x,y,z)$, alors 
+            \begin{align*}
+                (A - 2 I_3) v_3 = v_2 &\iff \begin{bmatrix}
+                    2 & 3 & -2 \\
+                    -3 & -3 & 3 \\
+                    2 & 3 & -2
+                \end{bmatrix} \begin{bmatrix}
+                    x \\
+                    y \\
+                    z
+                \end{bmatrix} = \begin{bmatrix}
+                    1 \\
+                    0 \\
+                    1
+                \end{bmatrix} \\
+                &\iff \et{2x + 3y - 2z = 1}{x + y - z = 0} \\
+                &\iff \et{x = -1 + z}{y = 1}
+            \end{align*}
+            En prenant par exemple $z = 0$, on choisit $v_3 = (-1,1,0)$.
+            \item Matrice de Jordan. \quad Dans la base $(v_1,v_2,v_3)$, on a $A v_1 = - v_1$, $A v_2 = 2 v_2$ et $(A - 2 I_3) v_3 = v_2$, \textit{i.e.} $A v_3 = v_2 + 2v_3$. La matrice associée à $A$ dans la base $(v_1, v_2,v_3)$ est donc 
+            \[ J= \begin{bmatrix}
+                -1 & 0 & 0 \\
+                0 & 2 & 1 \\
+                0 & 0 & 2
+            \end{bmatrix}
+            \]  
+            Autrement dit, $J = P^{-1} A P$ où $P$ est la matrice dont les colonnes sont les vecteurs sont $v_1, v_2,v_3$ exprimés dans la base canonique : 
+            \[ P = \begin{bmatrix}
+                -1 & 1 & -1 \\
+                1 & 0 & 1 \\
+                -1 & 1 & 0
+            \end{bmatrix} \]   
+        \end{enumerate}
+    \end{omed}
+
+    \begin{omed}{Applications}{myred}
+        \begin{itemize}
+            \item Si $A \in \mathcal{M}_n(\mathbb{C})$, alors $A$ est semblable à sa transposée $A^{T}$. En effet, il suffit de le vérifier lorsque $A$ est un bloc de Jordan.
+            \item Si $N \in \mk{4}$ est nilpotente, alors $N$ est semblable à une et une seule des $5$ matrices suivantes :
+            \[ \begin{bmatrix}
+                0 & 0 & 0 & 0 \\
+                0 & 0 & 0 & 0 \\
+                0 & 0 & 0 & 0 \\
+                0 & 0 & 0 & 0
+            \end{bmatrix} \quad \begin{bmatrix}
+                0 & 1 & 0 & 0 \\
+                0 & 0 & 0 & 0 \\
+                0 & 0 & 0 & 0 \\
+                0 & 0 & 0 & 0
+            \end{bmatrix} \quad \begin{bmatrix}
+                0 & 1 & 0 & 0 \\
+                0 & 0 & 0 & 0 \\
+                0 & 0 & 0 & 1 \\
+                0 & 0 & 0 & 0
+            \end{bmatrix} \quad \begin{bmatrix}
+                0 & 1 & 0 & 0 \\
+                0 & 0 & 1 & 0 \\
+                0 & 0 & 0 & 0 \\
+                0 & 0 & 0 & 0
+            \end{bmatrix} \quad \begin{bmatrix}
+                0 & 1 & 0 & 0 \\
+                0 & 0 & 1 & 0 \\
+                0 & 0 & 0 & 1 \\
+                0 & 0 & 0 & 0
+            \end{bmatrix} \]   
+            Il y a une infinité de matrices nilpotentes $4 \times 4$, mais uniquement $5$ à une similitude près.
+        \end{itemize}
+    \end{omed}
+
+\newpage
 
 \section[Endom. sur un espace euclidien]{Endomorphismes sur un espace euclidien}
 

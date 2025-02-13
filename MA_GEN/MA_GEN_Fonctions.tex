@@ -1321,9 +1321,11 @@
         \end{align*}
     \end{demo}
 
-\section{Fonctions de plusieurs variables}
+\section{Calcul différentiel}
 
-\subsection{Fonctions continues sur un ouvert de R2}
+\subsection{Fonctions numériques de deux variables}
+
+    \subsubsection{Continuité}
 
     \begin{defi}{Boules}{}
         Soient $(x_0,y_0) \in \mathbb{R}^2$ et $r > 0$.
@@ -1413,11 +1415,9 @@
         On adapte la démonstration sur la limite d’une composée de fonctions de la variable réelle.
     \end{demo}
 
-\subsection{Dérivation partielles et fonctions de classe C1}
+    \subsubsection{Dérivées partielles premières}
 
-    \subsubsection{Dérivée partielle}
-
-    \begin{defi}{Dérivée suivant un vecteur}{}
+    \begin{defi}{Dérivée directionnelle}{}
         \begin{soient}
             \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
             \item $f \in \mathcal{F}(\mathcal{U},\mathbb{R})$
@@ -1481,8 +1481,6 @@
         La définition est similaire pour la dérivée partielle par rapport à la seconde variable.
     \end{prop}
 
-    \subsubsection{Fonctions de classe C1 sur un ouvert de R2}
-
     \begin{defi}{Fonctions de classe $\mathcal{C}^1$}{}
         \begin{soient}
             \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
@@ -1542,8 +1540,6 @@
         Alors $g \circ f \in \mathcal{C}^1(\mathcal{U},\mathbb{R})$ et 
         \[ \nabla (g \circ f)(x_0,y_0) = g'(f(x_0,y_0)) \nabla f(x_0,y_0) \] 
     \end{prop}
-
-    \subsubsection{Développement limité à l’ordre 1}
 
     \begin{theo}{Développement limité à l’ordre $1$ d’une fonction de classe $\mathcal{C}^1$}{}
         \begin{soient}
@@ -1634,6 +1630,52 @@
             \frac{\partial F}{\partial \theta}(r,\theta) &= -y \frac{\partial f}{\partial x}(x,y) + x \frac{\partial f}{\partial y}(x,y) \\
         \end{align*}
     \end{omed}
+
+    \subsubsection{Dérivées partielles secondes}
+
+    On étudie désormais les dérivées partielles secondes, qui sont au nombre de 4 : $\frac{\partial^2 f}{\partial x^2}$, $\frac{\partial^2 f}{\partial y^2}$, $\frac{\partial^2 f}{\partial x \partial y}$ et $\frac{\partial^2 f}{\partial y \partial x}$.
+
+    \begin{defi}{}{}
+        On dit que $f$ est de classe $\mathcal{C}^2$ sur un ouvert $\mathcal{U}$ de $\mathbb{R}^2$ si les dérivées partielles secondes existent et sont continues en tout point de $\mathcal{U}$. 
+    \end{defi}
+
+    \begin{theo}{Théoème de Schwarz}{}
+        Soit $f : \mathcal{U} \to \mathbb{R}^2$ une application de classe $\mathcal{C}^2$ sur un ouvert $\mathcal{U}$ de $\mathbb{R}^2$. Alors 
+        \[ \forall (x_0,y_0) \in \mathcal{U}, \quad \frac{\partial^2 f}{\partial y \partial x}(x_0,y_0) = \frac{\partial^2 f}{\partial x \partial y}(x_0,y_0) \]   
+    \end{theo}
+
+    \begin{theo}{Formule de Taylor-Young à l’ordre 2}{}
+        Si $f$ est de classe $\mathcal{C}^2$ sur un ouvert $\mathcal{U}$ de $\mathbb{R}^2$, alors pour tout $(x_0,y_0) \in \mathcal{U}$, 
+        \begin{multline*}
+            f(x_0 + h, y_0 + k) = f(x_0, y_0) + \dpart{f}{x}(x_0,y_0) \cdot h + \dpart{f}{y}(x_0,y_0) \cdot k \\
+            + \frac{1}{2} \left[\frac{\partial^2 f}{\partial x^2}(x_0,y_0) \cdots h^2 + 2 \frac{\partial^2 f}{\partial x \partial y}(x_0,y_0) h k + \frac{\partial^2 f}{\partial y^2}(x_0,y_0) k^2 \right] + o(h^2 + k^2)
+        \end{multline*}
+    \end{theo}
+
+    Cette dernière formule rendra de précieux services dans l’étude des extrema d’une fonction numérique.
+
+    \subsubsection{Exemple de résolution d’équations aux dérivées partielles} 
+
+    Nous n’aborderons la résolution d’équations aux dérivées partielles (EDP) qu’à travers des exemples relativement simples et, à ce titre, très restreints. $\mathcal{U}$ désignera ici l’ouvert $I \times J$ où $I$ et $J$ sont deux intervalles ouverts et $f$ solution des EDP proposées. Nous justifierons dans la partie suivante le choix d’un tel domaine.
+    \begin{itemize}
+        \item Si $\forall (x,y) \in \mathcal{U}$, $\dpart{f}{x}(x,y) = 0$, alors $\forall (x,y) \in \mathcal{U}$,  $f(x,y) = \varphi(y)$ avec $\varphi : J \to \mathbb{R}$. 
+        \item Si $\forall (x,y) \in \mathcal{U}$, $\dpart{f}{x}(x,y) = g(x,y)$, alors $\forall (x,y) \in \mathcal{U}$,  $f(x,y) = \int g(x,y) dx +  \varphi(y)$ avec $\varphi : J \to \mathbb{R}$.
+        \item Si $\forall (x,y) \in \mathcal{U}$, $\frac{\partial^2 f}{\partial x^2}(x,y) = 0$, alors $\forall (x,y) \in \mathcal{U}$,  $f(x,y) = \varphi(y)x + \psi(y)$ avec $\varphi, \psi : J \to \mathbb{R}$.
+        \item Si on est face à une équation de d’Alembert, de la forme 
+        \[ \forall (x,t) \in \mathbb{R}^2, \quad \frac{\partial^2 f}{\partial x^2} (x,t) = \frac{1}{c^2} \frac{\partial^2 f}{\partial t^2}(x,t) \qquad (c \neq 0) \]   
+        On passe par le changement de variables de classe $\mathcal{C}^2$ et bijectif (car $c \neq 0$) :  $\et{u = x-ct}{v = x + ct}$. En partant de $f(x,t) = g(u,v)$, on cherche une EDP vérifiée par $g$.
+        \begin{align*}
+            \dpart{f}{x} &= \dpart{g}{u} \dpart{u}{x} + \dpart{g}{v} \dpart{v}{x} = \dpart{g}{u} + \dpart{g}{v} \\
+            \frac{\partial^2 f}{\partial x^2} &= \left(\frac{\partial^2 g}{\partial^2 u} \dpart{u}{x} + \frac{\partial^2 g}{\partial v \partial u} \dpart{v}{x}\right) + \left(\frac{\partial^2 g}{\partial^2 v} \dpart{u}{x} + \frac{\partial^2 g}{\partial u \partial v} \dpart{v}{x}\right) \\
+            &= \frac{\partial^2 g}{\partial^2 u} + 2 \frac{\partial^2 g}{\partial u \partial v} + \frac{\partial^2 g}{\partial^2 v}
+        \end{align*}
+        De même, on trouve 
+        \[ \frac{\partial^2 f}{\partial t^2} = c^2 \left(\frac{\partial^2 g}{\partial^2 u} - 2 \frac{\partial^2 g}{\partial u \partial v} + \frac{\partial^2 g}{\partial^2 v}\right) \]   
+        L’équation devient donc, $\forall (u,v) \in \mathbb{R}^2$, 
+        $\frac{\partial^2 g}{\partial u \partial v} = 0$, et donc 
+        \[ f(x,t) = \varphi(x-ct) + \psi(x + ct) \]   
+        
+    \end{itemize}
 
 \subsection{Extremum d’une fonction de R2 dans R}
 

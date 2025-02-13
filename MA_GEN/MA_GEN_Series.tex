@@ -1532,6 +1532,41 @@
         OP $f_n : x \mapsto a_n x^n$, qui est $\mathcal{C}^0$ sur $\intervalleOO{-R}{R}$. De plus, $\sum f_n$ converge normalement donc uniformément sur tout $\intervalleFF{a}{b} \subset \intervalleOO{-R}{R}$, donc $S$ est continue (d’après le théorème de continuité pour une somme de série de fonction).
     \end{demo}
 
+    On se place désormais dans le cas réel. Rappelons que la fonction somme est alors définie sur $\intervalleFO{-R}{R}$, $\intervalleOO{-R}{R}$, $\intervalleFO{-R}{R}$ ou $\intervalleFF{-R}{R}$. Si le théorème précédent garanti la continuité de la somme sur $\intervalleOO{-R}{R}$, il ne dit rien de l’éventuelle continuité en $R$ et $-R$ en cas de convergence. 
+    
+    Remarquons que si la série $\sum a_n R^n$ converge absolument, $\sum a_n x^n$ converge normalement sur $\intervalleFF{-R}{R}$ puisque 
+    \[ \forall x \in \intervalleFF{-R}{R}, \quad \abs{a_n x^n} \leq \abs{a_n} R^n \]   
+    Dans ce cas, la somme est continue sur $\intervalleFF{-R}{R}$. Le résutat reste vrai en cas de semi-convergence comme l’exprime le théorème de convergence radial d’Abel.
+
+    \begin{theo}{Théorème de convergence radial d’Abel}{}
+        Soit $S(x) = \sum_{n=0}^{+\infty} a_n x^n$ telle que $\sum a_n x^n$ est de rayon de convergence $R > 0$ et $\sum a_n R_n$ converge, alors $S$ est continue en $R$ \textit{i.e.} 
+        \[ \lim_{x \to R^-} S(x) = S(R) \]  
+    \end{theo}
+
+    \begin{demo}{Preuve}{myred}
+        Quitte à procéder à un changement de variable, on peut se contenter de montrer le résultat pour une série entière $\sum a_n x^n$ de RDC $R = 1$. Supposons donc que $\sum a_n$ converge et montrons que $f(x) = \sum_{n = 0}^{+\infty} a_n x^n \limi{x}{1^-} \sum_{n=0}^{+\infty} a_n = S$.
+        \begin{itemize}
+            \item Soit $x \in \intervalleFO{0}{1}$ et $p \in \mathbb{N}$. En notant $R_n$ le reste de la série $\sum a_n$ au rang $n$, 
+            \begin{align*}
+                \sum_{n=1}^{p} a_n x^n - \sum_{n=1}^{p} a_n 
+                &= \sum_{n=1}^{p} a_n (x^n - 1) \\
+                &= \sum_{n=1}^{p} (R_{n-1} - R_n)(x^n - 1) \\
+                &= \sum_{n=0}^{p-1} R_n (x^{n+1} - 1) - \sum_{n=1}^{p} R_n (x^n - 1) \\
+                &= (x-1) \sum_{n=0}^{p} R_n x^n + (1 - x^p) R_p 
+            \end{align*}
+            En faisant tendre $p$ vers $+\infty$, il vient que $f(x)- S = (x-1) \sum_{n=0}^{+\infty} R_n x^n$.
+            \item Soient maintenant $\varepsilon > 0$ et $x \in \intervalleFO{0}{1}$. Comme $R_n \limi{n}{+\infty} 0$, il existe $p \in \mathbb{N}^*$ tel que $\abs{R_p} < \varepsilon$. Ainsi, 
+            \[ \abs{f(x) - S} < (1 - x) \sum_{n=0}^{+\infty} \abs{R_n} x^n < (1 - x) \sum_{n = 0}^{p-1} \abs{R_n} x^n + (1 - x)\varepsilon \sum_{n=p}^{+\infty} x^n < (1 - x) \sum_{n=0}^{p-1} \abs{R_n} x^n + \varepsilon \]  
+            De plus, $(1-x) \sum_{n=0}^{p-1} \abs{R_n} x^n \limi{x}{1^-} 0$ donc il existe $\delta$ tel que pour tout $x \in \intervalleOF{1 - \delta}{1}$, $(1 - x) \sum_{n=0}^{p-1} \abs{R_n} x^n < \varepsilon$. Ainsi, pour pour tout $x \in \intervalleOF{1 - \delta}{1}$, $\abs{f(x) - S} < 2 \varepsilon$.  
+        \end{itemize}
+    \end{demo}
+
+    L’argument précédent étant valable pour $x = -R$, on obtient le précieux corollaire suivante, valable uniquement pour les SE$\mathbb{R}$ : 
+
+    \begin{coro}{}{}
+        La somme d’une série entière de la variable réelle est continue sur l’intervalle de convergence.
+    \end{coro}
+
     \subsubsection{Intégration terme à terme}
 
     \begin{theo}{Intégration terme à terme}{}

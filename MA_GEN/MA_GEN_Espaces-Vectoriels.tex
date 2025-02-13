@@ -1186,9 +1186,185 @@
 
 Dans tout ce chapitre, $\mathbb{K}$ désignera $\mathbb{R}$ ou $\mathbb{C}$, et $\left(E,\norm{.}_E\right), \left(F, \norm{.}_F\right)$ deux espaces vectoriels normés. En l’absence d’ambiguïté, on emploiera la notation $\norm{.}$ pour désigner la norme associée à l’un ou l’autre de ces espaces.
 
+\subsection{Norme}
+
+    \subsubsection{Norme et distance}
+
+    \begin{defi}{Norme}
+        \begin{defi}{Norme}{}
+            Soit $E$ un $\mathbb{R}$-ev.
+            
+            Une \textbf{norme} sur $E$ est une application $N$ définie sur $E$ à valeurs dans $\mathbb{R}$ telle que 
+            \begin{itemize}
+                \item $\forall x \in E, \, N(x) \geq 0$
+                \item $\forall x \in E, \, N(x) = 0 \implies x = 0$ \quad (séparation)
+                \item $\forall \lambda \in \mathbb{R}, \, \forall x \in E, \, N(\lambda x) = \abs{\lambda}N(x)$ \quad (homogénéité positive)
+                \item $\forall (x,y) \in E^2, \, N(x+y) \leq N(x) + N(y)$ \quad (inégalité triangulaire)
+            \end{itemize}
+        \end{defi}
+    \end{defi}
+
+    \begin{defi}{Espace vectoriel normé}{}
+        Un \textbf{espace vectoriel normé} (EVN) est un couple $(E, N)$ où $N$ est une norme sur un espace vectoriel $E$.
+    \end{defi}
+
+    Pour la suite, on choisira généralement la notation $(E, \norm{.})$ pour désigner un espace vectoriel normé.
+
+    \begin{prop}{Inégalité triangulaire étendue}{}
+        Si $x,y \in E$, 
+        \[ \abs{\norm{x} - \norm{y}} \leq \norm{x + y} \leq \norm{x} + \norm{y} \]   
+    \end{prop}
+    
+    \begin{demo}{Preuve}{myolive}
+        $\norm{x} = \norm{x + y - y} \leq \norm{x + y} + \norm{x}$ par inégalité triangulaire. Les rôles de $x$ et $y$ sont symétriques.
+    \end{demo}
+
+    \begin{omed}{Exemples dans $\mathbb{K}^n$}{myyellow}
+        Dans $E = \mathbb{K}^n$, on définit les normes suivantes, avec $x = (x_1,\ldots,x_n)$ :
+        \begin{align*}
+            \nnorm{1}{x} &= \sum_{i=1}^{n} \abs{x_i} \\
+            \nnorm{2}{x} &= \sqrt{\sum_{i=1}^{n} \abs{x_i}^2} \\
+            \nnorm{p}{x} &= \left(\sum_{i=1}^{n} \abs{x_i}^p\right) \\
+            \nnorm{\infty}{x} = \sup\left\{\abs{x_i}, \quad i \in \intervalleEntier{1}{n}\right\} = \max\left\{\abs{x_i}, \quad i \in \intervalleEntier{1}{n}\right\}
+        \end{align*}
+    \end{omed}
+
+    \begin{omed}{Exemples dans $\mathcal{C}(\intervalleFF{a}{b},\mathbb{K})$}{myyellow}
+        Soit $E = \mathcal{C}(\intervalleFF{a}{b}, \mathbb{K})$, on définit les normes suivantes :
+        \begin{align*}
+            \nnorm{1}{x} &= \int_{a}^{b} \abs{f(t)}dt \\
+            \nnorm{2}{x} &= \sqrt{\int_{a}^{b} \abs{f(t)}^2 dt} \\
+            \nnorm{p}{x} &= \left(\int_{a}^{b} \abs{f(t)}^p dt\right) \\
+            \nnorm{\infty}{x} = \sup\left\{\abs{f(t)}, t \in \intervalleFF{a}{b}\right\} = \max\left\{\abs{f(t)}, t \in \intervalleFF{a}{b}\right\}
+        \end{align*}
+        On peut passer de sup à max car toute fonction continue sur un segment est bornée et atteint ses bornes.
+    \end{omed}
+
+    \begin{defi}{Distance}{}
+        Pour $x,y \in E$, on appelle \textbf{distance} de $x$ à $y$ le réel 
+        \[ d(x,y) = \norm{x-y} \]   
+        On parle de distance à un ensemble $F \subset E$ pour $x \in E$, lorsque l’on traite du réel 
+        \[ d(x,F) = \inf\left\{\norm{x-y}, \quad y \in F\right\} \]   
+    \end{defi}
+
+    \subsubsection{Suites dans un espace vectoriel normé}
+
+    On considère, sauf mention contraire, une suite $(u_n)$ de $E^{\mathbb{N}}$.
+
+    \begin{defi}{Suite bornée}{}
+        On dit que $(u_n)$ est bornée s’il existe $M \geq 0$ tel que 
+        \[ \forall n \in \mathbb{N}, \quad \norm{u_n} \leq M \]   
+    \end{defi}
+
+    \subsubsection{Comparaison de normes}
+
+    \begin{prop}{}{}
+        Soient $N$ et $N'$ deux normes définies sur un même espace vectoriel $E$. Toute suite convergeant au sens de $N$ converge aussi au sens de $N'$ \textit{ssi} il existe $\alpha \in \mathbb{R}_+^*$ tel que pour tout $x \in E$, $N'(x) \leq \alpha N(x)$.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        On peut se ramener sans perte de généralité au cas des suites CV vers $0$. 
+        \begin{itemize}
+            \item[$\impliedby$] Si $(u_n) \to 0$ au sens de la norme $N$, alors $N'(u_n) \to 0$ pareil.
+            \item[$\implies$] Montrons la contraposée. Cela revient à supposer que pour tout réel strictement positif $\alpha$, il existe $x \in E$ tel que $N'(x) > \alpha N(x)$ et à montrer qu’il existe une suite ne respectant pas la proposition. Construisons une telle suite en associant à chaque entier $\alpha = n$ un élément $x_n \in E$ tel que $N'(x_n) > n N(x_n)$. Dès lors, $x_n \neq 0$ et si on pose $u_n = \frac{x_n}{\sqrt{n} N(x_n)}$, $N(u_n) \to 0$ mais $N'(u_n) \to +\infty$.
+        \end{itemize}
+    \end{demo}
+
+    \begin{defi}{Normes équivalentes}{}
+        Soient $N_1$ et $N_2$ deux normes sur $E$. On dit que $N_1$ et $N_2$ sont \textbf{équivalentes} s’il existe $\alpha, \beta \in \mathbb{R}_+^*$ tels que 
+        \[ \alpha N_1 \leq N_2 \leq \beta N_1 \]   
+    \end{defi}
+
+    L’équivalence entre les normes est une relation d’équivalence. On peut la traduire géométriquement au moyen de boules : en reprenant les notations de la définition, on a 
+    \[ \mathcal{B}_1(0,\frac{1}{\beta}) \subset \mathcal{B}_2(0,1) \subset \mathcal{B}_1(0,\frac{1}{\alpha}) \]  
+    \textit{i.e.} toute boule de la norme $2$ est comprise entre deux boules de la norme $1$. 
+
+    \begin{prop}{}{}
+        Deux normes sont équivalentes \textit{ssi} toute suite convergent pour l’une converge pour l’autre.
+    \end{prop}
+
+    On admet provisoirement une propriété fort pratique :
+
+    \begin{theo}{Équivalence des normes en dimension finie}{}
+        En dimension finie, toutes les normes sont équivalentes.
+    \end{theo}
+
+    La convergence d’une suite ne dépend donc pas de la norme choisie en dimension finie. Commençons par une preuve dans $\mathbb{K}^n$, en admettant le théorème de BW dans $\mathbb{K}^n$, ce que nous verrons plus tard.
+
+    \begin{demo}{Démonstration \textcolor{black}{(Cas $E = \mathbb{K}^n$)}}{myred}
+        Soit $N$ une norme de $\mathbb{K}^n$ et montrons que $N$ est équivalente à $\norm{.}_1$. 
+        \begin{itemize}
+            \item Soit $B = (e_1, \ldots, e_n)$ une base de $\mathbb{K}^n$. Si $x = (x_1,\ldots,x_n) \in \mathbb{K}^n$, on a 
+            \[ x = \sum_{i=1}^{n} x_i e_i \]   
+            On pose $M = \max\left\{N(e_i), i \in \intervalleEntier{1}{n}\right\}$, on a 
+            \begin{align*}
+                N(x) 
+                &= N\left(\sum_{i=1}^{n} x_i e_i\right) \\
+                &\leq \sum_{i=1}^{n} \abs{x_i} N(e_i) \\
+                &\leq M \sum_{i=1}^{n} \abs{x_i} \\
+                &\leq M \norm{x}_1
+            \end{align*}
+            \item OP $\mathcal{S}_1 = \left\{x \in \mathbb{K}^n, \quad \nnorm{1}{x} = 1\right\}$ et $m = \inf\left\{N(x), x \in S_1\right\}$. Il existe $(x_k)_{k \in \mathbb{N}}$ telle que $\forall k \in \mathbb{N}, x_k \in S_1$ et $N(x_k) \limi{n}{+\infty} m$. $(x_k)$ est bornée donc il existe $\varphi : \mathbb{N} \to \mathbb{N}$ strictement croissante telle que $(x_{\varphi(k)})$ converge, \textit{i.e.} il existe $\ell \in \mathbb{K}^n$ telle que 
+            \[ \nnorm{1}{\ell - x_{\varphi(k)}} \limi{k}{+\infty} 0 \]   
+            Ainsi, 
+            \[ \abs{N(x_{\varphi(k)}) - N(\ell)} \leq N(x_{\varphi(k)} - \ell) \leq M \nnorm{1}{x_{\varphi(k)} - \ell} \limi{k}{+\infty} 0 \]   
+            On en déduit que $N(x_{\varphi(k)}) \limi{k}{+\infty} N(\ell)$. De plus, $N(x_{\varphi(k)}) \limi{k}{+\infty} m$ car $N(x_k) \limi{k}{+\infty} m$. Donc $N(\ell) = m$, et comme $\nnorm{1}{x_k} = 1$, on a $\nnorm{1}{\ell} = 1$. D’où $m = N(\ell) > 0$. Soit $x \in \mathbb{K}^n$ non nul. On a $\frac{1}{\nnorm{1}{x}}x \in \mathcal{S}_1$, donc 
+            \[ N\left(\frac{1}{\nnorm{1}{x}} x\right) \geq m \esp{soit} N(x)\geq m \nnorm{1}{x} \]    
+        \end{itemize}
+    \end{demo}
+
+    \begin{omed}{Contre-exemple en dimension infinie}{myred}
+        Soit $E = \mathcal{C}(\intervalleFF{0}{1}, \mathbb{R})$. Montrons que les normes 1 et 2 ne sont pas équivalentes. Soit $f \in E$. 
+        \begin{align*}
+            \nnorm{1}{f} 
+            &= \int_{0}^{1} \abs{f(t)} dt \\
+            &\argu \text{CS}
+            &\leq \sqrt{\int_{0}^{1} f^2(t) dt \int_{0}^{1} 1^2 dt} \\
+            &= \nnorm{2}{f}
+        \end{align*}
+        Supposons qu’il existe $m > 0$ TQ 
+        \[ \forall f \in E, m \nnorm{2}{f} \geq \nnorm{1}{f} \]   
+        Posons $f_n : x \mapsto x^n$. $f_n \in E$, et $\nnorm{1}{f} = \frac{1}{n+1}$. De plus, $\left(\int_{0}^{1} t^{2n} dt\right)^{1 / 2} = \frac{1}{\sqrt{2n + 1}}$. En remplaçant dans l’équation de majoration, on obtient que 
+        \[ \frac{m}{\sqrt{2n+1}} < \frac{1}{n+1} \esp{soit} 0 < m \leq \frac{\sqrt{2n+1}}{n} \limi{n}{+\infty} 0 \]   
+        ce qui est absurde.
+    \end{omed}
+
 \subsection{Notions générales de topologie}
 
     Cette introduction à la topologie a pour but de formaliser les concepts plus ou moins intuitifs de voisinage, d’infiniment petit et d’infiniment grand, d’où découleront les notions de limite et de continuité présentées dans le cadre des espaces vectoriels normés. Si ce cadre commode est celui retenu par le programme, tous les concepts abordés dans ce chapitre sont de portée plus générale et peuvent être étendus à des familles plus vastes d’espaces\footnote[2]{espaces métriques et topologiques}.
+
+    \subsubsection{Boules et sphères}
+
+    \begin{defi}{}{}
+        
+    \end{defi}
+
+    On peut remarquer que $\mathcal{B}_f(a,r) = \mathcal{B}(a,r) \bigsqcup \mathcal{S}(a,r)$. Dans le cas où $a = 0$ et $r = 1$, on parle de boule unité.
+
+    \begin{defi}{}{}
+        Soit $A \subset E$ une partie de $E$. 
+        \begin{itemize}
+            \item On dit que $A$ est \textbf{bornée} s’il existe $M \geq 0$ tel que 
+            \[ \forall x \in A, \norm{x} \leq M \]    
+            \item On dit que $A$ est \textbf{convexe} si 
+            \[ \forall (x,y) \in A^2, \forall t \in \intervalleFF{0}{1}, tx + (1-t)y \in A \]  
+        \end{itemize}
+    \end{defi}
+
+    \begin{prop}{}{}
+        Dans E, toute boule est convexe.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Soit $A = \mathcal{B}(a,r)$ où $a \in E$ et $r > 0$. Soit $x,y \in A$ et $t \in \intervalleFF{0}{1}$.
+        \begin{align*}
+            \norm{tx + (1-t)y - a} 
+            &= \norm{tx -ta + (1 - t)y - (1-t)a} \\
+            &\leq \norm{t(x-a)} + \norm{(1-t)(y-a)} \\
+            &\leq t\norm{x-a} + (1-t)\norm{y-a} \\
+            &< r
+        \end{align*}
+    \end{demo}
 
     \subsubsection{Voisinages, ouverts et fermés}
 

@@ -16,62 +16,62 @@
 
     \begin{lem}{Lemme des tiroirs}{}
         \begin{soient}
-            \item $\mathcal{E}$ et $\mathcal{F}$ deux ensembles finis
-            \item $\varphi$ une application de $\mathcal{E}$ dans $\mathcal{F}$
+            \item $\mathcal{E}$ et $\mathcal{A}$ deux ensembles finis
+            \item $\varphi$ une application de $\mathcal{E}$ dans $\mathcal{A}$
         \end{soient}
-        On suppose que $\card(\mathcal{E}) > \card(\mathcal{F})$.
+        On suppose que $\card(\mathcal{E}) > \card(\mathcal{A})$.
 
         Alors $\varphi$ n’est pas injective.
     \end{lem}
 
     \begin{prop}{Cardinal d’une union disjointe, ou principe d’addition}{}
-        Soient $\mathcal{E}$ et $\mathcal{F}$ deux ensembles finis. 
+        Soient $\mathcal{E}$ et $\mathcal{A}$ deux ensembles finis. 
 
-        On suppose que $\mathcal{E} \cap \mathcal{F} = \emptyset$.
+        On suppose que $\mathcal{E} \cap \mathcal{A} = \emptyset$.
 
         Alors 
-        \[ \et{\mathcal{E} \cup \mathcal{F} \text{ est fini}}{\card(\mathcal{E} \cup \mathcal{F}) = \card(\mathcal{E}) + \card(\mathcal{F})} \]
+        \[ \et{\mathcal{E} \cup \mathcal{A} \text{ est fini}}{\card(\mathcal{E} \cup \mathcal{A}) = \card(\mathcal{E}) + \card(\mathcal{A})} \]
     \end{prop}
 
     \begin{coro}{Cardinal d’un complémentaire, ou principe de soustraction}{}
-        Soient $\mathcal{E}$ un ensemble fini, et $\mathcal{F} \subset \mathcal{E}$.
+        Soient $\mathcal{E}$ un ensemble fini, et $\mathcal{A} \subset \mathcal{E}$.
     
         Alors 
-        \[ \et{\mathcal{F} \cup \mathcal{E} \backslash \mathcal{F} \text{ sont finis}}{\card(\mathcal{E} \backslash \mathcal{F}) = \card(\mathcal{E}) - \card(\mathcal{F})} \]
+        \[ \et{\mathcal{A} \cup \mathcal{E} \backslash \mathcal{A} \text{ sont finis}}{\card(\mathcal{E} \backslash \mathcal{A}) = \card(\mathcal{E}) - \card(\mathcal{A})} \]
     \end{coro}
 
     \begin{coro}{Cardinal d’une union quelconque}{}
-        Soient $\mathcal{E}$ et $\mathcal{F}$ deux ensembles finis. 
+        Soient $\mathcal{E}$ et $\mathcal{A}$ deux ensembles finis. 
     
         Alors 
-        \[ \et{\mathcal{F} \cap \mathcal{E} \text{ est fini}}{\card(\mathcal{E} \cup \mathcal{F}) = \card(\mathcal{E}) + \card(\mathcal{F}) - \card(\mathcal{E} \cap \mathcal{F})} \]
+        \[ \et{\mathcal{A} \cap \mathcal{E} \text{ est fini}}{\card(\mathcal{E} \cup \mathcal{A}) = \card(\mathcal{E}) + \card(\mathcal{A}) - \card(\mathcal{E} \cap \mathcal{A})} \]
     \end{coro}
 
     \begin{coro}{Principe de partition}{}
         \begin{soient}
             \item $\mathcal{E}$ un ensemble non-vide
-            \item $\mathcal{F}_1, \ldots, \mathcal{F}_r$ une partition de $\mathcal{E}$
+            \item $\mathcal{A}_1, \ldots, \mathcal{A}_r$ une partition de $\mathcal{E}$
         \end{soient}
-        On suppose que $\forall i \in \intervalleEntier{1}{r}, \, \mathcal{F}_i \text{ est fini}$
+        On suppose que $\forall i \in \intervalleEntier{1}{r}, \, \mathcal{A}_i \text{ est fini}$
 
-        Alors \[ \et{\mathcal{E} \text{ est fini}}{\card(\mathcal{E}) = \sum\limits_{i=1}^n \card(\mathcal{F}_i)} \]
+        Alors \[ \et{\mathcal{E} \text{ est fini}}{\card(\mathcal{E}) = \sum\limits_{i=1}^n \card(\mathcal{A}_i)} \]
     \end{coro}
 
     \begin{prop}{Principe des bergers}{}
         \begin{soient}
-            \item $\mathcal{E}$ et $\mathcal{F}$ deux ensembles
-            \item $f$ une application de $\mathcal{E}$ dans $\mathcal{F}$
+            \item $\mathcal{E}$ et $\mathcal{A}$ deux ensembles
+            \item $f$ une application de $\mathcal{E}$ dans $\mathcal{A}$
         \end{soient}
         \begin{suppose}
-            \item $\mathcal{F}$ est fini
-            \item $\exists \, r \in \mathbb{N}^*, \, \forall y \in \mathcal{F}, \, \card(f^{-1}(y)) = r$
+            \item $\mathcal{A}$ est fini
+            \item $\exists \, r \in \mathbb{N}^*, \, \forall y \in \mathcal{A}, \, \card(f^{-1}(y)) = r$
         \end{suppose}
         Alors 
-        \[ \et{\mathcal{E} \text{ est fini}}{\card(\mathcal{E}) = r \card(\mathcal{F})} \]
+        \[ \et{\mathcal{E} \text{ est fini}}{\card(\mathcal{E}) = r \card(\mathcal{A})} \]
     \end{prop}
 
     \begin{omed}{Remarque \textcolor{black}{(Principe de division)}}{myolive}
-        Si $\mathcal{E}$ est fini, $f(\mathcal{E})$ l’est également. Le résultat reste donc vrai en remplaçant l’hypothèse « $\mathcal{F}$ est fini » par « $\mathcal{E}$ est fini » et la conclusion par \[ \et{\mathcal{F} \text{ est fini}}{\card(\mathcal{F}) =  \frac{1}{r} \card(\mathcal{E})} \]
+        Si $\mathcal{E}$ est fini, $f(\mathcal{E})$ l’est également. Le résultat reste donc vrai en remplaçant l’hypothèse « $\mathcal{A}$ est fini » par « $\mathcal{E}$ est fini » et la conclusion par \[ \et{\mathcal{A} \text{ est fini}}{\card(\mathcal{A}) =  \frac{1}{r} \card(\mathcal{E})} \]
     \end{omed}
 
     \begin{prop}{Cardinal d’un produit cartésien}{}
@@ -130,10 +130,10 @@
     \subsubsection{Dénombrement d’applications}
 
     \begin{theo}{}{}
-        Soient $\mathcal{E}$ et $\mathcal{F}$ deux ensembles finis non vides.
+        Soient $\mathcal{E}$ et $\mathcal{A}$ deux ensembles finis non vides.
 
         Alors 
-        \[ \et{\mathcal{A}(\mathcal{E},\mathcal{F}) \text{ est fini}}{\card(\mathcal{A}(\mathcal{E}),\mathcal{F}) = \card(\mathcal{F})^{\card(\mathcal{E})}} \]
+        \[ \et{\mathcal{A}(\mathcal{E},\mathcal{A}) \text{ est fini}}{\card(\mathcal{A}(\mathcal{E}),\mathcal{A}) = \card(\mathcal{A})^{\card(\mathcal{E})}} \]
     \end{theo}
 
     \begin{coro}{}{}
@@ -146,17 +146,17 @@
     \end{coro}
 
     \begin{prop}{}{}
-        Soient $\mathcal{E}$ et $\mathcal{F}$ deux ensembles finis et non vides de cardinaux respectifs $n$ et $p$.
+        Soient $\mathcal{E}$ et $\mathcal{A}$ deux ensembles finis et non vides de cardinaux respectifs $n$ et $p$.
 
         On suppose que $n \leq p$.
 
-        Alors l’ensemble des applications injectives de $\mathcal{E}$ dans $\mathcal{F}$ est fini de cardinal $A_p^n = \frac{p!}{(p-n)!}$.
+        Alors l’ensemble des applications injectives de $\mathcal{E}$ dans $\mathcal{A}$ est fini de cardinal $A_p^n = \frac{p!}{(p-n)!}$.
     \end{prop}
 
     \begin{coro}{}{}
-        Soient $\mathcal{E}$ et $\mathcal{F}$ deux ensembles finis et non vides de même cardinal $n$.
+        Soient $\mathcal{E}$ et $\mathcal{A}$ deux ensembles finis et non vides de même cardinal $n$.
 
-        Alors l’ensemble des bijections de $\mathcal{E}$ dans $\mathcal{F}$ est fini de cardinal $n!$.
+        Alors l’ensemble des bijections de $\mathcal{E}$ dans $\mathcal{A}$ est fini de cardinal $n!$.
     \end{coro}
 
     \subsection{Démonstrations combinatoires}
@@ -178,7 +178,7 @@
 
         D’une part, considérons un ensemble $\mathcal{E}$ de cardinal $p+q$. Il y a $\binom{p+q}{n}$ sous-ensembles de $\mathcal{E}$ à $n$ éléments. 
 
-        D’autre part, considérons deux ensembles $\mathcal{F}$ et $\mathcal{G}$ de cardinaux respectifs $p$ et $q$. Pour dénombrer le nombre de sous-ensembles possibles à $n$ éléments choisis parmi les deux ensembles, 
+        D’autre part, considérons deux ensembles $\mathcal{A}$ et $\mathcal{G}$ de cardinaux respectifs $p$ et $q$. Pour dénombrer le nombre de sous-ensembles possibles à $n$ éléments choisis parmi les deux ensembles, 
         \begin{itemize}
             \item On choisit $k$ éléments dans le premier ensemble, il y a $\binom{p}{k}$ possibilités.
             \item On choisit $n-k$ éléments dans le second, il y $\binom{q}{n-k}$ possibilités.
@@ -218,7 +218,52 @@
 
     Les prochaines parties visent dans cette optique à développer une théorie de la sommation robuste, nous permettant de sommer avec souplesse des familles de nombres complexes indépendamment de l’ordre choisi. Elle offrira au passage la possibilité de travailler avec des familles indexées par des ensembles autres que $mathbb{N}$. Notre capacité à manipuler des sommes, en particulier des sommes doubles, en sortira renforcée. Cela justifiera tous les efforts consentis !
 
-    \subsection{Ensemble dénombrable}
+    \subsection{Ensembles dénombrables}
+
+    \subsubsection{Cardinalité}
+
+    \begin{defi}{Ensembles équipotents}{}
+        Deux ensembles $E$ et $F$ sont dit \textbf{équipotents} s’il existe une bijection de $E$ dans $F$. On note alors $E \simeq F$ ou $\card(E) = \card(F)$.
+    \end{defi}
+
+    \begin{omed}{Exemple}{myyellow}
+        Si $E$ est un ensemble, $\mathcal{P}(E) \simeq \big\{ 0,1 \big\}^E$ car la fonction $A \subset E \mapsto \mathbb{1}_A$ est une bijection.
+    \end{omed}
+
+    \begin{omed}{Notation}{myyellow}
+        Si $E$ et $F$ sont deux ensembles, on note $\card(E) \leq \card(F)$ s’il existe une injection de $E$ dans $F$, et $\card(E) < \card(F)$ si de plus ils ne sont équipotents. De la même façon, on définit les notations $\geq$ et $>$.
+    \end{omed}
+
+    \begin{omed}{Remarque \textcolor{black}{(Axiome du choix)}}{myyellow}
+        Soit $E$ un ensemble non vide. Il existe une fonction choix $f : \mathcal{P}(E) \to E$ telle que pour tout partie non vide $A$ de $E$, on ait $f(A) \in A$. 
+        
+        Une formulation équivalente est que si $I$ est un ensemble et $(E_i)_{i \in I}$ une famille d’ensembles non vides, alors le produit cartésien $\prod_{i \in I} E_i$ est non vide.
+    \end{omed}
+
+    \begin{prop}{}{}
+        \begin{itemize}
+            \item Si $\card(E) \leq \card(F)$, alors $\card(F) \geq \card(E)$.
+            \item Si $\card(F) \leq \card(E)$, alors $\card(E) \geq \card(F)$.
+        \end{itemize}
+    \end{prop}
+
+    \begin{theo}{Cantor-Bernstein}{}
+        Si $\card(E) \leq \card(F)$ et $\card(F) \leq \card(E)$, alors $\card(E) = \card(F)$.
+    \end{theo}
+
+    \begin{prop}{}{}
+        Si $E$ est non vide, alors $\card(E) < \card(\mathcal{P}(E))$.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        On sait déjà que $\card(E) \leq \card(\mathcal{P}(E))$ car la fonction $x \in E \mapsto \{x\} \in \mathcal{P}(E)$ est clairement injective. 
+
+        Par l’absurde, supposons l’égalité. Alors il existe une fonction $\varphi : E \to \mathcal{P}(E)$ bijective. On pose alors 
+        \[ A = \enstq{x \in E}{x \notin \varphi(x)} \]
+        Comme $\varphi$ est une bijection, il existe $a \in E$ tel que $\varphi(a) = A$. Si $a \in A$, alors $a \notin \varphi(a) = A$, ce qui est absurde. Si $a \notin A$, alors $a \in \varphi(a) = A$, ce qui est également absurde. 
+    \end{demo}
+
+    \subsubsection{Dénombrabilité}
 
     \begin{defi}{Ensemble fini}{}
         Un ensemble $E$ est dit fini s’il est vide ou s’il existe $n$ non nul et une bijection de $E$ dans $\intervalleEntier{1}{n}$. L’entier $n$ est alors appelé cardinal de $E$.
@@ -232,7 +277,18 @@
         Dans le cas où $E$ est dénombrable, on peut écrire $E = \left\{x_n , n \in \mathbb{N}\right\}$.
     \end{defi}
 
-    En particulier, $mathbb{N}^*$ est dénombrable d’après $\fonction{\varphi}{\mathbb{N}}{\mathbb{N}^*}{n}{n+1}$, et $\mathbb{Z}$ d’après $\varphi(k) = 2k$ si $k$ est positif, et $\varphi(k) = -(2k+1)$ si $k$ est négatif.
+    On peut aussi réécrire cette définition par les cardinaux :on dit qu’un ensemble $E$ est \textbf{dénombrable} si $\card(E) \leq \card(\mathbb{N})$.
+
+    \begin{omed}{Exemples}{myyellow}
+        \begin{enumerate}[label=\textcolor{myyellow}{(\arabic*)}]
+            \item Les ensembles $\mathbb{Z}$ et $\mathbb{N}^2$ sont dénombrables par les bijections 
+            \[ n \in \mathbb{Z} \mapsto \sisinon{2n}{n \geq 0}{-2n-1} \esp{et} (n,m) \in \mathbb{N}^2 \mapsto \frac{(n+m)(n+m+1)}{2} + m \]
+            \item On peut montrer par récurrence que $\card(\mathbb{N}^k) = \card(\mathbb{N})$ pour tout $k \in \mathbb{N}^*$.
+            \item Si $E_1,\ldots,E_k$ sont $k$ ensembles dénombrables, alors $\prod_{i=1}^{k} E_i$ est dénombrable.
+            \item L’ensemble $\mathbb{Q}$ est dénombrable.
+            \item L’ensemble $\mathcal{P}(\mathbb{N})$ ne l’est pas car $\card(\mathbb{N}) < \card(\mathcal{P}(\mathbb{N}))$, d’où $\big\{ 0,1 \big\}^{\mathbb{N}}$ ne l’est pas.
+        \end{enumerate}
+    \end{omed}
 
     \begin{prop}{Produit cartésien}{}
         Si $E$ et $F$ sont dénombrables, alors $E \times F$ est dénombrable.
@@ -272,11 +328,21 @@
     \end{demo}
 
     \begin{prop}{}{}
-        Les ensembles $\mathbb{R}, \left\{0,1\right\}^{\mathbb{N}}$ et $\mathbb{N}^{\mathbb{N}}$ ne sont pas dénombrables.
+        Les ensembles $\left\{0,1\right\}^{\mathbb{N}}$ et $\mathbb{N}^{\mathbb{N}}$ ne sont pas dénombrables.
     \end{prop}
 
-    \begin{demo}{Démonstration \textcolor{black}{(Diagonale de Cantor)}}{}
+    \begin{demo}{Démonstration \textcolor{black}{(Diagonale de Cantor)}}{myolive}
         Nous démontrerons uniquement le résultat pour $\left\{0,1\right\}^{\mathbb{N}}$, mais la démonstration est reproductible pour $\mathbb{R}$ et $\mathbb{N}^{\mathbb{N}}$. Il suffit de montrer que toute partie dénombrable de $\left\{0,1\right\}^{\mathbb{N}}$ ne contient pas tous ses éléments. Soit $\mathcal{P}$ une partie dénombrable de $\left\{0,1\right\}^{\mathbb{N}}$. On peut poser $\mathcal{P} = \left\{(u_n^{(k)})_{n \in \mathbb{N}}, \quad k \in \mathbb{N}^*\right\}$. Si on considère la suite $v$ de $\left\{0,1\right\}^{\mathbb{N}}$ définie, pour tout $k \in \mathbb{N}$, par $v_k = 1 - u_k^{(k)}$, $v \notin \mathcal{P}$ puisqu’elle diffère par un terme au moins de chaque élément de $\mathcal{P}$.
+    \end{demo}
+
+    \begin{theo}{}{}
+        L’ensemble $\mathbb{R}$ n’est pas dénombrable.
+    \end{theo}
+
+    \begin{demo}{Preuve}{myred}
+        La fonction 
+        \[ (x_n)_{n \in \mathbb{N}} \in \big\{ 0,1 \big\}^{\mathbb{N}} \mapsto \sum_{n \geq 0} \frac{2 x_n}{3^{n+1}} \in \intervalleFF{0}{1} \]   
+        est injective, donc $\card(\mathbb{N}) < \card\big\{ 0,1 \big\}^{\mathbb{N}} \leq \card\intervalleFF{0}{1} \leq \card(\mathbb{R})$.
     \end{demo}
 
 \subsection{Familles sommable}
@@ -305,7 +371,7 @@
         \end{enumerate}
     \end{defi}
 
-    \begin{prop}{Principe de sommation par paquets}{}
+    \begin{prop}{Sommation par paquets \textcolor{black}{(Cas positif)}}{}
         Soit $(x_i)_{i \in I}$ une famille de réels positifs. OC $(I_n)$ une partition de $I$. Alors 
         \[ \sum_{x \in I} x_i = \sum_{n=0}^{+\infty} \sum_{i \in I_n} x_i  \]  
     \end{prop}
@@ -488,6 +554,8 @@
         \end{align*}
     \end{demo}
 
+    L’ensemble, noté $\ell^1(I)$ des familles sommables indexées par un ensemble dénombrable $I$ possède donc une structure d’espace vectoriel -- normé si on le munit de $\norm{u}_1 = \sum_{i \in I} \abs{u_i}$ --. L’application $(u_i)_{i \in I} \mapsto \sum_{i \in I} u_i$ définit une forme linéaire sur cet espace.
+
     \begin{prop}{}{}
         Soit $I$ au plus dénombrable, $(x_i)_{i \in I}$ et $(y_i)_{i \in I}$ deux familles sommables de $\mathbb{R}$ telles que $\forall i \in I, x_i \leq y_i$. 
         Alors $\sum_{i \in I} x_i \leq \sum_{i \in I} y_i$.
@@ -524,6 +592,53 @@
         \end{align*}
     \end{omed}
 
+    En particulier on peut écrire l’inégalité triangulaire pour une famille $(u_i)_{i \in I}$ sommable : 
+    \[ \abs{\sum_{i \in I} u_i} \leq \sum_{i \in I} \abs{u_i} \] 
+
+    \begin{theo}{Sommation par paquets \textcolor{black}{(Cas complexe)}}{}
+        Soient $(I_n)_{n \in \mathbb{N}}$ une partition d’une ensemble $I$ et $(u_i)_{i \in I}$ une famille sommable de nombres complexes. Alors 
+        \begin{enumerate}
+            \item Pour tout entier $n$, $(u_i)_{i \in I_n}$ est sommable.
+            \item La série $\sum_{n \in \mathbb{N}} \left(\sum_{i \in I_n} \abs{u_i}\right)$ converge.
+        \end{enumerate}
+        De plus, $\sum_{i \in I} u_i = \sum_{n = 0}^{+\infty} \left(\sum_{i \in I_n} u_i\right)$
+    \end{theo}
+
+    Contrairement au cas positif, l’égalité finale exige de vérifier au préalable la sommabilité de la famille. En pratique, \begin{itemize}
+        \item on justifiera la sommabilité de la famille et appliquant à  la famille $(\abs{u_i})_{i \in I}$ le très souple théorème de sommation par paquets dans le cas positif.
+        \item les conclusions intermédiaires \textbf{(i)} et \textbf{(ii)} ne servent qu’à donner un sens à l’égalité finale. 
+    \end{itemize}
+
+    Ce résultat est essentiellement exploité dans le cas des séries doubles et des produits de Cauchy, avec $I = \mathbb{N} \times \mathbb{N}$ ; c’est l’objet de la partie suivante. 
+
+    \begin{coro}{Convergence commutative}{}
+        Si la famille $(u_i)_{i \in \mathbb{N}}$ de nombres complexes indexée par $\mathbb{N}$ est sommable, \textit{i.e.} si $\sum u_n$ converge absolument, alors pour toute pertmutation $\sigma$ de $\mathbb{N}$, $(u_{\sigma(i)})_{i \in \mathbb{N}}$ est sommable et $\sum_{n = 0}^{+\infty} u_{\sigma(n)} = \sum_{n = 0}^{+\infty} u_n$.
+    \end{coro}
+
+    \begin{omed}{Preuve}{myorange}
+        On applique le théorème précédent avec $I_n = \left\{\sigma(n)\right\}$ et $\mathbb{N} = \bigcup_{n \in \mathbb{N}} \left\{\sigma(n)\right\}$.
+    \end{omed}
+
+    Il faut rester attentif : cette réorganisation n’est possible que dans le cas de la convergence absolue (le cas de $\sum \frac{(-1)^n}{n}$ en constitue un exemple).
+
+    \subsubsection{Application aux séries doubles et produit de Cauchy}
+
+    On considère une suite double complexe $(u_{i,j})_{(i,j) \in \mathbb{N}^2}$, et on s’interroge sur l’égalité entre 
+    \[ \sum_{i = 0}^{+\infty} \sum_{j = 0}^{\infty} u_{i,j} = \sum_{j = 0}^{\infty} \sum_{i=0}^{+\infty} u_{i,j} \]    
+
+    On cherche notamment à étudier la sommabilité des familles indexées par $I \times J$.
+
+    \begin{theo}{Tonelli discret}{}
+        Soit $(u_{i,j})_{(i,j) \in I \times J}$ une famille de réels positifs. Alors 
+        \[ \sum_{(i,j) \in I \times J} = \sum_{i \in I} \sum_{j \in J} u_{i,j} = \sum_{j \in J} \sum_{i \in I} u_{i,j} \]   
+    \end{theo}
+
+    Cette égalité est valable dans $\intervalleFF{0}{+\infty}$. L’interversion des sommes dans le cas positif est toujours licite.
+
+    \begin{demo}{Démonstration}{myred}
+        On somme par paquets au moyen des partitions $I \times J = \bigsqcup_{i \in I} \left\{i\right\} \times J = \bigsqcup_{j \in J} I \times \left\{j\right\}$.
+    \end{demo}
+
     \begin{theo}{de Fubini discret}{}
         Soient $I,J$ au plus dénombrables, $(x_{i,j})_{(i,j) \in I \times J}$ sommable. Alors 
         \begin{enumerate}
@@ -531,6 +646,8 @@
             \item $\sum_{i \in I} \sum_{j \in J} x_{i,j} = \sum_{j \in J} \sum_{i \in I} x_{i,j}$
         \end{enumerate}
     \end{theo}
+
+    En pratique, on commence par vérifier que $\sum_{i \in I} \sum_{j \in J} \abs{u_{i,j}} < +\infty$ ou $\sum_{j \in J} \sum_{i \in I} \abs{u_{i,j}} < +\infty$. Ensuite, tout est permis.
 
     \begin{demo}{Preuve}{myred}
         \begin{enumerate}
@@ -566,7 +683,17 @@
         Donc le théorème de Fubini discret ne s’applique pas ici, et les deux sommes ne sont pas permutables.
     \end{omed}
 
-    \begin{prop}{}{}
+    On cherche ici à sommer la famille de complexes $(a_i b_j)_{(i,j) \in \mathbb{N}^2}$ supposée sommable. 
+    \begin{align*}
+        \sum_{(i,j) \in \mathbb{N}^2} &= \sum_{i = 0}^{+\infty} a_i \left(\sum_{j = 0}^{+\infty} b_j\right) \\
+        &= \sum_{j=0}^{+\infty} b_j \left(\sum_{i =0}^{+\infty} a_i\right) \\
+        &= \sum_{i = 0}^{+\infty} a_i \times \sum_{j=0}^{+\infty} b_j
+    \end{align*}
+
+    Mais il est plus intéressant dans certains cas de sommer d’une autre façon : celle des produits de Cauchy. On introduit $I_n = \left\{(i,j) \in \mathbb{N}^2, \quad i+j = n\right\}$. Comme $\mathbb{N}^2 = \bigsqcup_{n \in \mathbb{N}} I_n$, on applique le théorème de sommation par paquets à la famille sommable $(a_i b_j)_{(i,j) \in \mathbb{N}^2}$. 
+    \[ \sum_{(i,j) \in \mathbb{N}^2} a_i b_j = \sum_{i = 0}^{+\infty} a_i \times \sum_{j= 0}^{+\infty} b_j = \sum_{n = 0}^{+\infty} \sum_{\substack{(i,j) \in \mathbb{N}^2 \\ i+ j = n}} a_i b_j = \sum_{n = 0}^{+\infty} \sum_{i = 0}^n a_i b_{n-i} \]
+
+    \begin{prop}{Convergence absolue d’un produit de Cauchy}{}
         Soient $I,J$ au plus dénombrables, $(x_i)_{i \in I}$ et $(y_j)_{j \in J}$ des familles sommables, alors $(x_i y_j)_{(i,j) \in I \times J}$ est sommable, de somme 
         \[ \sum_{(i,j) \in I \times J} x_i y_j = \left(\sum_{i \in I} x_i\right)\left(\sum_{j \in J} y_j\right) \]      
     \end{prop}
@@ -578,95 +705,345 @@
         \[ \sum_{(i,j) \in I \times J} x_i y_j = \lim_{n \to +\infty} \sum_{(i,j) \in I_n \times J_n} \abs{x_i y_j} = \lim_{n \to +\infty} \left(\sum_{i \in I_n} x_i\right) \left(\sum_{j \in j_n} y_j \right) = \left(\sum_{i \in I} x_i\right) \left(\sum_{j \in J} y_j\right) \]
     \end{demo}
 
-\section{Espace probabilisé}
+\section{Espace mesurable}
 
     \subsection{Tribus sur un ensemble}
 
-    \begin{defi}{Tribu}{}
-        Soit $\Omega$ un ensemble et $\mathcal{F}$ une famille de parties de $\Omega$. On dit que $\mathcal{F}$ est une \textbf{tribu} si 
+    \subsubsection{Généralités}
+
+    Soit $E$ un ensemble. On appelle \textbf{classe de parties} de $E$ tout sous-ensemble de $\mathcal{P}(E)$.
+
+    \begin{defi}{Tribu ou $\sigma$-algèbre}{}
+        On appelle \textbf{tribu ou $\sigma$-algèbre} sur $E$ toute classe de parties $\mathcal{A}$ de $E$ telle que 
         \begin{enumerate}
-            \item $\emptyset \in \mathcal{F}$
-            \item $\forall A \in \mathcal{F}$, $\barr{A} \in \mathcal{F}$, où $\barr{A} = \Omega \backslash A$
-            \item Si $(A_i)_{i \in \mathbb{N}}$ est une famille d’éléments de $\mathcal{F}$, alors $\bigcup_{i \in \mathbb{N}} A_i \subset \mathcal{F}$ (stabilité par union dénombrable).
+            \item $\emptyset \in \mathcal{A}$ ;
+            \item $A \in \mathcal{A} \implies A^{C} \in \mathcal{A}$ (\textit{stabilité par passage au complémentaire});
+            \item si $(A_n)_{n \in \mathbb{N}}$ est une suite de $\mathcal{A}$, alors $\bigcup_{n \in \mathbb{N}} A_n \in \mathcal{A}$ (\textit{stabilité par union dénombrable}).
         \end{enumerate}
+        On appelle alors $(E,\mathcal{A})$ un \textbf{espace mesurable}
     \end{defi}
 
     \begin{prop}{}{}
-        Si $\mathcal{F}$ est une tribu sur $\Omega$, alors 
+        Si $\mathcal{A}$ est une tribu sur $\Omega$, alors 
         \begin{enumerate}
-            \item $\mathcal{F}$ est stable par intersection dénombrable.
-            \item $\mathcal{F}$ est stable par union et intersection finies.
+            \item $\mathcal{A}$ est stable par intersection dénombrable.
+            \item $\mathcal{A}$ est stable par union et intersection finies.
         \end{enumerate}
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
         Pour ce qui est de l’union finie, OC $A_0, \ldots, A_n \in \mathbb{F}$, on pose $B_i = A_i$ si $i \in \intervalleEntier{0}{n}$ et $B_i = \emptyset$ si $i >n$. Alors on applique la stabilité par union dénombrable, ce qui nous donne la stablilité par union finie. De même pour l’intersection finie, à moins d’avoir montré la stablilité par intersection dénombrable.
 
-        Soient $(A_i)_{i \in \mathbb{N}}$ une famille d’éléments de $\mathcal{F}$. Alors $(\barr{A_i})_{i \in \mathbb{N}}$ l’est aussi. Donc par stabilité par union dénombrable, $\bigcup_{i \in \mathbb{N}} \barr{A_i} = \barr{\bigcap_{i \in \mathbb{N}} A_i} \in F$ et donc $\bigcap_{i \in \mathbb{N}} A_i \in F$.
+        Soient $(A_i)_{i \in \mathbb{N}}$ une famille d’éléments de $\mathcal{A}$. Alors $(\barr{A_i})_{i \in \mathbb{N}}$ l’est aussi. Donc par stabilité par union dénombrable, $\bigcup_{i \in \mathbb{N}} \barr{A_i} = \barr{\bigcap_{i \in \mathbb{N}} A_i} \in F$ et donc $\bigcap_{i \in \mathbb{N}} A_i \in F$.
     \end{demo}
 
-    \begin{omed}{Exemples}{myolive}
-        \begin{itemize}
-            \item Si $\Omega$ est un ensemble, $\mathcal{F} = \left\{\emptyset, \Omega\right\}$ est une tribu, dite tribu triviale sur $\Omega$. 
-            \item Soit $A \subset \Omega$, alors $\mathcal{F} = \left\{\emptyset, A, \barr{A}, \Omega\right\}$ est une tribu. C’est la plus petite tribu contenant $A$.
-            \item $\mathcal{P}(\Omega)$ est également une tribu triviale.
-        \end{itemize}
+    \begin{omed}{Exemples}{myyellow}
+        \begin{enumerate}[label=\textcolor{myyellow}{\arabic*}]
+            \item La classe de parties $\{\emptyset, E\}$ est appelée \textbf{tribu groissière}.
+            \item La classe de parties $\mathcal{P}(E)$ est appelée \textbf{tribu triviale}.
+            \item Si $A \subset E$, alors $\{ \emptyset, E, A, A^{C} \}$ est une tribu.
+            \item La classe de parties $\{ A \subset E, A \text{ dénombrable ou } A^{C} \text{ dénombrable}\}$ est une tribu.
+        \end{enumerate}
     \end{omed}
 
     \begin{prop}{}{}
-        Soit $\Omega$ un ensemble et $(\mathcal{F}_i)_{i \in I}$ une famille de tribus sur $\Omega$. Alors $\bigcap_{i \in I} \mathcal{F}_i$ est une tribu sur $\Omega$.
+        Soit $\Omega$ un ensemble et $(\mathcal{A}_i)_{i \in I}$ une famille de tribus sur $\Omega$. Alors $\bigcap_{i \in I} \mathcal{A}_i$ est une tribu sur $\Omega$.
     \end{prop}
 
     \begin{demo}{Démonstration}{myolive}
-        Pour tout $i \in I$, $\emptyset \in I$. Si $A \subset \bigcap_{I} \mathcal{F}_i$, alors $\barr{A} \in \bigcap_{I} \mathcal{F}_i$ car $\barr{A} \in \mathcal{F}_i$ pour tout $i \in \mathcal{F}_i$. De même, si $(A_n)_{n \in \mathbb{N}}$ est telle que $\forall n \in \mathbb{N}, A_n \in \bigcap \mathcal{F}_i$, alors $\bigcup_{n \in \mathbb{N}} A_n \in \mathcal{F}_i$ pour $i$ donc $\bigcup_n A_n \in \bigcap_i \mathcal{F}_i$.
+        Pour tout $i \in I$, $\emptyset \in I$. Si $A \subset \bigcap_{I} \mathcal{A}_i$, alors $\barr{A} \in \bigcap_{I} \mathcal{A}_i$ car $\barr{A} \in \mathcal{A}_i$ pour tout $i \in \mathcal{A}_i$. De même, si $(A_n)_{n \in \mathbb{N}}$ est telle que $\forall n \in \mathbb{N}, A_n \in \bigcap \mathcal{A}_i$, alors $\bigcup_{n \in \mathbb{N}} A_n \in \mathcal{A}_i$ pour $i$ donc $\bigcup_n A_n \in \bigcap_i \mathcal{A}_i$.
     \end{demo}
 
-    \begin{defi}{}{}
-        Soit $\Omega$ un ensemble et $\mathcal{J} = \left\{J_i, i \in I\right\}$ une famille de parties de $\Omega$. Alors on appelle tribu engendré par $\mathcal{J}$ l’intersection de toutes les tribus contenant $\mathcal{J}$.
+    \begin{defitheo}{}{}
+        Si $\mathcal{C}$ est une classe de parties de $E$, alors il existe une plus petite tribu (au sens de l’inclusion) contenant $\mathcal{C}$. On appelle cette tribu la \textbf{tribu engendrée} par $\mathcal{C}$ et on la note $\sigma(\mathcal{C})$. En d’autres termes, si $\mathcal{A}$ est une tribu sur $E$ telle que $\mathcal{C} \subset \mathcal{A}$, alors $\sigma(\mathcal{C}) \subset \mathcal{A}$.
+    \end{defitheo}
+
+    \begin{demo}{Idée}{mypurple}
+        La plus petite tribu qui contient $\mathcal{C}$ est clairement 
+        \[ \sigma(\mathcal{C}) = \bigcup_{\substack{\mathcal{A} \text{ tribu de } E \\ \mathcal{C} \subset \mathcal{A}}} \mathcal{A} \]
+    \end{demo}
+
+    Ainsi, si $A \subset E$, alors $\sigma(\{A\}) = \{ \emptyset, A, A^{C}, E \}$.
+
+    \subsubsection{Tribu borélienne}
+
+    \begin{defi}{Topologie}{}
+        Soit $E$ un ensemble. On appelle \textbf{topologie} sur $E$ toute classe de parties $\mathcal{J}$ sur $E$ vérifiant 
+        \begin{itemize}
+            \item $\emptyset \in \mathcal{J}$ et $E \in \mathcal{J}$ ;
+            \item si $(\Omega_i)_{i \in I}$ est une famille d’éléments de $\mathcal{J}$, alors $\bigcup_{i \in I} \Omega_i \in \mathcal{J}$ ;
+            \item si $\Omega_1,\ldots,\Omega_n \in \mathcal{J}$, alors $\bigcap_{i=1}^n \Omega_i \in \mathcal{J}$.
+        \end{itemize}
+        On appelle \textbf{ouverts} les éléments de $\mathcal{J}$ et on note $\mathcal{O}(E)$ l’ensemble des ouverts de $E$. On appelle \textbf{fermés} leurs complémentaires. On appelle alors $(E,\mathcal{J})$ un \textbf{espace topologique}.
     \end{defi}
 
-    C’est la plus petite au sens de l’inclusion contenant $\mathcal{J}$.
+    On remarque qu’une intersection quelconque de topologies sur $E$ est encore une topologie sur $E$. Si $\mathcal{C} \subset \mathcal{P}(E)$, il existe une plus petite topologie sur $E$ contenant $\mathcal{C}$ : on l’appelle \textbf{topologie engendrée} par $\mathcal{C}$.
 
-    \begin{omed}{Exemple}{myyellow}
+    \begin{defi}{Tribu borélienne}{}
+        Soit $(E,\mathcal{J})$ un espace topologique. On appelle \textbf{tribu borélienne} sur $E$ la tribu engendrée par les ouverts de $E$. 
+
+        On la note $\mathcal{B}(E) := \sigma(\mathcal{J})$. Les éléments de $\mathcal{B}(E)$ sont appelés les \textbf{boréliens} de $E$.
+    \end{defi}
+
+    \begin{omed}{Remarques}{myyellow}
         \begin{itemize}
-            \item Si $\Omega$ est dénombrable, la tribu engendrée par les singletons de $\Omega$ est $\mathcal{F} = \mathcal{P}(\Omega)$. En effet, si $A \subset \Omega$, alors $A = \bigcup_{a \in A} \left\{a\right\} \in \mathcal{F}$.
-            \item Si $\Omega = \mathbb{R}$, on appelle tribu borélienne de $\mathbb{R}$, notée $(\mathcal{B}(\mathbb{R}))$, la tribu engendrée par $\intervalleOO{a}{b}$, $a,b \in \mathbb{R}$. 
+            \item La tribu borélienne $\mathcal{B}(E)$ est aussi engendrée par les fermés de $E$.
+            \item En général, on n’a pas $\mathcal{B}(E) = \mathcal{P}(E)$ : c’est le cas de $\mathbb{R}$. En effet, on peut construire des parties de $\mathbb{R}$ non boréliennes (avec ou sans axiome du choix). En fait, on peut montrer que $\card(\mathcal{B}(\mathbb{R})) = \card(\mathbb{R})$.
         \end{itemize}
     \end{omed}
 
-    \subsection{Mesure}
+    \begin{prop}{Boréliens de $\mathbb{R}$}{}
+        On a 
+        \[ \mathcal{B}(\mathbb{R}) = \sigma\big(\big\{ \intervalleOO{\alpha}{\beta}, \, \alpha, \beta \in \mathbb{Q} \big\}\big) = \sigma\big(\big\{ \intervalleOO{-\infty}{a}, \, a \in \mathbb{Q} \big\}\big) \]   
+        De même avec les autres types d’intervalles pour la seconde égalité.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        \begin{itemize}
+            \item \textbf{Première égalité} \quad Si $\alpha, \beta \in \mathbb{Q}$, alors $\intervalleOO{\alpha}{\beta} \in \mathcal{O}(\mathbb{R})$, donc $\sigma\big(\big\{ \intervalleOO{\alpha}{\beta}, \, \alpha, \beta \in \mathbb{Q} \big\}\big) \subset \sigma(\mathcal{O}(\mathbb{R})) = \mathcal{B}(\mathbb{R})$. 
+            
+            Réciproquement, soit $\Omega \in \mathcal{O}(\mathbb{R})$. Alors 
+            \[ \Omega = \bigcup_{\substack{\intervalleOO{\alpha}{\beta} \subset \Omega \\ \alpha,\beta \in \mathbb{Q}}} \intervalleOO{\alpha}{\beta} \in \sigma\big(\big\{ \intervalleOO{\alpha}{\beta}, \, \alpha, \beta \in \mathbb{Q} \big\}\big) \]
+            \item \textbf{Deuxième égalité} \quad Comme $\intervalleOO{-\infty}{a} \subset \mathcal{O}(\mathbb{R})$ pour tout $a \in \mathbb{Q}$, on a $\sigma\big(\big\{ \intervalleOO{-\infty}{a}, \, a \in \mathbb{Q} \big\}\big) \subset \sigma(\mathcal{O}(\mathbb{R})) = \mathcal{B}(\mathbb{R})$.
+            
+            Réciproquement, soient $\alpha,\beta \in \mathbb{Q}$. On a 
+            \[ \intervalleOO{\alpha}{\beta} = \intervalleOO{-\infty}{\beta} \big\backslash \intervalleOF{-\infty}{\alpha} = \intervalleOO{-\infty}{\beta} \big\backslash \bigcap_{n \in \mathbb{N}^*} \intervalleOO{-\infty}{\alpha + \frac{1}{n}} \subset \sigma\big(\big\{ \intervalleOO{-\infty}{a}, \, a \in \mathbb{Q} \big\}\big) \]
+            Donc $\mathcal{B}(\mathbb{R}) = \sigma\big(\big\{ \intervalleOO{\alpha}{\beta}, \, \alpha, \beta \in \mathbb{Q} \big\}\big) \subset \sigma\big(\big\{ \intervalleOO{-\infty}{a}, \, a \in \mathbb{Q} \big\}\big)$.
+        \end{itemize}
+    \end{demo}
+
+    \begin{prop}{Boréliens de $\mathbb{R}^d$}{}
+        On a 
+        \[ \mathcal{B}(\mathbb{R}^d) = \sigma\big( \big\{ \intervalleOO{\alpha_1}{\beta_1} \times \cdots \times \intervalleOO{\alpha_d}{\beta_d}, \, \alpha_1,\ldots \beta_d \in \mathbb{Q} \big\} \big) \]   
+        En particulier, si $B \in \mathcal{B}(\mathbb{R}^d)$ et $a \in \mathbb{R}^d$, alors $B + a \in \mathcal{B}(\mathbb{R}^d)$.
+    \end{prop}
+
+    \begin{demo}{Idée de preuve}{myolive}
+        Soit $a \in \mathbb{R}^d$. On montre que la classe de parties $\mathcal{A} := \{ B \in \mathcal{B}(\mathbb{R}^d), \, B + a \in \mathcal{B}(\mathbb{R}^d) \}$ contient $\mathcal{O}(\mathbb{R}^d)$ et que c’est une tribu sur $\mathbb{R}^d$, ce qui permet de conclure que $\mathcal{B}(\mathbb{R}^d) = \sigma(\mathcal{O}(\mathbb{R}^d)) \subset \mathcal{A}$.
+    \end{demo}
+
+    On peut étendre les boréliens de $\mathbb{R}$ à $\barr{\mathbb{R}}$, en introduisant deux éléments $-\infty$ et $+\infty$ et étendant la relation d’ordre totale en posant $-\infty \leq x \leq +\infty$ pour tout $x \in \barr{\mathbb{R}}$. On munit $\barr{\mathbb{R}}$ de la topologie engendrée par les ouverts de $\mathbb{R}$, les ensembles $\intervalleFO{-\infty}{a}$ et $\intervalleOF{a}{-\infty}$ avec $a \in \mathbb{R}$. On a alors $\mathcal{B}(\barr{\mathbb{R}}) = \sigma \big( \big\{ \intervalleFO{-\infty}{a}, \, a \in \mathbb{Q} \big\} \big)$.
+
+    \subsubsection{Tribu image réciproque, tribu image}
+
+    \begin{omed}{Notation}{mypurple}
+        Si $\mathcal{C}$ est une classe de parties de $F$, on note 
+        \[ f^{-1} (\mathcal{C}) = \{ f^{-1}(C), \, C \in \mathcal{C}\} \]   
+    \end{omed}
+
+    \begin{defitheo}{Tribu image réciproque}{}
+        Si $\mathcal{B}$ est une tribu sur $F$, alors $f^{-1}(\mathcal{B})$ est une tribu sur $E$. On l’appelle \textbf{tribu image réciproque}.
+    \end{defitheo}
+
+    Par exemple, soit $\mathcal{B}$ est une tribu sur $E$ et $A \subset E$. On note $i : x \in A \mapsto x \in E$. Alors $i^{-1}(\mathcal{B})$ est une tribu sur $A$, appelée \textbf{tribu trace}.
+
+    Toutefois, si $E$ et $F$ sont deux ensembles et $f : E \to F$, et $\mathcal{A}$ une tribu sur $E$, la classe de parties 
+    \[ f(\mathcal{A}) := \{ f(A), \, A \subset \mathcal{A}\} \] 
+    n’est pas une tribu sur $F$ : il suffit de prendre $E = F = \{0,1\}$ muni de $\mathcal{A} = \mathcal{P}(E)$ et $f : x \in E \mapsto 0$. On a alors $f(\mathcal{P}(E)) = \{\emptyset, \{0\}\}$ qui n’est pas une tribu.
+    
+    \begin{defi}{Tribu image}{}
+        Si $\mathcal{A}$ est une tribu sur $E$, alors $\{ B \subset F, \, f^{-1}(B) \in \mathcal{A} \}$ est une tribu sur $F$, appelée \textbf{tribu image} de $\mathcal{A}$ par $f$.
+    \end{defi}
+
+    \begin{lem}{dit de transport}{}
+        Soit $\mathcal{C}$ une classe de parties de $F$. Alors $\sigma(f^{-1}(\mathcal{C})) = f^{-1}(\sigma(\mathcal{C}))$.
+    \end{lem}
+
+    \begin{demo}{Preuve}{mybrown}
+        On a $\mathcal{C} \subset \sigma(\mathcal{C})$, donc $f^{-1}(\mathcal{C}) \subset f^{-1}(\sigma(\mathcal{C}))$ d’où $\sigma(f^{-1}(\mathcal{C})) \subset f^{-1}(\sigma(\mathcal{C}))$.
+
+        Réciproquement, montrons que $f^{-1}(\sigma(\mathcal{C})) \subset \sigma(f^{-1}(\mathcal{C}))$ \textit{i.e.} que $f^{-1}(B) \subset \sigma(f^{-1}(\mathcal{C}))$ pour $B \in \sigma(\mathcal{C})$. Or la classe de parties $\mathcal{B} := \{ B \subset F, \, f^{-1}(B) \in \sigma(f^{-1}(\mathcal{C}))\}$ est une tribu sur $F$ (la tribu image de $\sigma(f^{-1}(\mathcal{C}))$ par $f$). On a clairement $\mathcal{C} \subset \mathcal{B}$ donc $\sigma(\mathcal{C}) \subset \mathcal{B}$ d’où le résultat.
+    \end{demo}
+
+    \subsection{Mesures}
+
+    \subsubsection{Généralités}
 
     \begin{defi}{Espace mesurable}{}
-        On appelle \textbf{ensemble mesurable} le couple $(\Omega, \mathcal{F})$ où $\Omega$ est un ensemble et $\mathcal{F}$ une tribu sur $\Omega$.
+        On appelle \textbf{ensemble mesurable} le couple $(\Omega, \mathcal{A})$ où $\Omega$ est un ensemble et $\mathcal{A}$ une tribu sur $\Omega$.
     \end{defi}
 
     \begin{defi}{Mesure}{}
-        Soit $(\Omega, \mathcal{F})$ un ensemble mesurable, on appelle mesure sur $(\Omega, \mathcal{F})$ une application 
-        \[ \fonction{\mu}{\mathcal{F}}{\mathbb{R}_+ \cup \left\{+\infty\right\}}{A}{\mu(A)} \]    
-        telle que $\mu(\emptyset) = 0$ et $\mu$ soit $\sigma$-additive, \textit{i.e.} si $(A_i)_{i \in \mathbb{N}}$ est une famille dénombrable d’éléments de $\mathcal{F}$ deux à deux disjoints, alors $\mu\left(\bigcup_{i \in \mathbb{N}} A_i\right) = \sum_{i \in \mathbb{N}} \mu(A_i)$
+        Soit $(\Omega, \mathcal{A})$ un ensemble mesurable, on appelle mesure sur $(\Omega, \mathcal{A})$ une application 
+        \[ \fonction{\mu}{\mathcal{A}}{\mathbb{R}_+ \cup \left\{+\infty\right\}}{A}{\mu(A)} \]    
+        telle que $\mu(\emptyset) = 0$ et $\mu$ soit $\sigma$-additive, \textit{i.e.} si $(A_i)_{i \in \mathbb{N}}$ est une famille dénombrable d’éléments de $\mathcal{A}$ deux à deux disjoints, alors $\mu\left(\bigcup_{i \in \mathbb{N}} A_i\right) = \sum_{i \in \mathbb{N}} \mu(A_i)$.
+
+        On appelle alors $(E,\mathcal{A}, \mu)$ un espace mesuré.
     \end{defi}
+
+    \begin{omed}{Exemple}{myyellow}
+        \begin{itemize}
+            \item L’application $\mu : A \in \mathcal{A} \mapsto 0$ est une mesure sur $(E, \mathcal{A})$ appelée \textit{mesure nulle}.
+            \item La \textit{mesure grossière} sur $(E, \mathcal{A})$ est l’application 
+            \[ \mu : A \in \mathcal{A} \longmapsto \sisinon{0}{A = \emptyset}{+\infty} \]   
+            \item La \textit{mesure de comptage} sur $(E, \mathcal{P}(E))$ est l’application 
+            \[ m : A \in \mathcal{A} \longmapsto \sisinon{\card(A)}{A \text{ est fini}}{+\infty} \]    
+            La \textit{mesure de Dirac} sur $(E,\mathcal{A})$ en $x \in E$ est l’application $\delta_x$ définie par $\delta_x(A) = \mathbb{1}_A(x)$ pour tout $A \in \mathcal{A}$.
+        \end{itemize}
+    \end{omed}
 
     \begin{defi}{}{}
-        Soit $\mu$ une mesure sur $(\Omega, \mathcal{F})$, on dit que $\mu$ est une mesure finie si $\mu(\Omega) < +\infty$. 
+        Soit $\mu$ une mesure sur $(\Omega, \mathcal{A})$, 
+        \begin{itemize}
+            \item On dit que $\mu$ est une mesure finie si $\mu(\Omega) < +\infty$ ;
+            \item Si elle est de poids total $1$, c’est une probabilité ;
+            \item On dit que $\mu$ est $\sigma$-finie s’il existe $(E_n)_{n \in \mathbb{N}} \in \mathcal{A}^{\mathbb{N}}$ telle que $E = \bigcup_{n \in \mathbb{N}} E_n$ et $\mu(E_n) < +\infty$ pour tout $n \in \mathbb{N}$.
+        \end{itemize}
     \end{defi}
 
-    Alors pour tout $A \in \mathcal{F}$, $\mu(A) < +\infty$.
+    La mesure de comptage sur $(\mathbb{N}, \mathcal{P}(\mathbb{N}))$ est $\sigma$-finie, en posant $E_n = \intervalleEntier{0}{n}$ pour tout $n \in \mathbb{N}$.
+
+    Si $\mu$ est une mesure sur $(E, \mathcal{A})$ et $B \in \mathcal{A}$, alors l’application 
+    \[ \fonction{\mu}{\mathcal{A}}{\barr{\mathbb{R}_+}}{A}{\mu(A \cap B)} \]    
+    est encore une mesure sur $(E, \mathcal{A})$. 
+
+    Si $(\mu_n)_{n \in \mathbb{N}}$ est une suite de mesures sur $(E,\mathcal{A})$, alors $\sum_{n \in \mathbb{N}} \mu_n$ est encore une mesure sur $(E,\mathcal{A})$. En particulier, si $(x_n)_{n \in \mathbb{N}}$ est une suite de $e$ et $(\alpha_n)$ une suite de réels positifs, $\sum_{n \in \mathbb{N}} \alpha_n \delta_{x_n}$ est une mesure. En particulier, si $X$ est une VAD dont les valeurs sont $x_n$ pour $n \in \mathbb{N}$, et que $\alpha_n := P(X = x_n)$, la loi de $X$ s’écrit $\mathbf{P}_X = \sum_{n \in \mathbb{N}} \alpha_n \delta_{x_n}$.
+
+    \subsubsection{Propriétés}
+
+    Dans toute la suite, le triplet $(E,\mathcal{A}, \mu)$ désigne un espace mesuré.
+
+    \begin{prop}{Croissance}{}
+        Soient $A,B \in \mathcal{A}$ tel que $A \subset B$. Alors $\mu(A) \leq \mu(B)$. De plus, si $\mu(A) < +\infty$, alors $\mu(B \backslash A) = \mu(B) - \mu(A)$. 
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        $\mu(B) = \mu(A \sqcup (B \backslash A)) = \mu(A) + \mu(B \backslash A) \geq \mu(A)$.
+    \end{demo}
+
+    \begin{prop}{$\sigma$-sous-additivité}{}
+        Si $(A_n)_{n \in \mathbb{N}}$ est une suite de $\mathcal{A}$, alors 
+        \[ \mu\left(\bigcup_{n \in \mathbb{N}} A_n\right) \leq \sum_{n \in \mathbb{N}} \mu(A_n) \]   
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        On définit la suite de parties $(B_n)_{n \in \mathbb{N}}$ par 
+        \[ B_0 = A_0 \esp{et} B_n = A_n \backslash \left(\bigcup_{k = 0}^{n-1} A_k\right) \]    
+        Alors 
+        \begin{itemize}
+            \item La suite $(B_n)_{n \in \mathbb{N}}$ est une suite de $\mathcal{A}$.
+            \item Les sous parties $B_n$ sont deux à deux disjointes.
+            \item On a $\bigsqcup_{n \in \mathbb{N}} B_n = \bigcup_{n \in \mathbb{N}} A_n$.
+        \end{itemize}
+        Ainsi, on a 
+        \[ \mu\left(\bigcup_{n \in \mathbb{N}} A_n\right) = \sum_{n \in \mathbb{N}} \mu(B_n) \leq \sum_{n \in \mathbb{N}} \mu(A_n) \]
+        puisque $B_n \subset A_n$ pour tout $n \in \mathbb{N}$.
+    \end{demo}
+
+    \subsubsection{Mesure de Lebesgue}
+
+    On veut généraliser la longueur $\ell$ des intervalles de $\mathbb{R}$, \textit{i.e.} pour tout intervalle $I$, 
+    \[ \ell(I) = \sisi{b - a}{I \text{ est un intervalle d’extrémités } a,b \in \mathbb{R}}{+\infty}{I \text{ est non borné}} \]
+
+    On veut également généraliser le volume des pavés dans $\mathbb{R}^d$, \textit{i.e.} les ensembles $\prod_{k=1}^{d} I_k$ où les $I_k$ sont des intervalles de $\mathbb{R}$, de façon à ce que pour tout pavé $P$, 
+    \[ \mathcal{V}(P) = \prod_{k=1}^{d} \ell(I_k) \esp{avec} P = \prod_{k=1}^{d} I_k \]
+    avec la convention $\mathcal{V}(P) = 0$ s’il existe $k \in \intervalleEntier{1}{d}$ tel que $\ell(I_k) = 0$.
+
+    \begin{theo}{}{}
+        Soit $d \in \mathbb{N}^*$. Il existe une unique mesure $\lambda_d$ sur $(\mathbb{R}^d, \mathcal{B}(\mathbb{R}^d))$ telle que 
+        \begin{itemize}
+            \item $\lambda_d(\intervalleFF{0}{1}^d) = 1$ ;
+            \item $\lambda_d$ est invariante par translation, \textit{i.e.} si $B \in \mathcal{B}(\mathbb{R}_d)$ et $a \in \mathbb{R}^d$, $\lambda_d(B + a) = \lambda_d(B)$.
+        \end{itemize}
+        Lorsque $d = 1$, on note $\lambda$ cette mesure.
+    \end{theo}
+
+    \begin{demo}{Preuve}{myred}
+        On l’admet pour l’instant, la mesure de Lebesgue sera construite pour $d = 1$ dans la section $5.1.2$.
+    \end{demo}
+
+    \begin{prop}{}{}
+        Si $P$ est un pavé de $\mathbb{R}^d$, alors $\lambda_d(P) = \mathcal{V}(P)$. En particulier, si $x \in \mathbb{R}^d$, $\lambda_d(\left\{x\right\}) = 0$.
+    \end{prop}
+
+    \begin{lem}{}{}
+        Si $B \in \mathcal{B}(\mathbb{R}^d)$ et $\varepsilon > 0$. Alors il existe un ouvert $\Omega$ et un fermé $F$ tels que 
+        \begin{itemize}
+            \item $F \subset B \subset \Omega$
+            \item $\lambda_d(\Omega \backslash F) < \varepsilon$
+        \end{itemize}
+    \end{lem}
+
+    \begin{theo}{Régularité de la mesure de Lebesgue}{}
+        Si $B \in \mathcal{B}(\mathbb{R}^d)$. Alors 
+        \[ \lambda_d(B) = \inf\left\{\lambda_d(\Omega), \quad \Omega \supset B \text{ ouvert} \right\} = \sup\left\{\lambda_d(K), \quad K \subset B \text{ compact}\right\} \]   
+    \end{theo}
+
+    \subsubsection{Ensembles négligeables}
+
+    \begin{defi}{}{}
+        Soit $N \subset E$. On dit que $N$ est $\mu$-négligeable s’il existe $A \in \mathcal{A}$ tel que $N \subset A$ et $\mu(A) = 0$. On dit qu’une propriété $(P)$ sur $E$ est vraie $\mu$-presque partout si l’ensemble 
+        \[ \left\{x \in E, \quad x \text{ ne vérifie pas } (P)\right\} \quad \text{ est } \mu\text{-négligeable} \]
+    \end{defi}
+
+    \begin{omed}{Exemple}{myyellow}
+        \begin{itemize}
+            \item L’indicatrice $\mathbb{1}_{\mathbb{Q}}$ est nulle $\lambda$-presque partout.
+            \item L’indicatrice $\mathbb{1}_{\mathbb{R}_+}$ est continue $\lambda$-presque partout.
+            \item La suite $\left(\mathbb{1}_{\intervalleFF{0}{1/n}}\right)_{n \in \mathbb{N}}$ converge vers la fonction nulle $\lambda$-presque partout.
+        \end{itemize}
+    \end{omed}
+
+    \begin{defi}{Espace mesurable complet}{}
+        On dit que $(E,\mathcal{A},\mu)$ est \textbf{complet} si $\left\{N \subset E, \quad N \text{est } \mu\text{-négligeable}\right\} \subset \mathcal{A}$.
+    \end{defi}
+
+\subsection{Fonctions mesurables}
+
+    \subsubsection{Mesurabilité}
+
+    \begin{defi}{}{}
+        On dit que $f : E \to F$ est $(\mathcal{A}, \mathcal{B})$-mesurable (ou simplement mesurable) si $f^{-1}(\mathcal{B}) \subset \mathcal{A}$, \textit{i.e.} 
+        \[ \forall B \in \mathcal{B}, \quad f^{-1}(B) \subset \mathcal{A} \]
+        Si $E$ et $F$ sont des espaces topologiques associés à leurs tribus boréliennes, on qualifiera de boréliennes les fonctions $\left(\mathcal{B}(E), \mathcal{B}(F)\right)$-mesurables.
+    \end{defi}
 
     \begin{omed}{Exemples}{myyellow}
-        \begin{enumerate}
-            \item \textbf{Mesure de Dirac} Soit $(\Omega, \mathcal{F})$ un ensemble mesurable et $x_0 \in \Omega$. On pose $\delta(A) = \sisinon{1}{x_0 \in A}{0}$. Alors $\delta$ est une mesure sur $\mathcal{F}$.
-            \item \textbf{Mesure de Lebesgue} dans $\mathbb{R}$, muni de la tribu borélienne. Il existe une unique mesure sur $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$ telle que $\lambda(\intervalleOO{a}{b}) = b-a$.
-        \end{enumerate}
+        Une fonction constante est mesurable. En effet, soit $f : x \in E \mapsto y_0 \in F$. Si $B \in \mathcal{B}$, alors 
+        \[ f^{-1}(B) = \sisi{\emptyset}{y_0 \notin B}{E}{y_0 \in B} \]  
+        De plus, si $A \subset E$, alors $\mathbb{1}_A$ est $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$-mesurable si et seulement $A \in \mathcal{A}$. En effet, si $B \in \mathcal{B}(\mathbb{R})$, alors 
+        \[ \mathbb{1}_A^{-1}(B) = \left\{ \begin{array}{ll}
+            E & \text{si } 0 \in B, 1 \in B \\
+            A & \text{si } 0 \notin B, 1 \in B \\
+            \barr{A} & \text{si } 0 \in B, 1 \notin B \\
+            \emptyset & \text{si } 0 \notin B, 1 \notin B
+        \end{array} \right. \]   
     \end{omed}
+
+    EP, si $\mathcal{A} = \mathcal{P}(\Omega)$, alors toute famille $f : E \to F$ est mesurable. Par exemple, dans $(\mathbb{N}, \mathcal{P}(\mathbb{N}))$, toute fonction de $\mathbb{N}$ dans $\mathbb{R}$ est mesurable, \textit{i.e.} les suites réelle sont mesurables. 
+
+    Très souvent, on aura $F \in \left\{\mathbb{R}, \mathbb{R}_+, \barr{\mathbb{R}}, \mathbb{C}\right\}$ et, dans ce cas, il sera implicite que la tribu sur $F$ est $\mathcal{B}(F)$.
+
+    \begin{defi}{Mesure image}
+        Soient $\mu$ une mesure sur $(E,\mathcal{A})$ et $f : E \to F$ une fonction mesurable. Alors 
+        \[ \fonction{\mu_f}{\mathcal{B}}{\barr{\mathbb{R}}}{B}{\mu_f(B) := \mu(f^{-1}(B))} \]  
+        est une mesure sur $(F,\mathcal{B})$, appelée \textbf{mesure image} par $f$.
+    \end{defi}
+
+    Si $X : (\Omega, \mathcal{A}) \to (\mathbb{R}, \mathcal{B}(\mathbb{R}))$ est une variable aléatoire (\textit{i.e.} une fonction mesurable), alors on appelle loi de $X$ la mesure image de $\mathbf{P}$ par $X$ où $\mathbf{P}$ est une probabilité sur $(\Omega, \mathcal{A})$.
+
+    \subsubsection{Montrer la mesurabilité}
+
+    \begin{prop}{}{}
+        On suppose que $\mathcal{B} = \sigma(\mathcal{C})$ où $\mathcal{C}$ est une classe de parties de $E$. Alors $f : E \to F$ est mesurable \textit{ssi} $f^{-1}(\mathcal{C}) \subset \mathcal{A}$.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Le sens direct est évident car $f^{-1}(\mathcal{C}) \subset f^{-1}(\mathcal{B})$. Réciproquement, si $f^{-1}(\mathcal{C}) \subset \mathcal{A}$, alors $\sigma(f^{-1}(\mathcal{C})) \subset \mathcal{A}$, donc $f^{-1}(\sigma(\mathcal{C})) \subset \mathcal{A}$ par le lemme des transports, donc $f^{-1}(\mathcal{B}) \in \mathcal{A}$.
+    \end{demo}
+
+
+
+\section{Espace probabilisé}
 
     \subsection{Espace probabilisé}
 
     \begin{defi}{}{}
-        Soit $\Omega$ un ensemble, et $\mathcal{F}$ une tribu sur $\Omega$. On appelle \textbf{probilité} toute application 
-        \[ \fonction{\mathbf{P}}{\mathcal{F}}{\intervalleFF{0}{1}}{A}{\mathbf{P}(A)} \]   
-        telle que $\mathbf{P}(\Omega) = 1$ et pour toute famille $(A_i)_{i \in \mathbb{N}}$ d’éléments de $\mathcal{F}$ disjoints, $\mathbf{P}(\bigcup_{i \in \mathbb{N}} A_i) = \sum_{i \in \mathbb{N}} \mathbf{P}(A_i)$. 
+        Soit $\Omega$ un ensemble, et $\mathcal{A}$ une tribu sur $\Omega$. On appelle \textbf{probilité} toute application 
+        \[ \fonction{\mathbf{P}}{\mathcal{A}}{\intervalleFF{0}{1}}{A}{\mathbf{P}(A)} \]   
+        telle que $\mathbf{P}(\Omega) = 1$ et pour toute famille $(A_i)_{i \in \mathbb{N}}$ d’éléments de $\mathcal{A}$ disjoints, $\mathbf{P}(\bigcup_{i \in \mathbb{N}} A_i) = \sum_{i \in \mathbb{N}} \mathbf{P}(A_i)$. 
 
-        On dit que $(\Omega, \mathcal{F}, \mathbf{P})$ est un espace probabilisé. 
+        On dit que $(\Omega, \mathcal{A}, \mathbf{P})$ est un espace probabilisé. 
     \end{defi}
 
     Pour la suite, on notera $\mathbf{P}$ une probabilité sur un espace mesurable.
@@ -674,11 +1051,11 @@
     \begin{prop}{}{}
         \begin{enumerate}
             \item $\mathbf{P}(\emptyset) = 0$. En particulier, $\mathbf{P}$ est une mesure, de mesure totale $1$.
-            \item Si $A,B \in \mathcal{F}$, $A \cap B = \emptyset$, alors $\mathbf{P}(A \cup B) = \mathbf{P}(A) + \mathbf{P}(B)$
+            \item Si $A,B \in \mathcal{A}$, $A \cap B = \emptyset$, alors $\mathbf{P}(A \cup B) = \mathbf{P}(A) + \mathbf{P}(B)$
             \item Si $A_1, \ldots, A_n \in F$, 2 à 2 disjoints, alors $\mathbf{P}\left(\bigcup_{i=1}^n A_i\right) = \sum_{i =1}^n \mathbf{P}(A_i)$
             \item Si $A \in F$, $\mathbf{P}(\barr{A}) = 1 - \mathbf{P}(A)$
-            \item Si $A, B \in \mathcal{F}$, $A \subset B$, alors $\mathbf{P}(A) \leq \mathbf{P}(B)$
-            \item Si $A, B \in \mathcal{F}$, $\mathbf{P}(A \cup B) = \mathbf{P}(A) + \mathbf{P}(B) - \mathbf{P}(A \cap B)$
+            \item Si $A, B \in \mathcal{A}$, $A \subset B$, alors $\mathbf{P}(A) \leq \mathbf{P}(B)$
+            \item Si $A, B \in \mathcal{A}$, $\mathbf{P}(A \cup B) = \mathbf{P}(A) + \mathbf{P}(B) - \mathbf{P}(A \cap B)$
         \end{enumerate}
     \end{prop}
 
@@ -687,7 +1064,7 @@
             \item On pose $A_0 = \Omega$ et $A_i = \emptyset$ si $i \geq 1$. Par $\sigma$-additivité, $\mathbf{P}(\Omega) = \mathbf{P}(\Omega) + \sum_{i=1}^{+\infty} \mathbf{P}(\emptyset)$ donc $\sum_{i=1}^{+\infty} \mathbf{P}(\emptyset) = 0$ \textit{i.e.} $\mathbf{P}(\emptyset) = 0$.
             \item On pose $A_0 = A$, $A_1 = B$ et $A_i = \emptyset$ si $i \geq 2$. Par $\sigma$-additivité, $\mathbf{P}(A \cup B) = \mathbf{P}(A) + \mathbf{P}(B)$.
             \item On réalise la même opération.
-            \item Si $A \in \mathcal{F}$, $\Omega = A \sqcup \barr{A}$ donc $\mathbf{P}(\Omega) = \mathbf{P}(A) + \mathbf{P}(\barr{A})$.
+            \item Si $A \in \mathcal{A}$, $\Omega = A \sqcup \barr{A}$ donc $\mathbf{P}(\Omega) = \mathbf{P}(A) + \mathbf{P}(\barr{A})$.
             \item Si $A \subset B$, $B = A \sqcup (B \backslash A)$ donc $\mathbf{P}(B) = \mathbf{P}(A) + \mathbf{P}(B \backslash A) \geq \mathbf{P}(A)$.
             \item On a $A \cup B = A \sqcup (B \backslash A)$ donc $\mathbf{P}(A \cup B) = \mathbf{P}(A) + \mathbf{P}(B \backslash A)$. Or $B = (B \backslash A) \sqcup (A \cap B)$ donc $\mathbf{P}(B) = \mathbf{P}(B \backslash A) + \mathbf{P}(A \cap B)$ d’où le résultat.
         \end{enumerate}
@@ -695,18 +1072,18 @@
 
     \begin{defi}{}{}
         \begin{itemize}
-            \item Soit $(A_n)_{n \in \mathbb{N}}$ une famille de $\mathcal{F}$. On dit que $(A_n)_{n \in \mathbb{N}}$ est croissante convergeant vers $A$ si 
+            \item Soit $(A_n)_{n \in \mathbb{N}}$ une famille de $\mathcal{A}$. On dit que $(A_n)_{n \in \mathbb{N}}$ est croissante convergeant vers $A$ si 
             \begin{enumerate}
                 \item $\forall n \in \mathbb{N}, A_n \subset A_{n +1}$
                 \item $\bigcup_{n \in \mathbb{N}} A_n = A$
             \end{enumerate}
-            \item Soit $(B_n)_{n \in \mathbb{N}}$ une famille de $\mathcal{F}$. On dit que $(B_n)$ est décroissante convergeant vers $B$ si 
+            \item Soit $(B_n)_{n \in \mathbb{N}}$ une famille de $\mathcal{A}$. On dit que $(B_n)$ est décroissante convergeant vers $B$ si 
             \begin{enumerate}
                 \item $\forall n \in \mathbb{N}, B_{n+1} \subset B_n$
                 \item $\bigcap_{n \in \mathbb{N}} B_n = B$
             \end{enumerate}
         \end{itemize}
-        En particulier, $A$ et $B$ sont nécessairement des éléments de $\mathcal{F}$.
+        En particulier, $A$ et $B$ sont nécessairement des éléments de $\mathcal{A}$.
     \end{defi}
 
     \begin{prop}{}{}
@@ -725,7 +1102,7 @@
     \end{demo}
 
     \begin{prop}{Formule du crible de Poincaré}{}
-        Soient $A_1, \ldots, A_n \in \mathcal{F}$. 
+        Soient $A_1, \ldots, A_n \in \mathcal{A}$. 
         \[ \mathbf{P}(A_1 \cup \cdots A_n) = \sum_{k = 1}^n (-1)^{k - 1} \sum_{1 \leq i_1 < \cdots < i_k \leq n} \mathbf{P}(A_{i_1} \cap \cdots \cap A_{i_k}) \]   
     \end{prop}
 
@@ -753,7 +1130,7 @@
     \end{demo}
 
     \begin{omed}{Vocabulaire}{myyellow}
-        On note $(\Omega, \mathcal{F}, \mathbf{P})$ un espace probabilisé. On dit que $\Omega$ est l’univers et les éléments de $\mathcal{F}$ sont appelés des événements en langage probabiliste.
+        On note $(\Omega, \mathcal{A}, \mathbf{P})$ un espace probabilisé. On dit que $\Omega$ est l’univers et les éléments de $\mathcal{A}$ sont appelés des événements en langage probabiliste.
 
         \begin{longtblr}[caption=Vocabulaire probabiliste et ensembliste]{
             colspec={Q[m,l,1]|Q[m,l,3]|Q[m,c,2]|}, width = \linewidth,
@@ -764,7 +1141,7 @@
         $\emptyset$ & Ensemble vide & Événement impossible \\
         $\Omega$ & Ensemble plein & Événement certain \\
         $\omega \in \Omega$ & Élément de $\Omega$ & Événement élémentaire \\
-        $A \subset \Omega$ ou $A \in \mathcal{F}$ & Partie de $\Omega$ & Événement \\
+        $A \subset \Omega$ ou $A \in \mathcal{A}$ & Partie de $\Omega$ & Événement \\
         $w \in A \in F$ & Élément de $A$ & Réalisation de $A$ \\
         $A \subset B$ & $A$ inclus dans $B$ & $A$ implique $B$ \\
         $A \cup B$ & Union de $A$ et $B$ & Événement « $A$ ou $B$ » \\
@@ -777,7 +1154,7 @@
 
     \subsection{Probabilité uniforme}
 
-    Soit $\Omega$ un \textbf{\textsc{ensemble fini}}, $\mathcal{F} = \mathcal{P}(\Omega)$. On peut définir une probabilité en prenant $\forall \omega \in \Omega, \mathbf{P}(\left\{\omega\right\}) = p_{\omega}$ où $\forall \omega \in \Omega, p_{\omega} \in \intervalleFF{0}{1}$ et $\sum_{\omega \in \Omega} p_{\omega} = 1$. On définit ainsi, pour $A \in \mathcal{P}(\Omega)$, $\mathbf{P}(A) = \sum_{\omega \in A} p_{\omega}$.
+    Soit $\Omega$ un \textbf{\textsc{ensemble fini}}, $\mathcal{A} = \mathcal{P}(\Omega)$. On peut définir une probabilité en prenant $\forall \omega \in \Omega, \mathbf{P}(\left\{\omega\right\}) = p_{\omega}$ où $\forall \omega \in \Omega, p_{\omega} \in \intervalleFF{0}{1}$ et $\sum_{\omega \in \Omega} p_{\omega} = 1$. On définit ainsi, pour $A \in \mathcal{P}(\Omega)$, $\mathbf{P}(A) = \sum_{\omega \in A} p_{\omega}$.
 
     \begin{defi}{Probabilité uniforme}{}
         On dit que $\mathbf{P}$ est la probabilité uniforme s’il existe $p \in \intervalleFF{0}{1}$ tel que $\forall \omega \in \Omega, \mathbf{P}(\left\{\omega\right\}) = p$.
@@ -785,13 +1162,13 @@
 
     \begin{theo}{}{}
         On suppose que $\mathbf{P}$ est une probabilité uniforme. Alors
-        \[ \forall A \in \mathcal{F}, \quad \mathbf{P}(A) = \frac{\card(A)}{\card(\Omega)} \]   
+        \[ \forall A \in \mathcal{A}, \quad \mathbf{P}(A) = \frac{\card(A)}{\card(\Omega)} \]   
     \end{theo}
 
     \begin{demo}{Preuve}{myred}
         On a $\mathbf{P}(\Omega) = 1 = \mathbf{P}\left(\bigcup_{\omega \in \Omega} \left\{\omega\right\}\right) = \sum_{\omega \in \Omega} \mathbf{P}(\left(\omega\right)) = \card(\Omega) \times p$ donc $p = \frac{1}{\card(\Omega)}$.
 
-        Ainsi, si $A \in \mathcal{F}$, $\mathbf{P}(A) = \mathbf{P}\left(\bigcup_{\omega \in A} \left\{\omega\right\}\right) = \sum_{\omega \in A} p = p \card(A) = \frac{\card(A)}{\card(\Omega)}$.
+        Ainsi, si $A \in \mathcal{A}$, $\mathbf{P}(A) = \mathbf{P}\left(\bigcup_{\omega \in A} \left\{\omega\right\}\right) = \sum_{\omega \in A} p = p \card(A) = \frac{\card(A)}{\card(\Omega)}$.
     \end{demo}
 
     Dans cette situation, le calcul de probabilités se ramène à du dénombrement, et peut se réécrire 
@@ -834,10 +1211,10 @@
 
     \subsection{Probabilité conditionnelle}
 
-    On cherche l’influence que peut avoir la vérification d’un événement $B$ sur un autre événement $A$. On se place de nouveau dans un espace probabilisé $(\Omega, \mathcal{F}, \mathbf{P})$.
+    On cherche l’influence que peut avoir la vérification d’un événement $B$ sur un autre événement $A$. On se place de nouveau dans un espace probabilisé $(\Omega, \mathcal{A}, \mathbf{P})$.
 
     \begin{defi}{Probabilité conditionnelle}{}
-        Soit $B \in \mathcal{F}$ tel que $\mathbf{P}(B) > 0$. On appelle \textbf{probabilité de $A$ sachant $B$} le réel 
+        Soit $B \in \mathcal{A}$ tel que $\mathbf{P}(B) > 0$. On appelle \textbf{probabilité de $A$ sachant $B$} le réel 
         \[ \mathbf{P}(A \tq B) = \frac{\mathbf{P}(A \cap B)}{\mathbf{P}(B)} \]   
         On peut aussi noter $\mathbf{P}_B(A)$. 
     \end{defi}
@@ -855,11 +1232,11 @@
     Il faut interpréter cette probabilité comme la probabilité de $A$, pour une mesure de probabilité différente $\mathbf{P}(. \tq B)$. 
 
     \begin{prop}{}{}
-        L’application $A \mapsto \mathbf{P}(A \tq B)$ est une mesure de probabilité sur l’espace mesurable $(\Omega, \mathcal{F})$. 
+        L’application $A \mapsto \mathbf{P}(A \tq B)$ est une mesure de probabilité sur l’espace mesurable $(\Omega, \mathcal{A})$. 
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
-        $\mathbf{P}(\Omega \tq B) = \frac{\mathbf{P}(\Omega \cap B)}{\mathbf{P}(B)} = \frac{\mathbf{P}(B)}{\mathbf{P}(B)} = 1$ et si $(A_i)_{i \in I} \in \mathcal{F}$ sont des éléments 2 à 2 disjoints, où $I$ est dénombrable, alors 
+        $\mathbf{P}(\Omega \tq B) = \frac{\mathbf{P}(\Omega \cap B)}{\mathbf{P}(B)} = \frac{\mathbf{P}(B)}{\mathbf{P}(B)} = 1$ et si $(A_i)_{i \in I} \in \mathcal{A}$ sont des éléments 2 à 2 disjoints, où $I$ est dénombrable, alors 
         \begin{align*}
             \mathbf{P}\left(\bigcup_{i \in I} A_i \tq B\right) 
             &= \frac{\mathbf{P}\left(\left(\bigcup_{i \in I} A_i\right) \cap B\right)}{\mathbf{P}(B)} \\
@@ -870,7 +1247,7 @@
     \end{demo}
 
     \begin{prop}{Formule des probabilités composées}{}
-        Soit $(A_0, \ldots, A_n)$ une famille de $\mathcal{F}$ telle que $\mathbf{P}\left(\bigcap_{i =0}^n A_i\right) > 0$. Alors 
+        Soit $(A_0, \ldots, A_n)$ une famille de $\mathcal{A}$ telle que $\mathbf{P}\left(\bigcap_{i =0}^n A_i\right) > 0$. Alors 
         \begin{align*}
             \mathbf{P}\left(\bigcap_{i =0}^n A_i\right)
             &= \mathbf{P}(A_0) \times \mathbf{P}(A_1 \tq A_0) \times \mathbf{P}(A_2 \tq A_0 \cap A_1) \times \cdots \times \mathbf{P}(A_n \tq A_0 \cap \cdots \cap A_{n - 1})
@@ -886,7 +1263,7 @@
     \end{demo}
 
     \begin{defi}{Système complet d’événements}{}
-        Soit $(A_i)_{i \in I}$ une famille d’éléments de $\mathcal{F}$, où $I$ est au plus dénombrable. On dit que cette famille est un \textbf{système complet d’événements} si 
+        Soit $(A_i)_{i \in I}$ une famille d’éléments de $\mathcal{A}$, où $I$ est au plus dénombrable. On dit que cette famille est un \textbf{système complet d’événements} si 
         \begin{enumerate}
             \item $\forall (i,j) \in I^2$, $i \neq j \implies A_i \cap A_j = \emptyset$
             \item $\bigcup_{i \in I} A_i = \Omega$
@@ -895,7 +1272,7 @@
     \end{defi}
 
     \begin{prop}{Formule des probabilités totales}{}
-        OS que $(A_i)_{i \in I}$ est un système complet d’événements et $B \in \mathcal{F}$. Alors 
+        OS que $(A_i)_{i \in I}$ est un système complet d’événements et $B \in \mathcal{A}$. Alors 
         \[ \mathbf{P}(B) = \sum_{i \in I} \mathbf{P}(B \tq A_i) \mathbf{P}(A_i) \]    
     \end{prop}
 
@@ -911,7 +1288,7 @@
     \end{demo}
 
     \begin{prop}{Formule de Bayes}{}
-        Soit $(A_i)_{i \in I}$ un système complet d’événements et $B \in \mathcal{F}$ tel que $\mathbf{P}(B) > 0$. Alors, pour tout $j \in I$, on a 
+        Soit $(A_i)_{i \in I}$ un système complet d’événements et $B \in \mathcal{A}$ tel que $\mathbf{P}(B) > 0$. Alors, pour tout $j \in I$, on a 
         \[ \mathbf{P}(A_j \tq B) = \frac{\mathbf{P}(B \tq A_j) \mathbf{P}(A_j)}{\sum_{i \in I} \mathbf{P}(B \tq A_i) \mathbf{P}(A_i)} \]    
     \end{prop}
 
@@ -988,10 +1365,10 @@
 
     \subsection{Événements indépendants}
 
-    On se place dans un espace probabilisé $(\Omega, \mathcal{F}, \mathbf{P})$.
+    On se place dans un espace probabilisé $(\Omega, \mathcal{A}, \mathbf{P})$.
 
     \begin{defi}{Événements indépendants}{}
-        Soient $A$ et $B$ deux éléments de $\mathcal{F}$. On dit que $A$ et $B$ sont \textbf{indépendants} si $\mathbf{P}(A \cap B) = \mathbf{P}(A) \mathbf{P}(B)$.
+        Soient $A$ et $B$ deux éléments de $\mathcal{A}$. On dit que $A$ et $B$ sont \textbf{indépendants} si $\mathbf{P}(A \cap B) = \mathbf{P}(A) \mathbf{P}(B)$.
     \end{defi}
 
     \begin{prop}{}{}
