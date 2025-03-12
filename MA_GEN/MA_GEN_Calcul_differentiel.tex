@@ -1,0 +1,917 @@
+\customchapter{Calcul différentiel}{}
+
+\section{Calcul différentiel}
+
+\subsection{Premiers pas informels avec les fonctions de deux variables}
+
+    On se restreint dans un premier temps aux fonctions numériques définies sur un ouvert $\mathcal{U}$ de $\mathbb{R}^2$. On considèrera donc 
+    \[ \fonction{f}{\mathcal{U} \subset \mathbb{R}^2}{\mathbb{R}}{(x,y)}{f(x,y)} \]   
+
+    \begin{defi}{Ligne de niveau}{}
+        On appelle ligne de niveau de hauteur $k$ la courbe d’équation $f(x,y) = k$. 
+    \end{defi}
+
+    Les lignes de niveau sont les intersections de $\mathcal{S}$ (surface de la fonction) avec les plans $z = k$. Ceci permet de donner des représentations graphiques claires de ces fonctions.
+
+    \subsubsection{Limites et continuité}
+
+    \begin{defi}{Fonction continue}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f \in \mathcal{F}(\mathcal{U},\mathbb{R})$
+            \item $(x_0,y_0) \in \mathcal{U}$
+        \end{soient}
+        On dit que $f$ est \textbf{continue} en $(x_0,y_0)$ lorsque 
+        \[ \forall \varepsilon > 0,  \exists \eta > 0,  \forall(x,y) \in \mathcal{B}\left((x_0,y_0),\eta\right),  \abs{f(x,y)-f(x_0,y_0)} \leq \varepsilon \]
+        On dit que $f$ est continue sur $\mathcal{U}$ si elle est continue en tout $(x_0,y_0) \in \mathcal{U}$.
+    \end{defi}
+
+    \begin{prop}{Théorèmes généraux pour les fonctions de deux variables}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $(f,g) \in \mathcal{F}(\mathcal{U},\mathbb{R})^2$ et $\lambda,\mu \in \mathbb{R}^2$
+            \item $(x_0,y_0) \in \mathcal{U}$
+        \end{soient}
+        On suppose que $f$ et $g$ sont continues en $(x_0,y_0)$
+
+        \begin{alors}
+            \item $\lambda f + \mu g$ est continue en $(x_0,y_0)$
+            \item $fg$ est continue en $(x_0,y_0)$
+            \item Si $g(x_0,y_0) \neq 0$, il existe $\alpha >0$  tel que $g$ ne s’annule pas sur $\mathcal{B}\left((x_0,y_0), \alpha\right)$ et le quotient $ f / g$ des restrictions de $f$ et $g$ à $\mathcal{B}\left((x_0,y_0), \alpha\right)$ est continu en $(x_0,y_0)$
+        \end{alors}
+        On peut étendre ces résultats à tout $\mathcal{U}$.
+    \end{prop}
+
+    \begin{defi}{Fonction polynomiale}{}
+        \begin{itemize}
+            \item Une fonction polynomiale en $(x,y)$ est une combinaison linéaire de fonctions du type $(x,y) \longmapsto x^p y^q$, où $(p,q) \in \mathbb{N}^2$
+            \item Une fonction rationnelle en $(x,y)$ est un quotient de fonctions polynomiales en $(x,y)$
+        \end{itemize}
+    \end{defi}
+
+    \begin{coro}{Continuité des fonctions polynomiales et rationnelles}{}
+        \begin{enumerate}
+            \item Les fonctions polynomiales sont continues sur $\mathbb{R}^2$
+            \item Les fonctions rationnelles sont continues sur leur ensemble de définition.
+        \end{enumerate}
+    \end{coro}
+
+    \begin{demo}{Preuve}{myorange}
+        Les fonctions $(x,y) \mapsto x$, $(x,y) \mapsto y$ et $(x,y) \mapsto 1$ sont continues sur $\mathbb{R}^2$.
+    \end{demo}
+
+    \begin{prop}{Composée à gauche par une fonction de la variable réelle}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$ et $D$ une union finie d’intervalles non réduits à un point de $\mathbb{R}$
+            \item $f \in \mathcal{F}(\mathcal{U},\mathbb{R})$ et $g \in \mathcal{F}(D,\mathbb{R})$
+            \item $(x_0,y_0) \in \mathcal{U}$
+        \end{soient}
+        \begin{suppose}
+            \item $f(\mathcal{U}) \subset D$
+            \item $f$ est continue en $(x_0,y_0)$ (resp. sur $\mathcal{U}$)
+            \item $g$ est continue en $f(x_0,y_0)$ (resp. sur $\mathcal{D}$)
+        \end{suppose}
+        Alors $g \circ f$ est continue en $(x_0,y_0)$ (resp. sur $\mathcal{U}$)
+    \end{prop}
+
+    \subsubsection{Dérivées partielles premières}
+
+    \begin{defi}{Dérivée directionnelle}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f \in \mathcal{F}(\mathcal{U},\mathbb{R})$
+            \item $(x_0,y_0) \in \mathcal{U}$
+            \item $v = (a,b) \in \mathbb{R}^2 \backslash \{ (0,0) \}$
+        \end{soient}
+        On dit que $f$ est dérivable en $(x_0,y_0)$ dans la direction $v$ lorsque $g_{(x_0,y_0)} : t \mapsto f((x_0,y_0)+tv)$ est dérivable en 0. 
+        
+        Dans ce cas, la dérivée de $f$ selon $v$ en $(x_0,y_0)$ est 
+        \[D_v f(x_0,y_0) = g_{(x_0,y_0)}(0) = \lim\limits_{t \rightarrow 0} \frac{f((x_0,y_0)+tv) - f((x_0,y_0))}{t} \]
+    \end{defi}
+
+    \begin{defi}{Dérivée partielle}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f \in \mathcal{F}(\mathcal{U},\mathbb{R})$
+            \item $(x_0,y_0) \in \mathcal{U}$
+        \end{soient}
+        Lorsqu’elle existe, la \textbf{dérivée partielle} de $f$ par rapport à $x$ (resp. $y$) en $(x_0,y_0)$ est $D_{(1,0)}f(x_0,y_0)$ (resp. $D_{(0,1)}f(x_0,y_0)$), notée $\frac{\partial f}{\partial x}(x_0,y_0)$ (resp. $\frac{\partial f}{\partial y}(x_0,y_0)$)
+    \end{defi}
+
+    \begin{omed}{Remarques}{myyellow}
+        \begin{itemize}
+            \item $\frac{\partial f}{\partial x}$ n’est qu’une notation pour la dérivée par rapport à la première variable.
+            \item L’existence des dérivées partielles n’entraîne pas la continuité de la fonction.
+        \end{itemize}
+    \end{omed}
+
+    \begin{prop}{Théorèmes généraux pour les dérivées partielles}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f,g \in \mathcal{F}(\mathcal{U},\mathbb{R})$ et $\lambda,\mu \in \mathbb{R}$
+            \item $(x_0,y_0) \in \mathcal{U}$
+        \end{soient}
+        On suppose que $f$ et $g$ admettent des dérivées partielles en $(x_0,y_0)$
+
+        \begin{alors}
+            \item La fonction $\lambda f + \mu g$ admet des dérivées partielles en $(x_0,y_0)$ et 
+            \[ \frac{\partial \lambda f + \mu g}{\partial x}(x_0,y_0) = \lambda \frac{\partial f}{\partial x}(x_0,y_0) + \mu \frac{\partial g}{\partial x}(x_0,y_0) \] 
+            \item La fonction $fg$ admet des dérivées partielles en $(x_0,y_0)$ et 
+            \[ \frac{\partial fg}{\partial x}(x_0,y_0) = \frac{\partial f}{\partial x}(x_0,y_0)g(x_0,y_0) + \frac{\partial g}{\partial x}(x_0,y_0) f(x_0,y_0) \] 
+            \item Si $g$ ne s’annule pas sur $\mathcal{U}$ (ou au moins sur une boule ouverte centrée sur $(x_0,y_0)$), alors $f / g$ admet des dérivées partielles en $(x_0,y_0)$ et 
+            \[ \frac{\partial f/g}{\partial x}(x_0,y_0) = \frac{\frac{\partial f}{\partial x}(x_0,y_0)g(x_0,y_0) - \frac{\partial g}{\partial x}(x_0,y_0)f(x_0,y_0)}{g(x_0,y_0)^2} \]
+        \end{alors}
+        Les définitions sont similaires pour les dérivées partielles par rapport à la seconde variable.
+    \end{prop}
+
+    \begin{prop}{Composition à gauche par une fonction de la variable réelle}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$ et $D$ une union finie d’intervalles non réduits à un point de $\mathbb{R}$
+            \item $f\in \mathcal{F}(\mathcal{U},\mathbb{R})$ et $ g \in \mathcal{F}(D,\mathbb{R})$
+            \item $(x_0,y_0) \in \mathcal{U}$
+        \end{soient}
+        \begin{suppose}
+            \item $f(\mathcal{U}) \subset D$
+            \item $f$ admet des dérivées partielles en $(x_0,y_0)$
+            \item $g$ est dérivable en $f(x_0,y_0)$
+        \end{suppose}
+        Alors $g \circ f$ admet des dérivées partielles en $(x_0,y_0)$, et 
+        \[ \frac{\partial (g \circ f)}{\partial x}(x_0,y_0) = \frac{\partial f}{\partial x}(x_0,y_0) g'(f(x_0,y_0)) \] 
+        La définition est similaire pour la dérivée partielle par rapport à la seconde variable.
+    \end{prop}
+
+    \begin{defi}{Fonctions de classe $\mathcal{C}^1$}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f\in \mathcal{F}(\mathcal{U},\mathbb{R})$
+            \item $(x_0,y_0) \in \mathcal{U}$
+        \end{soient}
+        On dit que \textbf{$f$ est de classe $\mathcal{C}^1$} sur $\mathcal{U}$ lorsque 
+        \begin{enumerate}
+            \item $f$ admets des dérivées partielles en tout $(x_0,y_0) \in \mathcal{U}$
+            \item $\frac{\partial f}{\partial x}$ et $\frac{\partial f}{\partial y}$ sont continues.
+        \end{enumerate}
+        On note $\mathcal{C}^1(\mathcal{U},\mathbb{R})$ l’ensemble des fonctions de classe $\mathcal{C}^1$ sur $\mathcal{U}$ à valeurs dans $\mathbb{R}$.
+    \end{defi}
+
+    \begin{defi}{Gradient}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f\in \mathcal{C}^1(\mathcal{U},\mathbb{R})$
+            \item $(x_0,y_0) \in \mathcal{U}$
+        \end{soient}
+        Le \textbf{gradient} de $f$ en $(x_0,y_0)$ est 
+        \[ \nabla f(x_0,y_0) = \left(\frac{\partial f}{\partial x}(x_0,y_0), \frac{\partial f}{\partial y}(x_0,y_0)\right) \]
+    \end{defi}
+
+    \begin{prop}{Théorèmes généraux pour les fonctions de deux variables}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f,g \in \mathcal{C}^1(\mathcal{U},\mathbb{R})$ et $\lambda,\mu \in \mathbb{R}^2$
+        \end{soient}
+        \begin{alors}
+            \item $\lambda f + \mu g$ est de classe $\mathcal{C}^1$ sur $\mathcal{U}$ et
+            \[ \forall (x_0,y_0) \in \mathcal{U}, \nabla (\lambda f + \mu g)(x_0,y_0) = \lambda \nabla f(x_0,y_0) + \mu \nabla g(x_0,y_0) \]
+            \item $fg$ est de classe $\mathcal{C}^1$ sur $\mathcal{U}$ et
+            \[ \forall (x_0,y_0) \in \mathcal{U}, \nabla (fg)(x_0,y_0) = g(x_0,y_0) \nabla f(x_0,y_0) + f(x_0,y_0) \nabla g(x_0,y_0) \]
+            \item Si $\forall (x,y) \in \mathcal{U}, g(x,y) \neq 0$, alors $f / g$ est de classe $\mathcal{C}^1$ sur $\mathcal{U}$ et
+            \[ \forall (x_0,y_0) \in \mathcal{U}, \nabla \left(\frac{f}{g}\right)(x_0,y_0) = \frac{g(x_0,y_0) \nabla f(x_0,y_0) - f(x_0,y_0) \nabla g(x_0,y_0)}{g(x_0,y_0)^2} \]
+        \end{alors}
+    \end{prop}
+
+    \begin{coro}{Classe $\mathcal{C}^1$ des fonctions polynomiales et rationnelles}{}
+        \begin{enumerate}
+            \item Les fonctions polynomiales sont de classe $\mathcal{C}^1$ sur $\mathbb{R}^2$
+            \item Les fonctions rationnelles sont de classe $\mathcal{C}^1$ sur leur ensemble de définition.
+        \end{enumerate}
+    \end{coro}
+
+    \begin{prop}{Composition}{}
+        \begin{soient}
+            \item $ \mathcal{U}$ un ouvert de $\mathbb{R}^2$ et $D$ une union finie d’intervalles non réduits à un point de $\mathbb{R}$
+            \item $f \in \mathcal{F}(\mathcal{U},\mathbb{R})$ et $g \in \mathcal{F}(D,\mathbb{R})$
+        \end{soient}
+        \begin{suppose}
+            \item $f(\mathcal{U}) \subset D$
+            \item $f \in \mathcal{C}^1(\mathcal{U},\mathbb{R})$
+            \item $g \in \mathcal{C}^1(D,\mathbb{R})$
+        \end{suppose}
+        Alors $g \circ f \in \mathcal{C}^1(\mathcal{U},\mathbb{R})$ et 
+        \[ \nabla (g \circ f)(x_0,y_0) = g'(f(x_0,y_0)) \nabla f(x_0,y_0) \] 
+    \end{prop}
+
+    \begin{theo}{Formule de TY à l’ordre 1}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f\in \mathcal{C}^1(\mathcal{U},\mathbb{R})$
+            \item $(x_0,y_0) \in \mathcal{U}$
+        \end{soient}
+        Alors \[  f(x,y) \underset{\norm{(x,y)-(x_0,y_0)} \rightarrow 0}{=} f(x_0,y_0) + \spr{\nabla f(x_0,y_0)}{(x-x_0,y-y_0)} + o\left(\norm{(x-x_0,y-y_0)}\right) \]
+        De manière équivalente, on peut écrire ce DL
+        \[ f(x_0 + h,y_0 + k) \underset{\norm{(h,k)} \rightarrow 0}{=} f(x_0,y_0) + \frac{\partial f}{\partial x}(x_0,y_0) h + \frac{\partial f}{\partial y}(x_0,y_0)k + o\left(\norm{(h,k)}\right) \]
+    \end{theo}
+
+    La surface d’équation $z = f(x,y)$ admet alors un plan tangent en tout point $(x_0,y_0,z_0)$ tel que $z_0 = f(x_0, y_0)$. Celui-ci a pour équation 
+    \[ z = f(x_0, y_0) + \dpart{f}{x}(x_0,y_0)(x-x_0) + \dpart{f}{y}(x_0,y_0)(y - y_0) \]   
+    C’est une équation de la forme $a(x-x_0) + b(x - x_0) + c(x-x_0)$ avec $a,b$ les dérivées partielles et $c = -1$. Ainsi, le vecteur $\left(\dpart{f}{x}(x_0,y_0), \dpart{f}{y}(x_0,y_0) , -1\right)$ est normal au plan tangent. 
+
+    Si $f$ est de classe $\mathcal{C}^1$, l’application 
+    \[ (h,k) \mapsto \dpart{f}{x}(x_0,y_0) h + \dpart{f}{y}(x_0,y_0)k \]   est linéaire, on l’appelle différentielle de $f$ en $(x_0, y_0)$ et on la note $df_{(x_0,y_0)}$. Ici, $df_{(x_0,y_0)} \in \mathcal{L}(\mathbb{R}^2, \mathbb{R})$. 
+
+    Le gradient de $f$ en $(x_0, y_0)$ est ainsi l’unique vecteur vérifiant, pour tout $u = (h,k)$, 
+    \[ df_{(x_0,y_0)}(u) = \spr{\nabla f(x_0,y_0)}{u} \]   
+
+    \begin{coro}{}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f\in \mathcal{F}(\mathcal{U},\mathbb{R})$
+        \end{soient}
+        On suppose que $f$ est de classe $\mathcal{C}^1$ sur $\mathcal{U}$.
+
+        Alors $f$ est continue sur $\mathcal{U}$.
+    \end{coro}
+
+    \begin{coro}{}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f\in \mathcal{C}^1(\mathcal{U},\mathbb{R})$
+            \item $(a,b) \in \mathbb{R}^2 \backslash \{ (0,0) \}$
+        \end{soient}
+
+        Alors $f$ admet une dérivée suivant $v = (a,b)$ en tout $(x_0,y_0) \in \mathcal{U}$ et 
+        \[ D_v f(x_0,y_0) = \spr{\nabla f(x_0,y_0)}{v} \]
+    \end{coro}
+
+    \subsubsection{Règles de la chaîne}
+
+    \begin{prop}{Règle de la chaîne}{}
+        \begin{soient}
+            \item $D$ une union finie d’intervalles de $\mathbb{R}$ non réduits à un point
+            \item $x$ et $y$ deux fonctions définies sur $D$ à valeurs dans $\mathbb{R}$
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f \in \mathcal{F}(\mathcal{U},\mathbb{R})$
+        \end{soient}
+        \begin{suppose}
+            \item $\forall t \in D, (x(t),y(t)) \in \mathcal{U}$
+            \item $x,y \in \mathcal{C}^1(D,\mathbb{R})$
+            \item $f \in \mathcal{C}^1(\mathcal{U},\mathbb{R})$
+        \end{suppose}
+        Alors $g : t \mapsto f(x(t),y(t)) \in \mathcal{C}^1(D,\mathbb{R})$ et
+        \begin{align*}
+            \forall t \in D, g'(t) &= \spr{\nabla f(x(t),y(t))}{(x'(t),y'(t))} \\
+            &= \frac{\partial f}{\partial x}(x(t),y(t)) x'(t) + \frac{\partial f}{\partial y}(x(t),y(t)) y'(t)
+        \end{align*} 
+    \end{prop}
+
+    \begin{omed}{Remarque \textcolor{black}{(Le gradient est orthogonal aux lignes de niveau)}}{myolive}
+        Si on définit, pour $\lambda \in \mathbb{R}$, 
+        \[ C_{\lambda} = \left\{ (x,y) \in \mathbb{R}^2, f(x,y) = \lambda  \right\}\] 
+        une courbe de niveau de $f$, qui est paramétrée par une courbe paramétrée $\gamma = (x,y)$.
+
+        Alors $f \circ \gamma = \lambda$ pour tous $t$, donc par la règle de la chaîne, 
+        \[ \spr{\nabla f(\gamma(t))}{\gamma'(t)} = 0 \] 
+        et donc le gradient est orthogonal au vecteur tangent.
+    \end{omed}
+
+    \begin{prop}{Règle de la chaîne, deuxième version}{}
+        \begin{soient}
+            \item $\mathcal{U}$ et $\mathcal{U}'$ deux ouverts de $\mathbb{R}^2$
+            \item $x$ et $y$ deux fonctions définies sur $\mathcal{U}$, à valeurs dans $\mathbb{R}$
+            \item $f \in \mathcal{F}(\mathcal{U}',\mathbb{R})$
+        \end{soient}
+        \begin{suppose}
+            \item $\forall (u,v) \in \mathcal{U}, \left(x(u,v),y(u,v)\right) \in \mathcal{U}'$
+            \item $x,y \in \mathcal{C}^1 (\mathcal{U},\mathbb{R})$
+            \item $ f \in \mathcal{C}^1 (\mathcal{U}',\mathbb{R})$
+        \end{suppose}
+        Alors $\fonction{h}{\mathcal{U}}{\mathbb{R}}{(u,v)}{f(x(u,v),y(u,v))} \in \mathcal{C}^1(\mathcal{U},\mathbb{R})$ et 
+        \begin{align*}
+            \forall (u,v) \in \mathcal{U}, \frac{\partial h}{\partial u}(u,v) &= \frac{\partial f}{\partial x}(x(u,v),y(u,v))\frac{\partial x}{\partial u}(u,v) \\ &+ \frac{\partial f}{\partial y}(x(u,v),y(u,v))\frac{\partial y}{\partial u}(u,v)
+        \end{align*}
+    \end{prop}
+
+    \begin{omed}{Exemple \textcolor{black}{(Coordonnées polaires)}}{myolive}
+        Il est courant de passer aux coordonnées polaires, i.e de considérer la fonction 
+        \[F : (r,\theta) \mapsto f(\underbrace{r \cos \theta}_x,\underbrace{ r \sin \theta}_y) \]
+        On a alors 
+        \begin{align*}
+            r \frac{\partial F}{\partial r}(r,\theta) &= \phantom{-}x \frac{\partial f}{\partial x}(x,y) + y \frac{\partial f}{\partial y}(x,y) \\
+            \frac{\partial F}{\partial \theta}(r,\theta) &= -y \frac{\partial f}{\partial x}(x,y) + x \frac{\partial f}{\partial y}(x,y) \\
+        \end{align*}
+    \end{omed}
+
+    \subsubsection{Dérivées partielles secondes}
+
+    On étudie désormais les dérivées partielles secondes, qui sont au nombre de 4 : $\frac{\partial^2 f}{\partial x^2}$, $\frac{\partial^2 f}{\partial y^2}$, $\frac{\partial^2 f}{\partial x \partial y}$ et $\frac{\partial^2 f}{\partial y \partial x}$.
+
+    \begin{defi}{}{}
+        On dit que $f$ est de classe $\mathcal{C}^2$ sur un ouvert $\mathcal{U}$ de $\mathbb{R}^2$ si les dérivées partielles secondes existent et sont continues en tout point de $\mathcal{U}$. 
+    \end{defi}
+
+    \begin{theo}{Théoème de Schwarz}{}
+        Soit $f : \mathcal{U} \to \mathbb{R}^2$ une application de classe $\mathcal{C}^2$ sur un ouvert $\mathcal{U}$ de $\mathbb{R}^2$. Alors 
+        \[ \forall (x_0,y_0) \in \mathcal{U}, \quad \frac{\partial^2 f}{\partial y \partial x}(x_0,y_0) = \frac{\partial^2 f}{\partial x \partial y}(x_0,y_0) \]   
+    \end{theo}
+
+    \begin{theo}{Formule de Taylor-Young à l’ordre 2}{}
+        Si $f$ est de classe $\mathcal{C}^2$ sur un ouvert $\mathcal{U}$ de $\mathbb{R}^2$, alors pour tout $(x_0,y_0) \in \mathcal{U}$, 
+        \begin{multline*}
+            f(x_0 + h, y_0 + k) = f(x_0, y_0) + \dpart{f}{x}(x_0,y_0) \cdot h + \dpart{f}{y}(x_0,y_0) \cdot k \\
+            + \frac{1}{2} \left[\frac{\partial^2 f}{\partial x^2}(x_0,y_0) \cdots h^2 + 2 \frac{\partial^2 f}{\partial x \partial y}(x_0,y_0) h k + \frac{\partial^2 f}{\partial y^2}(x_0,y_0) k^2 \right] + o(h^2 + k^2)
+        \end{multline*}
+    \end{theo}
+
+    Cette dernière formule rendra de précieux services dans l’étude des extrema d’une fonction numérique.
+
+    \subsubsection{Exemple de résolution d’équations aux dérivées partielles} 
+
+    Nous n’aborderons la résolution d’équations aux dérivées partielles (EDP) qu’à travers des exemples relativement simples et, à ce titre, très restreints. $\mathcal{U}$ désignera ici l’ouvert $I \times J$ où $I$ et $J$ sont deux intervalles ouverts et $f$ solution des EDP proposées. Nous justifierons dans la partie suivante le choix d’un tel domaine.
+    \begin{itemize}
+        \item Si $\forall (x,y) \in \mathcal{U}$, $\dpart{f}{x}(x,y) = 0$, alors $\forall (x,y) \in \mathcal{U}$,  $f(x,y) = \varphi(y)$ avec $\varphi : J \to \mathbb{R}$. 
+        \item Si $\forall (x,y) \in \mathcal{U}$, $\dpart{f}{x}(x,y) = g(x,y)$, alors $\forall (x,y) \in \mathcal{U}$,  $f(x,y) = \int g(x,y) dx +  \varphi(y)$ avec $\varphi : J \to \mathbb{R}$.
+        \item Si $\forall (x,y) \in \mathcal{U}$, $\frac{\partial^2 f}{\partial x^2}(x,y) = 0$, alors $\forall (x,y) \in \mathcal{U}$,  $f(x,y) = \varphi(y)x + \psi(y)$ avec $\varphi, \psi : J \to \mathbb{R}$.
+        \item Si on est face à une équation de d’Alembert, de la forme 
+        \[ \forall (x,t) \in \mathbb{R}^2, \quad \frac{\partial^2 f}{\partial x^2} (x,t) = \frac{1}{c^2} \frac{\partial^2 f}{\partial t^2}(x,t) \qquad (c \neq 0) \]   
+        On passe par le changement de variables de classe $\mathcal{C}^2$ et bijectif (car $c \neq 0$) :  $\et{u = x-ct}{v = x + ct}$. En partant de $f(x,t) = g(u,v)$, on cherche une EDP vérifiée par $g$.
+        \begin{align*}
+            \dpart{f}{x} &= \dpart{g}{u} \dpart{u}{x} + \dpart{g}{v} \dpart{v}{x} = \dpart{g}{u} + \dpart{g}{v} \\
+            \frac{\partial^2 f}{\partial x^2} &= \left(\frac{\partial^2 g}{\partial^2 u} \dpart{u}{x} + \frac{\partial^2 g}{\partial v \partial u} \dpart{v}{x}\right) + \left(\frac{\partial^2 g}{\partial^2 v} \dpart{u}{x} + \frac{\partial^2 g}{\partial u \partial v} \dpart{v}{x}\right) \\
+            &= \frac{\partial^2 g}{\partial^2 u} + 2 \frac{\partial^2 g}{\partial u \partial v} + \frac{\partial^2 g}{\partial^2 v}
+        \end{align*}
+        De même, on trouve 
+        \[ \frac{\partial^2 f}{\partial t^2} = c^2 \left(\frac{\partial^2 g}{\partial^2 u} - 2 \frac{\partial^2 g}{\partial u \partial v} + \frac{\partial^2 g}{\partial^2 v}\right) \]   
+        L’équation devient donc, $\forall (u,v) \in \mathbb{R}^2$, 
+        $\frac{\partial^2 g}{\partial u \partial v} = 0$, et donc 
+        \[ f(x,t) = \varphi(x-ct) + \psi(x + ct) \]   
+        
+    \end{itemize}
+
+\subsection{Applications différentiables et applications de classe C1}
+
+    On considère désormais $f : \mathcal{U} \subset E \to F$ où $E$ et $F$ sont 2 EVN sur $\mathbb{R}$ de dimensions respectives $p$ et $n$ et $\mathcal{U}$ un ouvert de $E$. Toutes les normes étant équivalentes en dimension finie, le choix d’une norme spécifique pour $E$ ou $F$ importera peu. 
+
+    On parle de champ de vecteurs lorsque $f : E \to E$ et de champ scalaire lorsque $f : E \to \mathbb{R}$.
+
+    On travaillera le plus souvent dans les espaces $E = \mathbb{R}^p$ et $F = \mathbb{R}^n$, munis de leur structure euclidienne canonique. Ainsi, on pourra noter 
+    \[ f(x) = f(x_1,\ldots,x_p) = (f_1(x), \ldots, f_n(x)) \]   
+    OA alors, en identifiant les grandeurs dans des bases de $E$ et $F$, de façon à ce que 
+    \[ x = \sum_{j=1}^{p} x_j e_j \esp{et} f(x) = \sum_{i=1}^{n} f_i(x) e'_i \]   
+     \begin{itemize}
+        \item applications partielles de $f$ les applications $x_j \mapsto f(x)$ pour $j \in \intervalleEntier{1}{p}$.
+        \item On appelle applications composantes de $f$ les applications $f_i : x \mapsto f_i(x)$ pour $i \in \intervalleEntier{1}{n}$. 
+    \end{itemize}
+    
+    \subsubsection{Différentielle}
+
+    \begin{defitheo}{Différentielle en un point}{}
+        $f$ est dite différentiable en $a \in \mathcal{U}$ s’il existe $\varphi \in \mathcal{L}(E,F)$ telle que :
+        \[ f(a+h) = f(a) + \varphi(h) + \comp{o}{h}{0}{\norm{h}} \]   
+        Si l’application $\varphi$ existe, elle est unique et appelée \textbf{différentielle} de $f$ au point $a$, ou \textbf{application linéaire tangente} à $f$ en $a$. On la note $\dif f_a$ ou $\dif f(a)$. 
+    \end{defitheo}
+
+    L’existence d’un DL à l’ordre 1 relève ainsi de la définition même de la différentiabilité : 
+    \[ f(a+ h) = f(a) + \left[\dif f(a)\right](h) + \comp{o}{h}{0}{\norm{h}} \]   
+    ON $\dif f_a(h) = \left[\dif f(a)\right](h) = \dif f(a) \times h$. Cette dernière notation fais sens lorsque l’on raisonne en termes matriciels : c’est le produit d’une matrice $n \times p$ par un vecteur $p$. 
+
+    \begin{demo}{Preuve}{mypurple}
+        Sous réserve d’existence, dans le cas où $\varphi$ et $\psi$ vérifient l’égalité, alors $\Psi = \varphi - \psi$ est linéaire et vérifie $\Psi(h) = \comp{o}{h}{0}{\norm{h}}$, d’où la nullité de $\Psi$. On a, en effet, pour $x \in E$ non nul et $t \in \mathbb{K}^*$, $\norm{\Psi(x)} = \norm{x} \cdot \frac{\norm{\Psi(tx)}}{\norm{tx}} \limi{t}{0} 0$.
+    \end{demo}
+
+    \begin{prop}{}{}
+        Si $f$ est différentiable en $a \in \mathcal{U}$, alors $f$ est continue en $a$. 
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        $f(a+h) - f(a) = \dif f_a(h) + \comp{o}{h}{0}{\norm{h}} \limi{h}{0_E} \dif f_a(0_E) = 0_F$ par continuité de $\dif f_a$ en tant qu’AL sur un EVN de DF. 
+    \end{demo}
+
+    Pour justifier quelques règles de calcul sur les différentielles en un point, nous auront, par exemple, besoin d’observer que $\dif f_a(\comp{o}{h}{0}{\norm{h}}) = \comp{o}{h}{0}{\norm{h}}$ ou bien que $\comp{o}{h}{0}{\norm{\dif f_a(h)}} = \comp{o}{h}{0}{\norm{h}}$. Montrons plus généralement que ceci est vrai pour toute application linéaire $\varphi$. En dimension finie, 
+    \begin{enumerate}
+        \item $\varphi$ est continue en 0 donc $\varphi(\comp{o}{h}{0}{\norm{h}}) = h \varphi(\varepsilon(h)) = \comp{o}{h}{0}{\norm{h}}$ car $\varphi(\varepsilon(h)) \limi{h}{0} \varphi(0) = 0$. 
+        \item $\varphi$ est linéaire donc lipchitzienne. Il existe $C > 0$ tel que pour tout $h \in E$, $\norm{\varphi(h)} \leq C \norm{h}$ d’où la seconde relation. 
+    \end{enumerate}
+
+    \begin{prop}{Opérations algébriques sur les différentielles}{}
+        \begin{enumerate}
+            \item Si $f,g : \mathcal{U} \subset E \to F$ sont différentiables en $a$, alors pour $\lambda \in \mathbb{R}$, $\lambda f + g$ est différentiable en $a$ et 
+            \[ \dif (\lambda f + g)_a = \lambda \dif f_a + \dif g_a \]   
+            \item Si $g : \mathcal{V} \subset F \to G$ avec $f(\mathcal{U}) \subset \mathcal{V}$, alors si $f$ est différentiable en $a$ et $g$ en $f(a)$, alors $g \circ f$ est différentiable en $a$ et 
+            \[ \dif (g \circ f)_a = \dif g_{f(a)} \circ \dif f_a \]  
+        \end{enumerate}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Tout repose sur les relations écrites précédemment. Prenons le deuxième cas pour exemple : 
+        \begin{align*}
+            (g \circ f)(a + h) 
+            &= g(f(a) + \underbrace{\dif f_a(h) + \comp{o}{h}{0}{\norm{h}}}_{=k}) \\
+            &= g(f(a)) + \dif g_{f(a)}(k) + \comp{o}{h}{0}{k} \\
+            &= g(f(a)) + \left[\dif g_{f(a)} \circ \dif f_a\right](h) + \comp{o}{h}{0}{\norm{h}}
+        \end{align*}
+        L’unicité de la différentielle garanti le résultat.
+    \end{demo}
+
+    On peut énoncer une propriété plus générale, bien que largement moins intuitive.
+
+    \begin{prop}{}{}
+        Si $M : F^n \to \mathbb{R}$ est une application multilinéaire et si $f_1,\ldots,f_n : E \to F$ sont différentiables en $a \in E$, alors $M(f_1,\ldots,f_n)$ est différentiable en $a$ et 
+        \[ \dif (M(f_1,\ldots,f_n))_a = \sum_{k=1}^{n} M(f_1(a), \ldots, f_{k-1}(a), \dif(f_k)_a, f_{k+1}(a), \ldots, f_n(a)) \]   
+    \end{prop}
+
+    La définition de différentielle d’une application découle de la notion de différentielle en un point : 
+
+    \begin{defi}{Différentielle et application de classe $\mathcal{C}^1$}{}
+        \begin{itemize}
+            \item L’application $f : \mathcal{U} \subset E \to F$ est dite différentiable sur $\mathcal{U}$ si $f$ est différentiable en tout point de $\mathcal{U}$. On appelle alors \textbf{différentielle} de $f$ l’application 
+            \[ \fonction{\dif f}{\mathcal{U}}{\mathcal{L}(E,F)}{a}{\dif f_a} \]
+            \item L’application $f$ est dite de classe $\mathcal{C}^1$ sur $\mathcal{U}$, ou continûment différentiable sur $\mathcal{U}$ si elle est différentiable sur $\mathcal{U}$ et $\dif f$ est continue sur $\mathcal{U}$. 
+        \end{itemize}
+    \end{defi}
+
+    \subsubsection{Dérivées selon un vecteur et dérivées partielles}
+
+    On considère toujours $f$ une fonction de $\mathcal{U} \subset E \to F$.
+
+    \begin{defi}{Dérivée selon un vecteur}{}
+        Si la fonction de la variable réelle $t \mapsto f(a + tu)$ avec $u \in E$ est dérivable en 0, alors on dit que $f$ est dérivable en $a$ selon le vecteur $u$ et on pose 
+        \[ D_u(f)(a) = \lim_{t \to 0} \frac{f(a + tu) - f(a)}{t} \]   
+    \end{defi}
+
+    Quand une fonction est différentiable, elle est dérivable dans toutes les directions :
+
+    \begin{prop}{}{}
+        Si $f$ est différentiable en $a$, alors $f$ est dérivable en $a$ selon $u$ pour tout vecteur $u \in E$  et $D_u(f)(a) = \dif f_a(u)$. 
+    \end{prop}
+
+    Si $E$ est muni d’une base $(e_1,\ldots,e_p)$, on peut définir les dérivées partielles de $f$ qui sont les dérivées selon des directions privilégiées.
+
+    \begin{defi}{Dérivées partielles}{}
+        Pour $j \in \intervalleEntier{1}{p}$, on appelle, sous réserve d’existence, dérivée partielle en $a$ d’indice $j$ la dérivée de $f$ en $a$ suivant $e_j$, \textit{i.e.} : 
+        \[ \dpart{f}{x_j}(a) = \lim_{t \to 0} \frac{f(a + t e_j) - f(a)}{t} \]    
+    \end{defi}
+
+    Si $f$ est différentiable en $a$, alors ces dérivées partielles existent et 
+    \[ \forall j \in \intervalleEntier{1}{p}, \qquad \dpart{f}{x_j}(a) = \dif f_a(e_j) \]    
+
+    Remarquons alors que par linéarité de $\dif f_a$, 
+    \[ \dif f_a(h) = \dif f_a\left(\sum_{j=1}^{p} h_j e_j\right) = \sum_{i=1}^{p} h_j \dif f_a(e_j) = \sum_{j=1}^{p} h_j \dpart{f}{x_j}(a) \]    
+
+    En notant $\dif x_j$ les applications $h \mapsto h_j$, on retrouve une forme bien connue des physiciens : 
+    \[ \dif f_a = \sum_{j=1}^{p} \dpart{f}{x_j}(a) \dif x_j \]   
+    
+    Ainsi, lorsque $f$ est différentiable sur $\mathcal{U}$ et $a \in \mathcal{U}$,
+    \[ f(a + h) = f(a) + \dif f_a(h) + \comp{o}{h}{0}{\norm{h}} = f(a) + \sum_{j=1}^{p} h_j \dpart{f}{x_j}(a) + \comp{o}{h}{0}{\norm{h}} \]    
+
+    \begin{theo}{Caractérisation des applications de classe $\mathcal{C}^1$}{}
+        $f$ est de classe $\mathcal{C}^1$ sur $\mathcal{U}$ \textit{ssi} les dérivées partielles de $f$ existent et sont continues en tout point de $\mathcal{U}$.
+    \end{theo}
+
+    Ce résultat est essentiel : il permet de justifier facilement la différentiabilité d’une fonction, à la seule condition d’existence et de continuité des dérivées partielles (ce qui confère en plus la continiuté de la différentielle). 
+
+    \begin{demo}{Démonstration}{myred}
+        On note $\norm{.}_F$ une norme sur $F$. L’équivalence des normes en dimension finie nous permet de choisir une norme particulière sur $E$ : celle définie par $\norm{h} = \sum_{j=1}^{p} \norm{h_j}$ où $j = \sum h_j e_j$. On munit $\mathcal{L}(E,F)$ de la norme subordonnée $\norm{.}_{\text{op}}$ relative à $\norm{.}$ et $\norm{.}_F$.
+        \begin{itemize}
+            \item[\textcolor{myred}{$\implies$}] L’existence des dérivées partielles a déjà été établie, et il reste à prouver leur continuité. Si $a \in \mathcal{U}$, QQS $x \in \mathcal{U}$ et $j \in \intervalleEntier{1}{p}$, 
+            \[ \norm{\dpart{f}{x_j}(x) - \dpart{f}{x_j}(a)}_F = \norm{\dif f_x(e_j) - \dif f_a(e_j)}_F \leq \norm{\dif f_x - \dif f_a}_{op} \cdots \norm{e_j} \limi{x}{a} 0 \]   
+            \item[\textcolor{red}{$\impliedby$}] Il faut prouver que $f$ est différentiable en tout point $a \in \mathcal{U}$ et que cette différentielle est continue. 
+            
+            Soit $a \in \mathcal{U}$ et $h = \sum h_j e_j$ tel que $a + h \in \mathcal{U}$. Par dérivabilité de $f$ suivant $e_p$, 
+            \[ f(a + h) = f \left(a + \sum_{j = 1}^p h_j e_j\right) = f \left(a + \sum_{j = 1}^{p-1} h_j e_j\right) + h_p \dpart{f}{x_p}\left(a + \sum_{j = 1}^p h_j e_j\right) + \comp{o}{h}{0}{\norm{h}} \]   
+            Par continuité de $\dpart{f}{x_p}$ en $a$, on obtient 
+            \[ f(a+h) = f\left(a + \sum_{j = 1}^p h_j e_j\right) + h_p \dpart{f}{x_p}(a) + \comp{o}{h}{0}{\norm{h}} \]   
+            De proche en proche, on obtient que 
+            \[ f(a + h) = f(a) + \sum_{j=1}^{p} h_j \dpart{f}{x_j} (a) + \comp{o}{h}{0}{\norm{h}} \]   
+            Ainsi, $f$ est bien différentiable en $a$, et $\dif f_a(h) = \sum_{j=1}^{p} h_j \dpart{f}{x_j}(a)$. Pour la continuité, si $x \in \mathcal{U}$, QQS $h \in E$, 
+            \[ \norm{\dif f_x(h) - \dif f_a(h)}_F \leq \sum_{j=1}^{p}\norm{h_j}\cdot \norm{\dpart{f}{x_j}(x) - \dpart{f}{x_j}(a)}_F \leq \norm{h} \cdot \max_{1\leq j \leq p} \norm{\dpart{f}{x_j}(x) - \dpart{f}{x_j}(a)}_F \]   
+            Ainsi, $\norm{\dif f_x - \dif f_a}_{\text{op}} \leq \max_{1\leq j \leq p} \norm{\dpart{f}{x_j}(x) - \dpart{f}{x_j}(a)}_F \limi{x}{a} 0$ par continuité des $\dpart{f}{x_j}$.
+        \end{itemize}
+    \end{demo}
+
+    \subsubsection{Représentation matricielle de la différentielle en un point}
+
+    On munit à nouveau nos espaces $E$ et $F$ des bases $(e_j)_{1 \leq j \leq p}$ et $(e_i')_{1 \leq i \leq n}$. Pour toute fonction $f : E \to F$, on peut alors écrire
+    \[ f(x) = f(x_1,\ldots,x_p) = (f_1(x), \ldots, f_n(x)) \] 
+    
+    On suppose que $f$ est de classe $\mathcal{C}^1$. Les fonctions $\dpart{f_i}{x_j}$ sont alors définies et continues pour tout $(i,j) \in \intervalleEntier{1}{n} \times \intervalleEntier{1}{p}$. Ce sont des fonctions définies sur $\mathbb{R}^n$ à valeurs dans $\mathbb{R}$. 
+
+    \begin{defitheo}{Jacobienne}{}
+        La matrice représentative de $\dif f_x$ dans les bases $(e_j)_j$ et $(e_i)_i$ est $\left(\dpart{f_i}{x_j}(x)\right)$. Elle est appelée \textbf{matrice jacobienne} de $f$ au point $x = (x_1,\ldots,x_p)$. ON $J_f(x)$. 
+    \end{defitheo}
+
+    Ainsi, pour toute fonction $f \in \mathcal{C}^1(E,F)$, 
+    \[ J_f(x) = \begin{bmatrix}
+        \dpart{f_1}{x_1}(x) & \cdots & \dpart{f_1}{x_p}(x) \\
+        \vdots & & \vdots \\
+        \dpart{f_n}{x_1}(x) & \cdots & \dpart{f_n}{x_p}(x)
+    \end{bmatrix} \qquad \in \mk{n,p} \]   
+
+    Soient $f : E \to F$ et $g : F \to G$ de classe $\mathcal{C}^1$ sur leurs ensembles respectifs. Alors $g \circ f$ est de classe $\mathcal{C}^1$ sur $E$ et 
+    \[ \forall x \in E, \quad J_{g \circ f}(f(x)) \times J_f(x) \esp{puisque} \dif (g \circ f)_x = \dif g_{f(x)} \circ \dif f_x \]   
+
+    Ce produit matriciel nous permet de retrouver la règle de la chaîne, qui s’écrit plus clairement :
+
+    \begin{theo}{Règle de la chaîne}{}
+        Soit $f : \mathcal{U} \subset \mathbb{R}^p \to \mathbb{R}$, de classe $\mathcal{C}^1$ et $x : I \subset \mathbb{R} \to \mathbb{R}^p$ de classe $\mathcal{C}^1$ telle que $x(I) \subset \mathcal{U}$. QQS $t_0 \in I$, 
+        \[ \frac{\dif}{\text{dt}}\left(t \mapsto f(x(t))\right) = \spr{\nabla f (x(t_0))}{x'(t_0)} = \sum_{i=1}^{p} \dpart{f}{x_i}(x(t_0)) x_i'(t_0) \]   
+        Où $x(t) = (x_1(t), \ldots, x_p(t))$.
+    \end{theo}
+
+    \begin{demo}{Preuve}{myred}
+        OP $a = x(t_0) \in \mathcal{U}$. $f$ possède un $DL_1$ en $a$, et 
+        \[ f(a+h) = f(a) + \spr{\nabla f (a)}{h} + \norm{h} \varepsilon(h) \]   
+        Par ailleurs, les fonctions $x_i$ sont de classe $\mathcal{C}^1$ car $x$ l’est, et un DL en $t_0$ donne 
+        \[ x_i(t_0 + \delta) = x_i(t_0) + \delta x_i'(t_0) + \comp{o}{\delta}{0}{\delta} \]   
+        D’où
+        \[ x(t_0 + h) = a + \delta x'(t_0) + \comp{o}{\delta}{0}{\delta} \]   
+        On en déduit que 
+        \begin{align*}
+            f(x(t_0 + h)) 
+            &= f(a + \underbrace{\delta x'(t_0) + o(\delta)}_{= h}) \\
+            &= f(a) + \spr{\nabla f(a)}{\delta x'(t_0) + o(\delta)} + \norm{\delta x'(t_0) + o(\delta)} \varepsilon(\delta x'(t_0) + o(\delta)) \\
+            &= f(a) + \delta \spr{\nabla f(a)}{x'(t_0)} + o(\delta)
+        \end{align*}
+    \end{demo}
+
+    \subsubsection{Gradient d’une fonction numérique}
+
+    On considère dans ce paragraphe uniquement des fonctions à valeurs dans $\mathbb{R}$ et on suppose $E$, espace vectoriel de dimension $p$, muni d’une structure euclidienne. Soit donc $f : \mathcal{U} \subset E \to \mathbb{R}$ avec bien souvent $E = \mathbb{R}^p$. On suppose $f$ de classe $\mathcal{C}^1$ sur l’ouvert $\mathcal{U}$. D’après ce qui précède, en tout point $a \in \mathcal{U}$, $\dif f_a$ est une forme linéaire et, dans la base canonique $\mathcal{B}$ de $\mathbb{R}^p$, 
+    \[ \dif f_a \in \mathcal{L}(\mathbb{R}^p,\mathbb{R}) \esp{et} J_f(a) = \mat{\mathcal{B}}{\dif f_a} = \begin{bmatrix}
+        \dpart{f}{x_1}(a) & \cdots & \dpart{f}{x_p}(a) 
+    \end{bmatrix} \]   
+
+    On peut définir le gradient de $f$ au point $a$ au moyen de ses coordonnées dans la base $\mathcal{B}$, en posant 
+    \[ \nabla f(a) = \begin{bmatrix}
+        \dpart{f}{x_1}(a) \\ \vdots \\ \dpart{f}{x_p}(a) 
+    \end{bmatrix} \]   
+
+    En notant $\spr{.}{.}$ le produit scalaire usuel de $\mathbb{R}^p$, pour tout $h \in \mathbb{R}^p$, 
+    \[ \spr{\nabla f(a)}{h} = \sum_{j=1}^{p} h_j \dpart{f}{x_j}(a) = \dif f_a(h) \] 
+
+    La différentiabilité de $f$ au point $a$ se traduit alors par l’égalité 
+    \[ f(a+h) = f(a) + \spr{\nabla f(a)}{h} + \comp{o}{h}{0}{\norm{h}} \]   
+
+    Il est également possible de définir le gradient de manière intrinsèque, sans l’usage donc d’une base de $E$, à l’aide du théorème de représentation de Riesz.
+
+    \begin{defi}{}{}
+        Soit $f : \mathcal{U} \subset E \to \mathbb{R}$ différentiable en $a$. L’application $\dif f_a$ étant une forme linéaire, il peut exister un vecteur appelé gradient de $f$ en $a$ -- et noté $\nabla f(a)$ -- tel que QQS $h \in E$, 
+        \[ \dif f_a(h) = \spr{\nabla f (a)}{h} \]   
+    \end{defi}
+
+    Pour $h$ proche de $0$, l’inégalité de Cauchy-Schwarz donne :
+    \[ \abs{f(a+h) - f(a)} \approx \abs{\spr{\nabla f(a)}{h}} \leq \norm{\nabla f(a)} \times \norm{h} \]   
+    
+    L’écart absolu est maximal dans le cas d’égalité, \textit{i.e.} lorsque la direction $h$ est colinéaire au gradient. Le gradient indique donc bien la ligne de plus grande pente, comme vu dans le cas de deux variables.
+
+    \subsubsection{Brève extension aux applications de classe Ck}
+
+    Pour définir les dérivées partielles d’ordres supérieurs, il suffit tout bonnement de dériver les dérivées. On notera, sous réserve d’existence, $\frac{\partial^2 f}{\partial x_i \partial x_j}$ ou $\partial_{i,j} f$ la dérivée partielle d’indice $i$ de la dérivée partielle $\dpart{f}{x_j}$. On définit plus généralement par récurrence les dérivées partielles d’ordre $k$, QQS $k \in \mathbb{N}^*$ :
+    \[ \partial_{j_k, \ldots, j_1} f = \frac{\partial}{\partial x_{j_k}} \left( \partial_{j_{k-1}, \ldots, j_1} f \right) \]   
+
+    \begin{defi}{Application de classe $\mathcal{C}^k$}{}
+        Une application est dite de classe $\mathcal{C}^k$ sur un ouvert de $\mathcal{U}$ si toutes ses dérivées partielles d’ordre $k$ existent et sont continues. 
+    \end{defi}
+
+    Les sommes et composées de fonctions de classe $\mathcal{C}^k$ sont encore de classe $\mathcal{C}^k$, et EP les fonctions polynomiales sont de classe $\mathcal{C}^{\infty}$. 
+
+    \begin{theo}{Théorème de Schwarz}{}
+        Soit $f : \mathcal{U} \subset E \to F$ une application de classe $\mathcal{C}^2$ sur un ouvert $\mathcal{U}$. Alors 
+        \[ \forall i,j \in \intervalleEntier{1}{p}, \quad \forall x \in \mathcal{U}, \quad \partial_{i,j} f(x) = \partial_{j,i} f (x) \]   
+    \end{theo}
+
+    Ce théorème, ici admis, s’étend aux dérivées d’ordres supérieurs. Il montre que l’ordre de dérivation importe peu, du moment que la fonction est suffisamment régulière. 
+
+\subsection{Optimisation avec et sans contrainte}
+
+    Dans cette section, $f : \mathcal{U} \subset E \to \mathbb{R}$ désigne une application de classe $\mathcal{C}^2$ définie sur un ouvert $\mathcal{U}$ d’un espace vectoriel de dimension $n$, souvent $\mathbb{R}^n$, à valeurs numériques.
+
+    \subsubsection{Formule de TY à l’ordre 2 pour une fonction numérique}
+
+    \begin{theo}{}{}
+        QQS $a \in \mathcal{U}$, 
+        \[ f(a+h) = f(a) + \sum_{j=1}^{n} h_j \dpart{f}{x_j}(a) + \frac{1}{2} \sum_{1 \leq i,j \leq n} h_i h_j \partial_{i,j}f(a) + \comp{o}{h}{0}{\norm{h}^2} \]    
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        Soit $a \in \mathcal{U}$. Il existe $r > 0$ tel que pour tout $h \in \mathcal{B}(a,r)$ et $t \in \intervalleFF{0}{1}, a + th \in \mathcal{U}$. 
+        \begin{itemize}
+            \item On introduit la fonction de la variable réelle $\varphi$ définie sur $\intervalleFF{0}{1}$ par $\varphi(t) = f(a + th)$. $\varphi$ est de classe $\mathcal{C}^2$ comme composée de fonctions de classe $\mathcal{C}^2$ et 
+            \[ \forall t \in \intervalleFF{0}{1}, \quad \varphi'(t) = \sum_{j=1}^{n} h_j \dpart{f}{x_j}(a + th) \esp{et} \varphi''(t) = \sum_{i=1}^{n} \sum_{j=1}^{n} h_i h_j \partial_{i,j} f(a + th) \]   
+            La formule de Taylor avec reste intégral à l’ordre $2$ pour $\varphi$, \textit{i.e.} $\varphi(1) = \varphi(0) + \varphi'(0) + \int_{0}^{1} (1-t) \varphi''(t) dt$, nous donne celle relative à $f$ : 
+            \[ f(a + h) = f(a) + \sum_{j=1}^{n} h_j \dpart{f}{x_j}(a) + \int_{0}^{1} (1-t) \left[\sum_{i=1}^{n} \sum_{j=1}^{n} h_i h_j \partial_{i,j} f (a + t h)\right] dt \]
+            \item Exploitons maintenant la continuité des dérivées partielles secondes : 
+            \[ \forall i,j \in \intervalleEntier{1}{n}, \partial_{i,j}f(a + th) = \partial f(a) + \varepsilon_{i,j}(th) \esp{où} \varepsilon_{i,j}(u) \limi{u}{0_E} 0 \]   
+
+            La formule de Taylor avec reste intégral devient 
+            \[ f(a+h) = f(a) + \sum_{j=1}^{n} h_j \dpart{f}{x_j}(a) + \frac{1}{2} \sum_{1 \leq i,j \leq n} h_i h_j \partial_{i,j} f(a) + \sum_{1 \leq i,j \leq n} \int_{0}^{1} (1-t)\varepsilon_{i,j}(th)dt \]    
+
+            Il reste à prouver que $R(h) = \sum_{1 \leq i,j \leq n} h_i h_j \int_{0}^{1} (1-t) \varepsilon_{i,j}(th) dt = \comp{o}{h}{0}{\norm{h}^2}$. 
+
+            Pour cela, fixons $\varepsilon > 0$. Il existe $\delta > 0$ tel que pour tous $i,j \in \intervalleEntier{1}{p}$, si $\norm{u} \leq \delta$ alors $\abs{\varepsilon_{i,j}(u)} < \varepsilon$. Soit $h \in E$ tel que $\norm{h} \leq \delta$. Alors, pour tout $t \in \intervalleFF{0}{1}$, $\norm{th} \leq \delta$ et donc :
+            \[ \forall i,j \in \intervalleEntier{1}{p}, \abs{\int_{0}^{1} (1-t)\varepsilon_{i,j}(th)} \leq \varepsilon \int_{0}^{1} (1-t)dt = \frac{\varepsilon}{2} \]   
+
+            Ainsi, chaque terme de la somme est un $o(h_i h_j)$. De plus $\abs{h_i h_j} \leq \norm{h}^2_{\infty}$ donc $R(h) = \comp{o}{h}{0}{\norm{h}^2}$.
+        \end{itemize}
+    \end{demo}
+
+
+\subsection{Extremum d’une fonction de R2 dans R}
+
+    \begin{defi}{Extremum}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f\in \mathcal{F}(\mathcal{U},\mathbb{R})$
+            \item $(x_0,y_0) \in \mathcal{U}$
+        \end{soient}
+        \begin{enumerate}
+            \item On dit que $f$ admet un \textbf{maximum} (resp. \textbf{minimum}) \textbf{global} en $(x_0,y_0)$ lorsque 
+            \[ \forall (x,y) \in \mathcal{U}, f(x,y) \leq f(x_0,y_0)\] 
+            (resp. $\geq$)
+            \item On dit que $f$ admet un \textbf{maximum} (resp. \textbf{minimum}) \textbf{local} en $(x_0,y_0)$ lorsque 
+            \[ \exists \eta > 0, \forall (x,y) \in \mathcal{B}((x_0,y_0),\eta), f(x,y) \leq f(x_0,y_0) \]
+            (resp. $\geq$)
+        \end{enumerate}
+    \end{defi}
+
+    \begin{defi}{Point critique}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f\in \mathcal{C}^1(\mathcal{U},\mathbb{R})$
+            \item $(x_0,y_0) \in \mathcal{U}$
+        \end{soient}
+        On dit que $(x_0,y_0)$ est un \textbf{point critique} de $f$ lorsque $\nabla f(x_0,y_0) = (0,0)$
+    \end{defi}
+
+    \begin{prop}{Condition nécessaire d’extremum dans un ouvert}{}
+        \begin{soient}
+            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
+            \item $f\in \mathcal{C}^1(\mathcal{U},\mathbb{R})$
+            \item $(x_0,y_0) \in \mathcal{U}$
+        \end{soient}
+        Si $f$ admet un extremum local en $(x_0,y_0)$, alors $(x_0,y_0)$ est un point critique de $f$.
+    \end{prop}
+
+    \begin{omed}{Remarque}{myolive}        
+        La réciproque est fausse !
+    \end{omed}
+
+\newpage
+
+\section{Fonctions vectorielles}
+
+    On appelle fonction vectorielle d’une variable réelle toute fonction définie sur un intervalle $I$ de $\mathbb{R}$, à valeurs dans un espace vectoriel normé $E$ de dimension finie. En pratique, on considèrera souvent des fonctions à valeurs dans $E = \mathbb{R}^p$, \textit{i.e.} des fonctions de la forme 
+    \[ \fonction{f}{I}{\mathbb{R}^p}{t}{\left( f_1(t),\ldots,f_p(t) \right)} \]
+    Les fonctions numériques $f_i : I \to \mathbb{R}$ pour $i \in \intervalleEntier{1}{p}$ dons appelées \textbf{fonctions composantes} ou \textbf{fonctions coordonnées} de $f$. Plus généralement, si $E$ est un espace vectoriel normé de dimension finie muni d’une base $\mathcal{B} = (e_1,\ldots,e_p)$, alors $f = f_1e_1 + \ldots + f_p e_p$. L’équivalence des normes en dimension finie nous assurera que les propriétés de régularité (comme la continuité et la dérivabilité) ne dépendent pas de la base choisie.
+
+    Dans tout cette section, $f$ désignera une fonction définie sur un intervalle $I$ et à valeurs dans un espace vectoriel normé $\left(E, \norm{.}\right)$ de dimension finie $p$.
+
+\subsection{Limite et continuité d’une fonction vectorielle}
+
+    \begin{defi}{Limite}{}
+        On dit que $f$ admet $\ell \in E$ pour \textbf{limite} en $t_0 \in I$ si 
+        \[ \forall \varepsilon > 0, \quad \exists \eta > 0, \quad \forall t \in I, \quad \abs{t - t_0} < \eta \implies \norm{f(t) - \ell} < \varepsilon \]
+        \textit{i.e.} si 
+        \[ \lim_{t \to t_0} \norm{f(t) - \ell} = 0 \]
+    \end{defi}
+
+    \begin{omed}{Remarque}{myyellow}
+        On peut montrer que lorsque la limite existe, elle est unique. 
+        
+        De plus, si $E = \mathbb{R}^p$, $f$ admet $\ell = (\ell_1,\ldots,\ell_p) \in \mathbb{R}^p$ pour limite en $t_0 \in \mathbb{R}$ \textit{ssi} chaque fonction composante $f_i$ admet $\ell_i$ comme limite en $t_0$.
+    \end{omed}
+
+    \begin{defi}{Continuité}{}
+        On dit que $f$ est \textbf{continue} en $t_0 \in I$ si $\lim_{t \to t_0} f(t) = f(t_0)$, \textit{i.e.} si 
+        \[ \forall \varepsilon > 0, \quad \exists \eta > 0, \quad \forall t \in I, \quad \abs{t - t_0} < \eta \implies \norm{f(t) - f(t_0)} < \varepsilon \]
+        On dit que $f$ est continue sur $I$ si $f$ est continue en tout point de $I$.
+    \end{defi}
+
+    \begin{prop}{Caractérisation de la continuité par les fonctions composantes}{}
+        $f$ est continue en $t_0 \in I$ \textit{ssi} $\forall i \in \intervalleEntier{1}{p}$, $f_i$ est continue en $t_0$.
+    \end{prop}
+
+\subsection{Dérivabilité d’une fonction vectorielle}
+
+    \begin{defi}{Dérivabilité}{}
+        \begin{itemize}
+            \item $f$ est dite dérivable en $t_0 \in I$ si $\lim_{t \to t_0} \frac{f(t) - f(t_0)}{t - t_0}$ existe.
+            
+            On appelle alors vecteur dérivé en $t_0$ ce nombre, noté $f'(t_0)$.
+        \end{itemize}
+    \end{defi}
+
+    De manière équivalente, $f$ est dérivable en $t_0 \in I$ \textit{ssi} $\lim_{h \to 0} \frac{f(t_0 + h) - f(t_0)}{h}$ existe, ce qui est équivalent à 
+    \[ f(t_0 + h) = f(t_0) + hf'(t_0) + \comp{o}{h}{0}{h} \]
+
+    \begin{prop}{Dérivabilité des fonctions composantes}{}
+        Si $E$ est muni d’une base $\mathcal{B} = (e_1,\ldots, e_p)$ et $f = f_1 e_1 + \ldots f_p e_p$, alors $f$ est dérivable \textit{ssi} les fonctions $f_i$ le sont. Dans ce cas, $f' = f_1' e_1  + \ldots f_p' e_p$.
+    \end{prop}
+
+    \begin{omed}{Exemple}{myolive}
+        L’application $R : t \mapsto \begin{bmatrix}
+            \cos(t) & -\sin(t) \\
+            \sin(t) & \cos(t)
+        \end{bmatrix}$ est dérivable sur $\mathbb{R}$, de dérivée $t \mapsto R(t + \pi / 2)$.
+    \end{omed}
+
+    \begin{prop}{Dérivabilité et application linéaire}{}
+        Soient $f : I \to E$ une fonction dérivable sur $I$ et $u \in \mathcal{L}(E,F)$.
+
+        Alors $u \circ f$ est dérivable et $\left(u \circ f\right)' = u \circ f'$.
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Tout repose sur la linéarité (et donc la continuité de $u$). En effet, 
+        \[ \frac{u(f(t_0 + h)) - u(f(t_0))}{h} = u \left(\frac{f(t_0 + h) - f(t_0)}{h}\right) \limi{h}{0} u(f'(t_0)) \]
+
+        On peut aussi écrire $u(f(t_0 + h)) = u(f(t_0)) + h u(f'(t_0)) + \comp{o}{h}{0}{h}$ par continuité de $u$.
+    \end{demo}
+
+    \begin{prop}{Dérivabilité et application bilinéaire}{}
+        Soient $f : I \to F$ et $g : I \to G$ deux fonctions dérivables sur $I$ et $B : F \times G \to E$ bilinéaire.
+
+        Alors $B(f,g)$ est dérivable sur $I$ et 
+        \[ B(f,g)' = B(f',g) + B(f,g') \]
+    \end{prop}
+
+    \begin{itemize}
+        \item En particulier, si $E = \mathbb{R}^3$, $f \wedge g$ est dérivble sur $I$ et 
+        \[ \left(f \wedge g\right)' = f' \wedge g + f \wedge g' \]   
+        \item Si $\spr{.}{.}$ désigne un produit scalaire sur $E$, $\spr{f}{g}$ est dérivable sur $I$ et 
+        \[ \spr{f}{g}' = \spr{f'}{g} + \spr{f}{g'} \]   
+    \end{itemize}
+
+    \begin{demo}{Preuve}{myolive}
+        Travaillons ici avec les développements limités. $f$ et $g$ sont supposées dérivables sur $I$ donc pour tout $t_0 \in I$, en utilisant la bilinéarité de $\mathcal{B}$,
+        \[ B\left(f(t_0 + h), g(t_0 + h)\right) = B\left(f(t_0),g(t_0)\right) + h \left[B\left( f'(t_0), g(t_0) \right) + B\left(f(t_0), g'(t_0)\right)\right] + \comp{o}{h}{0}{h} \]
+        C’est la continuité de $B$ qui permet, par exemple, d’affirmer que $B(f(t_0), o(h)) = o(h)$.
+    \end{demo}
+
+    La propriété précédente s’étend à toute application mulitilinéaire.
+
+    \begin{defi}{Classe $\mathcal{C}^k$}{}
+        Soit $k \in \mathbb{N}$. L’application $f$ est dite de classe $\mathcal{C}^k$ sur $I$ si elle est dérivable $k$ fois sur $I$ et si sa dérivée $k$-ème, notée $f^{(k)}$, est continue sur $I$.
+    \end{defi}
+
+    \begin{prop}{Formule de Leibniz}{}
+        Si $f : I \to \mathbb{R}^p$ et $\lambda : I \to \mathbb{R}$ sont de classe $\mathcal{C}^n$ sur $I$, 
+        \[ \left(\lambda \cdotp f\right)^{(n)} = \sum_{k=0}^{n} \binom{n}{k} \lambda^{(k)} f^{(n-k)} \]
+    \end{prop}
+
+\subsection{Intégration d’une fonction vectorielle sur un segment}
+
+    Pour définir l’intégrale d’une fonction continue sur un segment $\intervalleFF{a}{b}$ à valeur dans un e.v.n. de dimension $p$, il suffit d’intégrer les fonctions composantes (qui sont des fonctions numériques) dans une base prédéfinie :
+    \[ \int_{a}^{b} f(t)dt = \int_{a}^{b} \left(\sum_{i=1}^{p} f_i(t)e_i \right) dt = \sum_{i=1}^{p} \left(\int_{a}^{b} f_i(t)dt\right) e_i \]
+    On admet que le résultat ne dépend pas de la base choisie.
+
+    On retrouve les propriétés classiques de l’intégrale en raisonnant composante par composante, à l’exception de la positivité et de la croissance (propriétés découlant de la relation d’ordre naturelle sur $\mathbb{R}$).
+
+    \begin{prop}{Propriétés de l’intégrale}{}
+        Soient $f,g : \intervalleFF{a}{b} \to E$ deux fonctions continues où $(E,\norm{.})$ est un e.v.n. de dimension finie.
+        \begin{enumerate}
+            \item Linéarité de l’intégrale.
+            \item Relation de Chasles.
+            \item Convergence des sommes de Riemann.
+            \item Inégalité triangulaire :
+            \[ \norm{\int_{a}^{b} f(t)dt} \leq \int_{a}^{b} \norm{f(t)}dt \]
+        \end{enumerate}
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Les trois premières propriétés découlent directement d’un travail sur les fonctions composantes dans une base donnée, la dernière est plus subtile. 
+
+        Soit $t_k = a + k \frac{b-a}{n}$ pour $k \in \intervalleEntier{1}{n}$. Par inégalité triangulaire (discrète), 
+        \[ \norm{S_n(f)} := \norm{\frac{b-a}{n} \sum_{k=1}^{n} f(t_k)} \leq \frac{b-a}{n} \sum_{k=1}^{n} \norm{f(t_k)} \eqlabel{\textdagger}\]   
+        \begin{itemize}
+            \item Comme $S_n(f) \limi{n}{+\infty} \int_{a}^{b} f$ et $\norm{.}$ est continue, 
+            \[ \norm{S_n(f)} \limi{n}{+\infty} \norm{\int_{a}^{b} f(t)dt} \]   
+            \item De même, par continuité de $\norm{f}$, 
+            \[ \frac{b-a}{n} \sum_{k=1}^{n} \norm{f(t_k)} \limi{n}{+\infty} \int_{a}^{b} \norm{f} \]
+        \end{itemize}
+        On peut donc conclure en passant à l’inégalité dans (\textdagger).
+    \end{demo}
+
+    On retrouve également les théorèmes classiques de première année qui établissent le lien entre dérivation et intégration.
+
+    \begin{theo}{TFCI}{}
+        Soit $f$ une fonction continue sur un intervalle $I$ de $\mathbb{R}$ et à valeurs dans un e.v.n. de dimension finie.
+
+        Alors pour tout $a \in I$, $F : x \mapsto \int_{a}^{x} f(t)dt$ est de classe $\mathcal{C}^1$ sur $I$ et $F' = f$.
+    \end{theo}
+
+    \begin{theo}{Taylor avec reste intégral à l’ordre $0$}{}
+        Pour toute fonction $f : I \to E$ de classe $\mathcal{C}^1$, $\int_{a}^{b} f'(t)dt = f(b) - f(a)$.
+    \end{theo}
+
+    \begin{coro}{Inégalité des accroissements finis}{}
+        Soit $f : I \to E$ une fonction de classe $\mathcal{C}^1$, où $I$ est un intervalle de $\mathbb{R}$. 
+
+        S’il existe un réel $M > 0$ tel que pour tout $t \in I$, $\norm{f'(t)} \leq M$, alors 
+        \[ \forall a,b \in I, \quad \norm{f(b) - f(a)} \leq M \cdotp \abs{b-a} \]
+    \end{coro}
+
+    \begin{demo}{Preuve}{myorange}
+        Soient $a,b \in I$ vérifiant $a < b$. Alors 
+        \[ \norm{f(b) - f(a)} = \norm{\int_{a}^{b} f'(t)dt} \leq \int_{a}^{b} \norm{f'(t)} dt \leq M \cdotp \abs{b-a} \]
+    \end{demo}
+
+    \begin{theo}{Formules de Taylor}{}
+        Soit $f$ une fonction de classe $\mathcal{C}^{n+1}$ sur un intervalle $I$ de $\mathbb{R}$ et à valeurs dans un e.v.n. de dimension finie. Soient $a, x \in I$.
+        \begin{enumerate}
+            \item \textbf{Formule de Taylor avec reste intégral}
+            \[ f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!}(x-a)^k + \int_{a}^{x} \frac{f^{(n+1)}(t)}{n!} (x-t)^n dt \]
+            \item \textbf{Inégalité de Taylor-Lagrange}
+            \[ \norm{f(x) - \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!}(x-a)^k} \leq M \cdotp \frac{\abs{x-a}^{n+1}}{(n+1)!} \quad \text{avec } M = \sup_{t \in \intervalleFF{a}{b}} \norm{f^{(n)}(t)} \]
+            \item \textbf{Formule de Taylor-Young}
+            \[ f(x) = \sum_{k=0}^{n} \frac{f^{(k)}(a)}{k!}(x-a)^k + \comp{o}{x}{a}{(x-a)^n} \]
+        \end{enumerate}
+    \end{theo}
+
+\subsection{Suites et séries de fonctions vectorielles}
+
+    En vue de l’étude prochaine des équations différentielles, on généralise sommairement l’étude des suites et séries de fonctions numériques aux fonctions vectorielles.
+
+    Par la suite, $(f_n)_{n \in \mathbb{N}}$ désignera une suite de fonctions $f_n : I \to E$ où $I$ désigne un intervalle de $\mathbb{R}$ et $(E,\norm{.})$ un espace vectoriel normé supposé de dimension finie.
+
+    \begin{defi}{Convergences simple et uniforme d’une suite de fonctions vectorielles}{}
+        \begin{itemize}
+            \item On dit que la suite \textbf{converge simplement} vers la fonction $f$ sur $I$ si 
+            \[ \forall x \in I, \quad f_n(x) \limi{n}{+\infty} f(x) \]   
+            Autrement dit,
+            \[ \forall \varepsilon > 0, \quad \forall x \in I, \quad \exists N \in \mathbb{N}, \forall n \geq N, \quad \norm{f_n(x) - f(x)} \leq \varepsilon \]
+            \item On dit que la suite \textbf{converge uniformément} vers la fonction $f$ sur $I$ si $f_n - f$ est bornée à partir d’un certain rang sur $I$ et 
+            \[ \nnorm{\infty}{f_n - f} \limi{n}{+\infty} 0 \esp{\textit{i.e.}} \sup_{x \in I} \norm{f_n(x) - f_n} \limi{n}{+\infty} 0 \]    
+            Autrement dit,
+            \[ \forall \varepsilon > 0, \quad \exists N \in \mathbb{N}, \forall n \geq N, \quad \forall x \in I, \quad \norm{f_n(x) - f(x)} \leq \varepsilon \]
+        \end{itemize}
+    \end{defi}
+
+    Outre le fait que la convergence uniforme entraîne la convergence simple, on retrouve tous les résultats relatifs à la continuité, dérivabilité et intégrabilité de la limite d’une suite de fonctions à valeurs dans K. Par exemple :
+
+    \begin{theo}{Continuité de la limite uniforme}{}
+        La limite uniforme d’une suite convergente de fonctions continues sur $I$ est continue sur $I$.
+    \end{theo}
+
+    On considère désormais la série de fonctions $\sum f_n$ où $f_n : I \to E$.
+
+    \begin{defi}{Convergences simple, uniforme et normale d’une série de fonctions vectorielles}{}
+        \begin{itemize}
+            \item On dit que $\sum f_n$ \textbf{converge simplement} sur $I$ si la suite de fonctions $(S_n)_{n \in \mathbb{N}}$ converge simplement sur $I$. 
+            
+            En cas de convergence, on appelle \textbf{fonction somme} de la série la fonction $S$ définie par 
+            \[ \forall x \in I, \quad S(x) = \sum_{k=0}^{+\infty} f_k(x) = \lim_{n \to +\infty} \sum_{k=0}^{n} f_k(x) \]  
+            \item On dit que $\sum f_n$ converge uniformément sur $I$ si la suite de fonctions $(S_n)_{n \in \mathbb{N}}$ converge uniformément sur $I$.
+            \item On dit que $\sum f_n$ converge normalement sur $I$ si les fonctions $f_n$ sont bornées sur $I$ apcr., et si la série numérique $\sum \nnorm{\infty,I}{f_n}$ converge.
+        \end{itemize}
+    \end{defi}
+
+    Bien entendu, si la série de fonctions converge normalement sur $I$ alors elle converge uniformément sur $I$.
+
+    \begin{theo}{}{}
+        Soit $\sum  f_n$ une série de fonctions de $I$ dans $E$ convergeant uniformément vers $f$ sur $I$ et soit $a \in I$.
+
+        Si, pour tout $n \in \mathbb{N}$, $f_n$ est continue en $a$, alors $\sum_{n=0}^{+\infty} f_n$ est continue en $a$.
+    \end{theo}
+
+    On admet l’extension suivante du théorème.
+
+    \begin{theo}{Théorème de la double limite}{}
+        \begin{soit}
+            \item $\sum f_n$ une série de fonctions de $I$ dans $E$
+            \item $a$ un point adhérent à $I$
+        \end{soit}
+        \begin{suppose}
+            \item Pour tout $n \in \mathbb{N}$, $f_n$ admet une limite $\ell_n$ en $a$.
+            \item La série $\sum f_n$ converge uniformément sur $I$.
+        \end{suppose}
+        \begin{alors}
+            \item La série $\sum \ell_n$ converge.
+            \item La somme $\sum_{n=0}^{+\infty} f_n$ admet une limite en $a$
+            \item $\lim_{x \to a} \sum_{n=0}^{+\infty} f_n(x) = \sum_{n=0}^{+\infty} \lim_{x \to a} f_n(x)$
+        \end{alors}
+    \end{theo}
+
+    S’ajoutent les deux théorèmes suivants de dérivation sur un intervalle et d’intégration terme à terme \textbf{\textsc{sur un segment}}.
+
+    \begin{theo}{Dérivation terme à terme}{}
+        Soit $\sum f_n$ une série de fonctions définies sur un intervalle $I$ de $\mathbb{R}$, à valeurs dans $E$. \begin{suppose}
+            \item Pour tout $n \in \mathbb{N}$, $f_n$ est de classe $\mathcal{C}^1$ sur $I$.
+            \item $\sum f_n$ converge simplement sur $I$.
+            \item $\sum f_n'$ converge uniformément sur tout segment de $I$.
+        \end{suppose}
+        \begin{alors}
+            \item $\sum_{n=0}^{+\infty} f_n$ converge uniformément sur tout segment de $I$.
+            \item $\sum_{n=0}^{+\infty} f_n$ est de classe $\mathcal{C}^1$ sur $I$.
+            \item $\left(\sum_{n=0}^{+\infty} f_n\right) = \sum_{n=0}^{+\infty} f_n'$
+        \end{alors}
+    \end{theo}
+
+    \begin{theo}{Intégration terme à terme sur un segment}{}
+        Soit $\sum f_n$ une série de fonctions continues sur un \textbf{\textsc{segment}} $\intervalleFF{a}{b}$ et à valeurs dans $E$, convergeant uniformément sur le segment $\intervalleFF{a}{b}$. 
+
+        Alors $\sum  \int_{a}^{b} f_n(x)dx$ converge et 
+        \[ \sum_{n=0}^{+\infty} \left(\int_{a}^{b} f_n(x) dx\right) = \int_{a}^{b} \left(\sum_{n=0}^{+\infty} f_n(x)\right) dx \]
+    \end{theo}
+
+    En revanche, le théorème de convergence dominée et son homologue, le théorème d’intégration terme à terme sur un intervalle quelconque, ne s’appliquent pas dans le cadre du programme aux fonctions vectorielles.
+
+\newpage

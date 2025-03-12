@@ -1,6 +1,6 @@
 %%-----PAGE-LAYOUT-----%%
 
-\usepackage[left=1cm, right=1cm, top=2cm, bottom=2cm, headheight=1cm, headsep=.5cm, footskip=1cm]{geometry}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm, headheight=1cm, headsep=.5cm, footskip=1cm]{geometry}
 
 %-----USEFUL-PACKAGES-----%
 
@@ -11,7 +11,10 @@
 %-----FONT------%
 
 \usepackage{fontspec}
-\usepackage{fourier-otf}
+\usepackage{libertinus-otf}
+%\usepackage{kpfonts-otf}
+%\usepackage{fourier-otf}
+\usepackage{amssymb}
 
 %-----COULEURS-----%
 
@@ -153,7 +156,7 @@
   {\tikz[baseline=(char.base)]{
     \node[text=white, inner sep=.5em] (char) {\thesection};
     \begin{scope}
-        \shade[rounded corners=.5em, left color=titlecolor!30, right color= titlecolor, overlay, remember picture] ($(char.east)+(-5em,-.8em)$) rectangle ++(5.1em,1.6em);
+        \shade[rounded corners=.5em, left color=titlecolor!60, right color= titlecolor, overlay, remember picture] ($(char.east)+(-4em,-.8em)$) rectangle ++(4.1em,1.6em);
     \end{scope}
     \node[text=white, inner sep=.5em] (char) {\thesection};}}
   {.5em}
@@ -166,7 +169,7 @@
   {\tikz[baseline=(char.base)]{
     \node[text=white, inner sep=.5em] (char) {\thesubsection};
     \begin{scope}
-        \shade[rounded corners=.5em, left color=titlecolor!30, right color= titlecolor, overlay, remember picture] ($(char.east)+(-4em,-.8em)$) rectangle ++(4.1em,1.6em);
+        \shade[rounded corners=.5em, left color=titlecolor!60, right color= titlecolor, overlay, remember picture] ($(char.east)+(-3.5em,-.8em)$) rectangle ++(3.6em,1.6em);
     \end{scope}
     \node[text=white, inner sep=.5em] (char) {\thesubsection};}}
   {.5em}
@@ -179,7 +182,7 @@
   {\tikz[baseline=(char.base)]{
     \node[text=white, inner sep=.5em] (char) {\thesubsubsection};
     \begin{scope}
-        \shade[rounded corners=.5em, left color=titlecolor!30, right color= titlecolor, overlay, remember picture] ($(char.east)+(-3em,-.8em)$) rectangle ++(3.1em,1.6em);
+        \shade[rounded corners=.5em, left color=titlecolor!60, right color= titlecolor, overlay, remember picture] ($(char.east)+(-3em,-.8em)$) rectangle ++(3.1em,1.6em);
     \end{scope}
     \node[text=white, inner sep=.5em] (char) {\thesubsubsection};}}
   {.5em}
@@ -571,6 +574,7 @@
 \DeclareMathOperator{\Det}{Det}
 \DeclareMathOperator{\Cov}{Cov}
 \DeclareMathOperator{\dist}{d}
+\DeclareMathOperator{\dif}{d}
 \let\det\relax
 \DeclareMathOperator{\det}{det}
 \DeclareMathOperator{\dive}{div}

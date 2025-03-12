@@ -1239,7 +1239,7 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
     \end{omed}
 
     \begin{demo}{Résolution}{mygreen}
-        \begin{itemize}[label = (\alph*)]
+        \begin{enumerate}[label = (\alph*)]
             \item Soit $n \in \mathbb{N}$ et $t = \intervalleOO{-1}{1}$. On cherche $P (S = n)$, \textit{i.e.} 
             \begin{align*}
                 P(S = n) 
@@ -1262,7 +1262,7 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
             \end{align*}
             \item On sait que $S$ admet une espérance si et seulement si $G_S(t)$ est dérivable en $1$. De plus, $G_X(1) = 1$, et $G_N$ et $G_X$ dérivables en $1$. Donc par composition, $G_S$ est dérivable en $1$ et 
             \[ G_S'(1) = G_X'(1) G_N'(G_X(1)) = E(X) \times G_N'(1) = E(X) \times E(N) \]   
-        \end{itemize}
+        \end{enumerate}
     \end{demo}
 
     \begin{omed}{Exercice}{mygreen}
@@ -1276,7 +1276,7 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
     \end{omed}
 
     \begin{demo}{Résolution}{mygreen}
-        \begin{itemize}[label = (\alph*)]
+        \begin{enumerate}[label = (\alph*)]
             \item On sait que, par la formule de transfert, 
             \[ G(t,u) = \sum_{n=0}^{+\infty} \sum_{k=0}^{+\infty} P(S_n = n, T = k) t^n u^k \]   
             Calculons
@@ -1287,7 +1287,7 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
                 &= P(X_1 + \cdots + X_{n + k} = n) P(N = m + k) \\
                 &= \binom{n+k}{n} p^n (1 - p)^k P(N = m + k)
             \end{align*} 
-        \end{itemize}
+        \end{enumerate}
     \end{demo}
 
 
