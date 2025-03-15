@@ -1,4 +1,5 @@
-\customchapter{Espaces vectoriels}{Étudier la structure des espaces vectoriels, pour pouvoir étudier les propriétés des vecteurs qui les composent.}
+\chapter{Espaces vectoriels}
+\chaptertoc
 
 \section{Espaces vectoriels}
 
@@ -146,18 +147,18 @@
         Soient $E$ un $\mathbb{K}$-ev, et $(x_1,\ldots,x_s) \in E^s$.
 
         On note 
-        \[ \Vect(x_1,\ldots,x_s) = \left\{ \sum\limits_{i=1}^s \lambda_i x_i, \, (\lambda_1,\ldots,\lambda_s) \in \mathbb{K}^s \right\} \] 
+        \[ \vect(x_1,\ldots,x_s) = \left\{ \sum\limits_{i=1}^s \lambda_i x_i, \, (\lambda_1,\ldots,\lambda_s) \in \mathbb{K}^s \right\} \] 
         qui est l’ensemble des CL de $(x_1,\ldots,x_s)$. On l’appelle \textbf{sev engendré} par $(x_1,\ldots,x_s)$.
 
         \begin{enumerate}
-            \item Pour toute famille $\mathcal{F}$ de $E$, l’ensemble $\Vect(\mathcal{F})$ est un sev de $E$.
+            \item Pour toute famille $\mathcal{F}$ de $E$, l’ensemble $\vect(\mathcal{F})$ est un sev de $E$.
             \item C’est le plus petit sev de $E$ contenant $\mathcal{F}$ (pour l’inclusion).
         \end{enumerate}
     \end{defitheo}
 
     \begin{demo}{Preuve}{mypurple}
         \begin{enumerate}
-        \item Soient $\mathcal{F} = (x_i)_{i \in I}$, $x,y \in \Vect(\mathcal{F})$ et $\lambda \in \mathbb{K}$. Il existe $J_1 \subset I$ fini et $(\alpha_j)_{j \in J_1} \in \mathbb{K}^{\abs{J_1}}$ tels que 
+        \item Soient $\mathcal{F} = (x_i)_{i \in I}$, $x,y \in \vect(\mathcal{F})$ et $\lambda \in \mathbb{K}$. Il existe $J_1 \subset I$ fini et $(\alpha_j)_{j \in J_1} \in \mathbb{K}^{\abs{J_1}}$ tels que 
         \[ x = \sum_{j \in J_1} \alpha_j x_j \]
         et $J_2 \subset I$ fini et $(\beta_j)_{j \in J_2} \in \mathbb{K}^{\abs{J_2}}$ tels que 
         \[ y = \sum_{j \in J_2} \beta_j x_j \]
@@ -170,9 +171,9 @@
             \end{array}
          \right. \]
         Par construction, on a donc 
-        \[ x+ \lambda y = \sum_{j \in J} \gamma_j x_j \in \Vect(\mathcal{F}) \]
-        De plus, $0 \in \Vect(\mathcal{F})$, donc $\Vect(\mathcal{F})$ est un sev de $E$.
-        \item Par construction, $\mathcal{F} \subset \Vect(\mathcal{F})$. Donc $\Vect(\mathcal{F})$ est un sev de $E$ contenant $\mathcal{F}$. Soit $F$ un sev de $E$ contenant $\mathcal{F}$. Soit $x \in \Vect(\mathcal{F})$. On montre facilement que $x \in F$, d’où $\Vect(\mathcal{F}) \subset F$.
+        \[ x+ \lambda y = \sum_{j \in J} \gamma_j x_j \in \vect(\mathcal{F}) \]
+        De plus, $0 \in \vect(\mathcal{F})$, donc $\vect(\mathcal{F})$ est un sev de $E$.
+        \item Par construction, $\mathcal{F} \subset \vect(\mathcal{F})$. Donc $\vect(\mathcal{F})$ est un sev de $E$ contenant $\mathcal{F}$. Soit $F$ un sev de $E$ contenant $\mathcal{F}$. Soit $x \in \vect(\mathcal{F})$. On montre facilement que $x \in F$, d’où $\vect(\mathcal{F}) \subset F$.
         \end{enumerate}
     \end{demo}
 
@@ -181,7 +182,7 @@
 
         \begin{itemize}
             \item On dit que $(x_1,\ldots,x_s)$ est une \textbf{famille génératrice} de $E$ lorsque 
-        \[ E = \Vect(x_1,\ldots,x_s) \] 
+        \[ E = \vect(x_1,\ldots,x_s) \] 
         On dit aussi que $(x_1,\ldots,x_s)$ engendre $E$.
             \item On dit que $(x_1,\ldots,x_s)$ est une \textbf{famille libre}, ou linéairement indépendante si 
             \[ \forall (\lambda_1,\ldots,\lambda_s) \in \mathbb{K}^s, \quad \sum\limits_{i=1}^s \lambda_i x_i = 0_E \implies (\lambda_1,\ldots,\lambda_s) = (0,\ldots,0) \]
@@ -193,7 +194,7 @@
         Soit $\mathcal{F} = (x_i)_{i \in I}$ une famille du $\mathbb{K}$-ev $E$.
         \begin{itemize}
             \item On dit que $\mathcal{F}$ est libre si pour tout $J \subset I$ fini, $(x_j)_{j \in J}$ est libre.
-            \item On dit que $\mathcal{F}$ est génératrice de $E$ si $\Vect(\mathcal{F}) = E$, \textit{i.e.}
+            \item On dit que $\mathcal{F}$ est génératrice de $E$ si $\vect(\mathcal{F}) = E$, \textit{i.e.}
             \[ \forall y \in E, \quad \exists J \subset I, \quad J \text{ est fini et } \exists (\lambda_j)_{j \in J} \in \mathbb{K}^{\abs{J}}, \quad y = \sum_{j \in J} \lambda_j x_j \]
         \end{itemize}
     \end{defi}
@@ -205,7 +206,7 @@
         \end{soient}
         \begin{suppose}
             \item $(x_1,\ldots,x_s)$ est libre
-            \item $x_{s+1} \notin \Vect(x_1,\ldots,x_{s})$
+            \item $x_{s+1} \notin \vect(x_1,\ldots,x_{s})$
         \end{suppose}
         Alors \[ (x_1,\ldots,x_{s+1}) \text{ est libre} \]
     \end{prop}
@@ -213,7 +214,7 @@
     \begin{demo}{Démonstration}{myolive}
         On raisonne par l’absurde.
 
-        Supposons que la famille $(x_i)_{i \in \intervalleEntier{1}{s+1}}$ est liée. Alors $\exists (\lambda_1,\ldots,\lambda_{s+1}) \in \mathbb{R}^{s+1} \backslash \{ (0,\ldots,0 ) \}$ tels que $\sum\limits_{i=1}^{s+1} \lambda_i x_i = 0$. Si $\lambda_{s+1}$ est nul, c’est absurde car la famille $(x_i)_{i \in \intervalleEntier{1}{s}}$ est libre. Donc $\lambda_{s+1} \neq 0$ et on peut ainsi réécrire l’égalité comme $x_{s+1} = - \sum\limits_{i=1}^{s+1} \frac{\lambda_i}{\lambda_{s+1}} x_i = 0$. Donc $x_{s+1} \in \Vect(x_1,\ldots,x_{s})$, ce qui est absurde. La famille $(x_i)_{i \in \intervalleEntier{1}{s+1}}$ est donc libre.
+        Supposons que la famille $(x_i)_{i \in \intervalleEntier{1}{s+1}}$ est liée. Alors $\exists (\lambda_1,\ldots,\lambda_{s+1}) \in \mathbb{R}^{s+1} \backslash \{ (0,\ldots,0 ) \}$ tels que $\sum\limits_{i=1}^{s+1} \lambda_i x_i = 0$. Si $\lambda_{s+1}$ est nul, c’est absurde car la famille $(x_i)_{i \in \intervalleEntier{1}{s}}$ est libre. Donc $\lambda_{s+1} \neq 0$ et on peut ainsi réécrire l’égalité comme $x_{s+1} = - \sum\limits_{i=1}^{s+1} \frac{\lambda_i}{\lambda_{s+1}} x_i = 0$. Donc $x_{s+1} \in \vect(x_1,\ldots,x_{s})$, ce qui est absurde. La famille $(x_i)_{i \in \intervalleEntier{1}{s+1}}$ est donc libre.
     \end{demo}
 
     \begin{theo}{Dans un ev engendré par $n$ vecteurs, toute famille de $n + 1$ éléments est liée}{}
@@ -222,20 +223,20 @@
             \item $\mathcal{G} = (e_1,\ldots,e_n)$
             \item $\mathcal{F} = (y_1,\ldots,y_{n+1})$
         \end{soient}
-        On suppose que $\forall i \in \intervalleEntier{1}{n+1}, \, y_i \in \Vect(\mathcal{G})$.
+        On suppose que $\forall i \in \intervalleEntier{1}{n+1}, \, y_i \in \vect(\mathcal{G})$.
         Alors $\mathcal{F}$ est liée.
     \end{theo}
     
     \begin{demo}{Démonstration}{myred}
         On pose \begin{multline*}
             \mathcal{H}_n : \forall \mathcal{G} = (e_1,\ldots,e_n) \in E^n, \forall (y_1,\ldots,y_{n+1}) \in E^{n+1}, \\
-            \left[\forall i \in \intervalleEntier{1}{n+1}, \, y_i \in \Vect(\mathcal{G}) \right] \implies (y_1,\ldots,y_{n+1}) \text{ est liée}
+            \left[\forall i \in \intervalleEntier{1}{n+1}, \, y_i \in \vect(\mathcal{G}) \right] \implies (y_1,\ldots,y_{n+1}) \text{ est liée}
         \end{multline*}
 
         Pour $n = 1$, on vérifie facilement $(y_1,y_2)$ liée. 
     
         Pour $n \in \mathbb{N}^*$ tel que $\mathcal{H}_n$ est vrai, on pose les objets pour $n+1$. Ensuite on pose $\forall i \in \intervalleEntier{1}{n+1}$, \[ z_i = y_i - \frac{\lambda_{i,n+1}}{\lambda_{n+2,n+1}}y_{n+2} \] 
-        $\forall i \in \intervalleEntier{1}{n+1}, \, z_i \in \Vect(e_1,\ldots,e_n)$ donc on peut lui appliquer $\mathcal{H}_n$, i.e. $(z_1,\ldots,z_{n+1})$ est liée. On peut ainsi trouver, en repassant à la définition d’une famille liée, que \[ \sum\limits_{i=1}^{n+1} \mu_i y_i + \left(\sum\limits_{i=1}^{n+1} -\frac{\lambda_{i,n+1}}{\lambda_{n+2,n+1}}\mu_i\right)y_{n+2}  = 0_E \]
+        $\forall i \in \intervalleEntier{1}{n+1}, \, z_i \in \vect(e_1,\ldots,e_n)$ donc on peut lui appliquer $\mathcal{H}_n$, i.e. $(z_1,\ldots,z_{n+1})$ est liée. On peut ainsi trouver, en repassant à la définition d’une famille liée, que \[ \sum\limits_{i=1}^{n+1} \mu_i y_i + \left(\sum\limits_{i=1}^{n+1} -\frac{\lambda_{i,n+1}}{\lambda_{n+2,n+1}}\mu_i\right)y_{n+2}  = 0_E \]
         Donc $(y_1,\ldots,y_{n+2})$ est liée et $\mathcal{H}_{n+1}$ est liée.
     \end{demo}
 
@@ -249,7 +250,7 @@
     \begin{demo}{Démonstration}{mypurple}
         \begin{itemize}
             \item[$\implies$] L’existence vient du fait que la famille est génératrice. L’unicité vient de sa liberté.
-            \item[$\impliedby$] On prouve que la famille est libre grâce à l’unicité de la décomposition, car si $\sum\limits_{i=1}^s \lambda_i e_i = 0$, $(0,\ldots,0)$ convient. Elle est génératrice car $E = \Vect(e_1,\ldots,e_n)$.
+            \item[$\impliedby$] On prouve que la famille est libre grâce à l’unicité de la décomposition, car si $\sum\limits_{i=1}^s \lambda_i e_i = 0$, $(0,\ldots,0)$ convient. Elle est génératrice car $E = \vect(e_1,\ldots,e_n)$.
         \end{itemize}
     \end{demo}
 
@@ -282,7 +283,7 @@
         \begin{enumerate}
             \item $E$ est de dimension finie et $E \neq \big\{ 0_E \big\}$ donc admet une famille génératrice finie. Donc elle admet une base de cardinal fini d’après le théorème de la base extraite.
             \item Comme toute famille de $n+1$ est liée dans un sev engendré par une famille de $n$ éléments, on a le résultat.
-            \item Par récurrence finie sur $\intervalleEntier{p+1}{n}$, en utilisant de l’hérédité que si $E \neq \Vect(e_1,\ldots,e_{p+i})$, \[ \exists e_{p+i+1} \in E \backslash \Vect(e_1,\ldots,e_{p+1}) \text{ tel que } (e_1,\ldots,e_{p+i+1}) \text{ est libre} \]
+            \item Par récurrence finie sur $\intervalleEntier{p+1}{n}$, en utilisant de l’hérédité que si $E \neq \vect(e_1,\ldots,e_{p+i})$, \[ \exists e_{p+i+1} \in E \backslash \vect(e_1,\ldots,e_{p+1}) \text{ tel que } (e_1,\ldots,e_{p+i+1}) \text{ est libre} \]
             \item Si $\mathcal{G}$ est libre, on a une base. Sinon, un vecteur s’écrit comme CL des autres donc on le retire. On répète ce processus jusqu’à avoir une famille libre.
         \end{enumerate}
     \end{demo}
@@ -339,7 +340,7 @@
     \begin{demo}{Raisonnement}{myred}
         \begin{itemize}[leftmargin=3cm]
             \item[\textbf{(i)} $\implies$ \textbf{(ii)}] Par définition.
-            \item[\textbf{(ii)} $\implies$ \textbf{(iii)}] Soit $(e_1,\ldots,e_n)$ les vecteurs de $\mathcal{E}$. Si $E \neq \Vect(\mathcal{F})$, alors $\exists \, e_{n+1} \in E \backslash \Vect(\mathcal{F})$ tel que $(e_1,\ldots,e_{n+1})$ est libre, ce qui est absurde car $\dim(E) = n$. Donc $\mathcal{F}$ est génératrice de $E$.
+            \item[\textbf{(ii)} $\implies$ \textbf{(iii)}] Soit $(e_1,\ldots,e_n)$ les vecteurs de $\mathcal{E}$. Si $E \neq \vect(\mathcal{F})$, alors $\exists \, e_{n+1} \in E \backslash \vect(\mathcal{F})$ tel que $(e_1,\ldots,e_{n+1})$ est libre, ce qui est absurde car $\dim(E) = n$. Donc $\mathcal{F}$ est génératrice de $E$.
             \item[\textbf{(iii)} $\implies$ \textbf{(i)}] On peut extraire de $\mathcal{F}$ une base $\mathcal{B}$ de $E$. Or \[ \et{\mathcal{B} \subset \mathcal{F}}{\dim(B) = \dim(F)} \implies \mathcal{B} = \mathcal{F} \]
         \end{itemize}
     \end{demo}
@@ -352,7 +353,7 @@
             \item $\mathcal{F}$ une famille finie de vecteurs de $E$
         \end{soient}
         Alors le rang de $\mathcal{F}$ est la dimension de l’espace qu’elle engendre :
-        \[ \rg(\mathcal{F}) = \dim(\Vect(\mathcal{F})) \]
+        \[ \rg(\mathcal{F}) = \dim(\vect(\mathcal{F})) \]
     \end{defi}
 
     \begin{prop}{Caractérisation des familles libres par le rang}{}
@@ -365,8 +366,8 @@
     
     \begin{demo}{Preuve}{myolive}
         \begin{itemize}
-            \item[$\implies$] Si $\mathcal{F}$ est libre, $\mathcal{F}$ engendre $\Vect(\mathcal{F})$ donc en est une base.
-            \item[$\impliedby$] Si $\card(\mathcal{F}) = \rg(\mathcal{F})$, alors $\card(\mathcal{F}) = \dim(\mathcal{F})$. Or $\mathcal{F}$ engendre $\Vect(\mathcal{F})$, donc $\mathcal{F}$ est une base de $\Vect(\mathcal{F})$, donc est libre. 
+            \item[$\implies$] Si $\mathcal{F}$ est libre, $\mathcal{F}$ engendre $\vect(\mathcal{F})$ donc en est une base.
+            \item[$\impliedby$] Si $\card(\mathcal{F}) = \rg(\mathcal{F})$, alors $\card(\mathcal{F}) = \dim(\mathcal{F})$. Or $\mathcal{F}$ engendre $\vect(\mathcal{F})$, donc $\mathcal{F}$ est une base de $\vect(\mathcal{F})$, donc est libre. 
         \end{itemize}
     \end{demo}
 
@@ -388,7 +389,7 @@
         \[ \fonction{\Phi}{F \times G}{E}{(x,y)}{x + y} \]
         $\Phi$ est linéaire de façon assez naturelle. 
         \begin{itemize}
-            \item $\Ima(\Phi) = F + G$
+            \item $\im(\Phi) = F + G$
             \item \begin{align*}
                 \ker(\Phi) 
                 & = \big\{ (x,y) \in F \times G, x + y = 0 \big\} \\
@@ -401,7 +402,7 @@
         \end{itemize}
         Ainsi, par la formule du rang, 
         \begin{align*}
-            \rg(\Phi) &= \dim(\Ima(\Phi)) = \dim(F + G) \\
+            \rg(\Phi) &= \dim(\im(\Phi)) = \dim(F + G) \\
             &= \dim(F \times G) - \dim(\ker(\Phi)) \\
             &= \dim(F) + \dim(G) - \dim(F \cap G) 
         \end{align*}
@@ -483,7 +484,7 @@
     
     \begin{demo}{Preuve}{myred}
         \begin{enumerate}
-            \item Pour trouver un supplémentaire de $F$ dans $E$, en étudiant séparément les cas où $F= E$ et $F = \big\{ 0_E \big\}$, on utilise le théorème de la base incomplète, avec $(e_1,\ldots,e_p)$ une base de $F$ et $(e_1,\ldots,e_n)$ une base de $E$. Dans ce cas, \[ \underbrace{\Vect(e_1,\ldots,e_p)}_{= F} \oplus \underbrace{\Vect(e_{p+1},\ldots,e_n)}_{= S} = E \]
+            \item Pour trouver un supplémentaire de $F$ dans $E$, en étudiant séparément les cas où $F= E$ et $F = \big\{ 0_E \big\}$, on utilise le théorème de la base incomplète, avec $(e_1,\ldots,e_p)$ une base de $F$ et $(e_1,\ldots,e_n)$ une base de $E$. Dans ce cas, \[ \underbrace{\vect(e_1,\ldots,e_p)}_{= F} \oplus \underbrace{\vect(e_{p+1},\ldots,e_n)}_{= S} = E \]
             \item Savoir compter le nombre de vecteurs dans les bases de $E$, $F$ et $S$.
             \item \begin{itemize}[leftmargin=3cm]
             \item[\textbf{(i)} $\implies$ \textbf{(ii)}] Immédiat.
@@ -735,15 +736,15 @@
                 \item $(E,\spr{.}{.})$ un espace préhilbertien réel
                 \item $(e_1,\ldots,e_n)$ une famille libre de vecteurs de $E$
             \end{soient}
-            Alors il existe une famille $(\varepsilon_1,\ldots,\varepsilon_n)$ de $E$ telle que \[ \et{(\varepsilon_1,\ldots,\varepsilon_n) \text{ est orthonormale}}{\forall i \in \intervalleEntier{1}{n}, \, \Vect(e_1,\ldots,e_i) = \Vect(\varepsilon_1,\ldots,\varepsilon_i)} \] 
+            Alors il existe une famille $(\varepsilon_1,\ldots,\varepsilon_n)$ de $E$ telle que \[ \et{(\varepsilon_1,\ldots,\varepsilon_n) \text{ est orthonormale}}{\forall i \in \intervalleEntier{1}{n}, \, \vect(e_1,\ldots,e_i) = \vect(\varepsilon_1,\ldots,\varepsilon_i)} \] 
             Si l’on impose que $\forall i \in \intervalleEntier{1}{n}, \, \spr{e_i}{\varepsilon_i} > 0$, la famille précédente est unique.
         \end{theo}
 
         \begin{demo}{Démonstration}{myred}
             Pour $k \in \intervalleEntier{1}{n}$, on pose 
-            \[ \mathcal{H}_k \,: \, \et{(\varepsilon_1,\ldots,\varepsilon_k) \text{ est orthonormale}}{\forall i \in \intervalleEntier{1}{k}, \, \Vect(e_1,\ldots,e_i) = \Vect(\varepsilon_1,\ldots,\varepsilon_i)} \]
+            \[ \mathcal{H}_k \,: \, \et{(\varepsilon_1,\ldots,\varepsilon_k) \text{ est orthonormale}}{\forall i \in \intervalleEntier{1}{k}, \, \vect(e_1,\ldots,e_i) = \vect(\varepsilon_1,\ldots,\varepsilon_i)} \]
             \begin{itemize}
-                \item \lilbox{myred}{I : Pour $k=1$} \quad  $\varepsilon_1 = \frac{e_1}{\norm{e_1}}$ et $e_1 \neq 0$ donc $\et{(\varepsilon_1) \text{ est otn.}}{\Vect(\varepsilon_1) = \Vect(e_1)}$
+                \item \lilbox{myred}{I : Pour $k=1$} \quad  $\varepsilon_1 = \frac{e_1}{\norm{e_1}}$ et $e_1 \neq 0$ donc $\et{(\varepsilon_1) \text{ est otn.}}{\vect(\varepsilon_1) = \vect(e_1)}$
                 \item \lilbox{myred}{H : Soit $k \in \intervalleEntier{1}{n-1}$} tel que $\mathcal{H}_k$ est vraie. 
                 
                 On pose $e_{k+1} = e_{k+1} - \sum\limits_{i=1}^{k} \spr{e_{k+1}}{\varepsilon_i}\varepsilon_i$ et $\varepsilon_{k+1} = \frac{e_{k+1}'}{\norm{e_{k+1}'}}$
@@ -754,14 +755,14 @@
                     &= \spr{e_{k+1}}{\varepsilon_j} - \spr{e_{k+1}}{\varepsilon_j} \\
                     &= 0
                 \end{align*} 
-                Comme $(e_1,\ldots,e_s)$ est libre, $\et{e_{k+1} \notin \Vect(e_1,\ldots,e_k) \overset{\mathcal{H}_k}{=} \Vect(\varepsilon_1, \ldots, \varepsilon_k)}{e_{k+1} \neq 0} $. Donc $e_{k+1}' \neq 0$, puis $\spr{\varepsilon_{k+1}}{\varepsilon_j} = \frac{\spr{e_{k+1}'}{\varepsilon_j}}{\norm{e_{k+1}}'} = 0$. Ainsi, $\et{\forall j \in \intervalleEntier{1}{k}, \, \spr{\varepsilon_{k+1}}{\varepsilon_j} = 0}{\norm{\varepsilon_{k+1}} = 1}$, et $(\varepsilon_1, \ldots, \varepsilon_k)$ est orthonormée par $\mathcal{H}_k$, donc $(\varepsilon_1, \ldots, \varepsilon_{k+1})$ est otn.
+                Comme $(e_1,\ldots,e_s)$ est libre, $\et{e_{k+1} \notin \vect(e_1,\ldots,e_k) \overset{\mathcal{H}_k}{=} \vect(\varepsilon_1, \ldots, \varepsilon_k)}{e_{k+1} \neq 0} $. Donc $e_{k+1}' \neq 0$, puis $\spr{\varepsilon_{k+1}}{\varepsilon_j} = \frac{\spr{e_{k+1}'}{\varepsilon_j}}{\norm{e_{k+1}}'} = 0$. Ainsi, $\et{\forall j \in \intervalleEntier{1}{k}, \, \spr{\varepsilon_{k+1}}{\varepsilon_j} = 0}{\norm{\varepsilon_{k+1}} = 1}$, et $(\varepsilon_1, \ldots, \varepsilon_k)$ est orthonormée par $\mathcal{H}_k$, donc $(\varepsilon_1, \ldots, \varepsilon_{k+1})$ est otn.
                 
                 \[ \varepsilon_{k+1} = \frac{e_{k+1}}{\norm{e_{k+1}'}} - \underbrace{\frac{\sum\limits_{i=1}^k \spr{e_{k+1}}{\varepsilon_i}\varepsilon_i}{\norm{e_{k+1}'}}}_{x_k} \]
-                avec $x_k \in \Vect(\varepsilon_1,\ldots,\varepsilon_k) \underset{\mathcal{H}_k}{=} \Vect(e_1,\ldots,e_k)$ , donc $\varepsilon_{k+1} \in \Vect(e_1,\ldots,e_{k+1})$. Or 
-                \[ \et{\forall i \in \intervalleEntier{1}{k}, \, \varepsilon_i \in \Vect(\varepsilon_1, \ldots, \varepsilon_k) = \Vect(e_1,\ldots,e_k)}{\Vect(e_1,\ldots,e_k) \subset \Vect(e_1, \ldots, e_{k+1})} \] 
-                donc $\Vect(\varepsilon_1,\ldots,\varepsilon_{k+1}) \subset \Vect(e_1,\ldots,e_{k+1})$
+                avec $x_k \in \vect(\varepsilon_1,\ldots,\varepsilon_k) \underset{\mathcal{H}_k}{=} \vect(e_1,\ldots,e_k)$ , donc $\varepsilon_{k+1} \in \vect(e_1,\ldots,e_{k+1})$. Or 
+                \[ \et{\forall i \in \intervalleEntier{1}{k}, \, \varepsilon_i \in \vect(\varepsilon_1, \ldots, \varepsilon_k) = \vect(e_1,\ldots,e_k)}{\vect(e_1,\ldots,e_k) \subset \vect(e_1, \ldots, e_{k+1})} \] 
+                donc $\vect(\varepsilon_1,\ldots,\varepsilon_{k+1}) \subset \vect(e_1,\ldots,e_{k+1})$
                 
-                Réciproquement, $\forall i \in \intervalleEntier{1}{k}, \, e_i \in \Vect(\varepsilon_1,\ldots,\varepsilon_{k+1})$ par $\mathcal{H}_k$ et $e_{k+1} = \norm{e_{k+1}'} \varepsilon_{k+1} + \sum\limits_{i=1}^k \spr{e_{k+1}}{\varepsilon_i}\varepsilon_i  \in \Vect(\varepsilon_1,\ldots,\varepsilon_{k+1})$. Donc $\Vect(e_1,\ldots,e_{k+1}) \subset \Vect(\varepsilon_1,\ldots,\varepsilon_{k+1})$.
+                Réciproquement, $\forall i \in \intervalleEntier{1}{k}, \, e_i \in \vect(\varepsilon_1,\ldots,\varepsilon_{k+1})$ par $\mathcal{H}_k$ et $e_{k+1} = \norm{e_{k+1}'} \varepsilon_{k+1} + \sum\limits_{i=1}^k \spr{e_{k+1}}{\varepsilon_i}\varepsilon_i  \in \vect(\varepsilon_1,\ldots,\varepsilon_{k+1})$. Donc $\vect(e_1,\ldots,e_{k+1}) \subset \vect(\varepsilon_1,\ldots,\varepsilon_{k+1})$.
             \end{itemize}
             On conclut par récurrence sur $\intervalleEntier{1}{n}$.
         \end{demo}
@@ -817,7 +818,7 @@
             \begin{enumerate}
                 \item $A^{\perp}$ est un sous-espace vectoriel de $E$.
                 \item $A \subset B \implies B^{\perp} \subset A^{\perp}$
-                \item Si $A$ est fini, $A^{\perp} = \left(\Vect(A)\right)^{\perp}$
+                \item Si $A$ est fini, $A^{\perp} = \left(\vect(A)\right)^{\perp}$
             \end{enumerate}
         \end{defitheo}
 
@@ -982,8 +983,8 @@
                     &= \spr{p(x)}{y - p(y) + p(y)} \\
                     &= \spr{p(x)}{y - p(y)} + \spr{p(x)}{p(y)} \\
                 \end{align*}
-                Or $p(x) \in \Ima(p)$ et $y - p(y) \in \Ima(p)^{\perp}$, donc $\spr{p(x)}{y} = \spr{p(x)}{p(y)}$. Par symétrie des variables $x$ et $y$, on a de même $\spr{p(y)}{x} = \spr{p(y)}{p(x)}$, d’où $\spr{p(x)}{y} = \spr{x}{p(y)}$.
-                \item[$\impliedby$] On suppose que $p$ est autoadjoint. Pour prouver que $p$ est un projecteur orthogonal, on doit montrer que $\ker(p) = \Ima(p)^{\perp}$. Soit $x \in \ker(p)$ et $y \in Ima(p)^{\perp}$. 
+                Or $p(x) \in \im(p)$ et $y - p(y) \in \im(p)^{\perp}$, donc $\spr{p(x)}{y} = \spr{p(x)}{p(y)}$. Par symétrie des variables $x$ et $y$, on a de même $\spr{p(y)}{x} = \spr{p(y)}{p(x)}$, d’où $\spr{p(x)}{y} = \spr{x}{p(y)}$.
+                \item[$\impliedby$] On suppose que $p$ est autoadjoint. Pour prouver que $p$ est un projecteur orthogonal, on doit montrer que $\ker(p) = \im(p)^{\perp}$. Soit $x \in \ker(p)$ et $y \in Ima(p)^{\perp}$. 
                 \begin{align*}
                     \spr{x}{y} 
                     & \quad \downarrow \quad \text{car } y \in \Im(p)
@@ -991,8 +992,8 @@
                     &= \spr{p(x)}{y} \\
                     &= 0
                 \end{align*}
-                Donc $\ker(p) \subset \Ima(p)^{\perp}$, et 
-                \[ \dim(\ker(p)) = \dim(E) - \dim(\Ima(p)) = \dim(\Ima(p)^{\perp}) \]   donc $\ker(p) = \Ima(p)^{\perp}$, \textit{i.e.} $p$ est un projecteur orthogonal.
+                Donc $\ker(p) \subset \im(p)^{\perp}$, et 
+                \[ \dim(\ker(p)) = \dim(E) - \dim(\im(p)) = \dim(\im(p)^{\perp}) \]   donc $\ker(p) = \im(p)^{\perp}$, \textit{i.e.} $p$ est un projecteur orthogonal.
             \end{itemize}
         \end{demo}
 
@@ -1013,9 +1014,9 @@
                 \item $x \in E$
             \end{soient}
             La \textbf{distance} de $x$ à $F$ est le nombre 
-            \[ \dist(x,F)=\inf\left(\left\{\norm{x-y}, \, y \in F\right\}\right) \]
+            \[ \d(x,F)=\inf\left(\left\{\norm{x-y}, \, y \in F\right\}\right) \]
             En particulier, 
-            \[ \exists ! y_0 \in F, \, \dist(x,F) = \norm{x - y_0} \] 
+            \[ \exists ! y_0 \in F, \, \d(x,F) = \norm{x - y_0} \] 
             et $y_0$ est le projeté orthogonal de $x$ sur $F$.
         \end{defitheo}
 
@@ -1038,13 +1039,13 @@
             Calculons $\inf_{a,b \in \mathbb{R}} \int_{0}^{2\pi} \left(t - a \cos(t) - b \sin(t)\right)^2$.
 
             On pose $E = \mathcal{C}(\intervalleFF{0}{2\pi})$ muni du produit scalaire $\spr{f}{g} = \int_{0}^{2\pi} fg$, et on remarque que l’on doit calculer 
-            \[ \inf_{t \in F} \norm{t - f}^2 = \dist(t,F) \esp{avec} F = \Vect(\cos, \sin) \]   
+            \[ \inf_{t \in F} \norm{t - f}^2 = \d(t,F) \esp{avec} F = \vect(\cos, \sin) \]   
             On trouve que $\left(\frac{\cos}{\sqrt{\pi}}, \frac{\sin}{\sqrt{\pi}}\right)$ est une base orthonormée de $F$, d’où $p_F(t) = - 2\sin(t)$ après calculs. Ainsi, 
-            \[ \dist(p,F) = \norm{t - p_F(t)}^2 = \norm{t}^2 - \norm{p_F(t)}^2 = \frac{8 \pi^3}{3} - 4\pi \]   
+            \[ \d(p,F) = \norm{t - p_F(t)}^2 = \norm{t}^2 - \norm{p_F(t)}^2 = \frac{8 \pi^3}{3} - 4\pi \]   
         \end{omed}
 
         \begin{omed}{Exemple \textcolor{black}{(Projecteur sur un hyperplan)}}{mypurple}
-            Posons $H = \Vect(u)^{\perp}$ un hyperplan de $E$. Pour tout $x \in E$, on a 
+            Posons $H = \vect(u)^{\perp}$ un hyperplan de $E$. Pour tout $x \in E$, on a 
             \[ d(x,H) = \frac{\abs{\spr{x}{u}}}{\norm{u}} \]    
             En effet, en notant $p$ le projecteur orthogonal sur $H$, on sait que 
             \begin{align*}
@@ -1058,19 +1059,19 @@
 
         \begin{omed}{Exercice \textcolor{black}{(Distance aux colonnes d’une matrice)}}{mypurple}
             Soient $M \in \GL_n(\mathbb{K})$, $C_1,\ldots,C_n$ les colonnes de $M$ et $L_1,\ldots,L_n$ les colonnes de $M^{-1}$. OC que $C_1,\ldots, C_n \in \mathbb{R}^n$, et on munit $\mathbb{R}^n$ du produit scalaire canonique. Posons 
-            \[ H_i = \Vect\left\{C_1,\ldots, C_{i-1}, C_{i+1}, \ldots, C_n\right\} \]   
+            \[ H_i = \vect\left\{C_1,\ldots, C_{i-1}, C_{i+1}, \ldots, C_n\right\} \]   
             Montrons que 
-            \[ \dist(C_i, H_i) = \frac{1}{\norm{L_i}} \]
+            \[ \d(C_i, H_i) = \frac{1}{\norm{L_i}} \]
         \end{omed}
 
         \begin{demo}{Résolution}{mypurple}
-            On cherche $U_i$ TQ $H_i^{\perp} = \Vect(U_i)$. 
+            On cherche $U_i$ TQ $H_i^{\perp} = \vect(U_i)$. 
             \begin{align*}
                 M^{-1} M = I_n 
                 &\iff \forall (i,j) \in \intervalleEntier{1}{n}^2, \spr{L_i}{C_j} = \delta_{i,j} \\
             \end{align*}
-            Ainsi, $L_i \in \Vect\left\{C_1,\ldots,C_{i-1},C_{i+1},\ldots,C_n\right\}^{\perp} = H_i^{\perp}$
-            Donc $H_i^{\perp} = \Vect(L_i)$, puis par la formule de l’exemple précédent, $d(C_i,H_i) = \frac{\abs{\spr{C_i}{L_i}}}{\norm{L_i}} = \frac{1}{\norm{L_i}}$.
+            Ainsi, $L_i \in \vect\left\{C_1,\ldots,C_{i-1},C_{i+1},\ldots,C_n\right\}^{\perp} = H_i^{\perp}$
+            Donc $H_i^{\perp} = \vect(L_i)$, puis par la formule de l’exemple précédent, $d(C_i,H_i) = \frac{\abs{\spr{C_i}{L_i}}}{\norm{L_i}} = \frac{1}{\norm{L_i}}$.
         \end{demo}
 
         Ainsi, si la distance décroît, \text{i.e.} $C_i$ se rapproche de l’espace engendré par les autres colonnes, alors $\norm{L_i} \to +\infty$, et la matrice inversible disparaît.
@@ -1080,14 +1081,14 @@
             $\spr{P}{Q} = \sum_{i=0}^{n} \binom{n}{i}^{-1} a_i b_i$ 
             \begin{enumerate}
                 \item Montrons que $(\mathbb{R}_n[X], \spr{.}{.})$ est un ev euclidien.
-                \item Soit $x_0 \in \mathbb{R}$ et $H_{x_0} = \enstq{P \in E}{P(x_0) = 0}$. Montrons que $\dist(P,H_{x_0}) = \frac{\abs{P(x_0)}}{\left(1 + x_0^2\right)^{n/2}}$.
+                \item Soit $x_0 \in \mathbb{R}$ et $H_{x_0} = \enstq{P \in E}{P(x_0) = 0}$. Montrons que $\d(P,H_{x_0}) = \frac{\abs{P(x_0)}}{\left(1 + x_0^2\right)^{n/2}}$.
             \end{enumerate}
         \end{omed}
 
         \begin{demo}{Résolution}{mypurple}
             \begin{itemize}
                 \item Se fait.
-                \item On remarque tout d’abord que $H_{x_0} = \left\{(X - x_0)Q, Q \in \mathbb{R}_{n-1}[X]\right\} = (X - X_0) \mathbb{R}_{n-1}[X]$ qui est un idéal de $\mathbb{R}_n[X]$. On se ramène donc à la distance à un hyperplan, donnée, dans le cas où $H = \Vect(u)^{\perp}$, par $\dist(x,H) = \frac{\abs{\spr{x}{u}}}{\norm{u}}$. On cherche donc $Q \in \mathbb{R}_n[X]$ TQ $H_{x_0} = \Vect(Q)^{\perp}$ \textit{i.e.} $H_{x_0}^{\perp} = \Vect\left\{Q\right\}$. Une base de $H_{x_0}$ est $\mathcal{B} = \left(X^k - x_0^k , k \in \intervalleEntier{1}{n}\right)$. Ainsi, $Q \in H_{x_0}^{\perp} \iff \forall k, \spr{Q}{X^k - x_0^k} = 0$. Or, en posant $Q = b_0 + \cdots + b_{n-1}X^{n-1} + b_n X^n \in H_{x_0}^{\perp}$, on a pour tout $k$ l’égalité \[ \spr{Q}{X^k - x_0^k} = \binom{n}{k}^{-1} b_k - b_0 x_0^k = 0\]   
+                \item On remarque tout d’abord que $H_{x_0} = \left\{(X - x_0)Q, Q \in \mathbb{R}_{n-1}[X]\right\} = (X - X_0) \mathbb{R}_{n-1}[X]$ qui est un idéal de $\mathbb{R}_n[X]$. On se ramène donc à la distance à un hyperplan, donnée, dans le cas où $H = \vect(u)^{\perp}$, par $\d(x,H) = \frac{\abs{\spr{x}{u}}}{\norm{u}}$. On cherche donc $Q \in \mathbb{R}_n[X]$ TQ $H_{x_0} = \vect(Q)^{\perp}$ \textit{i.e.} $H_{x_0}^{\perp} = \vect\left\{Q\right\}$. Une base de $H_{x_0}$ est $\mathcal{B} = \left(X^k - x_0^k , k \in \intervalleEntier{1}{n}\right)$. Ainsi, $Q \in H_{x_0}^{\perp} \iff \forall k, \spr{Q}{X^k - x_0^k} = 0$. Or, en posant $Q = b_0 + \cdots + b_{n-1}X^{n-1} + b_n X^n \in H_{x_0}^{\perp}$, on a pour tout $k$ l’égalité \[ \spr{Q}{X^k - x_0^k} = \binom{n}{k}^{-1} b_k - b_0 x_0^k = 0\]   
                 On peut poser $b_0 = 1$ sans perte de généralité -- car si $b_0 = 0$, tous les coefficients de $Q$ sont nuls et tous les multiples de $Q$ sont solution--, d’où 
                 \[ Q(X) = \sum_{k=0}^{n} \binom{n}{k } x_0^k X^k = \left(1 + x_0 X\right)^n \]    
                 On a donc \begin{align*}
@@ -1098,7 +1099,7 @@
                 \end{align*}
                 Ainsi, d’après la formule de la distance à un hyperplan,  
                 \begin{align*}
-                    \dist(P,H_{x_0}) 
+                    \d(P,H_{x_0}) 
                     &= \frac{\abs{\spr{P}{Q}}}{\norm{Q}} \\
                     &= \frac{1}{(1 + x_0^2)^{n / 2}} \abs{\sum_{k=0}^{n} \binom{n }{k }^{-1} a_k \binom{n }{k } x_0^k} \\
                     &= \frac{1}{(1 + x_0^2)^{n / 2}} \abs{P(x_0)}
@@ -1114,23 +1115,23 @@
 
     \begin{defi}{Suites totales}{}
         On dit qu’une suite de vecteurs $(e_i)_{i \in \mathbb{N}}$ de $E$ est \textbf{totale} si pour tout $x \in E$, 
-        \[ \forall \varepsilon > 0, \exists y \in \Vect_{i \in \mathbb{N}}(e_i), \norm{x-y} < \varepsilon \] 
+        \[ \forall \varepsilon > 0, \exists y \in \vect_{i \in \mathbb{N}}(e_i), \norm{x-y} < \varepsilon \] 
     \end{defi}
 
-    Par caractérisation séquentielle de la limite, cela revient à dire qu’il existe une suite $(x_n)_{n \in \mathbb{N}}$ d’éléments de $\Vect_{i \in \mathbb{N}}(e_i)$ qui converge vers $x$. En d’autres termes, $\Vect_{i \in \mathbb{N}}(e_i)$ est dense dans $E$.
+    Par caractérisation séquentielle de la limite, cela revient à dire qu’il existe une suite $(x_n)_{n \in \mathbb{N}}$ d’éléments de $\vect_{i \in \mathbb{N}}(e_i)$ qui converge vers $x$. En d’autres termes, $\vect_{i \in \mathbb{N}}(e_i)$ est dense dans $E$.
 
     \begin{theo}{}{}
         \begin{soient}
             \item $(e_i)_{i \in \mathbb{N}}$ une suite orthonormale totale d’éléments de $E$
-            \item pour tout $n \in \mathbb{N}, p_n$ le projecteur orthogonal sur $\Vect(e_0, \ldots, e_n)$. 
+            \item pour tout $n \in \mathbb{N}, p_n$ le projecteur orthogonal sur $\vect(e_0, \ldots, e_n)$. 
         \end{soient}
         Alors pour tout $x \in E, (p_n(x))_{n \in \mathbb{N}}$ converge vers $x$.
     \end{theo}
 
     \begin{demo}{Démonstration}{myred}
-        Soit $x \in E$ et, pour $n \in \mathbb{N}$, $F_n = \Vect_{0 \leq i \leq n}(e_i)$. On fixe $\epsilon > 0$.
+        Soit $x \in E$ et, pour $n \in \mathbb{N}$, $F_n = \vect_{0 \leq i \leq n}(e_i)$. On fixe $\epsilon > 0$.
 
-        Par définition d’une famille totale, il existe $y \in \Vect_{i \in \mathbb{N}}(e_i)$ tel que $\norm{x - y} < \epsilon$.
+        Par définition d’une famille totale, il existe $y \in \vect_{i \in \mathbb{N}}(e_i)$ tel que $\norm{x - y} < \epsilon$.
 
         Le vecteur $y$ étant cl d’un nombre nécessairement fini de vecteurs $e_i$, il existe $n_0 \in \mathbb{N}$ tel que $y \in F_{n_0}$. Remarquons qu’alors, pout tout $n \geq n_0$, $y \in F_n$, et donc 
         \[ \norm{x - p_n(x)} = \inf_{u \in F_n} \norm{x - u} \leq \norm{x - y} \leq \epsilon \]
@@ -1166,10 +1167,10 @@
 
     On peut déterminer $\inf_{(a,b) \in \mathbb{R}^2} \sum\limits_{i=1}^n (y_i -ax_i - b)^2$ en l’interprétant comme la distance d’un vecteur à un certain sous-espace vectoriel de $\mathbb{R}^n$.
 
-    Posons $X = (x_1,\ldots,x_n)$, $Y = (y_1,\ldots,y_n)$, $Z = aX + b$ et $F = \Vect(X,(1,\ldots,1))$. On a ainsi 
-    \[ \inf_{(a,b) \in \mathbb{R}^2} \sum\limits_{i=1}^n (y_i -ax_i - b)^2 = \inf_{(a,b) \in \mathbb{R}^2} \norm{Y - Z}^2 = \inf_{Z \in F} \norm{Y - Z}^2 = \dist^2(Y,F) \]
+    Posons $X = (x_1,\ldots,x_n)$, $Y = (y_1,\ldots,y_n)$, $Z = aX + b$ et $F = \vect(X,(1,\ldots,1))$. On a ainsi 
+    \[ \inf_{(a,b) \in \mathbb{R}^2} \sum\limits_{i=1}^n (y_i -ax_i - b)^2 = \inf_{(a,b) \in \mathbb{R}^2} \norm{Y - Z}^2 = \inf_{Z \in F} \norm{Y - Z}^2 = \d^2(Y,F) \]
  
-    D’après ce qui précède, $\dist^2(Y,F)$ vaut $\norm{Y - p(Y)}^2$ où $p$ est la projection orthogonale sur $F$. Alors $Y - Z = Y - p(Y) \in F^{\perp}$ i.e. 
+    D’après ce qui précède, $\d^2(Y,F)$ vaut $\norm{Y - p(Y)}^2$ où $p$ est la projection orthogonale sur $F$. Alors $Y - Z = Y - p(Y) \in F^{\perp}$ i.e. 
     \[ \et{\spr{Y-Z}{X} = 0}{\spr{Y-Z}{(1,\ldots,1)} = 0} \] 
     Cela nous conduit à résoudre le système suivant d’inconnues $a$ et $b$ 
     \[ \et{\sum\limits_{i = 1}^n (y_i - ax_i - b)x_i = 0}{\sum\limits_{i = 1}^n (y_i - ax_i - b) = 0} \] 
@@ -1295,7 +1296,7 @@ Dans tout ce chapitre, $\mathbb{K}$ désignera $\mathbb{R}$ ou $\mathbb{C}$, et 
 
         On calcule dans un premier temps $\chi_A$ : 
         \[ \chi_A = (X - 1)^3 \]   
-        Or $A \neq I_3$ donc $A$ n’est pas diagonalisable. En particulier, $\dim(E_1) = \dim\left\{\Ker(A - I_3)\right\} \leq 2$ et donc $(X - 1)^2$ est un polynôme minimal de $A$. Ainsi, $(A - 1)^2 = 0$, \textit{i.e.} $A^2 = 2 A - I_3$. Ainsi, il existe $(u_n), (v_n)$ telles que 
+        Or $A \neq I_3$ donc $A$ n’est pas diagonalisable. En particulier, $\dim(E_1) = \dim\left\{\ker(A - I_3)\right\} \leq 2$ et donc $(X - 1)^2$ est un polynôme minimal de $A$. Ainsi, $(A - 1)^2 = 0$, \textit{i.e.} $A^2 = 2 A - I_3$. Ainsi, il existe $(u_n), (v_n)$ telles que 
         \[ \forall n \in \mathbb{N}, A^n = u_n A + v_n I_3 \]   
         EP, 
         \[ A^{n+1} = u_{n+1} A + v_{n+1} I_3 = A \times A^n = A(u_n A + v_n I_3) = u_n A^2 + v_n A = (2 u_n + v_n) A - u_n I_3 \]
@@ -1421,7 +1422,7 @@ Dans tout ce chapitre, $\mathbb{K}$ désignera $\mathbb{R}$ ou $\mathbb{C}$, et 
     \subsubsection{Voisinages, ouverts et fermés}
 
     Rappelons que la boule ouverte de centre $a \in E$ et de rayon $r \in \mathbb{R}_+^*$ est définie par 
-    \[ B(a,r) = \big\{ x \in E \big| \norm{x - a} < r \big\} = \big\{ x \in E \big| \dist(x,a) < r \big\} \] 
+    \[ B(a,r) = \big\{ x \in E \big| \norm{x - a} < r \big\} = \big\{ x \in E \big| \d(x,a) < r \big\} \] 
 
     \begin{defi}{Voisinage, ouvert et fermé}{}
         Soit $A$ une partie de $E$ et $x$ un élément de $E$. On dit que :
@@ -1528,8 +1529,8 @@ Dans tout ce chapitre, $\mathbb{K}$ désignera $\mathbb{R}$ ou $\mathbb{C}$, et 
         Soit $A$ une partie de $E$.
         \begin{itemize}
             \item On appelle intérieur de $A$ et on note $\mathring{A}$ l’ensemble des points intérieurs à $A$.
-            \item On appelle adhérence de $A$ et on note $\barr{A}$ l’ensemble des points adhérents à $A$.
-            \item On appelle frontière de $A$ et on note $\Fr(A)$ ou $\partial A$ l’ensemble $\barr{A} \backslash \mathring{A} = \barr{A} \cap \left(\mathring{A}\right)^C$
+            \item On appelle adhérence de $A$ et on note $\ovl{A}$ l’ensemble des points adhérents à $A$.
+            \item On appelle frontière de $A$ et on note $\fr(A)$ ou $\partial A$ l’ensemble $\ovl{A} \backslash \mathring{A} = \ovl{A} \cap \left(\mathring{A}\right)^C$
         \end{itemize}
     \end{defi}
 
@@ -1555,9 +1556,9 @@ Dans tout ce chapitre, $\mathbb{K}$ désignera $\mathbb{R}$ ou $\mathbb{C}$, et 
 
     On en tire les propriétés fondamentales suivantes :
     \begin{enumerate}
-        \item $\mathring{A} \subset A \subset \barr{A}$
+        \item $\mathring{A} \subset A \subset \ovl{A}$
         \item $A$ est une partie ouverte $\iff$ $\mathring{A} = A$
-        \item $A$ est une partie fermée $\iff$ $\barr{A} = A$
+        \item $A$ est une partie fermée $\iff$ $\ovl{A} = A$
     \end{enumerate}
 
     \begin{prop}{Caractérisation séquentielle des points adhérents}
@@ -1566,23 +1567,23 @@ Dans tout ce chapitre, $\mathbb{K}$ désignera $\mathbb{R}$ ou $\mathbb{C}$, et 
 
     \begin{demo}{Démonstration}{myolive}
         Un fermé contenant $A$ doit contenir toutes les limites des suites convergentes de $A$. Donc 
-        \[ F = \left\{\lim\limits_{n \rightarrow +\infty} x_n \middle| (x_n) \in A_{\mathbb{N}} \text{ converge}\right\} \subset \barr{A} \] 
-        Réciproquement, considérons $a \in \barr{A}$. Pour tout $r > 0$, $B(a,r) \cap A \neq \emptyset$. On peut donc construire une suite $(x_n)_{n \in \mathbb{N}^*}$ tel que pour tout $n \in \mathbb{N}^*$, $x_n \in B(a,1/n) \cap A$. Cette suite d’éléments de $A$ converge vers $a$, donc $a \in F$.
+        \[ F = \left\{\lim\limits_{n \rightarrow +\infty} x_n \middle| (x_n) \in A_{\mathbb{N}} \text{ converge}\right\} \subset \ovl{A} \] 
+        Réciproquement, considérons $a \in \ovl{A}$. Pour tout $r > 0$, $B(a,r) \cap A \neq \emptyset$. On peut donc construire une suite $(x_n)_{n \in \mathbb{N}^*}$ tel que pour tout $n \in \mathbb{N}^*$, $x_n \in B(a,1/n) \cap A$. Cette suite d’éléments de $A$ converge vers $a$, donc $a \in F$.
     \end{demo}
 
     On a donc établi que 
-    \[ a \in \barr{A} \iff \forall r > 0, B(a,r) \cap A \neq \emptyset \iff \exists (x_n) \in A^{\mathbb{N}}, x_n \underset{n \rightarrow +\infty}{\longrightarrow} a \] 
-    Cette caractérisation séquentielle permettra de donner un sens à $\lim\limits_{x \rightarrow a} f(x)$ pour une fonction $f$ définie sur $A$ et $a \in \barr{A}$.
+    \[ a \in \ovl{A} \iff \forall r > 0, B(a,r) \cap A \neq \emptyset \iff \exists (x_n) \in A^{\mathbb{N}}, x_n \underset{n \rightarrow +\infty}{\longrightarrow} a \] 
+    Cette caractérisation séquentielle permettra de donner un sens à $\lim\limits_{x \rightarrow a} f(x)$ pour une fonction $f$ définie sur $A$ et $a \in \ovl{A}$.
 
     \begin{omed}{Exemple}{myolive}
-        Si $A$ est une partie bornée et non vide de $\mathbb{R}$, $\sup(A)$ et $\inf(A)$ appartiennent à $\barr{A}$.
+        Si $A$ est une partie bornée et non vide de $\mathbb{R}$, $\sup(A)$ et $\inf(A)$ appartiennent à $\ovl{A}$.
     \end{omed}
 
     \begin{defi}{Densité}{}
         Soient $A$ et $B$ deux parties de $E$.
         \begin{itemize}
-            \item On dit que $A$ est dense dans $E$ si $\barr{A} = E$.
-            \item On dit que $A$ est dense dans $B$ si $B \subset \barr{A}$.
+            \item On dit que $A$ est dense dans $E$ si $\ovl{A} = E$.
+            \item On dit que $A$ est dense dans $B$ si $B \subset \ovl{A}$.
         \end{itemize}
     \end{defi}
 
@@ -1603,7 +1604,7 @@ Dans tout ce chapitre, $\mathbb{K}$ désignera $\mathbb{R}$ ou $\mathbb{C}$, et 
     Rappelons que si deux normes sur un espace vectoriel sont équivalentes, toute suite convergent au sens de la première converge au sens de la seconde. En dimension finie, il est donc inutile de préciser la norme choisie. De manière plus générale, deux normes équivalentes définissent sur un espace la même topologie : les parties ouvertes pour l’une sont ouvertes pour l’autre et il en va de même pour les parties fermées.
 
     \begin{exo}{}{}
-        Montrons que $\mathcal{G}\ell_p(\mathbb{K})$ est dense dans $\mk{p}$.
+        Montrons que $\GL_p(\mathbb{K})$ est dense dans $\mk{p}$.
     \end{exo}
 
     \begin{demo}{Solution}{nfpgreen}
@@ -1616,7 +1617,7 @@ Dans tout ce chapitre, $\mathbb{K}$ désignera $\mathbb{R}$ ou $\mathbb{C}$, et 
         \end{itemize}
     \end{demo}
 
-    Un argument de densité servira à étendre une propriété valable pour les éléments d’un ensemble $A$ à une propriété vérifiée par les éléments de $B = \barr{A}$.
+    Un argument de densité servira à étendre une propriété valable pour les éléments d’un ensemble $A$ à une propriété vérifiée par les éléments de $B = \ovl{A}$.
 
     \subsubsection{Topologie induite}
 
@@ -1645,7 +1646,7 @@ Dans tout ce chapitre, $\mathbb{K}$ désignera $\mathbb{R}$ ou $\mathbb{C}$, et 
         \begin{soient}
             \item $A$ une partie non vide de $E$ 
             \item $f : A \rightarrow F$
-            \item $a \in \barr{A}$
+            \item $a \in \ovl{A}$
             \item $b \in F$
         \end{soient}
         On dit que $f$ a pour limite $b$ en $a$ si 
@@ -1668,7 +1669,7 @@ Dans tout ce chapitre, $\mathbb{K}$ désignera $\mathbb{R}$ ou $\mathbb{C}$, et 
         \begin{enumerate}
             \item Pour $f : \mathbb{R} \rightarrow F$, on dira que $f$ admet une limite $b \in F$ en $+ \infty$ si 
             \[ \forall \epsilon > 0, \exists M \in \mathbb{R}, \forall x \in \mathbb{R}, x \geq M \implies \norm{f(x)-b}_F < \epsilon \] 
-            \item Pour $f : A \subset E \rightarrow \mathbb{R}$, on dira que $f$ admet comme limite $+ \infty$ en $a \in \barr{A}$ si 
+            \item Pour $f : A \subset E \rightarrow \mathbb{R}$, on dira que $f$ admet comme limite $+ \infty$ en $a \in \ovl{A}$ si 
             \[ \forall M' \in \mathbb{R}, \exists \alpha > 0, \forall x \in A, \norm{x-a}_E \leq \alpha \implies f(x) \geq M' \] 
             \item Pour $f : \mathbb{R} \rightarrow \mathbb{R}$, on dira que $f$ comme une limite $+\infty$ en $+\infty$ si 
             \[ \forall M' \in \mathbb{R}, \exists M \in \mathbb{R}, \forall x \in A, x \geq M \implies f(x) \geq M' \] 
@@ -1688,7 +1689,7 @@ Dans tout ce chapitre, $\mathbb{K}$ désignera $\mathbb{R}$ ou $\mathbb{C}$, et 
     \begin{prop}{Caractérisation séquentielle}{}
         \begin{soient}
             \item $f : A \rightarrow F$
-            \item $a \in \barr{A}$
+            \item $a \in \ovl{A}$
             \item $b \in F$
         \end{soient}
         $\lim\limits_{x \rightarrow a} f(x) = b$ si et seulement si pour toute suite $(u_n)_{n \in \mathbb{N}}$ d’éléments de $A$ qui converge vers $a$, $f(u_n) \underset{n \rightarrow +\infty}{\longrightarrow} b$
@@ -1701,7 +1702,7 @@ Dans tout ce chapitre, $\mathbb{K}$ désignera $\mathbb{R}$ ou $\mathbb{C}$, et 
             \item $F = F_1 \times \ldots \times F_p$ le produit des espaces vectoriels $(F_k, N_k)$, muni de la forme définie par $N(x) = \max_{1 \leq k \leq p} N_k(x)$
             \item $A \subset E$
             \item $\fonction{f}{A}{F}{x}{\left(f_1(x), \ldots, f_p(x)\right)}$
-            \item $a \in \barr{A}$
+            \item $a \in \ovl{A}$
         \end{soient}
         $f$ admet une limite en $a$ si et seulement si chaque $f_k$ admet une limite en $a$. Dans ce cas, $\lim_a f = \left(\lim_a f_1,\ldots, \lim_a f_p\right)$
     \end{prop}
@@ -1747,7 +1748,7 @@ Dans tout ce chapitre, $\mathbb{K}$ désignera $\mathbb{R}$ ou $\mathbb{C}$, et 
     \end{prop}
 
     \begin{demo}{Démonstration}{myolive}
-        Supposons que $f$ et $g$ sont continues sur $A$ et qu’elles coïncident sur $D$ avec $\barr{D} = A$.
+        Supposons que $f$ et $g$ sont continues sur $A$ et qu’elles coïncident sur $D$ avec $\ovl{D} = A$.
 
         Soit $x \in A$. Il existe alors une suite $(u_n)_{n \in \mathbb{N}}$ d’éléments de $D$ qui converge vers $x$. Par continuité de $f$ et $g$,
         \[ f(x) = \lim\limits_{n \rightarrow +\infty} f(u_n) = \lim\limits_{n \rightarrow +\infty} g(u_n) = g(x) \] 
@@ -1788,7 +1789,7 @@ Dans tout ce chapitre, $\mathbb{K}$ désignera $\mathbb{R}$ ou $\mathbb{C}$, et 
     \end{demo}
 
     \begin{coro}{(essentiel)}{}
-        Les deux applications $x \mapsto \norm{x}$ et $x \mapsto \dist(x,A) = \inf_{a \in A} \norm{x-a}$ sont $1$-lipschitziennes donc continues sur $E$.
+        Les deux applications $x \mapsto \norm{x}$ et $x \mapsto \d(x,A) = \inf_{a \in A} \norm{x-a}$ sont $1$-lipschitziennes donc continues sur $E$.
     \end{coro}
 
     \begin{demo}{Démonstration}{myorange}
@@ -1797,12 +1798,12 @@ Dans tout ce chapitre, $\mathbb{K}$ désignera $\mathbb{R}$ ou $\mathbb{C}$, et 
         \begin{enumerate}
             \item Pour la norme, cela découle de l’inégalité triangulaire étendue 
         \[ \forall x,y \in E, \abs{\norm{x} - \norm{y}} \leq \norm{x-y} \]
-            \item Soit $A$ une partie non vide de $E$. $\dist(.,A)$ est bien définie puisque pour $x \in E, \big\{ \norm{x-a}, a \in A \big\}$ est une partie non vide et minorée de $\mathbb{R}$. Soient $x,y \in E$.
-            \[ \forall a \in A, \dist(x,A) \leq \norm{x-a} \leq \norm{x-y} + \norm{y-a} \] 
-            $\norm{y-a} \geq \dist(x,A) - \norm{x-y}$ pour tout $a \in A$, donc par passage à la borne inf, 
-            \[ \dist(y,A) \geq \dist(x,A) - \norm{x-y} \] 
+            \item Soit $A$ une partie non vide de $E$. $\d(.,A)$ est bien définie puisque pour $x \in E, \big\{ \norm{x-a}, a \in A \big\}$ est une partie non vide et minorée de $\mathbb{R}$. Soient $x,y \in E$.
+            \[ \forall a \in A, \d(x,A) \leq \norm{x-a} \leq \norm{x-y} + \norm{y-a} \] 
+            $\norm{y-a} \geq \d(x,A) - \norm{x-y}$ pour tout $a \in A$, donc par passage à la borne inf, 
+            \[ \d(y,A) \geq \d(x,A) - \norm{x-y} \] 
             Les rôles de $x$ et $y$ étant symétriques, on a donc 
-            \[ \abs{\dist(x,A) - \dist(y,A)} \leq \norm{x-y} \] 
+            \[ \abs{\d(x,A) - \d(y,A)} \leq \norm{x-y} \] 
         \end{enumerate}
 
         Par composition, si $f$ est continue, alors $\norm{f}$ est continue. Pour une norme différente, le résultat n’est plus garanti.
@@ -1905,7 +1906,7 @@ Dans tout ce chapitre, $\mathbb{K}$ désignera $\mathbb{R}$ ou $\mathbb{C}$, et 
     \begin{omed}{Exemple}{myred}
         $\tr : \mk{n} \rightarrow \mathbb{K}$ est une application linéaire et $\mk{n}$ est de dimension finie donc $\tr$ est continue.
 
-        $\Ker(\tr) = \tr^{-1}(\{ 0 \})$, l’hyperplan des matrices de traces nulles, est donc un fermé de $\mk{n}$.
+        $\ker(\tr) = \tr^{-1}(\{ 0 \})$, l’hyperplan des matrices de traces nulles, est donc un fermé de $\mk{n}$.
     \end{omed}
 
     De manière générale, tout noyau d’applicaton linéaire en dimension finie est fermé.
@@ -1933,27 +1934,27 @@ Dans tout ce chapitre, $\mathbb{K}$ désignera $\mathbb{R}$ ou $\mathbb{C}$, et 
     \end{omed}
 
     Fermons cette parenthèse pour revenir aux applications linéaires. On note en général $\mathcal{L}_C(E,F)$ l’ensemble des applications linéaires continues de $E$ dans $F$. C’est un sous-espace vectoriel de $\mathcal{L}(E,F)$ et même un sous-espace vectoriel normé, quitte à le munir d’une norme dite d’opérateur. Cette dernière « se fabrique » au moyen d’une norme sur $E$ et d’une norme sur $F$ : c’est le plus petit réel positif $C$ tel que pour tout $x \in E, \norm{u(x)}_F \leq C \norm{x}_E$ , c’est-à-dire le réel :
-    \[ \normm{u} = \sup_{x \neq 0_E} \frac{\norm{u(x)}_F}{\norm{x}_E} \]
+    \[ N_{op}{u} = \sup_{x \neq 0_E} \frac{\norm{u(x)}_F}{\norm{x}_E} \]
     Observons de suite que par linéarité de $u$ et homogénéité de $\norm{.}_F$, 
-    \[ \normm{u} = \sup_{x \neq 0_E} \norm{u\left(\frac{x}{\norm{x}_E}\right)}_F = \sup_{\norm{y}_E = 1} \norm{u(y)}_F \] 
+    \[ N_{op}{u} = \sup_{x \neq 0_E} \norm{u\left(\frac{x}{\norm{x}_E}\right)}_F = \sup_{\norm{y}_E = 1} \norm{u(y)}_F \] 
     Il suffit donc de déterminer une telle borne supérieure non pas sur $E \backslash \{ 0_E \}$ mais sur $\mathcal{S}(0,1)$.
 
     \begin{theo}{Norme d’opérateur (ou norme subordonnée)}
-        Pour tout $u \in \mathcal{L}_c(E,F)$, on pose $\normm{u} = \sup_{x neq 0_E} \frac{\norm{u(x)}_F}{\norm{x}_E}$. 
+        Pour tout $u \in \mathcal{L}_c(E,F)$, on pose $N_{op}{u} = \sup_{x neq 0_E} \frac{\norm{u(x)}_F}{\norm{x}_E}$. 
 
-        L’application $\normm{.}$ est une norme sur $\mathcal{L}_c(E,F)$, appelée norme d’opérateur subordonnée à $\norm{.}_E$ et $\norm{.}_F$. On la note parfois $\norm{.}_{op}$, voire $\norm{.}$ lorsqu’il n’y a pas d’ambiguïté.
+        L’application $N_{op}{.}$ est une norme sur $\mathcal{L}_c(E,F)$, appelée norme d’opérateur subordonnée à $\norm{.}_E$ et $\norm{.}_F$. On la note parfois $\norm{.}_{op}$, voire $\norm{.}$ lorsqu’il n’y a pas d’ambiguïté.
     \end{theo}
 
     \begin{demo}{Démonstration}{myred}
         \begin{itemize}
-            \item Le critère de continuité d’une application linéaire nous assure l’existence de $\normm{u}$ pour $u \in \mathcal{L}_c(E,F)$.
-            \item $\normm{.}$ est de plus une norme sur $\mathcal{L}_c(E,F)$. L’application est clairement à valeurs dans $\mathbb{R}_+$. En outre, 
+            \item Le critère de continuité d’une application linéaire nous assure l’existence de $N_{op}{u}$ pour $u \in \mathcal{L}_c(E,F)$.
+            \item $N_{op}{.}$ est de plus une norme sur $\mathcal{L}_c(E,F)$. L’application est clairement à valeurs dans $\mathbb{R}_+$. En outre, 
             \begin{itemize}
-                \item Si $u \in \mathcal{L}_c(E,F)$ et $\normm{u} = 0$, alors $u = 0_{\mathcal{L}(E,F)}$.
-                \item Si $u \in \mathcal{L}_c(E,F)$ et $\lambda \in \mathbb{K}$, $\normm{\lambda u} = \sup_{x neq 0_E} \frac{\norm{\lambda u(x)}_F}{\norm{x}_E} = \abs{\lambda} \sup_{x neq 0_E} \frac{\norm{u(x)}_F}{\norm{x}_E} = \abs{\lambda} \cdot \normm{u}$
+                \item Si $u \in \mathcal{L}_c(E,F)$ et $N_{op}{u} = 0$, alors $u = 0_{\mathcal{L}(E,F)}$.
+                \item Si $u \in \mathcal{L}_c(E,F)$ et $\lambda \in \mathbb{K}$, $N_{op}{\lambda u} = \sup_{x neq 0_E} \frac{\norm{\lambda u(x)}_F}{\norm{x}_E} = \abs{\lambda} \sup_{x neq 0_E} \frac{\norm{u(x)}_F}{\norm{x}_E} = \abs{\lambda} \cdot N_{op}{u}$
                 \item Soient $u,v \in \mathcal{L}_c(E,F)$. Alors, pour tout $x \in E$, 
-                \[ \norm{(u+v)(x)}_F \leq \norm{u(x)}_F + \norm{v(x)}_F \leq \normm{u} \cdot \norm{x}_E + \normm{v} \cdot \norm{x}_E \] 
-                Pour tout $x \neq 0_E, \frac{\norm{(u+v)(x)}_F}{\norm{x}_E} \leq \normm{u} + \normm{v}$. Par passage à la borne supérieure, $\normm{u+v} \leq \normm{u} + \normm{v}$.
+                \[ \norm{(u+v)(x)}_F \leq \norm{u(x)}_F + \norm{v(x)}_F \leq N_{op}{u} \cdot \norm{x}_E + N_{op}{v} \cdot \norm{x}_E \] 
+                Pour tout $x \neq 0_E, \frac{\norm{(u+v)(x)}_F}{\norm{x}_E} \leq N_{op}{u} + N_{op}{v}$. Par passage à la borne supérieure, $N_{op}{u+v} \leq N_{op}{u} + N_{op}{v}$.
             \end{itemize}
         \end{itemize}
     \end{demo}
@@ -1965,30 +1966,30 @@ Dans tout ce chapitre, $\mathbb{K}$ désignera $\mathbb{R}$ ou $\mathbb{C}$, et 
     \begin{omed}{Exemple}{myred}
         Nous avons vu que la forme linéaire $u : f \mapsto f(1)$, définie sur $G = \mathcal{C}(\intervalleFF{0}{1},\mathbb{K})$ muni de la norme $\norm{.}_{\infty}$, à valeurs dans $\mathbb{K}$ muni de la norme $\abs{.}$, est continue. En outre,
         \[ \forall f \in G, \abs{u(f)} = \abs{f(1)} \leq \norm{f}_{\infty} = \lilbox{myred}{$1$} \times \norm{f}_{\infty} \]
-        Cette inégalité est une égalité pour $f$ constante égale à $1$. Ainsi, $\normm{u} = 1$.
+        Cette inégalité est une égalité pour $f$ constante égale à $1$. Ainsi, $N_{op}{u} = 1$.
     \end{omed}
 
-    De façon immédiate, $\normm{\id_E} = 1$. La norme $\normm{.}$ est de plus sous-multiplicative.
+    De façon immédiate, $N_{op}{\id_E} = 1$. La norme $N_{op}{.}$ est de plus sous-multiplicative.
 
     \begin{prop}{Sous-multiplicativité de la norme opérateur}{}
-        Pour tous $u,v \in \mathcal{L}_c(E), \normm{u \circ v} \leq \normm{u} \cdot \normm{v}$
+        Pour tous $u,v \in \mathcal{L}_c(E), N_{op}{u \circ v} \leq N_{op}{u} \cdot N_{op}{v}$
     \end{prop}
 
     \begin{demo}{Idée}{myolive}
-        Pour tout vecteur $x$ unitaire, $\norm{u(v(x))} \leq \normm{u} \cdot \norm{v(x)} \leq \normm{u} \cdot \normm{v} \cdot \norm{x} = \normm{u} \cdot \normm{v}$.
+        Pour tout vecteur $x$ unitaire, $\norm{u(v(x))} \leq N_{op}{u} \cdot \norm{v(x)} \leq N_{op}{u} \cdot N_{op}{v} \cdot \norm{x} = N_{op}{u} \cdot N_{op}{v}$.
 
         On conclut par passage à la borne supérieure.
     \end{demo}
 
     La sous-multiplicativité de la norme d’opérateur se traduit par la continuité de l’application bilinéaire $(u,v) \longmapsto u \circ v$. 
 
-    On dit alors que $\normm{.}$ défini une \textbf{norme d’algèbre} sur $\left(\mathcal{L}_c(E), +, \circ, \cdot\right)$.
+    On dit alors que $N_{op}{.}$ défini une \textbf{norme d’algèbre} sur $\left(\mathcal{L}_c(E), +, \circ, \cdot\right)$.
 
     Cette propriété assure en particulier la continuité de toute application de la forme $u \mapsto u^n$ avec $n \in \mathbb{N}$ et donc plus généralement de toute application polynomiale $u \mapsto P(u)$, où $P \in \mathbb{K}[X]$ et $u \in \mathcal{L}_c(E)$. Notons qu’en dimension finie, un tel argument est inutile : toute application multilinéaire est continue. C’est en particulier le cas du produit matriciel $(A,B) \mapsto AB$. 
 
     Donnons pour finir quelques exemples de normes matricielles construites comme normes subordonnées. En identifiant $\mk{n}$ à $\mathcal{L}(\mathbb{K}^n)$, il suffit de choisir une norme sur $\mathbb{K}^n$ en tant qu’espace de départ et une norme sur $\mathbb{K}^n$ (éventuellement différente) en tant qu’espace d’arrivée. On peut par exemple définir 
-    \[ \forall A \in \mk{n}, \normm{A}_{p,q} = \sup_{\norm{X}_p= 1} \norm{AX}_q \quad \text{où on rappelle que } \norm{X}_p = \left(\sum\limits_{k=1}^n \abs{x_k}^p\right)^{1/p} \]
-    On montre que les normes définies par $\normm{A} = \max_{1 \leq i \leq n} \sum\limits_{j=1}^n \abs{a_{i,j}}$ et $\normm{A} = \max_{1 \leq j \leq n} \sum\limits_{i =1}^n \abs{a_{i,j}}$ sont des normes subordonnées.
+    \[ \forall A \in \mk{n}, N_{op}{A}_{p,q} = \sup_{\norm{X}_p= 1} \norm{AX}_q \quad \text{où on rappelle que } \norm{X}_p = \left(\sum\limits_{k=1}^n \abs{x_k}^p\right)^{1/p} \]
+    On montre que les normes définies par $N_{op}{A} = \max_{1 \leq i \leq n} \sum\limits_{j=1}^n \abs{a_{i,j}}$ et $N_{op}{A} = \max_{1 \leq j \leq n} \sum\limits_{i =1}^n \abs{a_{i,j}}$ sont des normes subordonnées.
 
     \begin{omed}{Attention !}{myolive}
         Toutes les normes sur $\mk{n}$ précédemment rencontrées ne sont pas des normes subordonnées : 
@@ -2231,7 +2232,7 @@ Dans tout ce chapitre, $\mathbb{K}$ désignera $\mathbb{R}$ ou $\mathbb{C}$, et 
         D’où la continuité de l’application linéaire $u$.
     \end{demo}
 
-    En dimension finie, la sphère unité étant compacte, nous disposons du corollaire immédiat suivant : si $u \in \mathcal{L}(E,F), \normm{u} = \sup_{\norm{x}_E = 1} \norm{u(x)}_F = \max_{\norm{x}_E = 1} \norm{u(x)}_F = \norm{u(x_0)}_F$ pour un certain $x_0$ unitaire.
+    En dimension finie, la sphère unité étant compacte, nous disposons du corollaire immédiat suivant : si $u \in \mathcal{L}(E,F), N_{op}{u} = \sup_{\norm{x}_E = 1} \norm{u(x)}_F = \max_{\norm{x}_E = 1} \norm{u(x)}_F = \norm{u(x_0)}_F$ pour un certain $x_0$ unitaire.
 
     Plus généralement, 
 
@@ -2240,7 +2241,7 @@ Dans tout ce chapitre, $\mathbb{K}$ désignera $\mathbb{R}$ ou $\mathbb{C}$, et 
     \end{theo}
 
     \begin{demo}{Démonstration}{myred}
-        Soient un sous-espace vectoriel $F$ de dimension finie de $E$ et une suite $(x_n)_{n \in \mathbb{N}}$ d’éléments de $F$ qui converge vers $\ell \in \barr{F}$. Montrons que la limite en question appartient nécessairement à $F$. On considère une base $(e_1,\ldots,e_p)$ de $F$, ce qui nous permet d’écrire :
+        Soient un sous-espace vectoriel $F$ de dimension finie de $E$ et une suite $(x_n)_{n \in \mathbb{N}}$ d’éléments de $F$ qui converge vers $\ell \in \ovl{F}$. Montrons que la limite en question appartient nécessairement à $F$. On considère une base $(e_1,\ldots,e_p)$ de $F$, ce qui nous permet d’écrire :
         \[ \forall n \in \mathbb{N}, x_n = \sum_{k=1}^p x_n^{(k)} e_k \] 
         Chaque suite $(x_n^{(k)})_{n \in \mathbb{N}}$ converge comme image de la suite $(x_n)$ par la forme linéaire $\varphi_k : x \mapsto x_k$ continue ($F$ étant de dimension finie). Notons $\ell_k$ les limites respectives de ces suites. Par passage à la limite, on a 
         \[ \ell = \sum_{k=1}^p \ell_k e_k \in F \] 
@@ -2249,7 +2250,7 @@ Dans tout ce chapitre, $\mathbb{K}$ désignera $\mathbb{R}$ ou $\mathbb{C}$, et 
     \begin{omed}{Exemples}{myred}
         \begin{itemize}
             \item $\mathcal{S}_n(\mathbb{K})$ est un fermé de $\mk{n}$ en tant que sev de dimension finie. Autrement dit, toute limite de suites de matrices symétriques est une matrice symétriques.
-            \item $\mathcal{G}\ell_n(\mathbb{K})$ n’est quant à lui pas un fermé de $\mk{n}$. Non pas que ce n’est pas un sev de $\mk{n}$, mais parce que $\barr{\mathcal{G}\ell_n(\mathbb{K})} = \mk{n}$.
+            \item $\GL_n(\mathbb{K})$ n’est quant à lui pas un fermé de $\mk{n}$. Non pas que ce n’est pas un sev de $\mk{n}$, mais parce que $\ovl{\GL_n(\mathbb{K})} = \mk{n}$.
         \end{itemize}
     \end{omed}
 
@@ -2280,8 +2281,8 @@ Dans tout ce chapitre, $\mathbb{K}$ désignera $\mathbb{R}$ ou $\mathbb{C}$, et 
 
     \begin{omed}{Exemples}{myred}
         \begin{itemize}
-            \item $M \mapsto \Det(M)$ est continue sur $\mk{n}$ et $u \mapsto \det(u)$ est continue sur $\mathcal{L}(E)$.
-            \item $\mathcal{G}\ell_n(\mathbb{K})$ est un ouvert dense de $\mk{n}$ et $\mathcal{G}\ell(E)$ un ouvert dense de $\mathcal{L}(E)$.
+            \item $M \mapsto \det(M)$ est continue sur $\mk{n}$ et $u \mapsto \det(u)$ est continue sur $\mathcal{L}(E)$.
+            \item $\GL_n(\mathbb{K})$ est un ouvert dense de $\mk{n}$ et $\GL(E)$ un ouvert dense de $\mathcal{L}(E)$.
         \end{itemize}
     \end{omed}
 
@@ -2369,7 +2370,7 @@ Dans cette section, on considère un espace vectoriel $E$ de dimension finie $n 
             \item \begin{enumerate}
                 \item En fixant une base de $E$, on obtient une bijection de $\GL(E)$ sur $\GL_n(\mathbb{F}_q)$, d’où \lilbox{myred}{=}. 
                 \item Si $M \in \mathcal{M}_n(\mathbb{F}_q)$, notons $M_1,\ldots,M_n \in \mathbb{F}_q^n$ les colonnes de $M$. Une matrice $M \in \mathcal{M}_n(\mathbb{F}_q)$ est inversible \textit{ssi} 
-                \[ M_1 \neq 0, \quad  M_2 \in \mathbb{F}_q^n \big\backslash \Vect(M_1), \quad \ldots, \quad M_n \in \mathbb{F}_q^n \big\backslash \Vect(M_1,\ldots,M_{n-1}) \]
+                \[ M_1 \neq 0, \quad  M_2 \in \mathbb{F}_q^n \big\backslash \vect(M_1), \quad \ldots, \quad M_n \in \mathbb{F}_q^n \big\backslash \vect(M_1,\ldots,M_{n-1}) \]
                 On dispose donc de $q^n - 1$ possibilités pour la colonne $M_1$ puis $q^n - q^{k-1}$ pour les suivantes, d’où \lilbox{mypurple}{=}.
             \end{enumerate}
             \item \begin{enumerate}
@@ -2446,5 +2447,5 @@ Dans cette section, on considère un espace vectoriel $E$ de dimension finie $n 
         De plus, le stabilisateur d’un élément $(F_1,\ldots,F_r) \in \mathcal{D}$ est isomorphe à 
         \[ \GL(F_1) \times \cdots \times \GL(F_r) \simeq \GL_{n_1}(\mathbb{F}_q) \times \cdots \times \GL_{n_r}(\mathbb{F}_q) \]   
         On obtient donc le résultat avec la formule usuelle 
-        \[ \card(\Orb(F_1,\ldots,F_r)) = \frac{\card(\GL(E))}{\card(\Stab(F_1,\ldots,F_r))} \]
+        \[ \card(\orb(F_1,\ldots,F_r)) = \frac{\card(\GL(E))}{\card(\stab(F_1,\ldots,F_r))} \]
     \end{demo}

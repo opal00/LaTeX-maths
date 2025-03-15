@@ -1,4 +1,5 @@
-\customchapter{Fondements des probabilités}{Comprendre les notions d’expériences et d’univers, pour que, associées aux dénombrement, elles puissent former un outil puissant du calcul de probabilités.}
+\chapter[Probabilités]{Fondements des probabilités}
+\chaptertoc
 
 \section{Préliminaire : Éléments de dénombrement}
 
@@ -198,7 +199,7 @@
             \begin{multicols}{2}
                 \item $A = B \iff \mathbb{1}_A = \mathbb{1}_B$
                 \item $A \subset B \iff \mathbb{1}_A \leq \mathbb{1}_B$ 
-                \item $\mathbb{1}_{\barr{A}} = 1 - \mathbb{1}_A$
+                \item $\mathbb{1}_{\ovl{A}} = 1 - \mathbb{1}_A$
                 \item $\mathbb{1}_{A \cap B} = \mathbb{1}_A \cdotp \mathbb{1}_B$
                 \item $\mathbb{1}_{A \cup B} = \mathbb{1}_A + \mathbb{1}_B - \mathbb{1}_A \cdotp \mathbb{1}_B$
                 \item $\card(A)= \sum_{x \in E} \mathbb{1}_A(x)$
@@ -460,7 +461,7 @@
 
     \subsubsection{Familles sommables de réels et complexes}
 
-    On se place désormais sur $\mathbb{K} = \mathbb{R}$ ou $\mathbb{C}$. $I$ désigne toujours un ensemble au plus dénombrable mais on considère cette fois-ci une famille quelconque de nombres complexes $(u_i)_{i \in I}$. La notion de borne supérieure perdant tout son sens dans $\mathbb{C}$, il nous reste à retrouver le cadre confortable offert par $\barr{\mathbb{R}_+}$, en se ramenant au cas des familles de réels positifs.
+    On se place désormais sur $\mathbb{K} = \mathbb{R}$ ou $\mathbb{C}$. $I$ désigne toujours un ensemble au plus dénombrable mais on considère cette fois-ci une famille quelconque de nombres complexes $(u_i)_{i \in I}$. La notion de borne supérieure perdant tout son sens dans $\mathbb{C}$, il nous reste à retrouver le cadre confortable offert par $\ovl{\mathbb{R}_+}$, en se ramenant au cas des familles de réels positifs.
 
     \begin{defi}{Famille sommable dans $\mathbb{K}$}{}
         Soit $I$ au plus dénombrable et $(x_i)_{i \in I}$ une famille d’éléments de $\mathbb{K}$. On dit que $(x_i)_{i \in I}$ est sommable si $\left(\abs{x_i}\right)_{i \in I}$ est sommable dans $\mathbb{R}_+$. 
@@ -734,7 +735,7 @@
     \begin{demo}{Preuve}{myolive}
         Pour ce qui est de l’union finie, OC $A_0, \ldots, A_n \in \mathbb{F}$, on pose $B_i = A_i$ si $i \in \intervalleEntier{0}{n}$ et $B_i = \emptyset$ si $i >n$. Alors on applique la stabilité par union dénombrable, ce qui nous donne la stablilité par union finie. De même pour l’intersection finie, à moins d’avoir montré la stablilité par intersection dénombrable.
 
-        Soient $(A_i)_{i \in \mathbb{N}}$ une famille d’éléments de $\mathcal{A}$. Alors $(\barr{A_i})_{i \in \mathbb{N}}$ l’est aussi. Donc par stabilité par union dénombrable, $\bigcup_{i \in \mathbb{N}} \barr{A_i} = \barr{\bigcap_{i \in \mathbb{N}} A_i} \in F$ et donc $\bigcap_{i \in \mathbb{N}} A_i \in F$.
+        Soient $(A_i)_{i \in \mathbb{N}}$ une famille d’éléments de $\mathcal{A}$. Alors $(\ovl{A_i})_{i \in \mathbb{N}}$ l’est aussi. Donc par stabilité par union dénombrable, $\bigcup_{i \in \mathbb{N}} \ovl{A_i} = \ovl{\bigcap_{i \in \mathbb{N}} A_i} \in F$ et donc $\bigcap_{i \in \mathbb{N}} A_i \in F$.
     \end{demo}
 
     \begin{omed}{Exemples}{myyellow}
@@ -751,7 +752,7 @@
     \end{prop}
 
     \begin{demo}{Démonstration}{myolive}
-        Pour tout $i \in I$, $\emptyset \in I$. Si $A \subset \bigcap_{I} \mathcal{A}_i$, alors $\barr{A} \in \bigcap_{I} \mathcal{A}_i$ car $\barr{A} \in \mathcal{A}_i$ pour tout $i \in \mathcal{A}_i$. De même, si $(A_n)_{n \in \mathbb{N}}$ est telle que $\forall n \in \mathbb{N}, A_n \in \bigcap \mathcal{A}_i$, alors $\bigcup_{n \in \mathbb{N}} A_n \in \mathcal{A}_i$ pour $i$ donc $\bigcup_n A_n \in \bigcap_i \mathcal{A}_i$.
+        Pour tout $i \in I$, $\emptyset \in I$. Si $A \subset \bigcap_{I} \mathcal{A}_i$, alors $\ovl{A} \in \bigcap_{I} \mathcal{A}_i$ car $\ovl{A} \in \mathcal{A}_i$ pour tout $i \in \mathcal{A}_i$. De même, si $(A_n)_{n \in \mathbb{N}}$ est telle que $\forall n \in \mathbb{N}, A_n \in \bigcap \mathcal{A}_i$, alors $\bigcup_{n \in \mathbb{N}} A_n \in \mathcal{A}_i$ pour $i$ donc $\bigcup_n A_n \in \bigcap_i \mathcal{A}_i$.
     \end{demo}
 
     \begin{defitheo}{}{}
@@ -822,7 +823,7 @@
         Soit $a \in \mathbb{R}^d$. On montre que la classe de parties $\mathcal{A} := \{ B \in \mathcal{B}(\mathbb{R}^d), \, B + a \in \mathcal{B}(\mathbb{R}^d) \}$ contient $\mathcal{O}(\mathbb{R}^d)$ et que c’est une tribu sur $\mathbb{R}^d$, ce qui permet de conclure que $\mathcal{B}(\mathbb{R}^d) = \sigma(\mathcal{O}(\mathbb{R}^d)) \subset \mathcal{A}$.
     \end{demo}
 
-    On peut étendre les boréliens de $\mathbb{R}$ à $\barr{\mathbb{R}}$, en introduisant deux éléments $-\infty$ et $+\infty$ et étendant la relation d’ordre totale en posant $-\infty \leq x \leq +\infty$ pour tout $x \in \barr{\mathbb{R}}$. On munit $\barr{\mathbb{R}}$ de la topologie engendrée par les ouverts de $\mathbb{R}$, les ensembles $\intervalleFO{-\infty}{a}$ et $\intervalleOF{a}{-\infty}$ avec $a \in \mathbb{R}$. On a alors $\mathcal{B}(\barr{\mathbb{R}}) = \sigma \big( \big\{ \intervalleFO{-\infty}{a}, \, a \in \mathbb{Q} \big\} \big)$.
+    On peut étendre les boréliens de $\mathbb{R}$ à $\ovl{\mathbb{R}}$, en introduisant deux éléments $-\infty$ et $+\infty$ et étendant la relation d’ordre totale en posant $-\infty \leq x \leq +\infty$ pour tout $x \in \ovl{\mathbb{R}}$. On munit $\ovl{\mathbb{R}}$ de la topologie engendrée par les ouverts de $\mathbb{R}$, les ensembles $\intervalleFO{-\infty}{a}$ et $\intervalleOF{a}{-\infty}$ avec $a \in \mathbb{R}$. On a alors $\mathcal{B}(\ovl{\mathbb{R}}) = \sigma \big( \big\{ \intervalleFO{-\infty}{a}, \, a \in \mathbb{Q} \big\} \big)$.
 
     \subsubsection{Tribu image réciproque, tribu image}
 
@@ -894,10 +895,10 @@
     La mesure de comptage sur $(\mathbb{N}, \mathcal{P}(\mathbb{N}))$ est $\sigma$-finie, en posant $E_n = \intervalleEntier{0}{n}$ pour tout $n \in \mathbb{N}$.
 
     Si $\mu$ est une mesure sur $(E, \mathcal{A})$ et $B \in \mathcal{A}$, alors l’application 
-    \[ \fonction{\mu}{\mathcal{A}}{\barr{\mathbb{R}_+}}{A}{\mu(A \cap B)} \]    
+    \[ \fonction{\mu}{\mathcal{A}}{\ovl{\mathbb{R}_+}}{A}{\mu(A \cap B)} \]    
     est encore une mesure sur $(E, \mathcal{A})$. 
 
-    Si $(\mu_n)_{n \in \mathbb{N}}$ est une suite de mesures sur $(E,\mathcal{A})$, alors $\sum_{n \in \mathbb{N}} \mu_n$ est encore une mesure sur $(E,\mathcal{A})$. En particulier, si $(x_n)_{n \in \mathbb{N}}$ est une suite de $e$ et $(\alpha_n)$ une suite de réels positifs, $\sum_{n \in \mathbb{N}} \alpha_n \delta_{x_n}$ est une mesure. En particulier, si $X$ est une VAD dont les valeurs sont $x_n$ pour $n \in \mathbb{N}$, et que $\alpha_n := P(X = x_n)$, la loi de $X$ s’écrit $\mathbf{P}_X = \sum_{n \in \mathbb{N}} \alpha_n \delta_{x_n}$.
+    Si $(\mu_n)_{n \in \mathbb{N}}$ est une suite de mesures sur $(E,\mathcal{A})$, alors $\sum_{n \in \mathbb{N}} \mu_n$ est encore une mesure sur $(E,\mathcal{A})$. En particulier, si $(x_n)_{n \in \mathbb{N}}$ est une suite de $e$ et $(\alpha_n)$ une suite de réels positifs, $\sum_{n \in \mathbb{N}} \alpha_n \delta_{x_n}$ est une mesure. En particulier, si $X$ est une VAD dont les valeurs sont $x_n$ pour $n \in \mathbb{N}$, et que $\alpha_n := \P(X = x_n)$, la loi de $X$ s’écrit $\P_X = \sum_{n \in \mathbb{N}} \alpha_n \delta_{x_n}$.
 
     \subsubsection{Propriétés}
 
@@ -1005,22 +1006,22 @@
         \[ \mathbb{1}_A^{-1}(B) = \left\{ \begin{array}{ll}
             E & \text{si } 0 \in B, 1 \in B \\
             A & \text{si } 0 \notin B, 1 \in B \\
-            \barr{A} & \text{si } 0 \in B, 1 \notin B \\
+            \ovl{A} & \text{si } 0 \in B, 1 \notin B \\
             \emptyset & \text{si } 0 \notin B, 1 \notin B
         \end{array} \right. \]   
     \end{omed}
 
     EP, si $\mathcal{A} = \mathcal{P}(\Omega)$, alors toute famille $f : E \to F$ est mesurable. Par exemple, dans $(\mathbb{N}, \mathcal{P}(\mathbb{N}))$, toute fonction de $\mathbb{N}$ dans $\mathbb{R}$ est mesurable, \textit{i.e.} les suites réelle sont mesurables. 
 
-    Très souvent, on aura $F \in \left\{\mathbb{R}, \mathbb{R}_+, \barr{\mathbb{R}}, \mathbb{C}\right\}$ et, dans ce cas, il sera implicite que la tribu sur $F$ est $\mathcal{B}(F)$.
+    Très souvent, on aura $F \in \left\{\mathbb{R}, \mathbb{R}_+, \ovl{\mathbb{R}}, \mathbb{C}\right\}$ et, dans ce cas, il sera implicite que la tribu sur $F$ est $\mathcal{B}(F)$.
 
     \begin{defi}{Mesure image}
         Soient $\mu$ une mesure sur $(E,\mathcal{A})$ et $f : E \to F$ une fonction mesurable. Alors 
-        \[ \fonction{\mu_f}{\mathcal{B}}{\barr{\mathbb{R}}}{B}{\mu_f(B) := \mu(f^{-1}(B))} \]  
+        \[ \fonction{\mu_f}{\mathcal{B}}{\ovl{\mathbb{R}}}{B}{\mu_f(B) := \mu(f^{-1}(B))} \]  
         est une mesure sur $(F,\mathcal{B})$, appelée \textbf{mesure image} par $f$.
     \end{defi}
 
-    Si $X : (\Omega, \mathcal{A}) \to (\mathbb{R}, \mathcal{B}(\mathbb{R}))$ est une variable aléatoire (\textit{i.e.} une fonction mesurable), alors on appelle loi de $X$ la mesure image de $\mathbf{P}$ par $X$ où $\mathbf{P}$ est une probabilité sur $(\Omega, \mathcal{A})$.
+    Si $X : (\Omega, \mathcal{A}) \to (\mathbb{R}, \mathcal{B}(\mathbb{R}))$ est une variable aléatoire (\textit{i.e.} une fonction mesurable), alors on appelle loi de $X$ la mesure image de $\P$ par $X$ où $\P$ est une probabilité sur $(\Omega, \mathcal{A})$.
 
     \subsubsection{Montrer la mesurabilité}
 
@@ -1040,33 +1041,33 @@
 
     \begin{defi}{}{}
         Soit $\Omega$ un ensemble, et $\mathcal{A}$ une tribu sur $\Omega$. On appelle \textbf{probilité} toute application 
-        \[ \fonction{\mathbf{P}}{\mathcal{A}}{\intervalleFF{0}{1}}{A}{\mathbf{P}(A)} \]   
-        telle que $\mathbf{P}(\Omega) = 1$ et pour toute famille $(A_i)_{i \in \mathbb{N}}$ d’éléments de $\mathcal{A}$ disjoints, $\mathbf{P}(\bigcup_{i \in \mathbb{N}} A_i) = \sum_{i \in \mathbb{N}} \mathbf{P}(A_i)$. 
+        \[ \fonction{\P}{\mathcal{A}}{\intervalleFF{0}{1}}{A}{\P(A)} \]   
+        telle que $\P(\Omega) = 1$ et pour toute famille $(A_i)_{i \in \mathbb{N}}$ d’éléments de $\mathcal{A}$ disjoints, $\P(\bigcup_{i \in \mathbb{N}} A_i) = \sum_{i \in \mathbb{N}} \P(A_i)$. 
 
-        On dit que $(\Omega, \mathcal{A}, \mathbf{P})$ est un espace probabilisé. 
+        On dit que $(\Omega, \mathcal{A}, \P)$ est un espace probabilisé. 
     \end{defi}
 
-    Pour la suite, on notera $\mathbf{P}$ une probabilité sur un espace mesurable.
+    Pour la suite, on notera $\P$ une probabilité sur un espace mesurable.
 
     \begin{prop}{}{}
         \begin{enumerate}
-            \item $\mathbf{P}(\emptyset) = 0$. En particulier, $\mathbf{P}$ est une mesure, de mesure totale $1$.
-            \item Si $A,B \in \mathcal{A}$, $A \cap B = \emptyset$, alors $\mathbf{P}(A \cup B) = \mathbf{P}(A) + \mathbf{P}(B)$
-            \item Si $A_1, \ldots, A_n \in F$, 2 à 2 disjoints, alors $\mathbf{P}\left(\bigcup_{i=1}^n A_i\right) = \sum_{i =1}^n \mathbf{P}(A_i)$
-            \item Si $A \in F$, $\mathbf{P}(\barr{A}) = 1 - \mathbf{P}(A)$
-            \item Si $A, B \in \mathcal{A}$, $A \subset B$, alors $\mathbf{P}(A) \leq \mathbf{P}(B)$
-            \item Si $A, B \in \mathcal{A}$, $\mathbf{P}(A \cup B) = \mathbf{P}(A) + \mathbf{P}(B) - \mathbf{P}(A \cap B)$
+            \item $\P(\emptyset) = 0$. En particulier, $\P$ est une mesure, de mesure totale $1$.
+            \item Si $A,B \in \mathcal{A}$, $A \cap B = \emptyset$, alors $\P(A \cup B) = \P(A) + \P(B)$
+            \item Si $A_1, \ldots, A_n \in F$, 2 à 2 disjoints, alors $\P\left(\bigcup_{i=1}^n A_i\right) = \sum_{i =1}^n \P(A_i)$
+            \item Si $A \in F$, $\P(\ovl{A}) = 1 - \P(A)$
+            \item Si $A, B \in \mathcal{A}$, $A \subset B$, alors $\P(A) \leq \P(B)$
+            \item Si $A, B \in \mathcal{A}$, $\P(A \cup B) = \P(A) + \P(B) - \P(A \cap B)$
         \end{enumerate}
     \end{prop}
 
     \begin{demo}{Démonstration}{myolive}
         \begin{enumerate}
-            \item On pose $A_0 = \Omega$ et $A_i = \emptyset$ si $i \geq 1$. Par $\sigma$-additivité, $\mathbf{P}(\Omega) = \mathbf{P}(\Omega) + \sum_{i=1}^{+\infty} \mathbf{P}(\emptyset)$ donc $\sum_{i=1}^{+\infty} \mathbf{P}(\emptyset) = 0$ \textit{i.e.} $\mathbf{P}(\emptyset) = 0$.
-            \item On pose $A_0 = A$, $A_1 = B$ et $A_i = \emptyset$ si $i \geq 2$. Par $\sigma$-additivité, $\mathbf{P}(A \cup B) = \mathbf{P}(A) + \mathbf{P}(B)$.
+            \item On pose $A_0 = \Omega$ et $A_i = \emptyset$ si $i \geq 1$. Par $\sigma$-additivité, $\P(\Omega) = \P(\Omega) + \sum_{i=1}^{+\infty} \P(\emptyset)$ donc $\sum_{i=1}^{+\infty} \P(\emptyset) = 0$ \textit{i.e.} $\P(\emptyset) = 0$.
+            \item On pose $A_0 = A$, $A_1 = B$ et $A_i = \emptyset$ si $i \geq 2$. Par $\sigma$-additivité, $\P(A \cup B) = \P(A) + \P(B)$.
             \item On réalise la même opération.
-            \item Si $A \in \mathcal{A}$, $\Omega = A \sqcup \barr{A}$ donc $\mathbf{P}(\Omega) = \mathbf{P}(A) + \mathbf{P}(\barr{A})$.
-            \item Si $A \subset B$, $B = A \sqcup (B \backslash A)$ donc $\mathbf{P}(B) = \mathbf{P}(A) + \mathbf{P}(B \backslash A) \geq \mathbf{P}(A)$.
-            \item On a $A \cup B = A \sqcup (B \backslash A)$ donc $\mathbf{P}(A \cup B) = \mathbf{P}(A) + \mathbf{P}(B \backslash A)$. Or $B = (B \backslash A) \sqcup (A \cap B)$ donc $\mathbf{P}(B) = \mathbf{P}(B \backslash A) + \mathbf{P}(A \cap B)$ d’où le résultat.
+            \item Si $A \in \mathcal{A}$, $\Omega = A \sqcup \ovl{A}$ donc $\P(\Omega) = \P(A) + \P(\ovl{A})$.
+            \item Si $A \subset B$, $B = A \sqcup (B \backslash A)$ donc $\P(B) = \P(A) + \P(B \backslash A) \geq \P(A)$.
+            \item On a $A \cup B = A \sqcup (B \backslash A)$ donc $\P(A \cup B) = \P(A) + \P(B \backslash A)$. Or $B = (B \backslash A) \sqcup (A \cap B)$ donc $\P(B) = \P(B \backslash A) + \P(A \cap B)$ d’où le résultat.
         \end{enumerate}
     \end{demo}
 
@@ -1087,53 +1088,53 @@
     \end{defi}
 
     \begin{prop}{}{}
-        Si $(A_n)_{n \in \mathbb{N}}$ est une suite croissante convergeant vers $A$, alors $\lim_{n \to +\infty} \mathbf{P}(A_n) = \mathbf{P}(A)$. De la même façon, si $(B_n)$ est une suite décroissante convergeant vers $B$, alors $\lim_{n \to +\infty} \mathbf{P}(B_n) = \mathbf{P}(B)$.
+        Si $(A_n)_{n \in \mathbb{N}}$ est une suite croissante convergeant vers $A$, alors $\lim_{n \to +\infty} \P(A_n) = \P(A)$. De la même façon, si $(B_n)$ est une suite décroissante convergeant vers $B$, alors $\lim_{n \to +\infty} \P(B_n) = \P(B)$.
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
         Posons $C_0 = A_0$ et $C_n = A_n \backslash A_{n -1}$ si $n \geq 1$. Alors les éléments de $(C_i)_{i \in \mathbb{N}}$ sont disjoints, donc par $\sigma$-additivité, 
         \begin{align*}
-            \mathbf{P}\left(\bigcup_{i \in \mathbb{N}} C_i\right) 
-            &= \sum_{i = 0}^{+\infty} \mathbf{P}(C_i) \\
-            &= \mathbf{P}(A_0) + \sum_{i=1}^{+\infty} \mathbf{P}(C_i) \\
-            \mathbf{P}\left(\bigcup_{i \in \mathbb{N}} C_i\right) &= \mathbf{P}\left(\bigcup_{i \in \mathbb{N}} A_i\right) = \mathbf{P}(A)
+            \P\left(\bigcup_{i \in \mathbb{N}} C_i\right) 
+            &= \sum_{i = 0}^{+\infty} \P(C_i) \\
+            &= \P(A_0) + \sum_{i=1}^{+\infty} \P(C_i) \\
+            \P\left(\bigcup_{i \in \mathbb{N}} C_i\right) &= \P\left(\bigcup_{i \in \mathbb{N}} A_i\right) = \P(A)
         \end{align*}
-        Donc $\sum \mathbf{P}(C_i)$ est une série convergente. De plus, $A = A_n \sqcup \left(\bigsqcup_{i = n+1}^{+\infty} A_n\right)$ donc $\mathbf{P}(A) = \mathbf{P}(A_n) + \sum_{i =n+1}^{+\infty} \mathbf{P}(C_i)$. Le reste d’une série convergente $\limi{n}{+\infty} 0$ d’où le résultat. Pour $(B_n)$, il suffit de passer au complémentaire.
+        Donc $\sum \P(C_i)$ est une série convergente. De plus, $A = A_n \sqcup \left(\bigsqcup_{i = n+1}^{+\infty} A_n\right)$ donc $\P(A) = \P(A_n) + \sum_{i =n+1}^{+\infty} \P(C_i)$. Le reste d’une série convergente $\limi{n}{+\infty} 0$ d’où le résultat. Pour $(B_n)$, il suffit de passer au complémentaire.
     \end{demo}
 
     \begin{prop}{Formule du crible de Poincaré}{}
         Soient $A_1, \ldots, A_n \in \mathcal{A}$. 
-        \[ \mathbf{P}(A_1 \cup \cdots A_n) = \sum_{k = 1}^n (-1)^{k - 1} \sum_{1 \leq i_1 < \cdots < i_k \leq n} \mathbf{P}(A_{i_1} \cap \cdots \cap A_{i_k}) \]   
+        \[ \P(A_1 \cup \cdots A_n) = \sum_{k = 1}^n (-1)^{k - 1} \sum_{1 \leq i_1 < \cdots < i_k \leq n} \P(A_{i_1} \cap \cdots \cap A_{i_k}) \]   
     \end{prop}
 
     \begin{demo}{Preuve \textcolor{black}{(Récurrence sur $n$)}}{myolive}
         \begin{itemize}
             \item[$\mathcal{H}_2$] \quad La formule s’écrit 
-            \[ \mathbf{P}(A_1 \cup A_2) = \mathbf{P}(A_1) + \mathbf{P}(A_2) - \mathbf{P}(A_1 \cap A_2) \]   
+            \[ \P(A_1 \cup A_2) = \P(A_1) + \P(A_2) - \P(A_1 \cap A_2) \]   
             et est vraie.
             \item[$\mathcal{H}_{n + 1}$] \quad Supposons l’ordre $n$. 
             \begin{align*}
-                \mathbf{P}(A_1 \cup \cdots \cup A_{n+1}) 
-                &= \mathbf{P}(A_1 \cup \cdots \cup A_n) + \mathbf{P}(A_{n + 1}) - \mathbf{P}\left(\left(\bigcup_{i = 1}^n A_i\right) \cap A_{n+1} \right) \\
-                &= \sum_{k = 1}^{n} (-1)^{k-1} \sum_{1 \leq i_1 < \cdots < i_k \leq n} \mathbf{P}(A_{i_1} \cap \cdots \cap A_{i_k}) + \mathbf{P}(A_{n+1}) - \mathbf{P}\left(\bigcup_{i = 1}^n (A_1 \cap A_{n + 1})\right) \\
-                \mathbf{P}\left(\bigcup_{i = 1}^n (A_1 \cap A_{n + 1})\right) &= \sum_{k=1}^n (-1)^{k-1} \sum_{1 \leq i_1 < \cdots < i_k \leq n} \mathbf{P}\left(\bigcap_{j = 1}^k (A_{i_j} \cap A_{n+1})\right) \\
-                &= \sum_{k=1}^n (-1)^{k-1} \sum_{\substack{1 \leq i_1 < \cdots < i_k < i_{k+1} \leq n+1 \\ i_{k+1} = n+1}} \mathbf{P}\left(\bigcap_{j = 1}^{k+1} A_{i_j}\right) \\
+                \P(A_1 \cup \cdots \cup A_{n+1}) 
+                &= \P(A_1 \cup \cdots \cup A_n) + \P(A_{n + 1}) - \P\left(\left(\bigcup_{i = 1}^n A_i\right) \cap A_{n+1} \right) \\
+                &= \sum_{k = 1}^{n} (-1)^{k-1} \sum_{1 \leq i_1 < \cdots < i_k \leq n} \P(A_{i_1} \cap \cdots \cap A_{i_k}) + \P(A_{n+1}) - \P\left(\bigcup_{i = 1}^n (A_1 \cap A_{n + 1})\right) \\
+                \P\left(\bigcup_{i = 1}^n (A_1 \cap A_{n + 1})\right) &= \sum_{k=1}^n (-1)^{k-1} \sum_{1 \leq i_1 < \cdots < i_k \leq n} \P\left(\bigcap_{j = 1}^k (A_{i_j} \cap A_{n+1})\right) \\
+                &= \sum_{k=1}^n (-1)^{k-1} \sum_{\substack{1 \leq i_1 < \cdots < i_k < i_{k+1} \leq n+1 \\ i_{k+1} = n+1}} \P\left(\bigcap_{j = 1}^{k+1} A_{i_j}\right) \\
                 &\quad \downarrow \quad k \leftarrow k+1 \\
-                &= \sum_{k = 2}^{n+1} (-1)^k \sum_{\substack{1 \leq i_1 < \cdots < i_k\leq n+1 \\ i_{k} = n+1}} \mathbf{P}\left(\bigcap_{j = 1}^{k} A_{i_j}\right) \\
-                \mathbf{P}(A_1 \cup \cdots \cup A_{n+1})
-                &= \sum_{k = 1}^{n} (-1)^{k-1} \sum_{\substack{1 \leq i_1 < \cdots < i_k \leq n+1 \\ i_k \neq n+1}} \mathbf{P}(A_{i_1} \cap \cdots \cap A_{i_k}) + \mathbf{P}(A_{n+1}) - \mathbf{P}\left(\bigcup_{i = 1}^n (A_1 \cap A_{n + 1})\right) \\
-                &= \sum_{k = 1}^{n} (-1)^{k-1} \sum_{\substack{1 \leq i_1 < \cdots < i_k \leq n+1 \\ i_k \neq n+1}} \mathbf{P}(A_{i_1} \cap \cdots \cap A_{i_k}) + \mathbf{P}(A_{n+1}) + \sum_{k = 2}^{n+1} (-1)^{k-1} \sum_{\substack{1 \leq i_1 < \cdots < i_k\leq n+1 \\ i_{k} = n+1}} \mathbf{P}\left(\bigcap_{j = 1}^{k} A_{i_j}\right) \\
-                &= sum_{k = 1}^{\color{myblue} n+1} (-1)^{k-1} \sum_{\substack{1 \leq i_1 < \cdots < i_k \leq n+1 \\ i_k \neq n+1}} \mathbf{P}(A_{i_1} \cap \cdots \cap A_{i_k}) + \sum_{k = \color{myblue} 1}^{n+1} (-1)^{k-1} \sum_{\substack{1 \leq i_1 < \cdots < i_k\leq n+1 \\ i_{k} = n+1}} \mathbf{P}\left(\bigcap_{j = 1}^{k} A_{i_j}\right) \\ 
-                &= \sum_{k= 1}^{n+1} (-1)^{k-1} \sum_{1 \leq i_1 < \cdots < i_k < n+1} \mathbf{P}(A_{i_1} \cap \cdots \cap A_{i_k})
+                &= \sum_{k = 2}^{n+1} (-1)^k \sum_{\substack{1 \leq i_1 < \cdots < i_k\leq n+1 \\ i_{k} = n+1}} \P\left(\bigcap_{j = 1}^{k} A_{i_j}\right) \\
+                \P(A_1 \cup \cdots \cup A_{n+1})
+                &= \sum_{k = 1}^{n} (-1)^{k-1} \sum_{\substack{1 \leq i_1 < \cdots < i_k \leq n+1 \\ i_k \neq n+1}} \P(A_{i_1} \cap \cdots \cap A_{i_k}) + \P(A_{n+1}) - \P\left(\bigcup_{i = 1}^n (A_1 \cap A_{n + 1})\right) \\
+                &= \sum_{k = 1}^{n} (-1)^{k-1} \sum_{\substack{1 \leq i_1 < \cdots < i_k \leq n+1 \\ i_k \neq n+1}} \P(A_{i_1} \cap \cdots \cap A_{i_k}) + \P(A_{n+1}) + \sum_{k = 2}^{n+1} (-1)^{k-1} \sum_{\substack{1 \leq i_1 < \cdots < i_k\leq n+1 \\ i_{k} = n+1}} \P\left(\bigcap_{j = 1}^{k} A_{i_j}\right) \\
+                &= sum_{k = 1}^{\color{myblue} n+1} (-1)^{k-1} \sum_{\substack{1 \leq i_1 < \cdots < i_k \leq n+1 \\ i_k \neq n+1}} \P(A_{i_1} \cap \cdots \cap A_{i_k}) + \sum_{k = \color{myblue} 1}^{n+1} (-1)^{k-1} \sum_{\substack{1 \leq i_1 < \cdots < i_k\leq n+1 \\ i_{k} = n+1}} \P\left(\bigcap_{j = 1}^{k} A_{i_j}\right) \\ 
+                &= \sum_{k= 1}^{n+1} (-1)^{k-1} \sum_{1 \leq i_1 < \cdots < i_k < n+1} \P(A_{i_1} \cap \cdots \cap A_{i_k})
             \end{align*}
         \end{itemize}
     \end{demo}
 
     \begin{omed}{Vocabulaire}{myyellow}
-        On note $(\Omega, \mathcal{A}, \mathbf{P})$ un espace probabilisé. On dit que $\Omega$ est l’univers et les éléments de $\mathcal{A}$ sont appelés des événements en langage probabiliste.
+        On note $(\Omega, \mathcal{A}, \P)$ un espace probabilisé. On dit que $\Omega$ est l’univers et les éléments de $\mathcal{A}$ sont appelés des événements en langage probabiliste.
 
         \begin{longtblr}[caption=Vocabulaire probabiliste et ensembliste]{
-            colspec={Q[m,l,1]|Q[m,l,3]|Q[m,c,2]|}, width = \linewidth,
+            colspec={|Q[m,l,1]|Q[m,l,3]|Q[m,c,2]|}, width = \linewidth,
             rowhead = 1, row{odd} = {myorange!10}, row{1} = {myorange, fg=white, font=\bfseries},
             hlines={0.4pt, black}
         }
@@ -1146,7 +1147,7 @@
         $A \subset B$ & $A$ inclus dans $B$ & $A$ implique $B$ \\
         $A \cup B$ & Union de $A$ et $B$ & Événement « $A$ ou $B$ » \\
         $A \cap B$ & Intersection de $A$ et $B$ & Événement « $A$ et $B$ » \\
-        $\barr{A}$ & Complémentaire & Événement « non $A$ » \\
+        $\ovl{A}$ & Complémentaire & Événement « non $A$ » \\
         $A \cap B = \emptyset$ & $A$ et $B$ sont disjoints & Événement incompatibles \\
         $\Omega = \bigsqcup_{k=1}^n A_k$ & $(A_k)$ forme une partition de $\Omega$ & Système complet d’événements \\
         \end{longtblr}
@@ -1154,33 +1155,33 @@
 
     \subsection{Probabilité uniforme}
 
-    Soit $\Omega$ un \textbf{\textsc{ensemble fini}}, $\mathcal{A} = \mathcal{P}(\Omega)$. On peut définir une probabilité en prenant $\forall \omega \in \Omega, \mathbf{P}(\left\{\omega\right\}) = p_{\omega}$ où $\forall \omega \in \Omega, p_{\omega} \in \intervalleFF{0}{1}$ et $\sum_{\omega \in \Omega} p_{\omega} = 1$. On définit ainsi, pour $A \in \mathcal{P}(\Omega)$, $\mathbf{P}(A) = \sum_{\omega \in A} p_{\omega}$.
+    Soit $\Omega$ un \textbf{\textsc{ensemble fini}}, $\mathcal{A} = \mathcal{P}(\Omega)$. On peut définir une probabilité en prenant $\forall \omega \in \Omega, \P(\left\{\omega\right\}) = p_{\omega}$ où $\forall \omega \in \Omega, p_{\omega} \in \intervalleFF{0}{1}$ et $\sum_{\omega \in \Omega} p_{\omega} = 1$. On définit ainsi, pour $A \in \mathcal{P}(\Omega)$, $\P(A) = \sum_{\omega \in A} p_{\omega}$.
 
     \begin{defi}{Probabilité uniforme}{}
-        On dit que $\mathbf{P}$ est la probabilité uniforme s’il existe $p \in \intervalleFF{0}{1}$ tel que $\forall \omega \in \Omega, \mathbf{P}(\left\{\omega\right\}) = p$.
+        On dit que $\P$ est la probabilité uniforme s’il existe $p \in \intervalleFF{0}{1}$ tel que $\forall \omega \in \Omega, \P(\left\{\omega\right\}) = p$.
     \end{defi}
 
     \begin{theo}{}{}
-        On suppose que $\mathbf{P}$ est une probabilité uniforme. Alors
-        \[ \forall A \in \mathcal{A}, \quad \mathbf{P}(A) = \frac{\card(A)}{\card(\Omega)} \]   
+        On suppose que $\P$ est une probabilité uniforme. Alors
+        \[ \forall A \in \mathcal{A}, \quad \P(A) = \frac{\card(A)}{\card(\Omega)} \]   
     \end{theo}
 
     \begin{demo}{Preuve}{myred}
-        On a $\mathbf{P}(\Omega) = 1 = \mathbf{P}\left(\bigcup_{\omega \in \Omega} \left\{\omega\right\}\right) = \sum_{\omega \in \Omega} \mathbf{P}(\left(\omega\right)) = \card(\Omega) \times p$ donc $p = \frac{1}{\card(\Omega)}$.
+        On a $\P(\Omega) = 1 = \P\left(\bigcup_{\omega \in \Omega} \left\{\omega\right\}\right) = \sum_{\omega \in \Omega} \P(\left(\omega\right)) = \card(\Omega) \times p$ donc $p = \frac{1}{\card(\Omega)}$.
 
-        Ainsi, si $A \in \mathcal{A}$, $\mathbf{P}(A) = \mathbf{P}\left(\bigcup_{\omega \in A} \left\{\omega\right\}\right) = \sum_{\omega \in A} p = p \card(A) = \frac{\card(A)}{\card(\Omega)}$.
+        Ainsi, si $A \in \mathcal{A}$, $\P(A) = \P\left(\bigcup_{\omega \in A} \left\{\omega\right\}\right) = \sum_{\omega \in A} p = p \card(A) = \frac{\card(A)}{\card(\Omega)}$.
     \end{demo}
 
     Dans cette situation, le calcul de probabilités se ramène à du dénombrement, et peut se réécrire 
-    \[ \mathbf{P}(A) = \frac{\text{nombre de cas favorables}}{\text{nombre de cas total}} \]   
+    \[ \P(A) = \frac{\text{nombre de cas favorables}}{\text{nombre de cas total}} \]   
 
     \begin{omed}{Exemple}{myred}
         On lance 2 dés, une infinité de fois. On s’intéresse à l’événement $\mathcal{E} : \text{On obtient 9 avant 7}$.
         \begin{itemize}
-            \item Pour le premier lancer, on définit les événements $A_1 : \text{La somme des dés est 9}$, $B_1 : \text{La somme des dés est 7}$ et $C_1 = \barr{A_1 \cup B_1}$. Alors $\mathbf{P}(A_1) = \frac{4}{36} = \frac{1}{9}$, $\mathbf{P}(B_1) = \frac{6}{36} = \frac{1}{6}$ et $\mathbf{P}(C_1) = 1 - \mathbf{P}(A_1)- \mathbf{P}(B_1) = \frac{13}{18}$. 
-            \item Pour le $i$-ème lancer, on définit de la même façon $A_i, B_i$ et $C_i$. On note $E_n : \text{ni 7 ni 9 ne sont obtenus au bout de } n-1 \text{ lancers et 9 est obtenu au } n\text{-ème}$. Alors $\mathbf{P}(E_n) = \prod_{i=1}^{n-1} \mathbf{P}(C_i) \times \mathbf{P}(B_n) = \left(\frac{13}{18}\right)^n \times \frac{1}{9}$. 
+            \item Pour le premier lancer, on définit les événements $A_1 : \text{La somme des dés est 9}$, $B_1 : \text{La somme des dés est 7}$ et $C_1 = \ovl{A_1 \cup B_1}$. Alors $\P(A_1) = \frac{4}{36} = \frac{1}{9}$, $\P(B_1) = \frac{6}{36} = \frac{1}{6}$ et $\P(C_1) = 1 - \P(A_1)- \P(B_1) = \frac{13}{18}$. 
+            \item Pour le $i$-ème lancer, on définit de la même façon $A_i, B_i$ et $C_i$. On note $E_n : \text{ni 7 ni 9 ne sont obtenus au bout de } n-1 \text{ lancers et 9 est obtenu au } n\text{-ème}$. Alors $\P(E_n) = \prod_{i=1}^{n-1} \P(C_i) \times \P(B_n) = \left(\frac{13}{18}\right)^n \times \frac{1}{9}$. 
              
-            $E = \bigcup_{i = 1}^{+\infty} E_n$ donc par $\sigma$-additivité, $\mathbf{P}(E) = \sum_{i=1}^n \mathbf{P}(E_n) = \frac{1}{9} \frac{1}{1 - \frac{13}{18}} = \frac{2}{5}$.
+            $E = \bigcup_{i = 1}^{+\infty} E_n$ donc par $\sigma$-additivité, $\P(E) = \sum_{i=1}^n \P(E_n) = \frac{1}{9} \frac{1}{1 - \frac{13}{18}} = \frac{2}{5}$.
         \end{itemize}
     \end{omed}
 
@@ -1200,7 +1201,7 @@
 
         Soit $E$ l’événement dont on cherche la probabilité. 
         \begin{align*}
-            \mathbf{P}(E) &= 1 - \mathbf{P}(\barr{E}) \\
+            \P(E) &= 1 - \P(\ovl{E}) \\
             &= 1 - \frac{365 \times 364 \times \cdots \times 348}{365^38} \\
             &= 1 - \prod_{i=0}^{37} \frac{365 - i}{365} \\
             &\approx 
@@ -1211,54 +1212,54 @@
 
     \subsection{Probabilité conditionnelle}
 
-    On cherche l’influence que peut avoir la vérification d’un événement $B$ sur un autre événement $A$. On se place de nouveau dans un espace probabilisé $(\Omega, \mathcal{A}, \mathbf{P})$.
+    On cherche l’influence que peut avoir la vérification d’un événement $B$ sur un autre événement $A$. On se place de nouveau dans un espace probabilisé $(\Omega, \mathcal{A}, \P)$.
 
     \begin{defi}{Probabilité conditionnelle}{}
-        Soit $B \in \mathcal{A}$ tel que $\mathbf{P}(B) > 0$. On appelle \textbf{probabilité de $A$ sachant $B$} le réel 
-        \[ \mathbf{P}(A \tq B) = \frac{\mathbf{P}(A \cap B)}{\mathbf{P}(B)} \]   
-        On peut aussi noter $\mathbf{P}_B(A)$. 
+        Soit $B \in \mathcal{A}$ tel que $\P(B) > 0$. On appelle \textbf{probabilité de $A$ sachant $B$} le réel 
+        \[ \P(A \vbar B) = \frac{\P(A \cap B)}{\P(B)} \]   
+        On peut aussi noter $\P_B(A)$. 
     \end{defi}
 
     \begin{omed}{Exemple}{myyellow}
         Dans le cas d’une probabilité uniforme, 
         \begin{align*}
-            \mathbf{P}(A \tq B) 
-            &= \frac{\mathbf{P}(A \cap B)}{\mathbf{P}(B)} \\
+            \P(A \vbar B) 
+            &= \frac{\P(A \cap B)}{\P(B)} \\
             &= \frac{\card(A \cap B)}{\card(B)} \\
             &= \frac{\text{nb de cas fav}}{\text{nb de cas total}}
         \end{align*}
     \end{omed}
 
-    Il faut interpréter cette probabilité comme la probabilité de $A$, pour une mesure de probabilité différente $\mathbf{P}(. \tq B)$. 
+    Il faut interpréter cette probabilité comme la probabilité de $A$, pour une mesure de probabilité différente $\P(. \vbar B)$. 
 
     \begin{prop}{}{}
-        L’application $A \mapsto \mathbf{P}(A \tq B)$ est une mesure de probabilité sur l’espace mesurable $(\Omega, \mathcal{A})$. 
+        L’application $A \mapsto \P(A \vbar B)$ est une mesure de probabilité sur l’espace mesurable $(\Omega, \mathcal{A})$. 
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
-        $\mathbf{P}(\Omega \tq B) = \frac{\mathbf{P}(\Omega \cap B)}{\mathbf{P}(B)} = \frac{\mathbf{P}(B)}{\mathbf{P}(B)} = 1$ et si $(A_i)_{i \in I} \in \mathcal{A}$ sont des éléments 2 à 2 disjoints, où $I$ est dénombrable, alors 
+        $\P(\Omega \vbar B) = \frac{\P(\Omega \cap B)}{\P(B)} = \frac{\P(B)}{\P(B)} = 1$ et si $(A_i)_{i \in I} \in \mathcal{A}$ sont des éléments 2 à 2 disjoints, où $I$ est dénombrable, alors 
         \begin{align*}
-            \mathbf{P}\left(\bigcup_{i \in I} A_i \tq B\right) 
-            &= \frac{\mathbf{P}\left(\left(\bigcup_{i \in I} A_i\right) \cap B\right)}{\mathbf{P}(B)} \\
-            &= \frac{\mathbf{P}\left(\bigcup_{i \in I} (A_i \cap B)\right)}{\mathbf{P}(B)} \\
+            \P\left(\bigcup_{i \in I} A_i \vbar B\right) 
+            &= \frac{\P\left(\left(\bigcup_{i \in I} A_i\right) \cap B\right)}{\P(B)} \\
+            &= \frac{\P\left(\bigcup_{i \in I} (A_i \cap B)\right)}{\P(B)} \\
             &\argu (A_i \cap B)_{i \in I} \text{ est une famille d’éléments disjoints} \\
-            &= \sum_{i \in I} \mathbf{P}(A_i \tq B) \\
+            &= \sum_{i \in I} \P(A_i \vbar B) \\
         \end{align*}
     \end{demo}
 
     \begin{prop}{Formule des probabilités composées}{}
-        Soit $(A_0, \ldots, A_n)$ une famille de $\mathcal{A}$ telle que $\mathbf{P}\left(\bigcap_{i =0}^n A_i\right) > 0$. Alors 
+        Soit $(A_0, \ldots, A_n)$ une famille de $\mathcal{A}$ telle que $\P\left(\bigcap_{i =0}^n A_i\right) > 0$. Alors 
         \begin{align*}
-            \mathbf{P}\left(\bigcap_{i =0}^n A_i\right)
-            &= \mathbf{P}(A_0) \times \mathbf{P}(A_1 \tq A_0) \times \mathbf{P}(A_2 \tq A_0 \cap A_1) \times \cdots \times \mathbf{P}(A_n \tq A_0 \cap \cdots \cap A_{n - 1})
+            \P\left(\bigcap_{i =0}^n A_i\right)
+            &= \P(A_0) \times \P(A_1 \vbar A_0) \times \P(A_2 \vbar A_0 \cap A_1) \times \cdots \times \P(A_n \vbar A_0 \cap \cdots \cap A_{n - 1})
         \end{align*}
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
         \begin{align*}
-            &\mathbf{P}(A_0) \times \mathbf{P}(A_1 \tq A_0) \times \mathbf{P}(A_2 \tq A_0 \cap A_1) \times \cdots \times \mathbf{P}(A_n \tq A_0 \cap \cdots \cap A_{n - 1}) \\
-            &= \mathbf{P}(A_0) \times \frac{\mathbf{P}(A_0 \cap A_1)}{\mathbf{P}(A_0)} \times \frac{\mathbf{P}(A_0 \cap A_1 \cap A_2)}{\mathbf{P}(A_0 \cap A_1)} \times \cdots \times \frac{\mathbf{P}(A_0 \cap \cdots \cap A_n)}{\mathbf{P}(A_0 \cap \cdots \cap A_{n-1})} \\
-            &= \mathbf{P}(A_0 \cap \cdots \cap A_n)
+            &\P(A_0) \times \P(A_1 \vbar A_0) \times \P(A_2 \vbar A_0 \cap A_1) \times \cdots \times \P(A_n \vbar A_0 \cap \cdots \cap A_{n - 1}) \\
+            &= \P(A_0) \times \frac{\P(A_0 \cap A_1)}{\P(A_0)} \times \frac{\P(A_0 \cap A_1 \cap A_2)}{\P(A_0 \cap A_1)} \times \cdots \times \frac{\P(A_0 \cap \cdots \cap A_n)}{\P(A_0 \cap \cdots \cap A_{n-1})} \\
+            &= \P(A_0 \cap \cdots \cap A_n)
         \end{align*}
     \end{demo}
 
@@ -1267,33 +1268,33 @@
         \begin{enumerate}
             \item $\forall (i,j) \in I^2$, $i \neq j \implies A_i \cap A_j = \emptyset$
             \item $\bigcup_{i \in I} A_i = \Omega$
-            \item $\forall i \in I, \mathbf{P}(A_i) > 0$
+            \item $\forall i \in I, \P(A_i) > 0$
         \end{enumerate}
     \end{defi}
 
     \begin{prop}{Formule des probabilités totales}{}
         OS que $(A_i)_{i \in I}$ est un système complet d’événements et $B \in \mathcal{A}$. Alors 
-        \[ \mathbf{P}(B) = \sum_{i \in I} \mathbf{P}(B \tq A_i) \mathbf{P}(A_i) \]    
+        \[ \P(B) = \sum_{i \in I} \P(B \vbar A_i) \P(A_i) \]    
     \end{prop}
 
     \begin{demo}{Démonstration}{myolive}
         \begin{align*}
-            \mathbf{P}(B) 
-            &= \mathbf{P}\left(B \cap \left(\bigcup_{i \in I} A_i\right)\right) \\
-            &= \mathbf{P}\left(\bigcup_{i \in I} (B \cap A_i)\right) \\
-            &\argu \text{par } \sigma\text{-additivité de } \mathbf{P} \\
-            &= \sum_{i \in I} \mathbf{P}(B \cap A_i) \\
-            &= \sum_{i \in I} \mathbf{P}(B \tq A_i) \mathbf{P}(A_i)
+            \P(B) 
+            &= \P\left(B \cap \left(\bigcup_{i \in I} A_i\right)\right) \\
+            &= \P\left(\bigcup_{i \in I} (B \cap A_i)\right) \\
+            &\argu \text{par } \sigma\text{-additivité de } \P \\
+            &= \sum_{i \in I} \P(B \cap A_i) \\
+            &= \sum_{i \in I} \P(B \vbar A_i) \P(A_i)
         \end{align*}
     \end{demo}
 
     \begin{prop}{Formule de Bayes}{}
-        Soit $(A_i)_{i \in I}$ un système complet d’événements et $B \in \mathcal{A}$ tel que $\mathbf{P}(B) > 0$. Alors, pour tout $j \in I$, on a 
-        \[ \mathbf{P}(A_j \tq B) = \frac{\mathbf{P}(B \tq A_j) \mathbf{P}(A_j)}{\sum_{i \in I} \mathbf{P}(B \tq A_i) \mathbf{P}(A_i)} \]    
+        Soit $(A_i)_{i \in I}$ un système complet d’événements et $B \in \mathcal{A}$ tel que $\P(B) > 0$. Alors, pour tout $j \in I$, on a 
+        \[ \P(A_j \vbar B) = \frac{\P(B \vbar A_j) \P(A_j)}{\sum_{i \in I} \P(B \vbar A_i) \P(A_i)} \]    
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
-        On sait que $\mathbf{P}(A_j \tq B) = \frac{\mathbf{P}(A_j \cap B)}{\mathbf{P}(B)} = \frac{\mathbf{P}(B \tq A_j)\mathbf{P}(A_j)}{\mathbf{P}(B)}$ puis on remplace $\mathbf{P}(B)$ à l’aide de la formule des probabilités totales.
+        On sait que $\P(A_j \vbar B) = \frac{\P(A_j \cap B)}{\P(B)} = \frac{\P(B \vbar A_j)\P(A_j)}{\P(B)}$ puis on remplace $\P(B)$ à l’aide de la formule des probabilités totales.
     \end{demo}
 
     \begin{omed}{Exemple \textcolor{black}{(Lancer de dés)}}{myolive}
@@ -1305,11 +1306,11 @@
         \end{array} \right. \]
         $(A, B, C)$ est un système complet d’événements pour l’univers des résultats d’un lancer, donc d’après la formule des probabilités totales 
         \begin{align*}
-            \mathbf{P}(E) 
-            &= \underbrace{\mathbf{P}(E \tq A)}_{= 1} \mathbf{P}(A) + \underbrace{\mathbf{P}(E \tq B)}_{= 0} \mathbf{P}(B) + \underbrace{\mathbf{P}(E \tq C)}_{= \mathbf{P}(E)} \mathbf{P}(C) \\
-            &= \frac{1}{9} + \frac{13}{18} \mathbf{P}(E) 
+            \P(E) 
+            &= \underbrace{\P(E \vbar A)}_{= 1} \P(A) + \underbrace{\P(E \vbar B)}_{= 0} \P(B) + \underbrace{\P(E \vbar C)}_{= \P(E)} \P(C) \\
+            &= \frac{1}{9} + \frac{13}{18} \P(E) 
         \end{align*}
-        En résolvant cette équation, on trouve $\mathbf{P}(E) = \frac{2}{5}$.
+        En résolvant cette équation, on trouve $\P(E) = \frac{2}{5}$.
     \end{omed}
 
     \begin{omed}{Exemple \textcolor{black}{(QCM)}}{myolive}
@@ -1320,11 +1321,11 @@
         \end{itemize}
         Quelle est la probabilité qu’un étudiant connaisse la bonne réponse sachant qu’il répond justement à celle-ci.
 
-        OP $A : \text{L’étudiant connaît la bonne réponse}$ et $B : \text{L’étudiant répond juste}$. $(A, \barr{A})$ forme un système complet d’événements, donc d’après la formule de Bayes, 
+        OP $A : \text{L’étudiant connaît la bonne réponse}$ et $B : \text{L’étudiant répond juste}$. $(A, \ovl{A})$ forme un système complet d’événements, donc d’après la formule de Bayes, 
         \begin{align*}
-            \mathbf{P}(A \tq B) 
-            &= \frac{\mathbf{P}(B \tq A) \mathbf{P}(A)}{\mathbf{P}(B \tq A) \mathbf{P}(B) + \mathbf{P}(B \tq \barr{A}) \mathbf{P}(\barr{A})} \\
-            &\argu \mathbf{P}(B \tq A) = 1 \esp{et} \mathbf{P}(B \tq \barr{A}) = \frac{1}{m} \\
+            \P(A \vbar B) 
+            &= \frac{\P(B \vbar A) \P(A)}{\P(B \vbar A) \P(B) + \P(B \vbar \ovl{A}) \P(\ovl{A})} \\
+            &\argu \P(B \vbar A) = 1 \esp{et} \P(B \vbar \ovl{A}) = \frac{1}{m} \\
             &= \frac{p}{p + \frac{1 - p}{m}} = \frac{mp}{mp + 1 - p} \geq p \\
         \end{align*}
     \end{omed}
@@ -1337,11 +1338,11 @@
         \end{itemize}
         Quelle est la probabilité d’être contaminé si le test est positif ? 
 
-        OP $V : \text{L’individu est porteur du virus}$ et $T : \text{Le test de l’individu est positif}$. On cherche $\mathbf{P}(V \tq T)$. On applique la formule de Bayes au système complet d’événement $(V, \barr{V})$:
+        OP $V : \text{L’individu est porteur du virus}$ et $T : \text{Le test de l’individu est positif}$. On cherche $\P(V \vbar T)$. On applique la formule de Bayes au système complet d’événement $(V, \ovl{V})$:
         \begin{align*}
-            \mathbf{P}(V \tq T) 
-            &= \frac{\mathbf{P}(T \tq V) \mathbf{P}(V)}{\mathbf{P}(T \tq V) \mathbf{P}(V) + \mathbf{P}(T \tq \barr{V}) \mathbf{P}(\barr{V})} \\
-            &\argu \mathbf{P}(T \tq V) = 0,95 \quad \mathbf{P}(T \tq \barr{V}) = 0,01 \quad \mathbf{P}(V) = 0,005 \\
+            \P(V \vbar T) 
+            &= \frac{\P(T \vbar V) \P(V)}{\P(T \vbar V) \P(V) + \P(T \vbar \ovl{V}) \P(\ovl{V})} \\
+            &\argu \P(T \vbar V) = 0,95 \quad \P(T \vbar \ovl{V}) = 0,01 \quad \P(V) = 0,005 \\
             &= \frac{0,95 \times 0,005}{0,95 \times 0,005 + 0,01 \times 0,995} \\
             &= \frac{95 \times 5}{95 \times 5 + 1 \times 995} \\
             &= \frac{95}{95 + 199}  \\
@@ -1351,11 +1352,11 @@
         
         Si le test est positif, on en passe un second dans les même conditions. Quelle est la probablité que le patient soit porteur si les deux tests sont positifs ? 
 
-        On pose $T_1 : \text{Le premier test est positif}$ et $T_2 : \text{Le second test est positif}$. On cherche $\mathbf{P}(V \tq T_1 \cap T_2)$. On applique la formule de Bayes au système complet d’événements $(V, \barr{V})$.
+        On pose $T_1 : \text{Le premier test est positif}$ et $T_2 : \text{Le second test est positif}$. On cherche $\P(V \vbar T_1 \cap T_2)$. On applique la formule de Bayes au système complet d’événements $(V, \ovl{V})$.
         \begin{align*}
-            \mathbf{P}(V \tq T_1 \cap T_2) 
-            &= \frac{\mathbf{P}(T_1 \cap T_2 \tq V) \mathbf{P}(V)}{\mathbf{P}(T_1 \cap T_2 \tq V) \mathbf{P}(V) + \mathbf{P}(T_1 \cap T_2 \tq \barr{V}) \mathbf{P}(\barr{V})} \\
-            &\argu \mathbf{P}(T_1 \cap T_2 \tq V) = \mathbf{P}(T \tq V)^2 = (0,95)^2 \quad \mathbf{P}(T_1 \cap T_2 \tq \barr{V}) = \mathbf{P}(T \tq \barr{V})^2 = (0,01)^2 \\
+            \P(V \vbar T_1 \cap T_2) 
+            &= \frac{\P(T_1 \cap T_2 \vbar V) \P(V)}{\P(T_1 \cap T_2 \vbar V) \P(V) + \P(T_1 \cap T_2 \vbar \ovl{V}) \P(\ovl{V})} \\
+            &\argu \P(T_1 \cap T_2 \vbar V) = \P(T \vbar V)^2 = (0,95)^2 \quad \P(T_1 \cap T_2 \vbar \ovl{V}) = \P(T \vbar \ovl{V})^2 = (0,01)^2 \\
             &= \frac{0,95^2 \times 0,005}{0,95^2 \times 0,005 + 0,01^2 \times 0,995} \\
             &= \frac{95^2 \times 5}{95^2 \times 5 + 995} \\
             &= \frac{95^2}{95^2 + 199} \\
@@ -1365,27 +1366,27 @@
 
     \subsection{Événements indépendants}
 
-    On se place dans un espace probabilisé $(\Omega, \mathcal{A}, \mathbf{P})$.
+    On se place dans un espace probabilisé $(\Omega, \mathcal{A}, \P)$.
 
     \begin{defi}{Événements indépendants}{}
-        Soient $A$ et $B$ deux éléments de $\mathcal{A}$. On dit que $A$ et $B$ sont \textbf{indépendants} si $\mathbf{P}(A \cap B) = \mathbf{P}(A) \mathbf{P}(B)$.
+        Soient $A$ et $B$ deux éléments de $\mathcal{A}$. On dit que $A$ et $B$ sont \textbf{indépendants} si $\P(A \cap B) = \P(A) \P(B)$.
     \end{defi}
 
     \begin{prop}{}{}
-        Si $\mathbf{P}(A), \mathbf{P}(B) \neq 0$, les affirmations suivantes sont équivalentes : 
+        Si $\P(A), \P(B) \neq 0$, les affirmations suivantes sont équivalentes : 
         \begin{enumerate}
             \item $A$ et $B$ sont indépendants ;
-            \item $\mathbf{P}(A \tq B) = \mathbf{P}(A)$ ;
-            \item $\mathbf{P}(B \tq A) = \mathbf{P}(B)$.
+            \item $\P(A \vbar B) = \P(A)$ ;
+            \item $\P(B \vbar A) = \P(B)$.
         \end{enumerate}
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
         Les propriétes \textbf{(ii)} et \textbf{(iii)} sont symétriques, donc montrons simplement \textbf{(i)} $\iff$ \textbf{(ii)} :
         \begin{align*}
-            \mathbf{P}(A \tq B) = \mathbf{P}(A) 
-            &\iff \frac{\mathbf{P}(A \cap B)}{\mathbf{P}(B)} = \mathbf{P}(A) \\
-            &\iff \mathbf{P}(A \cap B) = \mathbf{P}(B) \mathbf{P}(A)
+            \P(A \vbar B) = \P(A) 
+            &\iff \frac{\P(A \cap B)}{\P(B)} = \P(A) \\
+            &\iff \P(A \cap B) = \P(B) \P(A)
         \end{align*}
     \end{demo}
 
@@ -1395,26 +1396,26 @@
             \item $B : \text{La boule contient du blanc}$
             \item $C : \text{La boule contient du rouge}$
         \end{itemize}
-        On a $\mathbf{P}(A) = \frac{1}{2} = \mathbf{P}(B) = \mathbf{P}(C)$. Par ailleurs, $\mathbf{P}(A \cap B) = \frac{1}{4} = \mathbf{P}(A \cap C) = \mathbf{P}(B \cap C) = \mathbf{P}(B)\mathbf{P}(A)$ donc les événements sont indépendants 2 à 2. Toutefois, $\mathbf{P}(A \cap B \cap C) = \frac{1}{4} \neq \mathbf{P}(A) \mathbf{P}(B) \mathbf{P}(C)$ donc les événements $(A,B,C)$ sont indépendants dans leur ensemble.
+        On a $\P(A) = \frac{1}{2} = \P(B) = \P(C)$. Par ailleurs, $\P(A \cap B) = \frac{1}{4} = \P(A \cap C) = \P(B \cap C) = \P(B)\P(A)$ donc les événements sont indépendants 2 à 2. Toutefois, $\P(A \cap B \cap C) = \frac{1}{4} \neq \P(A) \P(B) \P(C)$ donc les événements $(A,B,C)$ sont indépendants dans leur ensemble.
     \end{omed}
 
     \begin{defi}{Indépendance mutuelle}{}
         On dit que qu’une famille finie $(A_1, \ldots, A_n)$ d’événements sont (mutuellement) indépendants si pour tous $k$-uplet $(i_1,\ldots,i_k)$ tel que $1 \leq i_1 < \cdots < i_k \leq n$, 
-            \[ P(A_{i_1} \cap \cdots \cap A_{i_k}) = P(A_{i_1}) \cdots P(A_{i_k}) \]  
+            \[ \P(A_{i_1} \cap \cdots \cap A_{i_k}) = \P(A_{i_1}) \cdots \P(A_{i_k}) \]  
         On peut étendre cette définition à $(A_i)_{i \in I}$ où $I$ est au plus dénombrable.
     \end{defi}
 
     \begin{prop}{}{}
-        Soit $(A_1, \ldots, A_n)$ des événements indépendants. Alors toute famille $(B_1, \ldots, B_n)$, où $B_i \in \left\{A_i, \barr{A_i}\right\}$ est indépendante.
+        Soit $(A_1, \ldots, A_n)$ des événements indépendants. Alors toute famille $(B_1, \ldots, B_n)$, où $B_i \in \left\{A_i, \ovl{A_i}\right\}$ est indépendante.
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}   
-        Il suffit de montrer que l’opération est réalisable pour un unique passage au complémentaire. Soient $1 \leq i_1 < \cdots < i_k \leq n$. Si $i_k \leq n-1$, $P(A_{i_1} \cap \cdots A_{i_k}) = P(A_{i_1}) \cdots P(A_{i_k})$. Si $i_k = n$, 
+        Il suffit de montrer que l’opération est réalisable pour un unique passage au complémentaire. Soient $1 \leq i_1 < \cdots < i_k \leq n$. Si $i_k \leq n-1$, $\P(A_{i_1} \cap \cdots A_{i_k}) = \P(A_{i_1}) \cdots \P(A_{i_k})$. Si $i_k = n$, 
         \begin{align*}
-            P(A_{i_1} \cap \cdots \cap A_{i_{k-1}}) &= P(A_{i_1}) \cdots P(A_{i_{k-1}}) \\
-            &= P(A_{i_1} \cap \cdots \cap A_{i_{k-1}} \cap \left(A_n \cup \barr{A_n}\right)) \\
-            &= P(A_{i_1}) \cdots P(A_{i_k}) + P(A_{i_1} \cap \cdots \cap A_{i_{k-1}} \cap \barr{A_n}) \\
-            \textit{i.e.} P(A_{i_1} \cap \cdots \cap A_{i_{k-1}} \cap \barr{A_n}) &= P(A_{i_1}) \cdots P(A_{i_{k-1}}) \left(1 - P(A_n)\right)
+            \P(A_{i_1} \cap \cdots \cap A_{i_{k-1}}) &= \P(A_{i_1}) \cdots \P(A_{i_{k-1}}) \\
+            &= \P(A_{i_1} \cap \cdots \cap A_{i_{k-1}} \cap \left(A_n \cup \ovl{A_n}\right)) \\
+            &= \P(A_{i_1}) \cdots \P(A_{i_k}) + \P(A_{i_1} \cap \cdots \cap A_{i_{k-1}} \cap \ovl{A_n}) \\
+            \textit{i.e.} \P(A_{i_1} \cap \cdots \cap A_{i_{k-1}} \cap \ovl{A_n}) &= \P(A_{i_1}) \cdots \P(A_{i_{k-1}}) \left(1 - \P(A_n)\right)
         \end{align*}
     \end{demo}
 

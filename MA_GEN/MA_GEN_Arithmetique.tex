@@ -1,4 +1,5 @@
-\customchapter{Arithmétique}{On étudiera ici en grande partie les nombres entiers, et les propriétés qui découlent de leur construction. On s’étendra jusqu’au cas des polynômes, qui peuvent être étudiés dans un contexte similaire à celui des entiers.}
+\chapter{Arithmétique}
+\chaptertoc
 
 \section{Rudiments d’arithmétique dans Z}
 
@@ -349,13 +350,13 @@
     \begin{defi}{Racine}{}
         Soient $P \in \mathbb{K}[X]$ et $\alpha \in \mathbb{K}$.
 
-        On dit que $\alpha$ est une \textbf{racine} (ou un zéro) du polynôme $P$ lorsque $(X-\alpha) \tq P$.
+        On dit que $\alpha$ est une \textbf{racine} (ou un zéro) du polynôme $P$ lorsque $(X-\alpha) \vbar P$.
     \end{defi}
     
     \begin{theo}{Caractérisation d’une racine}{}
         Soient $P \in \mathbb{K}[X]$ et $\alpha \in \mathbb{K}$.
     
-        Alors \[ (X-\alpha) \tq P \iff \widetilde{P}(\alpha) = 0 \] 
+        Alors \[ (X-\alpha) \vbar P \iff \widetilde{P}(\alpha) = 0 \] 
     \end{theo}
     
     \begin{demo}{Preuve}{myred}
@@ -407,7 +408,7 @@
             \item $m_1,\ldots,m_s$ leur multiplicité respective
         \end{soient}
     
-        Alors \[ \prod\limits_{i = 1}^s (X - \alpha_i)^{m_i} \tq P \] 
+        Alors \[ \prod\limits_{i = 1}^s (X - \alpha_i)^{m_i} \vbar P \] 
     \end{theo}
     
     \begin{demo}{Démonstration}{myred}
@@ -424,7 +425,7 @@
     \end{coro}
     
     \begin{demo}{Démonstration}{myorange}
-        $ \prod\limits_{i=1}^s (X-\alpha_i)^{m_i} \tq P$
+        $ \prod\limits_{i=1}^s (X-\alpha_i)^{m_i} \vbar P$
     
         Or $P \neq 0$, donc \begin{align*}
             & \deg\left(\prod\limits_{i=1}^s (X-\alpha_i)^{m_i}\right) \leq \deg(P) \\
@@ -543,7 +544,7 @@
                 \item $m_1,\ldots,m_{r+s} \in \mathbb{N}^*$
             \end{enumerate}    
         tels que \[ P = \lambda \prod\limits_{i=1}^{r} (X- \alpha_i)^{m_i} \prod\limits_{i=1}^s (X^2 + b_iX + c_i)^{m_{i+r}} \] 
-        Cette écriture est unique à l’ordre près des facteurs.
+        Cette écriture est unique à l’ordre près des ifacteurs.
     \end{coro}
 
     \begin{coro}{}{}
@@ -554,13 +555,13 @@
 
     Dans ce paragraphe, $\mathbb{K}$ est un corps quelconque.
 
-    Pour tout $P \in \mathbb{K}[X]$, on notera $\dive(P)$ l’ensemble des diviseurs de $P$ dans $\mathbb{K}[X]$. L’ensemble des multiples de $P$ est quant à lui noté $P \mathbb{K}[X]$.
+    Pour tout $P \in \mathbb{K}[X]$, on notera $\Div(P)$ l’ensemble des diviseurs de $P$ dans $\mathbb{K}[X]$. L’ensemble des multiples de $P$ est quant à lui noté $P \mathbb{K}[X]$.
 
     \begin{defi}{PCGD et PPCM}{}
         Soient $A_1, \ldots, A_r \in \mathbb{K}[X]$.
         \begin{itemize}[label=\textcolor{myyellow}{$\star$}]
             \item \textbf{PGCD} \quad On appelle \textbf{plus grand diviseur commun} de $A_1, \ldots,A_r$ tout polynôme unitaire ou nul $D \in \mathbb{K}[X]$ pour lequel 
-            \[ \dive(A_1) \cup cdots \cup \dive(A_r) = \dive(D) \]   
+            \[ \Div(A_1) \cup \cdots \cup \Div(A_r) = \Div(D) \]   
             S’il existe, un tel polynôme $D$ est unique, et noté $A_1 \wedge \cdots \wedge A_r$.
             \item \textbf{PPCM} \quad On appelle plus petit commun multiple de $A_1, \ldots, A_r$ tout polynôme unitaire ou nul $M \in \mathbb{K}[X]$ pour lequel 
             \[ A_1 \mathbb{K}[X] \cap \cdots \cap A_r \mathbb{K}[X] = M \mathbb{K}[X] \]
@@ -569,14 +570,14 @@
     \end{defi}
 
     \begin{demo}{Justification}{myyellow}
-        Pour tous PGCD $D, \Tilde{D}$ de $A_1, \ldots, A_r$, $\dive(D) = \dive(\Tilde{D})$, donc $D$ et $\Tilde{D}$ se divisent mutuellement, donc sont associés, donc sont égaux puisqu’ils sont unitaires ou nuls. De même pour le PPCM.
+        Pour tous PGCD $D, \Tilde{D}$ de $A_1, \ldots, A_r$, $\Div(D) = \Div(\Tilde{D})$, donc $D$ et $\Tilde{D}$ se divisent mutuellement, donc sont associés, donc sont égaux puisqu’ils sont unitaires ou nuls. De même pour le PPCM.
     \end{demo}
 
     \subsubsection{Existence et calcul}
 
-    Soient $A,B,P \in \mathbb{K}[X]$. On peut justifier que $\dive(A) \cap \dive(AP + B) = \dive(A) \cap \dive(B)$ : tout diviseur commun de $A$ et $B$ divise $A$ et $AP + B$, et inversement, tout diviseur commun de $A$ et $AP+B$ divise $A$ et $AP+B - AP= B$.
+    Soient $A,B,P \in \mathbb{K}[X]$. On peut justifier que $\Div(A) \cap \Div(AP + B) = \Div(A) \cap \Div(B)$ : tout diviseur commun de $A$ et $B$ divise $A$ et $AP + B$, et inversement, tout diviseur commun de $A$ et $AP+B$ divise $A$ et $AP+B - AP= B$.
 
-    En particulier, si on note $R$ le reste de la division euclidienne de $A$ par $B$, $\dive(A) \cap \dive(B) = \dive(B) \cap \dive(R)$.
+    En particulier, si on note $R$ le reste de la division euclidienne de $A$ par $B$, $\Div(A) \cap \Div(B) = \Div(B) \cap \Div(R)$.
 
     \begin{theo}{Existence du PGCD}{}
         Toute famille finie de polynômes possède un PGCD.
@@ -593,19 +594,19 @@
             \end{itemize}
             À l’issue de cette construction, $\deg(R_0) \geq \deg(R_1) > \deg(R_2) > \ldots$, et comme il n’existe qu’un nombre fini d’entiers naturels entre $0$ et $\deg(R_0)$, $\deg(R_N) = - \infty$ pour un certain $N \in \mathbb{N}^*$, \textit{i.e.} $R_N = 0$, de sorte que l’algorithme termine. Or, on a 
             \begin{align*}
-                \dive(A) \cap \dive(B) 
-                &= \dive(R_0) \cap \dive(R_1) = \ldots = \dive(R_{N-1}) \cap \dive(R_n) \\
-                &= \dive(R_{N-1}) \cap \underbrace{\dive(0)}_{= \mathbb{K}[X]} \\
-                &= \dive(R_{N-1})
+                \Div(A) \cap \Div(B) 
+                &= \Div(R_0) \cap \Div(R_1) = \ldots = \Div(R_{N-1}) \cap \Div(R_n) \\
+                &= \Div(R_{N-1}) \cap \underbrace{\Div(0)}_{= \mathbb{K}[X]} \\
+                &= \Div(R_{N-1})
             \end{align*}
             Donc $A$ et $B$ possèdent un PGCD, en l’occurence $R_{N-1}$ divisé par son coefficient dominant.
             \item \textbf{Cas général} \quad Par récurrence, dont l’initialisation a été faite pour deux polynômes à l’instant.
             
             \textbf{Hérédité} \quad Soit $r \geq 2$. On suppose que toute famille de $r$ polynômes possède un PGCD. Pour tout $A_1,\ldots,A_{r+1} \in \mathbb{K}[X]$, 
             \begin{align*}
-                \dive(A_1) \cap \cdots \cap \dive(A_{r+1}) 
-                &= \left(\dive(A_1) \cap \cdots \cap \dive(A_r)\right) \cap \dive(A_{r+1}) \\
-                &\tikzmarknode{eg}{=} \dive(A_1 \wedge \cdots \wedge A_r) \cap \dive(A_{r+1}) = \dive\left((A_1 \wedge \cdots \wedge A_r) \wedge A_{r+1}\right)
+                \Div(A_1) \cap \cdots \cap \Div(A_{r+1}) 
+                &= \left(\Div(A_1) \cap \cdots \cap \Div(A_r)\right) \cap \Div(A_{r+1}) \\
+                &\tikzmarknode{eg}{=} \Div(A_1 \wedge \cdots \wedge A_r) \cap \Div(A_{r+1}) = \Div\left((A_1 \wedge \cdots \wedge A_r) \wedge A_{r+1}\right)
             \end{align*}
             \tikzmarknode[text = myred]{hdr}{Hypothèse de récurrence} \hfill donc $A_1, \ldots, A_{r+1}$ possèdent un PGCD.
             \begin{tikzpicture}[remember picture, overlay]
@@ -694,7 +695,7 @@
         Soient $P \in \mathbb{K}[X]$ irréductible, $A,B \in \mathbb{K}[X]$ et $n \in \mathbb{N}$.
         \begin{enumerate}
             \item $P \, \not| \, A \iff A \wedge P = 1$
-            \item \textbf{Lemme d’Euclide} \quad $P \tq AB iff P \tq A \text{ ou } P \tq B$, et en particulier $P \tq A^n \iff P \tq A$
+            \item \textbf{Lemme d’Euclide} \quad $P \vbar AB \iff P \vbar A \text{ ou } P \vbar B$, et en particulier $P \vbar A^n \iff P \vbar A$
         \end{enumerate}
     \end{prop}
 
@@ -715,7 +716,7 @@
         Soient $A,B,C,P,A_1,\ldots,A_r \in \mathbb{K}[X]$.
         \begin{enumerate}
             \item \textbf{Théorème de Bézout} \quad $A \wedge B = 1 \iff \exists U,V \in \mathbb{K}[X], \quad AU + BV = 1$.
-            \item \textbf{Théorème de Gauss} \quad Si $A \tq BC$ avec $A \wedge B = 1$, alors $A \tq C$.
+            \item \textbf{Théorème de Gauss} \quad Si $A \vbar BC$ avec $A \wedge B = 1$, alors $A \vbar C$.
             \item \textbf{Produits de polynômes} 
             \begin{itemize}
                 \item Si chacun des polynômes $A_1,\ldots,A_r$ est premier avec $P$, leur produit $A_1 \cdots A_r$ l’est aussi.
@@ -783,7 +784,7 @@
     \begin{demo}{Preuve}{myred}
         L’application $P \overset{\varphi}{\longmapsto} \frac{P}{1}$ est un morphisme d’anneaux car $\varphi(1) = \frac{1}{1}$ et pour tous $P,Q \in \mathbb{K}[X]$ 
         \[ \varphi(P) + \varphi(Q) = \frac{P}{1} + \frac{Q}{1} = \frac{P + Q}{1} = \varphi(P + Q) \esp{et} \varphi(P)\varphi(Q) = \frac{P}{1} \times \frac{Q}{1} = \frac{PQ}{1} = \varphi(PQ) \]
-        Ensuite, $\varphi$ est injective, autrement dit $\Ker(\varphi) \subset \{0\}$, car pour tout $P \in \Ker(\varphi)$, $\frac{P}{1} = \varphi(P) = \frac{0}{1}$ donc $P = 0$.
+        Ensuite, $\varphi$ est injective, autrement dit $\ker(\varphi) \subset \{0\}$, car pour tout $P \in \ker(\varphi)$, $\frac{P}{1} = \varphi(P) = \frac{0}{1}$ donc $P = 0$.
     \end{demo}
 
     \begin{theo}{Structure d’espace vectoriel de $\mathbb{K}(X)$}{}

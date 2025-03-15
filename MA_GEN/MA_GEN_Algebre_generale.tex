@@ -1,4 +1,5 @@
-\customchapter{Algèbre générale}{Comprendre les structures des maths les plus fondamentales, que l’on retrouvera absolument partout dans notre périple mathématique.}
+\chapter{Algèbre générale}
+\chaptertoc
 
 \section{Structures algébriques usuelles}
 
@@ -51,8 +52,8 @@
 
     \begin{omed}{Exemple}{myolive}
         Si $E$ est un ensemble non vide, et $(\mathfrak{S}_E, \circ)$ son groupe de permutation. On pose, pour $x \in E$, 
-        \[ \Stab_{x} = \enstq{\sigma \in \mathfrak{S}_E}{\sigma(x) = x} \]   
-        $\Stab_x$ est un sous groupe de $\mathfrak{S}_E$.
+        \[ \stab_{x} = \enstq{\sigma \in \mathfrak{S}_E}{\sigma(x) = x} \]   
+        $\stab_x$ est un sous groupe de $\mathfrak{S}_E$.
     \end{omed}
 
     \begin{theo}{Sous-groupes de $\mathbb{Z}$}{}
@@ -341,22 +342,22 @@
     \subsubsection{Groupe (Z / nZ, +)}
 
     Dans tout ce paragraphe, $n$ désigne un entier naturel non nul. Rappelons que si $a,b \in \mathbb{Z}$, 
-    \[ a \equiv b \mod(n) \quad \iff \quad n \tq (a-b) \quad \iff \quad a-b \in n \mathbb{Z} \]
+    \[ a \equiv b \mod(n) \quad \iff \quad n \vbar (a-b) \quad \iff \quad a-b \in n \mathbb{Z} \]
 
     \begin{defitheo}{}{}
         La congruence modulo $n$ est un relation d’équivalence. On note $\mathbb{Z} / n \mathbb{Z}$ l’ensemble des classes d’équivalence de $\mathbb{Z}$ pour cette relation.
     \end{defitheo}
 
-    Pour $a \in \mathbb{Z}$, on note souvent $\barr{a}$ la classe d’équivalence associée à la relation de congruence modulo $n$. L’entier $a$ est alors appelé \textbf{représentant} de cette classe. Cette classe est un ensemble contenant l’entier $a$ et tous les entiers congrus à $a$ modulo $n$ :
-    \[ \barr{a} = \enspr{a + kn}{k \in \mathbb{Z}} = a + n \mathbb{Z} \]
-    En particulier, $\barr{0} = n \mathbb{Z}$. 
+    Pour $a \in \mathbb{Z}$, on note souvent $\ovl{a}$ la classe d’équivalence associée à la relation de congruence modulo $n$. L’entier $a$ est alors appelé \textbf{représentant} de cette classe. Cette classe est un ensemble contenant l’entier $a$ et tous les entiers congrus à $a$ modulo $n$ :
+    \[ \ovl{a} = \enspr{a + kn}{k \in \mathbb{Z}} = a + n \mathbb{Z} \]
+    En particulier, $\ovl{0} = n \mathbb{Z}$. 
 
     Le principe de division euclidienne nous assure que 
-    \[ \mathbb{Z} / n \mathbb{Z} = \left\{ \barr{0}, \barr{1}, \ldots, \barr{n-1} \right\} \]   
+    \[ \mathbb{Z} / n \mathbb{Z} = \left\{ \ovl{0}, \ovl{1}, \ldots, \ovl{n-1} \right\} \]   
 
     \begin{prop}{}{}
-        Si $\barr{a_1} = \barr{a_2}$ et $\barr{b_1} = \barr{b_2}$, alors 
-        \[ \barr{a_1 + b_1} = \barr{a_2 + b_2} \esp{et} \barr{a_1 \times b_1} = \barr{a_2 \times b_2} \]
+        Si $\ovl{a_1} = \ovl{a_2}$ et $\ovl{b_1} = \ovl{b_2}$, alors 
+        \[ \ovl{a_1 + b_1} = \ovl{a_2 + b_2} \esp{et} \ovl{a_1 \times b_1} = \ovl{a_2 \times b_2} \]
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
@@ -364,7 +365,7 @@
     \end{demo}
 
     Cela signifie que lorsque l’on travaille modulo $n$, on peut choisir n’importe quel représentant de la classe pour mener les calcurs. Forts de ce résultat, nous pouvons définir une addition, mais aussi une multiplication, sur les éléments de $\mathbb{Z} / n \mathbb{Z}$, \textit{i.e.} des opérations qui portent sur les classes d’équivalences :
-    \[ \forall (a,b) \in \mathbb{Z}^2, \barr{a} \tikzmarknode[draw, circle, myolive, fill = myolive!2, inner sep=.2pt]{nvad}{+} \barr{b} = \barr{a \tikzmarknode[draw, circle, myolive, fill = myolive!2, inner sep=.2pt]{anad}{+} b} \esp{et} \barr{a} \times \barr{b} = \barr{ab} \]
+    \[ \forall (a,b) \in \mathbb{Z}^2, \ovl{a} \tikzmarknode[draw, circle, myolive, fill = myolive!2, inner sep=.2pt]{nvad}{+} \ovl{b} = \ovl{a \tikzmarknode[draw, circle, myolive, fill = myolive!2, inner sep=.2pt]{anad}{+} b} \esp{et} \ovl{a} \times \ovl{b} = \ovl{ab} \]
     \annotate{nvad}{addition dans $\mathbb{Z} / n \mathbb{Z}$}{1.6}{myolive}
     \annotate{anad}{addition dans $\mathbb{Z}$}{.8}{myolive}
 
@@ -375,25 +376,25 @@
     \begin{demo}{Preuve}{myred}
         Pour $n \in \mathbb{N}^*$, $(\mathbb{Z} / n \mathbb{Z}, +)$ vérifie les propriétés suivantes :
         \begin{itemize}
-            \item commutativité : $\forall a,b \in \mathbb{Z}, \barr{a} + \barr{b} = \barr{a+b} = \barr{b+a} = \barr{b} + \barr{a}$
-            \item associativité : $\forall a,b,c \in \mathbb{Z}, \left(\barr{a} + \barr{b}\right) + \barr{c} = \barr{a+b} + \barr{c} = \barr{a+b+c} = \barr{a} + \barr{b + c} = \barr{a} + \left(\barr{b} + \barr{c}\right)$
-            \item existence d’un élémnet neutre : $\forall a \in \mathbb{Z}, \barr{a} + \barr{0} = \barr{a + 0} = \barr{a}$
-            \item inversibilité des éléments : $\forall a \in \mathbb{Z}, \barr{a} + \barr{-a} = \barr{a - a} = \barr{0}$
+            \item commutativité : $\forall a,b \in \mathbb{Z}, \ovl{a} + \ovl{b} = \ovl{a+b} = \ovl{b+a} = \ovl{b} + \ovl{a}$
+            \item associativité : $\forall a,b,c \in \mathbb{Z}, \left(\ovl{a} + \ovl{b}\right) + \ovl{c} = \ovl{a+b} + \ovl{c} = \ovl{a+b+c} = \ovl{a} + \ovl{b + c} = \ovl{a} + \left(\ovl{b} + \ovl{c}\right)$
+            \item existence d’un élémnet neutre : $\forall a \in \mathbb{Z}, \ovl{a} + \ovl{0} = \ovl{a + 0} = \ovl{a}$
+            \item inversibilité des éléments : $\forall a \in \mathbb{Z}, \ovl{a} + \ovl{-a} = \ovl{a - a} = \ovl{0}$
         \end{itemize}
     \end{demo}
     
-    On a, par exemple, que $\barr{-3} = \barr{8}$ est l’inverse de $\barr{3}$ pour la loi $+$ dans $\mathbb{Z} / 11 \mathbb{Z}$. L’application $a \mapsto \barr{a}$ est un morphisme surjectif de $(\mathbb{Z},+)$ dans $(\mathbb{Z} / n \mathbb{Z}, +)$, qui a pour noyau $n \mathbb{Z}$. Nous montrerons plus tard que $(\mathbb{Z} / n \mathbb{Z},+, \times)$ est en fait un anneau.
+    On a, par exemple, que $\ovl{-3} = \ovl{8}$ est l’inverse de $\ovl{3}$ pour la loi $+$ dans $\mathbb{Z} / 11 \mathbb{Z}$. L’application $a \mapsto \ovl{a}$ est un morphisme surjectif de $(\mathbb{Z},+)$ dans $(\mathbb{Z} / n \mathbb{Z}, +)$, qui a pour noyau $n \mathbb{Z}$. Nous montrerons plus tard que $(\mathbb{Z} / n \mathbb{Z},+, \times)$ est en fait un anneau.
 
     \begin{theo}{}{}
-        Le groupe $(\mathbb{Z} / n \mathbb{Z},+)$ est cyclique. De plus, $\mathbb{Z} / n \mathbb{Z} = \left< \barr{k} \right>$ \textit{ssi} $k$ est premier avec $n$.
+        Le groupe $(\mathbb{Z} / n \mathbb{Z},+)$ est cyclique. De plus, $\mathbb{Z} / n \mathbb{Z} = \left< \ovl{k} \right>$ \textit{ssi} $k$ est premier avec $n$.
     \end{theo}
 
     \begin{demo}{Démonstration}{myred}
-        $\mathbb{Z} / n \mathbb{Z}$ est un groupe fini et, de façon directe, $\mathbb{Z} / n \mathbb{Z} = \left< \barr{1} \right>$. Cherchons maintenant les autres gérnérateurs de $\mathbb{Z} / n \mathbb{Z}$ en considérant $k \in \mathbb{Z}$. 
+        $\mathbb{Z} / n \mathbb{Z}$ est un groupe fini et, de façon directe, $\mathbb{Z} / n \mathbb{Z} = \left< \ovl{1} \right>$. Cherchons maintenant les autres gérnérateurs de $\mathbb{Z} / n \mathbb{Z}$ en considérant $k \in \mathbb{Z}$. 
         \begin{align*}
-            \left< \barr{k} \right> = \mathbb{Z} / n \mathbb{Z} = \left< \barr{1} \right>
-            &\iff \exists a \in \mathbb{Z}, \quad a \barr{k} = \barr{1} \\
-            &\iff \exists a \in \mathbb{Z}, \quad \barr{ak} = \barr{1} \\
+            \left< \ovl{k} \right> = \mathbb{Z} / n \mathbb{Z} = \left< \ovl{1} \right>
+            &\iff \exists a \in \mathbb{Z}, \quad a \ovl{k} = \ovl{1} \\
+            &\iff \exists a \in \mathbb{Z}, \quad \ovl{ak} = \ovl{1} \\
             &\iff \exists (a,b) \in \mathbb{Z}^2, \quad ak + bn = 1
         \end{align*}
         D’après le théorème de Bézout, $k$ engendre $\mathbb{Z} / n \mathbb{Z}$ \textit{ssi} $k \wedge n = 1$.
@@ -414,11 +415,11 @@
     En notant $n$ l’ordre de $a$, $\left< a \right> = \left\{ e, a, \ldots, a^{n-1} \right\}$. L’ordre de $a$ est le plus petit entier $p$ non nul tel que $a^p = e$.
 
     \begin{prop}{}{}
-        Si $a$ est d’ordre fini, alors pour tout $p \in \mathbb{Z}$, $a^p = e \iff n \tq p$
+        Si $a$ est d’ordre fini, alors pour tout $p \in \mathbb{Z}$, $a^p = e \iff n \vbar p$
     \end{prop}
 
     \begin{demo}{Idée}{myolive}
-        Si l’on suppose $a^p = e$, on peut écrire $p = qn + r$ avec $0 \leq r < n$ donc $a^p = a^{qn} a^r = a^r = e$. On a donc nécessairement $r = 0$, et donc $n \tq p$. La réciproque est immédiate.
+        Si l’on suppose $a^p = e$, on peut écrire $p = qn + r$ avec $0 \leq r < n$ donc $a^p = a^{qn} a^r = a^r = e$. On a donc nécessairement $r = 0$, et donc $n \vbar p$. La réciproque est immédiate.
     \end{demo}
 
     \begin{theo}{}{}
@@ -434,7 +435,7 @@
             \item Il est facile de vérifier que l’application $\fonction{\varphi_a}{G}{G}{g}{a * g}$ est un bijection\footnote{on pensera à expliciter son application réciproque\ldots}. D’où 
             \[ \prod_{g \in G} g = \prod_{g \in G} \varphi_a(g) = \prod_{g \in G} (a * g) \tikzmarknode[draw, myred, fill=myred!2, inner sep=1pt]{gabel}{=} a^n \prod_{g \in G} g \]   
             \annotate{gabel}{$G$ abélien}{1}{myred}
-            Par simplification, $a^n = e$ donc $d \tq n$.
+            Par simplification, $a^n = e$ donc $d \vbar n$.
         \end{itemize}
     \end{demo}
 
@@ -549,9 +550,9 @@
 
     \subsubsection{Idéal d’un anneau commutatif}
 
-    Soit $\Phi : A \to B$ un morphisme d’anneaux. Si $\Ker(\Phi)$ n’est pas en général un sous-anneau de $A$, en revanche, $\Ker(\Phi)$ est un sous-groupe de $(A,+)$, qui vérifie de plus 
-    \[ \forall x \in \Ker(\Phi), \quad \forall a \in A, \quad xa \in \Ker(\Phi) \esp{et} ax \in \Ker(\Phi) \]   
-    En effet, $\Phi(xa) = \Phi(x) \times \Phi(a) = 0_B$ et de même pour $\Phi(ax)$. On dit alors que $\Ker(\Phi)$ est un idéal (bilatère) de $A$, ce qui amène la définition suivante :
+    Soit $\Phi : A \to B$ un morphisme d’anneaux. Si $\ker(\Phi)$ n’est pas en général un sous-anneau de $A$, en revanche, $\ker(\Phi)$ est un sous-groupe de $(A,+)$, qui vérifie de plus 
+    \[ \forall x \in \ker(\Phi), \quad \forall a \in A, \quad xa \in \ker(\Phi) \esp{et} ax \in \ker(\Phi) \]   
+    En effet, $\Phi(xa) = \Phi(x) \times \Phi(a) = 0_B$ et de même pour $\Phi(ax)$. On dit alors que $\ker(\Phi)$ est un idéal (bilatère) de $A$, ce qui amène la définition suivante :
 
     \begin{defi}{}{}
         Un sous-ensemble non vide $I \subset A$ d’un anneau commutatif $A$ est appelé un \textbf{idéal} s’il vérifie les deux propriétés suivantes :
@@ -570,8 +571,8 @@
         Soit $x$ un élément d’un anneau commutatif. $xA = \enspr{xa}{a \in A}$ est le plus petit idéal de $A$ contenant $x$. On l’appelle \textbf{idéal principal} engendré par $x$, et on le note parfois $(x)$.
     \end{defitheo}
 
-    On rappelle qu’on note $a \tq b$ pour $a,b \in A$ s’il existe $c \in A$ tel qu $b = c \times a$. Ainsi, 
-    \[ x \tq y \quad \iff \quad yA \subset x A \quad \iff \quad (y) \subset (x) \]   
+    On rappelle qu’on note $a \vbar b$ pour $a,b \in A$ s’il existe $c \in A$ tel qu $b = c \times a$. Ainsi, 
+    \[ x \vbar y \quad \iff \quad yA \subset x A \quad \iff \quad (y) \subset (x) \]   
 
     \begin{prop}{Opérations sur les idéaux}{}
         Soient $I_1$ et $I_2$ deux idéaux d’un anneau commutatif $A$. Alors 
@@ -624,14 +625,14 @@
     L’algorithme d’Euclide est une méthode efficace pour déterminer le pgcd de deux entiers. Il repose sur le résultat suivant : si $a$ et $b$ sont deux entiers relatifs non nuls et si $a = bq + r$ où $q$ est le quotient et $r$ le reste de la division euclidienne de $a$ par $b$, alors $a \wedge b = b \wedge r$.
 
     \begin{theo}{Lemme de Gauss}{}
-        Soient $a,b,c \in \mathbb{Z}$. Si $a \tq bc$ et $a \wedge b = 1$, alors $a \tq c$.
+        Soient $a,b,c \in \mathbb{Z}$. Si $a \vbar bc$ et $a \wedge b = 1$, alors $a \vbar c$.
     \end{theo}
 
     \begin{demo}{Démonstration}{myred}
         Retranscrivons les hypothèses : $bc \mathbb{Z} \subset a \mathbb{Z}$ et $a \mathbb{Z} + b \mathbb{Z} = \mathbb{Z}$. En multipliant par $c$, il vient $c \mathbb{Z} \subset a \mathbb{Z}$.
     \end{demo}
 
-    Une conséquence directe, si $p$ est premier, et $p \tq ab$, alors $p \tq a$ ou $p \tq b$ ; c’est le lemme dit d’Euclide. 
+    Une conséquence directe, si $p$ est premier, et $p \vbar ab$, alors $p \vbar a$ ou $p \vbar b$ ; c’est le lemme dit d’Euclide. 
 
     \subsubsection{L’anneau (Z / nZ, +, x)}
 
@@ -640,16 +641,16 @@
     \end{theo}
 
     \begin{demo}{Preuve}{myred}
-        On a déjà montré que $(\mathbb{Z} + n \mathbb{Z}, +)$ est un groupe abélien. L’élément $\barr{1}$ est neutre pour la multiplication. On montre aisément que la loi $\times$ est associative et distributive.
+        On a déjà montré que $(\mathbb{Z} + n \mathbb{Z}, +)$ est un groupe abélien. L’élément $\ovl{1}$ est neutre pour la multiplication. On montre aisément que la loi $\times$ est associative et distributive.
     \end{demo}
 
     \begin{prop}{}{}
-        L’élément $\barr{k}$ est inversible dans l’anneau $\mathbb{Z} / n \mathbb{Z}$ \textit{ssi} $k \wedge n = 1$.
+        L’élément $\ovl{k}$ est inversible dans l’anneau $\mathbb{Z} / n \mathbb{Z}$ \textit{ssi} $k \wedge n = 1$.
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
         Grâce au théorème de Bézout, 
-        \[ \exists a \in \mathbb{Z}, \barr{a} \times \barr{k} = \barr{a k} = \barr{1} \quad \iff \quad \exists (a,b) \in \mathbb{Z}^2, ak + bn = 1 \quad \iff \quad n \wedge k = 1 \]
+        \[ \exists a \in \mathbb{Z}, \ovl{a} \times \ovl{k} = \ovl{a k} = \ovl{1} \quad \iff \quad \exists (a,b) \in \mathbb{Z}^2, ak + bn = 1 \quad \iff \quad n \wedge k = 1 \]
     \end{demo}
 
     Cette preuve fournit directement une méthode pour trouver l’inverse d’un élément de $\mathbb{Z} / n \mathbb{Z}$, ce qui se fait par l’algorithme d’Euclide étendu, décrit dans le chapitre d’arithmétique des polynômes.
@@ -666,8 +667,8 @@
     \begin{demo}{Démonstration tournante}{myred}
         \begin{itemize}[leftmargin=2cm]
             \item[\textbf{(i)} $\implies$ \textbf{(ii)}] Tout corps est intègre.
-            \item[\textbf{(ii)} $\implies$ \textbf{(iii)}] Procèdons par contraposition. Supposons que $n$ n’est pas premier. Il existe donc $a,b \in \mathbb{N}^*$ tels que $n = ab$ avec $a,b \in \intervalleEntier{2}{n-1}$. Donc $\barr{a} \times \barr{b} = \barr{0}$ sans que $\barr{a}$ ni $\barr{b}$ ne soient nuls.
-            \item[\textbf{(iii)} $\implies$ \textbf{(i)}] Si $n$ est premier, tous les éléments de $\mathbb{Z} / n \mathbb{Z}$ sont inversibles, à l’exception de $\barr{0}$.
+            \item[\textbf{(ii)} $\implies$ \textbf{(iii)}] Procèdons par contraposition. Supposons que $n$ n’est pas premier. Il existe donc $a,b \in \mathbb{N}^*$ tels que $n = ab$ avec $a,b \in \intervalleEntier{2}{n-1}$. Donc $\ovl{a} \times \ovl{b} = \ovl{0}$ sans que $\ovl{a}$ ni $\ovl{b}$ ne soient nuls.
+            \item[\textbf{(iii)} $\implies$ \textbf{(i)}] Si $n$ est premier, tous les éléments de $\mathbb{Z} / n \mathbb{Z}$ sont inversibles, à l’exception de $\ovl{0}$.
         \end{itemize}
     \end{demo}
 
@@ -679,17 +680,17 @@
     \end{lem}
 
     \begin{demo}{Démonstration}{mybrown}
-        Pour $m \wedge n = 1$, construisons un isomorphisme d’anneaux naturel entre $\mathbb{Z}/ mn \mathbb{Z}$ et $\mathbb{Z} / m \mathbb{Z} \times \mathbb{Z} / n \mathbb{Z}$. Pour cela, on notera $\barr{x}$, $\hat{x}$ et $\tilde{a}$ les classes d’équivalence respectives de $x$. Soit maintenant l’application 
-        \[ \fonction{\Phi}{\mathbb{Z}/ mn \mathbb{Z}}{\mathbb{Z} / m \mathbb{Z} \times \mathbb{Z} / n \mathbb{Z}}{\barr{x}}{(\hat{x}, \tilde{x})}  \]   
-        Cette application est bien définie dans le sens où $(\hat{x}, \tilde{x})$ ne dépend pas du choix du représentant $\barr{x}$. En effet, $\Hat{x + knm} = \hat{x}$ et $\Tilde{x + knm} = \tilde{x}$ pour tous $k \in \mathbb{Z}$. De plus, 
+        Pour $m \wedge n = 1$, construisons un isomorphisme d’anneaux naturel entre $\mathbb{Z}/ mn \mathbb{Z}$ et $\mathbb{Z} / m \mathbb{Z} \times \mathbb{Z} / n \mathbb{Z}$. Pour cela, on notera $\ovl{x}$, $\hat{x}$ et $\tilde{a}$ les classes d’équivalence respectives de $x$. Soit maintenant l’application 
+        \[ \fonction{\Phi}{\mathbb{Z}/ mn \mathbb{Z}}{\mathbb{Z} / m \mathbb{Z} \times \mathbb{Z} / n \mathbb{Z}}{\ovl{x}}{(\hat{x}, \tilde{x})}  \]   
+        Cette application est bien définie dans le sens où $(\hat{x}, \tilde{x})$ ne dépend pas du choix du représentant $\ovl{x}$. En effet, $\Hat{x + knm} = \hat{x}$ et $\Tilde{x + knm} = \tilde{x}$ pour tous $k \in \mathbb{Z}$. De plus, 
         \begin{itemize}
             \item $\Phi$ est un morphisme de groupes puisque pour tous $x,y \in \mathbb{Z}$,
-            \[ \Phi\left(\barr{x} + \barr{y}\right) = \Phi\left(\barr{x,y}\right) = \left(\Hat{x + y}, \Tilde{x+ y}\right) = \left(\hat{x} + \hat{y}, \tilde{x} + \tilde{y}\right) = \Phi\left(\barr{x}\right) + \Phi\left(\barr{y}\right) \]   
-            \item On vérifie de même que pour tous $x,y \in \mathbb{Z}$, $\Phi\left(\barr{x} \times \barr{y}\right) = \Phi\left(\barr{x}\right) \times \Phi\left(\barr{y}\right)$.
-            \item Ajoutons que $\Phi\left(\barr{1}\right) = \left(\hat{1}, \tilde{1}\right)$.
+            \[ \Phi\left(\ovl{x} + \ovl{y}\right) = \Phi\left(\ovl{x,y}\right) = \left(\Hat{x + y}, \Tilde{x+ y}\right) = \left(\hat{x} + \hat{y}, \tilde{x} + \tilde{y}\right) = \Phi\left(\ovl{x}\right) + \Phi\left(\ovl{y}\right) \]   
+            \item On vérifie de même que pour tous $x,y \in \mathbb{Z}$, $\Phi\left(\ovl{x} \times \ovl{y}\right) = \Phi\left(\ovl{x}\right) \times \Phi\left(\ovl{y}\right)$.
+            \item Ajoutons que $\Phi\left(\ovl{1}\right) = \left(\hat{1}, \tilde{1}\right)$.
             \item Enfin, les deux anneaux de départ et d’arrivée ont même cardinal, et 
-            \[ x \in \Ker(\Phi) \quad \iff \quad \et{\hat{x} = \hat{0}}{\tilde{x} = \tilde{0}} \quad \iff \quad \et{n \tq x}{m \tq x} \]   
-            $n$ et $m$ étant supposés premiers entre eux, $nm \tq x$, donc $\Ker(\Phi) = \left\{\barr{0}\right\}$. Donc $\Phi$ est bien un isomorphisme.
+            \[ x \in \ker(\Phi) \quad \iff \quad \et{\hat{x} = \hat{0}}{\tilde{x} = \tilde{0}} \quad \iff \quad \et{n \vbar x}{m \vbar x} \]   
+            $n$ et $m$ étant supposés premiers entre eux, $nm \vbar x$, donc $\ker(\Phi) = \left\{\ovl{0}\right\}$. Donc $\Phi$ est bien un isomorphisme.
         \end{itemize}
     \end{demo}
 
@@ -712,7 +713,7 @@
     \end{itemize}
     Naturellement, $\varphi(1) = 1$ et pour tout entier premier $p$, $\varphi(p) = p-1$. 
     
-    On peut montrer que pour tout $n \in \mathbb{N}^*$, $n = \sum_{d \tq n} \varphi(n)$.
+    On peut montrer que pour tout $n \in \mathbb{N}^*$, $n = \sum_{d \vbar n} \varphi(n)$.
 
     \begin{prop}{}{}
         Soient $m, n \in \mathbb{N}^*$. Si $m \wedge n = 1$, $\varphi(mn) = \varphi(m) \varphi(n)$.
@@ -724,7 +725,7 @@
 
     \begin{prop}{}{}
         Pour tout $n \in \mathbb{N}^*$, 
-        \[ \varphi(n) = n \cdotp \prod_{\substack{p \text{ premier} \\ p \tq n}} \left(1 -  \frac{1}{p}\right) \]   
+        \[ \varphi(n) = n \cdotp \prod_{\substack{p \text{ premier} \\ p \vbar n}} \left(1 -  \frac{1}{p}\right) \]   
     \end{prop}
 
     \begin{demo}{Démonstration}{myolive}
@@ -757,7 +758,7 @@
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
-        $\varphi(n)$ n’est rien d’autre que le cardinal du groupe des inversibles $((\mathbb{Z} + n \mathbb{Z})^*, \times)$. Si $a \wedge n = 1$, $\barr{a}$ est un élément de ce groupe, donc $\barr{a}^{\varphi(n)} = \barr{1}$. D’où le résultat.
+        $\varphi(n)$ n’est rien d’autre que le cardinal du groupe des inversibles $((\mathbb{Z} + n \mathbb{Z})^*, \times)$. Si $a \wedge n = 1$, $\ovl{a}$ est un élément de ce groupe, donc $\ovl{a}^{\varphi(n)} = \ovl{1}$. D’où le résultat.
     \end{demo}
 
     On retrouve directement le petit théorème de Fermat.
@@ -806,7 +807,7 @@
     \end{defi}
 
     On montre alors que pour tout polynôme $D \in \mathbb{K}[X]$, 
-    \[ D \tq A \esp{et} D \tq B \quad \iff \quad D \tq A \wedge B \]   
+    \[ D \vbar A \esp{et} D \vbar B \quad \iff \quad D \vbar A \wedge B \]   
     $A \wedge B$ est donc l’unique polynôme (unitaire) de plus haut degré qui divise à la fois $A$ et $B$.
 
     On étend la définition du pgcm à celle d’une famille de polynômes non nuls. $P_1 \wedge \cdots \wedge P_n$ est l’unique polynôme unitaire vérifiant 
@@ -822,7 +823,7 @@
     \end{theo}
 
     \begin{lem}{de Gauss}{}
-        Soient $A,B,C \in \mathbb{K}[X]$. Si $A \tq BC$ et $A \wedge B = 1$, alors $A \tq C$.
+        Soient $A,B,C \in \mathbb{K}[X]$. Si $A \vbar BC$ et $A \wedge B = 1$, alors $A \vbar C$.
     \end{lem}
 
 \subsection{Structure d’algèbre}

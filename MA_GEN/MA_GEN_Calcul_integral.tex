@@ -1,4 +1,5 @@
-\customchapter{Calcul intégral}{Étudier la notion d’intégrale de Riemann, puis la généraliser à des intégrales impropres, \textit{i.e.} définies sur des ouverts de $\mathbb{R}$. On étendra aussi la notion aux espaces vectoriels normés, et à des fonctions non numériques.}
+\chapter{Calcul intégral}
+\chaptertoc
 
 \section{Intégrale sur un segment}
 
@@ -462,7 +463,7 @@
 
     \begin{theo}{Intégration par parties}{}
         \begin{soient}
-            \item $a, b \in \barr{\mathbb{R}}$ tels que $a < b$
+            \item $a, b \in \ovl{\mathbb{R}}$ tels que $a < b$
             \item $u,v : \intervalleOO{a}{b} \to \mathbb{K}$
         \end{soient}
         \begin{suppose}
@@ -560,7 +561,7 @@
 
 \subsection{Intégrale absolument convergentes et fonctions intégrables}
 
-    Soient $a,b \in \barr{\mathbb{R}}$ tels que $a < b$.
+    Soient $a,b \in \ovl{\mathbb{R}}$ tels que $a < b$.
 
     \begin{defi}{Intégrale absolument convergente}{}
         Soit $f \in \CM(\intervalleOO{a}{b},\mathbb{K})$. 
@@ -620,7 +621,7 @@
     \begin{prop}{}{}
         \begin{soient}
             \begin{multicols}{2}
-                \item $a,b \in \barr{\mathbb{R}}$ tels que $a < b$
+                \item $a,b \in \ovl{\mathbb{R}}$ tels que $a < b$
                 \item $f,g \in \CM(\intervalleOO{a}{b})$
             \end{multicols}
         \end{soient}
@@ -1364,13 +1365,13 @@ On appelle $F$ une intégrale à paramètre. Par la suite, on note $f(x,.)$ l’
         \end{soit}
         \begin{suppose}
             \item Pour tous $t \in I$, $f(.,t) \in \mathcal{C}^0(A)$
-            \item Pour tous $x \in A$, $f(x,.) \in \CM(I) \quad (\cap \quad \LI^1(I))$
-            \item Il existe $\varphi : I \to \mathbb{R}_+ \in \LI^1(I)$ telle que $\forall x \in A$, $\forall t \in I$, $\abs{f(x,t)} \leq \varphi(t)$ (hypothèse de domination)
+            \item Pour tous $x \in A$, $f(x,.) \in \CM(I) \quad (\cap \quad \L^1(I))$
+            \item Il existe $\varphi : I \to \mathbb{R}_+ \in \L^1(I)$ telle que $\forall x \in A$, $\forall t \in I$, $\abs{f(x,t)} \leq \varphi(t)$ (hypothèse de domination)
         \end{suppose}
         Alors $F : x \mapsto \int_{I} f(x,t) dt \in \mathcal{C}^0(A)$
     \end{theo}
 
-    On peut noter que l’hypothèse selon laquelle $t \mapsto f(x,t) \in \LI^1(I)$ est donnée directement par l’hypothèse de domination. De plus, on peut se contenter de vérifier que $\forall \intervalleFF{a}{b} \subset A$, il existe $\varphi$ dominant $f(x,t)$.
+    On peut noter que l’hypothèse selon laquelle $t \mapsto f(x,t) \in \L^1(I)$ est donnée directement par l’hypothèse de domination. De plus, on peut se contenter de vérifier que $\forall \intervalleFF{a}{b} \subset A$, il existe $\varphi$ dominant $f(x,t)$.
 
     \begin{omed}{Rappel \textcolor{black}{(Caractérisation séquentielle de la continuité)}}{myred}
         Soit $f : A \to \mathbb{K}$ et $x_0 \in A$. La fonction $f$ est continue en $x_0$ \textit{ssi} 
@@ -1403,7 +1404,7 @@ On appelle $F$ une intégrale à paramètre. Par la suite, on note $f(x,.)$ l’
         OP $f(x,t) = \frac{\sin(t)}{e^{xt} - 1}$, $A = I = \mathbb{R}_+^*$, puis $F(x) = \int_{0}^{+\infty} \frac{\sin(t)}{e^{xt} - 1} dt$. MQ $F \in \mathcal{C}^0(\mathbb{R}_+^*)$.
         \begin{itemize}
             \item En $0$, l’application $t \mapsto \frac{\sin(t)}{e^{xt} - 1}$ se prolonge par continuité par $\frac{1}{x}$, donc pour $t \in \mathbb{R}_+^*$, $x \mapsto f(x,t) \in \mathcal{C}^0$.
-            \item Pour $x > 0$, $t \mapsto f(x,t) \in \CM$. $\abs{\frac{\sin(t)}{e^{xt} - 1}} = \comp{\mathcal{O}}{n}{+\infty}{\frac{1}{t^2}}$ donc $\frac{\sin(t)}{e^{xt} - 1} \in \LI^1(\mathbb{R}_+)$. 
+            \item Pour $x > 0$, $t \mapsto f(x,t) \in \CM$. $\abs{\frac{\sin(t)}{e^{xt} - 1}} = \comp{\mathcal{O}}{n}{+\infty}{\frac{1}{t^2}}$ donc $\frac{\sin(t)}{e^{xt} - 1} \in \L^1(\mathbb{R}_+)$. 
             \item Soit $x \in \intervalleFF{a}{b} \subset \mathbb{R}_+^*$,
             \[ \abs{f(x,t)} = \abs{\frac{\sin(t)}{e^{xt} - 1}} \leq \frac{\abs{\sin(t)}}{e^{xt}- 1} := \varphi(t)  \]
             $\varphi$ se prolonge par continuité en $0$ par $\frac{1}{a}$, et est intégrable sur $\intervalleOF{0}{1}$. $\varphi(t) = \comp{\mathcal{O}}{n}{+\infty}{\frac{1}{t^2}}$ donc est intégrablle sur $\intervalleFO{1}{+\infty}$. Donc $\varphi$ est intégrable sur $\mathbb{R}^*_+$.
@@ -1456,7 +1457,7 @@ On appelle $F$ une intégrale à paramètre. Par la suite, on note $f(x,.)$ l’
     \begin{theo}{Caractère $\mathcal{C}^1$, théorème de Leibniz}{}
         Soient $A$ et $I$ des intervalles de $\mathbb{R}$ et $f : A \times I \to \mathbb{K}$ telle que 
         \begin{enumerate}[label=$(h_{\alph*})$]
-            \item Pour tout $x \in A$, $f(x,.) \in \CM \cap \LI_1(I)$.
+            \item Pour tout $x \in A$, $f(x,.) \in \CM \cap \L^1(I)$.
             \item Pour tout $t \in I$, $f(.,t) \in \mathcal{C}^1(A)$.
             \item Pour tout $x \in A$, $t \mapsto \dpart{f}{x}(x,t) \in \CM(I)$ et il existe $\varphi$ intégrable sur $I$ telle que 
             \[ \forall (x,t) \in A \times I, \quad \abs{\dpart{f}{x}(x,t)} \leq \varphi(t) \]   
@@ -1484,7 +1485,7 @@ On appelle $F$ une intégrale à paramètre. Par la suite, on note $f(x,.)$ l’
             \[ \dpart{f}{x}(x,t) = \frac{1}{x - \cos(t)} \]   
             Donc $t \mapsto \dpart{f}{x}(x,t)$ est continue sur $\intervalleOO{0}{\pi}$.
             \item Soit $\intervalleFF{a}{b} \subset \intervalleOO{1}{+\infty}$, 
-            \[ \abs{\dpart{f}{x}(x,t)} \leq \frac{1}{a-1} := \varphi \in \LI_1 \]   
+            \[ \abs{\dpart{f}{x}(x,t)} \leq \frac{1}{a-1} := \varphi \in \L^1 \]   
         \end{enumerate}
         D’après le théorème, $F$ est de classe $\mathcal{C}^1$, avec 
         \begin{align*}
@@ -1605,7 +1606,7 @@ On appelle $F$ une intégrale à paramètre. Par la suite, on note $f(x,.)$ l’
                 \item Si $t > 0$, $g(.,t) \in \mathcal{C}^1$ sur $\mathbb{R}$.
                 \item Si $x \in \mathbb{R}$, $g(x,.) \in \CM$ sur $I$.
                 \item Pour $x \in \mathbb{R}$ et $t > 0$, 
-                \[ \abs{\dpart{g}{x}(x,t)} = \abs{\frac{2t^2}{(t^2 + 1)^2} \cos(xt)} \leq \frac{2}{t^2 + 1} \in \LI^1(I) \]   
+                \[ \abs{\dpart{g}{x}(x,t)} = \abs{\frac{2t^2}{(t^2 + 1)^2} \cos(xt)} \leq \frac{2}{t^2 + 1} \in \L^1(I) \]   
             \end{enumerate}
             Donc $G$ est de classe $\mathcal{C}^1$ sur $\mathbb{R}$ et 
             \begin{align*}
@@ -1826,22 +1827,22 @@ On appelle $F$ une intégrale à paramètre. Par la suite, on note $f(x,.)$ l’
 
     \begin{defi}{Transformée de Fourier inverse}{}
         Soit $f \in \mathcal{L}^1(\mathbb{R})$. On appelle transformée de Fourier conjuguée (ou inverse) de $f$ la fonction 
-        \[ \barr{\mathcal{F}}(f) : s \mapsto \int_{-\infty}^{+\infty} e^{2 i \pi st}f(t)dt \] 
+        \[ \ovl{\mathcal{F}}(f) : s \mapsto \int_{-\infty}^{+\infty} e^{2 i \pi st}f(t)dt \] 
     \end{defi}
 
     \begin{theo}{Formule d’inversion}{}
         Si $f$ et $\mathcal{F}(f)$ sont dans $\mathcal{L}^1(f)$, alors 
-        \[ \barr{\mathcal{F}}(\mathcal{F}(f))(t) = \frac{1}{2} \left[f(t+0) + f(t-0)\right] \] 
+        \[ \ovl{\mathcal{F}}(\mathcal{F}(f))(t) = \frac{1}{2} \left[f(t+0) + f(t-0)\right] \] 
         où $f(t+0)$ et $f(t-0)$ représentent les limites à droite et à gauche en $t$.
 
         Ainsi, si $f$ est continue en $t$, alors 
-        \[ \barr{\mathcal{F}}(\mathcal{F}(f))(t) = f(t) \] 
+        \[ \ovl{\mathcal{F}}(\mathcal{F}(f))(t) = f(t) \] 
         Dans ce cas,
         \[ \mathcal{F}(f)(s) = \int_{-\infty}^{+\infty} e^{-2i\pi st}f(t)dt \iff f(t) = \int_{-\infty}^{+\infty} e^{2i\pi st} \mathcal{F}(f)(s)ds \]
     \end{theo}
 
     \begin{omed}{Exemple}{myred}
-        Soit $f : t \mapsto e^{-a\abs{t}}$. On a vu que $\mathcal{F}(f)(s) = \frac{2a}{a^2 + 4 \pi^2 s^2}$. Comme $f(t) = \barr{\mathcal{F}}(\mathcal{F})(f)(t)$, on a 
+        Soit $f : t \mapsto e^{-a\abs{t}}$. On a vu que $\mathcal{F}(f)(s) = \frac{2a}{a^2 + 4 \pi^2 s^2}$. Comme $f(t) = \ovl{\mathcal{F}}(\mathcal{F})(f)(t)$, on a 
         \[ e^{-a\abs{t}} = \int_{-\infty}^{+\infty} e^{2i \pi st} \frac{2a}{a^2 + 4 \pi^2 s^2} ds = \frac{2a}{4 \pi^2} \int_{-\infty}^{+\infty} e^{2i \pi s t} \frac{1}{\frac{a^2}{4\pi^2} + s^2} \] 
         En posant $u = -s$ et en multipliant par $\frac{4 \pi^2}{2a}$, on obtient alors 
         \[ \frac{4 \pi^2}{2a} e^{-a \abs{t}} = \int_{-\infty}^{+\infty} e^{-2 i \pi u t} \frac{1}{\frac{a^2}{4\pi^2} + u^2} du \] 

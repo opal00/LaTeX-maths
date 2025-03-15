@@ -1,4 +1,5 @@
-\customchapter{Applications linéaires}{On étudie dans ce chapitre un outil bien pratique : les applications linéaires. Cela facilitera l’étude des espaces vectoriels, et permettra de caractériser un grand nombre de leurs propriétés.}
+\chapter{Applications linéaires}
+\chaptertoc
 
 \section[Généralités]{Généralités sur les applications linéaires}
 
@@ -75,9 +76,9 @@
                 \ker(f) &= \big\{ x \in E, f(x) = 0 \big\} \\
                 &= f^{-1}\left(\{0\}\right)
             \end{align*}
-            \item \textbf{image} de $f$ l’ensemble noté $\Ima(f)$ défini par 
+            \item \textbf{image} de $f$ l’ensemble noté $\im(f)$ défini par 
             \begin{align*}
-                \Ima(f) &= \big\{ y \in F, \exists \in E, f(x) = y \big\} \\
+                \im(f) &= \big\{ y \in F, \exists \in E, f(x) = y \big\} \\
                 &= f(E)
             \end{align*}
         \end{itemize}
@@ -92,7 +93,7 @@
         \end{soient}
         \begin{alors}
             \item $f\left(\sum\limits_{i=1}^{s} \lambda_i x_i\right) = \sum\limits_{i=1}^{s} \lambda_i f(x_i)$
-            \item $f \left( \Vect(x_1, \ldots, x_s) \right) = \Vect \left( f(x_1), \ldots, f(x_s) \right) = \Vect\left(f(\mathcal{F})\right)$.
+            \item $f \left( \vect(x_1, \ldots, x_s) \right) = \vect \left( f(x_1), \ldots, f(x_s) \right) = \vect\left(f(\mathcal{F})\right)$.
             \item Si $\mathcal{F}$ est libre, et $f$ injective, alors 
             \[ (f(x_1), \ldots, f(x_s)) \text{ est libre} \] 
         \end{alors}
@@ -101,7 +102,7 @@
     \begin{demo}{Preuve}{myolive}
         \begin{enumerate}
             \item Par linéarité de $f$.
-            \item $ E = \Vect(\mathcal{F})$ donc $\Ima(f) = f \left( \Vect(\mathcal{F})\right) = \Vect(f(\mathcal{F}))$.
+            \item $ E = \vect(\mathcal{F})$ donc $\im(f) = f \left( \vect(\mathcal{F})\right) = \vect(f(\mathcal{F}))$.
             \item Soit $(\lambda_1 ,\ldots,\lambda_s)$ tq $\sum\limits_{k=1}^s \lambda_k f(x_k) = 0_F$
     
             Par linéarité de $f$, \[ \sum\limits_{k=1}^s \lambda_k f(x_k) = f \left(\sum\limits_{k=1}^s \lambda_k x_k\right)= 0_F \] 
@@ -115,7 +116,7 @@
         
         \begin{alors}
             \item $\ker(f)$ est un sev de $E$ et $f$ est injective \textit{ssi} $\ker(f) = \{0\}$.
-            \item $\Ima(f)$ est un sev de $F$ et $f$ est surjective \textit{ssi} $\Ima(f) = F$.
+            \item $\im(f)$ est un sev de $F$ et $f$ est surjective \textit{ssi} $\im(f) = F$.
         \end{alors}
     \end{prop}
 
@@ -131,7 +132,7 @@
                 \[ f(x - x') = f(x) - f(x') = 0 \]   
                 donc $x - x' \in \ker(f)$ \textit{i.e.} $x = x'$ d’où $f$ est injective.
             \end{itemize}
-            \item $f(0) = 0$ donc $0 \in \Ima(f)$. Soient $y,y' \in \Ima(f)$ et $\lambda \in \mathbb{K}$. Il existe $x, x' \in E$ tels que 
+            \item $f(0) = 0$ donc $0 \in \im(f)$. Soient $y,y' \in \im(f)$ et $\lambda \in \mathbb{K}$. Il existe $x, x' \in E$ tels que 
             \[ \et{f(x) = y}{f(x') = y'} \]
             Donc 
             \begin{align*}
@@ -139,9 +140,9 @@
                 &= f(x) + \lambda f(x') \\
                 &= f(x + \lambda x')
             \end{align*}
-            Donc $y + \lambda y' \in \Ima(f)$.
+            Donc $y + \lambda y' \in \im(f)$.
 
-            De plus, $f$ est sujective \textit{ssi} $f(E) = F$ \textit{i.e. ssi} $\Ima(f) = F$
+            De plus, $f$ est sujective \textit{ssi} $f(E) = F$ \textit{i.e. ssi} $\im(f) = F$
         \end{enumerate}
     \end{demo}
 
@@ -159,7 +160,7 @@
             \item pour $n = p$, le degré de $f(P)$ est inférieur ou égal à $n$, et donc différent de $p+1$ ;
             \item pour $n \neq p$, $f(P)$ est de degré $n + 1 \neq p+ 1$
         \end{itemize}
-        Ainsi, $\Ima(f)$ ne contient pas de polynômes de degré $p + 1$, donc $f$ n’est pas surjective.
+        Ainsi, $\im(f)$ ne contient pas de polynômes de degré $p + 1$, donc $f$ n’est pas surjective.
     \end{omed}
 
 \subsection{Applications linéaires en dimension finie}
@@ -198,12 +199,12 @@
             \item \textbf{Surjectivité} \quad 
             \begin{align*}
                 f \text{ est surjective}
-                &\iff \Ima(f) = F \\
+                &\iff \im(f) = F \\
                 &\iff f(E) = F \\
                 &\quad \downarrow \quad \mathcal{B} \text{ génératrice} \\
-                &\iff f\left(\Vect(e_1,\ldots,e_n)\right) = F \\
+                &\iff f\left(\vect(e_1,\ldots,e_n)\right) = F \\
                 &\quad \downarrow \quad f \text{ est linéaire} \\
-                &\iff \Vect\left(f_1,\ldots,f_n\right) = F \\
+                &\iff \vect\left(f_1,\ldots,f_n\right) = F \\
                 &\iff \mathcal{F} \text{ est génératrice}
             \end{align*}
             \item \textbf{Injectivité} \quad Si $f$ est injective, et $(\lambda_1, \ldots, \lambda_n) \in \mathbb{K}^n$ tels que 
@@ -246,9 +247,9 @@
         \begin{itemize}[leftmargin=3cm]
             \item[\textbf{(i)} $\implies$ \textbf{(iii)}] Soit $\mathcal{B}$ une base de $E$.
             
-            $\Ima(f) = \Vect(f(\mathcal{B}))$ car $f$ est linéaire. 
+            $\im(f) = \vect(f(\mathcal{B}))$ car $f$ est linéaire. 
             
-            $\Ima(f) = F$ car $f$ est surjective.
+            $\im(f) = F$ car $f$ est surjective.
             
             Donc $f(\mathcal{B})$ engendre $F$ et $\et{\mathcal{B} \text{ est libre}}{f \text{ est injective}}$ donc $f(\mathcal{B})$ est libre.
             
@@ -256,9 +257,9 @@
             \item[\textbf{(iii)} $\implies$ \textbf{(ii)}] Immédiatemment.
             \item[\textbf{(ii)} $\implies$ \textbf{(i)}] Soit $\mathcal{B} = (e_1, \ldots, e_n) $ une base de $E$ tq $f(\mathcal{B})$ est une base de $F$.
             
-            $f(E) = f(\Vect(\mathcal{B})) = \Vect(f(\mathcal{B})) = F$ donc $f$ est surjective.
+            $f(E) = f(\vect(\mathcal{B})) = \vect(f(\mathcal{B})) = F$ donc $f$ est surjective.
             
-            Soit $x = \sum\limits_{i=1}^n \lambda_i e_i \in \Ker(f)$.
+            Soit $x = \sum\limits_{i=1}^n \lambda_i e_i \in \ker(f)$.
             
             Alors $\sum\limits_{i=1}^n \lambda_i f(e_i) = f \left( \sum\limits_{i=1}^n \lambda_i e_i\right) = 0_F$. Or $(f(e_1),\ldots, f(e_n))$ est libre donc $\lambda_1 = \ldots = \lambda_n = 0$ puis $x = 0_E$ donc $f$ est injective.
         \end{itemize}
@@ -272,7 +273,7 @@
             \item $f \in \mathcal{L}(\mathcal{E},\mathcal{F})$
         \end{soient}
     
-        Alors on dit que l’application est de \textbf{rang} fini lorsque $\Ima(f)$ est de dimension finie. Dans ce cas, le rang de $f$ est la dimension de $\Ima(f)$.
+        Alors on dit que l’application est de \textbf{rang} fini lorsque $\im(f)$ est de dimension finie. Dans ce cas, le rang de $f$ est la dimension de $\im(f)$.
     \end{defi}
     
     \begin{prop}{Propriétés d’une application linéaire}{}
@@ -289,9 +290,9 @@
     \end{prop}
     
     \begin{demo}{Logique}{myolive}
-        Pour \textbf{(i)}, $\Ima(f) \subset F$.
+        Pour \textbf{(i)}, $\im(f) \subset F$.
     
-        Pour \textbf{(ii)}, si $(e_1,\ldots,e_n)$ est une base de $E$, $\dim(\Ima(f)) \leq \card(f(e_1),\ldots,f(e_n))$
+        Pour \textbf{(ii)}, si $(e_1,\ldots,e_n)$ est une base de $E$, $\dim(\im(f)) \leq \card(f(e_1),\ldots,f(e_n))$
     \end{demo}
     
     \begin{prop}{Invariance du rang par composition par un isomorphisme}{}
@@ -311,17 +312,17 @@
             \item $E$ et $F$ deux $\mathbb{K}$-ev
             \item $f \in \mathcal{L}(E,F)$
         \end{soient}
-        On suppose que $\Ker(f)$ admet un supplémentaire $S$ dans $E$.
+        On suppose que $\ker(f)$ admet un supplémentaire $S$ dans $E$.
     
-        Alors \[ \restrcorestr{f}{S}{\Ima(f)} \text{ est un isomorphisme} \]
+        Alors \[ \restrcorestr{f}{S}{\im(f)} \text{ est un isomorphisme} \]
     \end{theo}
     
     \begin{demo}{Démonstration}{myred}
-        On vérifie est $g = \restrcorestr{f}{S}{\Ima(f)}$ est bien définie et linéaire.
+        On vérifie est $g = \restrcorestr{f}{S}{\im(f)}$ est bien définie et linéaire.
         
-        Si $x \in \Ker(g)$, $\et{x \in S}{g(x)=f(x)=0_E}$ donc $x \in S \cap \Ker(f) = \big\{ 0_E \big\}$ i.e. $g$ est injective.
+        Si $x \in \ker(g)$, $\et{x \in S}{g(x)=f(x)=0_E}$ donc $x \in S \cap \ker(f) = \big\{ 0_E \big\}$ i.e. $g$ est injective.
         
-        Si $y \in \Ima(f), \, \exists \, x \in E, \, y = f(x)$. On décompose $x$ dans $\Ker(f) \oplus S$ et donc $\exists x_S \in S, \, y = f(x_S)$ et donc $g$ est surjective.
+        Si $y \in \im(f), \, \exists \, x \in E, \, y = f(x)$. On décompose $x$ dans $\ker(f) \oplus S$ et donc $\exists x_S \in S, \, y = f(x_S)$ et donc $g$ est surjective.
     \end{demo}
     
     \begin{theo}{Théorème du rang, deuxième version}{}
@@ -331,18 +332,18 @@
         \end{soient}
         On suppose que $E$ est de dimension finie.
     
-        Alors \[ \rg(f) + \dim(\Ker(f)) = \dim(E) \]
-        Ce qui se réécrit $\dim(\Ima(f)) + \dim(\Ker(f)) = \dim(E)$.
+        Alors \[ \rg(f) + \dim(\ker(f)) = \dim(E) \]
+        Ce qui se réécrit $\dim(\im(f)) + \dim(\ker(f)) = \dim(E)$.
     \end{theo}
     
     \begin{demo}{Preuve}{myred}
-        On sait que $\Ker(f)$ admet un supplémentaire $S$ dans $E$ car en est un sev.
+        On sait que $\ker(f)$ admet un supplémentaire $S$ dans $E$ car en est un sev.
         
-        Donc $\dim(E) = \dim(S) + \dim(\Ker(f))$
+        Donc $\dim(E) = \dim(S) + \dim(\ker(f))$
         
-        Or $\restrcorestr{f}{S}{\Ima(f)}$ est un isomorphisme donc $\dim(S) = \dim(\Ima(f))$ 
+        Or $\restrcorestr{f}{S}{\im(f)}$ est un isomorphisme donc $\dim(S) = \dim(\im(f))$ 
         
-        Donc $\dim(E) = \dim(\Ima(f)) + \dim(\Ker(f))$
+        Donc $\dim(E) = \dim(\im(f)) + \dim(\ker(f))$
     \end{demo}
     
     \begin{theo}{Théorème du rang, troisième version}{}
@@ -358,9 +359,9 @@
     
     \begin{demo}{Démonstration}{myred}
         \begin{itemize}[leftmargin=2.5cm]
-            \item[\textbf{(i)} $\implies$ \textbf{(ii)}] Donc $f$ injective, et par le théorème du rang, comme $\dim(\Ker(f)) = 0$, on a $\dim(\Ima(f)) = \dim(E)$. Or $\Ima(f) = F$ car $f$ bijective, donc $\dim(E) = \dim(F)$
-            \item[\textbf{(ii)} $\implies$ \textbf{(iii)}] Par le théorème du rang, on a $\dim(E) = \dim(\Ima(f)) + \underbrace{\dim(\Ker(f))}_{=0}$, donc $\dim(\Ima(f)) = \dim(F)$. Or $\Ima(f) \subset F$, donc $\Ima(f) = F$ et $f$ est surjective.
-            \item[\textbf{(iii)} $\implies$ \textbf{(i)}] Par le théorème du rang, $\dim(\Ker(f)) = \dim(E) - \dim(\Ima(f)) = \dim(E) - \dim(F) = 0$ donc $f$ est injective. Donc $f$ est bijective.
+            \item[\textbf{(i)} $\implies$ \textbf{(ii)}] Donc $f$ injective, et par le théorème du rang, comme $\dim(\ker(f)) = 0$, on a $\dim(\im(f)) = \dim(E)$. Or $\im(f) = F$ car $f$ bijective, donc $\dim(E) = \dim(F)$
+            \item[\textbf{(ii)} $\implies$ \textbf{(iii)}] Par le théorème du rang, on a $\dim(E) = \dim(\im(f)) + \underbrace{\dim(\ker(f))}_{=0}$, donc $\dim(\im(f)) = \dim(F)$. Or $\im(f) \subset F$, donc $\im(f) = F$ et $f$ est surjective.
+            \item[\textbf{(iii)} $\implies$ \textbf{(i)}] Par le théorème du rang, $\dim(\ker(f)) = \dim(E) - \dim(\im(f)) = \dim(E) - \dim(F) = 0$ donc $f$ est injective. Donc $f$ est bijective.
         \end{itemize}
     \end{demo}
 
@@ -369,7 +370,7 @@
 
         \begin{alors}
             \item $\rg(g \circ f) \leq \min(\rg(g), \rg(f))$ 
-            \item $\rg(g \circ f) = \rg(f) - \dim(\Ima(f) \cap \ker(g))$
+            \item $\rg(g \circ f) = \rg(f) - \dim(\im(f) \cap \ker(g))$
         \end{alors}
     \end{prop}
 
@@ -377,27 +378,27 @@
         \begin{enumerate}
             \item \begin{align*}
                 \rg(g \circ f)
-                &= \dim(\Ima(g \circ f)) \\
+                &= \dim(\im(g \circ f)) \\
                 &= \dim((g \circ f)(E)) \\
                 &= \dim(g(f(E)))
             \end{align*}
             Or $f(E) \subset F$ donc $g(f(E)) \subset g(F)$ qui sont des sev, d’où $\dim(g(f(E))) \leq \dim(g(F))$, \textit{i.e.}
             \[ \rg(g \circ f) \leq \rg(g) \]
             L’inégalité avec $\rg(f)$ est donnée par la seconde proposition.
-            \item On applique la formule du rang à $\restr{g}{\Ima(f)}$ :
-            \[ \rg(\restr{g}{\Ima(f)}) = \dim(\Ima(f)) - \dim(\ker(\restr{g}{\Ima(f)})) \]   
+            \item On applique la formule du rang à $\restr{g}{\im(f)}$ :
+            \[ \rg(\restr{g}{\im(f)}) = \dim(\im(f)) - \dim(\ker(\restr{g}{\im(f)})) \]   
             Or \begin{align*}
-                \Ima(\restr{g}{\Ima(f)}) 
-                &= \restr{g}{\Ima(f)}\left(\Ima(f)\right) \\
-                &= g(\Ima(f)) = \Ima(g \circ f)
+                \im(\restr{g}{\im(f)}) 
+                &= \restr{g}{\im(f)}\left(\im(f)\right) \\
+                &= g(\im(f)) = \im(g \circ f)
             \end{align*}
             et \begin{align*}
-                \ker(\restr{g}{\Ima(f)}) 
-                &= \big\{ x \in F, x \in \Ima(f) \text{ et } g(x) = 0 \big\} \\
-                &= \Ima(f) \cap \ker(g)
+                \ker(\restr{g}{\im(f)}) 
+                &= \big\{ x \in F, x \in \im(f) \text{ et } g(x) = 0 \big\} \\
+                &= \im(f) \cap \ker(g)
             \end{align*}
             D’où 
-            \[ \rg(g \circ f) = \dim(\Ima(g \circ f)) = \rg(f) - \dim(\Ima(f) \cap \ker(g)) \]
+            \[ \rg(g \circ f) = \dim(\im(g \circ f)) = \rg(f) - \dim(\im(f) \cap \ker(g)) \]
         \end{enumerate}
     \end{demo}
 
@@ -426,15 +427,15 @@
     \begin{defitheo}{Hyperplan et caractérisation}{}
         On appelle \textbf{hyperplan} de $E$ tout noyau de forme linéaire \textit{non nulle}. 
 
-        $H$ est un hyperplan de $E$ \textit{ssi} il existe $u \in E$ non nul tel que $E = H \oplus \Vect(u)$.
+        $H$ est un hyperplan de $E$ \textit{ssi} il existe $u \in E$ non nul tel que $E = H \oplus \vect(u)$.
 
         De plus, si $E$ est de dimension finie $n$, $H$ est un hyperplan de $E$ \textit{ssi} $\dim(H) = n-1$.
     \end{defitheo}
 
     \begin{demo}{Preuve}{mypurple}
         \begin{itemize}
-            \item[\textcolor{mypurple}{$\impliedby$}] Tout vecteur $x$ de $E$ s’écrit de façon unique $x = h + \lambda u$. On introduit alors l’unique application linéaire $\varphi$ définie par $\varphi(x) = \lambda$, qui est une forme linéaire non nulle. On a ainsi $x \in H \iff \varphi(x) = 0$ d’où $H = \Ker(\varphi)$.
-            \item[\textcolor{mypurple}{$\implies$}] Il existe $u \in E$ tel que $\varphi(u) \neq 0$.  Montrons que $E = H \oplus \Vect(u)$ par \textit{analyse-synthèse}.
+            \item[\textcolor{mypurple}{$\impliedby$}] Tout vecteur $x$ de $E$ s’écrit de façon unique $x = h + \lambda u$. On introduit alors l’unique application linéaire $\varphi$ définie par $\varphi(x) = \lambda$, qui est une forme linéaire non nulle. On a ainsi $x \in H \iff \varphi(x) = 0$ d’où $H = \ker(\varphi)$.
+            \item[\textcolor{mypurple}{$\implies$}] Il existe $u \in E$ tel que $\varphi(u) \neq 0$.  Montrons que $E = H \oplus \vect(u)$ par \textit{analyse-synthèse}.
             \begin{itemize}
                 \item Supposons que $x = h + \lambda u$ avec $h \in H$ et $\lambda \in \mathbb{K}$. Alors $\varphi(x) = \lambda \varphi(u)$. Ainsi 
                 \[ x = \left( x - \frac{\varphi(x)}{\varphi(u)}u \right) + \frac{\varphi(x)}{\varphi(u)}u \]    
@@ -456,7 +457,7 @@
     \end{coro}
     
     \begin{demo}{Démonstration}{myorange}
-        Soit $H = \Ker(\varphi)$ un hyperplan de $E$, $x \in E$, $(e_1,\ldots,e_n)$ une base de $E$ et $\alpha_i = \varphi(e_i)$.
+        Soit $H = \ker(\varphi)$ un hyperplan de $E$, $x \in E$, $(e_1,\ldots,e_n)$ une base de $E$ et $\alpha_i = \varphi(e_i)$.
         \[ x = \sum_{i=1}^{n} x_i e_i \in H \iff \varphi(x) = 0 \iff \sum_{i=1}^{n} \alpha_i x_i = 0 \]
     \end{demo}
 
@@ -467,7 +468,7 @@
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
-        Comme $E = H \oplus \Vect(u)$, si $\varphi = \lambda \psi$, alors $\varphi(u) = \lambda \psi(u)$, d’où $\lambda = \frac{\varphi(u)}{\psi(u)}$. Réciproquement, si $\lambda = \frac{\varphi(u)}{\psi(u)}$, $\varphi$ et $\lambda \psi$ coïncident sur $H$ et sur $\Vect(u)$.
+        Comme $E = H \oplus \vect(u)$, si $\varphi = \lambda \psi$, alors $\varphi(u) = \lambda \psi(u)$, d’où $\lambda = \frac{\varphi(u)}{\psi(u)}$. Réciproquement, si $\lambda = \frac{\varphi(u)}{\psi(u)}$, $\varphi$ et $\lambda \psi$ coïncident sur $H$ et sur $\vect(u)$.
     \end{demo}
 
     \begin{prop}{Intersection de $p$ hyperplans}{}
@@ -480,12 +481,12 @@
 
     \begin{demo}{Démonstration}{myolive}
         \begin{enumerate}
-            \item Considérons $p$ hyperplans de $E$, notés $H_1,\ldots,H_n$. Pour tout $i \in \intervalleEntier{1}{p}$, notons $\varphi_i$ une forme linéaire non nulle de $E$ telle que $H_i = \Ker(\varphi_i)$. On pose 
+            \item Considérons $p$ hyperplans de $E$, notés $H_1,\ldots,H_n$. Pour tout $i \in \intervalleEntier{1}{p}$, notons $\varphi_i$ une forme linéaire non nulle de $E$ telle que $H_i = \ker(\varphi_i)$. On pose 
             \[ \fonction{\varphi}{E}{\mathbb{K}^p}{x}{(\varphi_1(x),\ldots,\varphi_p(x))} \]   
-            $\Ker(\varphi) = \bigcap_{i=1}^p \Ker(\varphi_i) = \bigcap_{i=1}^p H_i$ et comme $\Im(\varphi) \subset \mathbb{K}^p$, d’après le théorème du rang on a 
+            $\ker(\varphi) = \bigcap_{i=1}^p \ker(\varphi_i) = \bigcap_{i=1}^p H_i$ et comme $\Im(\varphi) \subset \mathbb{K}^p$, d’après le théorème du rang on a 
             \[ \dim\left( \bigcap_{i=1}^p H_i \right) = \dim(E) - \rg(\varphi) \geq n-p \]  
             \item Considérons maintenant un sous-espace $F$ de $E$ de dimension $n-p$. Notons $(e_{p+1}, \ldots, e_n)$ une base de $F$ que l’on complète en une base $(e_1,\ldots, e_n)$ de $E$. On pose alors 
-            \[ \forall i \in \intervalleEntier{1}{p}, \quad H_i = \Vect_{\substack{1 \leq k \leq n \\ k \neq i}} (e_k) \]
+            \[ \forall i \in \intervalleEntier{1}{p}, \quad H_i = \vect_{\substack{1 \leq k \leq n \\ k \neq i}} (e_k) \]
             On a alors que $H_i$ sont des hyperplans, d’intersection $F$.
         \end{enumerate}
     \end{demo}
@@ -532,7 +533,7 @@
         \begin{alors}
             \item $p \in \mathcal{L}(E)$.
             \item $\left.\kern-\nulldelimiterspace p \vphantom{\big|} \right|_{E_1}^{E_1} = \id_{E_1}$ et $\restr{p}{E_2} = 0$.
-            \item $\Ker(p) = E_2$ et $\Ima(p) = E_1 = \Ker(p - \id_E)$
+            \item $\ker(p) = E_2$ et $\im(p) = E_1 = \ker(p - \id_E)$
         \end{alors}
     \end{prop}
     
@@ -545,21 +546,21 @@
             p \circ p = p \\
             p \in \mathcal{L}(E)
         \end{array} \right. \]
-        Dans ce cas, $p$ est le projecteur sur $\Ima(p) = \Ker(p-\id_E)$ parallèlement à $\Ker(p)$
+        Dans ce cas, $p$ est le projecteur sur $\im(p) = \ker(p-\id_E)$ parallèlement à $\ker(p)$
     \end{theo}
     
     \begin{demo}{Démonstration}{myred}
         \begin{itemize}
-            \item[$\implies$] On pose $E_1 = \Ima(p)$ et $E_2 = \Ker(p)$, et on déduit facilement $p \circ p = p$ et $p \in \mathcal{L}(E)$.
+            \item[$\implies$] On pose $E_1 = \im(p)$ et $E_2 = \ker(p)$, et on déduit facilement $p \circ p = p$ et $p \in \mathcal{L}(E)$.
             \item[$\impliedby$] Soit $x \in E$.
     
             Alors $x = p(x) + (x-p(x))$.
             \begin{align*}
-                p(x) & \in \Ima(p) \\
+                p(x) & \in \im(p) \\
                 p(x-p(x)) &= p(x)-p(p(x)) \\
                  & = 0
             \end{align*} 
-            Donc $E = \Ima(p) + \Ker(p)$. Or $\Ima(p) \cap \Ker(p) = \{ 0_E \}$ donc $E = \Ima(p) \oplus \Ker(p)$ et $p$ est bien le projecteur sur $\Ima(p)$ parallèlement à $\Ker(p)$ car $x = \underbrace{p(x)}_{\in \Ima(p)} + \underbrace{(x -p(x))}_{\in \Ker(p)}$
+            Donc $E = \im(p) + \ker(p)$. Or $\im(p) \cap \ker(p) = \{ 0_E \}$ donc $E = \im(p) \oplus \ker(p)$ et $p$ est bien le projecteur sur $\im(p)$ parallèlement à $\ker(p)$ car $x = \underbrace{p(x)}_{\in \im(p)} + \underbrace{(x -p(x))}_{\in \ker(p)}$
         \end{itemize}
     \end{demo}
     
@@ -580,7 +581,7 @@
         \begin{itemize}
             \item[$\implies$] Si $y = p(x)$, alors $p(x-y) = p(x)- p(p(x)) = 0_E$.
     
-            Donc $\et{y \in E_1 = \Ima(p)}{x-y \in E_2 = \Ker(f)}$
+            Donc $\et{y \in E_1 = \im(p)}{x-y \in E_2 = \ker(f)}$
             \item[$\impliedby$] $ x = y + (x-y)$ et $\et{y \in E_1}{x-y \in E_2}$ donc $p(x) = y$.
         \end{itemize}
     \end{demo}
@@ -614,7 +615,7 @@
         \begin{alors}
             \item $s \in \GL(E)$.
             \item $\left.\kern-\nulldelimiterspace s \vphantom{\big|} \right|_{E_1}^{E_1} = \id_{E_1}$ et $\left.\kern-\nulldelimiterspace s \vphantom{\big|} \right|_{E_2}^{E_2} = - \id_{E_2}$.
-            \item $E_1 = \Ker(s-\id_E)$ et $E_2 = \Ker(s + \id_E)$.
+            \item $E_1 = \ker(s-\id_E)$ et $E_2 = \ker(s + \id_E)$.
         \end{alors}
     \end{prop}
     
@@ -627,7 +628,7 @@
             s \circ s = \id_E \\
             s \in \mathcal{L}(E)
         \end{array} \right. \]
-        Dans ce cas, $s$ est la symétrie par rapport à $\Ker(s-\id_E)$ de direction $\Ker(s + \id_E)$.
+        Dans ce cas, $s$ est la symétrie par rapport à $\ker(s-\id_E)$ de direction $\ker(s + \id_E)$.
     \end{theo}
     
     \begin{demo}{Démonstration}{myred}
@@ -648,7 +649,7 @@
     \end{prop}
     
     \begin{demo}{Explication}{myolive}
-        On pose $E_1 = \Ker(s -\id_E)$ et $E_2 = \Ker(s + \id_E)$.
+        On pose $E_1 = \ker(s -\id_E)$ et $E_2 = \ker(s + \id_E)$.
         \begin{align*}
             \et{x+y \in E_1}{x-y \in E_2} & \iff \et{s(x+y) = x+y}{s(x-y) = -(x-y)} \\
             & \iff \et{s(x) + s(y) = x +y }{s(x)- s(y) = -x +y} \\
@@ -671,7 +672,7 @@
     \end{defi}
     
     \begin{omed}{Remarque}{myyellow}
-        Si l’équation est homogène, $\Ker(\varphi)$ est l’ensemble des solutions.
+        Si l’équation est homogène, $\ker(\varphi)$ est l’ensemble des solutions.
     \end{omed}
     
     \begin{prop}{Structure de l’ensemble des solutions d’une équation linéaire}{}
@@ -682,8 +683,8 @@
         \end{soient}
         Alors l’ensemble des solutions de l’équation linéaire $ \varphi (u) = b $ est 
         \begin{enumerate}
-            \item $\emptyset$ si $b \notin \Ima(\varphi)$.
-            \item $ u_0 + \Ker(\varphi) = \enstq{u_0 + u}{u \in \Ker(\varphi)}$ si $b \in \Ima(\varphi)$ et $\varphi(u_0) = b$.
+            \item $\emptyset$ si $b \notin \im(\varphi)$.
+            \item $ u_0 + \ker(\varphi) = \enstq{u_0 + u}{u \in \ker(\varphi)}$ si $b \in \im(\varphi)$ et $\varphi(u_0) = b$.
         \end{enumerate}
     \end{prop}
 
@@ -812,7 +813,7 @@
             \hline 
             0_{n,p} & C 
         \end{array} \right) \]
-        Alors, si $\mathcal{F} = \Vect(e_1,\ldots,e_p)$, $F$ est stable par $f$.
+        Alors, si $\mathcal{F} = \vect(e_1,\ldots,e_p)$, $F$ est stable par $f$.
     \end{omed}
 
     \subsubsection{Produit de matrices par blocs}
@@ -959,7 +960,7 @@
             \hline 
             0 & \mat{\mathcal{B}_G}{f}
         \end{array} \right) \]
-        On dit que $\mat{\mathcal{B}}{f}$ est diagonale par blocs. On peut la noter $\Diag(A,B)$.
+        On dit que $\mat{\mathcal{B}}{f}$ est diagonale par blocs. On peut la noter $\diag(A,B)$.
     \end{prop}
 
     \begin{prop}{Généralisation}{}
@@ -979,7 +980,7 @@
             0 & \ddots & 0 \\
             \hline
             0 & 0 & \mat{\mathcal{B}_n}{f}
-        \end{array} \right) = \Diag(\mat{\mathcal{B}_1}{f}, \ldots, \mat{\mathcal{B}_n}{f}) \]
+        \end{array} \right) = \diag(\mat{\mathcal{B}_1}{f}, \ldots, \mat{\mathcal{B}_n}{f}) \]
     \end{prop}
 
     \begin{prop}{}{}
@@ -1202,7 +1203,7 @@
     \begin{demo}{Preuve}{myolive}
         \begin{itemize}
             \item \textbf{Montrons que $f(\ker(g)) \subset \ker(g)$} \quad Soit $x \in \ker(g)$. On a $g \circ f(x) = f \circ g(x) = 0$ d’où $f(x) \in \ker(g)$. 
-            \item \textbf{Montrons que $f(\Ima(g)) \subset \Ima(g)$} \quad Soit $y \in \Ima(g)$. Il existe $x \in E$ tel que $g(x) = y$ d’où $f(y) = f \circ g(x) = g \circ f(x)$ donc $f(x) \in \Ima(g)$.
+            \item \textbf{Montrons que $f(\im(g)) \subset \im(g)$} \quad Soit $y \in \im(g)$. Il existe $x \in E$ tel que $g(x) = y$ d’où $f(y) = f \circ g(x) = g \circ f(x)$ donc $f(x) \in \im(g)$.
         \end{itemize}
     \end{demo}
 
@@ -1210,9 +1211,9 @@
         Considérons $f \in \mathcal{L}(E)$ tel que $f^2 + 2 f - 3 \id_E = 0$. Montrons que $E = \ker(f - \id_E) \oplus \ker(f + 3 \id_E)$.
         \begin{itemize}
             \item Soit $x \in \ker(f - \id_E) \cap \ker(f + 3 \id_E)$. Alors $f(x) - x = 0$ et $f(x) + 3x$. Donc $x = 0$.
-            \item On remarque que $f^2 + 2f - 3 \id_E = (f - \id_E) \circ (f + 3 \id_E) = (f + 3 \id_E) \circ (f - \id_E) = 0$. On en déduit que $\Ima(f + 3 \id_E) \subset \ker(f - \id_E)$ et $\Ima(f - \id_E) \subset \ker(f + 3 \id_E)$.
+            \item On remarque que $f^2 + 2f - 3 \id_E = (f - \id_E) \circ (f + 3 \id_E) = (f + 3 \id_E) \circ (f - \id_E) = 0$. On en déduit que $\im(f + 3 \id_E) \subset \ker(f - \id_E)$ et $\im(f - \id_E) \subset \ker(f + 3 \id_E)$.
             
-            Soit $x \in E$. D’après les inclusions précédentes, il suffit de de décomposer $x$ en un élément de $\Ima(f + 3 \id_E)$ et un élément de $\Ima(f - \id(E))$. On remarque ainsi que 
+            Soit $x \in E$. D’après les inclusions précédentes, il suffit de de décomposer $x$ en un élément de $\im(f + 3 \id_E)$ et un élément de $\im(f - \id(E))$. On remarque ainsi que 
             \[ x = \frac{1}{4} \left( \left(f(x) + 3x\right) - \left(f(x) - x\right) \right) \]
         \end{itemize}
     \end{omed}
@@ -1227,18 +1228,18 @@
     \begin{defi}{Matrice de passage}{}
         \begin{soient}
             \item $E$ un espace vectoriel non-nul de dimension finie $n$
-            \item $\mathcal{B} = (e_1, \ldots, e_n)$ et $\barr{\mathcal{B}} = (\barr{e_1}, \ldots, \barr{e_n})$ deux bases de $E$.
+            \item $\mathcal{B} = (e_1, \ldots, e_n)$ et $\ovl{\mathcal{B}} = (\ovl{e_1}, \ldots, \ovl{e_n})$ deux bases de $E$.
         \end{soient}
-        La \textbf{matrice de passage} $\pass{\mathcal{B}}{\barr{\mathcal{B}}}$ de $\mathcal{B}$ à $\barr{\mathcal{B}}$ est la matrice de $\mk{n}$ dont la $j$-ème colonne est formée des coordonnées de $\barr{e_j}$ dans la base $\mathcal{B}$. 
-        \[ \pass{\mathcal{B}}{\barr{\mathcal{B}}} = \mat{\mathcal{B}}{\barr{e_1},\ldots,\barr{e_n}} = \mat{\barr{\mathcal{B}},\mathcal{B}}{\id_E} \]
+        La \textbf{matrice de passage} $\pass{\mathcal{B}}{\ovl{\mathcal{B}}}$ de $\mathcal{B}$ à $\ovl{\mathcal{B}}$ est la matrice de $\mk{n}$ dont la $j$-ème colonne est formée des coordonnées de $\ovl{e_j}$ dans la base $\mathcal{B}$. 
+        \[ \pass{\mathcal{B}}{\ovl{\mathcal{B}}} = \mat{\mathcal{B}}{\ovl{e_1},\ldots,\ovl{e_n}} = \mat{\ovl{\mathcal{B}},\mathcal{B}}{\id_E} \]
     \end{defi}
 
     \begin{prop}{Inversibilité d’une matrice de passage}{}
         \begin{soient}
             \item $E$ un espace vectoriel non-nul de dimension finie $n$
-            \item $\mathcal{B} = (e_1,\ldots,e_n)$ et $\barr{\mathcal{B}} = \left(\barr{e_1}, \ldots, \barr{e_n}\right)$ deux bases de $E$
+            \item $\mathcal{B} = (e_1,\ldots,e_n)$ et $\ovl{\mathcal{B}} = \left(\ovl{e_1}, \ldots, \ovl{e_n}\right)$ deux bases de $E$
         \end{soient}
-        Alors $\pass{\mathcal{B}}{\bar{\mathcal{B}}}$ est inversible, et $\left(\pass{\mathcal{B}}{\barr{\mathcal{B}}}\right)^{-1} = \pass{\barr{\mathcal{B}}}{\mathcal{B}}$. De plus, cette matrice est unique.
+        Alors $\pass{\mathcal{B}}{\bar{\mathcal{B}}}$ est inversible, et $\left(\pass{\mathcal{B}}{\ovl{\mathcal{B}}}\right)^{-1} = \pass{\ovl{\mathcal{B}}}{\mathcal{B}}$. De plus, cette matrice est unique.
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
@@ -1248,21 +1249,21 @@
     \begin{theo}{Formules de changement de base}{}
         \begin{soient}
             \item $E$ et $F$ deux espaces vectoriels de dimensions finies
-            \item $\mathcal{B}$ et $\barr{\mathcal{B}}$ deux bases de $E$
-            \item $\mathcal{B}'$ et $\barr{\mathcal{B}'}$ deux bases de $F$
+            \item $\mathcal{B}$ et $\ovl{\mathcal{B}}$ deux bases de $E$
+            \item $\mathcal{B}'$ et $\ovl{\mathcal{B}'}$ deux bases de $F$
             \item $f \in \mathcal{L}(E,F)$
             \item $g \in \mathcal{L}(E)$
             \item $x \in E$
         \end{soient}
         \begin{alors}
             \item \textbf{Pour un vecteur}
-            \[ \mat{\barr{\mathcal{B}}}{x} = \pass{\barr{\mathcal{B}}}{\mathcal{B}}\mat{\mathcal{B}}{x} \]
+            \[ \mat{\ovl{\mathcal{B}}}{x} = \pass{\ovl{\mathcal{B}}}{\mathcal{B}}\mat{\mathcal{B}}{x} \]
             \item \textbf{Pour une application linéaire} 
-            \[ \mat{\barr{\mathcal{B}}, \bar{\mathcal{B}'}}{f} = \left(\pass{\mathcal{B}'}{\barr{\mathcal{B}'}}\right)^{-1} \mat{\mathcal{B},\mathcal{B}'}{f} \pass{\mathcal{B}}{\barr{\mathcal{B}}} \]
+            \[ \mat{\ovl{\mathcal{B}}, \bar{\mathcal{B}'}}{f} = \left(\pass{\mathcal{B}'}{\ovl{\mathcal{B}'}}\right)^{-1} \mat{\mathcal{B},\mathcal{B}'}{f} \pass{\mathcal{B}}{\ovl{\mathcal{B}}} \]
             Cela se retient avec un schéma adéquat, que l’on remonte « à l’envers »
-            \[ \overset{\overset{f}{\xrightarrow{\hspace*{8cm}}}}{\underset{\barr{\mathcal{B}}}{E} \overset{\id_E}{\xrightarrow{\hspace*{2cm}}} \underset{\mathcal{B}}{E} \overset{f}{\xrightarrow{\hspace*{2cm}}} \underset{\mathcal{B}'}{F} \overset{\id_F}{\xrightarrow{\hspace*{2cm}}} \underset{\barr{\mathcal{B}'}}{F}} \]  
+            \[ \overset{\overset{f}{\xrightarrow{\hspace*{8cm}}}}{\underset{\ovl{\mathcal{B}}}{E} \overset{\id_E}{\xrightarrow{\hspace*{2cm}}} \underset{\mathcal{B}}{E} \overset{f}{\xrightarrow{\hspace*{2cm}}} \underset{\mathcal{B}'}{F} \overset{\id_F}{\xrightarrow{\hspace*{2cm}}} \underset{\ovl{\mathcal{B}'}}{F}} \]  
             \item \textbf{Pour un endomorphisme} 
-            \[ \mat{\barr{\mathcal{B}}}{f} = P^{-1} \mat{\mathcal{B}}{f} P \]
+            \[ \mat{\ovl{\mathcal{B}}}{f} = P^{-1} \mat{\mathcal{B}}{f} P \]
         \end{alors}
     \end{theo}
 
@@ -1290,11 +1291,11 @@
     \begin{defi}{Image, noyau et rang d’une matrice}{}
         Soit $M \in \mk{n,p}$.
         \begin{itemize}
-            \item Le \textbf{noyau} de la matrice $M$ est l’ensemble $\Ker(M)=\left\{ X \in \mk{p,1}, \, MX=0_{n,1} \right\}$
+            \item Le \textbf{noyau} de la matrice $M$ est l’ensemble $\ker(M)=\left\{ X \in \mk{p,1}, \, MX=0_{n,1} \right\}$
             \item On note $C_1, \ldots, C_p$ les colonnes de $M$.
 
-            L’\textbf{image} de la matrice $M$ est $\Vect(C_1, \ldots, C_p)$.
-            \item Le \textbf{rang} de la matrice $M$ est $\rg(M) = \rg(f_M)=\dim(\Ima(M)) = \dim(\Vect(C_1,\ldots,C_p)) = \rg(C_1, \ldots, C_p)$. 
+            L’\textbf{image} de la matrice $M$ est $\vect(C_1, \ldots, C_p)$.
+            \item Le \textbf{rang} de la matrice $M$ est $\rg(M) = \rg(f_M)=\dim(\im(M)) = \dim(\vect(C_1,\ldots,C_p)) = \rg(C_1, \ldots, C_p)$. 
         \end{itemize}
     \end{defi}
 
@@ -1310,10 +1311,10 @@
             \item $f \in \mathcal{L}(E,F)$
         \end{soient}
         \begin{alors}
-            \item $x \in \Ker(f) \iff \mat{\mathcal{B}}{x} \in \Ker(\mat{\mathcal{B},\mathcal{B}'}{f})$
-            \item $y \in \Ima(f) \iff \mat{\mathcal{B}'}{y} \in \Ima(\mat{\mathcal{B},\mathcal{B}'}{f})$
+            \item $x \in \ker(f) \iff \mat{\mathcal{B}}{x} \in \ker(\mat{\mathcal{B},\mathcal{B}'}{f})$
+            \item $y \in \im(f) \iff \mat{\mathcal{B}'}{y} \in \im(\mat{\mathcal{B},\mathcal{B}'}{f})$
         \end{alors}
-        En particulier, $\dim(\Ker(f)) = \dim(\Ker(\mat{\mathcal{B},\mathcal{B}'}{f}))$ et $\rg(f) = \rg(\mat{\mathcal{B},\mathcal{B}'}{f})$
+        En particulier, $\dim(\ker(f)) = \dim(\ker(\mat{\mathcal{B},\mathcal{B}'}{f}))$ et $\rg(f) = \rg(\mat{\mathcal{B},\mathcal{B}'}{f})$
     \end{prop}
 
     \begin{prop}{Rang d’une famille de vecteur et d’une application linéaire}{}
@@ -1344,8 +1345,8 @@
             \item Si $N \in \GL_n(\mathbb{K})$, alors $\rg(NM) = \rg(M)$.
             \item Si $P$ et $Q$ sont semblables, $\rg(P) = rg(Q)$.
             \item $\rg(M) = \rg(M^{\top})$
-            \item \textbf{Théorème du rang} \quad $p = \rg(M) + \dim(\Ker(M))$
-            \item \[ M \text{ est inversible} \iff \Ker(M) = \left\{ \begin{pmatrix}
+            \item \textbf{Théorème du rang} \quad $p = \rg(M) + \dim(\ker(M))$
+            \item \[ M \text{ est inversible} \iff \ker(M) = \left\{ \begin{pmatrix}
             0 \\
             \vdots \\
             0
@@ -1397,8 +1398,8 @@
     \begin{prop}{}{}
         Soit $(\mathcal{S})$ un système linéaire de forme matricielle $AX = B$.
         \begin{enumerate}
-            \item Le système homogène $AX = 0_{n,1}$ a pour ensemble de solution $\Ker(A)$.
-            \item Le système $AX = B$ est compatible si et seulement si $B \in \Ima(A)$.
+            \item Le système homogène $AX = 0_{n,1}$ a pour ensemble de solution $\ker(A)$.
+            \item Le système $AX = B$ est compatible si et seulement si $B \in \im(A)$.
             \item Si $A$ est carrée et inversible, le système $AX = B$ admet une unique solution. On dit dans ce cas que le système est un système de Cramer.
         \end{enumerate}
     \end{prop}  
@@ -1546,11 +1547,11 @@
     \begin{omed}{Exemples}{mypurple}
         \begin{enumerate}[label=\textcolor{mypurple}{\arabic*.}]
             \item Si $f = \lambda \id_E$ et $\mathcal{B}$ une base de $E$, alors $\mat{\mathcal{B}}{f} = \lambda I_n$ donc $\tr(f) = \lambda n$.
-            \item Si $p$ est un projecteur de $E$, alors $E = \Ima(p) \oplus \ker(p)$. Soit $\mathcal{B}$ une base adaptée à cette décomposition. Alors $\mat{\mathcal{B}}{p} = \left[ \begin{array}{c | c}
+            \item Si $p$ est un projecteur de $E$, alors $E = \im(p) \oplus \ker(p)$. Soit $\mathcal{B}$ une base adaptée à cette décomposition. Alors $\mat{\mathcal{B}}{p} = \left[ \begin{array}{c | c}
                 I_r & 0 \\
                 \hline
                 0 & 0
-            \end{array} \right]$ où $r = \dim(\Ima(p))$ donc $\tr(p) = r = \rg(p)$.
+            \end{array} \right]$ où $r = \dim(\im(p))$ donc $\tr(p) = r = \rg(p)$.
         \end{enumerate}
     \end{omed}
 
@@ -1905,7 +1906,7 @@
             \item Si deux colonnes de $A$ sont égales, le déterminant est nul.
             \item Si une colonne de la matrice est nulle, le déterminant est nul.
             \item Multiplier une colonne de la matrice par $\lambda$ multiplie le déterminant par $\lambda$.
-            \item $\Det(\lambda A) = \lambda^n \Det(A)$.
+            \item $\det(\lambda A) = \lambda^n \det(A)$.
             \item Rajouter à une colonne de $A$ une combinaison linéaire des autres colonnes de $A$ ne modifie pas la valeur du déterminant.
             \item Si les colonnes sont liées, le déterminant est nul.
         \end{enumerate}
@@ -2013,8 +2014,8 @@
             \item $A = \left((a_{i,j})\right)_{1 \leq i,j \leq n} \in \mk{n}$
         \end{soient}
         \begin{alors}
-            \item $\forall j \in \intervalleEntier{1}{n}, \, \Det(A) = \sum\limits_{i=1}^n (-1)^{i+j} a_{i,j} \Delta_{i,j}$ (Développement par rapport à la $j$-ème colonne)
-            \item $\forall i \in \intervalleEntier{1}{n}, \, \Det(A) = \sum\limits_{j=1}^n (-1)^{i+j} a_{i,j} \Delta_{i,j}$ (Développement par rapport à la $i$-ème ligne)
+            \item $\forall j \in \intervalleEntier{1}{n}, \, \det(A) = \sum\limits_{i=1}^n (-1)^{i+j} a_{i,j} \Delta_{i,j}$ (Développement par rapport à la $j$-ème colonne)
+            \item $\forall i \in \intervalleEntier{1}{n}, \, \det(A) = \sum\limits_{j=1}^n (-1)^{i+j} a_{i,j} \Delta_{i,j}$ (Développement par rapport à la $i$-ème ligne)
         \end{alors}
     \end{theo}
 
@@ -2086,7 +2087,7 @@
     \begin{coro}{Déterminant d’une matrice triangulaire}{}
         Soit $T = \left((t_{i,j})\right)_{1 \leq i,j \leq n}$ une matrice triangulaire.
 
-        Alors \[ \Det(T)=\prod_{i=1}^n t_{i,i} \]
+        Alors \[ \det(T)=\prod_{i=1}^n t_{i,i} \]
     \end{coro}
 
     \begin{demo}{Preuve}{myorange}
@@ -2347,16 +2348,16 @@
     \subsubsection{Comatrice d’une matrice carrée}
 
     \begin{defi}{Comatrice}{}
-        Soit $A \in \mk{n}$. La \textbf{comatrice} de $A$ est $\Com(A) = \left((-1)^{i + j} \det(\Delta_{i,j})\right)_{i,j \in \intervalleEntier{1}{n}}$ \textit{i.e.} la matrice des cofacteurs de $a_{i,j}$.
+        Soit $A \in \mk{n}$. La \textbf{comatrice} de $A$ est $\com(A) = \left((-1)^{i + j} \det(\Delta_{i,j})\right)_{i,j \in \intervalleEntier{1}{n}}$ \textit{i.e.} la matrice des cofacteurs de $a_{i,j}$.
     \end{defi}
 
     \begin{prop}{}{}
         Pour tout $A \in \mk{n}$, on a 
-        \[ \Com(A)^{\top} A = \det(A) I_n \esp{et} A \Com(A)^{\top} = \det(A) I_n \]
+        \[ \com(A)^{\top} A = \det(A) I_n \esp{et} A \com(A)^{\top} = \det(A) I_n \]
     \end{prop}
 
     \begin{demo}{Démonstration}{myolive}
-        Calculons le coefficient $(i,j) =: x_{i,j}$ de $\Com(A)^{\top} A$.
+        Calculons le coefficient $(i,j) =: x_{i,j}$ de $\com(A)^{\top} A$.
         \begin{itemize}
             \item Si $i= j$, 
             \begin{align*}
@@ -2377,7 +2378,7 @@
         \end{itemize}
     \end{demo}
 
-    On retrouve la formule bien connue des terminales $A^{-1} = \frac{1}{\det(A)} \Com(A)^{\top}$.
+    On retrouve la formule bien connue des terminales $A^{-1} = \frac{1}{\det(A)} \com(A)^{\top}$.
 
     \subsubsection{Matrice compagnon}
 
@@ -2447,15 +2448,15 @@
 
     \begin{omed}{Notations}{myyellow}
         \begin{enumerate}[label=\textcolor{myyellow}{\arabic*.}]
-            \item On note $\Sp(f)$ l’ensemble des valeurs propres de $f$, i.e.
-            \[ \Sp(f) = \big\{ \lambda \in \mathbb{K}, \exists v \in E \backslash \{0\} , f(v) = \lambda v \big\} \]    
-            \item Si $\lambda \in \Sp(f)$ est une valeur propre de $f$, on note $E_{\lambda}(f)$ l’ensemble des vecteurs propres de $f$ associés à $\lambda$, 
+            \item On note $\sp(f)$ l’ensemble des valeurs propres de $f$, i.e.
+            \[ \sp(f) = \big\{ \lambda \in \mathbb{K}, \exists v \in E \backslash \{0\} , f(v) = \lambda v \big\} \]    
+            \item Si $\lambda \in \sp(f)$ est une valeur propre de $f$, on note $E_{\lambda}(f)$ l’ensemble des vecteurs propres de $f$ associés à $\lambda$, 
             \[ E_{\lambda} (f) = \big\{ v \in E, f(v) = \lambda v \big\} = \ker(f - \lambda \id_E) \]
         \end{enumerate}
     \end{omed}
 
     \begin{prop}{}{}
-        Pour tout $\lambda \in \Sp(f)$, $E_{\lambda}(f)$ est un sous-espace vectoriel $E$ de dimension $\geq 1$.
+        Pour tout $\lambda \in \sp(f)$, $E_{\lambda}(f)$ est un sous-espace vectoriel $E$ de dimension $\geq 1$.
     \end{prop}
 
     \begin{demo}{Preuve ?}{myolive}
@@ -2481,23 +2482,23 @@
             Si $A = \begin{bmatrix}
                 1- \lambda & 2 \\
                 3 & 2 - \lambda
-            \end{bmatrix}$ est inversible, alors $(0,0)$ est l’unique solution du système, et $\lambda$ n’est pas valeur propre. Or $\det(A) = -4 -3\lambda + \lambda^2 = (\lambda + 1)(\lambda - 4)$. Donc $\Sp(f) \subset \left\{-1, 4\right\}$.
+            \end{bmatrix}$ est inversible, alors $(0,0)$ est l’unique solution du système, et $\lambda$ n’est pas valeur propre. Or $\det(A) = -4 -3\lambda + \lambda^2 = (\lambda + 1)(\lambda - 4)$. Donc $\sp(f) \subset \left\{-1, 4\right\}$.
             \begin{itemize}
-                \item Si $\lambda = -1$, le système donne $x = -y$, d’où $E_{-1}(f) = \Vect\left\{(1,-1)\right\}$.
-                \item Si $\lambda = 4$, le système donne $3x - 2y = 0$, d’où $E_{4}(f) = \Vect\left\{(2,3)\right\}$.
+                \item Si $\lambda = -1$, le système donne $x = -y$, d’où $E_{-1}(f) = \vect\left\{(1,-1)\right\}$.
+                \item Si $\lambda = 4$, le système donne $3x - 2y = 0$, d’où $E_{4}(f) = \vect\left\{(2,3)\right\}$.
             \end{itemize}
-            Finalement, $-1$ et $4$ sont des valeurs propres de $f$ et $\Sp(f) = \left\{-1,4\right\}$.
-            \item Si $\fonction{\varphi}{\mathcal{C}^{\infty}(\mathbb{R},\mathbb{R})}{(\mathbb{R},\mathbb{R})}{f}{f'}$, $\lambda$ est une valeur propre de $\varphi$ s’il existe $f \neq 0$ tel que $f' = \lambda f$. $f \in \Vect(e^{\lambda x})$ convient, donc $Sp(\varphi) = \mathbb{R}$ et $E_{\lambda}(\varphi) = \Vect(e^{\lambda x})$.
+            Finalement, $-1$ et $4$ sont des valeurs propres de $f$ et $\sp(f) = \left\{-1,4\right\}$.
+            \item Si $\fonction{\varphi}{\mathcal{C}^{\infty}(\mathbb{R},\mathbb{R})}{(\mathbb{R},\mathbb{R})}{f}{f'}$, $\lambda$ est une valeur propre de $\varphi$ s’il existe $f \neq 0$ tel que $f' = \lambda f$. $f \in \vect(e^{\lambda x})$ convient, donc $Sp(\varphi) = \mathbb{R}$ et $E_{\lambda}(\varphi) = \vect(e^{\lambda x})$.
         \end{enumerate}
     \end{omed}
 
     \begin{prop}{}{}
-        Si $E$ est de dimension finie, alors $\lambda \in \Sp(f)$ \textit{ssi} $\det(\lambda \id_E - f) = 0$.
+        Si $E$ est de dimension finie, alors $\lambda \in \sp(f)$ \textit{ssi} $\det(\lambda \id_E - f) = 0$.
     \end{prop}
 
     \begin{demo}{Démonstration}{myolive}
         \begin{align*}
-            \lambda \in \Sp(f) 
+            \lambda \in \sp(f) 
             &\iff \ker(f - \lambda \id_E) \neq \{0\} \\
             &\iff f - \lambda \id_E \textit{ n’est pas bijective}
         \end{align*}
@@ -2520,14 +2521,14 @@
                 D’après $\mathcal{H}_p$, $\forall i \in \intervalleEntier{1}{p}, \alpha_i \left(\lambda_{p+1} - \lambda_i\right) = 0$ donc $\alpha_i = 0$. Finalement, l’équation $(1)$ donne $\alpha_{p+1} = 0$. Donc la famille est libre.
             \end{itemize}
             On peut aussi passer par une preuve directe, en itérant $p-1$ fois la fonction $f$, ce qui donne un système à $p$ équations et $p$ inconnues, de matrice caractéristique de type Vandermonde.
-            \item Soient $\lambda_1, \ldots, \lambda_p \in \Sp(f)$ distincts. Montrons que $E_{\lambda_1}(f) + \cdots + E_{\lambda_p}(f)$ sont en somme directe. Soit $x$ tel que $x = u_1 + \cdots + u_p = v_1 + \cdots + v_p$, où $u_i$ et $v_i$ sont des éléments $E_{\lambda_i}(f)$. On a alors 
+            \item Soient $\lambda_1, \ldots, \lambda_p \in \sp(f)$ distincts. Montrons que $E_{\lambda_1}(f) + \cdots + E_{\lambda_p}(f)$ sont en somme directe. Soit $x$ tel que $x = u_1 + \cdots + u_p = v_1 + \cdots + v_p$, où $u_i$ et $v_i$ sont des éléments $E_{\lambda_i}(f)$. On a alors 
             \[ (u_1 - v_1) + \cdots + (u_p - v_p) = 0 \]   
             Posons $I = \enstq{i \in \intervalleEntier{1}{p}}{u_i - v_i \neq 0}$. La famille $(u_i - v_i)_{i \in I}$ est une famille de vecteurs propres non nuls tels que $\sum_{i \in I} u_i - v_i = 0$. C’est absurde, donc $I = \emptyset$, et la somme est directe.
         \end{enumerate}
     \end{demo}
 
     \begin{coro}{}{}
-        Si $\dim(E) = n$, alors $\card(\Sp(f)) \leq n$.
+        Si $\dim(E) = n$, alors $\card(\sp(f)) \leq n$.
     \end{coro}
 
     \begin{demo}{Preuve}{myorange}
@@ -2552,26 +2553,26 @@
 
     \begin{omed}{Notation}{myyellow}
         \begin{enumerate}[label=\textcolor{myyellow}{\arabic*.}]
-            \item On note $\Sp(M)$ l’ensemble des valeurs propres de $M$, \textit{i.e.} 
-            \[ \Sp(M) = \big\{ \lambda \in \mathbb{K}, \exists X \in \mk{n,1} \backslash \{ 0 \}, MX = \lambda X \big\} \]
-            \item Soit $\lambda \in \Sp(M)$, on appelle sous-espace propre associé à $\lambda$ l’ensemble noté $E_{\lambda}(M)$ défini par 
+            \item On note $\sp(M)$ l’ensemble des valeurs propres de $M$, \textit{i.e.} 
+            \[ \sp(M) = \big\{ \lambda \in \mathbb{K}, \exists X \in \mk{n,1} \backslash \{ 0 \}, MX = \lambda X \big\} \]
+            \item Soit $\lambda \in \sp(M)$, on appelle sous-espace propre associé à $\lambda$ l’ensemble noté $E_{\lambda}(M)$ défini par 
             \[ E_{\lambda}(M) = \big\{ X \in \mk{n,1}, MX = \lambda X \big\} \]
         \end{enumerate}
     \end{omed}
 
     \begin{prop}{Transition}{}
-        Soient $E$ un $\mathbb{K}$-ev de dimension finie et $\mathcal{B}$ une base de $E$. Si $f \in \mathcal{L}(E)$ et $M = \mat{\mathcal{B}}{f}$, alors $\Sp(f) = \Sp(M)$. En particulier, $\Sp(M)$ ne dépend pas de la base choisie.
+        Soient $E$ un $\mathbb{K}$-ev de dimension finie et $\mathcal{B}$ une base de $E$. Si $f \in \mathcal{L}(E)$ et $M = \mat{\mathcal{B}}{f}$, alors $\sp(f) = \sp(M)$. En particulier, $\sp(M)$ ne dépend pas de la base choisie.
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
-        On sait que $\lambda \in \Sp(f) \iff \det(f - \lambda \id) = 0$, \textit{i.e.} \textit{ssi} $\det(M - \lambda I_n) = 0$, \textit{cad} $\lambda \in \Sp(M)$.
+        On sait que $\lambda \in \sp(f) \iff \det(f - \lambda \id) = 0$, \textit{i.e.} \textit{ssi} $\det(M - \lambda I_n) = 0$, \textit{cad} $\lambda \in \sp(M)$.
     \end{demo}
 
     Le spectre est ainsi un invariant de similitude.
 
     \begin{omed}{Exemples}{myolive}
         \begin{enumerate}[label=\arabic*.]
-            \item Soit $M \in \mk{n}$ une matrice nilpotente. Une telle matrice n’est pas inversible, d’où $\ker(M) \neq 0$. Il existe $X \neq 0$ tel que $M X = 0$, donc $0$ est une valeur propre de $M$. Si $\lambda \in \Sp(M) \neq 0$, alors il existe $Y \neq 0$ telle que $MY = \lambda Y$. On considère $n = \min(k \in \mathbb{N}, M^k X = 0)$ Donc $M^n Y = \lambda^n Y = 0$, d’où $\lambda^n = 0$ puis $\lambda = 0$.
+            \item Soit $M \in \mk{n}$ une matrice nilpotente. Une telle matrice n’est pas inversible, d’où $\ker(M) \neq 0$. Il existe $X \neq 0$ tel que $M X = 0$, donc $0$ est une valeur propre de $M$. Si $\lambda \in \sp(M) \neq 0$, alors il existe $Y \neq 0$ telle que $MY = \lambda Y$. On considère $n = \min(k \in \mathbb{N}, M^k X = 0)$ Donc $M^n Y = \lambda^n Y = 0$, d’où $\lambda^n = 0$ puis $\lambda = 0$.
             \item Si $M = \begin{bmatrix}
                 0 & -I_2 \\
                 I_2 & 0
@@ -2586,9 +2587,9 @@
                 \item Si $x = 0$, alors $z = 0$ et $y \neq 0$ d’où $1 = - \lambda^2$.
                 \item Si $x \neq 0$, on peut simplifier par $x$, d’où $1 = - \lambda^2$ de même.
             \end{itemize}
-            Ainsi, $\Sp_{\mathbb{R}}(M) = \emptyset$, et $\Sp_{\mathbb{C}}(M) \subset \left\{-i, i\right\}$.
+            Ainsi, $\sp_{\mathbb{R}}(M) = \emptyset$, et $\sp_{\mathbb{C}}(M) \subset \left\{-i, i\right\}$.
             \begin{itemize}
-                \item Si $\lambda = i$, alors $\et{z = -i x}{t = -iy}$, donc $E_{i}(M) = \Vect\left(\begin{bmatrix}
+                \item Si $\lambda = i$, alors $\et{z = -i x}{t = -iy}$, donc $E_{i}(M) = \vect\left(\begin{bmatrix}
                     1 \\
                     0 \\
                     -i \\
@@ -2599,7 +2600,7 @@
                     0 \\
                     -i
                 \end{bmatrix}\right)$
-                \item Si $\lambda = -i$, alors $\et{z = i x}{t = iy}$ donc $E_{-i}(M) = \Vect\left(\begin{bmatrix}
+                \item Si $\lambda = -i$, alors $\et{z = i x}{t = iy}$ donc $E_{-i}(M) = \vect\left(\begin{bmatrix}
                     1 \\
                     0 \\
                     i \\
@@ -2632,7 +2633,7 @@
                 \item Donc $x_n = 0$, et dans ce cas on repète le procédé pour $x_{n-1}$. 
                 \item Il reste finalement $x_1 = \lambda x_1$. Si $x_1 = 0$, $X = 0$ donc $\lambda$ n’est pas valeur propre. Si $x_1 \neq 0$, $\lambda = 1$.
             \end{itemize}
-            Donc $\Sp(M) = \left\{1\right\}$ et $E_{1}(M) = \Vect\left(\begin{bmatrix}
+            Donc $\sp(M) = \left\{1\right\}$ et $E_{1}(M) = \vect\left(\begin{bmatrix}
                 1 \\
                 \vdots \\
                 0
@@ -2676,7 +2677,7 @@
 
     \begin{demo}{Démonstration}{myolive}
         \begin{align*}
-            \lambda \in \Sp(M) 
+            \lambda \in \sp(M) 
             &\iff \ker(\lambda I_n - M) \neq \left\{0\right\} \\
             &\iff \lambda I_n - M \text{n’est pas inversible} \\
             &\iff \det(\lambda I_n - M) = 0 \\
@@ -2707,11 +2708,11 @@
     \end{omed}
 
     \begin{defi}{Multiplicité d’une valeur propre}{}
-        Soit $\lambda \in \Sp(f)$ (ou $\lambda \in \Sp(M))$. On appelle \textbf{multiplicité} de $\lambda$ sa multiplicité comme racine du polynôme caractéristique. On la note $m_{\lambda}$.
+        Soit $\lambda \in \sp(f)$ (ou $\lambda \in \sp(M))$. On appelle \textbf{multiplicité} de $\lambda$ sa multiplicité comme racine du polynôme caractéristique. On la note $m_{\lambda}$.
     \end{defi}
 
     \begin{prop}{}{}
-        Si $M \in \mathcal{M}_n(\mathbb{C})$, alors $\chi_M(X) = \prod_{\lambda \in \Sp(M)} (X - \lambda)^{m_{\lambda}}$.
+        Si $M \in \mathcal{M}_n(\mathbb{C})$, alors $\chi_M(X) = \prod_{\lambda \in \sp(M)} (X - \lambda)^{m_{\lambda}}$.
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
@@ -2721,12 +2722,12 @@
     \begin{prop}{}{}
         Soit $f \in \mathcal{L}(E)$ (ou $M \in \mk{n})$.
 
-        Pour tout $\lambda \in \Sp(f)$ (ou $\lambda \in \Sp(M)$), on a 
+        Pour tout $\lambda \in \sp(f)$ (ou $\lambda \in \sp(M)$), on a 
         \[ 1 \leq \dim(E_{\lambda}(f)) \leq m_{\lambda} \quad \text{ou} \quad 1 \leq \dim(E_{\lambda}(M)) \leq m_{\lambda} \]
     \end{prop}
 
     \begin{lem}{}{}
-        Soit $f \in \mathcal{L}(E)$ et $F$ un sev de $E$ stable par $f$. Alors $\chi_{\restr{f}{F}} \tq \chi_{f}$.
+        Soit $f \in \mathcal{L}(E)$ et $F$ un sev de $E$ stable par $f$. Alors $\chi_{\restr{f}{F}} \vbar \chi_{f}$.
     \end{lem}
     
     \begin{demo}{Démonstration du lemme}{mybrown}
@@ -2749,7 +2750,7 @@
     \end{demo}
 
     \begin{demo}{Preuve}{myolive}
-        Pour $\lambda \in \Sp(f)$, $E_{\lambda}(f)$ est stable par $f$, donc $\chi_{E_{\lambda}(f)}$. Or $f(x) = \lambda x$ pour $x \in E_{\lambda}(f)$, donc $\restr{f}{E_{\lambda}(f)} = \lambda \id$. Donc $\chi_{\restr{f}{E_{\lambda}(f)} = \lambda \id} = (X - \lambda)^{\dim(E_{\lambda}(f))}$. Or d’après le lemme, $(X - \lambda)^{\dim(E_{\lambda}(f))} \tq \chi_{f}$, d’où $\dim(E_{\lambda}(f)) \leq m_{\lambda}$.
+        Pour $\lambda \in \sp(f)$, $E_{\lambda}(f)$ est stable par $f$, donc $\chi_{E_{\lambda}(f)}$. Or $f(x) = \lambda x$ pour $x \in E_{\lambda}(f)$, donc $\restr{f}{E_{\lambda}(f)} = \lambda \id$. Donc $\chi_{\restr{f}{E_{\lambda}(f)} = \lambda \id} = (X - \lambda)^{\dim(E_{\lambda}(f))}$. Or d’après le lemme, $(X - \lambda)^{\dim(E_{\lambda}(f))} \vbar \chi_{f}$, d’où $\dim(E_{\lambda}(f)) \leq m_{\lambda}$.
     \end{demo}
 
     \begin{omed}{Exemple}{myolive}
@@ -2758,7 +2759,7 @@
                  & \ddots & \ddots & \\
                  & & & 1 \\
                 0 & & & 1
-            \end{bmatrix} \in \mk{n}$, on a vu que $\Sp(M) = \left\{1\right\}$ et $E_1(M) = \Vect\begin{bmatrix}
+            \end{bmatrix} \in \mk{n}$, on a vu que $\sp(M) = \left\{1\right\}$ et $E_1(M) = \vect\begin{bmatrix}
                 1 \\
                 0 \\
                 \vdots \\
@@ -2767,7 +2768,7 @@
     \end{omed}
 
     \begin{coro}{}{}
-        Si $\lambda \in \Sp(f)$ est une valeur propre de multiplicité $1$, \textit{i.e.} $m_{\lambda} = 1$, alors le sous-espace propre associé est de dimension $1$. Ainsi, $E_{\lambda}(f)$ est une droite vectorielle.
+        Si $\lambda \in \sp(f)$ est une valeur propre de multiplicité $1$, \textit{i.e.} $m_{\lambda} = 1$, alors le sous-espace propre associé est de dimension $1$. Ainsi, $E_{\lambda}(f)$ est une droite vectorielle.
     \end{coro}
 
     \begin{omed}{Application \textcolor{black}{(Lien avec le pôlynôme caractéristique de l’inverse)}}{myorange}
@@ -2840,16 +2841,16 @@
     \end{demo}
 
     \begin{prop}{}{}
-        Soit $f \in \mathcal{L}(E)$ et $\mathcal{B}$ une base de $E$ telle que $M_{\mathcal{B}}(f) = \Diag(\lambda_1, \ldots, \lambda_n) = D$.
+        Soit $f \in \mathcal{L}(E)$ et $\mathcal{B}$ une base de $E$ telle que $M_{\mathcal{B}}(f) = \diag(\lambda_1, \ldots, \lambda_n) = D$.
 
-        Alors \[ \Sp(f) = \big\{ \lambda_1,\ldots,\lambda_n \big\} \]
+        Alors \[ \sp(f) = \big\{ \lambda_1,\ldots,\lambda_n \big\} \]
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
-        On sait que $\chi_f(X) = \chi_D(X) = \prod_{i = 1}^n (X - \lambda_i)$. Les valeurs propres sont racines de $\chi_f$, d’où $\Sp(f) = \left\{\lambda_1, \ldots, \lambda_n\right\}$.
+        On sait que $\chi_f(X) = \chi_D(X) = \prod_{i = 1}^n (X - \lambda_i)$. Les valeurs propres sont racines de $\chi_f$, d’où $\sp(f) = \left\{\lambda_1, \ldots, \lambda_n\right\}$.
     \end{demo}
 
-    Il est essentiel ici de remarquer que les $\lambda$ ne sont pas nécessairement distincts. Cela ne signifie par ici que $\card(\Sp(f)) = n$, ce qui est (on le verra plus tard) un critère de diagonalisabilité.
+    Il est essentiel ici de remarquer que les $\lambda$ ne sont pas nécessairement distincts. Cela ne signifie par ici que $\card(\sp(f)) = n$, ce qui est (on le verra plus tard) un critère de diagonalisabilité.
 
     \begin{omed}{Exemple}{myolive}
         Soit $M = \begin{bmatrix}
@@ -2858,7 +2859,7 @@
         \end{bmatrix}$. $\chi_M(X) = (X^2 + 1)^2$.
         \begin{itemize}
             \item $M$ n’a pas de valeurs propres dans $\mathbb{R}$, donc n’est pas diagonalisable dans $\mathbb{R}$.
-            \item $\chi_M(X) = (X-i)^2 (X+i)^2$ donc $\Sp_{\mathbb{C}}(M) = \left\{-i, i\right\}$. De plus, on a vu que $E_{-i}(M) = \Vect\left(\begin{bmatrix}
+            \item $\chi_M(X) = (X-i)^2 (X+i)^2$ donc $\sp_{\mathbb{C}}(M) = \left\{-i, i\right\}$. De plus, on a vu que $E_{-i}(M) = \vect\left(\begin{bmatrix}
                     1 \\
                     0 \\
                     i \\
@@ -2868,7 +2869,7 @@
                     1 \\
                     0 \\
                     -i
-                \end{bmatrix}\right) =: \Vect(e_1, e_2)$ et $E_{i}(M) = \Vect\left(\begin{bmatrix}
+                \end{bmatrix}\right) =: \vect(e_1, e_2)$ et $E_{i}(M) = \vect\left(\begin{bmatrix}
                     1 \\
                     0 \\
                     -i \\
@@ -2878,7 +2879,7 @@
                     1 \\
                     0 \\
                     -i
-                \end{bmatrix}\right) =: \Vect(e_3, e_4)$. Soit $f$ cannoniquement associée à $M$. Alors $\mathcal{B} = (e_1, e_2, e_3, e_4)$ est une base de vecteurs propres de $f$, donc $f$ et $M$ sont diagonalisables dans $\mathbb{C}$.
+                \end{bmatrix}\right) =: \vect(e_3, e_4)$. Soit $f$ cannoniquement associée à $M$. Alors $\mathcal{B} = (e_1, e_2, e_3, e_4)$ est une base de vecteurs propres de $f$, donc $f$ et $M$ sont diagonalisables dans $\mathbb{C}$.
                 
                 Pour diagonaliser $M$, on pose $P = \begin{bmatrix}
                     1 & 0 & 1 & 0 \\
@@ -2896,7 +2897,7 @@
             \vdots & & & & 0 \\
             & & & & 1 \\
             0 & & & 0 & 1
-        \end{bmatrix}$. On sait que $\chi_M(X) = (X-1)^n$, donc $\Sp(M) = \left\{1\right\}$. Si $M$ est diagonalisable, $M$ est semblable à une matrice diagonale formée de ses valeurs propres. Comme l’unique valeur propre de $M$ est $1$, on aurait donc $M$ semblable à $I_n$ \textit{i.e.} $M = I_n$. C’est absurde, donc $M$ n’est pas diagonalisable.
+        \end{bmatrix}$. On sait que $\chi_M(X) = (X-1)^n$, donc $\sp(M) = \left\{1\right\}$. Si $M$ est diagonalisable, $M$ est semblable à une matrice diagonale formée de ses valeurs propres. Comme l’unique valeur propre de $M$ est $1$, on aurait donc $M$ semblable à $I_n$ \textit{i.e.} $M = I_n$. C’est absurde, donc $M$ n’est pas diagonalisable.
     \end{omed}
 
     \subsubsection{Critères de diagonalisabilité}
@@ -2910,13 +2911,13 @@
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
-        Posons $\Sp(f) = \left\{\lambda_1,\ldots,\lambda_n\right\}$ et pour $i \in \intervalleEntier{1}{n}$, $e_i \neq 0$ un vecteur propre associé à $\lambda_i$. Alors $(e_1,\ldots,e_n)$ est libre car formée de vecteurs propres associés à des valeurs propres distinctes. Or elle est de cardinal $n$, donc est une base de $E$, et donc $f$ est diagonalisable. 
+        Posons $\sp(f) = \left\{\lambda_1,\ldots,\lambda_n\right\}$ et pour $i \in \intervalleEntier{1}{n}$, $e_i \neq 0$ un vecteur propre associé à $\lambda_i$. Alors $(e_1,\ldots,e_n)$ est libre car formée de vecteurs propres associés à des valeurs propres distinctes. Or elle est de cardinal $n$, donc est une base de $E$, et donc $f$ est diagonalisable. 
     \end{demo}
 
     \begin{prop}{}{}
         \begin{soient}
             \item $f \in \mathcal{L}(E)$
-            \item $\Sp(f) = \big\{ \lambda_1,\ldots,\lambda_p \big\}$ où les $\lambda_i$ sont distincts
+            \item $\sp(f) = \big\{ \lambda_1,\ldots,\lambda_p \big\}$ où les $\lambda_i$ sont distincts
         \end{soient}
         Alors les affirmations suivantes sont équivalentes :
         \begin{enumerate}
@@ -2938,13 +2939,13 @@
         Soit $f \in \mathcal{L}(E)$.
 
         $f$ est diagonalisable \textit{ssi} 
-        \[ \et{\chi_f \text{ est scindé sur } \mathbb{K}}{\text{Pour tout } \lambda \in \Sp(f), \dim(E_{\lambda}(f)) = m_{\lambda}} \]
+        \[ \et{\chi_f \text{ est scindé sur } \mathbb{K}}{\text{Pour tout } \lambda \in \sp(f), \dim(E_{\lambda}(f)) = m_{\lambda}} \]
     \end{theo}
 
     \begin{demo}{Preuve}{myred}
         \begin{itemize}
-            \item[$\impliedby$] Si $\chi_f$ est scindé, alors $\chi_f(X) = \prod_{\lambda \in \Sp(f)} (X-\lambda)^{m_{\lambda}(f)}$ est un polynôme de degré $n$, donc $\sum_{\lambda \in \Sp(\lambda)} m_{\lambda}(f) = n$. Donc $\sum_{\lambda \in \Sp(f)} \det(E_{\lambda}(f)) = n$, et $f$ est diagonalisable par la proposition précédente.
-            \item[$\implies$] Supposons $f$ diagonalisable. Alors $f$ est semblable à $D = \diag(\lambda_1,\ldots,\lambda_p)$ où les $\lambda_i$ apparaissent autant de fois que leur multiplicité $m_{\lambda_i}(f)$. Donc $\chi_f(X) = \prod_{\lambda \in \Sp(f)} (X - \lambda)^{m_{\lambda}(f)}$. Donc le polynôme caractéristique est scindé. Or $\sum_{\lambda \in \Sp(f)} \dim(E_{\lambda}(f)) = n$ car $f$ est diagonalisable, et $\sum_{\lambda \in \Sp(f)} m_{\lambda}(f) = n$ d’après la forme du polynôme caractéristique, et $\dim(E_{\lambda}(f)) \leq m_{\lambda}(f)$ pour $\lambda \in \Sp(f)$, donc $m_{\lambda}(f) = \dim(E_{\lambda}(f))$ pour $\lambda \in \Sp(f)$.
+            \item[$\impliedby$] Si $\chi_f$ est scindé, alors $\chi_f(X) = \prod_{\lambda \in \sp(f)} (X-\lambda)^{m_{\lambda}(f)}$ est un polynôme de degré $n$, donc $\sum_{\lambda \in \sp(\lambda)} m_{\lambda}(f) = n$. Donc $\sum_{\lambda \in \sp(f)} \det(E_{\lambda}(f)) = n$, et $f$ est diagonalisable par la proposition précédente.
+            \item[$\implies$] Supposons $f$ diagonalisable. Alors $f$ est semblable à $D = \diag(\lambda_1,\ldots,\lambda_p)$ où les $\lambda_i$ apparaissent autant de fois que leur multiplicité $m_{\lambda_i}(f)$. Donc $\chi_f(X) = \prod_{\lambda \in \sp(f)} (X - \lambda)^{m_{\lambda}(f)}$. Donc le polynôme caractéristique est scindé. Or $\sum_{\lambda \in \sp(f)} \dim(E_{\lambda}(f)) = n$ car $f$ est diagonalisable, et $\sum_{\lambda \in \sp(f)} m_{\lambda}(f) = n$ d’après la forme du polynôme caractéristique, et $\dim(E_{\lambda}(f)) \leq m_{\lambda}(f)$ pour $\lambda \in \sp(f)$, donc $m_{\lambda}(f) = \dim(E_{\lambda}(f))$ pour $\lambda \in \sp(f)$.
         \end{itemize}
     \end{demo}
 
@@ -2952,7 +2953,7 @@
         Soit $M \in \mk{n}$.
 
         $M$ est diagonalisable \textit{ssi}
-        \[ \et{\chi_M \text{ est scindé sur } \mathbb{K}}{\text{Pour tout } \lambda \in \Sp(f), \rg(\lambda I_n - M) = n - m_{\lambda}} \]
+        \[ \et{\chi_M \text{ est scindé sur } \mathbb{K}}{\text{Pour tout } \lambda \in \sp(f), \rg(\lambda I_n - M) = n - m_{\lambda}} \]
     \end{coro}
 
     \begin{omed}{Exemple}{myorange}
@@ -2977,7 +2978,7 @@
                 &= (X - 7) (X - 2)^2 (X^2 - 9 X - 6) \\
                 &= (X-7)^2 (X-2)^3
             \end{align*}
-            Le polynôme caractéristique est scindé, et $\Sp(M) = \left\{2,7\right\}$, avec $m_2 = 3$ et $m_7 = 2$.
+            Le polynôme caractéristique est scindé, et $\sp(M) = \left\{2,7\right\}$, avec $m_2 = 3$ et $m_7 = 2$.
             \item Si $\lambda = 7$,
             \begin{align*}
                 \rg(7 I_5 - M )
@@ -3056,19 +3057,19 @@
                 \end{vmatrix} \\ 
                 &= (X - a - (n-1)b) (X - a + b)^{n-1}
             \end{align*}
-            $\chi_M(X)$ est scindé, donc $\Sp(M) = \left\{a + (n-1)b, a - b\right\}$ où $m_{a + (n-1)b} = 1$ et $m_{a-b} = n-1$. 
+            $\chi_M(X)$ est scindé, donc $\sp(M) = \left\{a + (n-1)b, a - b\right\}$ où $m_{a + (n-1)b} = 1$ et $m_{a-b} = n-1$. 
             \item Si $\lambda = a + (n-1)b$, on a directement $\dim(E_{\lambda}(M)) = 1$.
             
             Si $\lambda = a-b$, on a $\lambda I_n - M = - b J$ donc $\rg(\lambda I_n - M) = 1$ et $\dim(E_{\lambda}(M)) = n - 1 = m_{\lambda}(M)$.
             \item La matrice $M$ est diagonalisable, et nous allons donc la diagonaliser.
             
-            Si $\lambda = a + (n-1) b$, $E_{\lambda}(M) = \ker((a + (n-1)b) I_n - M) = \Vect\begin{bmatrix}
+            Si $\lambda = a + (n-1) b$, $E_{\lambda}(M) = \ker((a + (n-1)b) I_n - M) = \vect\begin{bmatrix}
                 1 \\
                 \vdots \\
                 1
             \end{bmatrix}$.
 
-            Si $\lambda = a-b$, $\lambda I_n - M = -b J$ donc $\ker(\lambda I_n - M ) = \Vect\begin{bmatrix}
+            Si $\lambda = a-b$, $\lambda I_n - M = -b J$ donc $\ker(\lambda I_n - M ) = \vect\begin{bmatrix}
                 1 & 
                 -1 &
                 0 &
@@ -3198,16 +3199,16 @@
     \end{prop}
 
     \begin{prop}{}{}
-        Soit $D = \Diag(\lambda_1,\ldots,\lambda_n)$ une matrice diagonale et $k \in \mathbb{N}^*$.
+        Soit $D = \diag(\lambda_1,\ldots,\lambda_n)$ une matrice diagonale et $k \in \mathbb{N}^*$.
 
-        Alors \[ D^k = \Diag(\lambda_1^k,\ldots,\lambda_n^k) \]
+        Alors \[ D^k = \diag(\lambda_1^k,\ldots,\lambda_n^k) \]
     \end{prop}
 
     \begin{prop}{}{}
-        Soit $P = a_0 + a_1 X + \ldots + a_k X^k \in \mathbb{K}[X]$ et $M = Q D Q^{-1}$ une matrice diagonalisée où $D = \Diag(\lambda_1,\ldots,\lambda_n)$ et $Q$ est inversible.
+        Soit $P = a_0 + a_1 X + \ldots + a_k X^k \in \mathbb{K}[X]$ et $M = Q D Q^{-1}$ une matrice diagonalisée où $D = \diag(\lambda_1,\ldots,\lambda_n)$ et $Q$ est inversible.
 
         Alors 
-        \[ P(M) = Q \Diag(P(\lambda_1), \ldots, P(\lambda_n)) Q^{-1} \]
+        \[ P(M) = Q \diag(P(\lambda_1), \ldots, P(\lambda_n)) Q^{-1} \]
     \end{prop}
 
     Ainsi, si $M$ est diagonalisable, alors $P(M)$ est diagonalisable, dans la même base que $M$.
@@ -3230,7 +3231,7 @@
             1 & & 1 &2
         \end{bmatrix}$ et $P = (n+2) - (n+2)X + X^2$. Calculons $P(M)$.
 
-        On sait que $M$ est diagonale et $\Sp(M) = \left\{n+1,1\right\}$, où $m_1(M) = n-1$ et $m_{n+1}(M) = 1$. Donc il existe $Q \in \GL_n(\mathbb{K})$ tel que $M = Q \diag(n+1, 1, \ldots, 1) Q^{-1}$. Par la proposition précédente, $P(M) = Q \diag(P(n+1), P(1), \ldots, P(1)) Q^{-1}$. Or $P(n+1) = 1$ et $P(1) = 1$, donc $P(M) = Q I_N Q^{-1}$. Donc $P(M) = I_n$.
+        On sait que $M$ est diagonale et $\sp(M) = \left\{n+1,1\right\}$, où $m_1(M) = n-1$ et $m_{n+1}(M) = 1$. Donc il existe $Q \in \GL_n(\mathbb{K})$ tel que $M = Q \diag(n+1, 1, \ldots, 1) Q^{-1}$. Par la proposition précédente, $P(M) = Q \diag(P(n+1), P(1), \ldots, P(1)) Q^{-1}$. Or $P(n+1) = 1$ et $P(1) = 1$, donc $P(M) = Q I_N Q^{-1}$. Donc $P(M) = I_n$.
 
         On a donc obtenu que $(n+2) I_n - (n + 2)M + M^2 = I_n$. Donc $M$ est inversible et $M^{-1} = \frac{n+2}{n+1} I_n - \frac{1}{n+1} M$.
     \end{omed}
@@ -3266,7 +3267,7 @@
     \end{prop}
 
     \begin{demo}{Démonstration}{myolive}
-        Soit $\lambda \in \Sp(f)$. Il existe $v \in E$, $v \neq 0$ tel que $f(v) = \lambda v$. Donc $P(f)(v) = P(\lambda)v = 0$. Or $v \neq 0$, donc $P(\lambda) = 0$.
+        Soit $\lambda \in \sp(f)$. Il existe $v \in E$, $v \neq 0$ tel que $f(v) = \lambda v$. Donc $P(f)(v) = P(\lambda)v = 0$. Or $v \neq 0$, donc $P(\lambda) = 0$.
     \end{demo}
 
     \begin{theo}{Caractérisation des endomorphismes diagonalisables}{}
@@ -3277,7 +3278,7 @@
 
     \begin{demo}{Preuve}{myred}
         \begin{itemize}
-            \item[$\implies$] Si $f$ est diagonalisable. Son polynôme caractéristique $\chi_f$ est scindé, donc possède au moins une racine, \textit{i.e.} $\Sp(f) \neq 0$. Posons $\Sp(f) = \left\{\lambda_1,\ldots,\lambda_k\right\}$, où $\lambda_1,\ldots,\lambda_k$ sont distincts, et $P = \prod_{i=1}^k (X-\lambda_i)$ scindé à racines simples. Comme $f$ est diagonalisable, il existe $\mathcal{B} = (e_1,\ldots, e_n)$ formée de vecteurs propres de $f$. Alors pour $i \in \intervalleEntier{1}{n}$, il existe $\lambda \in \Sp(f)$ tel que 
+            \item[$\implies$] Si $f$ est diagonalisable. Son polynôme caractéristique $\chi_f$ est scindé, donc possède au moins une racine, \textit{i.e.} $\sp(f) \neq 0$. Posons $\sp(f) = \left\{\lambda_1,\ldots,\lambda_k\right\}$, où $\lambda_1,\ldots,\lambda_k$ sont distincts, et $P = \prod_{i=1}^k (X-\lambda_i)$ scindé à racines simples. Comme $f$ est diagonalisable, il existe $\mathcal{B} = (e_1,\ldots, e_n)$ formée de vecteurs propres de $f$. Alors pour $i \in \intervalleEntier{1}{n}$, il existe $\lambda \in \sp(f)$ tel que 
             \[ P(f)(e_i) = P(\lambda)e_i = 0 \]
             $P(f)$ est nul sur une base, donc est nul, et $P$ est annulateur de $f$.
             \item[$\impliedby$] On peut supposer que le polynôme annulateur est unitaire, et s’écrit sous la forme $P = \prod_{i=1}^{k}(X - \lambda_i)$. Pour $i \in \intervalleEntier{1}{k}$, on pose $L_i(X) = \prod_{\substack{j = 1 \\ j \neq i}}^{k} (X - \lambda_j)$ le $i$-ème polynôme de Lagrange. 
@@ -3288,7 +3289,7 @@
 
             Donc pour tout $x \in E$, il existe $(v_1, \ldots v_k) \in \ker(f - \lambda_1 \id) \times \cdots \times \ker(f - \lambda_k \id)$ tels que $x = v_1 + \cdots v_k$. Donc 
             \[ E = \sum_{i=1}^{k} \ker(f - \lambda_i \id) \]
-            Or $P$ est annulateur, donc pour tout valeur propre $\lambda$ de $f$, $P(\lambda) = 0$. Soit $j \in \intervalleEntier{1}{k}$ tel que $\lambda_j \notin \Sp(f)$ alors $\ker(f - \lambda_j \id) = \left\{0\right\}$. Donc $E = \sum_{\substack{i = 1 \\ i \neq j}}^{k} \ker(f - \lambda_i \id)$. Donc $E = \sum_{\lambda \in \Sp(f)} E_{\lambda}(f)$.
+            Or $P$ est annulateur, donc pour tout valeur propre $\lambda$ de $f$, $P(\lambda) = 0$. Soit $j \in \intervalleEntier{1}{k}$ tel que $\lambda_j \notin \sp(f)$ alors $\ker(f - \lambda_j \id) = \left\{0\right\}$. Donc $E = \sum_{\substack{i = 1 \\ i \neq j}}^{k} \ker(f - \lambda_i \id)$. Donc $E = \sum_{\lambda \in \sp(f)} E_{\lambda}(f)$.
         \end{itemize}
     \end{demo}
 
@@ -3321,7 +3322,7 @@
     \end{theo}
 
     \begin{demo}{Démonstration dans le cas diagonalisable}{myred}
-        Supposons $M \in \mk{n}$ diagonalisable. Il existe $Q \in \GL_n(\mathbb{K})$ et $D = \diag(\lambda_1,\ldots,\lambda_n)$ tels que $M = Q D Q^{-1}$ où $\Sp(M) = \left\{\lambda_1,\ldots,\lambda_n\right\}$ où les $\lambda_i$ ne sont pas nécessairement distincts deux à deux. Alors $\chi_M(M) = Q \diag(\chi_M(\lambda_1), \ldots, \chi_M(\lambda_n)) Q^{-1} = 0$ car les $\lambda_i$ sont racines du polynôme caractéristique.
+        Supposons $M \in \mk{n}$ diagonalisable. Il existe $Q \in \GL_n(\mathbb{K})$ et $D = \diag(\lambda_1,\ldots,\lambda_n)$ tels que $M = Q D Q^{-1}$ où $\sp(M) = \left\{\lambda_1,\ldots,\lambda_n\right\}$ où les $\lambda_i$ ne sont pas nécessairement distincts deux à deux. Alors $\chi_M(M) = Q \diag(\chi_M(\lambda_1), \ldots, \chi_M(\lambda_n)) Q^{-1} = 0$ car les $\lambda_i$ sont racines du polynôme caractéristique.
 
         La densité des matrices diagonalisables dans $\mathcal{M}_n(\mathbb{C})$ permet de généraliser le résultat : Si $A \in \mathcal{M}_n(\mathbb{C})$, on peut l’approcher par une suite de matrices diagonalisables $A = \lim D_k$ où chaque $D_k$ vérifie par ce qui précède $\chi_{D_k}(D_k) = 0$. Or, 
         \[ \et{P_k \limi{k}{+\infty} P \in \mathbb{C}_n[X]}{A_k \limi{k}{+\infty} A \in \mathcal{M}_n(\mathbb{C})} \implies P_k(A_k) \limi{k}{+\infty} P(A) \in \mathcal{M}_n(\mathbb{C}) \]    
@@ -3331,7 +3332,7 @@
     \begin{demo}{Démonstration dans le cas général}{myred}
         Soit $u \in \mathcal{L}(E)$, où $E$ est un espace vectoriel de dimension finie. Montrer que $\chi_u(u) = 0$ revient à montrer que $\forall x \in E, \chi_u(u)(x) = 0$. La propriété étant immédiate pour $x = 0$, nous considérerons désormais un vecteur $x \in E$ non nul.
         \begin{itemize}
-            \item $E$ étant de dimension finie, l’ensemble non vide $\mathcal{N}_x = \enspr{k \in \mathbb{N}^*}{(x,u(x), \ldots, u^{k-1}(x)) \text{ est libre}}$ est majoré. Notons $p$ son plus grand élément, et $F = \Vect((x,u(x), \ldots, u^{p-1}(x)))$. Par maximalité de $p$, 
+            \item $E$ étant de dimension finie, l’ensemble non vide $\mathcal{N}_x = \enspr{k \in \mathbb{N}^*}{(x,u(x), \ldots, u^{k-1}(x)) \text{ est libre}}$ est majoré. Notons $p$ son plus grand élément, et $F = \vect((x,u(x), \ldots, u^{p-1}(x)))$. Par maximalité de $p$, 
             \[ \exists \lambda_0,\ldots, \lambda_{p-1} \in \mathbb{K}, \quad u^p(x) = \lambda_0 x + \cdots \lambda_{p-1} u^{p-1}(x) \]   
             \item $F$ est stable par $u$. En effet, si $y$ est combinaison linéaire de $x,u(x), \ldots, u^{p-1}(x)$, alors $u(y)$ l’est de même d’après la valeur de $u^p(x)$. Considérons la matrice de l’endomorphisme induit $\restr{u}{F}$ dans la base $(x, u(x), \ldots, u^{p-1}(x))$ et son polynôme caractéristique :
             \[ \mat{}{\restr{u}{F}} = \begin{bmatrix}
@@ -3369,7 +3370,7 @@
     \end{omed}
 
     \begin{demo}{Justification}{myred}
-        Si $M$ est nilpotente, il existe $k \in \mathbb{N}$ tel que $M^k = 0$ \textit{i.e.} $X^k$ est annulateur donc $\Sp(M) \subset \left\{0\right\}$. Si $\mathbb{K} = \mathbb{C}$, alors $\chi_M$ est scindé, donc $\chi_M = X^n$. Ainsi, $\chi_M(M) = 0 = M^n$.
+        Si $M$ est nilpotente, il existe $k \in \mathbb{N}$ tel que $M^k = 0$ \textit{i.e.} $X^k$ est annulateur donc $\sp(M) \subset \left\{0\right\}$. Si $\mathbb{K} = \mathbb{C}$, alors $\chi_M$ est scindé, donc $\chi_M = X^n$. Ainsi, $\chi_M(M) = 0 = M^n$.
     \end{demo}
 
 \subsection{Applications de la réduction}
@@ -3398,7 +3399,7 @@
         0 & & \lambda_p^n
     \end{bmatrix} Q^{-1} X_0$, \textit{i.e.} il existe $A_1,\ldots,A_p \in \mathbb{K}$ tel que 
     \[ \forall n \in \mathbb{N}, u_n = A_1 \lambda_1^n + \cdots + A_p \lambda_p^n \]   
-    D’où $(u_n) \in \Vect((\lambda_1)^n, \ldots, (\lambda_p)^n)$.
+    D’où $(u_n) \in \vect((\lambda_1)^n, \ldots, (\lambda_p)^n)$.
 
     \begin{omed}{Exemple \textcolor{black}{(Suite de Fibonacci)}}{myolive}
         On appelle \textbf{suite de Fibonacci} la suite $(f_n)$ définie par $f_0 = f_1 = 1$ et la relation $f_{n+2} = f_{n+1} + f_n$. 
@@ -3432,7 +3433,7 @@
         \vdots & \ddots & \ddots & \\
         0 & & \ddots & 1 \\
         1 & 0 & \cdots & 0
-    \end{bmatrix}$. Soit $f$ canoniquement associée à $J$ et $\mathcal{B} = (e_1,\ldots, e_n)$ la base canonique de $\mathbb{K}^n$. Alors $\forall i \in \intervalleEntier{1}{n}$, $f(e_i) = \barr{e_{i-1}}$. Ainsi, $f^p(e_i) = \barr{e_{i - p}}$. 
+    \end{bmatrix}$. Soit $f$ canoniquement associée à $J$ et $\mathcal{B} = (e_1,\ldots, e_n)$ la base canonique de $\mathbb{K}^n$. Alors $\forall i \in \intervalleEntier{1}{n}$, $f(e_i) = \ovl{e_{i-1}}$. Ainsi, $f^p(e_i) = \ovl{e_{i - p}}$. 
 
     On peut donc écrire $M = a_0 I_n + a_1 J + \cdots + a_{n-1} J^{n-1}$. Si $P = a_0 + a_1 X + \cdots a_{n-1} X^{n-1}$, alors $M = P(J)$. Ainsi, si on peut diagonaliser $J$, cela revient à pouvoir diagonaliser $M$.
 
@@ -3451,7 +3452,7 @@
         &= X^n + (-1)^n \times (-1)^{n-1} \\
         &= X^n - 1
     \end{align*}
-    Donc les valeurs propres de $J$ sont les racines $n$-ième de l’unité, \textit{i.e.} $\Sp_{\mathbb{C}}(J) = \left\{e^{\frac{2ik\pi}{n}}, k \in \intervalleEntier{0}{n-1}\right\}$. On pose $\omega = e^{\frac{2i\pi}{n}}$. $J$ possède $n$ valeurs propres distinctes, donc est diagonalisable, et il existe $Q \in \GL_n(\mathbb{C})$ telle que $J = Q \diag(1,\omega, \ldots, \omega^{n-1}) Q^{-1}$. Ainsi, $\det(M) = \prod_{k=0}^{n-1} P(\omega^k)$.
+    Donc les valeurs propres de $J$ sont les racines $n$-ième de l’unité, \textit{i.e.} $\sp_{\mathbb{C}}(J) = \left\{e^{\frac{2ik\pi}{n}}, k \in \intervalleEntier{0}{n-1}\right\}$. On pose $\omega = e^{\frac{2i\pi}{n}}$. $J$ possède $n$ valeurs propres distinctes, donc est diagonalisable, et il existe $Q \in \GL_n(\mathbb{C})$ telle que $J = Q \diag(1,\omega, \ldots, \omega^{n-1}) Q^{-1}$. Ainsi, $\det(M) = \prod_{k=0}^{n-1} P(\omega^k)$.
 
     \begin{omed}{Exemple}{myblue}
         Calcul de $\Delta_n = \begin{vmatrix}
@@ -3557,8 +3558,8 @@
         On considère un espace vectoriel $E$ sur un corps commutatif $K$ et $u \in \mathcal{L}(E)$. Soit $s \in \mathbb{N}^*$.
 
         Si $Q_1,\ldots,Q_s \in K[X]$ sont des polynômes premiers entre eux deux à deux, alors 
-        \[ \Ker\left[(Q_1\cdots Q_s)(u)\right] = \bigoplus_{i=1}^s \Ker(Q_i(u)) \]
-        De plus, chacun des projecteurs associés à cette décomposition en somme directe est la restriction à $\Ker\left[(Q_1\cdots Q_s)(u)\right]$ d’un polnôme en $u$.
+        \[ \ker\left[(Q_1\cdots Q_s)(u)\right] = \bigoplus_{i=1}^s \ker(Q_i(u)) \]
+        De plus, chacun des projecteurs associés à cette décomposition en somme directe est la restriction à $\ker\left[(Q_1\cdots Q_s)(u)\right]$ d’un polnôme en $u$.
     \end{lem}
 
     \begin{demo}{Preuve}{mybrown}
@@ -3567,14 +3568,14 @@
             \[ \forall k \in \intervalleEntier{1}{s}, \quad R_k = \prod_{\substack{1 \leq i \leq s \\ i \neq k}} Q_i \]    
             sont premiers entre eux dans leur ensemble, donc d’après le théorème de Bézout, il existe des polynômes $V_1, \ldots, V_s \in K[X]$ tels que 
             \[ V_1 R_1 + \ldots + V_s R_s = 1 \]    
-            \item Si $x \in \Ker\left[(Q_1\cdots Q_s)(u)\right]$, on déduit de la relation précédente que 
+            \item Si $x \in \ker\left[(Q_1\cdots Q_s)(u)\right]$, on déduit de la relation précédente que 
             \[ x = x_1 + \ldots + x_s \quad \text{où } \forall i \in \intervalleEntier{1}{s}, x_i = \left[(V_i R_i)(u)\right](x) \]
             De plus, pour chaque $i \in \intervalleEntier{1}{s}$, on a 
             \[ \left[Q_i(u)\right](x_i) = \left[(Q_i V_i R_i)(u)\right](x) = V_i(u) \left(\left[(Q_1 \cdots Q_s)(u)\right](x)\right) = 0 \]
-            Donc $x_i \in \Ker((Q_i(u)))$. On a donc montré que 
-            \[ \Ker\left[(Q_1 \cdots Q_s)(u)\right] = \Ker\left((Q_1(u))\right) + \ldots + \Ker\left(Q_s(u)\right) \]     
+            Donc $x_i \in \ker((Q_i(u)))$. On a donc montré que 
+            \[ \ker\left[(Q_1 \cdots Q_s)(u)\right] = \ker\left((Q_1(u))\right) + \ldots + \ker\left(Q_s(u)\right) \]     
             \item Considérons un élément 
-            \[ (x_1,\ldots,x_s) \in \Ker(Q_1(u)) \times \cdots \times \Ker(Q_s(u)) \]   
+            \[ (x_1,\ldots,x_s) \in \ker(Q_1(u)) \times \cdots \times \ker(Q_s(u)) \]   
             vérifiant $x_1 + \ldots + x_s = 0$. En remarquant que pour tout couple $(i,j) \in \intervalleEntier{1}{s}^2$ avec $i \neq j$, on a $\left[R_i(u)\right](x_j) = 0$ et en utilisant la relation de Bézout, on a 
             \[ x_i = \sum_{j=1}^{s} \left[V_j R_j(u)\right](x_i) = \left[V_i R_i (u)\right](x_i) = \left[V_i R_i(u)\right]\left(- \sum_{\substack{j = 1 \\ j \neq i}}^{s} x_j\right) = 0 \]
             donc la somme est directe.
@@ -3583,16 +3584,16 @@
 
     \subsubsection{Sous-espaces caractéristiques}
 
-    Nous avons vu que, lorsque $f$ est diagonalisable, on a $E = E_{\lambda_1} \oplus \cdots \oplus E_{\lambda_r}$ avec $E_{\lambda_i} = \Ker(f - \lambda_i \id_E)$ le sous-espace propre associé à la valeur propre $\lambda_i$. Nous allons montrer que si $f$ n’est pas diagonalisable, mais si son polynôme caractéristique est scindé sur $\mathbb{K}$, on a 
-    \[ E = \Ker(f - \lambda_1 \id)^{m_1} \oplus \cdots \oplus \Ker(f - \lambda_r \id)^{m_r} \]   
+    Nous avons vu que, lorsque $f$ est diagonalisable, on a $E = E_{\lambda_1} \oplus \cdots \oplus E_{\lambda_r}$ avec $E_{\lambda_i} = \ker(f - \lambda_i \id_E)$ le sous-espace propre associé à la valeur propre $\lambda_i$. Nous allons montrer que si $f$ n’est pas diagonalisable, mais si son polynôme caractéristique est scindé sur $\mathbb{K}$, on a 
+    \[ E = \ker(f - \lambda_1 \id)^{m_1} \oplus \cdots \oplus \ker(f - \lambda_r \id)^{m_r} \]   
     où $m_i$ est la multiplicité de la valeur propre $\lambda_i$ comme racine du polynôme caractéristique de $f$.
 
     \begin{defi}{}{}
         Soit $f$ un endomorphisme de $E$. Soit $\lambda$ une valeur propre de $f$ et $m$ sa multiplicité en tant que racine de $\chi_f$. Le \textbf{sous-espace caractéristique} de $f$ pour la valeur propre $\lambda$ est 
-        \[ N_{\lambda} = \Ker\left((f - \lambda \id)^m\right) \]     
+        \[ N_{\lambda} = \ker\left((f - \lambda \id)^m\right) \]     
     \end{defi}
 
-    Pour $\lambda$ valeur propre de $f$, on a $E_{\lambda} \subset N_{\lambda}$ car $\Ker(f - \lambda \id) \subset \Ker(f - \lambda \id)^m$ quel que soit $k \geq 1$.
+    Pour $\lambda$ valeur propre de $f$, on a $E_{\lambda} \subset N_{\lambda}$ car $\ker(f - \lambda \id) \subset \ker(f - \lambda \id)^m$ quel que soit $k \geq 1$.
 
     \begin{theo}{}{}
         Soit $f$ un endomorphisme de $E$ tel que $\chi_f$ est scindé sur $\mathbb{K}$. Notons $\chi_f = \pm (X - \lambda_1)^{m_1} \cdots (X - \lambda_r)^{m_r}$. Alors 
@@ -3607,12 +3608,12 @@
 
     \begin{demo}{Preuve}{myred}
         \begin{itemize}
-            \item Soit $x \in N_{\lambda} = \Ker(f - \lambda \id)^m$. On a $(f - \lambda \id)^m(x) = 0$. Or 
+            \item Soit $x \in N_{\lambda} = \ker(f - \lambda \id)^m$. On a $(f - \lambda \id)^m(x) = 0$. Or 
             \[ (f - \lambda \id)^m \circ f(x) = f \circ (f - \lambda \id)^m (x) = 0 \]   
             D’où $f(x) \in N_{\lambda}$. Cela vient donc du fait que $f - \lambda \id$ et $f$ commutent, qui est un résultat que nous avons déjà rencontré.
             \item C’est une application directe du lemme des noyaux : Les polynômes $(X - \lambda_i)^{m_i}$ sont premiers entre eux dans leur ensemble puisque les valeurs propres sont distinctes. Par le lemme des noyaux, on obtient : 
-            \[ \Ker \chi_f(f) = \Ker(f - \lambda_1 \id)^{m_1} \oplus \cdots \oplus \Ker(f - \lambda_r \id)^{m_r} = N_{\lambda_1} \oplus \cdots \oplus N_{\lambda_r} \]    
-            Or d’après le théorème de Cayley-Hamilton, on a $\chi_f(f) = 0$, donc $\Ker \chi_f(f) = E$, d’où le résultat.
+            \[ \ker \chi_f(f) = \ker(f - \lambda_1 \id)^{m_1} \oplus \cdots \oplus \ker(f - \lambda_r \id)^{m_r} = N_{\lambda_1} \oplus \cdots \oplus N_{\lambda_r} \]    
+            Or d’après le théorème de Cayley-Hamilton, on a $\chi_f(f) = 0$, donc $\ker \chi_f(f) = E$, d’où le résultat.
             \item Notons $g_i = \restr{f}{N_{\lambda_i}}$ pour $1 \leq i \leq r$. Pour $i \neq j$, $N_{\lambda_i} \cap N_{\lambda_j} = \left\{0\right\}$. Le polynôme caractéristique de $g_i$ est scindé (car il divise celui de $f$) et sa seule racine est la valeur propre de $g_i$, \textit{i.e.} $\lambda_i$. Ainsi, $\chi_{g_i} (X) = \pm (X - \lambda_i)^{n_i}$ où $n = \dim N_{\lambda_i}$. De plus, 
             \[ \pm (X - \lambda_1)^{m_1} \cdots (X - \lambda_r)^{m_r} = \chi_f(X) = \chi_{g_1}(X) \cdots \chi_{g_r}(X) \]    
             En identifiant les exposants des facteurs irréductibles, on a directement $n_i = \dim N_{\lambda_i} = m_i$ pour $i \in \intervalleEntier{1}{r}$.
@@ -3666,13 +3667,13 @@
             \end{bmatrix}}_{T} P$, d’où $\chi_M(X) = \chi_T(X) = \prod_{i=1}^{n} (X - \lambda_i)$ est scindé. 
             \item[$\impliedby$] Par récurrence sur $n$.
             \begin{itemize}
-                \item[\textbf{I}] Si $n = 2$, $\chi_M$ est scindé donc $\Sp(M) \neq \emptyset$. Soit $\lambda \in \Sp(M)$. Il existe $X_1 \neq 0 \in \mk{2,1}$ telle que $MX_1 = \lambda X_1$. Il existe $X_2$ telle que $\mathcal{B} = (X_1, X_2)$ est une base de $\mk{2,1}$. Alors 
+                \item[\textbf{I}] Si $n = 2$, $\chi_M$ est scindé donc $\sp(M) \neq \emptyset$. Soit $\lambda \in \sp(M)$. Il existe $X_1 \neq 0 \in \mk{2,1}$ telle que $MX_1 = \lambda X_1$. Il existe $X_2$ telle que $\mathcal{B} = (X_1, X_2)$ est une base de $\mk{2,1}$. Alors 
                 \[ \mat{\mathcal{B}}{f} = \begin{bmatrix}
                     \lambda & \star \\
                     0 & \star
                 \end{bmatrix}\] 
                 \textit{i.e.} $M$ est semblable à une matrice triangulaire supérieure.
-                \item[\textbf{H}] Soit $M \in \mk{n+1}$ telle que $\chi_M$ est scindé. Ainsi, $\Sp(M) \neq 0$, et il existe $\lambda \in \Sp(M)$ et $X_1 \neq 0 \in \mk{n+1,1}$ tels que $MX_1 = \lambda X_1$. On complète $(X_1)$ en $\mathcal{B}= (X_1, \ldots X_{n+1})$ une base de $\mk{n+1, 1}$, d’où  
+                \item[\textbf{H}] Soit $M \in \mk{n+1}$ telle que $\chi_M$ est scindé. Ainsi, $\sp(M) \neq 0$, et il existe $\lambda \in \sp(M)$ et $X_1 \neq 0 \in \mk{n+1,1}$ tels que $MX_1 = \lambda X_1$. On complète $(X_1)$ en $\mathcal{B}= (X_1, \ldots X_{n+1})$ une base de $\mk{n+1, 1}$, d’où  
                 \[ \mat{\mathcal{B}}{f} = \begin{bmatrix}
                     \lambda & \star & \ldots & \star \\
                     0 & & & \\
@@ -3769,13 +3770,13 @@
                 \end{vmatrix} \\
                 &= (X - 1)^4
             \end{align*}
-            Donc $\Sp(A) = \left\{1\right\}$. Si la matrice $A$ est diagonalisable, alors elle est semblable à la matrice identité, ce qui est absurde, donc $A$ n’est pas diagonalisable. Toutefois, son polynôme caractéristique est scindé, donc elle est trigonalisable.
+            Donc $\sp(A) = \left\{1\right\}$. Si la matrice $A$ est diagonalisable, alors elle est semblable à la matrice identité, ce qui est absurde, donc $A$ n’est pas diagonalisable. Toutefois, son polynôme caractéristique est scindé, donc elle est trigonalisable.
                 \item \textbf{Calcul de $E_1(A)$} \quad On a $I_4 - A = \begin{bmatrix}
                     0 & 0 & 0 & 0 \\
                     -4 & 3 & 3 & 3 \\
                     0 & -4 & -3 & 3 \\
                     2 & -1 & 0 & 0
-                \end{bmatrix}$, qui est de rang $3$ car les colonnes première, deuxième et troisième sont indépendantes. Ainsi, $\dim\left(\ker(I_4 - A)\right) = 1$, et on a directement $E_1(A) = \ker(I_4 - A) = \Vect\left\{\begin{bmatrix}
+                \end{bmatrix}$, qui est de rang $3$ car les colonnes première, deuxième et troisième sont indépendantes. Ainsi, $\dim\left(\ker(I_4 - A)\right) = 1$, et on a directement $E_1(A) = \ker(I_4 - A) = \vect\left\{\begin{bmatrix}
                     0 \\
                     0 \\
                     1 \\
@@ -3786,7 +3787,7 @@
                     -18 & 0 & 0 & 0 \\
                     22 & -3 & - 3 & 3 \\
                     4 & -3 & - 3 & 3 
-                \end{bmatrix}$ qui est de rang $2$, étant donné que la ligne deuxième correspond à la soustraction de la quatrième par la troisième. Ainsi, $\dim\left(\ker(I_4 - A)^2\right) = 2$ -- Ce résultat se déduisait du fait que $\underbrace{\ker(I_4 - A)}_{\text{de dim 1}} \subsetneq  \ker(I_4 - A)^2 \subset \cdots \subset \ker\underbrace{(I_4 - A)^4}_{= 0 \text{par C.H.}} = \mathbb{K}^4$, et que si deux noyaux consécutifs sont égaux, alors il y a égalité des noyaux suivants --. Ainsi, $\ker(I_4 - A) \subset \ker(I_4 - A)^2 = \Vect\left(\begin{bmatrix}
+                \end{bmatrix}$ qui est de rang $2$, étant donné que la ligne deuxième correspond à la soustraction de la quatrième par la troisième. Ainsi, $\dim\left(\ker(I_4 - A)^2\right) = 2$ -- Ce résultat se déduisait du fait que $\underbrace{\ker(I_4 - A)}_{\text{de dim 1}} \subsetneq  \ker(I_4 - A)^2 \subset \cdots \subset \ker\underbrace{(I_4 - A)^4}_{= 0 \text{par C.H.}} = \mathbb{K}^4$, et que si deux noyaux consécutifs sont égaux, alors il y a égalité des noyaux suivants --. Ainsi, $\ker(I_4 - A) \subset \ker(I_4 - A)^2 = \vect\left(\begin{bmatrix}
                     0 \\
                     0 \\
                     1 \\
@@ -3832,7 +3833,7 @@
                     0 & 0 & 0 & 0 \\
                     18 & 0 & 0 & 0 \\
                     18 & 0 & 0 & 0 \\
-                \end{bmatrix}$ qui est de rang $1$, et donc de noyau de dimension $3$, tel que $\ker(I_4 - A)^2 \subset \ker(I_4 - A)^3 = \Vect\left(\begin{bmatrix}
+                \end{bmatrix}$ qui est de rang $1$, et donc de noyau de dimension $3$, tel que $\ker(I_4 - A)^2 \subset \ker(I_4 - A)^3 = \vect\left(\begin{bmatrix}
                     0 \\
                     0 \\
                     1 \\
@@ -3863,7 +3864,7 @@
                     1 \\
                     0
                 \end{bmatrix}$.
-                \item \textbf{Détermination de la base} \quad On sait que $(I_4 - A)^4 = 0$ par le théorème de Cayley-Hamilton, donc $\ker(I_4 - A) = \mathbb{K}^4 = \Vect\left(\begin{bmatrix}
+                \item \textbf{Détermination de la base} \quad On sait que $(I_4 - A)^4 = 0$ par le théorème de Cayley-Hamilton, donc $\ker(I_4 - A) = \mathbb{K}^4 = \vect\left(\begin{bmatrix}
                     0 \\
                     0 \\
                     1 \\
@@ -4015,7 +4016,7 @@
                 1 \\
                 -1 \\
                 1
-            \end{bmatrix} \in \ker(I_5 + A)^2$ convient, donc $\ker(I_5 +A)^2 = \Vect(f_1, f_2)$.
+            \end{bmatrix} \in \ker(I_5 + A)^2$ convient, donc $\ker(I_5 +A)^2 = \vect(f_1, f_2)$.
             \item \textbf{Détermination d’une base de $\ker(I_5 - A)^3$} \quad $(I_3 - A) = \begin{bmatrix}
                 0 & 1 & -1 & 0 & -1 \\
                 0 & 1 & -1 & -1 & 0 \\
@@ -4093,7 +4094,7 @@
 
     \begin{demo}{Preuve}{mybrown}
         \begin{itemize}
-            \item Notons $A$ la matrice de $f$ dans une base. Comme $f$ est nilpotent, il existe $k \geq 1$ tel que $A^k = 0$. Cela implique $\det(A^k) = 0$, puis $\det(A) = 0$. La matrice $A$ n’est donc pas inversible, $f$ n’est pas bijectif, et donc non injectif -- l’ensemble de départ étant aussi celui d’arrivée --. Ainsi, $\Ker(f) \neq \left\{0\right\}$, ce qui est exactement dire que $0$ est une valeur propre de $f$. 
+            \item Notons $A$ la matrice de $f$ dans une base. Comme $f$ est nilpotent, il existe $k \geq 1$ tel que $A^k = 0$. Cela implique $\det(A^k) = 0$, puis $\det(A) = 0$. La matrice $A$ n’est donc pas inversible, $f$ n’est pas bijectif, et donc non injectif -- l’ensemble de départ étant aussi celui d’arrivée --. Ainsi, $\ker(f) \neq \left\{0\right\}$, ce qui est exactement dire que $0$ est une valeur propre de $f$. 
             \item Supposons que $\lambda$ soit une valeur propre de $f$ : il existe alors $x \neq 0$ tel que $f(x) = \lambda x$. Par récurrence immédiate, cela signifie que $f^n(x) = \lambda^n x = 0$ -- provient du fait que si $f$ est nilpotent, son indice de nilpotence est inférieur à la dimension de l’espace --, donc $\lambda = 0$. Ainsi, la seule valeur propre de $f$, et donc la seule racine de son polynôme caractéristique est $0$. 
             \item Si $\mathbb{K} = \mathbb{R}$, on considère l’endomorphisme aussi défini sur $\mathbb{C}$. En termes de matrices, cela revient à dire que la matrice à coefficients réels $A$ peut aussi être vue à coefficient complexes. Or, sur $\mathbb{C}$, un polynôme dont la seule racine est $0$ est de la forme $a X^n$, donc $\chi_f(X) = (-1)^n X^n$, étant donné que le coefficient dominant d’un polynôme caractéristique est $(-1)^n$.
         \end{itemize}
@@ -4125,8 +4126,8 @@
         \[ E = E_{\lambda_1} \oplus \cdots \oplus E_{\lambda_r} \]   
         Ainsi, d’après le lemme précédent, 
         \[ F = (F \cap E_{\lambda_1}) \oplus \cdots \oplus (F \cap E_{\lambda_r}) \]    
-        Or, quel que soit $\mu \in \mathbb{K}$, $\Ker(g - \mu \id) = F \cap \Ker(f - \mu \id)$, donc les valeurs propres de $g$, notées $\mu_1,\ldots,\mu_s$ appartiennent à l’ensemble $\left\{\lambda_1,\ldots,\lambda_r\right\}$. Ces $\mu_i$ forment exactement l’ensemble des valeurs propres de $f$ pour lesquels $F \cap E_{\lambda_i} \neq \left\{0\right\}$, et 
-        \[ F = \Ker(g - \mu_1 \id) \oplus \cdots \oplus \Ker(g - \mu_s \id) \]    
+        Or, quel que soit $\mu \in \mathbb{K}$, $\ker(g - \mu \id) = F \cap \ker(f - \mu \id)$, donc les valeurs propres de $g$, notées $\mu_1,\ldots,\mu_s$ appartiennent à l’ensemble $\left\{\lambda_1,\ldots,\lambda_r\right\}$. Ces $\mu_i$ forment exactement l’ensemble des valeurs propres de $f$ pour lesquels $F \cap E_{\lambda_i} \neq \left\{0\right\}$, et 
+        \[ F = \ker(g - \mu_1 \id) \oplus \cdots \oplus \ker(g - \mu_s \id) \]    
         ce qui prouve que $g$ est diagonalisable.
     \end{demo}
 
@@ -4158,7 +4159,7 @@
                 \item Soit $\chi_f$ le polynôme caractéristique de $f$ qui est par hypothèse scindé sur $\mathbb{K}$. Notons $\lambda_i$ une valeur propre de $f$, et $m_i$ sa multiplicité : 
                 \[ \chi_f(X) = \pm \prod_{i = 1}^r (X - \lambda_i)^{m_i} \]   
                 Soient $N_{\lambda_i}$ les SE caractéristiques de $f$. Pour $i \in \intervalleEntier{1}{r}$, on a 
-                \[ N_{\lambda_i} = \Ker(f - \lambda_i  \id)^{m_i} \esp{et} E = N_{\lambda_1} \oplus \cdots \oplus N_{\lambda_r} \]    
+                \[ N_{\lambda_i} = \ker(f - \lambda_i  \id)^{m_i} \esp{et} E = N_{\lambda_1} \oplus \cdots \oplus N_{\lambda_r} \]    
                 \item Pour tout $N_{\lambda_i}$, on définit $d$ par \[ d : x \in N_{\lambda_i} \mapsto \lambda_i x \]   
                 L’espace vectoriel $E$ étant sommme directe des $N_{\lambda_i}$, $d$ est définie sur $E$ tout entier. En effet, si $x \in E$ est décomposé en $x = x_1 + \cdots + x_r$, avec $x_i \in N_{\lambda_i}$, alors 
                 \[ d(x) = \lambda_1 x_1 + \cdots + \lambda_r x_r \]   
@@ -4166,7 +4167,7 @@
             \end{itemize}
             \item \textbf{Propriétés} \begin{enumerate}
                 \item Par construction, $d$ est diagonalisable. En effet, fixons une base pour chaque SE $N_{\lambda_i}$. Pour chaque vecteur $x$ de cette base, $d(x) = \lambda_i x$. Comme $E$ est somme directe des $N_{\lambda_i}$, alors dans la base de $E$ formée de l’union des bases des $N_{\lambda_i}$, $d$ est diagonalisable.
-                \item On a défini $n = f - d$. $N_{\lambda_i}$ est stable par $n$ (car c’est vrai pour $f$ et $d$). On pose $n_i = \restr{n}{N_{\lambda_i}} = \restr{f}{N_{\lambda_i}} - \id_{N_{\lambda_i}}$. Alors par définition, $N_{\lambda_i} = \Ker(n_ï^{m_i})$, et donc $n_i^{m_i} = 0$. Ainsi, en posant $m = \max\left\{m_i\right\}_{i \in \intervalleEntier{1}{m}}$, on obtient que $n^m = 0$.
+                \item On a défini $n = f - d$. $N_{\lambda_i}$ est stable par $n$ (car c’est vrai pour $f$ et $d$). On pose $n_i = \restr{n}{N_{\lambda_i}} = \restr{f}{N_{\lambda_i}} - \id_{N_{\lambda_i}}$. Alors par définition, $N_{\lambda_i} = \ker(n_ï^{m_i})$, et donc $n_i^{m_i} = 0$. Ainsi, en posant $m = \max\left\{m_i\right\}_{i \in \intervalleEntier{1}{m}}$, on obtient que $n^m = 0$.
                 \item On va vérifier que $d \circ n = n \circ d$. Si $x \in E$, il se décompose en $x = x_1 + \cdots + x_r$ avec $x_i \in N_{\lambda_i}$. Sur chaque $N_{\lambda_i}$, $\restr{d}{N_{\lambda_i}}$ commute avec tout endomorphisme, en particulier avec $d \circ n(x_i) = n \circ d(x_i)$ puisque $N_{\lambda_i}$ est stable par $n$. On a donc 
                 \[ d \circ n(x) = d \circ n(x_1 + \cdots + x_r) = d \circ n(x_1) + \cdots + d \circ n(x_r) = n \circ d(x_1) + \cdots + n \circ d(x_r) = n \circ d(x) \]
                 Ainsi, $d$ et $n$ commutent.
@@ -4174,7 +4175,7 @@
                 \begin{itemize}
                     \item Montrons que $d$ et $d'$ commutent, et $n$ et $n'$. On a $f = d + n = d' + n'$, donc 
                     \[ d \circ f = d \circ (d + n) = (d + n) \circ d = f \circ d \]    
-                    car $n$ et $d$ commutent. Ainsi, $f$ et $d$ commutent, et il en va de même pour $d'$. Soit $x \in N_{\lambda_i} = \Ker(f - \lambda_i \id)^{m_i}$. Alors 
+                    car $n$ et $d$ commutent. Ainsi, $f$ et $d$ commutent, et il en va de même pour $d'$. Soit $x \in N_{\lambda_i} = \ker(f - \lambda_i \id)^{m_i}$. Alors 
                     \[ (f - \lambda_i \id)^{m_i} \circ d'(x) = d' \circ (f - \lambda_i \id)_{m_i}(x) = 0 \]   
                     d’où $N_{\lambda_i}$ est stable par $d'$. Par construction, $\restr{d}{\lambda_{N_i}} = \lambda_i \id_{N_{\lambda_i}}$, donc $d$ et $d'$ commutent sur chaque $N_{\lambda_i}$ et donc sur $E$ tout entier.
                     
@@ -4207,7 +4208,7 @@
         La méthode pour trouver la décomposition de Dunford d’une matrice $A \in \mk{n}$ consiste à suivre les étapes de la preuve : 
         \begin{enumerate}
             \item On calcule le polynôme caractéristique $\chi_A$ de $A$ : il doit être scindé. On calcule ses racines, qui sont les valeurs propres de $A$.
-            \item Pour chaque valeur propre $\lambda$, de multiplicité $m$, on note $N_{\lambda} = \Ker(A - \lambda \id)^m$. C’est un EV de dimension $m$. On détermine $m$ vecteurs formant une base de $N_{\lambda}$. L’union de toutes les bases $\mathcal{B}_{\lambda}$ des $N_{\lambda}$ forme une base $\mathcal{B} = (v_1,\ldots, v_n) \in \mathbb{K}^n$.
+            \item Pour chaque valeur propre $\lambda$, de multiplicité $m$, on note $N_{\lambda} = \ker(A - \lambda \id)^m$. C’est un EV de dimension $m$. On détermine $m$ vecteurs formant une base de $N_{\lambda}$. L’union de toutes les bases $\mathcal{B}_{\lambda}$ des $N_{\lambda}$ forme une base $\mathcal{B} = (v_1,\ldots, v_n) \in \mathbb{K}^n$.
             \item On définit l’endomorphisme $d$ par $d(v_i) = \lambda v_i$ pour chaque $v_i \in N_{\lambda}$. On peut remarquer que dans la base $\mathcal{B}$, la matrice de $d$ est diagonale. On note $\mathcal{B}_0 = (e_1,\ldots,e_n)$ la base canonique de $\mathbb{K}^n$, et $A$ la matrice de $f$ dans la base $\mathcal{B}_0$. Alors $\Delta$ sera la matrice de $d$ dans la base $\mathcal{B}_0$, \textit{i.e.} les colonnes de $\Delta$ sont les coordonnées de $d(e_i)$ exprimées dans la base $(e_1,\ldots, e_n)$. 
             \item On pose $N = A - \Delta$. Par la démonstration du théorème de décomposition de Dunford, $\Delta$ est diagonalisable, $N$ est nilpotente et $\Delta N = N \Delta$. La matrice de passage $P$ de la base $\mathcal{B}$ vers la base canonique $\mathcal{B}_0$ transforme $\Delta$ en une matrice diagonale $D = P^{-1} \Delta P$.
         \end{enumerate}
@@ -4228,11 +4229,11 @@
                 0 & 0 & 2- X
             \end{vmatrix} = -(X-1)^2(X-2) \]   
             Nous avons donc deux valeurs propres qui sont $\lambda_1$ et $\lambda_2 = 2$. La valeur propre $1$ est de multiplicité $m_1 = 2$, alors que, pour la valeur propre 2, $m_2 = 1$.
-            \item On note $N_1 = \Ker(A - I_3)^2$ et $N_2 = \Ker(A - 2 I_3)$. L’espace vectoriel $\mathbb{R}^3$ s’écrit comme somme directe 
-            \[ \mathbb{R}^3 = \Ker(A - I_3)^2 \oplus \Ker(A - 2 I_3) \]    
+            \item On note $N_1 = \ker(A - I_3)^2$ et $N_2 = \ker(A - 2 I_3)$. L’espace vectoriel $\mathbb{R}^3$ s’écrit comme somme directe 
+            \[ \mathbb{R}^3 = \ker(A - I_3)^2 \oplus \ker(A - 2 I_3) \]    
             Déterminons ces SE caractéristiques : 
             \begin{itemize}
-                \item On sait que $N_1 = \Ker(A - I_3)^2$ est un EV de dimension $2$. 
+                \item On sait que $N_1 = \ker(A - I_3)^2$ est un EV de dimension $2$. 
                 \[ A - I_3 = \begin{bmatrix}
                     0 & 1 & 1 \\
                     0 & 0 & 1 \\
@@ -4242,8 +4243,8 @@
                     0 & 0 & 1 \\
                     0 & 0 & 1
                 \end{bmatrix} \]   
-                Ainsi, $N_1$ est le plan vectoriel engendré par les vecteurs $v_1 = (1,0,0)$ et $v_2 = (0,1,0)$, \textit{i.e.} $N_1 = \mathbb{R} v_1 + \mathbb{R} v_2$. Au passage, notons que la matrice $A$ n’est pas diagonalisable : en effet, la valeur $1$ est de multiplicité $2$, mais $E_1 = \Ker(A - I_3) = \left\{v \in \mathbb{R}^3, \quad Av = v\right\}$ est de dimension seulement $1$ car $E_1 = \mathbb{R} v_1$.
-                \item On sait que $N_2$ est un EV de dimension $1$. Pour déterminer le noyau $\Ker(A - I_3) = \left\{v \in \mathbb{R}^3, \quad Av = 2v\right\}$, si $v = (x,y,z)$, on résout :
+                Ainsi, $N_1$ est le plan vectoriel engendré par les vecteurs $v_1 = (1,0,0)$ et $v_2 = (0,1,0)$, \textit{i.e.} $N_1 = \mathbb{R} v_1 + \mathbb{R} v_2$. Au passage, notons que la matrice $A$ n’est pas diagonalisable : en effet, la valeur $1$ est de multiplicité $2$, mais $E_1 = \ker(A - I_3) = \left\{v \in \mathbb{R}^3, \quad Av = v\right\}$ est de dimension seulement $1$ car $E_1 = \mathbb{R} v_1$.
+                \item On sait que $N_2$ est un EV de dimension $1$. Pour déterminer le noyau $\ker(A - I_3) = \left\{v \in \mathbb{R}^3, \quad Av = 2v\right\}$, si $v = (x,y,z)$, on résout :
                 \[ \left\{ \begin{array}{rcl}
                     x + y + z & = & 2x \\
                     y + z & = & 2y \\
@@ -4367,7 +4368,7 @@
     \begin{omed}{Méthode}{myred}
         \begin{enumerate}
             \item Calculer le polynôme caractéristique et les valeurs propres de $A$.
-            \item Pour chaque valeur propre $\lambda$, calculer le SEP $E_{\lambda} = \Ker(A - \lambda I_n)$ et trouver une base de $E_{\lambda}$. Le nombres de blocs de Jordan associés à $\lambda$ est $\dim E_{\lambda}$. 
+            \item Pour chaque valeur propre $\lambda$, calculer le SEP $E_{\lambda} = \ker(A - \lambda I_n)$ et trouver une base de $E_{\lambda}$. Le nombres de blocs de Jordan associés à $\lambda$ est $\dim E_{\lambda}$. 
             \item Pour chaque vecteur propre de la base de $E_{\lambda}$, on construit le bloc de Jordan associé : 
             \begin{itemize}
                 \item Si $v_1 \in E_{\lambda}$ est un vecteur propre de la base de $E_{\lambda}$, on cherche $v_2 \in \mathbb{K}^n$ tel que $(A - \lambda I_n) v_2 = v_1$.
@@ -4403,8 +4404,8 @@
                 2 & 3 & -X
             \end{vmatrix} = -(X + 1)(X - 2)^2 \]   
             Il y a donc deux valeurs propres $-1$ et $2$. 
-            \item Valeur propre $-1$. \quad La valeur propre -1 est de multiplicité $1$. Le sous-espace propre associé $E_{-1} = \Ker(A + I_3) = \left\{v \in \mathbb{R}^3, \quad A v = -v\right\}$ est donc de dimension $1$. Après calculs, on trouve que $E_{-1} = \mathbb{R} v_1$ où $v_1 = (-1, 1 ,-1)$. Comme la multiplicité de $-1$ comme racine de $\chi_{A}(X)$ est $1$, alors la valeur propre $-1$ sera juste associée à un bloc de Jordan de taille $1 \times 1$.
-            \item Valeur propre $2$. \quad La valeur propre $2$ est de multiplicité $2$. Il faut déterminer le sous-espace propre associé à $E_2 = \Ker(A - 2 I_3) = \left\{v \in \mathbb{R}^3, \quad A v = 2 v \right\}$. Après calculs, on trouve que $E_2 = \mathbb{R} v_2$ où $v_2 = (1,0,1)$. Comme $E_2$ est un EV de dimension $1$, alors que $2$ est de multiplicité $2$, la matrice $A$ n’est pas diagonalisable, et on sait alors que la valeur propre $2$ sera associée à un bloc de Jordan de taille $2 \times 2$. 
+            \item Valeur propre $-1$. \quad La valeur propre -1 est de multiplicité $1$. Le sous-espace propre associé $E_{-1} = \ker(A + I_3) = \left\{v \in \mathbb{R}^3, \quad A v = -v\right\}$ est donc de dimension $1$. Après calculs, on trouve que $E_{-1} = \mathbb{R} v_1$ où $v_1 = (-1, 1 ,-1)$. Comme la multiplicité de $-1$ comme racine de $\chi_{A}(X)$ est $1$, alors la valeur propre $-1$ sera juste associée à un bloc de Jordan de taille $1 \times 1$.
+            \item Valeur propre $2$. \quad La valeur propre $2$ est de multiplicité $2$. Il faut déterminer le sous-espace propre associé à $E_2 = \ker(A - 2 I_3) = \left\{v \in \mathbb{R}^3, \quad A v = 2 v \right\}$. Après calculs, on trouve que $E_2 = \mathbb{R} v_2$ où $v_2 = (1,0,1)$. Comme $E_2$ est un EV de dimension $1$, alors que $2$ est de multiplicité $2$, la matrice $A$ n’est pas diagonalisable, et on sait alors que la valeur propre $2$ sera associée à un bloc de Jordan de taille $2 \times 2$. 
             \item Bloc de Jordan. \quad On cherche $v_3 \in \mathbb{R}^3$ tel que $(A - 2I_3) v_3 = v_2$. Si $v_3 = (x,y,z)$, alors 
             \begin{align*}
                 (A - 2 I_3) v_3 = v_2 &\iff \begin{bmatrix}
@@ -4793,7 +4794,7 @@ La j-ème colonne de $M$ s’écrit $C_j = \left(\spr{u(e_j)}{e_i}\right)_{1 \le
 
     \subsubsection{Orientation de l’espace, produit mixte et produit vectoriel}
 
-    Soient $\mathcal{B}$ et $\mathcal{B}'$ deux bases orthonormales et $P$ la matrice de passage de $\mathcal{B}$ à $\mathcal{B}'$. $P \in \Ort_n(\mathbb{R})$ donc $\det(P) = \pm 1$.
+    Soient $\mathcal{B}$ et $\mathcal{B}'$ deux bases orthonormales et $P$ la matrice de passage de $\mathcal{B}$ à $\mathcal{B}'$. $P \in \O_n(\mathbb{R})$ donc $\det(P) = \pm 1$.
 
     \begin{defitheo}{Orientation de l’espace}{}
         On dit que $\mathcal{B}$ et $\mathcal{B}'$ définissent la \textbf{même orientation} \textit{ssi} $\det(P) = 1$. On définit ainsi une relation d’équivalence sur l’ensemble des BON de $E$.
@@ -4843,7 +4844,7 @@ La j-ème colonne de $M$ s’écrit $C_j = \left(\spr{u(e_j)}{e_i}\right)_{1 \le
         \begin{enumerate}
             \item $f$ est une symétrie orthogonale ;
             \item $f \in \mathcal{O}(E)$ et $f$ est une symétrie ;
-            \item $A \in \Ort_n(\mathbb{R})$ et $A^{\top} = A$ ;
+            \item $A \in \O_n(\mathbb{R})$ et $A^{\top} = A$ ;
             \item il existe $B'$ une BON de $E$ telle que $\mat{B'}{f}$ est diagonale, de coefficient diagonaux $\pm 1$.
         \end{enumerate}
     \end{omed}
@@ -4851,7 +4852,7 @@ La j-ème colonne de $M$ s’écrit $C_j = \left(\spr{u(e_j)}{e_i}\right)_{1 \le
     \begin{demo}{Résolution}{mypurple}
         \begin{itemize}[leftmargin=3cm]
             \item[\textbf{(i)} $\implies$ \textbf{(ii)}] a déjà été montré.
-            \item[\textbf{(ii)} $\implies$ \textbf{(i)}] Soit $f \in \Ort(E)$ et $f$ une symétrie. C’est la symétrie par rapport à $\ker(f - \id)$ parallèment à $\ker(f + \id)$. Or on sait que $E = \ker(f - \id) \oplus \ker(f + \id)$. Soit $x \in \ker(f - \id)$ et $y \in \ker(f + \id)$, on a 
+            \item[\textbf{(ii)} $\implies$ \textbf{(i)}] Soit $f \in \O(E)$ et $f$ une symétrie. C’est la symétrie par rapport à $\ker(f - \id)$ parallèment à $\ker(f + \id)$. Or on sait que $E = \ker(f - \id) \oplus \ker(f + \id)$. Soit $x \in \ker(f - \id)$ et $y \in \ker(f + \id)$, on a 
             \begin{align*}
                 \spr{x}{y}
                 &= \spr{f(x)}{-f(y)} \\
@@ -4863,7 +4864,7 @@ La j-ème colonne de $M$ s’écrit $C_j = \left(\spr{u(e_j)}{e_i}\right)_{1 \le
                 I_{\dim(F)} & 0 \\
                 0 & -I_{\dim(F^{\perp})}
             \end{bmatrix}$.
-            \item[\textbf{(iv)} $\implies$ \textbf{(iii)}] Soit $B'$ une BON telle que $\mat{B'}{f} = \diag(\pm 1) := \Delta$ et $P$ la matrice de passage de $B$ à $B'$. Alors $P \in \Ort_n$ et $A = P \Delta P^{\top}$, donc 
+            \item[\textbf{(iv)} $\implies$ \textbf{(iii)}] Soit $B'$ une BON telle que $\mat{B'}{f} = \diag(\pm 1) := \Delta$ et $P$ la matrice de passage de $B$ à $B'$. Alors $P \in \O_n$ et $A = P \Delta P^{\top}$, donc 
             \begin{align*}
                 A^{\top} A 
                 &= (P \Delta P^{\top})^{\top}(P \Delta P^{\top}) \\
@@ -4872,7 +4873,7 @@ La j-ème colonne de $M$ s’écrit $C_j = \left(\spr{u(e_j)}{e_i}\right)_{1 \le
                 &= P P^{\top} = I_n
             \end{align*}
             De plus, comme $\Delta^{\top} = \Delta$, on a $A^{\top} = A$.
-            \item[\textbf{(iii)} $\implies$ \textbf{(ii)}] Supposons $A \in \Ort_n(\mathbb{R})$ et $A^{\top} = A$. L’endomorphisme canoniquement associé à $A$ -- $f$ -- est donc orthogonal, et $f$ est une symétrie \textit{ssi} $f^{-1} = f$ \textit{ssi} $A^{-1} = A$ \textit{ssi} $A^{\top} = A$.
+            \item[\textbf{(iii)} $\implies$ \textbf{(ii)}] Supposons $A \in \O_n(\mathbb{R})$ et $A^{\top} = A$. L’endomorphisme canoniquement associé à $A$ -- $f$ -- est donc orthogonal, et $f$ est une symétrie \textit{ssi} $f^{-1} = f$ \textit{ssi} $A^{-1} = A$ \textit{ssi} $A^{\top} = A$.
         \end{itemize}
     \end{demo}
 
@@ -4927,7 +4928,7 @@ La j-ème colonne de $M$ s’écrit $C_j = \left(\spr{u(e_j)}{e_i}\right)_{1 \le
     \end{defi}
 
     \begin{prop}{Groupes orthogonaux d’ordre $2$}{}
-        $\SO_2(\mathbb{R}) = \enstq{R_{\theta}}{\theta \in \mathbb{R}} \esp{et} \Ort_2(\mathbb{R}) = \enstq{R_{\theta}}{\theta \in \mathbb{R}} \cup \enstq{S_{\varphi}}{\varphi \in \mathbb{R}}$
+        $\SO_2(\mathbb{R}) = \enstq{R_{\theta}}{\theta \in \mathbb{R}} \esp{et} \O_2(\mathbb{R}) = \enstq{R_{\theta}}{\theta \in \mathbb{R}} \cup \enstq{S_{\varphi}}{\varphi \in \mathbb{R}}$
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
@@ -4935,24 +4936,24 @@ La j-ème colonne de $M$ s’écrit $C_j = \left(\spr{u(e_j)}{e_i}\right)_{1 \le
             a & b \\
             c & d
         \end{bmatrix}$.
-        \[ A \in \Ort_2(\mathbb{R}) \iff \left\{ \begin{array}{l}
+        \[ A \in \O_2(\mathbb{R}) \iff \left\{ \begin{array}{l}
             a^2 + c^2 = 1 \\
             b^2 + d^2 = 1 \\
             ab + cd = 0
         \end{array} \right. \] 
         Des deux premières équations, on déduit qu’il existe $\theta, \varphi$ tels que $a = \cos(\theta), c = \sin(\theta), b = \sin(\varphi), d = \cos(\varphi)$. En remplaçant dans la dernière équation, on obtient que $\sin(\theta + \varphi) = 0$, \textit{i.e.} $\eqmodulo{\theta}{-\varphi}{\pi}$.
         \begin{itemize}
-            \item Si $\theta = -\varphi$, alors $d = \cos(\theta) = a$ et $b = \sin(-\theta) = -c$, et $A = R_{\theta}$. De plus, $\det(R_{\theta}) = 1$ donc $A \in \Ort_2(\mathbb{R})$.
-            \item Sinon, $\theta = - \varphi + \pi$, et alors $a = \cos(-\varphi + \pi) = - \cos(\varphi) = -d$ et $c = \sin(-\varphi + \pi) = \sin(\varphi) = b$, d’où $A = S_{\varphi}$. De plus, $\det(S_{\varphi}) = -1$, donc $A \notin \Ort_2(\mathbb{R})$.
+            \item Si $\theta = -\varphi$, alors $d = \cos(\theta) = a$ et $b = \sin(-\theta) = -c$, et $A = R_{\theta}$. De plus, $\det(R_{\theta}) = 1$ donc $A \in \O_2(\mathbb{R})$.
+            \item Sinon, $\theta = - \varphi + \pi$, et alors $a = \cos(-\varphi + \pi) = - \cos(\varphi) = -d$ et $c = \sin(-\varphi + \pi) = \sin(\varphi) = b$, d’où $A = S_{\varphi}$. De plus, $\det(S_{\varphi}) = -1$, donc $A \notin \O_2(\mathbb{R})$.
         \end{itemize}
     \end{demo}
 
-    On peut interpréter géométriquement ces résultats, dans le plan rapporté au RON $R = (O, \vec{\imath}, \vec{\jmath})$. Soit $B = (\vec{\imath}, \vec{\jmath})$.
+    On peut interpréter géométriquement ces résultats, dans le plan rapporté au RON $R = (O, \vct{\imath}, \vct{\jmath})$. Soit $B = (\vct{\imath}, \vct{\jmath})$.
     \begin{itemize}
         \item Soit $f$ telle que $\mat{B}{f} = R_{\theta}$. Alors 
-        \[ \et{f(\vec{\imath}) = \cos(\theta) \vec{\imath} + \sin(\theta) \vec{\jmath}}{f(\vec{\jmath}) = -\sin(\theta) \vec{\imath} + \cos(\theta) \vec{\jmath} = \cos(\theta + \pi /2 2) \vec{\imath} + \sin(\theta + \pi / 2) \vec{\jmath} } \]   
+        \[ \et{f(\vct{\imath}) = \cos(\theta) \vct{\imath} + \sin(\theta) \vct{\jmath}}{f(\vct{\jmath}) = -\sin(\theta) \vct{\imath} + \cos(\theta) \vct{\jmath} = \cos(\theta + \pi /2 2) \vct{\imath} + \sin(\theta + \pi / 2) \vct{\jmath} } \]   
         Ainsi, $f$ est la rotation d’angle $\theta$ centrée sur l’origine -- ce qui est obligatoire pour une application linéaire puisque $f(0) = 0$ --.
-        \item Soit $f$ telle que $\mat{B}{f} = S_{\varphi}$. $S_{\varphi}^{\top} = S_{\varphi} \in \Ort_2(\mathbb{R})$, donc $f$ est une symétrie orthogonale. Déterminons $\ker(f - \id)$, en résolvant $S_{\varphi} X = X$ où $X = \begin{bmatrix}
+        \item Soit $f$ telle que $\mat{B}{f} = S_{\varphi}$. $S_{\varphi}^{\top} = S_{\varphi} \in \O_2(\mathbb{R})$, donc $f$ est une symétrie orthogonale. Déterminons $\ker(f - \id)$, en résolvant $S_{\varphi} X = X$ où $X = \begin{bmatrix}
             x \\
             y
         \end{bmatrix}$. 
@@ -4964,7 +4965,7 @@ La j-ème colonne de $M$ s’écrit $C_j = \left(\spr{u(e_j)}{e_i}\right)_{1 \le
             &\iff \et{2 \sin(\varphi/2)(-\sin(\varphi/2)x + \cos(\varphi/2)y)  = 0}{2 \cos(\varphi/2)(\sin(\varphi/2)x - \cos(\varphi/2)y) = 0}
             &\iff \sin(\varphi/2)x - \cos(\varphi/2)y = 0
         \end{align*}
-        $X$ est donc dans une droite vectorielle, de vecteur directeur $\vec{u} = \begin{bmatrix}
+        $X$ est donc dans une droite vectorielle, de vecteur directeur $\vct{u} = \begin{bmatrix}
             \cos(\varphi/2) \\
             \sin(\varphi/2)
         \end{bmatrix}$. Ainsi, $f$ est la symétrie par rapport à la droite linéaire d’angle $\varphi / 2$ avec l’axe des abcisses.
@@ -5037,26 +5038,26 @@ La j-ème colonne de $M$ s’écrit $C_j = \left(\spr{u(e_j)}{e_i}\right)_{1 \le
         x_1 \\
         \vdots \\
         x_n
-        \end{bmatrix}\in \mathcal{M}_{n,1}(\mathbb{C})$ tel que $AX = \lambda X$. La matrice $A$ est réelle, donc $\barr{A} = \barr{A}$. Ainsi, $\barr{AX} = A \barr{X}$. On a,
+        \end{bmatrix}\in \mathcal{M}_{n,1}(\mathbb{C})$ tel que $AX = \lambda X$. La matrice $A$ est réelle, donc $\ovl{A} = \ovl{A}$. Ainsi, $\ovl{AX} = A \ovl{X}$. On a,
         \begin{align*}
-            \barr{X}^{\top} A X 
-            &= \barr{X}^{\top} (\lambda X) \\
+            \ovl{X}^{\top} A X 
+            &= \ovl{X}^{\top} (\lambda X) \\
             &= \lambda \sum_{i=1}^{n} \abs{x_i}^2
         \end{align*}
         D’autre part, 
         \begin{align*}
-            \left(\barr{X}^{\top} A X \right)^{\top} &\overset{i}{=} \lambda \sum_{i=1}^{n} \abs{x_i}^2 \\
-            &\overset{ii}{=} X^{\top} A^{\top} \barr{X} \\
+            \left(\ovl{X}^{\top} A X \right)^{\top} &\overset{i}{=} \lambda \sum_{i=1}^{n} \abs{x_i}^2 \\
+            &\overset{ii}{=} X^{\top} A^{\top} \ovl{X} \\
             & \quad \downarrow \quad A^{\top} = A \\
-            &= X^{\top} A \barr{X} \\
-            &= X^{\top} \barr{AX} \\
-            &= \barr{\lambda} X^{\top} \barr{X} \\
-            &= \barr{\lambda} \sum_{i=1}^{n} \abs{x_i}^2
+            &= X^{\top} A \ovl{X} \\
+            &= X^{\top} \ovl{AX} \\
+            &= \ovl{\lambda} X^{\top} \ovl{X} \\
+            &= \ovl{\lambda} \sum_{i=1}^{n} \abs{x_i}^2
         \end{align*}
         Donc $\lambda \in \mathbb{R}$.
     \end{demo}
 
-    Nous avons au passage montré que les valeurs propres de $f$ sont toujours réelle, \textit{i.e.} $\Sp_{\mathbb{C}}(f) \subset \mathbb{R}$.
+    Nous avons au passage montré que les valeurs propres de $f$ sont toujours réelle, \textit{i.e.} $\sp_{\mathbb{C}}(f) \subset \mathbb{R}$.
 
     \begin{lem}{}{}
         Soit $E$ un EVE et $f \in \mathcal{L}(E)$ autoadjoint. Si $F$ est un sev de $E$ stable par $f$, alors $F^{\perp}$ est stable par $f$. 
@@ -5082,11 +5083,11 @@ La j-ème colonne de $M$ s’écrit $C_j = \left(\spr{u(e_j)}{e_i}\right)_{1 \le
     \end{demo}
 
     \begin{theo}{Théorème spectral, version matricielle}{}
-        Soit $M \in \mathcal{M}_n(\mathbb{R})$ une matrice symétrique. Il existe $P \in \Ort_n(\mathbb{R})$ et $D \in \mathcal{M}_n(\mathbb{R})$ diagonale telles que $M = P D P^{\top}$
+        Soit $M \in \mathcal{M}_n(\mathbb{R})$ une matrice symétrique. Il existe $P \in \O_n(\mathbb{R})$ et $D \in \mathcal{M}_n(\mathbb{R})$ diagonale telles que $M = P D P^{\top}$
     \end{theo}
 
     \begin{demo}{Idée}{myred}
-        Soit $E$ un EVE de dimension $n$ et $B$ une BON de $E$. Il existe $f \in \mathcal{L}(E)$ tel que $M = \mat{B}{f}$. Comme $M$ est symétrique et $B$ une BON, on sait que $f$ est autoadjoint. D’après le théorème spectral sur les endomorphismes, il existe une BON $B'$ de $E$ formée de vecteurs propres de $f$. On note $P$ la matrice de passage de $B$ à $B'$. $P \in \Ort_n(\mathbb{R})$, donc $M = P \mat{B'}{f} P^{\top}$.
+        Soit $E$ un EVE de dimension $n$ et $B$ une BON de $E$. Il existe $f \in \mathcal{L}(E)$ tel que $M = \mat{B}{f}$. Comme $M$ est symétrique et $B$ une BON, on sait que $f$ est autoadjoint. D’après le théorème spectral sur les endomorphismes, il existe une BON $B'$ de $E$ formée de vecteurs propres de $f$. On note $P$ la matrice de passage de $B$ à $B'$. $P \in \O_n(\mathbb{R})$, donc $M = P \mat{B'}{f} P^{\top}$.
     \end{demo}
 
     En particulier, toute matrice réelle et symétrique est diagonalisable.
@@ -5098,12 +5099,12 @@ La j-ème colonne de $M$ s’écrit $C_j = \left(\spr{u(e_j)}{e_i}\right)_{1 \le
     \begin{defi}{}{}
         \begin{enumerate}
             \item \begin{enumerate}
-            \item On dit que $f$ est positif si $\forall x \in E, \spr{x}{f(x)} \geq 0$. On note $f \in \Sym^+(E)$.
-            \item On dit que $f$ est définie positive si $\forall x \in E \backslash {0}, \spr{x}{f(x)} > 0$. On note $f \in \Sym^{++}(E)$.
+            \item On dit que $f$ est positif si $\forall x \in E, \spr{x}{f(x)} \geq 0$. On note $f \in \S^+(E)$.
+            \item On dit que $f$ est définie positive si $\forall x \in E \backslash {0}, \spr{x}{f(x)} > 0$. On note $f \in \S^{++}(E)$.
         \end{enumerate} 
             \item \begin{enumerate}
-            \item On dit que $M$ est positive si $\forall X \in \mathcal{M}_{n,1}(\mathbb{R}), X^{\top} M X \geq 0$. On note $M \in \Sym_n^{+}(\mathbb{R})$.
-            \item On dit que $M$ est définie positive si $\forall X \in \mathcal{M}_{n,1}(\mathbb{R}) \backslash {0}, X^{\top} M X > 0$. On note $M \in \Sym_n^{++}(\mathbb{R})$.
+            \item On dit que $M$ est positive si $\forall X \in \mathcal{M}_{n,1}(\mathbb{R}), X^{\top} M X \geq 0$. On note $M \in \S_n^{+}(\mathbb{R})$.
+            \item On dit que $M$ est définie positive si $\forall X \in \mathcal{M}_{n,1}(\mathbb{R}) \backslash {0}, X^{\top} M X > 0$. On note $M \in \S_n^{++}(\mathbb{R})$.
         \end{enumerate}
         \end{enumerate}
     \end{defi}
@@ -5111,12 +5112,12 @@ La j-ème colonne de $M$ s’écrit $C_j = \left(\spr{u(e_j)}{e_i}\right)_{1 \le
     \begin{prop}{}{}
         \begin{enumerate}
             \item \begin{enumerate}
-                \item $f \in \Sym^+(E) \iff \Sp(f) \subset \mathbb{R}_+$
-                \item $f \in \Sym^{++}(E) \iff \Sp(f) \subset \mathbb{R}_+^*$
+                \item $f \in \S^+(E) \iff \sp(f) \subset \mathbb{R}_+$
+                \item $f \in \S^{++}(E) \iff \sp(f) \subset \mathbb{R}_+^*$
             \end{enumerate}
             \item \begin{enumerate}
-                \item $M \in \Sym_n^+(\mathbb{R}) \iff \Sp(M) \subset \mathbb{R}_+$
-                \item $M \in \Sym_n^{++}(\mathbb{R}) \iff \Sp(M) \subset \mathbb{R}_+^*$
+                \item $M \in \S_n^+(\mathbb{R}) \iff \sp(M) \subset \mathbb{R}_+$
+                \item $M \in \S_n^{++}(\mathbb{R}) \iff \sp(M) \subset \mathbb{R}_+^*$
             \end{enumerate}
         \end{enumerate}
     \end{prop}
@@ -5124,16 +5125,16 @@ La j-ème colonne de $M$ s’écrit $C_j = \left(\spr{u(e_j)}{e_i}\right)_{1 \le
     \begin{demo}{Preuve}{myolive}
         \begin{enumerate}
             \item \begin{enumerate}
-                \item Soit $\lambda \in \Sp(f)$. Il existe $v \in E, v \neq 0$ tel que $f(v) = \lambda v$. On a $\spr{v}{f(v)} = \spr{v}{\lambda v} = \lambda \norm{v}^2 \geq 0$. Donc $\lambda \in \mathbb{R}_+$. Réciproquement, il existe une BON  $B = (v_1,\ldots,v_n)$ de vecteurs propres de $f$. Soit $x \in E, x = \sum_{i=1}^{n} x_i v_i$. Alors $\spr{x}{f(x)} = \sum_{i=1}^{n} \lambda_i x_i^2 \geq 0$.
-                \item Soit $\lambda \in \Sp(f)$. Il existe $v \in E, v \neq 0$ tel que $f(v) = \lambda v$. On a $\spr{v}{f(v)} = \spr{v}{\lambda v} = \lambda \norm{v}^2 > 0$. Donc $\lambda \in \mathbb{R}_+^*$. Réciproquement, il existe une BON  $B = (v_1,\ldots,v_n)$ de vecteurs propres de $f$. Soit $x \in E \backslash {0}, x = \sum_{i=1}^{n} x_i v_i$. Alors $\spr{x}{f(x)} = \sum_{i=1}^{n} \lambda_i x_i^2 > 0$.
+                \item Soit $\lambda \in \sp(f)$. Il existe $v \in E, v \neq 0$ tel que $f(v) = \lambda v$. On a $\spr{v}{f(v)} = \spr{v}{\lambda v} = \lambda \norm{v}^2 \geq 0$. Donc $\lambda \in \mathbb{R}_+$. Réciproquement, il existe une BON  $B = (v_1,\ldots,v_n)$ de vecteurs propres de $f$. Soit $x \in E, x = \sum_{i=1}^{n} x_i v_i$. Alors $\spr{x}{f(x)} = \sum_{i=1}^{n} \lambda_i x_i^2 \geq 0$.
+                \item Soit $\lambda \in \sp(f)$. Il existe $v \in E, v \neq 0$ tel que $f(v) = \lambda v$. On a $\spr{v}{f(v)} = \spr{v}{\lambda v} = \lambda \norm{v}^2 > 0$. Donc $\lambda \in \mathbb{R}_+^*$. Réciproquement, il existe une BON  $B = (v_1,\ldots,v_n)$ de vecteurs propres de $f$. Soit $x \in E \backslash {0}, x = \sum_{i=1}^{n} x_i v_i$. Alors $\spr{x}{f(x)} = \sum_{i=1}^{n} \lambda_i x_i^2 > 0$.
             \end{enumerate}
             \item \begin{enumerate}
-                \item Si $\lambda \in \Sp(M)$, il existe $X$ tel que $MX = \lambda X$. On a donc $X^{\top} M X = \lambda \sum_{i=1}^{n} x_i^2 \geq 0$. Réciproquement, d’après le théorème spectral pour les matrices, il existe $P \in \Ort_n(\mathbb{R})$ et $D \in \mathcal{M}_n(\mathbb{R})$ diagonale telles que $M = P D P^{\top}$. Soit $X \in \mathcal{M}_{n,1}(\mathbb{R})$, $X^{\top} M X = (P^{\top} X)^{\top} D (P^{\top} X)$. En posant $P^{\top} X = \begin{bmatrix}
+                \item Si $\lambda \in \sp(M)$, il existe $X$ tel que $MX = \lambda X$. On a donc $X^{\top} M X = \lambda \sum_{i=1}^{n} x_i^2 \geq 0$. Réciproquement, d’après le théorème spectral pour les matrices, il existe $P \in \O_n(\mathbb{R})$ et $D \in \mathcal{M}_n(\mathbb{R})$ diagonale telles que $M = P D P^{\top}$. Soit $X \in \mathcal{M}_{n,1}(\mathbb{R})$, $X^{\top} M X = (P^{\top} X)^{\top} D (P^{\top} X)$. En posant $P^{\top} X = \begin{bmatrix}
                     y_1 \\
                     \vdots \\
                     y_n
                 \end{bmatrix}$ et $D = \diag(\lambda_1,\ldots,\lambda_n)$ où les $\lambda \in \mathbb{R}_+$. Alors $X^{\top} M X = \sum_{i=1}^{n} \lambda_i y_i^2 \geq 0$
-                \item Si $\lambda \in \Sp(M)$, il existe $X$ tel que $MX = \lambda X$. On a donc $X^{\top} M X = \lambda \sum_{i=1}^{n} x_i^2 > 0$. Réciproquement, d’après le théorème spectral pour les matrices, il existe $P \in \Ort_n(\mathbb{R})$ et $D \in \mathcal{M}_n(\mathbb{R})$ diagonale telles que $M = P D P^{\top}$. Soit $X \in \mathcal{M}_{n,1}(\mathbb{R})$, $X^{\top} M X = (P^{\top} X)^{\top} D (P^{\top} X)$. En posant $P^{\top} X = \begin{bmatrix}
+                \item Si $\lambda \in \sp(M)$, il existe $X$ tel que $MX = \lambda X$. On a donc $X^{\top} M X = \lambda \sum_{i=1}^{n} x_i^2 > 0$. Réciproquement, d’après le théorème spectral pour les matrices, il existe $P \in \O_n(\mathbb{R})$ et $D \in \mathcal{M}_n(\mathbb{R})$ diagonale telles que $M = P D P^{\top}$. Soit $X \in \mathcal{M}_{n,1}(\mathbb{R})$, $X^{\top} M X = (P^{\top} X)^{\top} D (P^{\top} X)$. En posant $P^{\top} X = \begin{bmatrix}
                     y_1 \\
                     \vdots \\
                     y_n
@@ -5148,7 +5149,7 @@ La j-ème colonne de $M$ s’écrit $C_j = \left(\spr{u(e_j)}{e_i}\right)_{1 \le
         est un spr ?
     \end{omed}
 
-    On peut intuiter que ce sera dans le cas où $A \in \Sym^{++}_n(\mathbb{R})$, mais il faut le montrer, ce à quoi nous allons nous employer :
+    On peut intuiter que ce sera dans le cas où $A \in \S^{++}_n(\mathbb{R})$, mais il faut le montrer, ce à quoi nous allons nous employer :
 
     \begin{demo}{Justification}{myolive}
         L’application est une forme bilinéaire. 
@@ -5159,7 +5160,7 @@ La j-ème colonne de $M$ s’écrit $C_j = \left(\spr{u(e_j)}{e_i}\right)_{1 \le
     \end{demo}
 
     \begin{omed}{Exercice}{myolive}
-        Soit $A = (a_{i,j}) \in \Sym_n^{++}(\mathbb{R})$. Montrer que :
+        Soit $A = (a_{i,j}) \in \S_n^{++}(\mathbb{R})$. Montrer que :
         \begin{enumerate}
             \item $\det(A) \leq \left(\frac{\tr(A)}{n}\right)^n$ 
             \item $\forall i \intervalleEntier{1}{n}, \quad a_{i,i} > 0$ 
@@ -5168,7 +5169,7 @@ La j-ème colonne de $M$ s’écrit $C_j = \left(\spr{u(e_j)}{e_i}\right)_{1 \le
     \end{omed}
 
     \begin{demo}{Solution}{myolive}
-        On peut remarquer dans un premier temps que $A$ est diagonalisable comme matrice symétrique réelle (théorème spectral). Il existe $P \in \Ort_n(\mathbb{R})$ telle que $A = P \diag(\lambda_1, \ldots, \lambda_n) P^{\top}$. De plus, on sait que $\forall i \in \intervalleEntier{1}{n}, \lambda_i > 0$.
+        On peut remarquer dans un premier temps que $A$ est diagonalisable comme matrice symétrique réelle (théorème spectral). Il existe $P \in \O_n(\mathbb{R})$ telle que $A = P \diag(\lambda_1, \ldots, \lambda_n) P^{\top}$. De plus, on sait que $\forall i \in \intervalleEntier{1}{n}, \lambda_i > 0$.
         \begin{enumerate}
             \item $\det(A) = \prod_{i=1}^{n} \lambda_i$ et $\tr(A) = \sum_{i=1}^{n} \lambda_i$, et les $\lambda_i$ sont positifs, donc par inégalité arithmético-géométrique -- qui se déduit de la concavité de $\ln$ --, 
             \[ \left(\lambda_1\cdots \lambda_n\right)^{1/n} \leq \frac{\sum_{i=1}^{n} \lambda_i}{n} \]
@@ -5179,17 +5180,17 @@ La j-ème colonne de $M$ s’écrit $C_j = \left(\spr{u(e_j)}{e_i}\right)_{1 \le
             \end{bmatrix} \neq 0$, on a que $X^{\top} A X = \sum_{i=1}^{n} \sum_{j=1}^{n} x_i x_j a_{i,j} > 0$. En choisissant les vecteur de la base canonique de $\mathcal{M}_{n,1}(\mathbb{R})$ -- que l’on note ici $E_i$ --, on obtient que $\forall i \in \intervalleEntier{1}{n}, a_{i,i} > 0$.
             \item $\det(B) = \det(A) \det(D)^2 = \det(A) \times \prod_{i=1}^{n} \frac{1}{a_{i,i}}$. Donc 
             \[ \det(A) \leq \prod_{i=1}^{n} a_{i,i} \iff \det(B) \leq 1 \]    
-            Montrons que $B \in \Sym_n^{++}(\mathbb{R})$. Clairement, $B \in \mathcal{n}(\mathbb{R})$ et $B^{\top} = D A^{\top} D = B$, donc $B$ est symétrique. Si $X = \begin{bmatrix}
+            Montrons que $B \in \S_n^{++}(\mathbb{R})$. Clairement, $B \in \mathcal{n}(\mathbb{R})$ et $B^{\top} = D A^{\top} D = B$, donc $B$ est symétrique. Si $X = \begin{bmatrix}
                 x_1 \\
                 \vdots \\
                 x_n
-            \end{bmatrix}$, $X^{\top} B X = (DX)^{\top} A (DX) \geq 0$ par définition positive de $A$. De plus, $D$ est inversible donc $DX= 0$ admet une unique solution qui est $0$, ce qui permet de confirmer la définition positive de $B$. Donc $B \in \Sym_n^{++}(\mathbb{R})$, et ainsi $\det(B) \leq \left(\frac{\tr(B)}{n}\right)^n$. Or $\tr(B) = \sum_{i=1}^{n} d_i^2 a_{i,i} = n$ donc $\det(B) \leq 1$.
+            \end{bmatrix}$, $X^{\top} B X = (DX)^{\top} A (DX) \geq 0$ par définition positive de $A$. De plus, $D$ est inversible donc $DX= 0$ admet une unique solution qui est $0$, ce qui permet de confirmer la définition positive de $B$. Donc $B \in \S_n^{++}(\mathbb{R})$, et ainsi $\det(B) \leq \left(\frac{\tr(B)}{n}\right)^n$. Or $\tr(B) = \sum_{i=1}^{n} d_i^2 a_{i,i} = n$ donc $\det(B) \leq 1$.
         \end{enumerate}
     \end{demo}
 
     \begin{omed}{Exercice}{myolive}
         Soit $A \in \mathcal{M}_n(\mathbb{R})$. On pose $S = \left\{X \in \mathcal{n,1}(\mathbb{R}), \quad \norm{X} = 1\right\}$. Montrer que 
-        \[ \sup\left\{\norm{AX}, X \in S\right\} = \sqrt{\max\left(\Sp(A^{\top} A)\right)} \]
+        \[ \sup\left\{\norm{AX}, X \in S\right\} = \sqrt{\max\left(\sp(A^{\top} A)\right)} \]
     \end{omed}
 
     \begin{demo}{Résolution}{myolive}
@@ -5199,8 +5200,8 @@ La j-ème colonne de $M$ s’écrit $C_j = \left(\spr{u(e_j)}{e_i}\right)_{1 \le
                 y_1 \\
                 \vdots \\
                 y_n
-            \end{bmatrix}$. Donc $A^{\top} A \in \Sym_n^+(\mathbb{R})$. De plus, si $A$ est inversible, $A^{\top} A \in \Sym_n^{++}(\mathbb{R})$.
-            \item $\norm{AX}^2 = \sum_{i=1}^{n} y_i^2 = X^{\top} A^{\top} A X$. D’après le théorème spectral, il existe $P \in \Ort_n(\mathbb{R})$ telle que $A^{\top} A = P \diag(\lambda_1,\ldots, \lambda_n) P^{\top}$. Ainsi,
+            \end{bmatrix}$. Donc $A^{\top} A \in \S_n^+(\mathbb{R})$. De plus, si $A$ est inversible, $A^{\top} A \in \S_n^{++}(\mathbb{R})$.
+            \item $\norm{AX}^2 = \sum_{i=1}^{n} y_i^2 = X^{\top} A^{\top} A X$. D’après le théorème spectral, il existe $P \in \O_n(\mathbb{R})$ telle que $A^{\top} A = P \diag(\lambda_1,\ldots, \lambda_n) P^{\top}$. Ainsi,
             \begin{align*}
                 \norm{AX}^2 
                 &= X^{\top} A^{\top} AX \\
@@ -5211,13 +5212,13 @@ La j-ème colonne de $M$ s’écrit $C_j = \left(\spr{u(e_j)}{e_i}\right)_{1 \le
                     \alpha_n 
                 \end{bmatrix} \\
                 &= \sum_{i=1}^{n} \lambda_i \alpha_i^2 \\
-                &\quad \downarrow \quad \Sp(A^{\top} A) \subset \mathbb{R}_+^* \\
+                &\quad \downarrow \quad \sp(A^{\top} A) \subset \mathbb{R}_+^* \\
                 &\leq \max(\lambda_1,\ldots,\lambda_n) \sum_{i=1}^{n} \alpha_i^2 \\
-                &= \max(\Sp(A^{\top}A)) \norm{P^{\top}X}^2 \\
+                &= \max(\sp(A^{\top}A)) \norm{P^{\top}X}^2 \\
                 \text{et } \norm{P^{\top} X}^2 &= X^{\top} P^{\top} P X \\
                 &= \norm{X}^2 = 1
             \end{align*}
-            Ainsi, on a obtenu que \[ \sup\left\{\norm{AX}^2, \quad X \in S\right\} \leq \max(\Sp(A^{\top}A)) \] 
+            Ainsi, on a obtenu que \[ \sup\left\{\norm{AX}^2, \quad X \in S\right\} \leq \max(\sp(A^{\top}A)) \] 
             Soit $i_0 \in \intervalleEntier{1}{n}$ tel que $\lambda_{i_0} = \max(\lambda_1,\ldots,\lambda_n)$. On choisit $X = P E_{i_0}$, tel que $\norm{X} = 1$, et $\norm{AX}^2 = \lambda_{i_0}$. Il y a donc égalité.
         \end{itemize}
     \end{demo}

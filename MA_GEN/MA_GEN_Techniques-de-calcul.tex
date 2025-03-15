@@ -1,4 +1,5 @@
-\customchapter{Techniques de calcul}{Ce chapitre est un répertoire des techniques de calcul couvrant différents domaines des mathématiques. Certaines méthodes, fondamentales, faciliteront l’utilisation des outils mathématiques.}
+\chapter{Techniques de calcul}
+\chaptertoc
 
 \section{Trigonométrie}
 
@@ -1084,7 +1085,7 @@
     \end{theo}
 
     \begin{demo}{Idée}{myred}
-        La famille est bien libre, car une matrice est nulle si et seulement si tous ses coefficients sont nuls. Elle est aussi génératrice car toute matrice peut être décomposée comme $\sum\limits_{i,j \in \intervalleEntier{1}{n} \times \intervalleEntier{1}{p}} a_{i,j}E_{i,j} \in \Vect((E_{i,j})_{i,j \in \intervalleEntier{1}{n} \times \intervalleEntier{1}{p}})$
+        La famille est bien libre, car une matrice est nulle si et seulement si tous ses coefficients sont nuls. Elle est aussi génératrice car toute matrice peut être décomposée comme $\sum\limits_{i,j \in \intervalleEntier{1}{n} \times \intervalleEntier{1}{p}} a_{i,j}E_{i,j} \in \vect((E_{i,j})_{i,j \in \intervalleEntier{1}{n} \times \intervalleEntier{1}{p}})$
     \end{demo}
 
 \subsection{Produit de matrices}
@@ -1294,9 +1295,9 @@
         Soit $A \in \mk{n}$.
 
         \begin{alors}
-            \item Si $A \in \mathcal{G}\ell_n(\mathbb{K})$, alors $A$ admet un unique inverse.
+            \item Si $A \in \GL_n(\mathbb{K})$, alors $A$ admet un unique inverse.
             \item \begin{align*}
-                A \in \mathcal{G}\ell_n(\mathbb{K}) & \iff \exists B \in \mk{n}, BA = I_n \\
+                A \in \GL_n(\mathbb{K}) & \iff \exists B \in \mk{n}, BA = I_n \\
                 & \iff \exists B \in \mk{n}, AB = I_n 
             \end{align*}
         \end{alors}

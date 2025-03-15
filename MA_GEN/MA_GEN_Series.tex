@@ -1,4 +1,5 @@
-\customchapter{Séries}{On étudiera ici majoritairement la question de la convergence ou non d’une série, pour éventuellement en faire un objet pratique, notamment dans la question de l’intégration.}
+\chapter{Séries}
+\chaptertoc
 
 \section{Séries numériques}
 
@@ -428,7 +429,7 @@
         Posons $\theta \in \mathbb{R} \backslash \left(2 \pi \mathbb{Z}\right)$. On s’intéresse à $\sum \frac{\sin(n\theta)}{n^{\alpha}}$ 
         \begin{itemize}
             \item Si $\alpha \leq 0$, la série $\sum \frac{\sin(n\theta)}{n^{\alpha}}$ diverge grossièrement. 
-            \item Si $\alpha > 1$, on a $\abs{\frac{\sin(n\theta)}{n^{\alpha}}} \leq \frac{1}{n^{\alpha}}$ où $\sum \frac{1}{n^{\alpha}}$ converge donc $\sum \frac{(-1)^n}{\sqrt{n}}$ converge.
+            \item Si $\alpha > 1$, on a $\abs{\frac{\sin(n\theta)}{n^{\alpha}}} \leq \frac{1}{n^{\alpha}}$ où $\sum \frac{1}{n^{\alpha}}$ converge donc $\sum \frac{\sin(n\theta)}{n^{\alpha}}$ converge.
             \item Si $0 < \alpha \leq 1$, on utilise une \textbf{transformation d’Abel}. 
             
             Posons $a_n = \sin(n \theta)$ et $\varepsilon_n = \frac{1}{n^{\alpha}}$, puis $S_n = \sum_{k=1}^{n} a_k \varepsilon_k$ et $A_n = \sum_{k=1}^{n} a_k$.
@@ -692,7 +693,7 @@
     \end{omed}
 
     \begin{defi}{Convergence simple}{}
-        Soit $\sum f_n$ une série de fonction $I \rightarrow \mathbb{K}$ (\textit{i.e.} pour tout $n \in \mathbb{N}, f_n : I \mathbb{K}$).
+        Soit $\sum f_n$ une série de fonction $I \rightarrow \mathbb{K}$ (\textit{i.e.} pour tout $n \in \mathbb{N}, f_n : I \rightarrow \mathbb{K}$).
 
         Alors on dit que $\sum f_n$ \textbf{converge simplement} vers $S : I \rightarrow \mathbb{K}$ si pour tout $x \in I$, la série numérique $\sum f_n(x)$ converge vers $S(x)$.
 
@@ -966,9 +967,9 @@
         
         Si la fonction est impaire, $c_n = - c_{-n}$
         
-        Si $f$ est réelle, $\barr{c_n} = c_{-n}$
+        Si $f$ est réelle, $\ovl{c_n} = c_{-n}$
         
-        Si $f$ est imaginaire pure, $\barr{c_n} = -c_{-n}$
+        Si $f$ est imaginaire pure, $\ovl{c_n} = -c_{-n}$
     \end{omed}
 
     \begin{prop}{Coefficients de Fourier trigonométriques}{}
@@ -1102,7 +1103,7 @@
 
     \begin{coro}{}{}
         Si $f \in E$, alors la fonction $S_n(f)$ est la projection orthogonale de la fonction $f$ sur le sous-espace vectoriel 
-        \[ \mathcal{P}_{n,T} = \Vect\left(t \mapsto 1, t \mapsto \cos(k \omega t), t \mapsto \sin (k \omega t), k \in \intervalleEntier{1}{n} \right) \]
+        \[ \mathcal{P}_{n,T} = \vect\left(t \mapsto 1, t \mapsto \cos(k \omega t), t \mapsto \sin (k \omega t), k \in \intervalleEntier{1}{n} \right) \]
     \end{coro}
 
     \begin{demo}{Preuve}{myorange}

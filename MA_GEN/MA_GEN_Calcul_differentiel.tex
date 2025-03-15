@@ -1,4 +1,5 @@
-\customchapter{Calcul différentiel}{}
+\chapter{Calcul différentiel}
+\chaptertoc
 
 \section{Calcul différentiel}
 
@@ -292,7 +293,7 @@
 
     \begin{omed}{Exemple \textcolor{black}{(Coordonnées polaires)}}{myolive}
         Il est courant de passer aux coordonnées polaires, i.e de considérer la fonction 
-        \[F : (r,\theta) \mapsto f(\underbrace{r \cos \theta}_x,\underbrace{ r \sin \theta}_y) \]
+        \[ F : (r,\theta) \mapsto f(\underbrace{r \cos \theta}_x,\underbrace{ r \sin \theta}_y) \]
         On a alors 
         \begin{align*}
             r \frac{\partial F}{\partial r}(r,\theta) &= \phantom{-}x \frac{\partial f}{\partial x}(x,y) + y \frac{\partial f}{\partial y}(x,y) \\
@@ -366,12 +367,12 @@
     \begin{defitheo}{Différentielle en un point}{}
         $f$ est dite différentiable en $a \in \mathcal{U}$ s’il existe $\varphi \in \mathcal{L}(E,F)$ telle que :
         \[ f(a+h) = f(a) + \varphi(h) + \comp{o}{h}{0}{\norm{h}} \]   
-        Si l’application $\varphi$ existe, elle est unique et appelée \textbf{différentielle} de $f$ au point $a$, ou \textbf{application linéaire tangente} à $f$ en $a$. On la note $\dif f_a$ ou $\dif f(a)$. 
+        Si l’application $\varphi$ existe, elle est unique et appelée \textbf{différentielle} de $f$ au point $a$, ou \textbf{application linéaire tangente} à $f$ en $a$. On la note $\d f_a$ ou $\d f(a)$. 
     \end{defitheo}
 
     L’existence d’un DL à l’ordre 1 relève ainsi de la définition même de la différentiabilité : 
-    \[ f(a+ h) = f(a) + \left[\dif f(a)\right](h) + \comp{o}{h}{0}{\norm{h}} \]   
-    ON $\dif f_a(h) = \left[\dif f(a)\right](h) = \dif f(a) \times h$. Cette dernière notation fais sens lorsque l’on raisonne en termes matriciels : c’est le produit d’une matrice $n \times p$ par un vecteur $p$. 
+    \[ f(a+ h) = f(a) + \left[\d f(a)\right](h) + \comp{o}{h}{0}{\norm{h}} \]   
+    ON $\d f_a(h) = \left[\d f(a)\right](h) = \d f(a) \times h$. Cette dernière notation fais sens lorsque l’on raisonne en termes matriciels : c’est le produit d’une matrice $n \times p$ par un vecteur $p$. 
 
     \begin{demo}{Preuve}{mypurple}
         Sous réserve d’existence, dans le cas où $\varphi$ et $\psi$ vérifient l’égalité, alors $\Psi = \varphi - \psi$ est linéaire et vérifie $\Psi(h) = \comp{o}{h}{0}{\norm{h}}$, d’où la nullité de $\Psi$. On a, en effet, pour $x \in E$ non nul et $t \in \mathbb{K}^*$, $\norm{\Psi(x)} = \norm{x} \cdot \frac{\norm{\Psi(tx)}}{\norm{tx}} \limi{t}{0} 0$.
@@ -382,10 +383,10 @@
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
-        $f(a+h) - f(a) = \dif f_a(h) + \comp{o}{h}{0}{\norm{h}} \limi{h}{0_E} \dif f_a(0_E) = 0_F$ par continuité de $\dif f_a$ en tant qu’AL sur un EVN de DF. 
+        $f(a+h) - f(a) = \d f_a(h) + \comp{o}{h}{0}{\norm{h}} \limi{h}{0_E} \d f_a(0_E) = 0_F$ par continuité de $\d f_a$ en tant qu’AL sur un EVN de DF. 
     \end{demo}
 
-    Pour justifier quelques règles de calcul sur les différentielles en un point, nous auront, par exemple, besoin d’observer que $\dif f_a(\comp{o}{h}{0}{\norm{h}}) = \comp{o}{h}{0}{\norm{h}}$ ou bien que $\comp{o}{h}{0}{\norm{\dif f_a(h)}} = \comp{o}{h}{0}{\norm{h}}$. Montrons plus généralement que ceci est vrai pour toute application linéaire $\varphi$. En dimension finie, 
+    Pour justifier quelques règles de calcul sur les différentielles en un point, nous auront, par exemple, besoin d’observer que $\d f_a(\comp{o}{h}{0}{\norm{h}}) = \comp{o}{h}{0}{\norm{h}}$ ou bien que $\comp{o}{h}{0}{\norm{\d f_a(h)}} = \comp{o}{h}{0}{\norm{h}}$. Montrons plus généralement que ceci est vrai pour toute application linéaire $\varphi$. En dimension finie, 
     \begin{enumerate}
         \item $\varphi$ est continue en 0 donc $\varphi(\comp{o}{h}{0}{\norm{h}}) = h \varphi(\varepsilon(h)) = \comp{o}{h}{0}{\norm{h}}$ car $\varphi(\varepsilon(h)) \limi{h}{0} \varphi(0) = 0$. 
         \item $\varphi$ est linéaire donc lipchitzienne. Il existe $C > 0$ tel que pour tout $h \in E$, $\norm{\varphi(h)} \leq C \norm{h}$ d’où la seconde relation. 
@@ -394,9 +395,9 @@
     \begin{prop}{Opérations algébriques sur les différentielles}{}
         \begin{enumerate}
             \item Si $f,g : \mathcal{U} \subset E \to F$ sont différentiables en $a$, alors pour $\lambda \in \mathbb{R}$, $\lambda f + g$ est différentiable en $a$ et 
-            \[ \dif (\lambda f + g)_a = \lambda \dif f_a + \dif g_a \]   
+            \[ \d (\lambda f + g)_a = \lambda \d f_a + \d g_a \]   
             \item Si $g : \mathcal{V} \subset F \to G$ avec $f(\mathcal{U}) \subset \mathcal{V}$, alors si $f$ est différentiable en $a$ et $g$ en $f(a)$, alors $g \circ f$ est différentiable en $a$ et 
-            \[ \dif (g \circ f)_a = \dif g_{f(a)} \circ \dif f_a \]  
+            \[ \d (g \circ f)_a = \d g_{f(a)} \circ \d f_a \]  
         \end{enumerate}
     \end{prop}
 
@@ -404,9 +405,9 @@
         Tout repose sur les relations écrites précédemment. Prenons le deuxième cas pour exemple : 
         \begin{align*}
             (g \circ f)(a + h) 
-            &= g(f(a) + \underbrace{\dif f_a(h) + \comp{o}{h}{0}{\norm{h}}}_{=k}) \\
-            &= g(f(a)) + \dif g_{f(a)}(k) + \comp{o}{h}{0}{k} \\
-            &= g(f(a)) + \left[\dif g_{f(a)} \circ \dif f_a\right](h) + \comp{o}{h}{0}{\norm{h}}
+            &= g(f(a) + \underbrace{\d f_a(h) + \comp{o}{h}{0}{\norm{h}}}_{=k}) \\
+            &= g(f(a)) + \d g_{f(a)}(k) + \comp{o}{h}{0}{k} \\
+            &= g(f(a)) + \left[\d g_{f(a)} \circ \d f_a\right](h) + \comp{o}{h}{0}{\norm{h}}
         \end{align*}
         L’unicité de la différentielle garanti le résultat.
     \end{demo}
@@ -415,7 +416,7 @@
 
     \begin{prop}{}{}
         Si $M : F^n \to \mathbb{R}$ est une application multilinéaire et si $f_1,\ldots,f_n : E \to F$ sont différentiables en $a \in E$, alors $M(f_1,\ldots,f_n)$ est différentiable en $a$ et 
-        \[ \dif (M(f_1,\ldots,f_n))_a = \sum_{k=1}^{n} M(f_1(a), \ldots, f_{k-1}(a), \dif(f_k)_a, f_{k+1}(a), \ldots, f_n(a)) \]   
+        \[ \d (M(f_1,\ldots,f_n))_a = \sum_{k=1}^{n} M(f_1(a), \ldots, f_{k-1}(a), \d(f_k)_a, f_{k+1}(a), \ldots, f_n(a)) \]   
     \end{prop}
 
     La définition de différentielle d’une application découle de la notion de différentielle en un point : 
@@ -423,8 +424,8 @@
     \begin{defi}{Différentielle et application de classe $\mathcal{C}^1$}{}
         \begin{itemize}
             \item L’application $f : \mathcal{U} \subset E \to F$ est dite différentiable sur $\mathcal{U}$ si $f$ est différentiable en tout point de $\mathcal{U}$. On appelle alors \textbf{différentielle} de $f$ l’application 
-            \[ \fonction{\dif f}{\mathcal{U}}{\mathcal{L}(E,F)}{a}{\dif f_a} \]
-            \item L’application $f$ est dite de classe $\mathcal{C}^1$ sur $\mathcal{U}$, ou continûment différentiable sur $\mathcal{U}$ si elle est différentiable sur $\mathcal{U}$ et $\dif f$ est continue sur $\mathcal{U}$. 
+            \[ \fonction{\d f}{\mathcal{U}}{\mathcal{L}(E,F)}{a}{\d f_a} \]
+            \item L’application $f$ est dite de classe $\mathcal{C}^1$ sur $\mathcal{U}$, ou continûment différentiable sur $\mathcal{U}$ si elle est différentiable sur $\mathcal{U}$ et $\d f$ est continue sur $\mathcal{U}$. 
         \end{itemize}
     \end{defi}
 
@@ -440,7 +441,7 @@
     Quand une fonction est différentiable, elle est dérivable dans toutes les directions :
 
     \begin{prop}{}{}
-        Si $f$ est différentiable en $a$, alors $f$ est dérivable en $a$ selon $u$ pour tout vecteur $u \in E$  et $D_u(f)(a) = \dif f_a(u)$. 
+        Si $f$ est différentiable en $a$, alors $f$ est dérivable en $a$ selon $u$ pour tout vecteur $u \in E$  et $D_u(f)(a) = \d f_a(u)$. 
     \end{prop}
 
     Si $E$ est muni d’une base $(e_1,\ldots,e_p)$, on peut définir les dérivées partielles de $f$ qui sont les dérivées selon des directions privilégiées.
@@ -451,16 +452,16 @@
     \end{defi}
 
     Si $f$ est différentiable en $a$, alors ces dérivées partielles existent et 
-    \[ \forall j \in \intervalleEntier{1}{p}, \qquad \dpart{f}{x_j}(a) = \dif f_a(e_j) \]    
+    \[ \forall j \in \intervalleEntier{1}{p}, \qquad \dpart{f}{x_j}(a) = \d f_a(e_j) \]    
 
-    Remarquons alors que par linéarité de $\dif f_a$, 
-    \[ \dif f_a(h) = \dif f_a\left(\sum_{j=1}^{p} h_j e_j\right) = \sum_{i=1}^{p} h_j \dif f_a(e_j) = \sum_{j=1}^{p} h_j \dpart{f}{x_j}(a) \]    
+    Remarquons alors que par linéarité de $\d f_a$, 
+    \[ \d f_a(h) = \d f_a\left(\sum_{j=1}^{p} h_j e_j\right) = \sum_{i=1}^{p} h_j \d f_a(e_j) = \sum_{j=1}^{p} h_j \dpart{f}{x_j}(a) \]    
 
-    En notant $\dif x_j$ les applications $h \mapsto h_j$, on retrouve une forme bien connue des physiciens : 
-    \[ \dif f_a = \sum_{j=1}^{p} \dpart{f}{x_j}(a) \dif x_j \]   
+    En notant $\d x_j$ les applications $h \mapsto h_j$, on retrouve une forme bien connue des physiciens : 
+    \[ \d f_a = \sum_{j=1}^{p} \dpart{f}{x_j}(a) \d x_j \]   
     
     Ainsi, lorsque $f$ est différentiable sur $\mathcal{U}$ et $a \in \mathcal{U}$,
-    \[ f(a + h) = f(a) + \dif f_a(h) + \comp{o}{h}{0}{\norm{h}} = f(a) + \sum_{j=1}^{p} h_j \dpart{f}{x_j}(a) + \comp{o}{h}{0}{\norm{h}} \]    
+    \[ f(a + h) = f(a) + \d f_a(h) + \comp{o}{h}{0}{\norm{h}} = f(a) + \sum_{j=1}^{p} h_j \dpart{f}{x_j}(a) + \comp{o}{h}{0}{\norm{h}} \]    
 
     \begin{theo}{Caractérisation des applications de classe $\mathcal{C}^1$}{}
         $f$ est de classe $\mathcal{C}^1$ sur $\mathcal{U}$ \textit{ssi} les dérivées partielles de $f$ existent et sont continues en tout point de $\mathcal{U}$.
@@ -472,7 +473,7 @@
         On note $\norm{.}_F$ une norme sur $F$. L’équivalence des normes en dimension finie nous permet de choisir une norme particulière sur $E$ : celle définie par $\norm{h} = \sum_{j=1}^{p} \norm{h_j}$ où $j = \sum h_j e_j$. On munit $\mathcal{L}(E,F)$ de la norme subordonnée $\norm{.}_{\text{op}}$ relative à $\norm{.}$ et $\norm{.}_F$.
         \begin{itemize}
             \item[\textcolor{myred}{$\implies$}] L’existence des dérivées partielles a déjà été établie, et il reste à prouver leur continuité. Si $a \in \mathcal{U}$, QQS $x \in \mathcal{U}$ et $j \in \intervalleEntier{1}{p}$, 
-            \[ \norm{\dpart{f}{x_j}(x) - \dpart{f}{x_j}(a)}_F = \norm{\dif f_x(e_j) - \dif f_a(e_j)}_F \leq \norm{\dif f_x - \dif f_a}_{op} \cdots \norm{e_j} \limi{x}{a} 0 \]   
+            \[ \norm{\dpart{f}{x_j}(x) - \dpart{f}{x_j}(a)}_F = \norm{\d f_x(e_j) - \d f_a(e_j)}_F \leq \norm{\d f_x - \d f_a}_{op} \cdots \norm{e_j} \limi{x}{a} 0 \]   
             \item[\textcolor{red}{$\impliedby$}] Il faut prouver que $f$ est différentiable en tout point $a \in \mathcal{U}$ et que cette différentielle est continue. 
             
             Soit $a \in \mathcal{U}$ et $h = \sum h_j e_j$ tel que $a + h \in \mathcal{U}$. Par dérivabilité de $f$ suivant $e_p$, 
@@ -481,9 +482,9 @@
             \[ f(a+h) = f\left(a + \sum_{j = 1}^p h_j e_j\right) + h_p \dpart{f}{x_p}(a) + \comp{o}{h}{0}{\norm{h}} \]   
             De proche en proche, on obtient que 
             \[ f(a + h) = f(a) + \sum_{j=1}^{p} h_j \dpart{f}{x_j} (a) + \comp{o}{h}{0}{\norm{h}} \]   
-            Ainsi, $f$ est bien différentiable en $a$, et $\dif f_a(h) = \sum_{j=1}^{p} h_j \dpart{f}{x_j}(a)$. Pour la continuité, si $x \in \mathcal{U}$, QQS $h \in E$, 
-            \[ \norm{\dif f_x(h) - \dif f_a(h)}_F \leq \sum_{j=1}^{p}\norm{h_j}\cdot \norm{\dpart{f}{x_j}(x) - \dpart{f}{x_j}(a)}_F \leq \norm{h} \cdot \max_{1\leq j \leq p} \norm{\dpart{f}{x_j}(x) - \dpart{f}{x_j}(a)}_F \]   
-            Ainsi, $\norm{\dif f_x - \dif f_a}_{\text{op}} \leq \max_{1\leq j \leq p} \norm{\dpart{f}{x_j}(x) - \dpart{f}{x_j}(a)}_F \limi{x}{a} 0$ par continuité des $\dpart{f}{x_j}$.
+            Ainsi, $f$ est bien différentiable en $a$, et $\d f_a(h) = \sum_{j=1}^{p} h_j \dpart{f}{x_j}(a)$. Pour la continuité, si $x \in \mathcal{U}$, QQS $h \in E$, 
+            \[ \norm{\d f_x(h) - \d f_a(h)}_F \leq \sum_{j=1}^{p}\norm{h_j}\cdot \norm{\dpart{f}{x_j}(x) - \dpart{f}{x_j}(a)}_F \leq \norm{h} \cdot \max_{1\leq j \leq p} \norm{\dpart{f}{x_j}(x) - \dpart{f}{x_j}(a)}_F \]   
+            Ainsi, $\norm{\d f_x - \d f_a}_{\text{op}} \leq \max_{1\leq j \leq p} \norm{\dpart{f}{x_j}(x) - \dpart{f}{x_j}(a)}_F \limi{x}{a} 0$ par continuité des $\dpart{f}{x_j}$.
         \end{itemize}
     \end{demo}
 
@@ -495,7 +496,7 @@
     On suppose que $f$ est de classe $\mathcal{C}^1$. Les fonctions $\dpart{f_i}{x_j}$ sont alors définies et continues pour tout $(i,j) \in \intervalleEntier{1}{n} \times \intervalleEntier{1}{p}$. Ce sont des fonctions définies sur $\mathbb{R}^n$ à valeurs dans $\mathbb{R}$. 
 
     \begin{defitheo}{Jacobienne}{}
-        La matrice représentative de $\dif f_x$ dans les bases $(e_j)_j$ et $(e_i)_i$ est $\left(\dpart{f_i}{x_j}(x)\right)$. Elle est appelée \textbf{matrice jacobienne} de $f$ au point $x = (x_1,\ldots,x_p)$. ON $J_f(x)$. 
+        La matrice représentative de $\d f_x$ dans les bases $(e_j)_j$ et $(e_i)_i$ est $\left(\dpart{f_i}{x_j}(x)\right)$. Elle est appelée \textbf{matrice jacobienne} de $f$ au point $x = (x_1,\ldots,x_p)$. ON $J_f(x)$. 
     \end{defitheo}
 
     Ainsi, pour toute fonction $f \in \mathcal{C}^1(E,F)$, 
@@ -506,13 +507,13 @@
     \end{bmatrix} \qquad \in \mk{n,p} \]   
 
     Soient $f : E \to F$ et $g : F \to G$ de classe $\mathcal{C}^1$ sur leurs ensembles respectifs. Alors $g \circ f$ est de classe $\mathcal{C}^1$ sur $E$ et 
-    \[ \forall x \in E, \quad J_{g \circ f}(f(x)) \times J_f(x) \esp{puisque} \dif (g \circ f)_x = \dif g_{f(x)} \circ \dif f_x \]   
+    \[ \forall x \in E, \quad J_{g \circ f}(f(x)) \times J_f(x) \esp{puisque} \d (g \circ f)_x = \d g_{f(x)} \circ \d f_x \]   
 
     Ce produit matriciel nous permet de retrouver la règle de la chaîne, qui s’écrit plus clairement :
 
     \begin{theo}{Règle de la chaîne}{}
         Soit $f : \mathcal{U} \subset \mathbb{R}^p \to \mathbb{R}$, de classe $\mathcal{C}^1$ et $x : I \subset \mathbb{R} \to \mathbb{R}^p$ de classe $\mathcal{C}^1$ telle que $x(I) \subset \mathcal{U}$. QQS $t_0 \in I$, 
-        \[ \frac{\dif}{\text{dt}}\left(t \mapsto f(x(t))\right) = \spr{\nabla f (x(t_0))}{x'(t_0)} = \sum_{i=1}^{p} \dpart{f}{x_i}(x(t_0)) x_i'(t_0) \]   
+        \[ \frac{\d}{\text{dt}}\left(t \mapsto f(x(t))\right) = \spr{\nabla f (x(t_0))}{x'(t_0)} = \sum_{i=1}^{p} \dpart{f}{x_i}(x(t_0)) x_i'(t_0) \]   
         Où $x(t) = (x_1(t), \ldots, x_p(t))$.
     \end{theo}
 
@@ -534,8 +535,8 @@
 
     \subsubsection{Gradient d’une fonction numérique}
 
-    On considère dans ce paragraphe uniquement des fonctions à valeurs dans $\mathbb{R}$ et on suppose $E$, espace vectoriel de dimension $p$, muni d’une structure euclidienne. Soit donc $f : \mathcal{U} \subset E \to \mathbb{R}$ avec bien souvent $E = \mathbb{R}^p$. On suppose $f$ de classe $\mathcal{C}^1$ sur l’ouvert $\mathcal{U}$. D’après ce qui précède, en tout point $a \in \mathcal{U}$, $\dif f_a$ est une forme linéaire et, dans la base canonique $\mathcal{B}$ de $\mathbb{R}^p$, 
-    \[ \dif f_a \in \mathcal{L}(\mathbb{R}^p,\mathbb{R}) \esp{et} J_f(a) = \mat{\mathcal{B}}{\dif f_a} = \begin{bmatrix}
+    On considère dans ce paragraphe uniquement des fonctions à valeurs dans $\mathbb{R}$ et on suppose $E$, espace vectoriel de dimension $p$, muni d’une structure euclidienne. Soit donc $f : \mathcal{U} \subset E \to \mathbb{R}$ avec bien souvent $E = \mathbb{R}^p$. On suppose $f$ de classe $\mathcal{C}^1$ sur l’ouvert $\mathcal{U}$. D’après ce qui précède, en tout point $a \in \mathcal{U}$, $\d f_a$ est une forme linéaire et, dans la base canonique $\mathcal{B}$ de $\mathbb{R}^p$, 
+    \[ \d f_a \in \mathcal{L}(\mathbb{R}^p,\mathbb{R}) \esp{et} J_f(a) = \mat{\mathcal{B}}{\d f_a} = \begin{bmatrix}
         \dpart{f}{x_1}(a) & \cdots & \dpart{f}{x_p}(a) 
     \end{bmatrix} \]   
 
@@ -545,7 +546,7 @@
     \end{bmatrix} \]   
 
     En notant $\spr{.}{.}$ le produit scalaire usuel de $\mathbb{R}^p$, pour tout $h \in \mathbb{R}^p$, 
-    \[ \spr{\nabla f(a)}{h} = \sum_{j=1}^{p} h_j \dpart{f}{x_j}(a) = \dif f_a(h) \] 
+    \[ \spr{\nabla f(a)}{h} = \sum_{j=1}^{p} h_j \dpart{f}{x_j}(a) = \d f_a(h) \] 
 
     La différentiabilité de $f$ au point $a$ se traduit alors par l’égalité 
     \[ f(a+h) = f(a) + \spr{\nabla f(a)}{h} + \comp{o}{h}{0}{\norm{h}} \]   
@@ -553,14 +554,109 @@
     Il est également possible de définir le gradient de manière intrinsèque, sans l’usage donc d’une base de $E$, à l’aide du théorème de représentation de Riesz.
 
     \begin{defi}{}{}
-        Soit $f : \mathcal{U} \subset E \to \mathbb{R}$ différentiable en $a$. L’application $\dif f_a$ étant une forme linéaire, il peut exister un vecteur appelé gradient de $f$ en $a$ -- et noté $\nabla f(a)$ -- tel que QQS $h \in E$, 
-        \[ \dif f_a(h) = \spr{\nabla f (a)}{h} \]   
+        Soit $f : \mathcal{U} \subset E \to \mathbb{R}$ différentiable en $a$. L’application $\d f_a$ étant une forme linéaire, il peut exister un vecteur appelé gradient de $f$ en $a$ -- et noté $\nabla f(a)$ -- tel que QQS $h \in E$, 
+        \[ \d f_a(h) = \spr{\nabla f (a)}{h} \]   
     \end{defi}
 
     Pour $h$ proche de $0$, l’inégalité de Cauchy-Schwarz donne :
     \[ \abs{f(a+h) - f(a)} \approx \abs{\spr{\nabla f(a)}{h}} \leq \norm{\nabla f(a)} \times \norm{h} \]   
     
     L’écart absolu est maximal dans le cas d’égalité, \textit{i.e.} lorsque la direction $h$ est colinéaire au gradient. Le gradient indique donc bien la ligne de plus grande pente, comme vu dans le cas de deux variables.
+
+    \subsubsection{Arcs paramétrés et dérivées le long d’un arc}
+
+    On appelle arc paramétré de classe $\mathcal{C}^k$ toute fonction vectorielle de $\mathcal{C}^k$, définie sur un intervalle $I$ de $\mathbb{R}$ à valeurs dans $E$. Soit désormais un arc paramétré $\gamma : I \subset \mathbb{R} \to E$ supposé de classe $\mathcal{C}^1$.
+
+    Soit $t_0 \in I$. On suppose que $\gamma'(t_0) \neq 0$. DCC, la courbe représentative de $\gamma$ admet une tangente au point $\gamma(t_0)$ dirigée par le vecteur $\gamma'(t_0)$. Pour prouver ce résultat, considérons la droite $\Delta_t$ issue de $M(t_0)$ dirigée par le vecteur $\vct{M(t_0)M(t)}$, \textit{i.e.} $\gamma(t) - \gamma(t_0)$, et faisons tendre $t$ vers $t_0$. Plus formellement, on définit la tangente à la courbe en $M(t_0)$ comme la droite passant par $M(t_0)$ et dirigée par le vecteur :
+    \[ \frac{\gamma(t) - \gamma(t_0)}{\norm{\gamma(t) - \gamma(t_0)}} = \frac{\gamma(t) - \gamma(t_0)}{t - t_0} \cdot \frac{t - t_0}{\norm{\gamma(t) - \gamma(t_0)}} \limi{t}{t_0} \frac{\pm \gamma'(t_0)}{\norm{\gamma'(t_0)}} \]  
+
+    Soit désormais $f : \mathcal{U} : E \to F$ et $\gamma : I \subset \mathbb{R} \to E$ deux applications supposées de classe $\mathcal{C}^1$ respectivement sur l’espace normé $E$ et l’intervalle $I$. L’application composée $f \circ \gamma$ est elle-même définie sur $I$ et à valeurs dans $F$. Géométriquement, c’est l’image de l’arc par la tranformation $f$. Si $M(t_0)$ est régulier, \textit{i.e.} si $\gamma'(t_0) \neq 0$, alors $\gamma'(t_0)$ dirige la tangeante à la courbe $\gamma$ en $M(t_0)$. Qu’en est-il pour la courbe $f \circ g$ ?
+
+    \begin{prop}{Dérivation le long d’un arc}{}
+        Si $f : \mathcal{U} \subset E \to F$ et $\gamma : I \subset \mathbb{R} \to \mathcal{U}$ sont de classe $\mathcal{C}^1$, alors $f \circ \gamma$ est de classe $\mathcal{C}^1$ sur $I$ et 
+        \[ \forall t \in I, \quad (f \circ \gamma)'(t) = \d f_{\gamma(t)}(\gamma'(t)) \]   
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        Cela provient du résultat sur la différentiation d’une composée, avec $\gamma'(t) = \d g_t(1)$ pour $t \in I$.
+    \end{demo}
+
+    La tengente à la courbe $f \circ \gamma$ en $t_0$ est dirigée par $(f \circ \gamma)'(t_0) = \d f_{\gamma(t_0)}(\gamma'(t_0))$ si celui-ci est non nul. Ce dernier vecteur n’est rien d’autre que l’image du vecteur qui dirige la tangente à $\gamma$ en $t_0$ par l’AL $\d f_{gamma(t_0)}$. Ce résultat appelle plusieurs remarques :
+    \begin{itemize}
+        \item Si $\gamma(t) = x + tu$ avec $x,u \in E$, alors $\gamma$ est un paramétrage de la droite affine passant par $x$ et dirigée par $u$. $\gamma'(t) = u$ est comme attendu constante et alors $(f \circ \gamma)'(t) = \d f_{\gamma(t)}(u)$. 
+        \item Si $\gamma(t) = (x_1(t), \ldots, x_p(t))$ est de classe $\mathcal{C}^1$, on généralise la règle de la chaîne :
+        \[ (f \circ \gamma)'(t) = \d f_{\gamma(t)}(\gamma'(t)) = \sum_{j=1}^{p} x_j'(t) \dpart{f}{x_j}(x_1(t), \ldots, x_p(t)) \]   
+        \item Enfin, si $f$ est une application numérique, $(f \circ \gamma)'(t) = \d f_{\gamma(t)}(\gamma'(t)) = \spr{\nabla f(y(t))}{\gamma'(t)}$. Ajoutons que si l’on suppose toute ligne de niveau décrite par un paramétrage de classe $\mathcal{C}^1$, $f \circ \gamma$ est constante. En dérivant, l’on obtient $\spr{\nabla f(\gamma(t))}{\gamma'(t)} = 0$, ce qui assure l’orthogonalité du gradient aux vecteurs qui dirigent les tangentes aux lignes de niveau.
+    \end{itemize}
+
+    \begin{prop}{Intégration le long d’un arc}{}
+        Si $f : \mathcal{U} \subset E \to F$ et $\gamma : \intervalleFF{0}{1} \to \mathbb{U}$ sont de classe $\mathcal{C}^1$ et si $\gamma(0) = a$ et $\gamma(1) = b$, alors 
+        \[ f(b) - f(a) = \int_{0}^{1} \d f_{\gamma(t)}(\gamma'(t))dt \]   
+    \end{prop}
+
+    \begin{demo}{Preuve}{myolive}
+        \[ \int_{0}^{1} \d f_{\gamma(t)} (\gamma'(t))dt = \int_{°}^{1} (f \circ \gamma)'(t)dt = f(b) - f(a) \]   
+    \end{demo}
+
+    On notera que le résultat ne dépend pas du chemin choisi.
+
+    \begin{coro}{Caractérisation des fonctions constantes}{}
+        Soient $\mathcal{U}$ un ouvert connexe par arcs et $f : \mathcal{U} \subset E \to F$. Alors 
+        \[ f \text{ est constante sur } \mathcal{U} \iff \forall a \in \mathcal{U}, \d f_a = 0_{\mathcal{L}(E,F)} \]   
+    \end{coro}
+
+    \begin{demo}{Preuve}{myorange}
+        L’implication est simple, et la réciproque se montre en considérant la fonction $\gamma$ définie pour $a,b \in \mathcal{U}$ par $\gamma(t) = (1-t)a + tb$ qui est bien un chemin de classe $\mathcal{C}^1$ de $\mathcal{U}$. Par nullité de la différentielle, 
+        \[ f(b) - f(a) = \int_{0}^{1} \d f_{\gamma(t)}(\gamma'(t)) = 0 \]   
+    \end{demo}
+
+    On généralise ainsi un résultat bien connu : une fonction $f \in \mathcal{C}^1(I,\mathbb{R})$ est constante sur l’intervalle $I$ SSI $f'$ est nulle sur l’intervalle $I$. Rappelons que les parties de $\mathbb{R}$ connexes par arcs sont les intervalles. 
+
+    \subsubsection{Vecteur tangent à une partie}
+
+    On étend maintenant la notion de vecteur tangent aux parties d’un espace vectoriel de dimension finie. 
+
+    \begin{defi}{}{}
+        Si $X$ est une partie de $E$ et $x \in X$, un vecteur $v$ de $E$ est dit tangent à $X$ en $x$ s’il existe $\varepsilon > 0$ et un arc paramétré $\gamma$ défini sur $\intervalleOO{-\varepsilon}{\varepsilon}$. dérivable en $0$ et à valeurs dans $X$, tels que $\gamma(0) = x$ et $\gamma'(0) = v$. ON $T_x X$ l’ensemble des vecteurs tangents à $X$ en $x$.
+    \end{defi}
+
+    Un tel ensemble $T_x X$ n’est pas, en général, un EV. Pour déterminer les vecteurs tangents à une partie, on procède souvent par double inclusion.
+
+    Étudions désormais les plans tangents à une surface d’équation de $\mathbb{R}^3$ d’équation $z = f(x,y)$ en un point donné. Soient $\mathcal{S}$ la surface d’équation $z = f(x,y)$ où $f: \mathbb{R}^2 \to \mathbb{R}$ est supposée de classe $\mathcal{C}^1$ et $M_0(x_0,y_0,z_0)$ un point de $\mathcal{S}$. Le plan tangent à $M_0$ peut être défini comme la réunion des tangentes aux courbes tracées le long de $\mathcal{S}$ en passant par le point $M_0$, \textit{i.e.} le plan affine passant par $M_0$ et de direction le plan vectoriel $T_{M_0}\mathcal{S}$. Il reste à vérifier que $T_{M_0}\mathcal{S}$ est, comme attendu, un plan vectoriel.
+
+    \begin{itemize}
+        \item On construit un arc sur $\mathcal{S}$ en considérant deux fonctions $x,y : \intervalleOO{-\varepsilon}{\varepsilon} \to \mathbb{R}$ de classe $\mathcal{C}^1$ vérifiant $x(0) = x_0$ et $y(0) = y_0$ et $\gamma$ définie par 
+        \[ \forall \gamma'(0) = \left(x'(0), y'(0), x'(0) \dpart{f}{x}(x_0,y_0) + y'(0) \dpart{f}{y}(x_0,y_0)\right) \]
+        
+        Ce vecteur tangent à la courbe en $M_0$ est, quel que soit l’arc $\gamma$ considéré, orthogonal au vecteur 
+        \[ n = \left(\dpart{f}{x}(x_0,y_0),\dpart{f}{y}(x_0,y_0), -1\right) \]   
+        \item Réciproquement, soit $v = (v_1,v_2,v_3)$ orthogonal à $n$. Il suffit de considérer l’arg $\gamma$ défini par 
+        \[ \forall t \in \intervalleOO{-\varepsilon}{\varepsilon}, \quad \gamma(t) = (x_0 + tv_1, y_0 + tv_2, f(x_0+tv_1, y_0 + tv2)) \]   
+        pour constater que $v \in T_{M_0} \mathcal{S}$. En effet, $\gamma$ est de classe $\mathcal{C}^1$ et à valeurs dans $\mathcal{S}$, $\gamma(0) = M_0$ et $\gamma'(0) = v$. 
+    \end{itemize} 
+    Nous venons ainsi de prouver que $T_{M_0}\mathcal{S} = \vect(n)^{\top}$.
+
+    Le plan tangent à $\mathcal{S}$ en $M_0$ peut alors être défini comme l’unique plan passant par $M_0$ et de vecteur normal $n$. On retrouve l’équation déjà donnée par troncature à l’ordre $1$ du DL de $f$ en $(x_0,y_0)$ : 
+    \[ z = f(x_0,y_0) + \dpart{f}{x}(x_0,y_0)(x - x_0) + \dpart{f}{y}(x_0,y_0)(y - y_0) \]    
+
+    La description d’une surface de $\mathbb{R}^3$ par une équation de la forme $z = f(x,y)$ n’englobe cependant qu’un nombre restreint de surfaces de l’espace. On définit plus généralement une surface de $\mathbb{R}^3$ par la donnée d’une équation implicite $g(x,y,z) = 0$, comme pa exemple $(x - x_0)^2 + (y - y_0)^2 + (z - z_0)^2 = R^2$. Il n’est pas toujours possible d’exprimer $z$ en fonction de $x$ et $y$ pour se ramener au cas particulier précédent. Le théorème suivant permet de contourner cette objection pour déterminer le plan tangent à une telle surface. Sa démonstration fait appel au théorème des fonctions implicites, ce dernier précisant les conditions pour exprimer localement $z$ comme une fonction de $x$ et $y$.
+
+    \begin{theo}{}{}
+        Soient $g$ une fonction numérique de classe $\mathcal{C}^1$ sur l’ouvert $\mathcal{U}$, $X$ l’ensemble des zéros de $g$ et $x \in X$. Si $\d g_x$ est non nulle, $T_x X = \ker(\d g_x) = \nabla g(x)^{\perp}$.
+    \end{theo}
+
+    \begin{demo}{Démonstration}{myred}
+        Soient $g : \mathcal{U} \subset \mathbb{R}^p \to \mathbb{R}$ de classe $\mathcal{C}^1$, $X$ l’hypersurface d’équation $g(x_1,\ldots,x_p) = 0$ et $x \in X$ tel que $\d g_x \neq 0$. Remarquons pour commencer que $\d g_{x} \neq 0$, donc $\ker(\d g_x)$ est un hyperplan de $\mathbb{R}^p$. De plus, 
+        \[ h \in \ker(\d g_x) \iff \d g_x(h) = 0 \iff \spr{\nabla g(x)}{h} = 0 \iff h \in \nabla g(x)^{\perp} \] 
+        \begin{itemize}
+            \item[$\subset$] Soit $v \in T_x X$. Il existe $\gamma : \intervalleOO{-\varepsilon}{\varepsilon} \to X$ de classe $\mathcal{C}^1$ tel que $\gamma(0) = x$ et $\gamma'(0) = v$.
+            \[ \forall t \in \intervalleOO{-\varepsilon}{\varepsilon}, \quad g(\gamma(t)) = 0 \esp{donc} \d g_{\gamma(t)}(\gamma'(t)) = 0 \]   
+            En évaluant en $0$, il vient $\d g_x(v) = 0$ 
+            \item[$\supset$] Admis.
+        \end{itemize}
+    \end{demo}
+
+
 
     \subsubsection{Brève extension aux applications de classe Ck}
 
@@ -613,46 +709,118 @@
         \end{itemize}
     \end{demo}
 
+    La formule de TY à l’ordre 2 se réécrit sous la forme plus concise suivante : 
+    \[ f(a+ h) = f(a) + \d f_a(h) + \frac{1}{2} \d^2 f_a(h,h) + \comp{o}{h}{0}{\norm{h}^2} \]    
+    où l’application bilinéaire $\d^2 f_a : (h,k) \mapsto \sum_{1 \leq i , j \leq n} h_i k_j \partial_{i,j} f (a)$ est appelé différentielle seconde de $f$ en $a$. 
 
-\subsection{Extremum d’une fonction de R2 dans R}
+    Il importe de savoir réécrire la formule pour une fonction de deux variables (cas le plus courant) : 
+    \begin{align*}
+        f(x_0 + h_1, y_0 + h_2) &= f(x_0) + \dpart{f}{x}(x_0,y_0) h_1 + \dpart{f}{y}(x_0,y_0) h_2 \\
+        &+\frac{1}{2} \left[ \partial_{1,1} f (x_0,y_0) h_1^2 + 2 \partial_{1,2} f (x_0,y_0) h_1 h_2 + \partial_{2,2} f (x_0,y_0) h_2^2 \right] + \comp{o}{(h_1,h_2)}{(0,0)}{h_1^2 + h_2^2} 
+    \end{align*}
+
+    L’application $f$ étant à valeurs dans $\mathbb{R}$, on dispose d’une écriture matricielle de la formule de Taylor-Young à l’ordre $2$ assez commode. Elle s’appuie sur les relations suivantes : 
+    \[ \d f_a(h) = \sum_{j = 1}^n h_j \dpart{f}{x_j}(a) = \spr{\nabla f(a)}{h} \esp{et} \d^2 f_a(h) = \sum_{1 \leq i,j \leq n} \partial_{i,j} f(a) = \spr{H_f(a)h}{h} \]    
+    où l’on a noté $h = (h_j)_{1 \leq j \leq n}$ et $H_f(a) = \left(\partial_{i,j}f(a)\right)_{1 \leq i,j \leq a}$.
+
+    \begin{defi}{Hessienne}{}
+        La \textbf{hessienne} au point $a \in \mathcal{U}$ de la fonction numérique $f : \mathcal{U} \subset \mathbb{R}^n \to \mathbb{R}$ de classe $\mathcal{C}^2$ est la matrice 
+        \[ H_f(a) = \left(\partial_{i,j}f(a)\right)_{1 \leq i,j \leq a} \qquad \in \S_n(\mathbb{R}) \]   
+    \end{defi}
+
+    Notons que la hessienne est bien symétrique, dès lors que $f$ est de classe $\mathcal{C}^2$, en vertu du théorème de Schwarz.
+
+    On retiendra la version matricielle suivante de la formule de TY à l’ordre 2 pour une fonction de classe $\mathcal{C}^2$ sur un ouvert $\mathcal{U}$ de $E$ : QQS $a \in \mathcal{U}$, 
+    \[ f(a+h) = f(a) + \spr{\nabla f}{h} + \frac{1}{2} \spr{H_f(a)h}{h} + \comp{o}{h}{0}{\norm{h}^2} = f(a) + \nabla f (a)^{\top} h + \frac{1}{2} h^{\top} H_f(a) h + \comp{o}{h}{0}{\norm{h}^2} \]   
+
+    \subsubsection{Étude des extrema libres}
+
+    Par la suite, $f$ désignera une application définie sur une partie $A$ de $E$, espace vectoriel de dimension $n$, et à valeurs dans $\mathbb{R}$. 
 
     \begin{defi}{Extremum}{}
-        \begin{soient}
-            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
-            \item $f\in \mathcal{F}(\mathcal{U},\mathbb{R})$
-            \item $(x_0,y_0) \in \mathcal{U}$
-        \end{soient}
+        On dit que $f$ admet un minimum (RSP. maximum)  local en $a \in A$ s’il existe un voisinage $\mathcal{U}$ de $a$ tel que 
+        \[ \forall x \in \mathcal{U}, \quad f(x) \geq f(a) \qquad (\text{RSP. } f(x) \leq f(a)) \]    
+        On qualifie de global un extremum lorsque l’inégalité est valable sur $A$.        
+    \end{defi}
+
+    Rappelons que si $A$ est une partie compacte de $E$, $f$ admet nécessairement un minimum et un maximum. De plus, pour une fonction de la variable réelle $f$ de classe $\mathcal{C}^1$ sur un intervalle $I$ :
+    \begin{itemize}
+        \item Si $f$ atteint un extremum local en $a \in \mathring{I}$, $f'(a) = 0$ ;
+        \item $f'$ peut s’annuler sans que $f$ atteigne un extremum ;
+        \item si $I$ n’est pas ouvert, $f$ peut atteindre un extremum sans que sa dérivée s’annule.
+    \end{itemize}
+    Ajoutons que lorsque $f$ est de classe $\mathcal{C}^2$ :
+    \begin{itemize}
+        \item Si $f$ atteint un minimul local en $a \in \mathring{I}$, $f''(a) \geq 0$ ;
+        \item si $f'(a) = 0$ et $f''(a) > 0$ pour $a \in \mathring{I}$, $f$ admet un minimum local.
+    \end{itemize}
+
+    La recherche des extrema ne diffère guère de celle que les lecteurs connaissent pour les fonctions de la variable réelle. On prendra garde au fait que la plupart des énoncés ci-dessous sont valables uniquement sur des parties ouvertes. Il sera donc parfois nécessaire de dissocier la recherche des extrema de $f$ à l’intérieur de $A$ et le long de sa frontière.
+
+    \begin{defi}{Point critique}
+        Soit $f$ une fonction de classe $\mathcal{C}^1$ sur un ouvert $\mathcal{U}$ de $E$. On dit que $a \in \mathcal{U}$ est un point critique de $f$ si 
+        \[ \d f_a = 0_{\mathcal{L}(E,F)} \esp{soit} \nabla f(a) = \vect{0} \]   
+    \end{defi}
+
+    Cela revient à dire que pour tout $j \in \intervalleEntier{1}{n}$, $\dpart{f}{x_j}(a) = 0$.
+
+    \begin{theo}{Condition nécessaire d’existence d’un extremum}{}
+        Si $f : \mathcal{U} \subset E \to \mathbb{R}$ de classe $\mathcal{C}^1$ sur un ouvert $\mathcal{U}$ admet un extremum en $a$, alors $a$ est un point critique.
+    \end{theo}
+
+    \begin{demo}{Preuve}{myred}
+        Soit $j \in \intervalleEntier{1}{n}$. L’application de la variable réelle $\varphi : t \mapsto f(a + t e_j)$ est de classe $\mathcal{C}^1$ au voisinage de $0$ et admet un extremum en $0$. Ainsi, $\varphi'(0) = \dpart{f}{x_j}(a) = 0$.
+    \end{demo}
+
+    Les extrema locaux sont donc à rechercher parmi les points critiques. Cependant, comme en dimension $1$, la réciproque est fausse (voir point selle).
+
+    Il sera donc nécessaire lors de l’étude d’une fonction de distinguer les point cols des points correspondant à des extrema. Pour justifier que l’on dispose d’un extremum, on peut revenir à la définition.
+
+    L’étude globale du signe de $f(x,y) - f(x_0,y_0)$ menée pour justifier la présence d’un minimum n’est pas satisfaisante car difficilement reproductible pour une fonction quelconque. Pour pallier cette difficulté, il suffit de pousser l’étude locale au voisinage d’un point critique au moyen de la formule de TY. En effet, si $f$ est de classe $\mathcal{C}^2$ sur l’ouvert $\mathcal{U}$ et $a$ est un point critique de $f$, alors 
+    \[ f(a+h) = f(a) + \frac{1}{2} h^{\top} H_f(a) h + \comp{o}{h}{0}{\norm{h}^2} \]    
+    Le signe de $f(a+h) - f(a)$ est donc localement celui de $\spr{H_f(a)h}{h}$, ce qui conduit au résultat suivant : 
+
+    \begin{theo}{Condition suffisante d’existence d’un extremum}{}
+        Soient $f : \mathcal{U} \subset E \to \mathbb{R}$ de classe $\mathcal{C}^2$ sur l’ouvert $\mathcal{U}$ et $a \in \mathcal{U}$. 
         \begin{enumerate}
-            \item On dit que $f$ admet un \textbf{maximum} (resp. \textbf{minimum}) \textbf{global} en $(x_0,y_0)$ lorsque 
-            \[ \forall (x,y) \in \mathcal{U}, f(x,y) \leq f(x_0,y_0)\] 
-            (resp. $\geq$)
-            \item On dit que $f$ admet un \textbf{maximum} (resp. \textbf{minimum}) \textbf{local} en $(x_0,y_0)$ lorsque 
-            \[ \exists \eta > 0, \forall (x,y) \in \mathcal{B}((x_0,y_0),\eta), f(x,y) \leq f(x_0,y_0) \]
-            (resp. $\geq$)
+            \item Si $f$ atteint en $a$ un minimul local, $H_f(a) \in \S_n^+(\mathbb{R})$ ;
+            \item si $a$ est un point critique de $f$ et si $H_f(a) \in \S_n^{++}(\mathbb{R})$, alors $f$ atteint en $a$ un minimum local.
         \end{enumerate}
-    \end{defi}
+    \end{theo}
 
-    \begin{defi}{Point critique}{}
-        \begin{soient}
-            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
-            \item $f\in \mathcal{C}^1(\mathcal{U},\mathbb{R})$
-            \item $(x_0,y_0) \in \mathcal{U}$
-        \end{soient}
-        On dit que $(x_0,y_0)$ est un \textbf{point critique} de $f$ lorsque $\nabla f(x_0,y_0) = (0,0)$
-    \end{defi}
+    Bien entendu, le théorème précédent se réécrit pour $a$ un maximum et $H_f(a) \in \S_n^{-}(\mathbb{R})$.
 
-    \begin{prop}{Condition nécessaire d’extremum dans un ouvert}{}
-        \begin{soient}
-            \item $\mathcal{U}$ un ouvert de $\mathbb{R}^2$
-            \item $f\in \mathcal{C}^1(\mathcal{U},\mathbb{R})$
-            \item $(x_0,y_0) \in \mathcal{U}$
-        \end{soient}
-        Si $f$ admet un extremum local en $(x_0,y_0)$, alors $(x_0,y_0)$ est un point critique de $f$.
-    \end{prop}
+    \begin{demo}{Démonstration}{myred}
+        Soient $f : \mathcal{U} \subset E \to \mathbb{R}$ de classe $\mathcal{C}^2$ sur l’ouvert $\mathcal{U}$ et $a \in \mathcal{U}$. 
+        \begin{enumerate}
+            \item $a$ est un point critique de $f$. Si $h \in E$, pour $t \in \mathbb{R}$ suffisamment petit, $a + th \in \mathcal{U}$ et $f(a - th) - f(a) \geq 0$. Or 
+            \[ f(a + th) - f(a) = \frac{t^2}{2}\spr{H_f(a)h}{h} + o(t^2) \esp{CAD} \spr{H_f(a)h}{h} = \frac{2}{t^2} (f(a + th) - f(a)) + o(1) \]     
+            Un passage à la limite permet de conclure. 
+            \item On note $\lambda_{min}$ la plus petite des valeurs propres (nécessairement réelle) de $H_f(a)$. D’après le théorème spectral, 
+            \[ \forall h \in E \backslash \left\{0_E\right\}, \quad \spr{H_f(a)h}{h} \geq \lambda_{min}\norm{h}^2 > 0 \]   
+            $f(a + h) - f(a) = \frac{1}{2} h^{\top} H_f(a) h + \norm{h}^2 \varepsilon(h)$ donc il existe $r > 0$ tel que pour tout $h \in \mathcal{B}(0,r)$, $\norm{h}^2 \varepsilon(h) \leq \lambda_{min} \frac{\norm{h}^2}{4}$. Ainsi, pour tout $h \in \mathcal{B}(0,r)$, 
+            \[ f(a+h) - f(a) = \frac{1}{2}h^{\top} H_f(a) h + \norm{h}^2 \varepsilon(h) \geq \lambda_{min}\frac{\norm{h}^2}{2} - \lambda_{min} \frac{\norm{h}^2}{4} \geq 0 \]
+        \end{enumerate}
+    \end{demo}
 
-    \begin{omed}{Remarque}{myolive}        
-        La réciproque est fausse !
-    \end{omed}
+    \begin{coro}{}{}
+        Si $a \in \mathcal{U}$ est un point critique de $f$, 
+        \begin{itemize}
+            \item Si $\sp(H_f(a)) \subset \mathbb{R}^*_+$, $f$ atteint en $a$ un minimum.
+            \item Si $\sp(H_f(a)) \subset \mathbb{R}^*_-$, $f$ atteint en $a$ un maximum.
+            \item Si $H_f(a)$ possède deux valeurs propres de signes distincts, $a$ est un point selle.
+        \end{itemize}
+    \end{coro}
+
+    On notera que pour $n = 2$, on dispose d’une caractérisation simple au moyen du déterminant et de la trace. En effet, en notant $\lambda$ et $\mu$ les deux valeurs propres de $H_f(a)$, $\det(H_f(a)) = \lambda \mu$ et $\tr(H_f(a)) = \lambda + \mu$.
+
+    \begin{coro}{}{}
+        Soient $f : \mathcal{U} \subset \mathbb{R}^2 \to \mathbb{R}$ de classe $\mathcal{C}^2$ sur l’ouvert $\mathcal{U}$ et $a \in \mathcal{U}$ un point critique de $f$.
+        \begin{itemize}
+            \item Si $\det(H_f(a)) > 0$, $f$ admet un extremum en $a$. Il s’agit d’un minimul lorsque $\tr(H_f(a)) > 0$, d’un maximum sinon.
+            \item Si $\det(H_f(a)) < 0$, $f$ admet un point selle.
+        \end{itemize}
+    \end{coro}
 
 \newpage
 

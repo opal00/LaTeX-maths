@@ -1,16 +1,17 @@
-\customchapter{Variables aléatoires}{}
+\chapter{Variables aléatoires}
+\chaptertoc
 
 \section{Variables aléatoires discrètes}
 
-Considérons dans un premier temps une expérience dans laquelle on lance $2$ dés. On pose $\Omega = \intervalleEntier{1}{6}^2$ et $\mathbf{P}$ la mesure de probabilité uniforme.
+Considérons dans un premier temps une expérience dans laquelle on lance $2$ dés. On pose $\Omega = \intervalleEntier{1}{6}^2$ et $\P$ la mesure de probabilité uniforme.
 
-On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \Omega$ est un événement élémentaire, alors $S = b + r$. On dit alors que $S$ est une variable aléatoire. On a $S(\Omega) = \intervalleEntier{2}{12}$, avec $P(S = 2) = \frac{1}{36}, P(S = 3) = \frac{1}{18}, \ldots, P(S = 12) = \frac{1}{36}$. On dit alors que $P(S = k)$ pour $k \in S(\Omega)$ décrit la loi de $S$.
+On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \Omega$ est un événement élémentaire, alors $S = b + r$. On dit alors que $S$ est une variable aléatoire. On a $S(\Omega) = \intervalleEntier{2}{12}$, avec $\P(S = 2) = \frac{1}{36}, \P(S = 3) = \frac{1}{18}, \ldots, \P(S = 12) = \frac{1}{36}$. On dit alors que $\P(S = k)$ pour $k \in S(\Omega)$ décrit la loi de $S$.
 
 \subsection{Variable aléatoire discrète}
 
     \subsubsection{Généralités}
 
-    On se place dans un espace probabilisé $(\Omega, \mathcal{A}, \mathbf{P})$. 
+    On se place dans un espace probabilisé $(\Omega, \mathcal{A}, \P)$. 
 
     \begin{defi}{}{}
         Soit $E$ un ensemble non vide. Une variable aléatoire est une application 
@@ -62,18 +63,18 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
     \subsubsection{Loi d’une variable aléatoire}
 
     \begin{defitheo}{Loi}{}
-        Soit $X$ une VAD sur $(\Omega, \mathcal{A}, \mathbf{P})$. L’application 
-        \[ \fonction{\mathbf{P}_X}{P(E)}{E}{A}{\mathbf{P}(X \in A)} \]   
+        Soit $X$ une VAD sur $(\Omega, \mathcal{A}, \P)$. L’application 
+        \[ \fonction{\P_X}{\P(E)}{E}{A}{\P(X \in A)} \]   
         est une mesure de probabilité sur $(E, \mathcal{P}(E))$. On l’appelle \textbf{loi} de $X$.
     \end{defitheo}
 
     \begin{demo}{Preuve}{mypurple}
-        $\mathbf{P}_X$ est à valeurs dans $\mathbb{R}_+$. De plus, $P_X(\mathbb{R}) = P(X \in \mathbb{R}) = P(X^{-1}(\mathbb{R})) = P(\Omega) = 1$, donc cette mesure est bien de poids total 1. Finalement, si on pose $(B_n)_{n \in \mathbb{N}}$ une famille de parties de $\mathbb{R}$ deux à deux disjointes, on a 
+        $\P_X$ est à valeurs dans $\mathbb{R}_+$. De plus, $P_X(\mathbb{R}) = \P(X \in \mathbb{R}) = \P(X^{-1}(\mathbb{R})) = \P(\Omega) = 1$, donc cette mesure est bien de poids total 1. Finalement, si on pose $(B_n)_{n \in \mathbb{N}}$ une famille de parties de $\mathbb{R}$ deux à deux disjointes, on a 
         \begin{align*}
-            P_X\left(\bigsqcup_{n \in \mathbb{N}} B_n\right) &= P\left(X \in \bigsqcup_{n \in \mathbb{N}} B_n\right) \\
-            &= P\left(X^{-1}\left(\bigsqcup_{n \in \mathbb{N}} B_n\right)\right) \\
-            &= P\left(\bigsqcup_{n \in \mathbb{N}} X^{-1}(B_n)  \right) \\
-            &= \sum_{n \in \mathbb{N}} P(X \in B_n) \\
+            P_X\left(\bigsqcup_{n \in \mathbb{N}} B_n\right) &= \P\left(X \in \bigsqcup_{n \in \mathbb{N}} B_n\right) \\
+            &= \P\left(X^{-1}\left(\bigsqcup_{n \in \mathbb{N}} B_n\right)\right) \\
+            &= \P\left(\bigsqcup_{n \in \mathbb{N}} X^{-1}(B_n)  \right) \\
+            &= \sum_{n \in \mathbb{N}} \P(X \in B_n) \\
             &= \sum_{n \in \mathbb{N}} P_X(B_n)
         \end{align*}
         Donc $P_X$ vérifie la $\sigma$-additivité.
@@ -83,26 +84,26 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
 
     Dans le cas où $X$ est une variable telle que $X(\Omega) = \left\{x_n, \quad n \in \mathbb{N}\right\}$. Alors, pour $B \subset \mathbb{R}$, 
     \begin{align*}
-        P_X(B) &= P(X \in B) = P(X^{-1}(B)) \\
-        &= P\left(\left\{\omega \in \Omega, X(\omega) \in B\right\}\right) \\
-        &= P\left(\bigcup_{b \in B} X^{-1}(\left\{b\right\})\right) \\
-        &= P\left(\bigcup_{b \in B \cap X(\Omega)} X^{-1}(\left\{b\right\})\right) \\
-        &= \sum_{b \in B \cap X(\Omega)} P(X^{-1}(\left\{b\right\})) \\
-        &= \sum_{x \in X(\Omega)} P(x = X) \mathbb{1}_B 
+        P_X(B) &= \P(X \in B) = \P(X^{-1}(B)) \\
+        &= \P\left(\left\{\omega \in \Omega, X(\omega) \in B\right\}\right) \\
+        &= \P\left(\bigcup_{b \in B} X^{-1}(\left\{b\right\})\right) \\
+        &= \P\left(\bigcup_{b \in B \cap X(\Omega)} X^{-1}(\left\{b\right\})\right) \\
+        &= \sum_{b \in B \cap X(\Omega)} \P(X^{-1}(\left\{b\right\})) \\
+        &= \sum_{x \in X(\Omega)} \P(x = X) \mathbb{1}_B 
     \end{align*}
-    La loi de $X$ est alors donnée par $P(X = x)$ pour tout $x \in X(\Omega)$. Ainsi, si $X$ est une VA telle que $X(\Omega) = \mathbb{N}$, donner la loi de $X$ revient à donner $P(X = k)$ pour $k \in \mathbb{N}$.
+    La loi de $X$ est alors donnée par $\P(X = x)$ pour tout $x \in X(\Omega)$. Ainsi, si $X$ est une VA telle que $X(\Omega) = \mathbb{N}$, donner la loi de $X$ revient à donner $\P(X = k)$ pour $k \in \mathbb{N}$.
 
     \begin{theo}{Existence d’une VA pour une distribution de probabilités}
-        Soit $(p_x)_{x \in E}$ une distribution de probabilités sur $E$ au plus dénombrable. Alors il existe un espace probabilisé $(\Omega, \mathcal{A}, \mathbf{P})$ et une variable aléatoire discrète $X$ tels que $P_X$ est définie par $(p_x)_{x \in E}$.
+        Soit $(p_x)_{x \in E}$ une distribution de probabilités sur $E$ au plus dénombrable. Alors il existe un espace probabilisé $(\Omega, \mathcal{A}, \P)$ et une variable aléatoire discrète $X$ tels que $P_X$ est définie par $(p_x)_{x \in E}$.
     \end{theo}
 
     \begin{demo}{Démonstration}{myred}
-        Considérons $(E, \mathcal{P}(E), \mathbf{P})$, où $P$ est définie par $P(\left\{x\right\}) = p_x$. En prenant $X = \id$, on a $P(X = x) = p_x$.
+        Considérons $(E, \mathcal{P}(E), \P)$, où $P$ est définie par $\P(\left\{x\right\}) = p_x$. En prenant $X = \id$, on a $\P(X = x) = p_x$.
     \end{demo}
 
     \begin{defi}{Loi conditionnelle}{}
-        Soit $A \in \mathcal{A}$ tel que $P(A) > 0$. On appelle \textbf{loi conditionnelle} de $X$ sachant $B$ la loi de $X$ dans l’espace $(\Omega, \mathcal{A}, \mathbf{P}(. \tq A))$, définie par 
-        \[ \mathbf{P}_{X \tq A} : B \in E \to P_A(X \in B) = P(X \in A \tq B) \]    
+        Soit $A \in \mathcal{A}$ tel que $\P(A) > 0$. On appelle \textbf{loi conditionnelle} de $X$ sachant $B$ la loi de $X$ dans l’espace $(\Omega, \mathcal{A}, \P(. \vbar A))$, définie par 
+        \[ \P_{X \vbar A} : B \in E \to P_A(X \in B) = \P(X \in A \vbar B) \]    
     \end{defi}
 
     \subsubsection{Fonction de répartition d’une VAD réelle}
@@ -111,12 +112,12 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
 
     \begin{defi}{Fonction de répartition}{}
         Soit $X$ une VAD, on appelle \textbf{fonction de répartition} de $X$ l’application 
-        \[ \fonction{F_X}{E}{E}{x}{P(X \leq x)} \] 
+        \[ \fonction{F_X}{E}{E}{x}{\P(X \leq x)} \] 
         où $(X \leq x) = X^{-1}(\intervalleOF{-\infty}{x})$.
     \end{defi}
 
     \begin{omed}{Exemple}{myyellow}
-        On lance $1$ dé et on note $X$ la valeur obtenue. Alors $X$ est une VAD sur $(\Omega, \mathcal{P}(\Omega), \mathbf{P})$ où $\Omega = \intervalleEntier{1}{6}$ et $\mathbf{P}$ est la probabilité uniforme. $\forall x \in \intervalleFO{0}{1}$, $F_X(x) = P(X = 0) = 0$, \ldots, $\forall x \in \intervalleFO{5}{6}$, $F_X(x) = P(X \leq 5) = \frac{5}{6}$. On a ainsi défini une fonction par escaliers.
+        On lance $1$ dé et on note $X$ la valeur obtenue. Alors $X$ est une VAD sur $(\Omega, \mathcal{P}(\Omega), \P)$ où $\Omega = \intervalleEntier{1}{6}$ et $\P$ est la probabilité uniforme. $\forall x \in \intervalleFO{0}{1}$, $F_X(x) = \P(X = 0) = 0$, \ldots, $\forall x \in \intervalleFO{5}{6}$, $F_X(x) = \P(X \leq 5) = \frac{5}{6}$. On a ainsi défini une fonction par escaliers.
     \end{omed}
 
     \begin{prop}{}{}
@@ -126,12 +127,12 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
     \end{prop}
 
     \begin{demo}{Démonstration}{myolive}
-        Si $x,x' \in \mathbb{R}$ tel que $x \leq x'$, alors $\intervalleOF{-\infty}{x} \subset \intervalleOF{-\infty}{x'}$ donc $X^{-1}(\intervalleOF{-\infty}{x}) \subset X^{-1}(\intervalleOF{-\infty}{x'})$ puis $F_X(x) = P(X^{-1}(\intervalleOF{-\infty}{x})) \leq P(X^{-1}(\intervalleOF{-\infty}{x'})) = F_X(x')$.
+        Si $x,x' \in \mathbb{R}$ tel que $x \leq x'$, alors $\intervalleOF{-\infty}{x} \subset \intervalleOF{-\infty}{x'}$ donc $X^{-1}(\intervalleOF{-\infty}{x}) \subset X^{-1}(\intervalleOF{-\infty}{x'})$ puis $F_X(x) = \P(X^{-1}(\intervalleOF{-\infty}{x})) \leq \P(X^{-1}(\intervalleOF{-\infty}{x'})) = F_X(x')$.
 
         On en déduit que les limites de $F_X$ en $-\infty$ et $+\infty$ existent -- car $F_X$ est monotone et bornée --. 
         \begin{itemize}
-            \item Posons $A_n = X^{-1}(\intervalleOF{-\infty}{n})$. $A_n \subset A_{n+1}$ donc $(A_n)$ est croissante. De plus, elle converge vers $\Omega$, et donc $\Omega = \bigcup_{n \in \mathbb{N}} A_n$. Ainsi, $\lim_{n \to +\infty} F_X(n) = \lim_{n \to +\infty} P(A_n) = P(\Omega) = 1$.
-            \item On procède de la même façon avec $B_n = X^{-1}(\intervalleOF{-\infty}{-n})$, qui est décroissante et converge vers $\emptyset$, d’où $\lim_{n \to -\infty} F_X(n) = P(\emptyset) = 0$.
+            \item Posons $A_n = X^{-1}(\intervalleOF{-\infty}{n})$. $A_n \subset A_{n+1}$ donc $(A_n)$ est croissante. De plus, elle converge vers $\Omega$, et donc $\Omega = \bigcup_{n \in \mathbb{N}} A_n$. Ainsi, $\lim_{n \to +\infty} F_X(n) = \lim_{n \to +\infty} \P(A_n) = \P(\Omega) = 1$.
+            \item On procède de la même façon avec $B_n = X^{-1}(\intervalleOF{-\infty}{-n})$, qui est décroissante et converge vers $\emptyset$, d’où $\lim_{n \to -\infty} F_X(n) = \P(\emptyset) = 0$.
         \end{itemize}
     \end{demo}
 
@@ -140,7 +141,7 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
         \begin{enumerate}
             \item $F_X$ est continue à droite en tout $x_0 \in \mathbb{R}$.
             \item Pour tout $x_0 \in \mathbb{R}$, 
-            \[ \lim_{x \to x_0^-} F_X(x) = F(X)(x_0) - P(X = x_0) \]   
+            \[ \lim_{x \to x_0^-} F_X(x) = F(X)(x_0) - \P(X = x_0) \]   
         \end{enumerate}
     \end{prop}
 
@@ -150,18 +151,18 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
             \item \textbf{Limite à droite} \quad Posons $A_n = X^{-1}(\intervalleOF{-\infty}{x_0 + \frac{1}{n}})$. $A_{n+1} \subset A_n$ donc la suite $(A_n)_{n \in \mathbb{N}}$ est décroissante. 
             
             Montrons que $\bigcap_{n \in \mathbb{N}^*} A_n = X^{-1}(\intervalleOF{-\infty}{x_0})$. On a $X^{-1}(\intervalleOF{-\infty}{x_0}) \subset X^{-1}(\intervalleOF{-\infty}{x_0}) \subset A_n$ pour tout $n \in \mathbb{N}^*$ donc $X^{-1}(\intervalleOF{-\infty}{x_0}) \subset \bigcap_{n \in \mathbb{N}^*} A_n$. Réciproquement, si $\omega \in \bigcup_{n \in \mathbb{N}^*} A_n$, donc pour tout $n \in \mathbb{N}^*$, on a $\omega \in A_n$ \textit{i.e.} $X(\omega) \leq x_0 + \frac{1}{n}$. Ainsi, $X(\omega) \leq x_0$ donc $\omega \in X^{-1}(\intervalleOF{-\infty}{x_0})$. Ainsi, l’égalité est vérifiée, et donc 
-            \[ \lim_{n \to +\infty} F_X(x_0 + \frac{1}{n}) = \lim_{n \to +\infty} P(A_n) = P(X^{-1}(\intervalleOF{-\infty}{x_0})) = F_X(x_0) \]  
+            \[ \lim_{n \to +\infty} F_X(x_0 + \frac{1}{n}) = \lim_{n \to +\infty} \P(A_n) = \P(X^{-1}(\intervalleOF{-\infty}{x_0})) = F_X(x_0) \]  
             En sachant que $\lim_{x_0^+} F_X$ existe, on a donc que $F_X$ est continue à droite sur $\mathbb{R}$, et que $\lim_{x \to x_0^+} F_X(x) = F_X(x_0)$, on a donc la continuité de $F_X$ à droite sur $\mathbb{R}$.
             \item \textbf{Limite à gauche} \quad OP $B_n = X^{-1}(\intervalleOF{-\infty}{x_0 - \frac{1}{n}})$. $B_{n+1} \supset B_n$ donc la suite $(B_n)_{n \in \mathbb{N}}$ est croissante, et converge vers $X^{-1}(\intervalleOO{-\infty}{x_0})$. On en déduit que 
-            \[ \lim_{n \to +\infty} F_X(x_0 - \frac{1}{n}) = \lim_{n \to +\infty} P(B_n) = P(X^{-1}(\intervalleOO{-\infty}{x_0})) = F_X(x_0) - P(X = x_0) \]   
-            Sachant que $\lim_{x \to x_0^-}$ existe, on a $\lim_{x \to x_0^-} F_X(x) = F_X(x_0) - P(X = x_0)$. Ainsi, $F_X$ est continue à gauche en $x_0$ \textit{ssi} $P(X = x_0) = 0$.
+            \[ \lim_{n \to +\infty} F_X(x_0 - \frac{1}{n}) = \lim_{n \to +\infty} \P(B_n) = \P(X^{-1}(\intervalleOO{-\infty}{x_0})) = F_X(x_0) - \P(X = x_0) \]   
+            Sachant que $\lim_{x \to x_0^-}$ existe, on a $\lim_{x \to x_0^-} F_X(x) = F_X(x_0) - \P(X = x_0)$. Ainsi, $F_X$ est continue à gauche en $x_0$ \textit{ssi} $\P(X = x_0) = 0$.
         \end{itemize}
     \end{demo}
 
     \begin{prop}{}{}
         Soit $X$ une VAD telle que 
         \[ X(\Omega) = \left\{x_n, \quad n \in \mathbb{N}\right\} \]   
-        OP $P(X = x_k) = p_k$. Alors 
+        OP $\P(X = x_k) = p_k$. Alors 
         \[ F_X(x) = \sum_{n \in \mathbb{N}} p_n \mathbb{1}_{\intervalleFO{x_n}{+\infty}} \]   
     \end{prop}
 
@@ -170,7 +171,7 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
         \begin{align*}
             (X \leq x) &= X^{-1}(\intervalleOF{-\infty}{x}) \\
             &= \bigcup_{\substack{n \in \mathbb{N} \\ x_n \leq x}} X = X_n \\
-            P(X \leq x) &= \sum_{\substack{n \in \mathbb{N} \\ x_n \leq x}} P(X = x_k) \\ 
+            \P(X \leq x) &= \sum_{\substack{n \in \mathbb{N} \\ x_n \leq x}} \P(X = x_k) \\ 
             &= \sum_{n \in \mathbb{N}} p_k \mathbb{1}_{\intervalleFO{x_n}{+\infty}}
         \end{align*}
     \end{demo}
@@ -191,7 +192,7 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
 
     \begin{prop}{Loi de $f(X)$}{}
         Soit $A \in E$.
-        \[ P_{f(X)}(A) = P(f(X) \in A) = \sum_{\substack{x \in X(\Omega) \\ f(x) = y}} P(X = x) \]   
+        \[ P_{f(X)}(A) = \P(f(X) \in A) = \sum_{\substack{x \in X(\Omega) \\ f(x) = y}} \P(X = x) \]   
     \end{prop}
 
     \begin{demo}{Démonstration}{myolive}
@@ -209,47 +210,47 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
     On utilisera pour la suite couramment la notation $p$ pour un nombre de $\intervalleFF{0}{1}$. On notera alors $q = 1 - p$
 
     \begin{defi}{Loi certaine}{}
-        On dit que $X$ suit une \textbf{loi certaine} s’il existe $x \in E$ tel que $P(X = x) = 1$.
+        On dit que $X$ suit une \textbf{loi certaine} s’il existe $x \in E$ tel que $\P(X = x) = 1$.
     \end{defi}
 
     \begin{defi}{Loi uniforme}{}
         On dit que $X$ suit une \textbf{loi uniforme} sur un ensemble fini $F$ et on note $X \sim \mathcal{U}(F)$ si 
-        \[ X(\Omega) = F \esp{et} P(X = x \in F) = \frac{1}{\abs{E}} \]     
+        \[ X(\Omega) = F \esp{et} \P(X = x \in F) = \frac{1}{\abs{E}} \]     
     \end{defi}
 
     Cette loi apparaît par exemple lors d’un lancer de dé équilibré à $n$ faces, où $X$ est la valeur obtenue après un lancer. $X \sim \intervalleEntier{1}{n}$.
 
     \begin{defi}{Loi de Bernoulli}{}
         On dit que $X$ suit une \textbf{loi de Bernoulli} de paramètre $p \in \intervalleFF{0}{1}$ et on note $X \sim \mathcal{B}(p)$ ou $X \sim \mathcal{B}(1,p)$ si 
-        \[ X(\Omega) = \left\{0,1\right\} \esp{et} P(X = 1) = p \]   
+        \[ X(\Omega) = \left\{0,1\right\} \esp{et} \P(X = 1) = p \]   
     \end{defi}
 
     Par exemple, c’est le cas lorsque l’on réalise le tirage d’une boule dans une urne contenant $k$ boules rouges et $i$ boules blanches, et que $X$ correspond au nombre de boules rouges tirées : $X \sim \mathcal{B}(\frac{k}{k + i})$. 
 
-    De plus, si $A$ est un événement, alors $\mathbb{1}_A \sim \mathcal{B}(\mathbf{P}(A))$.
+    De plus, si $A$ est un événement, alors $\mathbb{1}_A \sim \mathcal{B}(\P(A))$.
 
     \begin{defi}{Loi binomiale}{}
         On dit que $X$ suit une \textbf{loi binomiale} de paramètres $p \in \intervalleFF{0}{1}$ et $n \in \mathbb{N}^*$ et on note $X \sim \mathcal{B}(n,p)$ si 
-        \[ X(\Omega) = \intervalleEntier{0}{n} \esp{et} P(X = k) = \binom{n}{k}p^k q^{n-k} \]   
+        \[ X(\Omega) = \intervalleEntier{0}{n} \esp{et} \P(X = k) = \binom{n}{k}p^k q^{n-k} \]   
     \end{defi}
 
     On retrouve une telle loi lorsque l’on répète $n$ fois une expérience suivant une loi de bernouilli de paramètre $p$ de façon indépendante : on tire $n$ boules avec remise dans l’urne précédemment décrite, et dans ce cas, si $X$ compte le nombre de boules rouges, $X \sim \mathcal{B}(n, \frac{k}{k + i})$.
 
     \begin{defi}{Loi hypergéométrique}{}
         On dit que $X$ suit une \textbf{loi hypergéométrique} de paramètres $N \geq n \in \mathbb{N}$ et $p \in \intervalleFF{0}{1}$ et on note $X \sim \mathcal{H}(n,p,N)$ si 
-        \[ X(\Omega) = \intervalleEntier{0}{n} \esp{et} P(X=k) = \frac{\binom{pN}{k} \binom{qN}{n-k}}{\binom{N}{n}} \]   
+        \[ X(\Omega) = \intervalleEntier{0}{n} \esp{et} \P(X=k) = \frac{\binom{pN}{k} \binom{qN}{n-k}}{\binom{N}{n}} \]   
     \end{defi}
 
     On définit bien une mesure de probabité, car $\sum_{k = 0}^n \frac{\binom{pN}{k} \binom{qN}{n-k}}{\frac{N}{n}} = \frac{\binom{N}{n}}{\binom{N}{n}} = 1$.
 
     \begin{omed}{Exemple}{myyellow}
         Une usine produit $N$ pièces dont $M$ pièce défectueuses. On prélève $n$ pièces, et on note $X$ le nombre de pièces défecteuses prélevées. 
-        \[ P(X = k) = \frac{\binom{M}{k} \binom{N-M}{n-k}}{\binom{N}{n}} \]    
+        \[ \P(X = k) = \frac{\binom{M}{k} \binom{N-M}{n-k}}{\binom{N}{n}} \]    
     \end{omed}
 
     \begin{prop}{Approximation hypergéométrique}{}
         Soit $(X_N)_{N \in \mathbb{N}}$ une suite de VAD telle que $X_N \sim \mathcal{H}(n, p, N)$ avec $n$ fixé. Alors pour $k \in \intervalleEntier{0}{n}$, 
-        \[ \lim_{N \to +\infty} P(X_N = k) = \binom{n}{k} p^k q^{n-k} \]   
+        \[ \lim_{N \to +\infty} \P(X_N = k) = \binom{n}{k} p^k q^{n-k} \]   
     \end{prop}
 
     On dit que la suite de variables $(X_N)$ converge vers une VAD $X \sim \mathcal{B}(n,p)$.
@@ -257,7 +258,7 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
     \begin{demo}{Preuve}{myolive}
         Soit $k \in \intervalleEntier{0}{n}$,
         \begin{align*}
-            P(X_N = k) &= \frac{\binom{pN}{k} \binom{qN}{n-k}}{\binom{N}{n}} \\
+            \P(X_N = k) &= \frac{\binom{pN}{k} \binom{qN}{n-k}}{\binom{N}{n}} \\
             &= \frac{\frac{(pN)!}{k!(pN -k)!}\frac{(qN)!}{(n-k)!(qN - n + k)!}}{\frac{N!}{n!(N-n)!}} \\
             &= \binom{n}{k} \frac{\frac{(pN)!}{(pN -k)!}\frac{(qN)!}{(qN - n + k)!}}{\frac{N!}{(N-n)!}} \\
             &= \binom{n }{k} \frac{(pN)!}{(pN-k)!} \frac{(qN)!}{(qN - n + k)!} \frac{(N- n)!}{N!} 
@@ -274,12 +275,12 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
         \end{align*}
         De la même façon, $\frac{(qN)!}{(qN - n + k)!} \sim (qN)^{n-k}$, et pour le troisième terme $\frac{N!}{(N-n)!} \sim N^n$. 
         En conclusion, 
-        \[ P(X_N = k) \sim \binom{n}{k} \frac{(pN)^k (qN)^{n-k}}{N^n} = \binom{n}{k} p^k q^{n-k} \]    
+        \[ \P(X_N = k) \sim \binom{n}{k} \frac{(pN)^k (qN)^{n-k}}{N^n} = \binom{n}{k} p^k q^{n-k} \]    
     \end{demo}
 
     \begin{defi}{Loi géométrique}{}
         On dit que $X$ suit une \textbf{loi géométrique} de paramètre $p \in \intervalleOF{0}{1}$ et on note $X \sim \mathcal{G}(p)$ si 
-        \[ X(\Omega) = \mathbb{N}^* \esp{et} P(X = n) = q^{n-1} p \]   
+        \[ X(\Omega) = \mathbb{N}^* \esp{et} \P(X = n) = q^{n-1} p \]   
     \end{defi}
 
     On définit bien une mesure de probabilité étant donné que $q^{n-1} p > 0$ et que $\sum_{n=1}^{+\infty} q^{n-1}p = p \sum_{n=0}^{+\infty} q^n  = \frac{p}{1-q} = 1$.
@@ -289,13 +290,13 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
     \end{omed}
 
     \begin{prop}{}{}
-        Soit $X \sim \mathcal{G}(p)$. Alors $\forall n \in \mathbb{N}$, $P(X > n) = q^n$.
+        Soit $X \sim \mathcal{G}(p)$. Alors $\forall n \in \mathbb{N}$, $\P(X > n) = q^n$.
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
         $(X > n) = \bigcup_{k = n+1}^{+\infty} (X = k)$ est une union d’événements deux à deux disjoints, donc 
         \begin{align*}
-            P(X > n) &= \sum_{k=n+1}^{+\infty} P(X = k) \\
+            \P(X > n) &= \sum_{k=n+1}^{+\infty} \P(X = k) \\
             &= \sum_{k=n+1}^{+\infty} q^{k-1} p \\
             &= p \sum_{k=n}^{+\infty} q^k \\
             &= p \frac{q^n}{1 - q} = q^n
@@ -303,25 +304,25 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
     \end{demo}
 
     \begin{prop}{Caractérisation}{}
-        $X \sim \mathcal{G}(p) \iff P(X > n + k \tq X > n) = P(X > k)$. On dit que $X$ suit une loi « sans mémoire ».
+        $X \sim \mathcal{G}(p) \iff \P(X > n + k \vbar X > n) = \P(X > k)$. On dit que $X$ suit une loi « sans mémoire ».
     \end{prop}
 
     \begin{demo}{Démonstration}{myolive}
         \begin{itemize}
             \item[$\implies$] Si $X \sim \mathcal{G}(p)$, où $p \in \intervalleOO{0}{1}$, alors 
             \begin{align*}
-                P(X > n+k \tq X > n) &= \frac{P( X > n+k)}{P(X > n)} \\
+                \P(X > n+k \vbar X > n) &= \frac{\P( X > n+k)}{\P(X > n)} \\
                 &= \frac{q^{n+k}}{q^n} = q^k
             \end{align*}
-            \item[$\impliedby$] On suppose la propriété $P(X > n+k \tq n) = P(X > n)$. 
+            \item[$\impliedby$] On suppose la propriété $\P(X > n+k \vbar n) = \P(X > n)$. 
             \begin{align*}
-                P(X > n+1) &= P(X > n+1 \tq X > n) P(X > n) \\
-                &= P(X > 1) P(X > n) 
+                \P(X > n+1) &= \P(X > n+1 \vbar X > n) \P(X > n) \\
+                &= \P(X > 1) \P(X > n) 
             \end{align*}
-            On pose $q = P(X > 1)$ et on obtient $X \sim \mathcal{G}(p)$ car 
+            On pose $q = \P(X > 1)$ et on obtient $X \sim \mathcal{G}(p)$ car 
             \begin{align*}
-                P(X = n) &= P(X \leq n) - P(X \leq n-1) \\
-                &= P(X > n-1) - P(X > n) \\
+                \P(X = n) &= \P(X \leq n) - \P(X \leq n-1) \\
+                &= \P(X > n-1) - \P(X > n) \\
                 &= q^{n-1} - q^n = p q^{n-1}
             \end{align*}
         \end{itemize}
@@ -329,19 +330,19 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
 
     \begin{defi}{Loi de Poisson}{}
         On dit que $X$ suit une \textbf{loi de Poisson} de paramètre $\lambda \in \mathbb{R}_+^*$ et on note $X \sim \mathcal{P}(\lambda)$ si 
-        \[ X(\Omega) = \mathbb{N} \esp{et} P(X = n) = \frac{\lambda^n}{n!} e^{-\lambda} \]   
+        \[ X(\Omega) = \mathbb{N} \esp{et} \P(X = n) = \frac{\lambda^n}{n!} e^{-\lambda} \]   
     \end{defi}
 
     On peut vérifier que l’on définit bien une mesure de probabilité : $\forall k \in \mathbb{N}$, $e^{-\lambda} \frac{\lambda^k}{k!} > 0$ et $\sum_{n=0}^{+\infty} e^{-\lambda} \frac{\lambda^n}{n!} = e^{-\lambda} e^{\lambda} = 1$.
 
     \begin{theo}{Approximation binomiale}
-        On suppose que $(X_n)_{n \in \mathbb{N}}$ sont des VAD telles que $X_n \sim \mathcal{B}(n,p_n)$ et $\lim_{n \to +\infty} n p_n = \lambda$. Alors $\forall k \in \mathbb{N}, P(X_n = k) \limi{n}{+\infty} e^{-\lambda} \frac{\lambda^k}{k!}$.
+        On suppose que $(X_n)_{n \in \mathbb{N}}$ sont des VAD telles que $X_n \sim \mathcal{B}(n,p_n)$ et $\lim_{n \to +\infty} n p_n = \lambda$. Alors $\forall k \in \mathbb{N}, \P(X_n = k) \limi{n}{+\infty} e^{-\lambda} \frac{\lambda^k}{k!}$.
     \end{theo}
 
     \begin{demo}{Démonstration}{myred}
         $\forall k \in \mathbb{N}$, 
         \begin{align*}
-            P(X_n = k) &= \binom{n}{k} p_n^k q_n^{n-k} \\
+            \P(X_n = k) &= \binom{n}{k} p_n^k q_n^{n-k} \\
             &\sim \frac{(np_n)^k}{k!} e^{(n-k)\ln(q_n)} \\
             &\sim \frac{(np_n)^k}{k!} e^{-n p_n} \\
             &\sim \frac{\lambda^k}{k!} e^{-\lambda}
@@ -355,31 +356,31 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
     \begin{omed}{Exemple}{mypurple}
         Une urne contient $7$ boules : $2$ bleues, 3 blanches et 2 rouges. On tire 3 boules, et on pose $X$ le nombre de boules bleues et $Y$ le nombre de boules blanches. 
 
-        On veut déterminer $P(X > Y)$, $P(X = Y)$ et $P(7 - X - Y = 2)$.
+        On veut déterminer $\P(X > Y)$, $\P(X = Y)$ et $\P(7 - X - Y = 2)$.
 
         On calcule dans un premier temps la probabilité de toutes valeurs prises par $X$ et $Y$.
-        \[ P(X = i, Y = j) = \frac{\binom{2}{i} \binom{3}{j} \binom{2}{3 - i - j}}{\binom{7}{3}}  \]
+        \[ \P(X = i, Y = j) = \frac{\binom{2}{i} \binom{3}{j} \binom{2}{3 - i - j}}{\binom{7}{3}}  \]
         On a déterminé ce que l’on définira comme une loi conjointe de $X$ et $Y$, qui contient aussi l’information des loi (dites marginales) de $X$ et $Y$ prises séparément. On peut déjà remarquer que l’on n’aurait pas pu obtenir cette loi conjointe seulement à partir des lois marginales. On peut, à l’aide de cette loi conjointe, résoudre nos questions :
         \begin{align*}
-            P(X > Y) &= P\left(\bigcup_{i > j} (X=i, Y = j)\right) \\
-            &= P(X=1, Y=0) + P(X = 2, Y = 0) + P(X = 2, Y = 1) \\
+            \P(X > Y) &= \P\left(\bigcup_{i > j} (X=i, Y = j)\right) \\
+            &= \P(X=1, Y=0) + \P(X = 2, Y = 0) + \P(X = 2, Y = 1) \\
             &= \frac{1}{5} \\
-            P(X = Y) &= P\left(\bigcup_{i = j} (X = i, Y = j)\right) \\
-            &= P(X=1, Y=1) + P(X=2,Y=2) \\
+            \P(X = Y) &= \P\left(\bigcup_{i = j} (X = i, Y = j)\right) \\
+            &= \P(X=1, Y=1) + \P(X=2,Y=2) \\
             &= \frac{12}{35} \\
-            P(7 - X - Y = 2) &= P(X + Y = 1) \\
-            &= P\left(\bigcup_{i + j = 1} (X=i,Y=j)\right) \\
-            &= P(X=1, Y=0) + P(Y=0,X=1) \\
+            \P(7 - X - Y = 2) &= \P(X + Y = 1) \\
+            &= \P\left(\bigcup_{i + j = 1} (X=i,Y=j)\right) \\
+            &= \P(X=1, Y=0) + \P(Y=0,X=1) \\
             &= \frac{1}{7}
         \end{align*}
     \end{omed}
 
     \begin{defitheo}{Loi d’un couple de VAD}{}
-        Soient $X$ et $Y$ des VAD de $(\Omega, \mathcal{A}, \mathbf{P})$ à valeurs dans $E$ et $F$ respectivement. Alors 
+        Soient $X$ et $Y$ des VAD de $(\Omega, \mathcal{A}, \P)$ à valeurs dans $E$ et $F$ respectivement. Alors 
         \begin{itemize}
             \item $(X,Y) : \Omega \to E \times F$ est une VAD ;
             \item La loi de $(X,Y)$ est dite loi conjointe, et est l’application  
-            \[ \fonction{P_{X,Y}}{\mathcal{P}(E)}{E}{(A,B)}{P((X,Y) \in A \times B)} \]
+            \[ \fonction{P_{X,Y}}{\mathcal{P}(E)}{E}{(A,B)}{\P((X,Y) \in A \times B)} \]
             \item Les lois de $X$ et $Y$ sont dites lois marginales.
         \end{itemize}
     \end{defitheo}
@@ -388,7 +389,7 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
 
     \begin{prop}{}{}
         $\forall x \in \mathbb{R}$, 
-        \[ P(X = x) = \sum_{y \in Y(\Omega)} P(X = x,Y = y) = \sum_{y \in Y(\Omega)} P_{X,Y} (\left\{x\right\}, \left\{y\right\}) \] 
+        \[ \P(X = x) = \sum_{y \in Y(\Omega)} \P(X = x,Y = y) = \sum_{y \in Y(\Omega)} P_{X,Y} (\left\{x\right\}, \left\{y\right\}) \] 
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
@@ -402,7 +403,7 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
 
     \begin{prop}{}{}
         Pour tout $A,B \subset E$, $(X,Y)$ un couple de VAD, $A' = A \cap X(\Omega)$ et $B' = B \cap Y(\Omega)$ sont des ensembles dénombrables, et 
-        \[ P((X,Y) \in A \times B) = \sum_{(x,y) \in A \times B} P(X=x,Y=y) = \sum_{(x,y) \in A'\times B'} P(X=x,Y=y) \]   
+        \[ \P((X,Y) \in A \times B) = \sum_{(x,y) \in A \times B} \P(X=x,Y=y) = \sum_{(x,y) \in A'\times B'} \P(X=x,Y=y) \]   
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
@@ -413,7 +414,7 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
         Puis on utilise la $\sigma$-additivité.
     \end{demo}
 
-    La loi du couple $(X,Y)$ est donc déterminée par $P(X=x,Y=y)$ pour tout $(x,y) \in X(\Omega) \times Y(\Omega)$.
+    La loi du couple $(X,Y)$ est donc déterminée par $\P(X=x,Y=y)$ pour tout $(x,y) \in X(\Omega) \times Y(\Omega)$.
 
     \begin{omed}{Exemple}{myolive}
         On jette 1 dé rouge et 1 bleu. ON $X$ la valeur du dé rouge, $Y$ la valeur du dé bleu, et $Z = 7 - X$. 
@@ -422,35 +423,35 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
     \end{omed}
 
     \begin{defi}{Loi conditionnelle}{}
-        Si $X$ et $Y$ sont des VAD, la loi de $X$ sachant $(Y = y)$ (où $P(Y = y) > 0$) est la loi 
-        \[ P_{(Y=y)}(X=x) = \frac{P(X=x,Y=y)}{P(Y=y)} \]    
+        Si $X$ et $Y$ sont des VAD, la loi de $X$ sachant $(Y = y)$ (où $\P(Y = y) > 0$) est la loi 
+        \[ P_{(Y=y)}(X=x) = \frac{\P(X=x,Y=y)}{\P(Y=y)} \]    
     \end{defi}
 
     \begin{defitheo}{Indépendance d’un couple de VAD}{}
         On dit que les VAD $X$ et $Y$ sont indépendantes, et on note $X \independent Y$ si 
         \begin{align*}
-            &\forall (x,y) \in E^2, P(X = x, Y = y) = P(X = x)P(Y=y) \\
-            \bigg( \iff & \forall (x,y) \in E^2, P(X = x, Y = y) = P(X = x)P(Y=y) \bigg) \\
-            \iff & \forall A,B \subset E, P(X \in A, Y \in B) = P(X \in A)P(Y \in B) 
+            &\forall (x,y) \in E^2, \P(X = x, Y = y) = \P(X = x)\P(Y=y) \\
+            \bigg( \iff & \forall (x,y) \in E^2, \P(X = x, Y = y) = \P(X = x)\P(Y=y) \bigg) \\
+            \iff & \forall A,B \subset E, \P(X \in A, Y \in B) = \P(X \in A)\P(Y \in B) 
         \end{align*}
     \end{defitheo}
 
     \begin{omed}{Démonstration}{mypurple}
         On a immédiatement l’implication directe $\implies$. Réciproquement, en notant $A' = A \cap X(\Omega)$ et $B' = B \cap X(\Omega)$, qui sont des ensembles dénombrables,
         \begin{align*}
-            P(X \in A) P(Y \in B) &= \sum_{x \in A} P(X = x) \sum_{y \in B} P(Y = y) \\
-            &= \sum_{x \in A'} P(X = x) \sum_{y \in B'} P(Y = y) \\
-            &= \sum_{(x,y) \in A' \times B'} P(X=x)P(Y=y) \\
-            &= \sum_{(x,y) \in A' \times B'} P(X=x,Y=y) \\
-            &= P\left(\bigcup_{(x,y) \in A' \times B'} (X=x, Y = y)\right) \\
-            &= P\left(bigcup_{(x,y) \in A \times B} (X=x, Y = y)\right) \\
-            &= P(X \in A, Y \in B)
+            \P(X \in A) \P(Y \in B) &= \sum_{x \in A} \P(X = x) \sum_{y \in B} \P(Y = y) \\
+            &= \sum_{x \in A'} \P(X = x) \sum_{y \in B'} \P(Y = y) \\
+            &= \sum_{(x,y) \in A' \times B'} \P(X=x)\P(Y=y) \\
+            &= \sum_{(x,y) \in A' \times B'} \P(X=x,Y=y) \\
+            &= \P\left(\bigcup_{(x,y) \in A' \times B'} (X=x, Y = y)\right) \\
+            &= \P\left(bigcup_{(x,y) \in A \times B} (X=x, Y = y)\right) \\
+            &= \P(X \in A, Y \in B)
         \end{align*}
     \end{omed}
 
     \begin{omed}{Exemple}{myolive}
         Si $X$ et $Y$ sont deux VAD$\mathbb{N}$I, alors 
-        \[ \forall n \in \mathbb{N}, P(X + Y = n) = \sum_{k= 0}^n P(X = k) P(Y = n-k) \]  
+        \[ \forall n \in \mathbb{N}, \P(X + Y = n) = \sum_{k= 0}^n \P(X = k) \P(Y = n-k) \]  
     \end{omed}
 
     \begin{coro}{}{}
@@ -461,9 +462,9 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
     \begin{omed}{Preuve}{myorange}
         Soient $f \in F$ et $h \in H$.
         \begin{align*}
-            P(f(X) = f, g(Y) = h) &= P(X \in f^{-1}(\left\{f\right\}), Y \in g^{-1}(\left\{h\right\})) \\
-            &= P(X \in f^{-1}(\left\{f\right\}))P(Y \in g^{-1}(\left\{h\right\})) \\
-            &= P(f(X) = f) P(g(Y) = h)
+            \P(f(X) = f, g(Y) = h) &= \P(X \in f^{-1}(\left\{f\right\}), Y \in g^{-1}(\left\{h\right\})) \\
+            &= \P(X \in f^{-1}(\left\{f\right\}))\P(Y \in g^{-1}(\left\{h\right\})) \\
+            &= \P(f(X) = f) \P(g(Y) = h)
         \end{align*}
     \end{omed}
 
@@ -475,24 +476,24 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
         On dit que $X_1, \ldots, X_n$ sont mutuellement indépendantes si 
         \begin{itemize}
             \item $\forall (x_1,\ldots,x_n) \in E_1, \ldots, E_n$,
-            \[ P(X = x_1,\ldots,X=x_n) = \prod_{i =1}^n P(X_i = x_i) \]  
+            \[ \P(X = x_1,\ldots,X=x_n) = \prod_{i =1}^n \P(X_i = x_i) \]  
             \item $\forall (x_1,\ldots,x_n) \in X_1(\Omega), \ldots, X_n(\Omega)$, 
-            \[ P(X_1 = x_1,\ldots,X_n=x_n) = \prod_{i =1}^n P(X_i = x_i) \]  
+            \[ \P(X_1 = x_1,\ldots,X_n=x_n) = \prod_{i =1}^n \P(X_i = x_i) \]  
             \item $\forall (A_1,\ldots,A_n) \subset E_1 \times \cdots \times E_n$, 
-            \[ P(X_1 \in A_1, \ldots, X_n \in A_n) = \prod_{i = 1}^n P(X_i \in A_i) \]   
+            \[ \P(X_1 \in A_1, \ldots, X_n \in A_n) = \prod_{i = 1}^n \P(X_i \in A_i) \]   
         \end{itemize}
     \end{defitheo}
 
     \begin{demo}{Preuve}{mypurple}
         On a rapidement \textbf{(i)} $\iff$ \textbf{(ii)} car pour toute valeur $x_i \in E_i \backslash X_i(\Omega)$, $(X = x_i) = \emptyset$. De plus, \textbf{(iii)} $\implies$ \textbf{(i)} aisément. Réciproquement, en notant $A_i' = A_i \cap X_i(\Omega)$
         \begin{align*}
-            \prod_{i = 1}^n P(X_i \in A_i) &= \prod_{i = 1}^n \sum_{x_i \in A_i} P(X_i = x_i) \\
-            &= \prod_{i = 1}^n \sum_{x_i \in A_i'} P(X_i = x_i) \\
-            &= \sum_{(x_1,\ldots,x_n) \in A_1'\times \cdots A_n'} P(X_1 = x_1) \cdots P(X_n = x_n) \\
-            &= \sum_{(x_1,\ldots,x_n) \in A_1'\times \cdots A_n'} P(X_1 = x_1, \ldots, X_n = x_n) \\
-            &= P\left(\bigcup_{(x_1,\ldots,x_n) \in A_1'\times \cdots A_n'} (X_1 = x_1, \ldots, X_n = x_n)\right) \\
-            &= P\left(\bigcup_{(x_1,\ldots,x_n) \in A_1\times \cdots A_n} (X_1 = x_1, \ldots, X_n = x_n)\right) \\
-            &= P(X_1 \in A_1, \ldots, X_n \in A_n)
+            \prod_{i = 1}^n \P(X_i \in A_i) &= \prod_{i = 1}^n \sum_{x_i \in A_i} \P(X_i = x_i) \\
+            &= \prod_{i = 1}^n \sum_{x_i \in A_i'} \P(X_i = x_i) \\
+            &= \sum_{(x_1,\ldots,x_n) \in A_1'\times \cdots A_n'} \P(X_1 = x_1) \cdots \P(X_n = x_n) \\
+            &= \sum_{(x_1,\ldots,x_n) \in A_1'\times \cdots A_n'} \P(X_1 = x_1, \ldots, X_n = x_n) \\
+            &= \P\left(\bigcup_{(x_1,\ldots,x_n) \in A_1'\times \cdots A_n'} (X_1 = x_1, \ldots, X_n = x_n)\right) \\
+            &= \P\left(\bigcup_{(x_1,\ldots,x_n) \in A_1\times \cdots A_n} (X_1 = x_1, \ldots, X_n = x_n)\right) \\
+            &= \P(X_1 \in A_1, \ldots, X_n \in A_n)
         \end{align*}
     \end{demo}
 
@@ -506,9 +507,9 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
     \end{theo}
 
     On sera couramment amenés au calcul d’une somme de VAD$\mathbb{R}$ : 
-    \[ P(X_1 + \cdots + X_n = n) = \sum_{\substack{(x_1,\ldots,x_n) \in \mathbb{R}^n} \\ x_1 + \cdots + x_n = n} P(X_1= x_1,\ldots,X_n = x_n) \]    
+    \[ \P(X_1 + \cdots + X_n = n) = \sum_{\substack{(x_1,\ldots,x_n) \in \mathbb{R}^n} \\ x_1 + \cdots + x_n = n} \P(X_1= x_1,\ldots,X_n = x_n) \]    
     Dans le cas où ce sont des VAD$\mathbb{R}$I, 
-    \[ P(X_1 + \cdots X_n = n) = \sum_{\substack{(x_1,\ldots,x_n) \in \mathbb{R}^n} \\ x_1 + \cdots + x_n = n} P(X_1= x_1)\cdots P(X_n = x_n) \]   
+    \[ \P(X_1 + \cdots X_n = n) = \sum_{\substack{(x_1,\ldots,x_n) \in \mathbb{R}^n} \\ x_1 + \cdots + x_n = n} \P(X_1= x_1)\cdots \P(X_n = x_n) \]   
 
     Nous aurons besoin de cette formule pour deux exemples fondamentaux : 
 
@@ -517,7 +518,7 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
     \end{lem}
 
     \begin{demo}{Preuve}{mybrown}
-        OP $P(X + 1)^n$ et $Q = (X + 1)^m$. Le terme de degré $p$ de $PQ = (X + 1)^{m + n}$ a pour expression $\binom{m + n}{p} X^p$. Or $PQ = \sum_{p= 0}^{m + n} \sum_{i + j = p} \binom{n}{i} \binom{j}{m} X^{i+j} = \sum_{p= 0}^{m+n} \sum_{k= 0}^p \binom{n}{k} \binom{p-k}{m} X^p$, donc ce terme de degré $p$ s’écrit aussi $\sum_{k= 0}^p \binom{n}{k} \binom{p-k}{m} X^p$.
+        OP $\P(X + 1)^n$ et $Q = (X + 1)^m$. Le terme de degré $p$ de $PQ = (X + 1)^{m + n}$ a pour expression $\binom{m + n}{p} X^p$. Or $PQ = \sum_{p= 0}^{m + n} \sum_{i + j = p} \binom{n}{i} \binom{j}{m} X^{i+j} = \sum_{p= 0}^{m+n} \sum_{k= 0}^p \binom{n}{k} \binom{p-k}{m} X^p$, donc ce terme de degré $p$ s’écrit aussi $\sum_{k= 0}^p \binom{n}{k} \binom{p-k}{m} X^p$.
     \end{demo}
 
     \begin{theo}{}{}
@@ -527,7 +528,7 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
     \begin{demo}{Preuve}{myred}
         On se contente de montrer ce résultat dans le cas de deux VAD $X_1$ et $X_2$. Dans un premier temps, $(X_1 + X_2)(\Omega) = \intervalleEntier{0}{n_1 + n_2}$. De plus, pour tout $. \in \intervalleEntier{0}{n_1 + n_2}$, 
         \begin{align*}
-            P(X_1 + X_2 = k) = \sum_{i = 0}^k &= \sum_{i=0}^k P(X_1 = i) P(X_2 = k - i) \\
+            \P(X_1 + X_2 = k) = \sum_{i = 0}^k &= \sum_{i=0}^k \P(X_1 = i) \P(X_2 = k - i) \\
             &= \sum_{i=0}^k \binom{n_1}{i} \binom{n_2}{k - i} p^k q^{n_1 + n_2 - k} \\à
             &= \binom{n_1 + n_2}{k} p^k q^{n_1 + n_2 - k} 
         \end{align*}
@@ -541,7 +542,7 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
     \begin{demo}{Preuve}{myred}
         De même que pour la preuve précédente, on vérifie le résultat pour 2 VAD : $(X_1 + X_2)(\Omega) = \mathbb{N}$. Soit $n = \mathbb{N}$, 
         \begin{align*}
-            P(X_1 + X_2 = n) &= \sum_{i=0}^{n} P(X_1 = i) P(X_2 = n - i) \\
+            \P(X_1 + X_2 = n) &= \sum_{i=0}^{n} \P(X_1 = i) \P(X_2 = n - i) \\
             &= \frac{e^{-\lambda_1 - \lambda_2}}{n!} \sum_{i = 0}^n \binom{n}{i} \lambda_1^i \lambda_2^{n - i} \\
             &= e^{-\lambda_1 - \lambda_2} \frac{(\lambda_1 + \lambda_2)^n}{n!}
         \end{align*}
@@ -563,10 +564,10 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
     Ce théorème est inhérent à la construction de la mesure de Lebesgue. Il valide toutes les considérations « OC une suite $(X_n)_{n \in \mathbb{N}}$ de VADI de lois $(\mathcal{L}_n)_{n \in \mathbb{N}} $ »
 
     \begin{omed}{Exemple}{myred}
-        OC $(X_n)_{n \in \mathbb{N}}$ une suite de VADIID de loi $\mathcal{B}(p)$, où $p \in \intervalleOF{0}{1}$. On pose $T = \min\left\{n \in \barr{\mathbb{N}^*}, \quad X_n = 1\right\}$. $T(\Omega)$ est dénombrable, et 
+        OC $(X_n)_{n \in \mathbb{N}}$ une suite de VADIID de loi $\mathcal{B}(p)$, où $p \in \intervalleOF{0}{1}$. On pose $T = \min\left\{n \in \ovl{\mathbb{N}^*}, \quad X_n = 1\right\}$. $T(\Omega)$ est dénombrable, et 
         \[ (T = n) = (X_n = 1) \cap \bigcap_{i = 1}^{n-1} (X_k = 0) \in \mathcal{A} \esp{et} (T = +\infty) = \bigcap_{k=1}^{+\infty} (X_k = 0) \in \mathcal{A} \]   
         Donc $T$ est une variable aléatoire, et 
-        \[ P(T = n) = q^{n-1} p \esp{et} P(T = +\infty) = 1 - P(T \in \mathbb{N}^*) = 1 - \sum_{k=1}^{+\infty} P(T = k) = 0 \]   
+        \[ \P(T = n) = q^{n-1} p \esp{et} \P(T = +\infty) = 1 - \P(T \in \mathbb{N}^*) = 1 - \sum_{k=1}^{+\infty} \P(T = k) = 0 \]   
         Donc $T \sim \mathcal{G}(p)$.
     \end{omed}
 
@@ -575,100 +576,100 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
 \subsection{Espérance} 
 
     \begin{defi}{Espérance mathématique}{}
-        On dit que $X$ est à espérance finie si $(x P(X = x))_{x \in X(\Omega)}$ est sommable. Dans ce cas, on appelle espérence la somme 
-        \[ E(X) = \sum_{x \in X(\Omega)} x P(X = x) \in \mathbb{C} \]   
+        On dit que $X$ est à espérance finie si $(x \P(X = x))_{x \in X(\Omega)}$ est sommable. Dans ce cas, on appelle espérence la somme 
+        \[ \E(X) = \sum_{x \in X(\Omega)} x \P(X = x) \in \mathbb{C} \]   
         On note $X \in \mathcal{L}^1(\Omega, \mathbb{P})$ ou simplement $X \in \mathcal{L}^1$.
     \end{defi}
 
-    Il existe donc des VA qui n’ont pas d’espérance. Par exemple, soit $X$ telle que $X(\Omega) = \mathbb{N}^*$, et $P(X = n) = \frac{c}{n^2}$, où $c \geq 0$ et $\sum_{n = 1}^{+\infty} \frac{c}{n^2} = 1$. On a alors $c = \frac{1}{\sum_{n = 1}^{+\infty}} = \frac{6}{\pi^2}$. $X$ admet une espérance finie si $(n P(X = n))_{n \in \mathbb{N}^*}$ est sommable, ce qui n’est pas le cas par divergence de $\sum_{n=1}^{+\infty} \frac{1}{n}$.
+    Il existe donc des VA qui n’ont pas d’espérance. Par exemple, soit $X$ telle que $X(\Omega) = \mathbb{N}^*$, et $\P(X = n) = \frac{c}{n^2}$, où $c \geq 0$ et $\sum_{n = 1}^{+\infty} \frac{c}{n^2} = 1$. On a alors $c = \frac{1}{\sum_{n = 1}^{+\infty}} = \frac{6}{\pi^2}$. $X$ admet une espérance finie si $(n \P(X = n))_{n \in \mathbb{N}^*}$ est sommable, ce qui n’est pas le cas par divergence de $\sum_{n=1}^{+\infty} \frac{1}{n}$.
 
-    EP, $E(X)$ ne dépend que de la loi de $X$ : si $X \sim Y$, alors $E(X) \sim E(Y)$. De plus, $X$ est d’espérance finie ssi $\abs{X}$ est d’espérance finie. Si $E(X) = 0$ on dit que la VA est centrée. 
+    EP, $\E(X)$ ne dépend que de la loi de $X$ : si $X \sim Y$, alors $\E(X) \sim \E(Y)$. De plus, $X$ est d’espérance finie ssi $\abs{X}$ est d’espérance finie. Si $\E(X) = 0$ on dit que la VA est centrée. 
 
     \begin{omed}{Exemple}{myyellow}
-        Si la VA est bornée, $\abs{X} \leq a$, et $\abs{x P(X = x)} \leq a P(X = x)$. Ainsi, 
-        \[ \abs{E(X)} \leq E(\abs{X}) \leq a \sum_{x \in X(\Omega)} P(X = x) = a \]   
+        Si la VA est bornée, $\abs{X} \leq a$, et $\abs{x \P(X = x)} \leq a \P(X = x)$. Ainsi, 
+        \[ \abs{\E(X)} \leq \E(\abs{X}) \leq a \sum_{x \in X(\Omega)} \P(X = x) = a \]   
 
         Si $A$ est un événement, $\mathbb{1}_A$ est d’espérance finie et 
-        \[ E(\mathbb{1}_A) = \sum_{x \in \left\{0,1\right\}} x P(\mathbb{1}_A) = \sum_{\omega \in \Omega} P(\omega \in A) = P(A) \]   
+        \[ \E(\mathbb{1}_A) = \sum_{x \in \left\{0,1\right\}} x \P(\mathbb{1}_A) = \sum_{\omega \in \Omega} \P(\omega \in A) = \P(A) \]   
     \end{omed}
 
     \begin{theo}{Espérances usuelles}{}
         Soit $n \in \mathbb{N}^*$, $p \in \intervalleOF{0}{1}$ et $\lambda \in \mathbb{R}_+^*$. 
         \begin{enumerate}
-            \item Si $X \sim \mathcal{U}(\intervalleEntier{1}{n})$, $E(X) = \frac{n+1}{2}$ ;
-            \item Si $X \sim \mathcal{B}(n,p)$, $E(X) = np$ ;
-            \item Si $X \sim \mathcal{G}(p)$, $X \in \mathcal{L}^1$ et $E(X) = \frac{1}{p}$ ;
-            \item Si $X \sim \mathcal{P}(\lambda)$, $X \in \mathcal{L}^1$ et $E(X) = \lambda$. 
+            \item Si $X \sim \mathcal{U}(\intervalleEntier{1}{n})$, $\E(X) = \frac{n+1}{2}$ ;
+            \item Si $X \sim \mathcal{B}(n,p)$, $\E(X) = np$ ;
+            \item Si $X \sim \mathcal{G}(p)$, $X \in \mathcal{L}^1$ et $\E(X) = \frac{1}{p}$ ;
+            \item Si $X \sim \mathcal{P}(\lambda)$, $X \in \mathcal{L}^1$ et $\E(X) = \lambda$. 
         \end{enumerate}
     \end{theo}
 
     \begin{omed}{Démonstration}{myred}
         \begin{enumerate}
-            \item $E(X) = \sum_{k=1}^n \frac{k}{n} = \frac{1}{n} \frac{n(n+1)}{2} = \frac{n+1}{2}$.
-            \item $E(X) = \sum_{k=0}^n n \binom{n}{k} p^k q^{n-k} = np \sum_{k=0}^{n-1} \binom{n-1}{k} p^k q^{n-1-k} = np$ en utilisant la formule du capitaine.
+            \item $\E(X) = \sum_{k=1}^n \frac{k}{n} = \frac{1}{n} \frac{n(n+1)}{2} = \frac{n+1}{2}$.
+            \item $\E(X) = \sum_{k=0}^n n \binom{n}{k} p^k q^{n-k} = np \sum_{k=0}^{n-1} \binom{n-1}{k} p^k q^{n-1-k} = np$ en utilisant la formule du capitaine.
             \item $\sum q^n$ et $\sum n q^{n-1}$ convergent absolument sur $\intervalleOO{-1}{1}$, donc 
-            \[ E(X) = \sum_{n=1}^{+\infty} n p q^{n-1} = p \left(\frac{1}{1-q}\right)' = \frac{1}{p} < +\infty \]   
+            \[ \E(X) = \sum_{n=1}^{+\infty} n p q^{n-1} = p \left(\frac{1}{1-q}\right)' = \frac{1}{p} < +\infty \]   
             \item La série $\sum \frac{\lambda^k}{k!}$ converge, et donc 
-            \[ E(X) = e^{-\lambda} \sum_{n=1}^{+\infty} n \frac{\lambda^n}{n!} = \lambda e^{-\lambda} e^{\lambda} = \lambda < +\infty \]   
+            \[ \E(X) = e^{-\lambda} \sum_{n=1}^{+\infty} n \frac{\lambda^n}{n!} = \lambda e^{-\lambda} e^{\lambda} = \lambda < +\infty \]   
         \end{enumerate}
     \end{omed}
 
     \begin{prop}{}{}
-        Si $X(\Omega) \subset \barr{N}$, alors
-        \[ E(X) = \sum_{n = 0}^{+\infty} P(X > n) = \sum_{n=1}^{+\infty} P(X \geq n) \]   
+        Si $X(\Omega) \subset \ovl{N}$, alors
+        \[ \E(X) = \sum_{n = 0}^{+\infty} \P(X > n) = \sum_{n=1}^{+\infty} \P(X \geq n) \]   
         qui est une égalité dans $\intervalleFF{0}{+\infty}$.
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
-        Commençons par remarquer que $P(X \geq k) = \sum_{n=k}^{+\infty} P(X = n)$.
+        Commençons par remarquer que $\P(X \geq k) = \sum_{n=k}^{+\infty} \P(X = n)$.
         \begin{align*}
-            E(X) 
-            &= \sum_{n = 0}^{+\infty} n P(X = n) \\
-            &= \sum_{n = 1}^{+\infty} \sum_{k= 1}^n P(X = n) \\
+            \E(X) 
+            &= \sum_{n = 0}^{+\infty} n \P(X = n) \\
+            &= \sum_{n = 1}^{+\infty} \sum_{k= 1}^n \P(X = n) \\
             &\argu I = \left\{n,k \in \mathbb{N}^*, n \leq k\right\} = \bigsqcup_{k=1}^{+\infty} \intervalleEntier{1}{k} \times \left\{k\right\} \text{ partition de } I \\
-            &= \sum_{k = 1}^{+\infty} \sum_{n=k}^{+\infty} P(X = n) \\
-            &= \sum_{k= 1}^{+\infty} P(X \geq k) 
+            &= \sum_{k = 1}^{+\infty} \sum_{n=k}^{+\infty} \P(X = n) \\
+            &= \sum_{k= 1}^{+\infty} \P(X \geq k) 
         \end{align*}
-        Par sommation par paquets, si la série $\sum_{k \geq 1} P(X \geq k)$ converge, alors $X \in \mathcal{L}^1$.
+        Par sommation par paquets, si la série $\sum_{k \geq 1} \P(X \geq k)$ converge, alors $X \in \mathcal{L}^1$.
     \end{demo}
 
     \begin{theo}{Formule de transfert ou tranport}{}
-        Soit $X$ une VAD et $f : E \to \mathbb{C}$ une fonction mesurable. Alors $f(X)$ est d’espérance finie \textit{ssi} $(f(x)(P(X = x)))_{x \in X(\Omega)}$, et dans ce cas, 
-        \[ E(f(X)) = \sum_{x \in X(\Omega)} f(x) P(X = x) \] 
+        Soit $X$ une VAD et $f : E \to \mathbb{C}$ une fonction mesurable. Alors $f(X)$ est d’espérance finie \textit{ssi} $(f(x)(\P(X = x)))_{x \in X(\Omega)}$, et dans ce cas, 
+        \[ \E(f(X)) = \sum_{x \in X(\Omega)} f(x) \P(X = x) \] 
     \end{theo}
 
     \begin{demo}{Preuve}{myred}
         On pose $Y = \abs{f(X)}$. Pour $y \in Y(\Omega)$, on pose $I_y = \left\{x \in X(\Omega), \quad y = \abs{f(x)}\right\}$. Alors $X(\Omega) = \bigsqcup_{y \in Y(\Omega)} I_y$ et 
         \begin{align*}
-            \sum_{x \in X(\Omega)} \abs{f(x)} P(X = x) 
+            \sum_{x \in X(\Omega)} \abs{f(x)} \P(X = x) 
             &\argu \text{sommation par paquets} \\
-            &= \sum_{y \in Y(\Omega)} \sum_{x \in I_y} Y P(X = x) \\
-            &= \sum_{y \in Y(\Omega)} y \sum_{x \in I_y} P(X = x) \\
-            &= \sum_{y \in Y(\Omega)} y P(X \in I_y) \\
-            &= \sum_{y \in Y(\Omega)} y P(Y = y)  
+            &= \sum_{y \in Y(\Omega)} \sum_{x \in I_y} Y \P(X = x) \\
+            &= \sum_{y \in Y(\Omega)} y \sum_{x \in I_y} \P(X = x) \\
+            &= \sum_{y \in Y(\Omega)} y \P(X \in I_y) \\
+            &= \sum_{y \in Y(\Omega)} y \P(Y = y)  
         \end{align*}
-        D’après le principe de sommation par paquets, $f(X)$ est d’espérance finie \textit{ssi} $(f(x)P(X=x))_{x \in X(\Omega)}$ est sommable. DCC, 
-        \[ E(f(X)) = \sum_{x \in X(\Omega)} f(x) P(X = x) \]    
+        D’après le principe de sommation par paquets, $f(X)$ est d’espérance finie \textit{ssi} $(f(x)\P(X=x))_{x \in X(\Omega)}$ est sommable. DCC, 
+        \[ \E(f(X)) = \sum_{x \in X(\Omega)} f(x) \P(X = x) \]    
     \end{demo}
 
     Il faut que l’on ait $X(\Omega)$ dénombrable seulement, donc on peut choisir $X = (X_1,X_2)$ tel que $X(\Omega) \subset \mathbb{C}^2$, et alors la formule de transfert devient (sous réserve de sommabilité)
-    \[ E(f(X_1,X_2)) = \sum_{(x_1,x_2) \in (X_1,X_2)(\Omega)} f(x_1,x_2) P(X_1 = x_1,X_2 = x_2) \]  
+    \[ \E(f(X_1,X_2)) = \sum_{(x_1,x_2) \in (X_1,X_2)(\Omega)} f(x_1,x_2) \P(X_1 = x_1,X_2 = x_2) \]  
     
     \begin{omed}{Exemple}{myred}
         OC un tirage avec remise, dans une urne contenant $n$ boules numérotés à partir de $1$. On note $X$ le numéro de la première, $Y$ de la seconde, et $Z = \max(X,Y)$. Alors $X(\Omega) = Y(\Omega) = Z(\Omega) = \intervalleEntier{1}{n}$. $X \sim Y \sim \mathcal{U}(\intervalleEntier{1}{n})$ et sont indépendantes, donc 
         \begin{align*}
-            E(Z) &= \sum_{1 \leq i,j \leq n} \max(i,j) P(X=i, Y=j) \\
+            \E(Z) &= \sum_{1 \leq i,j \leq n} \max(i,j) \P(X=i, Y=j) \\
             &= \frac{1}{n^2} \sum_{i=1}^n \sum_{j=1}^{n} \max(i,j) \\
             &= \frac{(n+1)(4n-1)}{6n}
         \end{align*} 
     \end{omed}
 
     \begin{omed}{Exemple}{myred}
-        Si $X \sim \mathcal{P}(\lambda)$, montrons que $X^2$ est d’espérance finie. On sait que $E(X^2)$ existe \textit{ssi}
-        \[ \sum_{k=0}^{+\infty} k^2 P(X = k) \textbf{converge}\]  
-        Or $\sum_{k=0}^{+\infty} k^2 P(X = k)$ converge donc 
+        Si $X \sim \mathcal{P}(\lambda)$, montrons que $X^2$ est d’espérance finie. On sait que $\E(X^2)$ existe \textit{ssi}
+        \[ \sum_{k=0}^{+\infty} k^2 \P(X = k) \textbf{converge}\]  
+        Or $\sum_{k=0}^{+\infty} k^2 \P(X = k)$ converge donc 
         \begin{align*}
-            E(X^2) &= \sum_{k=1}^{+\infty} k^2 e^{-\lambda} \frac{\lambda^k}{k!} \\
+            \E(X^2) &= \sum_{k=1}^{+\infty} k^2 e^{-\lambda} \frac{\lambda^k}{k!} \\
             &= e^{-\lambda} \left(\sum_{k = 1}^{+\infty} (k(k-1) + k) \frac{\lambda^k}{k!}\right) \\
             &= \lambda^2 + \lambda
         \end{align*}
@@ -677,9 +678,9 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
     \begin{theo}{Propriétés de l’espérance 1}{}
         Soient $X,Y$ des VAD$\mathbb{C}$ d’espérances finies sur $(\Omega, \mathcal{A}, \mathbb{P})$. 
         \begin{enumerate}
-            \item \textbf{Linéarité} \quad $E(\lambda X + Y) = \lambda E(X) + E(Y)$ ;
-            \item On suppose que $X,Y$ sont des VAD$\mathbb{R}$, alors si $X \geq 0$, $E(X) \geq 0$ ;
-            \item Toujours dans $\mathbb{R}$, si $X \leq Y$, $E(X) \leq E(Y)$.
+            \item \textbf{Linéarité} \quad $\E(\lambda X + Y) = \lambda \E(X) + \E(Y)$ ;
+            \item On suppose que $X,Y$ sont des VAD$\mathbb{R}$, alors si $X \geq 0$, $\E(X) \geq 0$ ;
+            \item Toujours dans $\mathbb{R}$, si $X \leq Y$, $\E(X) \leq \E(Y)$.
         \end{enumerate}
     \end{theo}
 
@@ -687,65 +688,65 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
         \begin{enumerate}
             \item On applique le théorème de transfert avec $f : (x,y) \mapsto \lambda x + y$. On a alors 
             \begin{align*}
-                E(\lambda X + Y) 
-                &= \sum_{(x,y) \in X(\Omega) \times Y(\Omega)} (\lambda x + y) P(X = x, Y = y) \\
-                &= \lambda \sum_{(x,y) \in X(\Omega) \times Y(\Omega)} x P(X=x,Y=y) + \sum_{(x,y) \in X(\Omega) \times Y(\Omega)} y P(X=x,Y=y) \\
+                \E(\lambda X + Y) 
+                &= \sum_{(x,y) \in X(\Omega) \times Y(\Omega)} (\lambda x + y) \P(X = x, Y = y) \\
+                &= \lambda \sum_{(x,y) \in X(\Omega) \times Y(\Omega)} x \P(X=x,Y=y) + \sum_{(x,y) \in X(\Omega) \times Y(\Omega)} y \P(X=x,Y=y) \\
                 &\argu \text{Probabilités totales} \\
-                &= \lambda \sum_{x \in X(\Omega)} x P(X=x) + \sum_{y \in Y(\Omega)} y P(Y=y) \\
-                &= \lambda E(X) + E(Y) 
+                &= \lambda \sum_{x \in X(\Omega)} x \P(X=x) + \sum_{y \in Y(\Omega)} y \P(Y=y) \\
+                &= \lambda \E(X) + \E(Y) 
             \end{align*}
             \item Par évidence.
-            \item $Y - X$ est positive, donc $E(Y-X) = E(Y ) - E(X) \geq 0$.
+            \item $Y - X$ est positive, donc $\E(Y-X) = \E(Y ) - \E(X) \geq 0$.
         \end{enumerate}
     \end{demo}
 
     On a ainsi obtenu que $\mathcal{L}^1$ est un $\mathbb{C}$-EV et $E$ est une forme linéaire sur $\mathcal{L}^1$. De plus, les variables positives d’espérance nulle sont presque sûrement nulles. 
 
-    $X - E(X)$ est centrée par linéarité de l’espérance.
+    $X - \E(X)$ est centrée par linéarité de l’espérance.
 
     \begin{omed}{Application}{myred}
         Si $X \sim \mathcal{H}(N,M,n)$, où $M$ est la population défectueuse parmi $N$ objets, avec $n$ le nombre d’échantillons -- ce qui ne correspond pas exactement à la définition mais à la même loi de probabilité --. 
 
-        Pour $i \in \intervalleEntier{1}{M}$, on pose $X_i = \sisinon{1}{\text{le } i\text{-ème objet cible est choisi}}{0}$. On a $X = X_1 + \cdots X_M$ et $X_i \sim \mathcal{B}(\frac{n}{M} = \frac{\binom{N-1}{n-1}}{\binom{N}{n}})$. Donc $E(X) = \sum_{i = 1}^M E(X_i) = \sum_{i = 1}^M \frac{n}{N} = \frac{Mn}{N}$. 
+        Pour $i \in \intervalleEntier{1}{M}$, on pose $X_i = \sisinon{1}{\text{le } i\text{-ème objet cible est choisi}}{0}$. On a $X = X_1 + \cdots X_M$ et $X_i \sim \mathcal{B}(\frac{n}{M} = \frac{\binom{N-1}{n-1}}{\binom{N}{n}})$. Donc $\E(X) = \sum_{i = 1}^M \E(X_i) = \sum_{i = 1}^M \frac{n}{N} = \frac{Mn}{N}$. 
     \end{omed}
 
     \begin{theo}{Propriétés de l’espérance 2}{}
         Soient $X,Y$ des VAD$\mathbb{C}$. 
         \begin{enumerate}
-            \item Si $X$ est d’espérance finie, alors $\abs{X}$ également et $\abs{E(X)} \leq E(\abs{X})$ ;
+            \item Si $X$ est d’espérance finie, alors $\abs{X}$ également et $\abs{\E(X)} \leq \E(\abs{X})$ ;
             \item Si $Y$ est d’espérance finie et $\abs{X} \leq Y$, alors $X$ est d’espérance finie.
         \end{enumerate}
     \end{theo}
 
     \begin{demo}{Preuve}{myred}
         \begin{enumerate}
-            \item On utilise le théorème de transfert avec $\abs{.}$. $\abs{X}$ a une espérance finie \textit{ssi} $(\abs{x}P(X=x))_{x \in X(\Omega)}$ est sommable, ce qui est le cas si si $X$ a une espérance finie, donc $E(\abs{X})$ existe.
-            \item Soient $(x,y) \in X(\Omega) \times Y(\Omega)$. Si $\abs{x} \geq y$, $P(X=x,Y=y) = 0$. On a 
+            \item On utilise le théorème de transfert avec $\abs{.}$. $\abs{X}$ a une espérance finie \textit{ssi} $(\abs{x}\P(X=x))_{x \in X(\Omega)}$ est sommable, ce qui est le cas si si $X$ a une espérance finie, donc $\E(\abs{X})$ existe.
+            \item Soient $(x,y) \in X(\Omega) \times Y(\Omega)$. Si $\abs{x} \geq y$, $\P(X=x,Y=y) = 0$. On a 
             \begin{align*}
-                &\sum_{x \in X(\Omega)} (y - \abs{x}) P(X= x, Y =y) \geq 0 \\
-                &= \sum_{x \in X(\Omega)} y P(X = x,Y=y) - \sum_{x \in X(\Omega)} \abs{x} P(X = x, Y = y) \\
-                &= y \sum_{x \in X(\Omega)} P(X = x, Y = y) - \sum_{x \in X(\Omega)} \abs{x} P(X = x, Y = y) \\
-                &= y P(Y = y) - \sum_{x \in X(\Omega)} \abs{x} P(X = x, Y = y) \\
-                \text{donc} \quad &y P(Y = y) \geq \sum_{x \in X(\Omega)} \abs{x} P(X=x,Y=y) 
+                &\sum_{x \in X(\Omega)} (y - \abs{x}) \P(X= x, Y =y) \geq 0 \\
+                &= \sum_{x \in X(\Omega)} y \P(X = x,Y=y) - \sum_{x \in X(\Omega)} \abs{x} \P(X = x, Y = y) \\
+                &= y \sum_{x \in X(\Omega)} \P(X = x, Y = y) - \sum_{x \in X(\Omega)} \abs{x} \P(X = x, Y = y) \\
+                &= y \P(Y = y) - \sum_{x \in X(\Omega)} \abs{x} \P(X = x, Y = y) \\
+                \text{donc} \quad &y \P(Y = y) \geq \sum_{x \in X(\Omega)} \abs{x} \P(X=x,Y=y) 
             \end{align*}
             En sommant sur $y \in Y(\Omega)$ -- moyennant au passage un théorème de Fubini discret --, on obtient que 
             \begin{align*}
-                E(Y) \geq \sum_{x \in X(\Omega)} \abs{x} \sum_{y \in Y(\Omega)} P(X=x, Y=y) = E(\abs{x}) 
+                \E(Y) \geq \sum_{x \in X(\Omega)} \abs{x} \sum_{y \in Y(\Omega)} \P(X=x, Y=y) = \E(\abs{x}) 
             \end{align*}
         \end{enumerate}
     \end{demo}
 
     \begin{theo}{Espérance et indépendance}{}
         Si $X,Y$ sont des VADI$\mathbb{C}$ de $\mathcal{L}^1$, alors $XY$ est d’espérance finie et 
-        \[ E(XY) = E(X)E(Y) \]   
+        \[ \E(XY) = \E(X)\E(Y) \]   
     \end{theo}
 
     \begin{demo}{Démonstration}{myred}
         On applique la fonction de transfert avec $f : (x,y) \mapsto xy$. Sous réserve de sommabilité, 
         \begin{align*}
-            E(XY) &= \sum_{(x,y) \in X(\Omega) \times Y(\Omega)} xy P(X = x, Y = y) \\ 
-            &= \sum_{x \in X(\Omega)} x P(X = x) \sum_{y \in Y(\Omega)} y P(Y = y) \\
-            &= E(X) E(Y)
+            \E(XY) &= \sum_{(x,y) \in X(\Omega) \times Y(\Omega)} xy \P(X = x, Y = y) \\ 
+            &= \sum_{x \in X(\Omega)} x \P(X = x) \sum_{y \in Y(\Omega)} y \P(Y = y) \\
+            &= \E(X) \E(Y)
         \end{align*}
     \end{demo}
 
@@ -754,7 +755,7 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
     \subsubsection{Moment d’ordre quelconque}
 
     \begin{defi}{Moment d’ordre $p$}{}
-        On dit que $X$ admet un moment d’ordre $p \in \mathbb{N}^*$ si $X^p$ est d’espérance finie, \textit{i.e.} $E(\abs{X}^p) < +\infty$, et on appelle moment d’ordre $p$ le complexe $E(X^p)$. On note $X \in \mathcal{L}^p$ ou $\mathcal{L}^p(\Omega, \mathbb{P})$.
+        On dit que $X$ admet un moment d’ordre $p \in \mathbb{N}^*$ si $X^p$ est d’espérance finie, \textit{i.e.} $\E(\abs{X}^p) < +\infty$, et on appelle moment d’ordre $p$ le complexe $\E(X^p)$. On note $X \in \mathcal{L}^p$ ou $\mathcal{L}^p(\Omega, \mathbb{P})$.
     \end{defi}
 
     \begin{prop}{}{}
@@ -778,27 +779,27 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
     Dans cette SSsection, on se place dans $\mathbb{R}$. 
 
     \begin{defitheo}{}{}
-        Soit $X \in \mathcal{L}^2$. Alors $(X - E(X))^2$ est d’espérance finie, et on appelle \textbf{variance} le réel positif 
-        \[ V(X) = E((X - E(X))^2) = \sum_{x \in X(\Omega)} (x- E(X))^2 P(X = x) \]   
-        On appelle de plus \textbf{écart-type} le nombre $\sqrt{V(x)}$.
+        Soit $X \in \mathcal{L}^2$. Alors $(X - \E(X))^2$ est d’espérance finie, et on appelle \textbf{variance} le réel positif 
+        \[ \V(X) = \E((X - \E(X))^2) = \sum_{x \in X(\Omega)} (x- \E(X))^2 \P(X = x) \]   
+        On appelle de plus \textbf{écart-type} le nombre $\sqrt{\V(x)}$.
     \end{defitheo}
 
     \begin{demo}{Preuve}{mypurple}
-        $ X \in \mathcal{L}^2$ donc $X \in \mathcal{L}^1$. Ainsi, $(X - E(X))^2 = X^2 - 2 X E(X) + E(X)^2 \in \mathcal{L}^1$. L’écart-type est bien défini car $(X- E(X))^2 \geq 0$ d’où $V(X) \geq 0$. 
+        $ X \in \mathcal{L}^2$ donc $X \in \mathcal{L}^1$. Ainsi, $(X - \E(X))^2 = X^2 - 2 X \E(X) + \E(X)^2 \in \mathcal{L}^1$. L’écart-type est bien défini car $(X- \E(X))^2 \geq 0$ d’où $\V(X) \geq 0$. 
     \end{demo}
 
     \begin{prop}{Formule de Koenig-Huygens}{}
         Si $X \in \mathcal{L}^2$, alors 
-        \[ V(X) = E(X^2) - E(X)^2 \]   
+        \[ \V(X) = \E(X^2) - \E(X)^2 \]   
     \end{prop}
 
     \begin{theo}{Variances usuelles}{}
         Soient $X$ une VAD$\mathbb{R}$ définie sur $(\Omega, \mathcal{A}, \mathbb{P})$, $n \in \mathbb{N}^*$, $p \in \intervalleOF{0}{1}$, $\lambda \in \mathbb{R}_+^*$.
         \begin{enumerate}
-            \item Si $X \sim \mathcal{U}(\intervalleEntier{1}{n})$, $V(X) = \frac{n^2 - 1}{12}$ ;
-            \item Si $X \sim \mathcal{B}(n,p)$, $V(X) = npq$ ;
-            \item Si $X \sim \mathcal{G}(p)$, $V(X) = \frac{q}{p^2}$ ;
-            \item Si $X \sim \mathcal{P}(\lambda)$, $V(X) = \lambda$.
+            \item Si $X \sim \mathcal{U}(\intervalleEntier{1}{n})$, $\V(X) = \frac{n^2 - 1}{12}$ ;
+            \item Si $X \sim \mathcal{B}(n,p)$, $\V(X) = npq$ ;
+            \item Si $X \sim \mathcal{G}(p)$, $\V(X) = \frac{q}{p^2}$ ;
+            \item Si $X \sim \mathcal{P}(\lambda)$, $\V(X) = \lambda$.
         \end{enumerate} 
     \end{theo}
 
@@ -806,43 +807,43 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
         \begin{enumerate}
             \item $X(\Omega)$ étant fini, on est assurés que $X \in \mathcal{L}^2$.
             \begin{align*}
-                V(X) 
-                &= E(X^2) - E(X)^2 \\
+                \V(X) 
+                &= \E(X^2) - \E(X)^2 \\
                 &= \sum_{k =1}^n \frac{k^2}{n} - \left( \frac{n +1}{2} \right)^2 \\
                 &= \frac{(n+1)(2n+1)}{6} - \frac{(n+1)^2}{4} \\
                 &= \frac{n^2 - 1}{12}
             \end{align*}
-            \item On calcule $E(X(X-1))$ pour simplifier les calculs : 
+            \item On calcule $\E(X(X-1))$ pour simplifier les calculs : 
             \begin{align*}
-                E(X(X-1)) 
+                \E(X(X-1)) 
                 &= \sum_{k=0}^{n} k (k-1) \binom{n}{k} p^k q^{n-k} \\
                 &= n(n-1) \sum_{k=2}^{n} \binom{n-2}{k-2} p^k q^{n-k} \\
                 &= p^2 n (n-1) \sum_{k=0}^{n-2} \binom{n-2}{k} p^{k} q^{n-2 - k} \\
                 &= n(n-1) p^2
             \end{align*}
-            Or $E(X(X-1)) = E(X^2) - E(X)$ donc $V(X) = E(X(X-1)) + E(X) - E(X)^2$. Ainsi, 
+            Or $\E(X(X-1)) = \E(X^2) - \E(X)$ donc $\V(X) = \E(X(X-1)) + \E(X) - \E(X)^2$. Ainsi, 
             \begin{align*}
-                V(X) 
+                \V(X) 
                 &= p^2 n(n-1) + np - n^2 p^2 \\
-                &= np (p(n-1) + 1 - np) \\
+                &= np (\P(n-1) + 1 - np) \\
                 &= npq
             \end{align*}
-            On peut aussi retrouver ce résultat en prenant $X_1,\ldots,X_n$ des VAD$\mathbb{N}$ indép tels que $X_i \sim \mathcal{B}(p)$. Alors $S = X_1 + \ldots + X_n \sim \mathcal{B}(n,p)$, et $E(S) = np$. On remarque que $X_i^2 \sim \mathcal{B}(p)$, d’où $E(X_i^2) = p$.
+            On peut aussi retrouver ce résultat en prenant $X_1,\ldots,X_n$ des VAD$\mathbb{N}$ indép tels que $X_i \sim \mathcal{B}(p)$. Alors $S = X_1 + \ldots + X_n \sim \mathcal{B}(n,p)$, et $\E(S) = np$. On remarque que $X_i^2 \sim \mathcal{B}(p)$, d’où $\E(X_i^2) = p$.
             \begin{align*}
-                E(S^2) 
-                &= E((X_1 + \cdots + X_n)^2) \\
-                &= E\left(\sum_{i,j \in \intervalleEntier{1}{n}^2} X_i X_j\right) \\
-                &= \sum_{i,j \in \intervalleEntier{1}{n}^2} E(X_i X_j) \\
-                &= \sum_{\substack{i,j \in \intervalleEntier{1}{n}^2 \\ i \neq j}} E(X_i)(X_j) + \sum_{i = 1}^n E(X_i^2) \\
+                \E(S^2) 
+                &= \E((X_1 + \cdots + X_n)^2) \\
+                &= \E\left(\sum_{i,j \in \intervalleEntier{1}{n}^2} X_i X_j\right) \\
+                &= \sum_{i,j \in \intervalleEntier{1}{n}^2} \E(X_i X_j) \\
+                &= \sum_{\substack{i,j \in \intervalleEntier{1}{n}^2 \\ i \neq j}} \E(X_i)(X_j) + \sum_{i = 1}^n \E(X_i^2) \\
                 &= (n^2 - n) p^2 + np
             \end{align*}
-            Enfin, $V(S) = E(S^2) - E(S)^2 = npq$.
-            \item Si $X \sim \mathcal{G}(p)$, $P(X = n) = pq^{n-1}$. On sait que $\sum q^n$, $\sum n q^{n-1}$ et $\sum n (n-1) q^{n-2}$ convergent absolument sur $\intervalleOO{-1}{1}$, et $\sum_{n=2}^{+\infty} n(n-1)q^{n-2} = \frac{2}{(1 - q)^3}$. Ainsi, $E(X(X-1)) = \frac{2pq}{(1-q)^3} = \frac{2q}{p^2} < +\infty$. Ainsi, 
-            \[ V(X) = E(X(X-1)) + E(X) - E(X)^2 = \frac{2q}{p^2} + \frac{1}{p} - \frac{1}{p^2} = \frac{q}{p^2} \] 
+            Enfin, $\V(S) = \E(S^2) - \E(S)^2 = npq$.
+            \item Si $X \sim \mathcal{G}(p)$, $\P(X = n) = pq^{n-1}$. On sait que $\sum q^n$, $\sum n q^{n-1}$ et $\sum n (n-1) q^{n-2}$ convergent absolument sur $\intervalleOO{-1}{1}$, et $\sum_{n=2}^{+\infty} n(n-1)q^{n-2} = \frac{2}{(1 - q)^3}$. Ainsi, $\E(X(X-1)) = \frac{2pq}{(1-q)^3} = \frac{2q}{p^2} < +\infty$. Ainsi, 
+            \[ \V(X) = \E(X(X-1)) + \E(X) - \E(X)^2 = \frac{2q}{p^2} + \frac{1}{p} - \frac{1}{p^2} = \frac{q}{p^2} \] 
             \item Si $X \sim \mathcal{P}(\lambda)$, 
             \begin{align*}
-                V(X) 
-                &= E(X(X-1)) + E(X) - E(X)^2 \\
+                \V(X) 
+                &= \E(X(X-1)) + \E(X) - \E(X)^2 \\
                 &= \lambda^2 e^{-\lambda} \sum_{n=2}^{+\infty} \frac{\lambda^{n-2}}{(n-2)!} + \lambda - \lambda^2\\
                 &= \lambda            
             \end{align*}
@@ -851,75 +852,75 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
 
     \begin{demo}{Preuve}{myolive}
         Par linéarité de l’espérance,
-        \[ V(X) = E(X^2 - 2 X E(X) + E(X)^2) = E(X^2) - 2 E(X)^2 + E(X)^2 = E(X^2) - E(X)^2 \]
+        \[ \V(X) = \E(X^2 - 2 X \E(X) + \E(X)^2) = \E(X^2) - 2 \E(X)^2 + \E(X)^2 = \E(X^2) - \E(X)^2 \]
     \end{demo}
 
     \begin{prop}{}{}
-        Soit $X \in \mathcal{L}^2$. Alors $V(X) = 0$ \textit{ssi} $X$ est PS constante.
+        Soit $X \in \mathcal{L}^2$. Alors $\V(X) = 0$ \textit{ssi} $X$ est PS constante.
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
-        On sait que $E(X)$ existe car $X \in \mathcal{L}^1$, et on pose $e = E(X)$. 
+        On sait que $\E(X)$ existe car $X \in \mathcal{L}^1$, et on pose $e = \E(X)$. 
         \begin{align*}
-            V(X) = 0
-            &\iff E((X - e)^2) = 0 \\
-            &\iff \sum_{x \in X(\Omega)} (x - e)^2 P(X = x) = 0 \\
-            &\iff \forall x \in X(\Omega), x = e \text{ ou } P(X = x) = 0 \\
-            &\iff \forall x \in X(\Omega), x \neq e \implies P(X = x) = 0 \\
-            &\iff P(X \neq e) = 0
+            \V(X) = 0
+            &\iff \E((X - e)^2) = 0 \\
+            &\iff \sum_{x \in X(\Omega)} (x - e)^2 \P(X = x) = 0 \\
+            &\iff \forall x \in X(\Omega), x = e \text{ ou } \P(X = x) = 0 \\
+            &\iff \forall x \in X(\Omega), x \neq e \implies \P(X = x) = 0 \\
+            &\iff \P(X \neq e) = 0
         \end{align*}
     \end{demo}
 
     \begin{prop}{}{}
         Soient $a,b \in \mathbb{R}$ et $X \in \mathcal{L}^2$. Alors 
-        \[ V(aX + b) = a^2 V(X) \]   
+        \[ \V(aX + b) = a^2 \V(X) \]   
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
         \begin{align*}
-            V(aX + b) 
-            &= E((aX + b)^2) - E(aX + b)^2 \\
-            &= a^2 E(X^2) + 2 a b E(X) + b^2 - a^2 E(X)^2 - 2 a b E(X) - b^2 \\
-            &= a^2 (E(X^2) - E(X)^2) = a^2 V(X)
+            \V(aX + b) 
+            &= \E((aX + b)^2) - \E(aX + b)^2 \\
+            &= a^2 \E(X^2) + 2 a b \E(X) + b^2 - a^2 \E(X)^2 - 2 a b \E(X) - b^2 \\
+            &= a^2 (\E(X^2) - \E(X)^2) = a^2 \V(X)
         \end{align*}
     \end{demo}
 
-    Dans le cas où $\sigma(x) = 1$, on dit que la variable $X$ est réduite. EP, si $V(X) \neq 0$, $\frac{X -E(X)}{\sigma(X)}$ est centrée réduite.
+    Dans le cas où $\sigma(x) = 1$, on dit que la variable $X$ est réduite. EP, si $\V(X) \neq 0$, $\frac{X -\E(X)}{\sigma(X)}$ est centrée réduite.
 
     \subsubsection{Covariance}
 
     Remarquons tout d’abord que si $X,Y \in \mathcal{L}^2$, $\abs{XY} \leq \frac{X^2 + Y^2}{2}$ donc $XY \in \mathcal{L}^1$. 
 
     \begin{defitheo}{Covariance}{}
-        Soient $X,Y \in \mathcal{L}^2$. Alors la VA $(X-E(X))(Y - E(Y))$ admet une espérance. OA alors \textbf{covariance} le nombre 
-        \[ \Cov(X,Y) = E((X- E(X))(Y - E(Y))) \]   
-        Si $\Cov(X,Y) = 0$, on dit que les VA sont \textbf{décorrélées}.
+        Soient $X,Y \in \mathcal{L}^2$. Alors la VA $(X-\E(X))(Y - \E(Y))$ admet une espérance. OA alors \textbf{covariance} le nombre 
+        \[ \cov(X,Y) = \E((X- \E(X))(Y - \E(Y))) \]   
+        Si $\cov(X,Y) = 0$, on dit que les VA sont \textbf{décorrélées}.
     \end{defitheo}
 
     \begin{prop}{Formule de Koenig-Huygens}{}
         Si $X,Y \in \mathcal{L}^2$, 
-        \[ \Cov(X,Y) = E(XY) - E(X)E(Y) \] 
+        \[ \cov(X,Y) = \E(XY) - \E(X)\E(Y) \] 
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
         \begin{align*}
-            \Cov(X,Y) 
-            &= E(XY - YE(X) - XE(Y) + E(X) E(Y)) \\
-            &= E(XY) - E(X)E(Y) 
+            \cov(X,Y) 
+            &= \E(XY - Y\E(X) - X\E(Y) + \E(X) \E(Y)) \\
+            &= \E(XY) - \E(X)\E(Y) 
         \end{align*}
     \end{demo}
 
-    Dans le cas où $X \independent Y$, $\Cov(X,Y) = 0$ : deux variables indépendantes sont décorrelées.
+    Dans le cas où $X \independent Y$, $\cov(X,Y) = 0$ : deux variables indépendantes sont décorrelées.
 
     La covariance est une forme bilinéaire symétrique positive qui est toutefois non définie -- et n’est donc pas un produit scalaire sur $\mathcal{L}^2(\Omega, \mathbb{P})$. 
 
     \begin{prop}{Propriétés de la covariance}{}
         Soient $X,Y, Z \in \mathcal{L}^2$ et $a,b,c,d \in \mathbb{R}$. 
         \begin{enumerate}
-            \item $\Cov(X,X) = V(X)$ ;
-            \item $\Cov(X,Y) = \Cov(Y,X)$ ;
-            \item $\Cov(aX + bY, Z) = a\Cov(X,Z) + b \Cov(Y,Z)$ ;
-            \item $\Cov(aX + b, cY + d) = ac \Cov(X,Y)$.
+            \item $\cov(X,X) = \V(X)$ ;
+            \item $\cov(X,Y) = \cov(Y,X)$ ;
+            \item $\cov(aX + bY, Z) = a\cov(X,Z) + b \cov(Y,Z)$ ;
+            \item $\cov(aX + b, cY + d) = ac \cov(X,Y)$.
         \end{enumerate}
     \end{prop}
 
@@ -927,9 +928,9 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
 
     \begin{prop}{Variance d’une somme}{}
         Soient $X_1,\ldots,X_n$ des VAD$\mathbb{R}$ de $\mathcal{L}^2$. Alors 
-        \[ V(X_1 + \cdots + X_n) = \sum_{i=1}^n V(X_i) + 2 \sum_{1 \leq i < j \leq n} \Cov(X_i,X_j) \]
+        \[ \V(X_1 + \cdots + X_n) = \sum_{i=1}^n \V(X_i) + 2 \sum_{1 \leq i < j \leq n} \cov(X_i,X_j) \]
         En particuler, si les variables aléatoires sont décorrélées, 
-        \[ V(\sum_{i=1}^{n} X_i) = \sum_{i=1}^{n} V(X_i) \]   
+        \[ \V(\sum_{i=1}^{n} X_i) = \sum_{i=1}^{n} \V(X_i) \]   
     \end{prop}
 
     On peut ainsi se satisfaire d’une situation où les variables sont deux à deux indépendantes mais pas indépendantes dans leur ensemble : cela suffit à la décorrélation.
@@ -940,53 +941,53 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
 
     \begin{prop}{}{}
         Si $a,b \in \mathbb{R}$ et $X,Y \in \mathcal{L}^2$ deux VAD$\mathbb{R}$, alors 
-        \[ V(aX + bY) = a^2 V(X) + b^2 V(Y) + 2ab \Cov(X,Y) \]   
-        EP $V(X + Y) = V(X) + V(Y) + 2 \Cov(X,Y)$.
+        \[ \V(aX + bY) = a^2 \V(X) + b^2 \V(Y) + 2ab \cov(X,Y) \]   
+        EP $\V(X + Y) = \V(X) + \V(Y) + 2 \cov(X,Y)$.
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
         \begin{align*}
-            V(aX + bY) 
-            &= \Cov(aX + bY, aX + bY) \\
-            &= a^2 \Cov(X,X) + b^2 \Cov(Y,Y) + 2ab\Cov(X,Y) 
+            \V(aX + bY) 
+            &= \cov(aX + bY, aX + bY) \\
+            &= a^2 \cov(X,X) + b^2 \cov(Y,Y) + 2ab\cov(X,Y) 
         \end{align*}
     \end{demo}
 
     On aurait pu aussi écrire directement
     \begin{align*}
-        V(X_1 + \cdots X_n) 
-        &= E\left(\left(\sum_{i = 1}^n X_i - E(X_i)\right)^2\right) \\
-        &= E\left(\sum_{i,j \in \intervalleEntier{1}{n}} (X_i - E(X_i))(X_j - E(X_j))\right) \\
-        &= \sum_{i,j \in \intervalleEntier{1}{n}} E((X_i - E(X_i))(X_j - E(X_j))) \\
-        &= \sum_{i,j} \Cov(X_i, X_j)
+        \V(X_1 + \cdots X_n) 
+        &= \E\left(\left(\sum_{i = 1}^n X_i - \E(X_i)\right)^2\right) \\
+        &= \E\left(\sum_{i,j \in \intervalleEntier{1}{n}} (X_i - \E(X_i))(X_j - \E(X_j))\right) \\
+        &= \sum_{i,j \in \intervalleEntier{1}{n}} \E((X_i - \E(X_i))(X_j - \E(X_j))) \\
+        &= \sum_{i,j} \cov(X_i, X_j)
     \end{align*} 
 
     On retrouve le résultat de la variance d’une VA $X \sim \mathcal{B}(n,p)$. On notant $X_i \sim \mathcal{B}(p)$ des VAI, 
-    \[ V(X) = V(\sum_{i = 1}^n X_i) = \sum_{i =1}^n V(X_i) = npq \]   
+    \[ \V(X) = \V(\sum_{i = 1}^n X_i) = \sum_{i =1}^n \V(X_i) = npq \]   
 
     \subsubsection{Coefficient de corrélation linéaire}
 
     \begin{prop}{Cauchy-Swartz}{}
         Soit $X,Y$ deux VAD de $\mathcal{L}^2$. Alors $XY$ est d’espérance finie et 
-        \[ \abs{E(XY)} \leq \sqrt{E(X^2)} \sqrt{E(Y^2)} \]   
+        \[ \abs{\E(XY)} \leq \sqrt{\E(X^2)} \sqrt{\E(Y^2)} \]   
         avec égalité si $X$ et $Y$ sont proportionnelles presque sûrement.
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
-        $E((X + tY)^2) = t^2 E(Y^2) + 2t E(XY) + E(X^2) \geq 0$. 
+        $\E((X + tY)^2) = t^2 \E(Y^2) + 2t \E(XY) + \E(X^2) \geq 0$. 
         
-        Si $E(Y^2) = 0$, alors $Y$ est nulle presque sûrement donc $XY$ aussi. L’égalité est établie et on remarque que $X = 0 Y$. 
+        Si $\E(Y^2) = 0$, alors $Y$ est nulle presque sûrement donc $XY$ aussi. L’égalité est établie et on remarque que $X = 0 Y$. 
         
-        Sinon, $E((X + t Y)^2)$ est un trinôme positif, donc de déterminant négatif, donc $4 E(XY)^2 - 4 E(Y^2) E(X^2) \leq 0$. 
+        Sinon, $\E((X + t Y)^2)$ est un trinôme positif, donc de déterminant négatif, donc $4 \E(XY)^2 - 4 \E(Y^2) \E(X^2) \leq 0$. 
         
-        Il y a égalité \textit{ssi} $\Delta = 0$ \textit{i.e.} $\exists t_0 \in \mathbb{R}$ tel que $E((X + t_0 Y)^2) = 0$ \textit{cad} $Y = -t_0 X$ PS.
+        Il y a égalité \textit{ssi} $\Delta = 0$ \textit{i.e.} $\exists t_0 \in \mathbb{R}$ tel que $\E((X + t_0 Y)^2) = 0$ \textit{cad} $Y = -t_0 X$ PS.
     \end{demo}
 
-    En appliquant ce résultat aux 2 VA centrées $X - E(X)$ et $Y - E(Y)$, on obtient que $\abs{\Cov(X,Y)} \leq \sigma(Y) \sigma(Y)$. 
+    En appliquant ce résultat aux 2 VA centrées $X - \E(X)$ et $Y - \E(Y)$, on obtient que $\abs{\cov(X,Y)} \leq \sigma(Y) \sigma(Y)$. 
 
     \begin{defi}{}{}
         Soient $X,Y$ deux VAD de $\mathcal{L}^2$. OS $\sigma(X), \sigma(Y) \neq 0$. OA \textbf{coef de corrélation linéaire} de $X$ et $Y$ le réel 
-        \[ \rho(X,Y) = \frac{\Cov(X,Y)}{\sigma(X)\sigma(Y)} \]    
+        \[ \rho(X,Y) = \frac{\cov(X,Y)}{\sigma(X)\sigma(Y)} \]    
     \end{defi}
 
     \begin{prop}{}{}
@@ -1004,19 +1005,19 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
 
     \begin{defi}{Fonction génératrice}{}
         La fonction génératrice de la variable $X$ est définie par 
-        \[ G_X : t \mapsto E(t^X) = \sum_{n=0}^{+\infty} P(X = n) t^n \]   
+        \[ G_X : t \mapsto \E(t^X) = \sum_{n=0}^{+\infty} \P(X = n) t^n \]   
     \end{defi}
 
-    On appelle série génératrice la série entière associée. Cette série converge pour $t = 1$ et $G_X(1) = \sum_{n=0}^{+\infty} P(X = n) = 1$ puisque la famille $((X = n)_{n \in \mathbb{N}})$ est un SCE. D’où le résultat suivant :
+    On appelle série génératrice la série entière associée. Cette série converge pour $t = 1$ et $G_X(1) = \sum_{n=0}^{+\infty} \P(X = n) = 1$ puisque la famille $((X = n)_{n \in \mathbb{N}})$ est un SCE. D’où le résultat suivant :
 
     \begin{prop}{}{}
         La rayon de convergence de la série entière $\sum_{n \in \mathbb{N}}$ est supérieur ou égal à 1.
     \end{prop}
 
-    En fait, pour tout $t \in D_f(0,1)$, $\abs{P(X = n) t^n} \leq P(X = n)$ donc la série converge normalement sur $D_f(0,1)$. Rajoutons que lorsque la VA est finie, alors la fonction génératrice est polynomiale et $R = +\infty$.
+    En fait, pour tout $t \in D_f(0,1)$, $\abs{\P(X = n) t^n} \leq \P(X = n)$ donc la série converge normalement sur $D_f(0,1)$. Rajoutons que lorsque la VA est finie, alors la fonction génératrice est polynomiale et $R = +\infty$.
 
     L’application $G_X$ est de classe $\mathcal{C}^{\infty}$ sur (au moins) l’intervalle ouvert $\intervalleOO{-R}{R}$ et on peut dériver terme à terme la somme de la série. On sait de plus que $G_X$ est la somme de sa série de Taylor : 
-    \[ \forall n \in \mathbb{N}, P(X = n) = \frac{G_X^{(n)}(0)}{n!} \]    
+    \[ \forall n \in \mathbb{N}, \P(X = n) = \frac{G_X^{(n)}(0)}{n!} \]    
     L’application $G_X$ détermine donc entièrement la loi de $X$, et réciproquement. On dit qu la loi de $X$ est caractérisée par sa série génératrice. En conséquence, il sera dans certains cas intéressant de déterminer la fonction génératrice d’une VA pour trouver sa loi de probabilité. 
 
     Le recours aux séries génératrices est particulièrement avisé lorsque l’on souhaite déterminer la loi de la somme de variables aléatoires indépendantes. 
@@ -1025,16 +1026,16 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
         Soient $X$, $Y$ deux VA$\mathbb{N}$I définies sur un espace probabilisé $(\Omega, \mathcal{A}, \mathbb{P})$. Notons $G_X$ et $G_Y$ leurs fonctions génératrices de rayon de convergence respectifs $R_X$ et $R_Y$. 
 
         Si $X$ et $Y$ sont indépendants, la fonction génératrice $G_{X + Y}$ de $X + Y$ est définie sur au moins $\intervalleOO{-R}{R}$ avec $R \geq \min(R_X, R_Y)$ et :
-        \[ \forall t \in D(0,\min(R_X,R_y)), \quad G_{X+Y}(t) = E(t^{X + Y}) = E(t^X t^Y) = E(t^X)E(t^Y) = G_X(t) G_Y(t) \]   
+        \[ \forall t \in D(0,\min(R_X,R_y)), \quad G_{X+Y}(t) = \E(t^{X + Y}) = \E(t^X t^Y) = \E(t^X)\E(t^Y) = G_X(t) G_Y(t) \]   
     \end{theo}
 
     \begin{demo}{Preuve}{myred}
         Par produit de Cauchy des séries absolument convergentes, 
         \begin{align}
             G_X(t)G_Y(t) 
-            &= \left(\sum_{n=0}^{+\infty} P(X=n) t^n\right)\left(\sum_{n=0}^{+\infty} P(Y = n) t^n\right) \\
-            &= \sum_{n=0}^{+\infty} \sum_{k=0}^{n} P(X = k) P(Y = n - k) t^n \\
-            &= \sum_{n=0}^{+\infty} P(X+Y = n)t^n = G_{X + Y}(t)
+            &= \left(\sum_{n=0}^{+\infty} \P(X=n) t^n\right)\left(\sum_{n=0}^{+\infty} \P(Y = n) t^n\right) \\
+            &= \sum_{n=0}^{+\infty} \sum_{k=0}^{n} \P(X = k) \P(Y = n - k) t^n \\
+            &= \sum_{n=0}^{+\infty} \P(X+Y = n)t^n = G_{X + Y}(t)
         \end{align}
     \end{demo}
 
@@ -1045,7 +1046,7 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
     \begin{theo}{Fonction génératrice et moments}{}
         Soit $X$ une VA définie sur un espace probabilisé $(\Omega, \mathcal{A}, \mathbb{P})$ et à valeurs dans $\mathbb{N}$. 
         \begin{enumerate}
-            \item La variable aléatoire $X$ est d’espérance finie \textit{ssi} $G_X$ est dérivable en 1. Si tel est le cas, $E(X) = G'_X(1)$. 
+            \item La variable aléatoire $X$ est d’espérance finie \textit{ssi} $G_X$ est dérivable en 1. Si tel est le cas, $\E(X) = G'_X(1)$. 
             \item La VA $X$ est de variance finie \textit{ssi} $G_X$ est deux fois dérivable en $1$.
         \end{enumerate}
     \end{theo}
@@ -1054,13 +1055,13 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
         Justifions seulement la première assertion :
         \begin{itemize}
             \item[$\implies$] Supposons $X \in \mathcal{L}^1$. $G_X$ est dérivable sur $\intervalleOO{-1}{1}$ et :
-            \[ \forall t \in \intervalleOO{-1}{1}, \quad G_X'(t) = \sum_{n = 1}^{+\infty} n P(X = n) t^{n-1} \]    
-            $\sum n P(X = n)$ converge donc la série $\sum_{n \geq 1} n P(X = n) t^{n-1}$ converge normalement sur $\intervalleFF{-1}{1}$. Donc $G_X'(t) \limi{t}{1^-} E(X)$. D’après le théorème de la limite de la dérivée, $G_X$ est dérivable en $1$ et $G'_X(1) = E(X)$. 
+            \[ \forall t \in \intervalleOO{-1}{1}, \quad G_X'(t) = \sum_{n = 1}^{+\infty} n \P(X = n) t^{n-1} \]    
+            $\sum n \P(X = n)$ converge donc la série $\sum_{n \geq 1} n \P(X = n) t^{n-1}$ converge normalement sur $\intervalleFF{-1}{1}$. Donc $G_X'(t) \limi{t}{1^-} \E(X)$. D’après le théorème de la limite de la dérivée, $G_X$ est dérivable en $1$ et $G'_X(1) = \E(X)$. 
             \item[$\impliedby$] Raisonnons par contraposée, en supposant que $X$ n’est pas d’espérance finie. $G'X$ est croissance sur $\intervalleFO{0}{1}$, donc admet une limite (finie ou infinie) en $1$. Par positivité, 
-            \[ \forall p \in \mathbb{N}^*, \quad \forall t \in \intervalleFO{0}{1}, \quad \sum_{n = 1}^p n P(X = n) t^{n-1} \leq \sum_{n=1}^{+\infty} n P(X = n) t^{n-1} \]  
-            En faisant tendre $t$ vers $1^-$, $\sum_{n=1}^{p} nP(X = n) \leq \lim_{t \to 1^-} G_X'(t)$. En faisant tendre $p$ vers $+\infty$, $\lim_{t \to 1^-} G'_X(t) = + \infty$. Si $G_X$ était dérivable en $1$, $G_X'$ serait continue en $1$ par convergence normale, d’où la contradiction.
+            \[ \forall p \in \mathbb{N}^*, \quad \forall t \in \intervalleFO{0}{1}, \quad \sum_{n = 1}^p n \P(X = n) t^{n-1} \leq \sum_{n=1}^{+\infty} n \P(X = n) t^{n-1} \]  
+            En faisant tendre $t$ vers $1^-$, $\sum_{n=1}^{p} n\P(X = n) \leq \lim_{t \to 1^-} G_X'(t)$. En faisant tendre $p$ vers $+\infty$, $\lim_{t \to 1^-} G'_X(t) = + \infty$. Si $G_X$ était dérivable en $1$, $G_X'$ serait continue en $1$ par convergence normale, d’où la contradiction.
         \end{itemize}
-        Rajoutons que sous réserve de dérivabilité, $G''_X(1) = \sum_{n=0}^{+\infty} n(n-1)P(X=n) = E(X(X-1))$, donc $V(X) = G''_X(1) + G'_X(1) - G_X'(1)^2$
+        Rajoutons que sous réserve de dérivabilité, $G''_X(1) = \sum_{n=0}^{+\infty} n(n-1)\P(X=n) = \E(X(X-1))$, donc $\V(X) = G''_X(1) + G'_X(1) - G_X'(1)^2$
     \end{demo}
 
     \begin{prop}{Fonctions génératrices de lois usuelles}{}
@@ -1100,54 +1101,54 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
 
     \begin{lem}{Inégalité de Markov}{}
         Soient $a > 0$ et $X$ une VAD$\mathbb{R}_+$ de $\mathcal{L}^1$. Alors 
-        \[ P(X \geq a) = \frac{E(X)}{a} \]    
+        \[ \P(X \geq a) = \frac{\E(X)}{a} \]    
     \end{lem}
 
     \begin{demo}{Preuve élégante}{mybrown}
-        $X \geq X \times \mathbb{1}_{(X \geq a)} \geq a \mathbb{1}_{(X \geq a)}$ donc par croissance de l’espérance, $E(X) \geq a P(X \geq a)$.
+        $X \geq X \times \mathbb{1}_{(X \geq a)} \geq a \mathbb{1}_{(X \geq a)}$ donc par croissance de l’espérance, $\E(X) \geq a \P(X \geq a)$.
     \end{demo}
 
     \begin{demo}{Preuve inélégante}{mybrown}
         \begin{align*}
-            E(X) &= \sum_{x \in X(\Omega)} x P(X = x) \\
-            &= \sum_{x \geq a} x P(X = x) + \sum_{x < a} x P(X = x) \\
-            &\geq \sum_{x \geq a} x P(X = x) \\
-            &\geq a \sum_{x \geq a} P(X = x) \\
-            &= a P(X \geq a)
+            \E(X) &= \sum_{x \in X(\Omega)} x \P(X = x) \\
+            &= \sum_{x \geq a} x \P(X = x) + \sum_{x < a} x \P(X = x) \\
+            &\geq \sum_{x \geq a} x \P(X = x) \\
+            &\geq a \sum_{x \geq a} \P(X = x) \\
+            &= a \P(X \geq a)
         \end{align*}
     \end{demo}
 
     \begin{prop}{Inégalité de Bienaymée-Tchebycheff}{}
         Soit $X \in \mathcal{L}^2$ et $\varepsilon > 0$.
-        \[ P(\abs{X - E(X)} > \varepsilon) \leq \frac{V(X)}{\varepsilon^2} \]   
+        \[ \P(\abs{X - \E(X)} > \varepsilon) \leq \frac{\V(X)}{\varepsilon^2} \]   
     \end{prop}
 
     \begin{demo}{Preuve}{myolive}
-        On applique l’inégalité de Markov $(X - E(X))^2$ qui est d’espérance finie, en posant $a = \varepsilon^2$.
+        On applique l’inégalité de Markov $(X - \E(X))^2$ qui est d’espérance finie, en posant $a = \varepsilon^2$.
     \end{demo}
 
     Cette inégalité est grossière, mais possède un intérêt théorique qui est celui de la démonstration de la loi faible des grands nombres. 
 
     \begin{omed}{Application}{myolive}
-        On jette 1 dé 18000 fois. On note $X$ le nombre d’1 obtenus. On cherche $P(2500 \leq X \leq 3500) = \sum_{k=2500}^{3500} P(X = k)$. $X \sim \mathcal{B}(18000,\frac{1}{6})$, donc 
+        On jette 1 dé 18000 fois. On note $X$ le nombre d’1 obtenus. On cherche $\P(2500 \leq X \leq 3500) = \sum_{k=2500}^{3500} \P(X = k)$. $X \sim \mathcal{B}(18000,\frac{1}{6})$, donc 
         \begin{align*}
-            P(2500 \leq X \leq 3500) = \sum_{k=2500}^{3500} \binom{18000}{k} \frac{1}{6^k} \frac{5^{18000-k}}{6^{18000-k}}
+            \P(2500 \leq X \leq 3500) = \sum_{k=2500}^{3500} \binom{18000}{k} \frac{1}{6^k} \frac{5^{18000-k}}{6^{18000-k}}
         \end{align*}
         Cette formule est très peu intéressante, même au niveau de l’informatique, car l’on obtient la probabilité recherchée en sommant des nombres obtenus par produits de nombres immensément grands ($18 000!$) par des nombres immenséments petits ($\frac{1}{6^{3500}})$, d’où les erreurs d’arrondis.
 
-        Par l’inégalité de BT, on a directement -- car $E(X) = 3000$ et $V(X) = npq = 3000 \times \frac{5}{6}$
-        \[ P(\abs{X - 3000} > 500 ) \leq \frac{3000 \times \frac{5}{6}}{(500)^2}  = \frac{1}{100} \]
+        Par l’inégalité de BT, on a directement -- car $\E(X) = 3000$ et $\V(X) = npq = 3000 \times \frac{5}{6}$
+        \[ \P(\abs{X - 3000} > 500 ) \leq \frac{3000 \times \frac{5}{6}}{(500)^2}  = \frac{1}{100} \]
         Donc la probabilité cherchée est supérieure à $0,99$.
     \end{omed}
     
     \begin{theo}{Loi faible des grands nombres}{}
         Soit $(X_n)_{n \geq 1}$ des \textbf{\textsc{VADIID}}, d’espérance $m$ et d’écart-type $\sigma$. On pose $S_n = \sum_{i=1}^{n} X_i$. Alors 
-        \[ \forall \varepsilon > 0, \quad P\left(\abs{\frac{S_n}{n} - m} \geq \varepsilon\right) \limi{n}{+\infty} 0 \]    
+        \[ \forall \varepsilon > 0, \quad \P\left(\abs{\frac{S_n}{n} - m} \geq \varepsilon\right) \limi{n}{+\infty} 0 \]    
     \end{theo}
 
     \begin{demo}{Preuve}{myred}
         D’après l’inégalité de Bienaymée-Tchebycheff, on a 
-        \[ \forall \varepsilon > 0, P\left(\abs{\frac{S_n}{n} - m} \geq \varepsilon\right) \leq \frac{V\left(\frac{S_n}{n}\right)}{\varepsilon^2} = \frac{n \sigma^2}{n^2 \varepsilon^2} =  \frac{\sigma^2}{n \varepsilon^2} \limi{n}{+\infty} 0 \]   
+        \[ \forall \varepsilon > 0, \P\left(\abs{\frac{S_n}{n} - m} \geq \varepsilon\right) \leq \frac{\V\left(\frac{S_n}{n}\right)}{\varepsilon^2} = \frac{n \sigma^2}{n^2 \varepsilon^2} =  \frac{\sigma^2}{n \varepsilon^2} \limi{n}{+\infty} 0 \]   
     \end{demo}
 
     \subsubsection{Inégalité de Hoeffding}
@@ -1160,9 +1161,9 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
 
         Alors, pour tout $t > 0$, pour tout $n \in \mathbb{N}^*$, 
         \begin{align*}
-            \mathbb{P}(S_n - E(S_n) \geq t) &\leq \exp\left(-\frac{2t^2}{H_n}\right) \\
-            \mathbb{P}(S_n - E(S_n) \leq -t) &\leq \exp\left(-\frac{2t^2}{H_n}\right) \\
-            \mathbb{P}(\abs{S_n - E(S_n)} \geq t) &\leq 2 \exp\left(-\frac{2t^2}{H_n}\right)
+            \mathbb{P}(S_n - \E(S_n) \geq t) &\leq \exp\left(-\frac{2t^2}{H_n}\right) \\
+            \mathbb{P}(S_n - \E(S_n) \leq -t) &\leq \exp\left(-\frac{2t^2}{H_n}\right) \\
+            \mathbb{P}(\abs{S_n - \E(S_n)} \geq t) &\leq 2 \exp\left(-\frac{2t^2}{H_n}\right)
         \end{align*}
     \end{theo}
 
@@ -1170,9 +1171,9 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
         Nous allons comparer les inégalités de Hoeffding et l’inégalité de BT dans le cas de la loi binomiale. Supposons que l’on ait, pour tout $n \in \mathbb{N}$, $X_n \sim \mathcal{B}(p)$. Alors $S_n \sim \mathcal{B}(n,p)$, et nous avons les inégalités suivantes, pour $x > 0$ : 
         \begin{itemize}
             \item L’inégalité de Bienaymé-Tchebycheff qui donne 
-            \[ P(\abs{S_n - E(S_n)} \geq x \sqrt{n}) \leq \frac{pq}{x^2} \]   
+            \[ \P(\abs{S_n - \E(S_n)} \geq x \sqrt{n}) \leq \frac{pq}{x^2} \]   
             L’inégalité de Hoeffding donne 
-            \[ \mathbb{P}(\abs{S_n - E(S_n)} \geq x \sqrt{n}) \leq 2 \exp(-2x^2) \]   
+            \[ \mathbb{P}(\abs{S_n - \E(S_n)} \geq x \sqrt{n}) \leq 2 \exp(-2x^2) \]   
         \end{itemize}
         On voit que dans ce cas, et c’est généralement comme cela, l’inégalité de Hoeffding est beaucoup plus précise pour $x$ suffisamment grand.
     \end{omed}
@@ -1181,14 +1182,14 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
 
     \begin{lem}{}{}
         Soit $X$ une VAD$\mathbb{R}$, centrée et PS bornée. Soit $c,d$ deux nombres réels tels que $c < d$ et $\mathbb{P}(c \leq X \leq D) = 1$. Alors pour tout réel $s > 0$, 
-        \[ E(e^{sX}) \leq \exp\left(\frac{s^2 (d - c)^2}{8}\right) \]   
+        \[ \E(e^{sX}) \leq \exp\left(\frac{s^2 (d - c)^2}{8}\right) \]   
     \end{lem}
 
     \begin{demo}{Lemme}{mybrown}
         D’abord, on peut supposer $c < 0$ et $d > 0$. En effet, si $c \geq 0$, alors $X$ est une variable PS positive d’espérance nulle, donc $X = 0$ PS et la proposition est évidente. Le raisonnement est analogue pour $d \leq 0$. Par convexité de la fonction $x \mapsto e^{sx}$, on a, pour $c \leq X(\omega) \leq d$, 
         \[ e^{s X(\omega)} \leq \frac{d - X(\omega)}{d-c}e^{sc} + \frac{X(\omega) - c}{d-c} e^{sd} \]    
         En passant à l’espérance, puisque $\mathbb{P}(c \leq Y \leq d) = 1$, on en déduit que 
-        \[ E(e^{sX}) \leq f(s) = \frac{d}{d-c}e^{sc} + \frac{-c}{d - c} e^{sd} \]   
+        \[ \E(e^{sX}) \leq f(s) = \frac{d}{d-c}e^{sc} + \frac{-c}{d - c} e^{sd} \]   
         On pose $u = (d-c)s$, $\psi(u) = \ln(f(s))$ et $p = \frac{-c}{d-c} \in \intervalleFF{0}{1}$, $1 - p = \frac{d}{d-c}$. Il suit que $\psi(u) = -pu + \ln(1 - p + pe^u)$. On remarque alors que $\psi(0) = \psi'(0) = 0$. De plus, 
         \[ \psi''(u) = \frac{(1-p)pe^u}{(1 - p + pe^u)^2} = \frac{\alpha \beta}{(\alpha + \beta)^2} \leq \frac{1}{4} \]   
         Alors, en vertu de la formule de Taylor-Lagrage à l’ordre 1, 
@@ -1196,15 +1197,15 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
     \end{demo}
 
     \begin{demo}{Démonstration}{myred}
-        On applique l’inégalité de Markov. Pour cela, on pose $Y_i = X_i - E(X_i)$, $c_i = a_i - E(X_i)$ et $d_i = b_i - E(X_i)$ et on remarque que $P(c_i \leq Y_i \leq d_i) = 1$, $d_i - c_i = b_i - a_i$ et $S_n - E(S_n) = Y_1 + \ldots + Y_n$. Pour tout $s > 0$, on a donc, en vertu d’un corollaire de l’inégalité de Markov, de l’indépendance des $X_i$ et donc des $Y_i$, et de la proposition précédente :
+        On applique l’inégalité de Markov. Pour cela, on pose $Y_i = X_i - \E(X_i)$, $c_i = a_i - \E(X_i)$ et $d_i = b_i - \E(X_i)$ et on remarque que $\P(c_i \leq Y_i \leq d_i) = 1$, $d_i - c_i = b_i - a_i$ et $S_n - \E(S_n) = Y_1 + \ldots + Y_n$. Pour tout $s > 0$, on a donc, en vertu d’un corollaire de l’inégalité de Markov, de l’indépendance des $X_i$ et donc des $Y_i$, et de la proposition précédente :
         \begin{align*}
-            P(S_n - E(S_n) \geq t) 
-            &\leq E(e^{s(S_n - E(S_n))}) e^{-st} \\
-            &= E(e^{s(Y_1 + \ldots Y_n)}) e^{-st} \\
-            &= e^{-st} \prod_{i=1}^n E(e^{sY_i}) \\
+            \P(S_n - \E(S_n) \geq t) 
+            &\leq \E(e^{s(S_n - \E(S_n))}) e^{-st} \\
+            &= \E(e^{s(Y_1 + \ldots Y_n)}) e^{-st} \\
+            &= e^{-st} \prod_{i=1}^n \E(e^{sY_i}) \\
             \leq \exp\left(-st + \frac{s^2 H_n}{8}\right)
         \end{align*}
-        L’inégalité est vraie en particuler en $s_0 = \frac{4t}{H_n}$, qui réalise le minimum de la borne de droite, ce qui démontre la première égalité. La deuxième se montre en remplaçant $Y_i$ par $Y'_i = E(X_i) - X_i$ et utilisant $E(S_n) - S_n$, $c'_i = E(X_i) - b_i$ et $d'_i = E(X_i) - a_i$. La troisième inégalité est une conséquence directe des deux premières.
+        L’inégalité est vraie en particuler en $s_0 = \frac{4t}{H_n}$, qui réalise le minimum de la borne de droite, ce qui démontre la première égalité. La deuxième se montre en remplaçant $Y_i$ par $Y'_i = \E(X_i) - X_i$ et utilisant $\E(S_n) - S_n$, $c'_i = \E(X_i) - b_i$ et $d'_i = \E(X_i) - a_i$. La troisième inégalité est une conséquence directe des deux premières.
     \end{demo}
 
 \subsection{Synthèse} 
@@ -1218,11 +1219,11 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
         row{odd} = {myolive!30}, row{1} = {myolive, fg=white, font=\bfseries},
         rows = {1cm}
         }
-    Nom & Notation & $X(\Omega)$ & $P(X = k)$ & $E(X)$ & $V(X)$ & $G(t)$ \\
+    Nom & Notation & $X(\Omega)$ & $\P(X = k)$ & $\E(X)$ & $\V(X)$ & $G(t)$ \\
     Binomiale & $\mathcal{B}(n,p)$ & $\intervalleEntier{0}{n}$ & $\binom{n}{k} p^k q^{n-k}$ & $np$ & $npq$ & $(q + pt)^n$ \\
     Uniforme & $\mathcal{U}(\intervalleEntier{1}{n})$ & $\intervalleEntier{1}{n}$ & $\frac{1}{n}$ & $\frac{n+1}{2}$ & $\frac{n^2 - 1}{12}$ & $\frac{t - t^{n+1}}{n(1 - t)}$ \\
     Géométrique & $\mathcal{G}(p)$ & $\mathbb{N}^*$ & $q^{k-1}p$ & $\frac{1}{p}$ & $\frac{q}{p^2}$ & $\frac{pt}{1 - qt}$ \\
-    Hypergéométrique & $\mathcal{H}(n,p,N)$ & $\intervalleEntier{0}{n}$ & $np$ & $npq \frac{(N-n)}{N-1}$ & peu d’intérêt.
+    Hypergéométrique & $\mathcal{H}(n,p,N)$ & $\intervalleEntier{0}{n}$ & $np$ & $npq \frac{(N-n)}{N-1}$ & peu d’intérêt. \\
     Poisson & $\mathcal{P}(\lambda)$ & $\mathbb{N}$ & $e^{-\lambda} \frac{\lambda^k}{k!}$ & $\lambda$ & $\lambda$ & $e^{\lambda(t-1)}$ \\
     \end{longtblr}
 
@@ -1234,7 +1235,7 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
             \[ G_S(t) = G_N(G_X(t)) \]    
             où $G_X$ est la fonction génératrice commune aux $X_i$. 
             \item Si $N$ et $X_i$ ont une espérance, montrons que $S$ a une espérance et que 
-            \[ E(S) = E(N) E(X) \]   
+            \[ \E(S) = \E(N) \E(X) \]   
         \end{enumerate}
     \end{omed}
 
@@ -1242,26 +1243,26 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
         \begin{enumerate}[label = (\alph*)]
             \item Soit $n \in \mathbb{N}$ et $t = \intervalleOO{-1}{1}$. On cherche $P (S = n)$, \textit{i.e.} 
             \begin{align*}
-                P(S = n) 
-                &= P\left(\sum_{i=1}^{N} X_i = n\right) \\
+                \P(S = n) 
+                &= \P\left(\sum_{i=1}^{N} X_i = n\right) \\
                 &\argu \text{proba totales} \\
-                &= \sum_{k=0}^{+\infty} P(S = n \tq N = k) P(N = k) \\
-                &= \sum_{k=0}^{+\infty} P\left(\sum_{i=1}^{k} X_i = n\right) P(N=k) \\
-                &= \sum_{k=0}^{+\infty} \left(\sum_{i_1 + \ldots + i_k = n} P(X_1 = i_1,\ldots,X_k = i_k)\right) P(N = k) \\
-                &= \sum_{k=0}^{+\infty} \sum_{i_1 + \ldots + i_k = n} P(X_1 = i_1) \cdots P(X_k = i_k) P(N = k) \\
+                &= \sum_{k=0}^{+\infty} \P(S = n \vbar N = k) \P(N = k) \\
+                &= \sum_{k=0}^{+\infty} \P\left(\sum_{i=1}^{k} X_i = n\right) \P(N=k) \\
+                &= \sum_{k=0}^{+\infty} \left(\sum_{i_1 + \ldots + i_k = n} \P(X_1 = i_1,\ldots,X_k = i_k)\right) \P(N = k) \\
+                &= \sum_{k=0}^{+\infty} \sum_{i_1 + \ldots + i_k = n} \P(X_1 = i_1) \cdots \P(X_k = i_k) \P(N = k) \\
                 G_S(t) 
-                &= \sum_{n=0}^{+\infty} P(S = n) t^n \\
-                &= \sum_{n=0}^{+\infty} \sum_{k=0}^{+\infty} \sum_{i_1 + \ldots + i_k = n} P(X_1 = i_1) \cdots P(X_k = i_k) P(N = k) t^n \\
-                &= \sum_{n=0}^{+\infty} \sum_{k=0}^{+\infty} \sum_{i_1 + \ldots + i_k = n} P(X_1 = i_1)t^{i_1} \cdots P(X_k = i_k) t^{i_k} P(N = k) \\
+                &= \sum_{n=0}^{+\infty} \P(S = n) t^n \\
+                &= \sum_{n=0}^{+\infty} \sum_{k=0}^{+\infty} \sum_{i_1 + \ldots + i_k = n} \P(X_1 = i_1) \cdots \P(X_k = i_k) \P(N = k) t^n \\
+                &= \sum_{n=0}^{+\infty} \sum_{k=0}^{+\infty} \sum_{i_1 + \ldots + i_k = n} \P(X_1 = i_1)t^{i_1} \cdots \P(X_k = i_k) t^{i_k} \P(N = k) \\
                 &\argu \text{Fubini, en supposant } t > 0 \\
-                &= \sum_{k=0}^{+\infty} P(N = k) \sum_{(i_1,\ldots,i_k) \in \mathbb{K}^n} P(X_1 = i_1)t^{i_1} \cdots P(X_k = i_k) t^{i_k} \\ 
-                &= \sum_{k=0}^{+\infty} P(N = k) \left(\sum_{i_1 = 0}^{+\infty} P(X_1 = i_1) t^{i_1} \times \cdots \times \sum_{i_k = 0}^{+\infty} P(X_k = i_k) t^{i^k}\right) \\
+                &= \sum_{k=0}^{+\infty} \P(N = k) \sum_{(i_1,\ldots,i_k) \in \mathbb{K}^n} \P(X_1 = i_1)t^{i_1} \cdots \P(X_k = i_k) t^{i_k} \\ 
+                &= \sum_{k=0}^{+\infty} \P(N = k) \left(\sum_{i_1 = 0}^{+\infty} \P(X_1 = i_1) t^{i_1} \times \cdots \times \sum_{i_k = 0}^{+\infty} \P(X_k = i_k) t^{i^k}\right) \\
                 &\argu G_{X_1}(t) = \cdots = G_{X_k}(t) = G_X(t)
-                &= \sum_{k=0}^{+\infty} P(N = k) G_X(t)^n \\
+                &= \sum_{k=0}^{+\infty} \P(N = k) G_X(t)^n \\
                 &= G_N(G_X(t)) < +\infty 
             \end{align*}
             \item On sait que $S$ admet une espérance si et seulement si $G_S(t)$ est dérivable en $1$. De plus, $G_X(1) = 1$, et $G_N$ et $G_X$ dérivables en $1$. Donc par composition, $G_S$ est dérivable en $1$ et 
-            \[ G_S'(1) = G_X'(1) G_N'(G_X(1)) = E(X) \times G_N'(1) = E(X) \times E(N) \]   
+            \[ G_S'(1) = G_X'(1) G_N'(G_X(1)) = \E(X) \times G_N'(1) = \E(X) \times \E(N) \]   
         \end{enumerate}
     \end{demo}
 
@@ -1270,7 +1271,7 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
         \[ S = \sum_{i=1}^{N} X_i \esp{et} T = \sum_{i=1}^{N} (1 - X_i) \]   
         \begin{enumerate}[label = (\alph*)]
             \item Pour tout $(t,u) \in \intervalleFF{-1}{1}^2$, on pose 
-            \[ G(t,u) = E(t^S u^T) \]   
+            \[ G(t,u) = \E(t^S u^T) \]   
             Exprimer $G$ à l’aide de la fonction génératrice de $S$.
         \end{enumerate}
     \end{omed}
@@ -1278,14 +1279,14 @@ On s’intéresse à la somme $S$ des valeurs des dés. Si $\omega = (b,r) \in \
     \begin{demo}{Résolution}{mygreen}
         \begin{enumerate}[label = (\alph*)]
             \item On sait que, par la formule de transfert, 
-            \[ G(t,u) = \sum_{n=0}^{+\infty} \sum_{k=0}^{+\infty} P(S_n = n, T = k) t^n u^k \]   
+            \[ G(t,u) = \sum_{n=0}^{+\infty} \sum_{k=0}^{+\infty} \P(S_n = n, T = k) t^n u^k \]   
             Calculons
             \begin{align*}
-                P(S = n, T = k) 
-                &= \sum_{m=1}^{+\infty} P(S_n = n, T = k \tq N = m) P(N = m) \\
-                &= \sum_{m=1}^{+\infty} P(X_1 + \cdots + X_m = n, (1- X_1) + \cdots + (1 - X_m) = k) P(N = m) \\
-                &= P(X_1 + \cdots + X_{n + k} = n) P(N = m + k) \\
-                &= \binom{n+k}{n} p^n (1 - p)^k P(N = m + k)
+                \P(S = n, T = k) 
+                &= \sum_{m=1}^{+\infty} \P(S_n = n, T = k \vbar N = m) \P(N = m) \\
+                &= \sum_{m=1}^{+\infty} \P(X_1 + \cdots + X_m = n, (1- X_1) + \cdots + (1 - X_m) = k) \P(N = m) \\
+                &= \P(X_1 + \cdots + X_{n + k} = n) \P(N = m + k) \\
+                &= \binom{n+k}{n} p^n (1 - p)^k \P(N = m + k)
             \end{align*} 
         \end{enumerate}
     \end{demo}

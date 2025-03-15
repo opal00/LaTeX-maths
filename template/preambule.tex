@@ -11,10 +11,10 @@
 %-----FONT------%
 
 \usepackage{fontspec}
-\usepackage{libertinus-otf}
+\usepackage{amssymb}
+\usepackage{amsmath} 
 %\usepackage{kpfonts-otf}
 %\usepackage{fourier-otf}
-\usepackage{amssymb}
 
 %-----COULEURS-----%
 
@@ -44,7 +44,7 @@
 \definecolor{nfppurple}{RGB}{150, 19, 130}
 \definecolor{nfppink}{RGB}{230, 0, 82}
 
-\definecolor{titlecolor}{rgb}{0,0,0}%{0.18, 0.08, 0.05}
+\definecolor{titlecolor}{rgb}{0,0,0}
 
 %-------------------%
 
@@ -189,19 +189,6 @@
   {}
   {}
 \titlespacing*{\subsubsection}{0mm}{4mm}{4mm}
-
-\newcommand*\customchapter[2]{
-  \chapter{#1}
-  \vfill
-  \chaptertoc
-  \vfill
-  \begin{center}
-    \large\bfseries But du chapitre
-  \end{center}
-  \textit{#2}
-  \vfill
-  \newpage
-}
 
 %------ENUMITEM-SETTINGS-----%
 
@@ -359,7 +346,6 @@
 \usepackage{polyglossia}
 \setdefaultlanguage[frenchpart=false]{french}
 \usepackage{setspace}   
-\usepackage{amsmath} 
 \everymath{\displaystyle}
 \allowdisplaybreaks
 \usepackage{graphicx}
@@ -534,9 +520,9 @@
         \text{#2}  
     \end{array} \right. \kern-\nulldelimiterspace
 }
-%--DELIMITERS AND OPERATORS--%
+%--DELIMITERS--%
 
-\newcommand*\tq{\, \big| \,}
+\newcommand*\vbar{\, \big| \,}
 \newcommand*\intervalleOO[2]{\left] #1 \, , #2 \right[}
 \newcommand*\intervalleFF[2]{\left[ #1 \, , #2 \right]}
 \newcommand*\intervalleOF[2]{\left] #1 \, , #2 \right]}
@@ -546,50 +532,50 @@
 \newcommand*\fract[1]{\left\lceil #1 \right\rceil}
 \newcommand*\enstq[2]{\left\{ #1 \, , \, #2 \right\}}
 \newcommand*\enspr[2]{\left\{#1 \, \middle| \, #2\right\}}
-\newcommand*\spr[2]{\left<\,#1\,\middle|\,#2\,\right>}
-\newcommand*\abs[1]{\left\lvert #1\right\rvert}
-\newcommand*\norm[1]{\left\lVert\,#1\,\right\rVert}
-\newcommand*\normm[1]{\mathcal{N}(#1)}
-\newcommand*\nnorm[2]{\left\lVert\,#2\,\right\rVert_{#1}}
-\newcommand*\vect[1]{\overrightarrow{#1}}
-\newcommand*\barr[1]{\overline{#1}}
-\newcommand*\vbar{\, \middle| \,}
 \newcommand*\independent{\perp\mkern-9.5mu\perp}
 \newcommand*\notindependent{\centernot{\independent}}
 \newcommand*\limi[2]{\underset{#1 \rightarrow #2}{\longrightarrow}}
 \newcommand*\limit[3]{\underset{#2 \rightarrow #3}{#1}}
 \newcommand*\comp[4]{#1_{#2 \rightarrow #3} \left(#4\right)}
-\newcommand*\dpart[2]{\frac{\partial #1}{\partial #2}}
 
 %--MATHOPERATORS--%
 
-\DeclareMathOperator{\card}{Card}
-\DeclareMathOperator{\Ima}{Im}
+\newcommand*\spr[2]{\left<\,#1\,\middle|\,#2\,\right>}
+\newcommand*\abs[1]{\left\lvert \,#1 \, \right\rvert}
+\newcommand*\norm[1]{\left\lVert \,#1 \, \right\rVert}
+\newcommand*\nnorm[2]{\left\lVert\,#2\,\right\rVert_{#1}}
+\newcommand*\vct[1]{\overrightarrow{#1}}
+\newcommand*\ovl[1]{\overline{#1}}
+\newcommand*\dpart[2]{\frac{\partial #1}{\partial #2}}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\V}{\mathbb{V}}
+\let\P\relax
+\newcommand{\P}{\mathbb{P}}
+
+\DeclareMathOperator{\card}{card}
 \DeclareMathOperator{\im}{im}
-\DeclareMathOperator{\Ker}{Ker}
 \DeclareMathOperator{\id}{id}
-\DeclareMathOperator{\Vect}{Vect}
+\DeclareMathOperator{\vect}{vect}
 \DeclareMathOperator{\rg}{rg}
 \DeclareMathOperator{\tr}{tr}
-\DeclareMathOperator{\Det}{Det}
-\DeclareMathOperator{\Cov}{Cov}
-\DeclareMathOperator{\dist}{d}
-\DeclareMathOperator{\dif}{d}
-\let\det\relax
-\DeclareMathOperator{\det}{det}
-\DeclareMathOperator{\dive}{div}
+\DeclareMathOperator{\cov}{cov}
+\let\d\relax
+\DeclareMathOperator{\d}{d}
+\DeclareMathOperator{\Div}{Div}
 \DeclareMathOperator{\diag}{diag}
-\DeclareMathOperator{\Diag}{Diag}
-\DeclareMathOperator{\Sp}{Sp}
-\DeclareMathOperator{\Fr}{Fr}
+\let\sp\relax
+\DeclareMathOperator{\sp}{sp}
+\DeclareMathOperator{\fr}{fr}
 \DeclareMathOperator{\VA}{VA}
 \DeclareMathOperator{\CM}{CM}
 \DeclareMathOperator{\GL}{GL}
 \DeclareMathOperator{\SL}{SL}
 \DeclareMathOperator{\SO}{SO}
-\DeclareMathOperator{\Ort}{O}
-\DeclareMathOperator{\Orb}{Orb}
-\DeclareMathOperator{\Stab}{Stab}
+\let\O\relax
+\DeclareMathOperator{\O}{O}
+\DeclareMathOperator{\orb}{orb}
+\DeclareMathOperator{\stab}{stab}
 \DeclareMathOperator{\grad}{grad}
 \DeclareMathOperator{\cste}{cste}
 \DeclareMathOperator{\rot}{rot}
@@ -597,11 +583,13 @@
 \DeclareMathOperator{\Int}{Int}
 \DeclareMathOperator{\pgcd}{pgcd}
 \DeclareMathOperator{\ppcm}{ppcm}
-\DeclareMathOperator{\Com}{Com}
-\DeclareMathOperator{\Sym}{S}
+\DeclareMathOperator{\com}{com}
+\let\S\relax
+\DeclareMathOperator{\S}{S}
 \DeclareMathOperator{\argtanh}{argtanh}
 \DeclareMathOperator{\argcosh}{argcosh}
-\DeclareMathOperator{\LI}{L}
+\let\L\relax
+\DeclareMathOperator{\L}{L}
 
 %--RESTRICTIONS--%
 
@@ -625,5 +613,7 @@
     }}
 
 %--------------------%
+
+\usepackage{libertinus-otf}
 
 

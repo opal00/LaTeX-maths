@@ -1,4 +1,5 @@
-\customchapter{Fonctions}{Outil le plus élémentaire des mathématiques, on apprendra ici à définir les propriétés les plus fondamentales des fonctions, pour en garantir une utilisation soigneuse.}
+\chapter{Fonctions}
+\chaptertoc
 
 \section{Généralités}
 
@@ -93,7 +94,7 @@
     \end{defi}
 
     \begin{defi}{Limite}{}
-        Soient $\f{R}$, $a \in \barr{\mathcal{D}}$ et $L \in \barr{\mathbb{R}}$.
+        Soient $\f{R}$, $a \in \ovl{\mathcal{D}}$ et $L \in \ovl{\mathbb{R}}$.
 
         Alors les 9 définitions précédentes peuvent se réécrire en :
         \[ f(x) \underset{x \rightarrow a}{\longrightarrow} L \iff \forall \mathcal{V} \in \mathcal{V}(L), \, \exists \, \mathcal{V'} \in \mathcal{V}(a),
@@ -112,8 +113,8 @@
     \begin{theo}{Limite de $f(u_n)$}{}
         \begin{soient}
             \item $\f{R}$,
-            \item $a \in \barr{\mathcal{D}}$,
-            \item $L \in \barr{\mathbb{R}}$,
+            \item $a \in \ovl{\mathcal{D}}$,
+            \item $L \in \ovl{\mathbb{R}}$,
             \item $(u_n)_n \in \mathbb{R}^{\mathbb{N}}$.
         \end{soient}
         \begin{suppose}
@@ -127,8 +128,8 @@
     \begin{theo}{Caractérisation séquentielle de la limite}{}
         \begin{soient}
             \item $\f{R}$,
-            \item $a \in \barr{\mathcal{D}}$,
-            \item $L \in \barr{\mathbb{R}}$.
+            \item $a \in \ovl{\mathcal{D}}$,
+            \item $L \in \ovl{\mathbb{R}}$.
         \end{soient}
         On suppose que 
         \[ \forall (u_n)_n \in \mathbb{R}^{\mathbb{N}}, \, \lim\limits_{n \rightarrow + \infty} u_n = a \implies \lim\limits_{n \rightarrow + \infty} f(u_n) = L \]
@@ -139,7 +140,7 @@
         \begin{soient}
             \item $\mathcal{D}$ et $\mathcal{D'}$ deux unions finies d’intervalles de $\mathbb{R}$,
             \item $\f{R}$ et $\g{R}$,
-            \item $a \in \barr{\mathcal{D}}$, $b \in \barr{\mathcal{D'}}$ et $L \in \barr{\mathbb{R}}$.
+            \item $a \in \ovl{\mathcal{D}}$, $b \in \ovl{\mathcal{D'}}$ et $L \in \ovl{\mathbb{R}}$.
         \end{soient}
         \begin{suppose}
             \item $f(\mathcal{D}) \subset \mathcal{D'}$
@@ -151,7 +152,7 @@
     \end{prop}
 
     \begin{theo}{Théorème des gendarmes, ou d’encadrement}{}
-        Soient $f,g,h \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \barr{\mathcal{D}}$.
+        Soient $f,g,h \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \ovl{\mathcal{D}}$.
     
         \begin{suppose}
             \item $\exists \, \mathcal{U} \in \mathcal{V}(a), \, \forall x \in \mathcal{U} \cap \mathcal{D}, \, f(x) \leq g(x) \leq h(x)$
@@ -162,7 +163,7 @@
     \end{theo}
 
     \begin{theo}{Limite d’une fonction monotone}{}
-        Soient $a,b \in \barr{\mathbb{R}}$ et $f \in \mathcal{F}(\intervalleOO{a}{b},\mathbb{R})$.
+        Soient $a,b \in \ovl{\mathbb{R}}$ et $f \in \mathcal{F}(\intervalleOO{a}{b},\mathbb{R})$.
         \begin{enumerate}
             \item Si $f$ est croissante sur $\intervalleOO{a}{b}$, alors 
             \begin{itemize}
@@ -194,7 +195,7 @@
 \subsection{Négligeabilité}
 
     \begin{defi}{Négligeabilité}{}
-        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \barr{\mathcal{D}}$. 
+        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \ovl{\mathcal{D}}$. 
     
         On dit que $f$ est \textbf{négligeable} devant $g$ au voisinage de $a$, et on note $ f(x) \underset{x \rightarrow a}{=} o(g(x))$ si 
         \[ \exists \, \mathcal{V} \in \mathcal{V}(a), \, \exists \, \varepsilon \in \mathcal{F}(\mathcal{V}, \mathbb{R}), \left\{ \begin{array}{ll}
@@ -204,7 +205,7 @@
     \end{defi}
     
     \begin{theo}{Caractérisation de la négligeabilité}{}
-        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \barr{\mathcal{D}}$. 
+        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \ovl{\mathcal{D}}$. 
     
         On suppose que $g$ ne s’annule pas au voisinage de $a$, sauf éventuellement en $a$.
     
@@ -212,7 +213,7 @@
     \end{theo}
     
     \begin{prop}{Propriétés de la négligeabilité}{}
-        Soient $a \in \barr{\mathbb{R}}$, $f,g,h,h_1,h_2$ des fonctions définies au voisinage de $a$ et $\lambda \in \mathbb{R}$.
+        Soient $a \in \ovl{\mathbb{R}}$, $f,g,h,h_1,h_2$ des fonctions définies au voisinage de $a$ et $\lambda \in \mathbb{R}$.
     
         \begin{alors}
             \item $f \underset{a}{=} o(g) \implies \left\{ \begin{array}{l}
@@ -239,7 +240,7 @@
 \subsection{Domination}
 
     \begin{defi}{Domination}{}
-        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \barr{\mathcal{D}}$. 
+        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \ovl{\mathcal{D}}$. 
     
         On dit que $f$ est \textbf{dominée} par $g$ au voisinage de $a$, et on note $ f(x) \underset{x \rightarrow a}{=} \mathcal{O}(g(x)) $ si 
         \[ \exists \, \mathcal{V} \in \mathcal{V}(a), \, \exists \, \beta \in \mathcal{F}(\mathcal{V}, \mathbb{R}), \left\{ \begin{array}{ll}
@@ -249,7 +250,7 @@
     \end{defi}
         
     \begin{theo}{Caractérisation de la domination}{}
-        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \barr{\mathcal{D}}$.
+        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \ovl{\mathcal{D}}$.
     
         On suppose que $g$ ne s’annule pas au voisinage de $a$, sauf éventuellement en $a$. 
     
@@ -257,7 +258,7 @@
     \end{theo}
         
     \begin{prop}{Propriétés de la domination}{}
-        Soient $a \in \barr{\mathbb{R}}$, $f,g,h,h_1,h_2$ des fonctions définies au voisinage de $a$ et $\lambda \in \mathbb{R}$.
+        Soient $a \in \ovl{\mathbb{R}}$, $f,g,h,h_1,h_2$ des fonctions définies au voisinage de $a$ et $\lambda \in \mathbb{R}$.
     
         \begin{alors}
             \item $f \underset{a}{=} \mathcal{O}(g) \implies \left\{ \begin{array}{l}
@@ -282,7 +283,7 @@
     \end{prop}
     
     \begin{prop}{Lien entre $o$ et $\mathcal{0}$}{}
-        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \barr{\mathcal{D}}$. 
+        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \ovl{\mathcal{D}}$. 
     
         Alors \[ f \underset{a}{=} o(g) \implies f \underset{a}{=} \mathcal{O}(g) \]
     \end{prop}
@@ -290,7 +291,7 @@
 \subsection{Équivalence}
 
     \begin{defi}{Équivalence}{}
-        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \barr{\mathcal{D}}$.
+        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \ovl{\mathcal{D}}$.
 
         On dit que $f$ est \textbf{équivalente} à $g$ au voisinage de $a$, et on note $ f(x) \underset{x \rightarrow a}{\sim} g(x) $ si 
         \[ \exists \, \mathcal{V} \in \mathcal{V}(a), \, \exists \, \alpha \in \mathcal{F}(\mathcal{V}, \mathbb{R}), \left\{ \begin{array}{l}
@@ -300,7 +301,7 @@
     \end{defi}
 
     \begin{theo}{Caractérisation de l’équivalence}{}
-        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \barr{\mathcal{D}}$.
+        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \ovl{\mathcal{D}}$.
 
         On suppose que $g$ ne s’annule pas au voisinage de $a$, sauf éventuellement en $a$. 
 
@@ -308,7 +309,7 @@
     \end{theo}
 
     \begin{prop}{}{}
-        Soient $f,g,h \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \barr{\mathcal{D}}$.
+        Soient $f,g,h \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \ovl{\mathcal{D}}$.
 
         \begin{alors}
             \item $f(x) \underset{x \rightarrow a}{\sim} f(x)$. (Réflexivité)
@@ -321,7 +322,7 @@
     \end{prop}
 
     \begin{theo}{Lien entre $\sim$ et $o$}{}
-        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \barr{\mathcal{D}}$.
+        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \ovl{\mathcal{D}}$.
 
         Alors
         \begin{align*}
@@ -331,7 +332,7 @@
     \end{theo}
 
     \begin{prop}{Caractérisation des équivalents par la limite}{}
-        Soient $f \in \mathcal{F}(\mathcal{D},\mathbb{R})$, $a \in \barr{\mathcal{D}}$ et $\ell \in \mathbb{R}$.
+        Soient $f \in \mathcal{F}(\mathcal{D},\mathbb{R})$, $a \in \ovl{\mathcal{D}}$ et $\ell \in \mathbb{R}$.
 
         \begin{alors}
             \item Si $\ell \neq 0$, 
@@ -341,7 +342,7 @@
     \end{prop}
 
     \begin{prop}{}{}
-        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \barr{\mathcal{D}}$.
+        Soient $f,g \in \mathcal{F}(\mathcal{D},\mathbb{R})$ et $a \in \ovl{\mathcal{D}}$.
     
         \begin{alors}
             \item $ f(x) \underset{x \rightarrow a}{\sim} g(x) \implies f^r(x) \underset{x \rightarrow a}{\sim} g^r(x) $  pour $r \in \mathbb{R}$
@@ -1348,7 +1349,7 @@
             \item $A$ une primitive de $a$ sur $I$
         \end{soient}
         Alors l’ensemble des solutions définies sur $I$ à valeurs dans $\mathbb{K}$ est 
-        \[ \Vect(t \mapsto e^{-A(t)}) \]
+        \[ \vect(t \mapsto e^{-A(t)}) \]
     \end{theo}
 
     \begin{demo}{Démonstration}{myred}
@@ -1865,26 +1866,26 @@
         \[ \varphi'(t) = (A+B)\varphi(t) - A\varphi(t) - B\varphi(t) = 0 \] 
         $\varphi$ est donc constante sur $\mathbb{R}$. $\varphi(0)=I_n$ donc $\varphi(1) = \exp(A+B)\exp(-A)\exp(-B) = I_n$
         \begin{itemize}
-            \item Pour $B = 0$, on obtient $\exp(A)\exp(-A) = I_n$. On vient d’établir que pour tout $A \in \mk{n}$, $\exp(A) \in \mathcal{G}\ell_n(\mathbb{K})$ et 
+            \item Pour $B = 0$, on obtient $\exp(A)\exp(-A) = I_n$. On vient d’établir que pour tout $A \in \mk{n}$, $\exp(A) \in \GL_n(\mathbb{K})$ et 
             \[ \exp(A)\exp(-A) = \exp(-A)\exp(A) = \exp(0_n) = I_n \] 
             \item De l’égalité $\exp(A+B)\exp(-A)\exp(-B) = I_n$ on tire 
             \[ \exp(A+B) = \exp(A)\exp(B) = \exp(B)\exp(A) \]
         \end{itemize}
     \end{demo}
 
-    En pratique, les calculs d’exponentielles ne sont pas toujours aisés. Néanmoins, si $A$ et $B$ sont semblables, alors $\exp(A)$ et $\exp(B)$ le sont également. En effet, si $A = P B P^{-1}$ avec $P \in \mathcal{G}\ell_n(\mathbb{K})$, 
+    En pratique, les calculs d’exponentielles ne sont pas toujours aisés. Néanmoins, si $A$ et $B$ sont semblables, alors $\exp(A)$ et $\exp(B)$ le sont également. En effet, si $A = P B P^{-1}$ avec $P \in \GL_n(\mathbb{K})$, 
     \[ \exp(A) = \sum\limits_{n=0}^{+\infty} \frac{(PBP^{-1})^n}{n!} = \sum\limits_{n=0}^{+\infty} \frac{PB^nP^{-1}}{n!} = P \left(\sum\limits_{n=0}^{+\infty} \frac{B^n}{n!}\right) = P \exp(B) P^{-1} \] 
 
     \begin{prop}{}{}
         \begin{soient}
             \item $A \in \mk{n}$ une matrice diagonalisable 
-            \item $P \in \mathcal{G}\ell_n(\mathbb{K})$ tele que $D = P^{-1} A P = \diag(\lambda_1,\ldots,\lambda_n)$
+            \item $P \in \GL_n(\mathbb{K})$ tele que $D = P^{-1} A P = \diag(\lambda_1,\ldots,\lambda_n)$
         \end{soient}
         Alors $\exp(A)$ est diagonalisable et 
         \[ \exp(A) = P \exp(D) P^{-1} = P \diag\left(e^{\lambda_1},\ldots, e^{\lambda_n}\right) P^{-1} \]
     \end{prop}
 
-    En particulier, $\Sp(\exp(A)) = \enspr{e^{\lambda}}{\lambda \in \Sp(A)}$ et on remarque que $A$ et $\exp(A)$ partagent les mêmes vecteurs propres : si $X$ est un vecteur propre de $A$ associé à la valeur propre $\lambda$, 
+    En particulier, $\sp(\exp(A)) = \enspr{e^{\lambda}}{\lambda \in \sp(A)}$ et on remarque que $A$ et $\exp(A)$ partagent les mêmes vecteurs propres : si $X$ est un vecteur propre de $A$ associé à la valeur propre $\lambda$, 
     \[ AX = \lambda X \quad \text{ et } \exp(A) X = e^{\lambda} X \] 
     Plusieurs options sont donc envisageables pour calculer des exponentielles de matrices : calcul direct de $\frac{A^n}{n!}$ puis de la somme dans un contexte qui s’y prête, diagonalisation de la matrice pour appliquer le résultat ci-dessus, réduction de Dunford de la matrice en cas de non-diagonalisabilité ($A = D + N$ avec $D$ diagonale, $N$ nilpotente et $D N = N D$) puisqu’alors $\exp(A) = \exp(D) \exp(N)$.
 
@@ -1911,7 +1912,7 @@
 
     \subsubsection{Résolution de $X' = AX$ lorsque $A$ est diagonalisable}
 
-    Soient $A \in \mk{n}$ une matrice diagonalisable et $P \in \mathcal{G}\ell_n(\mathbb{K})$ telle que $D = P^{-1} A P = \diag(\lambda_1,\ldots,\lambda_n)$. 
+    Soient $A \in \mk{n}$ une matrice diagonalisable et $P \in \GL_n(\mathbb{K})$ telle que $D = P^{-1} A P = \diag(\lambda_1,\ldots,\lambda_n)$. 
 
     Les solutions de l’équation homogène sont de la forme 
     \[ \forall t \in \mathbb{R}, X(t) = \exp(tA)C \quad \text{où } C \in \mathbb{K}^n \] 
@@ -1973,12 +1974,12 @@
             \[ \fonction{\Phi}{E}{E}{f}{t \mapsto X_0 + \int_{t_0}^{t} A(x)f(x) + B(x)dx} \]   
             Alors $f$ est solution du problème de Cauchy \textit{(C)} \textit{ssi} $\Phi(f)=f$, \textit{i.e.} si $f$ est un point fixe de $\Phi$
             \item Si $\mk{n,1}$ est muni de la norme $\nnorm{\infty}{\cdotp}$, on pose, pour tout $M \in \mk{n}$, 
-            \[ \normm{M} = \sup\big\{ \nnorm{\infty}{MX}, X \in \mk{n,1} \quad \text{avec } \nnorm{\infty}{X} = 1 \big\} \]
+            \[ N_{op}{M} = \sup\big\{ \nnorm{\infty}{MX}, X \in \mk{n,1} \quad \text{avec } \nnorm{\infty}{X} = 1 \big\} \]
             qui est une norme sur $\mk{n}$. On vérifie que
-            \[ \forall X \in \mk{n,1}, \quad \nnorm{\infty}{MX} \leq \normm{M} \nnorm{\infty}{X} \]
+            \[ \forall X \in \mk{n,1}, \quad \nnorm{\infty}{MX} \leq N_{op}{M} \nnorm{\infty}{X} \]
         \end{enumerate}
-        L’application \[ \application{I}{\mathbb{R}}{t}{\normm{A(t)}} \] est continue comme composée d’applications continues donc est bornée et atteint sa borne supérieure. Il existe donc $M$ tel que 
-        \[ \forall t \in I, \quad \normm{A(t)} \leq M \]
+        L’application \[ \application{I}{\mathbb{R}}{t}{N_{op}{A(t)}} \] est continue comme composée d’applications continues donc est bornée et atteint sa borne supérieure. Il existe donc $M$ tel que 
+        \[ \forall t \in I, \quad N_{op}{A(t)} \leq M \]
 
         \textbf{Existence} \quad Prouvons l’existence d’un point fixe de $\Phi$ en démontrant que la suite d’applications $(Y_n)$ définie par $Y_0 \in E$ et $Y_{n+1} = \Phi(Y_n)$ converge.
         
@@ -1994,7 +1995,7 @@
                 \nnorm{\infty}{Y_{n+2}(t) - Y_{n+1}(t)} 
                 &= \nnorm{\infty}{\int_{t_0}^{t} A(x)Y_{n+1}(x) - A(x)Y_{n}(x) dx} \\
                 &\leq \int_{t_0}^{t} \nnorm{\infty}{A(x)(Y_{n+1}(x) - Y_{n}(x))} dx \\
-                &\leq \int_{t_0}^{t} \normm{A(x)} \nnorm{\infty}{Y_{n+1}(x) - Y_{n}(X)}dx \\
+                &\leq \int_{t_0}^{t} N_{op}{A(x)} \nnorm{\infty}{Y_{n+1}(x) - Y_{n}(X)}dx \\
                 &\leq M \int_{t_0}^{t} \nnorm{\infty}{Y_{n+1}(x) - Y_{n}(x)}dx \\
                 & \quad \downarrow \quad \mathcal{P}(n-1) \\
                 &\leq M^{n+1} M_0 \int_{t_0}^{t} \frac{\abs{t - t_0}^{n}}{(n)!} \\
